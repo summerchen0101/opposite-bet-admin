@@ -1,0 +1,31 @@
+.dashboard {
+  height: 100vh;
+}
+
+.dashboard .trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.dashboard .trigger:hover {
+  color: #1890ff;
+}
+
+.dashboard .logo {
+  height: 32px;
+  font-size: 20px;
+  color: #fff;
+  margin: 16px;
+  text-align: center;
+}
+
+/* .site-layout {
+  display: block;
+} */
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
