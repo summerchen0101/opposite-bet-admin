@@ -1,14 +1,6 @@
 import React, { useContext } from 'react';
 import { Layout, Menu } from 'antd';
-import {
-  UserOutlined,
-  NotificationOutlined,
-  DashboardOutlined,
-  FileSearchOutlined,
-  UsergroupAddOutlined,
-  StarOutlined,
-} from '@ant-design/icons';
-import './style.css';
+import { UserOutlined } from '@ant-design/icons';
 import { Link, useLocation, useRouteMatch } from 'react-router-dom';
 import DashboardContext from '@/contexts/DashboardContext';
 import MenuWithSubMenu from '@/utils/MenuWithSubMenu';

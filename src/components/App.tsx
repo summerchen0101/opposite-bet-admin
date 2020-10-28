@@ -6,6 +6,9 @@ import Login from '@/pages/Login';
 import Manager from '@/pages/account/Manager';
 import Online from '@/pages/account/Online';
 import * as mPath from '@/lib/menuPath';
+import 'antd/dist/antd.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import GlobalStyle from '@/utils/global-style';
 
 const rootRoutes = [
   { path: '/login', component: Login },
@@ -22,6 +25,7 @@ const App: React.FC = () => {
           <RouteWithSubRoutes key={i} {...route} />
         ))}
       </Switch>
+      <GlobalStyle />
     </Router>
   );
 };
