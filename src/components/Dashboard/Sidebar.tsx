@@ -1,24 +1,11 @@
 import React, { useContext } from 'react';
 import { Layout, Menu } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
 import { Link, useLocation, useRouteMatch } from 'react-router-dom';
 import DashboardContext from '@/contexts/DashboardContext';
 import MenuWithSubMenu from '@/utils/MenuWithSubMenu';
-import * as mPath from '@/lib/menuPath';
+import { menu } from '@/routes';
 
 const { Sider } = Layout;
-
-const menu = [
-  {
-    path: '/account',
-    label: '帳號管理',
-    iconComp: UserOutlined,
-    children: [
-      { path: mPath.ACCOUNT_MANAGER, label: '管理員管理' },
-      { path: mPath.ACCOUNT_ONLINE, label: '在線人員' },
-    ],
-  },
-];
 
 const Sidebar: React.FC = () => {
   const { collapsed } = useContext(DashboardContext);
