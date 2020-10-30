@@ -7,24 +7,19 @@ import StatusDropdown from './components/StatusDropdown';
 import KeywordInput from './components/KeywordInput';
 import PageSearchBar from '@/components/PageSearchBar';
 import { useDispatch, useStore } from 'react-redux';
-import managerReducer, { initSearchState } from './reducer';
+import reducer, { initSearchState } from './reducer';
 import CreateModal from './components/CreateModal';
 import UpdateModal from './components/UpdateModal';
 import CreateButton from './components/CreateButton';
-import { StoreType } from '@/store';
-import { addTab, removeTab } from '@/store/reducer';
 import { manager } from '@/routes';
+import { useReducerInjector, useTabRecord } from '@/utils/hooks';
 
 const Manager: React.FC = () => {
-  const store: StoreType = useStore();
-  store.injectReducer('manager', managerReducer);
+  useReducerInjector('manager', reducer);
+  useTabRecord(manager);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(initSearchState());
-    dispatch(removeTab(manager.path));
-    return () => {
-      dispatch(addTab(manager.getTab()));
-    };
   }, []);
   return (
     <Dashboard>

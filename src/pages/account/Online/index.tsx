@@ -6,21 +6,16 @@ import RoleDropdown from './RoleDropdown';
 import PageHeader from './PageHeader';
 import { useDispatch, useStore } from 'react-redux';
 import { initSearchState } from '@/pages/account/Online/reducer';
-import { StoreType } from '@/store';
-import OnlineReducer from './reducer';
-import { addTab, removeTab } from '@/store/reducer';
+import reducer from './reducer';
 import { online } from '@/routes';
+import { useReducerInjector, useTabRecord } from '@/utils/hooks';
 
 const Online: React.FC = () => {
-  const store: StoreType = useStore();
-  store.injectReducer('online', OnlineReducer);
+  useReducerInjector('online', reducer);
+  useTabRecord(online);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(initSearchState());
-    dispatch(removeTab(online.path));
-    return () => {
-      dispatch(addTab(online.getTab()));
-    };
   }, []);
   return (
     <Dashboard>
