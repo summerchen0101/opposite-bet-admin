@@ -12,16 +12,23 @@ import CreateModal from './components/CreateModal';
 import UpdateModal from './components/UpdateModal';
 import CreateButton from './components/CreateButton';
 import { StoreType } from '@/store';
+import { addTab, removeTab } from '@/store/reducer';
+import { manager } from '@/routes';
 
-const Component: React.FC = () => {
+const Manager: React.FC = () => {
   const store: StoreType = useStore();
   store.injectReducer('manager', managerReducer);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(initSearchState());
+    dispatch(removeTab(manager.path));
+    return () => {
+      dispatch(addTab(manager.getTab()));
+    };
   }, []);
   return (
     <Dashboard>
+      {/* <TabsRecord /> */}
       <PageHeader />
       <PageSearchBar extra={CreateButton}>
         <RoleDropdown />
@@ -35,4 +42,4 @@ const Component: React.FC = () => {
   );
 };
 
-export default Component;
+export default Manager;

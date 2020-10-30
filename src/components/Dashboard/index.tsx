@@ -6,6 +6,7 @@ import Header from './Header';
 import Content from './Content';
 import DashboardContext from '@/contexts/DashboardContext';
 import Wrapper from './Wrapper';
+import TabsRecord from '@/components/TabsRecord';
 
 const Component: React.FC = ({ children }) => {
   const [collapsed, changeCollapsed] = useState(false);
@@ -16,7 +17,10 @@ const Component: React.FC = ({ children }) => {
         <Sidebar />
         <Layout>
           <Header />
-          <Content>{children}</Content>
+          <Content>
+            <TabsRecord />
+            {children}
+          </Content>
         </Layout>
       </Wrapper>
     </DashboardContext.Provider>

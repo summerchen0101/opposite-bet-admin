@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Space } from 'antd';
 
-const PageSearchBar: React.FC = (props) => {
+const RelativeDateBtns: React.FC = (props) => {
   return (
     <Space size="small" {...props}>
       <Button>昨天</Button>
@@ -15,4 +15,4 @@ const PageSearchBar: React.FC = (props) => {
   );
 };
 
-export default PageSearchBar;
+export default RelativeDateBtns;

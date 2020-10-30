@@ -8,16 +8,23 @@ import { useDispatch, useStore } from 'react-redux';
 import { initSearchState } from '@/pages/account/Online/reducer';
 import { StoreType } from '@/store';
 import OnlineReducer from './reducer';
+import { addTab, removeTab } from '@/store/reducer';
+import { online } from '@/routes';
 
-const Component: React.FC = () => {
+const Online: React.FC = () => {
   const store: StoreType = useStore();
   store.injectReducer('online', OnlineReducer);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(initSearchState());
+    dispatch(removeTab(online.path));
+    return () => {
+      dispatch(addTab(online.getTab()));
+    };
   }, []);
   return (
     <Dashboard>
+      {/* <TabsRecord /> */}
       <PageHeader />
       <PageSearchBar>
         <RoleDropdown />
@@ -27,4 +34,4 @@ const Component: React.FC = () => {
   );
 };
 
-export default Component;
+export default Online;

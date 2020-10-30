@@ -36,7 +36,7 @@ export class MenuGenerator {
       label: pageRoute.name,
     });
   }
-  getRoot(): IMenuItem[] {
+  getRootMenu(): IMenuItem[] {
     return Object.keys(this.menu).map(
       (categoryPath) => this.menu[categoryPath],
     );

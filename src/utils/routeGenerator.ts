@@ -13,7 +13,7 @@ export class RouteGenerator {
       exact: pageRoute.option?.exact,
     });
   }
-  getRoutes(): RouteProps[] {
+  getRootRoutes(): RouteProps[] {
     return this.routes;
   }
 }
