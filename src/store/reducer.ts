@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
+import * as apis from '@/utils/request';
 export type TabType = {
   path: string;
   label: string;
@@ -6,11 +7,21 @@ export type TabType = {
 export type GlobalState = {
   isLogin: boolean;
   tabs: TabType[];
+  language: string;
 };
 const initialState: GlobalState = {
   isLogin: false,
   tabs: [],
+  language: 'zh-Hant',
 };
+
+// const fetchUserById = createAsyncThunk(
+//   'users/fetchByIdStatus',
+//   async (userId, thunkAPI) => {
+//     const response = await apis.getUserList(userId);
+//     return response.data;
+//   },
+// );
 
 const module = createSlice({
   name: 'global',
@@ -25,8 +36,21 @@ const module = createSlice({
     toggleLoginStatus(state, action: PayloadAction<boolean>) {
       state.isLogin = action.payload;
     },
+    setLanguage(state, action: PayloadAction<string>) {
+      state.language = action.payload;
+    },
   },
+  // extraReducers: (builder) => {
+  //   builder.addCase(fetchUserById.fulfilled, (state, action) => {
+  //     // state.messages = action.payload;
+  //   });
+  // },
 });
 
-export const { toggleLoginStatus, addTab, removeTab } = module.actions;
+export const {
+  toggleLoginStatus,
+  addTab,
+  removeTab,
+  setLanguage,
+} = module.actions;
 export default module.reducer;

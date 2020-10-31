@@ -11,7 +11,8 @@
       "prettier",
       "redux-saga",
       "react",
-      "react-hooks"
+      "react-hooks",
+      "formatjs"
    ],
    "extends":[
       "eslint:recommended",
@@ -22,7 +23,8 @@
    ],
    "rules":{
       "no-console":1,
-      "prettier/prettier":2
+      "prettier/prettier":2,
+      "formatjs/no-offset": "error"
    },
    "settings": {
       "import/resolver":{
