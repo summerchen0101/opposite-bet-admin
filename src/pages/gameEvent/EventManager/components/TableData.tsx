@@ -86,9 +86,10 @@ const columns = [
   },
 ];
 
-const data = [
-  {
-    key: 1,
+const data = [];
+for (let i = 1; i <= 50; i++) {
+  data.push({
+    key: i,
     eventId: 3123,
     startAt: '2020-12-02',
     teams: ['AAA', 'BBB'],
@@ -101,8 +102,8 @@ const data = [
       full: '3:2',
       firstHalf: '2:1',
     },
-  },
-];
+  });
+}
 const columnsWithKey = columns.map((t) => ({
   ...t,
   key: t.key ?? t.dataIndex,
@@ -115,7 +116,8 @@ const Component: React.FC = () => {
       dataSource={data}
       columns={columnsWithKey}
       scroll={{ x: 1000 }}
-      sticky
+      sticky={{ offsetHeader: -24 }}
+      pagination={{ pageSize: 20 }}
     />
   );
 };
