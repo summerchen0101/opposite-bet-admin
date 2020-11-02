@@ -11,6 +11,7 @@ import reducer, { initSearchState, moduleName } from './reducer';
 import DateRangePicker from '../../../components/DateRangePicker';
 import { eventManager } from '@/routes';
 import { useReducerInjector, useTabRecord } from '@/utils/hooks';
+import RelativeDateBtns from '@/components/RelativeDateBtns';
 
 const Manager: React.FC = () => {
   useReducerInjector(moduleName, reducer);
@@ -24,6 +25,7 @@ const Manager: React.FC = () => {
       <PageHeader />
       <PageSearchBar extra={CreateButton}>
         <DateRangePicker />
+        <RelativeDateBtns />
       </PageSearchBar>
       <TableData />
       <CreateModal />

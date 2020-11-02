@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import colors from '@/lib/colors';
 type Props = {
-  type: string;
+  color?: string;
 };
-export default styled.a`
-  color: ${(props: Props) => colors[props.type]};
+export default styled.a<Props>`
+  color: ${(props) => colors[props.color ?? 'default']};
   &:hover {
-    color: ${(props: Props) => colors[props.type]};
+    color: ${(props) => colors[props.color ?? 'default']};
   }
 `;

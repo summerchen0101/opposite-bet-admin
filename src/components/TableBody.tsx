@@ -1,12 +1,8 @@
 import React from 'react';
-type ColumnType = {
-  title: string;
-  dataIndex: string;
-  width?: number | string;
-  render?: (value: any, row: any) => any;
-};
+import { IColumn } from './types';
+
 interface IProps {
-  columns: ColumnType[];
+  columns: IColumn[];
   title?: string;
   data: any[];
 }
@@ -22,13 +18,13 @@ const Component: React.FC<IProps> = ({ columns, title, data }) => {
         return (
           <tr key={rowIndex}>
             {columns.map((col, colIndex) => {
-              return (
-                <td key={colIndex}>
-                  {col.render
-                    ? col.render(row[col.dataIndex], data)
-                    : row[col.dataIndex]}
-                </td>
-              );
+              if (!col.render) {
+                return <td key={colIndex}>{row[col.dataIndex]}</td>;
+              } else {
+                return (
+                  <td key={colIndex}>{col.render(row[col.dataIndex], row)}</td>
+                );
+              }
             })}
           </tr>
         );

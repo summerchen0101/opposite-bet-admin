@@ -1,12 +1,7 @@
 import React from 'react';
-type ColumnType = {
-  title: string;
-  dataIndex: string;
-  width?: number | string;
-  render?: (value: any, row: any) => any;
-};
+import { IColumn } from './types';
 interface IProps {
-  columns: ColumnType[];
+  columns: IColumn[];
 }
 const Component: React.FC<IProps> = ({ columns }) => {
   return (
