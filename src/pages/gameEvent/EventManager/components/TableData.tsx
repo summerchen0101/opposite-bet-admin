@@ -70,6 +70,7 @@ const columns = [
   {
     title: '操作',
     key: 'control',
+    fixed: ('right' as unknown) as boolean,
     render: (text, record) => {
       return (
         <Space size="small">
@@ -114,6 +115,7 @@ const Component: React.FC = () => {
       dataSource={data}
       columns={columnsWithKey}
       scroll={{ x: 1000 }}
+      sticky
     />
   );
 };
