@@ -1,28 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 
 import { Select } from 'antd';
+import { gotRoleOptions, changeRoleSearch } from '../reducer';
 import {
-  changeRoleSearch,
-  gotRoleOptions,
-} from '@/pages/account/Online/reducer';
+  selectRoleOptions,
+  selectRoleSearch,
+} from '@/pages/gameEvent/EventManager/selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectRoleOptions, selectRoleSearch } from './selectors';
 
 const { Option } = Select;
 
-const options = [
-  { label: '6級代理', value: 6 },
-  { label: '7級代理', value: 7 },
-  { label: '8級代理', value: 8 },
-  { label: '9級代理', value: 9 },
-  { label: '10級代理', value: 10 },
+const roleList = [
+  { value: '控盤人員' },
+  { value: '網站管理員' },
+  { value: 'MIS工程師' },
 ];
 
 const Component: React.FC = () => {
   const dispatch = useDispatch();
   const roleOptions = useSelector(selectRoleOptions);
   useEffect(() => {
-    dispatch(gotRoleOptions(options));
+    dispatch(gotRoleOptions(roleList));
   }, []);
   const onChange = (value) => dispatch(changeRoleSearch(value));
   return (
@@ -35,7 +33,7 @@ const Component: React.FC = () => {
     >
       {roleOptions.map((opt) => (
         <Option key={opt.value} value={opt.value}>
-          {opt.label}
+          {opt.value}
         </Option>
       ))}
     </Select>

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export type ManagerState = {
+export interface IState {
   searchRole: string;
   searchStatus: string;
   searchKeyword: string;
@@ -8,8 +8,8 @@ export type ManagerState = {
   roleOptions: any[];
   displayCreateModal: boolean;
   displayUpdateModal: boolean;
-};
-const initialState: ManagerState = {
+}
+const initialState: IState = {
   searchRole: undefined,
   searchStatus: undefined,
   searchKeyword: '',
@@ -19,8 +19,10 @@ const initialState: ManagerState = {
   displayUpdateModal: false,
 };
 
+export const moduleName = 'eventManager';
+
 const module = createSlice({
-  name: 'manager',
+  name: moduleName,
   initialState,
   reducers: {
     gotTableData(state, action: PayloadAction<any[]>) {

@@ -1,30 +1,31 @@
 import { createSelector } from 'reselect';
-import { ManagerState } from './reducer';
+import { IState, moduleName } from './reducer';
 
-const selectModuleState = (state: { manager: ManagerState }) => state.manager;
+const selectModuleState = (state: { [moduleName]: IState }) =>
+  state[moduleName];
 const selectTableData = createSelector(
   selectModuleState,
-  (manager) => manager.tableData,
+  (moduleState) => moduleState.tableData,
 );
 export const selectDisplayCreateModal = createSelector(
   selectModuleState,
-  (manager) => manager.displayCreateModal,
+  (moduleState) => moduleState.displayCreateModal,
 );
 export const selectDisplayUpdateModal = createSelector(
   selectModuleState,
-  (manager) => manager.displayUpdateModal,
+  (moduleState) => moduleState.displayUpdateModal,
 );
 export const selectRoleSearch = createSelector(
   selectModuleState,
-  (manager) => manager.searchRole,
+  (moduleState) => moduleState.searchRole,
 );
 export const selectStatusSearch = createSelector(
   selectModuleState,
-  (manager) => manager.searchStatus,
+  (moduleState) => moduleState.searchStatus,
 );
 export const selectRoleOptions = createSelector(
   selectModuleState,
-  (manager) => manager.roleOptions,
+  (moduleState) => moduleState.roleOptions,
 );
 
 export const selectFilteredData = createSelector(

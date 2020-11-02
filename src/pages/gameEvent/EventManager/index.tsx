@@ -7,23 +7,22 @@ import StatusDropdown from './components/StatusDropdown';
 import KeywordInput from './components/KeywordInput';
 import PageSearchBar from '@/components/PageSearchBar';
 import { useDispatch, useStore } from 'react-redux';
-import reducer, { initSearchState } from './reducer';
+import reducer, { initSearchState, moduleName } from './reducer';
 import CreateModal from './components/CreateModal';
 import UpdateModal from './components/UpdateModal';
 import CreateButton from './components/CreateButton';
-import { manager } from '@/routes';
+import { eventManager } from '@/routes';
 import { useReducerInjector, useTabRecord } from '@/utils/hooks';
 
 const Manager: React.FC = () => {
-  useReducerInjector('manager', reducer);
-  useTabRecord(manager);
+  useReducerInjector(moduleName, reducer);
+  useTabRecord(eventManager);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(initSearchState());
   }, []);
   return (
     <Dashboard>
-      {/* <TabsRecord /> */}
       <PageHeader />
       <PageSearchBar extra={CreateButton}>
         <RoleDropdown />

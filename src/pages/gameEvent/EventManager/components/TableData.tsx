@@ -3,7 +3,7 @@ import { Table, Space, Modal } from 'antd';
 import A from '@/components/A';
 import { CheckOutlined } from '@ant-design/icons';
 import { gotTableData, toggleUpdateModal } from '../reducer';
-import { selectFilteredData } from '@/pages/account/Manager/selectors';
+import { selectFilteredData } from '@/pages/gameEvent/EventManager/selectors';
 import { useSelector, useDispatch } from 'react-redux';
 const columns = [
   {
