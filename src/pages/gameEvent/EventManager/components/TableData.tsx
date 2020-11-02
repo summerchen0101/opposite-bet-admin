@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Table from '@/components/Table';
-import TableHead from '@/components/TableHead';
-import TableBody from '@/components/TableBody';
 import {
   EyeFilled,
   RedoOutlined,
   ContainerOutlined,
   DeleteOutlined,
 } from '@ant-design/icons';
-import { Checkbox, Space, Switch } from 'antd';
+import { Checkbox, Space, Switch, Table } from 'antd';
 import IconLink from '@/components/IconLink';
 const columns = [
   {
@@ -46,7 +43,6 @@ const columns = [
     title: '筆數/實貨量',
     dataIndex: 'count',
     render(count, row) {
-      console.log(row);
       return `${count}/${row.volume}`;
     },
   },
@@ -73,6 +69,7 @@ const columns = [
   },
   {
     title: '操作',
+    key: 'control',
     render: (text, record) => {
       return (
         <Space size="small">
@@ -90,6 +87,7 @@ const columns = [
 
 const data = [
   {
+    key: 1,
     eventId: 3123,
     startAt: '2020-12-02',
     teams: ['AAA', 'BBB'],
@@ -104,13 +102,19 @@ const data = [
     },
   },
 ];
+const columnsWithKey = columns.map((t) => ({
+  ...t,
+  key: t.key ?? t.dataIndex,
+}));
 
 const Component: React.FC = () => {
   return (
-    <Table>
-      <TableHead columns={columns}></TableHead>
-      <TableBody columns={columns} data={data}></TableBody>
-    </Table>
+    <Table
+      size="small"
+      dataSource={data}
+      columns={columnsWithKey}
+      scroll={{ x: 1000 }}
+    />
   );
 };
 
