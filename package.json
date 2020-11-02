@@ -11,8 +11,7 @@
     "start": "webpack-dev-server -d --content-base ./public",
     "deploy": "yarn install && yarn build",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
-    "extract": "formatjs extract 'src/**/*.ts*' --out-file src/lang/tw.json --id-interpolation-pattern '[sha512:contenthash:base64:6]' --format simple",
-    "compile": "formatjs compile src/lang/tw.json --ast --out-file src/lang/compiled/tw.json"
+    "extract": "formatjs extract 'src/**/*.ts*' --out-file src/lang/zh-Hant.json --id-interpolation-pattern '[sha512:contenthash:base64:6]' --format simple"
   },
   "resolutions": {
     "styled-components": "^5"

@@ -2,6 +2,8 @@ import React from 'react';
 import PageHeader from '@/components/PageHeader';
 import * as mPath from '@/lib/menuPath';
 import { useIntl } from 'react-intl';
+import { useMessage } from '@/utils/hooks';
+import { message } from 'antd';
 
 // const createLangCode = (id) => {
 //   return intl.formatMessage({
@@ -12,24 +14,27 @@ import { useIntl } from 'react-intl';
 
 const Component: React.FC = () => {
   const intl = useIntl();
+  const messages = useMessage();
   const routes = [
     {
       path: '/',
-      breadcrumbName: intl.formatMessage({
-        id: 'breadcrumb.home',
-        defaultMessage: '首頁 default',
-      }),
+      breadcrumbName: messages['breadcrumb.home'],
     },
     {
       path: '',
-      breadcrumbName: '帳號管理',
+      breadcrumbName: messages['breadcrumb.account'],
     },
     {
       path: mPath.ACCOUNT_MANAGER,
-      breadcrumbName: '管理員管理',
+      breadcrumbName: messages['breadcrumb.account.manager'],
     },
   ];
-  return <PageHeader title="管理員管理" breadcrumb={{ routes }} />;
+  return (
+    <PageHeader
+      title={messages['breadcrumb.account.manager']}
+      breadcrumb={{ routes }}
+    />
+  );
 };
 
 export default Component;

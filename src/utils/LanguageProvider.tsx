@@ -1,6 +1,6 @@
 import React from 'react';
 import { IntlProvider } from 'react-intl';
-import zhHantMessages from '@/lang/tw.json';
+import zhHantMessages from '@/lang/zh-Hant.json';
 import enMessages from '@/lang/en.json';
 import { useTypedSelector } from '@/store/rootReducer';
 
