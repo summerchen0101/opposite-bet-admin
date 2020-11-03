@@ -1,17 +1,20 @@
 import { Tooltip } from 'antd';
 import React, { CSSProperties } from 'react';
+import styled from 'styled-components';
 interface IProps {
-  IconComp: React.ElementType;
+  icon: JSX.Element;
   label?: string;
   style?: CSSProperties;
   onClick?: () => void;
 }
-const IconLink: React.FC<IProps> = ({ IconComp, label, style, ...props }) => {
-  if (!label)
-    return <IconComp style={{ cursor: 'pointer', ...style }} {...props} />;
+const CursorWrapper = styled.span`
+  cursor: pointer;
+`;
+const IconLink: React.FC<IProps> = ({ icon, label, ...props }) => {
+  if (!label) return <CursorWrapper {...props}>{icon}</CursorWrapper>;
   return (
     <Tooltip title={label}>
-      <IconComp style={{ cursor: 'pointer', ...style }} {...props} />
+      <CursorWrapper {...props}>{icon}</CursorWrapper>
     </Tooltip>
   );
 };

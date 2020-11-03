@@ -112,7 +112,7 @@ const columns = [
           操作(0)
         </Space>
         <IconLink
-          IconComp={FilterFilled}
+          icon={<FilterFilled />}
           style={{ float: 'right', marginTop: 4 }}
         />
       </>
@@ -126,16 +126,16 @@ const columns = [
           <Checkbox defaultChecked={false} />
           <Space size="small" style={{ float: 'right' }}>
             <DeleteConfirmTip>
-              <IconLink label="查看投注" IconComp={EyeFilled} />
+              <IconLink label="查看投注" icon={<EyeFilled />} />
             </DeleteConfirmTip>
-            <IconLink label="重置比分" IconComp={RedoOutlined} />
+            <IconLink label="重置比分" icon={<RedoOutlined />} />
             <IconLink
               label="比分"
-              IconComp={ContainerOutlined}
+              icon={<ContainerOutlined />}
               onClick={() => history.push(eventScore)}
             />
             <DeleteConfirmTip>
-              <IconLink IconComp={DeleteOutlined} />
+              <IconLink icon={<DeleteOutlined />} />
             </DeleteConfirmTip>
           </Space>
         </>

@@ -5,6 +5,7 @@ import EventScore from '@/pages/gameEvent/EventScore';
 import UploadEvent from '@/pages/gameEvent/UploadEvent';
 import BettingHistory from '@/pages/gameEvent/BettingHistory';
 import DefaultOdds from '@/pages/gameEvent/DefaultOdds';
+import EventRule from '@/pages/gameEvent/EventRule';
 import { MenuGenerator } from '@/utils/menuGenerator';
 import { PageGenerator } from '@/utils/pageGenerator';
 import { RouteGenerator } from '@/utils/routeGenerator';
@@ -39,6 +40,11 @@ export const defaultOdds = new PageGenerator(
   routes.defaultOdds,
   DefaultOdds,
 );
+export const eventRule = new PageGenerator(
+  '賽事規則',
+  routes.eventRule,
+  EventRule,
+);
 
 // ROUTERS
 const routeGenerator = new RouteGenerator();
@@ -49,6 +55,7 @@ routeGenerator.add(eventScore);
 routeGenerator.add(uploadEvent);
 routeGenerator.add(bettingHistory);
 routeGenerator.add(defaultOdds);
+routeGenerator.add(eventRule);
 
 // MENU
 const menuGenerator = new MenuGenerator();
@@ -57,6 +64,7 @@ menuGenerator.add(routes.event, eventManager);
 menuGenerator.add(routes.event, uploadEvent);
 menuGenerator.add(routes.event, bettingHistory);
 menuGenerator.add(routes.event, defaultOdds);
+menuGenerator.add(routes.event, eventRule);
 
 export const rootRoutes = routeGenerator.getRootRoutes();
 export const menu = menuGenerator.getRootMenu();

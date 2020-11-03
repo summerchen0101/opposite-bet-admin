@@ -54,10 +54,10 @@ const columns = [
     render: () => <Checkbox />,
   },
   {
-    title: () => <IconLink IconComp={FilterFilled} />,
+    title: () => <IconLink icon={<FilterFilled />} />,
     render: () => (
       <DeleteConfirmTip>
-        <IconLink IconComp={DeleteOutlined} />
+        <IconLink icon={<DeleteOutlined />} />
       </DeleteConfirmTip>
     ),
   },

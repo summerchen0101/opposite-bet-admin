@@ -93,7 +93,7 @@ const columns = [
           操作(0)
         </Space>
         <IconLink
-          IconComp={FilterFilled}
+          icon={<FilterFilled />}
           style={{ float: 'right', marginTop: 4 }}
         />
       </>
@@ -106,7 +106,7 @@ const columns = [
           <Checkbox defaultChecked={false} />
           <Space size="small" style={{ float: 'right' }}>
             <DeleteConfirmTip>
-              <IconLink IconComp={DeleteOutlined} />
+              <IconLink icon={<DeleteOutlined />} />
             </DeleteConfirmTip>
           </Space>
         </>

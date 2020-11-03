@@ -1,32 +1,38 @@
 import DeleteConfirmTip from '@/components/DeleteConfirmTip';
 import IconLink from '@/components/IconLink';
 import TableSets from '@/components/TableSets';
-import { DeleteOutlined, FilterFilled } from '@ant-design/icons';
+import { DeleteOutlined, FilterFilled, EditFilled } from '@ant-design/icons';
 import { Checkbox, Space } from 'antd';
 import React from 'react';
 
 const columns = [
   {
-    title: '賽事編號',
-    dataIndex: 'eventId',
+    title: '分類',
+    dataIndex: 'category',
     allowFiltered: true,
     width: 100,
   },
   {
-    title: '比分',
-    dataIndex: 'score',
-    allowFiltered: true,
-    width: 120,
-  },
-  {
-    title: '賠率',
-    dataIndex: 'odds',
-    allowFiltered: true,
-    width: 120,
-  },
-  {
-    title: '類型',
+    title: '類別',
     dataIndex: 'type',
+    allowFiltered: true,
+    width: 120,
+  },
+  {
+    title: '語系',
+    dataIndex: 'language',
+    allowFiltered: true,
+    width: 120,
+  },
+  {
+    title: '狀態',
+    dataIndex: 'status',
+    allowFiltered: true,
+    width: 120,
+  },
+  {
+    title: '更新人員',
+    dataIndex: 'operator',
     allowFiltered: true,
     width: 120,
   },
@@ -50,6 +56,7 @@ const columns = [
         <>
           <Checkbox defaultChecked={false} />
           <Space size="small" style={{ float: 'right' }}>
+            <IconLink icon={<EditFilled />} />
             <DeleteConfirmTip>
               <IconLink icon={<DeleteOutlined />} />
             </DeleteConfirmTip>
@@ -65,10 +72,12 @@ const data = [];
 for (let i = 1; i <= 50; i++) {
   data.push({
     key: i,
-    eventId: 3123,
-    score: '3:2',
-    odds: 2,
-    type: '全場波膽',
+    category: '全場反波膽',
+    type: '會員',
+    language: '簡中',
+    status: '啟動',
+    operator: 'flora',
+    operatorAt: '2019-07-01 10:54:36',
   });
 }
 const TableData: React.FC = () => {
