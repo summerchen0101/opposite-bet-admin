@@ -18,11 +18,9 @@ function itemRender(route, params, routes, paths) {
 const Component: React.FC<
   PageHeaderProps & { title: string; breadcrumb: BreadcrumbProps }
 > = ({ title, breadcrumb, ...props }) => {
-  const history = useHistory();
   return (
     <PageHeader
       style={{ padding: 0, paddingBottom: 20 }}
-      onBack={() => history.goBack()}
       title={title}
       breadcrumb={{ itemRender, ...breadcrumb }}
       {...props}

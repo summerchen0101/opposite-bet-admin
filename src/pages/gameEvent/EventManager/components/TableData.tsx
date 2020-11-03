@@ -96,7 +96,7 @@ const columns = [
           <IconLink label="重置比分" IconComp={ContainerOutlined} />
           <IconLink label="比分" IconComp={RedoOutlined} />
           <DeleteConfirmTip>
-            <IconLink label="刪除" IconComp={DeleteOutlined} />
+            <IconLink IconComp={DeleteOutlined} />
           </DeleteConfirmTip>
         </Space>
       );
