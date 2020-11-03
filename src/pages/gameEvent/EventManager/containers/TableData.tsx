@@ -16,6 +16,8 @@ import {
   InputModifyPopover,
   SelectModifyPopover,
 } from '@/components/ModifyPopover';
+import { useHistory } from 'react-router-dom';
+import { eventScore } from '@/lib/routes';
 
 const columns = [
   {
@@ -115,12 +117,17 @@ const columns = [
     key: 'control',
     fixed: ('right' as unknown) as boolean,
     render: (text, record) => {
+      const history = useHistory();
       return (
         <Space size="small">
           <Checkbox defaultChecked={false} />
           <IconLink label="查看投注" IconComp={EyeFilled} />
           <IconLink label="重置比分" IconComp={ContainerOutlined} />
-          <IconLink label="比分" IconComp={RedoOutlined} />
+          <IconLink
+            label="比分"
+            IconComp={RedoOutlined}
+            onClick={() => history.push(eventScore)}
+          />
           <DeleteConfirmTip>
             <IconLink IconComp={DeleteOutlined} />
           </DeleteConfirmTip>
