@@ -87,10 +87,10 @@ const columns = [
       return (
         <Space size="small">
           <Checkbox defaultChecked={false} />
-          <IconLink IconComp={EyeFilled} />
-          <IconLink IconComp={ContainerOutlined} />
-          <IconLink IconComp={RedoOutlined} />
-          <IconLink IconComp={DeleteOutlined} />
+          <IconLink label="查看投注" IconComp={EyeFilled} />
+          <IconLink label="重置比分" IconComp={ContainerOutlined} />
+          <IconLink label="比分" IconComp={RedoOutlined} />
+          <IconLink label="刪除" IconComp={DeleteOutlined} />
         </Space>
       );
     },
