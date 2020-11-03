@@ -9,6 +9,8 @@ import {
 import { Checkbox, Space, Switch } from 'antd';
 import IconLink from '@/components/IconLink';
 import TableSets from '@/components/TableSets';
+import { toggleScoreModal } from '../reducer';
+import { useDispatch } from 'react-redux';
 const columns = [
   {
     title: '賽事編號',
@@ -59,8 +61,10 @@ const columns = [
     title: '結果',
     dataIndex: 'result',
     render: (result) => {
+      const dispatch = useDispatch();
+      const onCreate = (e) => dispatch(toggleScoreModal(true));
       if (!result) {
-        return <a>點擊添加</a>;
+        return <a onClick={onCreate}>點擊添加</a>;
       }
       return (
         <>
@@ -110,10 +114,10 @@ for (let i = 1; i <= 50; i++) {
     count: 10,
     volume: 20320,
     isOpened: true,
-    result: {
-      full: '3:2',
-      firstHalf: '2:1',
-    },
+    // result: {
+    //   full: '3:2',
+    //   firstHalf: '2:1',
+    // },
   });
 }
 const Component: React.FC = () => {

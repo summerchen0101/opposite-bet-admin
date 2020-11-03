@@ -26,7 +26,7 @@ const module = createSlice({
     toggleCreateModal(state, action: PayloadAction<boolean>) {
       state.displayCreateModal = action.payload;
     },
-    toggleUpdateModal(state, action: PayloadAction<boolean>) {
+    toggleScoreModal(state, action: PayloadAction<boolean>) {
       state.displayScoreModal = action.payload;
     },
   },
@@ -36,6 +36,6 @@ export const {
   gotTableData,
   initSearchState,
   toggleCreateModal,
-  toggleUpdateModal,
+  toggleScoreModal,
 } = module.actions;
 export default module.reducer;

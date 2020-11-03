@@ -9,6 +9,7 @@ import DateRangePicker from '../../../components/DateRangePicker';
 import CreateButton from './components/CreateButton';
 import PageHeader from './components/PageHeader';
 import PopupCreateForm from './components/PopupCreateForm';
+import PopupScoreForm from './components/PopupScoreForm';
 import TableData from './components/TableData';
 import reducer, { initSearchState, moduleName } from './reducer';
 
@@ -28,6 +29,7 @@ const Manager: React.FC = () => {
       </PageSearchBar>
       <TableData />
       <PopupCreateForm />
+      <PopupScoreForm />
     </Dashboard>
   );
 };
