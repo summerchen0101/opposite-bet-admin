@@ -14,12 +14,16 @@ const Component: React.FC = () => {
     },
     {
       path: eventManager,
-      breadcrumbName: '上架賽事',
+      breadcrumbName: '賽事列表',
+    },
+    {
+      path: eventScore,
+      breadcrumbName: '比分',
     },
   ];
   return (
     <PageHeader
-      title="上架賽事"
+      title="美國 / NBA / 普羅森斯 VS 比勒菲爾德"
       breadcrumb={{ routes }}
       extra={<CreateButton />}
     />
