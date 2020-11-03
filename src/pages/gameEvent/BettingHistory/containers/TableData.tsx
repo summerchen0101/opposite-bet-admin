@@ -14,13 +14,14 @@ const columns = [
   {
     title: '賽事編號',
     dataIndex: 'eventId',
-    width: '10%',
     allowFiltered: true,
+    width: 100,
   },
   {
     title: '開賽時間',
     dataIndex: 'startAt',
     allowFiltered: true,
+    width: 150,
   },
   {
     title: '隊名',
@@ -36,6 +37,7 @@ const columns = [
         </>
       );
     },
+    width: 120,
   },
   {
     title: '聯盟',
@@ -48,42 +50,62 @@ const columns = [
         </Popover>
       );
     },
+    width: 150,
   },
   {
-    title: '國家',
-    dataIndex: 'country',
-    allowFiltered: true,
-    render(value, row) {
-      const options = [
-        { label: '巴西', value: 'opt1' },
-        { label: '美國', value: 'opt2' },
-      ];
-      return (
-        <Popover
-          content={<SelectModifyPopover options={options} value={value} />}
-          trigger="click"
-        >
-          <Button type="link">{value}</Button>
-        </Popover>
-      );
-    },
-  },
-  {
-    title: '上架狀態',
-    dataIndex: 'status',
+    title: '會員帳號',
+    dataIndex: 'account',
     allowFiltered: true,
     render(value, row) {
       return (
-        <Popover content={<InputModifyPopover value={value} />} trigger="click">
-          <Button type="link">{value}</Button>
-        </Popover>
+        <>
+          {value} <span style={{ color: 'red' }}>[試玩]</span>
+        </>
       );
     },
+    width: 150,
   },
   {
-    title: '採集時間',
-    dataIndex: 'collectingTime',
+    title: '類型',
+    dataIndex: 'type',
     allowFiltered: true,
+    width: 120,
+  },
+  {
+    title: '比分',
+    dataIndex: 'score',
+    allowFiltered: true,
+    width: 120,
+  },
+  {
+    title: '金額',
+    dataIndex: 'point',
+    allowFiltered: true,
+    width: 150,
+  },
+  {
+    title: '撤銷',
+    dataIndex: 'rejection',
+    allowFiltered: true,
+    width: 120,
+  },
+  {
+    title: '開獎',
+    dataIndex: 'opened',
+    allowFiltered: true,
+    width: 120,
+  },
+  {
+    title: '盈利',
+    dataIndex: 'earning',
+    allowFiltered: true,
+    width: 150,
+  },
+  {
+    title: '下注時間',
+    dataIndex: 'bettingAt',
+    allowFiltered: true,
+    width: 150,
   },
   {
     title: () => (
@@ -124,9 +146,14 @@ for (let i = 1; i <= 50; i++) {
     startAt: '2020-12-02',
     teams: ['AAA', 'BBB'],
     league: '大聯盟123',
-    country: '美國',
-    status: '待上架',
-    collectingTime: '2020-12-02',
+    account: 'summer123',
+    type: '全場波膽',
+    score: '3:3',
+    point: 200,
+    rejection: '未撤銷',
+    opened: '已開獎',
+    earning: '+1.24',
+    bettingAt: '2020-12-02',
   });
 }
 const TableData: React.FC = () => {
