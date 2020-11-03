@@ -4,18 +4,22 @@ import {
   RedoOutlined,
   ContainerOutlined,
   DeleteOutlined,
+  FilterFilled,
 } from '@ant-design/icons';
-import { Checkbox, Space, Switch, Table } from 'antd';
+import { Checkbox, Space, Switch } from 'antd';
 import IconLink from '@/components/IconLink';
+import TableSets from '@/components/TableSets';
 const columns = [
   {
     title: '賽事編號',
     dataIndex: 'eventId',
     width: '10%',
+    allowFiltered: true,
   },
   {
     title: '開賽時間',
     dataIndex: 'startAt',
+    allowFiltered: true,
   },
   {
     title: '隊名',
@@ -68,7 +72,15 @@ const columns = [
     },
   },
   {
-    title: '操作',
+    title: () => (
+      <>
+        操作
+        <IconLink
+          IconComp={FilterFilled}
+          style={{ float: 'right', marginTop: 4 }}
+        />
+      </>
+    ),
     key: 'control',
     fixed: ('right' as unknown) as boolean,
     render: (text, record) => {
@@ -104,22 +116,8 @@ for (let i = 1; i <= 50; i++) {
     },
   });
 }
-const columnsWithKey = columns.map((t) => ({
-  ...t,
-  key: t.key ?? t.dataIndex,
-}));
-
 const Component: React.FC = () => {
-  return (
-    <Table
-      size="small"
-      dataSource={data}
-      columns={columnsWithKey}
-      scroll={{ x: 1000 }}
-      sticky={{ offsetHeader: -24 }}
-      pagination={{ pageSize: 20 }}
-    />
-  );
+  return <TableSets columns={columns} data={data} />;
 };
 
 export default Component;
