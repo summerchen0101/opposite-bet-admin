@@ -20,11 +20,7 @@ const Manager: React.FC = () => {
   }, []);
   return (
     <Dashboard>
-      <PageHeader />
-      <PageSearchBar extra={CreateButton}>
-        <DateRangePicker />
-        <RelativeDateBtns />
-      </PageSearchBar>
+      <PageHeader extra={<CreateButton />} />
       <TableData />
       <PopupCreateForm />
     </Dashboard>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PageHeader from '@/components/PageHeader';
 import { eventManager, eventScore } from '@/lib/routes';
-const Component: React.FC = () => {
+const Component: React.FC<{ extra: React.ReactNode }> = ({ extra }) => {
   const routes = [
     {
       path: '/',
@@ -24,6 +24,7 @@ const Component: React.FC = () => {
     <PageHeader
       title="美國 / NBA / 普羅森斯 VS 比勒菲爾德"
       breadcrumb={{ routes }}
+      extra={extra}
     />
   );
 };

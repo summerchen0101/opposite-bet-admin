@@ -1,9 +1,9 @@
 import React from 'react';
 import { Space } from 'antd';
 
-const PageSearchBar: React.FC<{ extra?: React.ElementType }> = ({
+const PageSearchBar: React.FC<{ extra?: React.ReactNode }> = ({
   children,
-  extra: Extra,
+  extra,
   ...props
 }) => {
   return (
@@ -11,7 +11,7 @@ const PageSearchBar: React.FC<{ extra?: React.ElementType }> = ({
       <Space size="small" {...props}>
         {children}
       </Space>
-      {Extra && <Extra />}
+      {extra}
     </div>
   );
 };
