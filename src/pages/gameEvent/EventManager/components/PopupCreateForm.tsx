@@ -1,18 +1,22 @@
-import React from 'react';
-import { Form, Input, Button, Switch, Select, Space, DatePicker } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import { toggleCreateModal } from '../reducer';
 import PopupModal from '@/components/PopupModal';
+import {
+  Button,
+  DatePicker,
+  Input,
+  Select,
+  Space,
+  Form as AntForm,
+} from 'antd';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { toggleCreateModal } from '../reducer';
 import { selectDisplayCreateModal, useTypedSelector } from '../selectors';
+import Form, { FormField } from '@/components/Form';
 const { Option } = Select;
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
-};
 const CreateForm: React.FC = () => {
   const dispatch = useDispatch();
   const isDisplay = useTypedSelector(selectDisplayCreateModal);
-  const [form] = Form.useForm();
+  const [form] = AntForm.useForm();
   const onCancel = () => {
     dispatch(toggleCreateModal(false));
   };
@@ -26,38 +30,30 @@ const CreateForm: React.FC = () => {
   };
   return (
     <PopupModal visible={isDisplay} title="新增賽事">
-      <Form
-        {...layout}
-        name="basic"
-        form={form}
-        labelAlign="left"
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-      >
-        <Form.Item label="請選擇隊伍(主)" name="mainTeam" required>
+      <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
+        <FormField label="請選擇隊伍(主)" name="mainTeam" required>
           <Input />
-        </Form.Item>
-        <Form.Item label="請選擇隊伍" name="clientTeam" required>
+        </FormField>
+        <FormField label="請選擇隊伍" name="clientTeam" required>
           <Input />
-        </Form.Item>
-        <Form.Item label="國家" name="branch" rules={[{ required: true }]}>
+        </FormField>
+        <FormField label="國家" name="country" required>
           <Select placeholder="請選擇" allowClear>
             <Option value="opt1">巴西</Option>
             <Option value="opt2">美國</Option>
           </Select>
-        </Form.Item>
-        <Form.Item label="請選擇聯盟" name="league" required>
+        </FormField>
+        <FormField label="請選擇聯盟" name="league" required>
           <Input />
-        </Form.Item>
-        <Form.Item label="開賽時間" name="startAt" required>
+        </FormField>
+        <FormField label="開賽時間" name="startAt" required>
           <DatePicker style={{ width: '100%' }} />
-        </Form.Item>
-        <Form.Item>
+        </FormField>
+        <FormField>
           <p>＊如果上面結果為撤銷則不用選擇</p>
-        </Form.Item>
+        </FormField>
 
-        <Form.Item style={{ textAlign: 'right' }}>
+        <FormField style={{ textAlign: 'right' }}>
           <Space size="large">
             <Button type="primary" htmlType="submit">
               送出
@@ -66,7 +62,7 @@ const CreateForm: React.FC = () => {
               取消
             </Button>
           </Space>
-        </Form.Item>
+        </FormField>
       </Form>
     </PopupModal>
   );
