@@ -1,17 +1,16 @@
-import React, { useEffect, useReducer } from 'react';
 import Dashboard from '@/components/Dashboard';
-import PageHeader from './components/PageHeader';
-import TableData from './components/TableData';
-import CreateButton from './components/CreateButton';
-import CreateModal from './components/CreateModal';
-import UpdateModal from './components/UpdateModal';
 import PageSearchBar from '@/components/PageSearchBar';
-import { useDispatch, useStore } from 'react-redux';
-import reducer, { initSearchState, moduleName } from './reducer';
-import DateRangePicker from '../../../components/DateRangePicker';
+import RelativeDateBtns from '@/components/RelativeDateBtns';
 import { eventManager } from '@/routes';
 import { useReducerInjector, useTabRecord } from '@/utils/hooks';
-import RelativeDateBtns from '@/components/RelativeDateBtns';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import DateRangePicker from '../../../components/DateRangePicker';
+import CreateButton from './components/CreateButton';
+import PageHeader from './components/PageHeader';
+import PopupCreateForm from './components/PopupCreateForm';
+import TableData from './components/TableData';
+import reducer, { initSearchState, moduleName } from './reducer';
 
 const Manager: React.FC = () => {
   useReducerInjector(moduleName, reducer);
@@ -28,8 +27,7 @@ const Manager: React.FC = () => {
         <RelativeDateBtns />
       </PageSearchBar>
       <TableData />
-      <CreateModal />
-      <UpdateModal />
+      <PopupCreateForm />
     </Dashboard>
   );
 };

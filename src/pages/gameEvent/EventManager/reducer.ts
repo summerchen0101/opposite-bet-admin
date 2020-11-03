@@ -3,12 +3,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export interface IState {
   tableData: any[];
   displayCreateModal: boolean;
-  displayUpdateModal: boolean;
+  displayScoreModal: boolean;
 }
 const initialState: IState = {
   tableData: [],
   displayCreateModal: false,
-  displayUpdateModal: false,
+  displayScoreModal: false,
 };
 
 export const moduleName = 'eventManager';
@@ -27,7 +27,7 @@ const module = createSlice({
       state.displayCreateModal = action.payload;
     },
     toggleUpdateModal(state, action: PayloadAction<boolean>) {
-      state.displayUpdateModal = action.payload;
+      state.displayScoreModal = action.payload;
     },
   },
 });
