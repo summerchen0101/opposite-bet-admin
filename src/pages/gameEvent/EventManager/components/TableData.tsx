@@ -7,11 +7,16 @@ import {
   FilterFilled,
   RedoOutlined,
 } from '@ant-design/icons';
-import { Checkbox, Popconfirm, Space, Switch } from 'antd';
-import React from 'react';
+import { Button, Checkbox, Popconfirm, Popover, Space, Switch } from 'antd';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toggleScoreModal } from '../reducer';
 import DeleteConfirmTip from '@/components/DeleteConfirmTip';
+import {
+  InputModifyPopover,
+  SelectModifyPopover,
+} from '@/components/ModifyPopover';
+
 const columns = [
   {
     title: '賽事編號',
@@ -41,10 +46,31 @@ const columns = [
   {
     title: '聯盟',
     dataIndex: 'league',
+    render(value, row) {
+      return (
+        <Popover content={<InputModifyPopover value={value} />} trigger="click">
+          <Button type="link">{value}</Button>
+        </Popover>
+      );
+    },
   },
   {
     title: '國家',
     dataIndex: 'country',
+    render(value, row) {
+      const options = [
+        { label: '巴西', value: 'opt1' },
+        { label: '美國', value: 'opt2' },
+      ];
+      return (
+        <Popover
+          content={<SelectModifyPopover options={options} value={value} />}
+          trigger="click"
+        >
+          <Button type="link">{value}</Button>
+        </Popover>
+      );
+    },
   },
   {
     title: '筆數/實貨量',
