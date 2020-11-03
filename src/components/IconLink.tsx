@@ -6,11 +6,12 @@ interface IProps {
   style?: CSSProperties;
   onClick?: () => void;
 }
-const IconLink: React.FC<IProps> = ({ IconComp, label, ...props }) => {
-  if (!label) return <IconComp {...props} style={{ cursor: 'pointer' }} />;
+const IconLink: React.FC<IProps> = ({ IconComp, label, style, ...props }) => {
+  if (!label)
+    return <IconComp style={{ cursor: 'pointer', ...style }} {...props} />;
   return (
     <Tooltip title={label}>
-      <IconComp {...props} style={{ cursor: 'pointer' }} />
+      <IconComp style={{ cursor: 'pointer', ...style }} {...props} />
     </Tooltip>
   );
 };

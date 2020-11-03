@@ -1,23 +1,14 @@
-import IconLink from '@/components/IconLink';
-import TableSets from '@/components/TableSets';
-import {
-  ContainerOutlined,
-  DeleteOutlined,
-  EyeFilled,
-  FilterFilled,
-  RedoOutlined,
-} from '@ant-design/icons';
-import { Button, Checkbox, Popconfirm, Popover, Space, Switch } from 'antd';
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { toggleScoreModal } from '../reducer';
 import DeleteConfirmTip from '@/components/DeleteConfirmTip';
+import IconLink from '@/components/IconLink';
 import {
   InputModifyPopover,
   SelectModifyPopover,
 } from '@/components/ModifyPopover';
+import TableSets from '@/components/TableSets';
+import { DeleteOutlined, FilterFilled } from '@ant-design/icons';
+import { Button, Checkbox, Popover, Space } from 'antd';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { eventScore } from '@/lib/routes';
 
 const columns = [
   {
@@ -34,6 +25,7 @@ const columns = [
   {
     title: '隊名',
     dataIndex: 'teams',
+    allowFiltered: true,
     render(teams) {
       if (!teams) return '-';
       return (
@@ -48,6 +40,7 @@ const columns = [
   {
     title: '聯盟',
     dataIndex: 'league',
+    allowFiltered: true,
     render(value, row) {
       return (
         <Popover content={<InputModifyPopover value={value} />} trigger="click">
@@ -59,6 +52,7 @@ const columns = [
   {
     title: '國家',
     dataIndex: 'country',
+    allowFiltered: true,
     render(value, row) {
       const options = [
         { label: '巴西', value: 'opt1' },
@@ -75,34 +69,21 @@ const columns = [
     },
   },
   {
-    title: '筆數/實貨量',
-    dataIndex: 'count',
-    render(count, row) {
-      return `${count}/${row.volume}`;
-    },
-  },
-  {
-    title: '開始',
-    dataIndex: 'isOpened',
-    render: (isOpened) => <Switch defaultChecked={isOpened} />,
-  },
-  {
-    title: '結果',
-    dataIndex: 'result',
-    render: (result) => {
-      const dispatch = useDispatch();
-      const onCreate = (e) => dispatch(toggleScoreModal(true));
-      if (!result) {
-        return <a onClick={onCreate}>點擊添加</a>;
-      }
+    title: '上架狀態',
+    dataIndex: 'status',
+    allowFiltered: true,
+    render(value, row) {
       return (
-        <>
-          <span>全場波膽: {result.full}</span>
-          <br />
-          <span>上半波膽: {result.firstHalf}</span>
-        </>
+        <Popover content={<InputModifyPopover value={value} />} trigger="click">
+          <Button type="link">{value}</Button>
+        </Popover>
       );
     },
+  },
+  {
+    title: '採集時間',
+    dataIndex: 'collectingTime',
+    allowFiltered: true,
   },
   {
     title: () => (
@@ -119,21 +100,11 @@ const columns = [
     ),
     key: 'control',
     fixed: ('right' as unknown) as boolean,
-    render: () => {
-      const history = useHistory();
+    render: (text, record) => {
       return (
         <>
           <Checkbox defaultChecked={false} />
           <Space size="small" style={{ float: 'right' }}>
-            <DeleteConfirmTip>
-              <IconLink label="查看投注" IconComp={EyeFilled} />
-            </DeleteConfirmTip>
-            <IconLink label="重置比分" IconComp={RedoOutlined} />
-            <IconLink
-              label="比分"
-              IconComp={ContainerOutlined}
-              onClick={() => history.push(eventScore)}
-            />
             <DeleteConfirmTip>
               <IconLink IconComp={DeleteOutlined} />
             </DeleteConfirmTip>
@@ -154,13 +125,8 @@ for (let i = 1; i <= 50; i++) {
     teams: ['AAA', 'BBB'],
     league: '大聯盟123',
     country: '美國',
-    count: 10,
-    volume: 20320,
-    isOpened: true,
-    // result: {
-    //   full: '3:2',
-    //   firstHalf: '2:1',
-    // },
+    status: '待上架',
+    collectingTime: '2020-12-02',
   });
 }
 const Component: React.FC = () => {
