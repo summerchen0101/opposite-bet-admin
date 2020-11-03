@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import {
-  EyeFilled,
-  RedoOutlined,
-  ContainerOutlined,
-  DeleteOutlined,
-  FilterFilled,
-} from '@ant-design/icons';
-import { Checkbox, Space, Switch } from 'antd';
 import IconLink from '@/components/IconLink';
 import TableSets from '@/components/TableSets';
-import { toggleScoreModal } from '../reducer';
+import {
+  ContainerOutlined,
+  DeleteOutlined,
+  EyeFilled,
+  FilterFilled,
+  RedoOutlined,
+} from '@ant-design/icons';
+import { Checkbox, Popconfirm, Space, Switch } from 'antd';
+import React from 'react';
 import { useDispatch } from 'react-redux';
+import { toggleScoreModal } from '../reducer';
+import DeleteConfirmTip from '@/components/DeleteConfirmTip';
 const columns = [
   {
     title: '賽事編號',
@@ -94,7 +95,9 @@ const columns = [
           <IconLink label="查看投注" IconComp={EyeFilled} />
           <IconLink label="重置比分" IconComp={ContainerOutlined} />
           <IconLink label="比分" IconComp={RedoOutlined} />
-          <IconLink label="刪除" IconComp={DeleteOutlined} />
+          <DeleteConfirmTip>
+            <IconLink label="刪除" IconComp={DeleteOutlined} />
+          </DeleteConfirmTip>
         </Space>
       );
     },
