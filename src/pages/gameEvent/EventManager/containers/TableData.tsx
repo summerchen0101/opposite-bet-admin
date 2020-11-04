@@ -17,7 +17,7 @@ import {
   SelectModifyPopover,
 } from '@/components/ModifyPopover'
 import { useHistory } from 'react-router-dom'
-import { eventScore } from '@/lib/routes'
+import { EventScore } from '@/lib/routes'
 
 const columns = [
   {
@@ -132,7 +132,7 @@ const columns = [
             <IconLink
               label="比分"
               icon={<ContainerOutlined />}
-              onClick={() => history.push(eventScore)}
+              onClick={() => history.push(EventScore)}
             />
             <DeleteConfirmTip>
               <IconLink icon={<DeleteOutlined />} />

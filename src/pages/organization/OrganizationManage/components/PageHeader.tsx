@@ -1,7 +1,7 @@
 import React from 'react'
 import PageHeader from '@/components/PageHeader'
 import CreateButton from '../containers/CreateButton'
-import { memberLabel } from '@/routes'
+import { OrganizationManage } from '@/pages/organization/routes'
 const Component: React.FC = () => {
   const routes = [
     {
@@ -13,13 +13,13 @@ const Component: React.FC = () => {
       breadcrumbName: '會員管理',
     },
     {
-      path: memberLabel.path,
-      breadcrumbName: memberLabel.name,
+      path: OrganizationManage.path,
+      breadcrumbName: OrganizationManage.name,
     },
   ]
   return (
     <PageHeader
-      title={memberLabel.name}
+      title={OrganizationManage.name}
       extra={<CreateButton />}
       breadcrumb={{ routes }}
     />

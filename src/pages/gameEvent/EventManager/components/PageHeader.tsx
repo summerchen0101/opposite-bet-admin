@@ -1,6 +1,5 @@
 import React from 'react'
 import PageHeader from '@/components/PageHeader'
-import { eventManager } from '@/routes'
 const Component: React.FC = () => {
   const routes = [
     {
@@ -12,7 +11,7 @@ const Component: React.FC = () => {
       breadcrumbName: '賽事管理',
     },
     {
-      path: eventManager.path,
+      path: '',
       breadcrumbName: '賽事列表',
     },
   ]

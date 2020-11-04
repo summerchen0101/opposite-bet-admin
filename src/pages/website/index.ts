@@ -1,0 +1,5 @@
+export { default as Announcement } from './Announcement'
+export { default as Carousel } from './Carousel'
+export { default as Faq } from './Faq'
+export { default as LandingPage } from './LandingPage'
+export { default as PageManage } from './PageManage'

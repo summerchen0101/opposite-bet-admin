@@ -1,4 +1,4 @@
-import { UserOutlined } from '@ant-design/icons'
+import { StarOutlined } from '@ant-design/icons'
 import { PageGenerator } from './pageGenerator'
 
 export interface IMenuChild {
@@ -18,24 +18,29 @@ interface IMenu {
 
 export class MenuGenerator {
   private menu: IMenu = {}
-  private defaultIcon = UserOutlined
-  createCategory(
+  private defaultIcon = StarOutlined
+  static instance: MenuGenerator
+  private constructor() {}
+  static createCategory(
     name: string,
     path: string,
     icon?: React.ElementType,
     children?: PageGenerator[],
   ): void {
-    this.menu[path] = {
+    if (!this.instance) {
+      this.instance = new MenuGenerator()
+    }
+    this.instance.menu[path] = {
       path: path,
       label: name,
-      iconComp: icon || this.defaultIcon,
+      iconComp: icon || this.instance.defaultIcon,
       children: [],
     }
     children.forEach((page) => {
-      this.add(path, page)
+      this.instance.add(path, page)
     })
   }
-  add(categoryPath: string, pageRoute: PageGenerator): void {
+  private add(categoryPath: string, pageRoute: PageGenerator): void {
     if (!this.menu[categoryPath]) {
       throw Error('Please create menu category before add child Items!')
     }
@@ -44,7 +49,9 @@ export class MenuGenerator {
       label: pageRoute.name,
     })
   }
-  getRootMenu(): IMenuItem[] {
-    return Object.keys(this.menu).map((categoryPath) => this.menu[categoryPath])
+  static getRootMenu(): IMenuItem[] {
+    return Object.keys(this.instance.menu).map(
+      (categoryPath) => this.instance.menu[categoryPath],
+    )
   }
 }

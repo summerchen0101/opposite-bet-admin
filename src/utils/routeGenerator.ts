@@ -3,10 +3,16 @@ import { PageGenerator } from './pageGenerator'
 
 export class RouteGenerator {
   private routes: RouteProps[] = []
-  constructor(initPages: PageGenerator[] = []) {
-    initPages.forEach((page) => {
-      this.add(page)
-    })
+  static instance: RouteGenerator = null
+  private constructor() {}
+  static create(pages: PageGenerator[]): void {
+    if (!this.instance) {
+      this.instance = new RouteGenerator()
+    }
+    this.instance.batchAdd(pages)
+  }
+  batchAdd(pageRoutes: PageGenerator[]): void {
+    pageRoutes.forEach((page) => this.add(page))
   }
   add(pageRoute: PageGenerator): void {
     this.routes.push({
@@ -15,7 +21,7 @@ export class RouteGenerator {
       exact: pageRoute.option?.exact,
     })
   }
-  getRootRoutes(): RouteProps[] {
-    return this.routes
+  static getRootRoutes(): RouteProps[] {
+    return RouteGenerator.instance.routes
   }
 }

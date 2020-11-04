@@ -1,7 +1,6 @@
 import Dashboard from '@/components/Dashboard'
 import PageSearchBar from '@/components/PageSearchBar'
 import RelativeDateBtns from '@/components/RelativeDateBtns'
-import { eventManager } from '@/routes'
 import { useReducerInjector, useTabRecord } from '@/utils/hooks'
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
