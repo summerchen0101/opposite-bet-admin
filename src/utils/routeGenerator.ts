@@ -2,9 +2,11 @@ import { RouteProps } from 'react-router-dom'
 import { PageGenerator } from './pageGenerator'
 
 export class RouteGenerator {
-  private routes: RouteProps[]
-  constructor(initRoutes: RouteProps[] = []) {
-    this.routes = [...initRoutes]
+  private routes: RouteProps[] = []
+  constructor(initPages: PageGenerator[] = []) {
+    initPages.forEach((page) => {
+      this.add(page)
+    })
   }
   add(pageRoute: PageGenerator): void {
     this.routes.push({
