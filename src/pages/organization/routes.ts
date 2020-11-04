@@ -3,6 +3,7 @@ import * as pages from '@/pages/organization'
 import { MenuGenerator as MenuG } from '@/utils/menuGenerator'
 import { PageGenerator as PageG } from '@/utils/pageGenerator'
 import { RouteGenerator as RouteG } from '@/utils/routeGenerator'
+import { ApartmentOutlined } from '@ant-design/icons'
 
 // PAGES
 export const OrganizationManage = new PageG(
@@ -15,6 +16,6 @@ export const OrganizationManage = new PageG(
 RouteG.create([OrganizationManage])
 
 // MENU
-MenuG.createCategory('組織管理', routes.Organization, null, [
+MenuG.createCategory('組織管理', routes.Organization, ApartmentOutlined, [
   OrganizationManage,
 ])

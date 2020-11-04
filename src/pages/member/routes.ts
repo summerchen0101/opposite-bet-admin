@@ -3,6 +3,7 @@ import * as member from '@/pages/member'
 import { MenuGenerator as MenuG } from '@/utils/menuGenerator'
 import { PageGenerator as PageG } from '@/utils/pageGenerator'
 import { RouteGenerator as RouteG } from '@/utils/routeGenerator'
+import { TeamOutlined } from '@ant-design/icons'
 
 // PAGES
 export const MemberActivity = new PageG(
@@ -25,7 +26,7 @@ export const MemberLabel = new PageG(
 RouteG.create([MemberActivity, MemberManage, MemberLabel])
 
 // MENU
-MenuG.createCategory('會員管理', routes.Member, null, [
+MenuG.createCategory('會員管理', routes.Member, TeamOutlined, [
   MemberActivity,
   MemberManage,
   MemberLabel,

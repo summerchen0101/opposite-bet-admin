@@ -3,6 +3,7 @@ import * as pages from '@/pages/payment'
 import { MenuGenerator as MenuG } from '@/utils/menuGenerator'
 import { PageGenerator as PageG } from '@/utils/pageGenerator'
 import { RouteGenerator as RouteG } from '@/utils/routeGenerator'
+import { DollarOutlined } from '@ant-design/icons'
 
 // PAGES
 export const BankDeposit = new PageG(
@@ -59,7 +60,7 @@ RouteG.create([
 ])
 
 // MENU
-MenuG.createCategory('金流管理', routes.Payment, null, [
+MenuG.createCategory('金流管理', routes.Payment, DollarOutlined, [
   BankDeposit,
   ThirdPartyDeposit,
   Withdrawal,

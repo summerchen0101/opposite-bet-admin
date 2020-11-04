@@ -3,6 +3,7 @@ import * as pages from '@/pages/gameEvent'
 import { MenuGenerator as MenuG } from '@/utils/menuGenerator'
 import { PageGenerator as PageG } from '@/utils/pageGenerator'
 import { RouteGenerator as RouteG } from '@/utils/routeGenerator'
+import { DribbbleOutlined } from '@ant-design/icons'
 
 // PAGES
 export const EventManager = new PageG(
@@ -46,7 +47,7 @@ RouteG.create([
 ])
 
 // MENU
-MenuG.createCategory('賽事管理', routes.Event, null, [
+MenuG.createCategory('賽事管理', routes.Event, DribbbleOutlined, [
   EventManager,
   UploadEvent,
   BettingHistory,

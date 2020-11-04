@@ -3,6 +3,7 @@ import * as pages from '@/pages/website'
 import { MenuGenerator as MenuG } from '@/utils/menuGenerator'
 import { PageGenerator as PageG } from '@/utils/pageGenerator'
 import { RouteGenerator as RouteG } from '@/utils/routeGenerator'
+import { HomeOutlined } from '@ant-design/icons'
 
 // PAGES
 export const LandingPage = new PageG(
@@ -27,7 +28,7 @@ export const Faq = new PageG('常見問題', routes.Faq, pages.Faq)
 RouteG.create([LandingPage, Carousel, PageManage, Announcement, Faq])
 
 // MENU
-MenuG.createCategory('網站管理', routes.Website, null, [
+MenuG.createCategory('網站管理', routes.Website, HomeOutlined, [
   LandingPage,
   Carousel,
   PageManage,
