@@ -19,13 +19,21 @@ interface IMenu {
 export class MenuGenerator {
   private menu: IMenu = {}
   private defaultIcon = UserOutlined
-  createCategory(name: string, path: string, icon?: React.ElementType): void {
+  createCategory(
+    name: string,
+    path: string,
+    icon?: React.ElementType,
+    children?: PageGenerator[],
+  ): void {
     this.menu[path] = {
       path: path,
       label: name,
       iconComp: icon || this.defaultIcon,
       children: [],
     }
+    children.forEach((page) => {
+      this.add(path, page)
+    })
   }
   add(categoryPath: string, pageRoute: PageGenerator): void {
     if (!this.menu[categoryPath]) {
