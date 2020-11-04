@@ -4,4 +4,4 @@ export default {
   agent: '代理',
   masterAgent: '總代理',
   shareHolder: '股東',
-};
+}

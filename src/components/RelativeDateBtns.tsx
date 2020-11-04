@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button, Space } from 'antd';
+import React from 'react'
+import { Button, Space } from 'antd'
 
 const RelativeDateBtns: React.FC = (props) => {
   return (
@@ -12,7 +12,7 @@ const RelativeDateBtns: React.FC = (props) => {
       <Button>上月</Button>
       <Button>本月</Button>
     </Space>
-  );
-};
+  )
+}
 
-export default RelativeDateBtns;
+export default RelativeDateBtns

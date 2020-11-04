@@ -1,11 +1,11 @@
-import DeleteConfirmTip from '@/components/DeleteConfirmTip';
-import IconLink from '@/components/IconLink';
-import { SelectModifyPopover } from '@/components/ModifyPopover';
-import TableSets from '@/components/TableSets';
-import { DeleteOutlined, FilterFilled, EditFilled } from '@ant-design/icons';
-import { Button, Checkbox, Popover, Space } from 'antd';
-import React from 'react';
-import Text from '@/components/Text';
+import DeleteConfirmTip from '@/components/DeleteConfirmTip'
+import IconLink from '@/components/IconLink'
+import { SelectModifyPopover } from '@/components/ModifyPopover'
+import TableSets from '@/components/TableSets'
+import { DeleteOutlined, FilterFilled, EditFilled } from '@ant-design/icons'
+import { Button, Checkbox, Popover, Space } from 'antd'
+import React from 'react'
+import Text from '@/components/Text'
 
 const columns = [
   {
@@ -17,7 +17,7 @@ const columns = [
       const options = [
         { label: '全場反波膽', value: 'full' },
         { label: '上半場反波膽', value: 'firstHalf' },
-      ];
+      ]
       return (
         <Popover
           content={<SelectModifyPopover options={options} value={value} />}
@@ -25,7 +25,7 @@ const columns = [
         >
           <Button type="link">{value}</Button>
         </Popover>
-      );
+      )
     },
   },
   {
@@ -43,11 +43,11 @@ const columns = [
       const options = {
         cn: '簡中',
         en: 'English',
-      };
+      }
       const selectOptions = Object.keys(options).map((key) => ({
         label: options[key],
         value: key,
-      }));
+      }))
       return (
         <Popover
           content={
@@ -57,7 +57,7 @@ const columns = [
         >
           <Button type="link">{options[value]}</Button>
         </Popover>
-      );
+      )
     },
   },
   {
@@ -66,8 +66,8 @@ const columns = [
     allowFiltered: true,
     width: 120,
     render: (value) => {
-      if (value === 'on') return <span style={{ color: 'green' }}>啟用</span>;
-      else return <span style={{ color: 'red' }}>停用</span>;
+      if (value === 'on') return <span style={{ color: 'green' }}>啟用</span>
+      else return <span style={{ color: 'red' }}>停用</span>
     },
   },
   {
@@ -82,7 +82,7 @@ const columns = [
           <br />
           <Text color="default">{operatorAt}</Text>
         </div>
-      );
+      )
     },
   },
   {
@@ -111,13 +111,13 @@ const columns = [
             </DeleteConfirmTip>
           </Space>
         </>
-      );
+      )
     },
     width: 80,
   },
-];
+]
 
-const data = [];
+const data = []
 for (let i = 1; i <= 50; i++) {
   data.push({
     key: i,
@@ -127,10 +127,10 @@ for (let i = 1; i <= 50; i++) {
     status: 'on',
     operator: 'flora',
     operatorAt: '2019-07-01 10:54:36',
-  });
+  })
 }
 const TableData: React.FC = () => {
-  return <TableSets columns={columns} data={data} />;
-};
+  return <TableSets columns={columns} data={data} />
+}
 
-export default TableData;
+export default TableData

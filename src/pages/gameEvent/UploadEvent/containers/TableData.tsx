@@ -1,14 +1,14 @@
-import DeleteConfirmTip from '@/components/DeleteConfirmTip';
-import IconLink from '@/components/IconLink';
+import DeleteConfirmTip from '@/components/DeleteConfirmTip'
+import IconLink from '@/components/IconLink'
 import {
   InputModifyPopover,
   SelectModifyPopover,
-} from '@/components/ModifyPopover';
-import TableSets from '@/components/TableSets';
-import { DeleteOutlined, FilterFilled } from '@ant-design/icons';
-import { Button, Checkbox, Popover, Space } from 'antd';
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+} from '@/components/ModifyPopover'
+import TableSets from '@/components/TableSets'
+import { DeleteOutlined, FilterFilled } from '@ant-design/icons'
+import { Button, Checkbox, Popover, Space } from 'antd'
+import React from 'react'
+import { useHistory } from 'react-router-dom'
 
 const columns = [
   {
@@ -27,14 +27,14 @@ const columns = [
     dataIndex: 'teams',
     allowFiltered: true,
     render(teams) {
-      if (!teams) return '-';
+      if (!teams) return '-'
       return (
         <>
           <span>{teams[0]}</span>
           <br />
           <span>{teams[1]}</span>
         </>
-      );
+      )
     },
   },
   {
@@ -46,7 +46,7 @@ const columns = [
         <Popover content={<InputModifyPopover value={value} />} trigger="click">
           <Button type="link">{value}</Button>
         </Popover>
-      );
+      )
     },
   },
   {
@@ -57,7 +57,7 @@ const columns = [
       const options = [
         { label: '巴西', value: 'opt1' },
         { label: '美國', value: 'opt2' },
-      ];
+      ]
       return (
         <Popover
           content={<SelectModifyPopover options={options} value={value} />}
@@ -65,7 +65,7 @@ const columns = [
         >
           <Button type="link">{value}</Button>
         </Popover>
-      );
+      )
     },
   },
   {
@@ -77,7 +77,7 @@ const columns = [
         <Popover content={<InputModifyPopover value={value} />} trigger="click">
           <Button type="link">{value}</Button>
         </Popover>
-      );
+      )
     },
   },
   {
@@ -110,13 +110,13 @@ const columns = [
             </DeleteConfirmTip>
           </Space>
         </>
-      );
+      )
     },
     width: 120,
   },
-];
+]
 
-const data = [];
+const data = []
 for (let i = 1; i <= 50; i++) {
   data.push({
     key: i,
@@ -127,10 +127,10 @@ for (let i = 1; i <= 50; i++) {
     country: '美國',
     status: '待上架',
     collectingTime: '2020-12-02',
-  });
+  })
 }
 const Component: React.FC = () => {
-  return <TableSets columns={columns} data={data} />;
-};
+  return <TableSets columns={columns} data={data} />
+}
 
-export default Component;
+export default Component

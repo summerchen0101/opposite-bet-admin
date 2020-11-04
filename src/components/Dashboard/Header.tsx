@@ -1,16 +1,16 @@
-import React, { useContext } from 'react';
-import { Layout, Menu, Select } from 'antd';
-import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
-import DashboardContext from '@/contexts/DashboardContext';
-import { useDispatch } from 'react-redux';
-import { setLanguage } from '@/store/reducer';
+import React, { useContext } from 'react'
+import { Layout, Menu, Select } from 'antd'
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
+import DashboardContext from '@/contexts/DashboardContext'
+import { useDispatch } from 'react-redux'
+import { setLanguage } from '@/store/reducer'
 
-const { Header } = Layout;
-const { Option } = Select;
+const { Header } = Layout
+const { Option } = Select
 
 const Sidebar: React.FC = () => {
-  const { collapsed, toggleCollapsed } = useContext(DashboardContext);
-  const dispatch = useDispatch();
+  const { collapsed, toggleCollapsed } = useContext(DashboardContext)
+  const dispatch = useDispatch()
   return (
     <Header className="site-header">
       {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
@@ -26,7 +26,7 @@ const Sidebar: React.FC = () => {
         <Option value="en">English</Option>
       </Select>
     </Header>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

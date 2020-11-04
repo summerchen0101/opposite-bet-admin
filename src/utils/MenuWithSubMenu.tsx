@@ -1,7 +1,7 @@
-import React from 'react';
-import { Menu } from 'antd';
-import { Link } from 'react-router-dom';
-const { SubMenu } = Menu;
+import React from 'react'
+import { Menu } from 'antd'
+import { Link } from 'react-router-dom'
+const { SubMenu } = Menu
 
 export default function MenuWithSubMenu(menu) {
   if (menu.children) {
@@ -9,13 +9,13 @@ export default function MenuWithSubMenu(menu) {
       <SubMenu key={menu.path} icon={<menu.iconComp />} title={menu.label}>
         {menu.children.map((m) => MenuWithSubMenu(m))}
       </SubMenu>
-    );
+    )
   } else {
     return (
       <Menu.Item key={menu.path} icon={menu.iconComp && <menu.iconComp />}>
         <Link to={menu.path}>{menu.label}</Link>
       </Menu.Item>
-    );
+    )
   }
 }
 

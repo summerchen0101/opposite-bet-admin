@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Layout } from 'antd';
+import styled from 'styled-components'
+import { Layout } from 'antd'
 export default styled(Layout)`
   height: 100vh;
 
@@ -39,4 +39,4 @@ export default styled(Layout)`
     margin-top: 80px;
     overflow-y: auto;
   }
-`;
+`

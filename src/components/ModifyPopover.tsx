@@ -1,7 +1,7 @@
-import { Button, Input, Select, Space } from 'antd';
-import React from 'react';
-import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
-import { OptionType } from 'antd/lib/select';
+import { Button, Input, Select, Space } from 'antd'
+import React from 'react'
+import { CheckOutlined, CloseOutlined } from '@ant-design/icons'
+import { OptionType } from 'antd/lib/select'
 
 const ModifyPopover: React.FC = ({ children }) => {
   return (
@@ -11,15 +11,15 @@ const ModifyPopover: React.FC = ({ children }) => {
       <Button icon={<CloseOutlined />} />
       <Button type="primary" icon={<CheckOutlined />} />
     </Space>
-  );
-};
+  )
+}
 
 interface InputProps {
-  value: any;
+  value: any
 }
 interface SelectProps {
-  value: any;
-  options: { label: any; value: any }[];
+  value: any
+  options: { label: any; value: any }[]
 }
 
 export const InputModifyPopover: React.FC<InputProps> = ({ value }) => {
@@ -27,8 +27,8 @@ export const InputModifyPopover: React.FC<InputProps> = ({ value }) => {
     <ModifyPopover>
       <Input defaultValue={value} />
     </ModifyPopover>
-  );
-};
+  )
+}
 export const SelectModifyPopover: React.FC<SelectProps> = ({
   value,
   options,
@@ -41,7 +41,7 @@ export const SelectModifyPopover: React.FC<SelectProps> = ({
         style={{ minWidth: 100 }}
       />
     </ModifyPopover>
-  );
-};
+  )
+}
 
-export default ModifyPopover;
+export default ModifyPopover

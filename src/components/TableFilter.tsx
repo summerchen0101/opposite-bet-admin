@@ -1,10 +1,10 @@
-import { Checkbox } from 'antd';
-import React from 'react';
-import styled from 'styled-components';
+import { Checkbox } from 'antd'
+import React from 'react'
+import styled from 'styled-components'
 
 interface IProps {
-  columns: any[];
-  display: boolean;
+  columns: any[]
+  display: boolean
 }
 const TableSets: React.FC<IProps> = ({ columns, display, children }) => {
   return (
@@ -19,8 +19,8 @@ const TableSets: React.FC<IProps> = ({ columns, display, children }) => {
       )}
       {children}
     </div>
-  );
-};
+  )
+}
 
 export default styled(TableSets)`
   position: relative;
@@ -34,4 +34,4 @@ export default styled(TableSets)`
     line-height: 40px;
     padding: 0 10px;
   }
-`;
+`

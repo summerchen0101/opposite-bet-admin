@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import store from '@/store';
-import App from '@/components/App';
-import LanguageProvider from '@/utils/LanguageProvider';
-import AntDesignProvider from '@/utils/AntDesignProvider';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import store from '@/store'
+import App from '@/components/App'
+import LanguageProvider from '@/utils/LanguageProvider'
+import AntDesignProvider from '@/utils/AntDesignProvider'
 
 ReactDOM.render(
   <Provider store={store()}>
@@ -15,4 +15,4 @@ ReactDOM.render(
     </LanguageProvider>
   </Provider>,
   document.getElementById('root'),
-);
+)

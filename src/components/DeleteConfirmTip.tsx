@@ -1,10 +1,10 @@
-import { Popconfirm } from 'antd';
-import React from 'react';
+import { Popconfirm } from 'antd'
+import React from 'react'
 
 interface DeleteConfirmBtnState {
-  title?: string;
-  onConfirm?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-  onCancel?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  title?: string
+  onConfirm?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void
+  onCancel?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
 
 const DeleteConfirmBtn: React.FC<DeleteConfirmBtnState> = ({
@@ -17,7 +17,7 @@ const DeleteConfirmBtn: React.FC<DeleteConfirmBtnState> = ({
     <Popconfirm title={title} onConfirm={onConfirm} onCancel={onCancel}>
       {children}
     </Popconfirm>
-  );
-};
+  )
+}
 
-export default DeleteConfirmBtn;
+export default DeleteConfirmBtn

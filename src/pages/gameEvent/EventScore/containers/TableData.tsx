@@ -1,9 +1,9 @@
-import DeleteConfirmTip from '@/components/DeleteConfirmTip';
-import IconLink from '@/components/IconLink';
-import TableSets from '@/components/TableSets';
-import { DeleteOutlined, FilterFilled } from '@ant-design/icons';
-import { Checkbox, Space, Switch } from 'antd';
-import React from 'react';
+import DeleteConfirmTip from '@/components/DeleteConfirmTip'
+import IconLink from '@/components/IconLink'
+import TableSets from '@/components/TableSets'
+import { DeleteOutlined, FilterFilled } from '@ant-design/icons'
+import { Checkbox, Space, Switch } from 'antd'
+import React from 'react'
 
 const columns = [
   {
@@ -61,9 +61,9 @@ const columns = [
       </DeleteConfirmTip>
     ),
   },
-];
+]
 
-const data = [];
+const data = []
 for (let i = 1; i <= 50; i++) {
   data.push({
     key: i,
@@ -73,10 +73,10 @@ for (let i = 1; i <= 50; i++) {
     type: '全場波膽',
     betRule: 1,
     event: '普羅森斯 VS 比勒菲爾德',
-  });
+  })
 }
 const Component: React.FC = () => {
-  return <TableSets columns={columns} data={data} />;
-};
+  return <TableSets columns={columns} data={data} />
+}
 
-export default Component;
+export default Component

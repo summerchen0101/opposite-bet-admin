@@ -1,9 +1,9 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
-import RouteWithSubRoutes from '@/utils/RouteWithSubRoutes';
-import GlobalStyle from '@/utils/global-style';
-import { rootRoutes } from '@/routes';
-import { Helmet } from 'react-helmet';
+import React from 'react'
+import { BrowserRouter as Router, Switch } from 'react-router-dom'
+import RouteWithSubRoutes from '@/utils/RouteWithSubRoutes'
+import GlobalStyle from '@/utils/global-style'
+import { rootRoutes } from '@/routes'
+import { Helmet } from 'react-helmet'
 
 const App: React.FC = () => {
   return (
@@ -19,7 +19,7 @@ const App: React.FC = () => {
       </Switch>
       <GlobalStyle />
     </Router>
-  );
-};
+  )
+}
 
-export default App;
+export default App

@@ -1,14 +1,14 @@
-import DeleteConfirmTip from '@/components/DeleteConfirmTip';
-import IconLink from '@/components/IconLink';
+import DeleteConfirmTip from '@/components/DeleteConfirmTip'
+import IconLink from '@/components/IconLink'
 import {
   InputModifyPopover,
   SelectModifyPopover,
-} from '@/components/ModifyPopover';
-import TableSets from '@/components/TableSets';
-import { DeleteOutlined, FilterFilled } from '@ant-design/icons';
-import { Button, Checkbox, Popover, Space } from 'antd';
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+} from '@/components/ModifyPopover'
+import TableSets from '@/components/TableSets'
+import { DeleteOutlined, FilterFilled } from '@ant-design/icons'
+import { Button, Checkbox, Popover, Space } from 'antd'
+import React from 'react'
+import { useHistory } from 'react-router-dom'
 
 const columns = [
   {
@@ -28,14 +28,14 @@ const columns = [
     dataIndex: 'teams',
     allowFiltered: true,
     render(teams) {
-      if (!teams) return '-';
+      if (!teams) return '-'
       return (
         <>
           <span>{teams[0]}</span>
           <br />
           <span>{teams[1]}</span>
         </>
-      );
+      )
     },
     width: 120,
   },
@@ -48,7 +48,7 @@ const columns = [
         <Popover content={<InputModifyPopover value={value} />} trigger="click">
           <Button type="link">{value}</Button>
         </Popover>
-      );
+      )
     },
     width: 150,
   },
@@ -61,7 +61,7 @@ const columns = [
         <>
           {value} <span style={{ color: 'red' }}>[試玩]</span>
         </>
-      );
+      )
     },
     width: 150,
   },
@@ -132,13 +132,13 @@ const columns = [
             </DeleteConfirmTip>
           </Space>
         </>
-      );
+      )
     },
     width: 120,
   },
-];
+]
 
-const data = [];
+const data = []
 for (let i = 1; i <= 50; i++) {
   data.push({
     key: i,
@@ -154,7 +154,7 @@ for (let i = 1; i <= 50; i++) {
     opened: '已開獎',
     earning: '+1.24',
     bettingAt: '2020-12-02',
-  });
+  })
 }
 const TableData: React.FC = () => {
   return (
@@ -162,7 +162,7 @@ const TableData: React.FC = () => {
       <p>＊試玩帳號不統計</p>
       <TableSets columns={columns} data={data} />
     </>
-  );
-};
+  )
+}
 
-export default TableData;
+export default TableData

@@ -1,7 +1,7 @@
-import React from 'react';
-import Dashboard from '@/components/Dashboard';
-import ColorRate from './ColorRate';
-import { Statistic, Col, Row, Divider } from 'antd';
+import React from 'react'
+import Dashboard from '@/components/Dashboard'
+import ColorRate from './ColorRate'
+import { Statistic, Col, Row, Divider } from 'antd'
 
 const Component: React.FC = () => (
   <Dashboard>
@@ -38,6 +38,6 @@ const Component: React.FC = () => (
       </Col>
     </Row>
   </Dashboard>
-);
+)
 
-export default Component;
+export default Component

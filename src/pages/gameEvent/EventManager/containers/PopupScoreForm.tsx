@@ -1,25 +1,25 @@
-import PopupModal from '@/components/PopupModal';
-import { Button, Input, Select, Space } from 'antd';
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { toggleScoreModal } from '../reducer';
-import { selectDisplayScoreModal, useTypedSelector } from '../selectors';
-import Form, { FormField } from '@/components/Form';
-const { Option } = Select;
+import PopupModal from '@/components/PopupModal'
+import { Button, Input, Select, Space } from 'antd'
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { toggleScoreModal } from '../reducer'
+import { selectDisplayScoreModal, useTypedSelector } from '../selectors'
+import Form, { FormField } from '@/components/Form'
+const { Option } = Select
 const ScoreForm: React.FC = () => {
-  const dispatch = useDispatch();
-  const isDisplay = useTypedSelector(selectDisplayScoreModal);
+  const dispatch = useDispatch()
+  const isDisplay = useTypedSelector(selectDisplayScoreModal)
   const onCancel = () => {
-    dispatch(toggleScoreModal(false));
-  };
+    dispatch(toggleScoreModal(false))
+  }
   const onFinish = (values) => {
-    console.log('Success:', values);
-    dispatch(toggleScoreModal(false));
-  };
+    console.log('Success:', values)
+    dispatch(toggleScoreModal(false))
+  }
 
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
+    console.log('Failed:', errorInfo)
+  }
   return (
     <PopupModal visible={isDisplay} title="添加結果">
       <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
@@ -60,7 +60,7 @@ const ScoreForm: React.FC = () => {
         </FormField>
       </Form>
     </PopupModal>
-  );
-};
+  )
+}
 
-export default ScoreForm;
+export default ScoreForm

@@ -1,20 +1,20 @@
-import React from 'react';
-import { IntlProvider } from 'react-intl';
-import zhHantMessages from '@/lang/zh-Hant.json';
-import enMessages from '@/lang/en.json';
-import { useTypedSelector } from '@/store/rootReducer';
+import React from 'react'
+import { IntlProvider } from 'react-intl'
+import zhHantMessages from '@/lang/zh-Hant.json'
+import enMessages from '@/lang/en.json'
+import { useTypedSelector } from '@/store/rootReducer'
 
 const messageMap = {
   'zh-Hant': zhHantMessages,
   en: enMessages,
-};
+}
 
 const LanguageProvider: React.FC = ({ children }) => {
-  const language = useTypedSelector((state) => state.global.language);
+  const language = useTypedSelector((state) => state.global.language)
   return (
     <IntlProvider locale={language} messages={messageMap[language]}>
       {children}
     </IntlProvider>
-  );
-};
-export default LanguageProvider;
+  )
+}
+export default LanguageProvider

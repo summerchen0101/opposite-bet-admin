@@ -1,23 +1,23 @@
-import IconLink from '@/components/IconLink';
-import TableSets from '@/components/TableSets';
+import IconLink from '@/components/IconLink'
+import TableSets from '@/components/TableSets'
 import {
   ContainerOutlined,
   DeleteOutlined,
   EyeFilled,
   FilterFilled,
   RedoOutlined,
-} from '@ant-design/icons';
-import { Button, Checkbox, Popconfirm, Popover, Space, Switch } from 'antd';
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { toggleScoreModal } from '../reducer';
-import DeleteConfirmTip from '@/components/DeleteConfirmTip';
+} from '@ant-design/icons'
+import { Button, Checkbox, Popconfirm, Popover, Space, Switch } from 'antd'
+import React, { useEffect, useRef, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { toggleScoreModal } from '../reducer'
+import DeleteConfirmTip from '@/components/DeleteConfirmTip'
 import {
   InputModifyPopover,
   SelectModifyPopover,
-} from '@/components/ModifyPopover';
-import { useHistory } from 'react-router-dom';
-import { eventScore } from '@/lib/routes';
+} from '@/components/ModifyPopover'
+import { useHistory } from 'react-router-dom'
+import { eventScore } from '@/lib/routes'
 
 const columns = [
   {
@@ -35,14 +35,14 @@ const columns = [
     title: '隊名',
     dataIndex: 'teams',
     render(teams) {
-      if (!teams) return '-';
+      if (!teams) return '-'
       return (
         <>
           <span>{teams[0]}</span>
           <br />
           <span>{teams[1]}</span>
         </>
-      );
+      )
     },
   },
   {
@@ -53,7 +53,7 @@ const columns = [
         <Popover content={<InputModifyPopover value={value} />} trigger="click">
           <Button type="link">{value}</Button>
         </Popover>
-      );
+      )
     },
   },
   {
@@ -63,7 +63,7 @@ const columns = [
       const options = [
         { label: '巴西', value: 'opt1' },
         { label: '美國', value: 'opt2' },
-      ];
+      ]
       return (
         <Popover
           content={<SelectModifyPopover options={options} value={value} />}
@@ -71,14 +71,14 @@ const columns = [
         >
           <Button type="link">{value}</Button>
         </Popover>
-      );
+      )
     },
   },
   {
     title: '筆數/實貨量',
     dataIndex: 'count',
     render(count, row) {
-      return `${count}/${row.volume}`;
+      return `${count}/${row.volume}`
     },
   },
   {
@@ -90,10 +90,10 @@ const columns = [
     title: '結果',
     dataIndex: 'result',
     render: (result) => {
-      const dispatch = useDispatch();
-      const onCreate = (e) => dispatch(toggleScoreModal(true));
+      const dispatch = useDispatch()
+      const onCreate = (e) => dispatch(toggleScoreModal(true))
       if (!result) {
-        return <a onClick={onCreate}>點擊添加</a>;
+        return <a onClick={onCreate}>點擊添加</a>
       }
       return (
         <>
@@ -101,7 +101,7 @@ const columns = [
           <br />
           <span>上半波膽: {result.firstHalf}</span>
         </>
-      );
+      )
     },
   },
   {
@@ -120,7 +120,7 @@ const columns = [
     key: 'control',
     fixed: ('right' as unknown) as boolean,
     render: () => {
-      const history = useHistory();
+      const history = useHistory()
       return (
         <>
           <Checkbox defaultChecked={false} />
@@ -139,13 +139,13 @@ const columns = [
             </DeleteConfirmTip>
           </Space>
         </>
-      );
+      )
     },
     width: 120,
   },
-];
+]
 
-const data = [];
+const data = []
 for (let i = 1; i <= 50; i++) {
   data.push({
     key: i,
@@ -161,10 +161,10 @@ for (let i = 1; i <= 50; i++) {
     //   full: '3:2',
     //   firstHalf: '2:1',
     // },
-  });
+  })
 }
 const Component: React.FC = () => {
-  return <TableSets columns={columns} data={data} />;
-};
+  return <TableSets columns={columns} data={data} />
+}
 
-export default Component;
+export default Component

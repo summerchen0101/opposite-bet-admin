@@ -1,7 +1,7 @@
-import { useIntl } from 'react-intl';
+import { useIntl } from 'react-intl'
 
 const useMessage = () => {
-  const intl = useIntl();
+  const intl = useIntl()
   return {
     'breadcrumb.account.manager': intl.formatMessage({
       id: 'breadcrumb.account.manager',
@@ -15,7 +15,7 @@ const useMessage = () => {
       id: 'breadcrumb.home',
       defaultMessage: '首頁',
     }),
-  };
-};
+  }
+}
 
-export default useMessage;
+export default useMessage

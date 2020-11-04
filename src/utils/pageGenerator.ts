@@ -1,5 +1,5 @@
-import { RouteProps } from 'react-router-dom';
-import { TabType } from '@/store/reducer';
+import { RouteProps } from 'react-router-dom'
+import { TabType } from '@/store/reducer'
 
 export class PageGenerator {
   constructor(
@@ -9,6 +9,6 @@ export class PageGenerator {
     public option?: Partial<RouteProps>,
   ) {}
   getTab(): TabType {
-    return { label: this.name, path: this.path };
+    return { label: this.name, path: this.path }
   }
 }

@@ -1,9 +1,9 @@
-import React from 'react';
-import { Modal } from 'antd';
+import React from 'react'
+import { Modal } from 'antd'
 
 interface IProps {
-  title: React.ReactNode;
-  visible: boolean;
+  title: React.ReactNode
+  visible: boolean
 }
 
 const PopupModal: React.FC<IProps> = ({ title, children, visible }) => {
@@ -17,6 +17,6 @@ const PopupModal: React.FC<IProps> = ({ title, children, visible }) => {
     >
       {children}
     </Modal>
-  );
-};
-export default PopupModal;
+  )
+}
+export default PopupModal

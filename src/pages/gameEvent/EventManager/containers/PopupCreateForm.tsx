@@ -1,33 +1,26 @@
-import PopupModal from '@/components/PopupModal';
-import {
-  Button,
-  DatePicker,
-  Input,
-  Select,
-  Space,
-  Form as AntForm,
-} from 'antd';
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { toggleCreateModal } from '../reducer';
-import { selectDisplayCreateModal, useTypedSelector } from '../selectors';
-import Form, { FormField } from '@/components/Form';
-const { Option } = Select;
+import PopupModal from '@/components/PopupModal'
+import { Button, DatePicker, Input, Select, Space, Form as AntForm } from 'antd'
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { toggleCreateModal } from '../reducer'
+import { selectDisplayCreateModal, useTypedSelector } from '../selectors'
+import Form, { FormField } from '@/components/Form'
+const { Option } = Select
 const CreateForm: React.FC = () => {
-  const dispatch = useDispatch();
-  const isDisplay = useTypedSelector(selectDisplayCreateModal);
-  const [form] = AntForm.useForm();
+  const dispatch = useDispatch()
+  const isDisplay = useTypedSelector(selectDisplayCreateModal)
+  const [form] = AntForm.useForm()
   const onCancel = () => {
-    dispatch(toggleCreateModal(false));
-  };
+    dispatch(toggleCreateModal(false))
+  }
   const onFinish = (values) => {
-    console.log('Success:', values);
-    dispatch(toggleCreateModal(false));
-  };
+    console.log('Success:', values)
+    dispatch(toggleCreateModal(false))
+  }
 
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
+    console.log('Failed:', errorInfo)
+  }
   return (
     <PopupModal visible={isDisplay} title="新增賽事">
       <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
@@ -65,7 +58,7 @@ const CreateForm: React.FC = () => {
         </FormField>
       </Form>
     </PopupModal>
-  );
-};
+  )
+}
 
-export default CreateForm;
+export default CreateForm

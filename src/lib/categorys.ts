@@ -3,4 +3,4 @@ export default {
   jbBaseball: '日棒',
   twBaseball: '台棒',
   usBasketball: '美籃',
-};
+}

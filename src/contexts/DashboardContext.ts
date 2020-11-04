@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-const collapsed = false;
+const collapsed = false
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-const toggleCollapsed = () => {};
+const toggleCollapsed = () => {}
 
-export default React.createContext({ collapsed, toggleCollapsed });
+export default React.createContext({ collapsed, toggleCollapsed })

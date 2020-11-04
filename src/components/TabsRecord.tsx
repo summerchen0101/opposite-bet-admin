@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react';
-import { Space, Button } from 'antd';
-import TabsRecordItem from './TabsRecordItem';
-import { useTypedSelector } from '@/store/rootReducer';
+import React, { useMemo } from 'react'
+import { Space, Button } from 'antd'
+import TabsRecordItem from './TabsRecordItem'
+import { useTypedSelector } from '@/store/rootReducer'
 const TabsRecord: React.FC = () => {
-  const tabs = useTypedSelector((state) => state.global.tabs);
+  const tabs = useTypedSelector((state) => state.global.tabs)
   return (
     <div>
       <Space>
@@ -12,7 +12,7 @@ const TabsRecord: React.FC = () => {
         ))}
       </Space>
     </div>
-  );
-};
+  )
+}
 
-export default TabsRecord;
+export default TabsRecord

@@ -1,10 +1,10 @@
-import React from 'react';
-import { ConfigProvider } from 'antd';
-import zh_TW from 'antd/lib/locale/zh_TW';
-import 'antd/dist/antd.css';
+import React from 'react'
+import { ConfigProvider } from 'antd'
+import zh_TW from 'antd/lib/locale/zh_TW'
+import 'antd/dist/antd.css'
 
 const AntDesignProvider: React.FC = ({ children }) => {
-  return <ConfigProvider locale={zh_TW}>{children}</ConfigProvider>;
-};
+  return <ConfigProvider locale={zh_TW}>{children}</ConfigProvider>
+}
 
-export default AntDesignProvider;
+export default AntDesignProvider

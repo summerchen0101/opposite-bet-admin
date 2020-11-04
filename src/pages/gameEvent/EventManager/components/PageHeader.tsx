@@ -1,6 +1,6 @@
-import React from 'react';
-import PageHeader from '@/components/PageHeader';
-import { eventManager } from '@/routes';
+import React from 'react'
+import PageHeader from '@/components/PageHeader'
+import { eventManager } from '@/routes'
 const Component: React.FC = () => {
   const routes = [
     {
@@ -15,8 +15,8 @@ const Component: React.FC = () => {
       path: eventManager.path,
       breadcrumbName: '賽事列表',
     },
-  ];
-  return <PageHeader title="賽事列表" breadcrumb={{ routes }} />;
-};
+  ]
+  return <PageHeader title="賽事列表" breadcrumb={{ routes }} />
+}
 
-export default Component;
+export default Component

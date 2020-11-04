@@ -1,17 +1,17 @@
-import React, { useContext } from 'react';
-import { Layout, Menu } from 'antd';
-import { Link, useLocation, useRouteMatch } from 'react-router-dom';
-import DashboardContext from '@/contexts/DashboardContext';
-import MenuWithSubMenu from '@/utils/MenuWithSubMenu';
-import { menu } from '@/routes';
+import React, { useContext } from 'react'
+import { Layout, Menu } from 'antd'
+import { Link, useLocation, useRouteMatch } from 'react-router-dom'
+import DashboardContext from '@/contexts/DashboardContext'
+import MenuWithSubMenu from '@/utils/MenuWithSubMenu'
+import { menu } from '@/routes'
 
-const { Sider } = Layout;
+const { Sider } = Layout
 
 const Sidebar: React.FC = () => {
-  const { collapsed } = useContext(DashboardContext);
-  const { pathname } = useLocation();
-  const openKeys = ['/' + pathname.split('/')[1]];
-  const selectKey = [pathname];
+  const { collapsed } = useContext(DashboardContext)
+  const { pathname } = useLocation()
+  const openKeys = ['/' + pathname.split('/')[1]]
+  const selectKey = [pathname]
   return (
     <Sider trigger={null} collapsible collapsed={collapsed}>
       <div className="logo">{!collapsed ? '新體育後台' : '體'}</div>
@@ -24,7 +24,7 @@ const Sidebar: React.FC = () => {
         {menu.map((m) => MenuWithSubMenu(m))}
       </Menu>
     </Sider>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

@@ -1,11 +1,11 @@
-import React from 'react';
-import { Input } from 'antd';
+import React from 'react'
+import { Input } from 'antd'
 
-const { Search } = Input;
+const { Search } = Input
 const RelativeDateBtns: React.FC<{ placeholder: string }> = ({
   placeholder,
 }) => {
-  return <Search placeholder={placeholder} style={{ width: 200 }} />;
-};
+  return <Search placeholder={placeholder} style={{ width: 200 }} />
+}
 
-export default RelativeDateBtns;
+export default RelativeDateBtns

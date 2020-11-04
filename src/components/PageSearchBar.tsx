@@ -1,5 +1,5 @@
-import React from 'react';
-import { Space } from 'antd';
+import React from 'react'
+import { Space } from 'antd'
 
 const PageSearchBar: React.FC<{ extra?: React.ReactNode }> = ({
   children,
@@ -13,7 +13,7 @@ const PageSearchBar: React.FC<{ extra?: React.ReactNode }> = ({
       </Space>
       {extra}
     </div>
-  );
-};
+  )
+}
 
-export default PageSearchBar;
+export default PageSearchBar

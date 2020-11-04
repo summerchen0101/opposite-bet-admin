@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 type Props = {
-  height?: number;
-};
+  height?: number
+}
 export default styled.div<Props>`
   margin-bottom: ${(props) => props.height | 30}px;
-`;
+`

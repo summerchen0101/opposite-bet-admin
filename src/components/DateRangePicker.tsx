@@ -1,8 +1,8 @@
-import React from 'react';
-import { DatePicker } from 'antd';
-const { RangePicker } = DatePicker;
+import React from 'react'
+import { DatePicker } from 'antd'
+const { RangePicker } = DatePicker
 const Component: React.FC = () => {
-  return <RangePicker />;
-};
+  return <RangePicker />
+}
 
-export default Component;
+export default Component

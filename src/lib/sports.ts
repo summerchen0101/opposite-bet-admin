@@ -3,4 +3,4 @@ export default {
   basketball: '籃球',
   soccer: '足球',
   hockey: '冰球',
-};
+}

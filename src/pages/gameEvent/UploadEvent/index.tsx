@@ -1,29 +1,29 @@
-import Dashboard from '@/components/Dashboard';
-import DateRangePicker from '@/components/DateRangePicker';
-import PageSearchBar from '@/components/PageSearchBar';
-import RelativeDateBtns from '@/components/RelativeDateBtns';
-import { useReducerInjector } from '@/utils/hooks';
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import Dashboard from '@/components/Dashboard'
+import DateRangePicker from '@/components/DateRangePicker'
+import PageSearchBar from '@/components/PageSearchBar'
+import RelativeDateBtns from '@/components/RelativeDateBtns'
+import { useReducerInjector } from '@/utils/hooks'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
-import PageHeader from './containers/PageHeader';
-import PopupCreateForm from './containers/PopupCreateForm';
-import TableData from './containers/TableData';
-import reducer, { initSearchState, moduleName } from './reducer';
+import PageHeader from './containers/PageHeader'
+import PopupCreateForm from './containers/PopupCreateForm'
+import TableData from './containers/TableData'
+import reducer, { initSearchState, moduleName } from './reducer'
 
 const Manager: React.FC = () => {
-  useReducerInjector(moduleName, reducer);
-  const dispatch = useDispatch();
+  useReducerInjector(moduleName, reducer)
+  const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(initSearchState());
-  }, []);
+    dispatch(initSearchState())
+  }, [])
   return (
     <Dashboard>
       <PageHeader />
       <TableData />
       <PopupCreateForm />
     </Dashboard>
-  );
-};
+  )
+}
 
-export default Manager;
+export default Manager

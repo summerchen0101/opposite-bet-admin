@@ -1,7 +1,7 @@
-import React from 'react';
-import PageHeader from '@/components/PageHeader';
-import { eventManager, eventScore } from '@/lib/routes';
-import CreateButton from '../containers/CreateButton';
+import React from 'react'
+import PageHeader from '@/components/PageHeader'
+import { eventManager, eventScore } from '@/lib/routes'
+import CreateButton from '../containers/CreateButton'
 const Component: React.FC = () => {
   const routes = [
     {
@@ -16,14 +16,14 @@ const Component: React.FC = () => {
       path: eventManager,
       breadcrumbName: '默認賠率',
     },
-  ];
+  ]
   return (
     <PageHeader
       title="默認賠率"
       extra={<CreateButton />}
       breadcrumb={{ routes }}
     />
-  );
-};
+  )
+}
 
-export default Component;
+export default Component

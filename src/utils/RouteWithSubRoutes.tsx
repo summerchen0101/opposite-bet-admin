@@ -1,9 +1,9 @@
-import { useTypedSelector } from '@/store/rootReducer';
-import React from 'react';
-import { Route } from 'react-router-dom';
+import { useTypedSelector } from '@/store/rootReducer'
+import React from 'react'
+import { Route } from 'react-router-dom'
 
 export default function RouteWithSubRoutes(route) {
-  const isLogin = useTypedSelector((state) => state.global.isLogin);
+  const isLogin = useTypedSelector((state) => state.global.isLogin)
   return (
     <Route
       path={route.path}
@@ -13,5 +13,5 @@ export default function RouteWithSubRoutes(route) {
         <route.component {...props} routes={route.routes} />
       )}
     />
-  );
+  )
 }
