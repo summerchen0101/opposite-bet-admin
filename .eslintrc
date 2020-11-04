@@ -22,9 +22,11 @@
       "prettier/react"
    ],
    "rules":{
-      "no-console":1,
-      "prettier/prettier":2,
-      "formatjs/no-offset": "error"
+      "no-console": 1,
+      "prettier/prettier": 2,
+      "formatjs/no-offset": 2,
+      "no-empty-function": 0,
+      "@typescript-eslint/no-empty-function": 1
    },
    "settings": {
       "import/resolver":{
