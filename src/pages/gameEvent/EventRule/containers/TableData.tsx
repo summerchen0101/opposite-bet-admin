@@ -23,7 +23,7 @@ const columns = [
           content={<SelectModifyPopover options={options} value={value} />}
           trigger="click"
         >
-          <Button type="link">{value}</Button>
+          <a>{value}</a>
         </Popover>
       )
     },
@@ -32,13 +32,13 @@ const columns = [
     title: '類別',
     dataIndex: 'type',
     allowFiltered: true,
-    width: 120,
+    width: 100,
   },
   {
     title: '語系',
     dataIndex: 'language',
     allowFiltered: true,
-    width: 120,
+    width: 80,
     render(value, row) {
       const options = {
         cn: '簡中',
@@ -55,7 +55,7 @@ const columns = [
           }
           trigger="click"
         >
-          <Button type="link">{options[value]}</Button>
+          <a>{options[value]}</a>
         </Popover>
       )
     },
@@ -64,7 +64,7 @@ const columns = [
     title: '狀態',
     dataIndex: 'status',
     allowFiltered: true,
-    width: 120,
+    width: 80,
     render: (value) => {
       if (value === 'on') return <span style={{ color: 'green' }}>啟用</span>
       else return <span style={{ color: 'red' }}>停用</span>
@@ -74,16 +74,13 @@ const columns = [
     title: '更新人員',
     dataIndex: 'operator',
     allowFiltered: true,
-    width: 120,
-    render: (operator, { operatorAt }) => {
-      return (
-        <div style={{ textAlign: 'center' }}>
-          <Text color="primary">{operator}</Text>
-          <br />
-          <Text color="default">{operatorAt}</Text>
-        </div>
-      )
-    },
+    width: 100,
+  },
+  {
+    title: '更新時間',
+    dataIndex: 'operatorAt',
+    allowFiltered: true,
+    width: 150,
   },
   {
     title: () => (

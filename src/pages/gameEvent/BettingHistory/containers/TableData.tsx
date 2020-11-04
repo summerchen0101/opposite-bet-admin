@@ -46,7 +46,7 @@ const columns = [
     render(value, row) {
       return (
         <Popover content={<InputModifyPopover value={value} />} trigger="click">
-          <Button type="link">{value}</Button>
+          <a>{value}</a>
         </Popover>
       )
     },
