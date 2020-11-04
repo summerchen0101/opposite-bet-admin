@@ -32,7 +32,7 @@ const Table: React.FC<IProps> = ({ data, columns, ...props }) => {
 
 export default styled(Table)`
   .ant-table-container {
-    margin: 0 -25px;
+    margin: 0 -15px;
   }
   .ant-table-sticky-header {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
