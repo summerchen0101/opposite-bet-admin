@@ -5,6 +5,7 @@ import TableSets from '@/components/TableSets';
 import { DeleteOutlined, FilterFilled, EditFilled } from '@ant-design/icons';
 import { Button, Checkbox, Popover, Space } from 'antd';
 import React from 'react';
+import Text from '@/components/Text';
 
 const columns = [
   {
@@ -74,6 +75,15 @@ const columns = [
     dataIndex: 'operator',
     allowFiltered: true,
     width: 120,
+    render: (operator, { operatorAt }) => {
+      return (
+        <div style={{ textAlign: 'center' }}>
+          <Text color="primary">{operator}</Text>
+          <br />
+          <Text color="default">{operatorAt}</Text>
+        </div>
+      );
+    },
   },
   {
     title: () => (
