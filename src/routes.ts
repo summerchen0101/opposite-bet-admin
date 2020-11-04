@@ -7,6 +7,8 @@ import BettingHistory from '@/pages/gameEvent/BettingHistory'
 import DefaultOdds from '@/pages/gameEvent/DefaultOdds'
 import EventRule from '@/pages/gameEvent/EventRule'
 import MemberActivity from '@/pages/member/memberActivity'
+import MemberManage from '@/pages/member/memberManage'
+import MemberLabel from '@/pages/member/memberLabel'
 import { MenuGenerator as MenuG } from '@/utils/menuGenerator'
 import { PageGenerator as PageG } from '@/utils/pageGenerator'
 import { RouteGenerator as RouteG } from '@/utils/routeGenerator'
@@ -46,11 +48,22 @@ export const memberActivity = new PageG(
   routes.memberActivity,
   MemberActivity,
 )
+export const memberManage = new PageG(
+  '會員列表',
+  routes.memberManage,
+  MemberManage,
+)
+export const memberLabel = new PageG(
+  '標籤管理',
+  routes.memberLabel,
+  MemberLabel,
+)
 
 // ROUTERS
 const routeG = new RouteG([
   login,
   home,
+
   // 賽事管理
   eventManager,
   eventScore,
@@ -58,8 +71,11 @@ const routeG = new RouteG([
   bettingHistory,
   defaultOdds,
   eventRule,
+
   // 會員管理
   memberActivity,
+  memberManage,
+  memberLabel,
 ])
 
 // MENU
@@ -71,7 +87,11 @@ menuG.createCategory('賽事管理', routes.event, null, [
   defaultOdds,
   eventRule,
 ])
-menuG.createCategory('會員管理', routes.member, null, [memberActivity])
+menuG.createCategory('會員管理', routes.member, null, [
+  memberActivity,
+  memberManage,
+  memberLabel,
+])
 menuG.createCategory('組織管理', routes.organization, null, [])
 menuG.createCategory('金流管理', routes.payment, null, [])
 menuG.createCategory('報表', routes.report, null, [])
