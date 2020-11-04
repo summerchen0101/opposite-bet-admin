@@ -6,65 +6,67 @@ import UploadEvent from '@/pages/gameEvent/UploadEvent'
 import BettingHistory from '@/pages/gameEvent/BettingHistory'
 import DefaultOdds from '@/pages/gameEvent/DefaultOdds'
 import EventRule from '@/pages/gameEvent/EventRule'
-import { MenuGenerator } from '@/utils/menuGenerator'
-import { PageGenerator } from '@/utils/pageGenerator'
-import { RouteGenerator } from '@/utils/routeGenerator'
+import { MenuGenerator as MenuG } from '@/utils/menuGenerator'
+import { PageGenerator as PageG } from '@/utils/pageGenerator'
+import { RouteGenerator as RouteG } from '@/utils/routeGenerator'
 import * as routes from '@/lib/routes'
 
 // PAGES
-export const home = new PageGenerator('首頁', '/', Home, { exact: true })
-const login = new PageGenerator('登入頁', '/login', Login)
-export const eventManager = new PageGenerator(
+export const home = new PageG('首頁', '/', Home, { exact: true })
+const login = new PageG('登入頁', '/login', Login)
+export const eventManager = new PageG(
   '賽事列表',
   routes.eventManager,
   EventManager,
   { exact: true },
 )
-export const eventScore = new PageGenerator(
-  '比分',
-  routes.eventScore,
-  EventScore,
-)
-export const uploadEvent = new PageGenerator(
+export const eventScore = new PageG('比分', routes.eventScore, EventScore)
+export const uploadEvent = new PageG(
   '上架賽事',
   routes.uploadEvent,
   UploadEvent,
 )
-export const bettingHistory = new PageGenerator(
+export const bettingHistory = new PageG(
   '下注紀錄',
   routes.bettingHistory,
   BettingHistory,
 )
-export const defaultOdds = new PageGenerator(
+export const defaultOdds = new PageG(
   '默認賠率',
   routes.defaultOdds,
   DefaultOdds,
 )
-export const eventRule = new PageGenerator(
-  '賽事規則',
-  routes.eventRule,
-  EventRule,
-)
+export const eventRule = new PageG('賽事規則', routes.eventRule, EventRule)
 
 // ROUTERS
-const routeGenerator = new RouteGenerator()
-routeGenerator.add(login)
-routeGenerator.add(home)
-routeGenerator.add(eventManager)
-routeGenerator.add(eventScore)
-routeGenerator.add(uploadEvent)
-routeGenerator.add(bettingHistory)
-routeGenerator.add(defaultOdds)
-routeGenerator.add(eventRule)
+const routeG = new RouteG([
+  login,
+  home,
+  eventManager,
+  eventScore,
+  uploadEvent,
+  bettingHistory,
+  defaultOdds,
+  eventRule,
+])
 
 // MENU
-const menuGenerator = new MenuGenerator()
-menuGenerator.createCategory('賽事管理', routes.event)
-menuGenerator.add(routes.event, eventManager)
-menuGenerator.add(routes.event, uploadEvent)
-menuGenerator.add(routes.event, bettingHistory)
-menuGenerator.add(routes.event, defaultOdds)
-menuGenerator.add(routes.event, eventRule)
+const menuG = new MenuG()
+menuG.createCategory('賽事管理', routes.event, null, [
+  eventManager,
+  uploadEvent,
+  bettingHistory,
+  defaultOdds,
+  eventRule,
+])
+menuG.createCategory('會員管理', routes.member, null, [])
+menuG.createCategory('組織管理', routes.organization, null, [])
+menuG.createCategory('金流管理', routes.payment, null, [])
+menuG.createCategory('報表', routes.report, null, [])
+menuG.createCategory('活動管理', routes.promote, null, [])
+menuG.createCategory('管理者管理', routes.admin, null, [])
+menuG.createCategory('系統管理', routes.system, null, [])
+menuG.createCategory('網站管理', routes.website, null, [])
 
-export const rootRoutes = routeGenerator.getRootRoutes()
-export const menu = menuGenerator.getRootMenu()
+export const rootRoutes = routeG.getRootRoutes()
+export const menu = menuG.getRootMenu()
