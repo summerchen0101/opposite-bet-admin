@@ -1,8 +1,9 @@
 import DeleteConfirmTip from '@/components/DeleteConfirmTip';
 import IconLink from '@/components/IconLink';
+import { SelectModifyPopover } from '@/components/ModifyPopover';
 import TableSets from '@/components/TableSets';
 import { DeleteOutlined, FilterFilled, EditFilled } from '@ant-design/icons';
-import { Checkbox, Space } from 'antd';
+import { Button, Checkbox, Popover, Space } from 'antd';
 import React from 'react';
 
 const columns = [
@@ -11,6 +12,20 @@ const columns = [
     dataIndex: 'category',
     allowFiltered: true,
     width: 100,
+    render(value, row) {
+      const options = [
+        { label: '全場反波膽', value: 'full' },
+        { label: '上半場反波膽', value: 'firstHalf' },
+      ];
+      return (
+        <Popover
+          content={<SelectModifyPopover options={options} value={value} />}
+          trigger="click"
+        >
+          <Button type="link">{value}</Button>
+        </Popover>
+      );
+    },
   },
   {
     title: '類別',
@@ -23,12 +38,36 @@ const columns = [
     dataIndex: 'language',
     allowFiltered: true,
     width: 120,
+    render(value, row) {
+      const options = {
+        cn: '簡中',
+        en: 'English',
+      };
+      const selectOptions = Object.keys(options).map((key) => ({
+        label: options[key],
+        value: key,
+      }));
+      return (
+        <Popover
+          content={
+            <SelectModifyPopover options={selectOptions} value={value} />
+          }
+          trigger="click"
+        >
+          <Button type="link">{options[value]}</Button>
+        </Popover>
+      );
+    },
   },
   {
     title: '狀態',
     dataIndex: 'status',
     allowFiltered: true,
     width: 120,
+    render: (value) => {
+      if (value === 'on') return <span style={{ color: 'green' }}>啟用</span>;
+      else return <span style={{ color: 'red' }}>停用</span>;
+    },
   },
   {
     title: '更新人員',
@@ -74,8 +113,8 @@ for (let i = 1; i <= 50; i++) {
     key: i,
     category: '全場反波膽',
     type: '會員',
-    language: '簡中',
-    status: '啟動',
+    language: 'cn',
+    status: 'on',
     operator: 'flora',
     operatorAt: '2019-07-01 10:54:36',
   });
