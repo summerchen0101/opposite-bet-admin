@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl'
 
 const CreateButton: React.FC<{ onClick: () => any }> = ({ onClick }) => {
   return (
-    <Button style={{ float: 'right' }} onClick={onClick}>
+    <Button type="primary" style={{ float: 'right' }} onClick={onClick}>
       <FormattedMessage id="button.add" defaultMessage="新增" />
     </Button>
   )
