@@ -1,18 +1,13 @@
-import React from 'react'
-
 import { PageHeader } from 'antd'
-import { useHistory, Link } from 'react-router-dom'
 import { BreadcrumbProps } from 'antd/lib/breadcrumb'
-import { Route } from 'antd/lib/breadcrumb/Breadcrumb'
 import { PageHeaderProps } from 'antd/lib/page-header'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-function itemRender(route, params, routes, paths) {
-  const last = routes.indexOf(route) === routes.length - 1
-  return last ? (
-    <span>{route.breadcrumbName}</span>
-  ) : (
-    <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
-  )
+function itemRender(route) {
+  if (!route.path) return <span>{route.breadcrumbName}</span>
+
+  return <Link to={route.path}>{route.breadcrumbName}</Link>
 }
 
 const Component: React.FC<

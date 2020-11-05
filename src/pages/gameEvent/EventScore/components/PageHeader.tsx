@@ -1,22 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PageHeader from '@/components/PageHeader'
-import { EventScore as page } from '@/pages/gameEvent/routes'
+import { EventManager as page, EventScore } from '@/pages/gameEvent/routes'
+import { useBreadcrumb } from '@/utils/hooks'
+
 const Component: React.FC = () => {
-  const routes = [
-    {
-      path: '/',
-      breadcrumbName: '首頁',
-    },
-    ...page.parents.map((parent) => ({
-      path: parent.path,
-      breadcrumbName: parent.name,
-    })),
-    {
-      path: '',
-      breadcrumbName: page.name,
-    },
-  ]
-  return <PageHeader title={page.name} breadcrumb={{ routes }} />
+  const routes = useBreadcrumb(page, [EventScore])
+  return (
+    <PageHeader
+      title="美國 / NBA / 普羅森斯 VS 比勒菲爾德"
+      breadcrumb={{ routes }}
+    />
+  )
 }
 
 export default Component

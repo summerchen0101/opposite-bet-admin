@@ -1,25 +1,14 @@
 import React from 'react'
 import PageHeader from '@/components/PageHeader'
 import CreateButton from '../containers/CreateButton'
-import { PromoteLink } from '@/pages/promote/routes'
+import { PromoteLink as page } from '@/pages/promote/routes'
+import { useBreadcrumb } from '@/utils/hooks'
+
 const Component: React.FC = () => {
-  const routes = [
-    {
-      path: '/',
-      breadcrumbName: '首頁',
-    },
-    {
-      path: '',
-      breadcrumbName: '會員管理',
-    },
-    {
-      path: PromoteLink.path,
-      breadcrumbName: PromoteLink.name,
-    },
-  ]
+  const routes = useBreadcrumb(page)
   return (
     <PageHeader
-      title={PromoteLink.name}
+      title={page.name}
       extra={<CreateButton />}
       breadcrumb={{ routes }}
     />

@@ -2,21 +2,10 @@ import React from 'react'
 import PageHeader from '@/components/PageHeader'
 import CreateButton from '../containers/CreateButton'
 import { IpSetting as page } from '@/pages/system/routes'
+import { useBreadcrumb } from '@/utils/hooks'
+
 const Component: React.FC = () => {
-  const routes = [
-    {
-      path: '/',
-      breadcrumbName: '首頁',
-    },
-    ...page.parents.map((parent) => ({
-      path: parent.path,
-      breadcrumbName: parent.name,
-    })),
-    {
-      path: page.path,
-      breadcrumbName: page.name,
-    },
-  ]
+  const routes = useBreadcrumb(page)
   return (
     <PageHeader
       title={page.name}
