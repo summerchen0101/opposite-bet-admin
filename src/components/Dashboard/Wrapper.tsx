@@ -15,14 +15,6 @@ export default styled(Layout)`
     color: #1890ff;
   }
 
-  .logo {
-    height: 32px;
-    font-size: 20px;
-    color: #fff;
-    margin: 16px;
-    text-align: center;
-  }
-
   .site-header {
     background: #fff;
     padding: 0;

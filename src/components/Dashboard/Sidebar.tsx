@@ -10,11 +10,12 @@ const { Sider } = Layout
 
 const LogoWrapper = styled.div`
   height: 32px;
-  font-size: 20px;
+  font-size: 18px;
   color: #fff;
   margin: 16px;
   text-align: center;
   cursor: pointer;
+  letter-spacing: 0.2em;
 `
 
 const Sidebar: React.FC = () => {
@@ -26,7 +27,7 @@ const Sidebar: React.FC = () => {
   return (
     <Sider trigger={null} collapsible collapsed={collapsed}>
       <LogoWrapper onClick={() => history.push('/')}>
-        {!collapsed ? '反波膽管理' : '反'}
+        {!collapsed ? '| 反波膽管理 |' : '反'}
       </LogoWrapper>
       <Menu
         theme="dark"
