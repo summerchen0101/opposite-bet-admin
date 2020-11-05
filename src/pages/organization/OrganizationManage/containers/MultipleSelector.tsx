@@ -1,20 +1,16 @@
 import MultipleSelector from '@/components/MultipleSelector'
-import { Checkbox, Space } from 'antd'
 import React from 'react'
 
-const options = [
-  { label: 'aaaa(小白)', value: 'aaaa' },
-  { label: 'gogoro(Gogo))', value: 'gogoro' },
-]
+const options = [{ label: '加盟主', value: 'a' }]
 const MemberActivity: React.FC = () => {
   const onChange = () => {}
   return (
     <MultipleSelector
-      value={['aaaa', 'gogoro']}
+      value={['a']}
       onChange={onChange}
       options={options}
-      width="350px"
-      placeholder="代理商"
+      width="300px"
+      placeholder="組織層級"
     />
   )
 }

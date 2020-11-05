@@ -2,9 +2,9 @@ import React from 'react'
 import { Select, Tooltip } from 'antd'
 
 interface Props {
-  onChange: (value: string[], option: any) => void
+  onChange?: (value: string[], option: any) => void
   options: any[]
-  value: any
+  value?: any
   width?: string | number
   placeholder?: string
 }
