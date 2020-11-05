@@ -9,15 +9,13 @@ const options = [
 const MemberActivity: React.FC = () => {
   const onChange = () => {}
   return (
-    <Space>
-      <MultipleSelector
-        value={['aaaa', 'gogoro']}
-        onChange={onChange}
-        options={options}
-        width="350px"
-      />
-      <Checkbox defaultChecked>全選</Checkbox>
-    </Space>
+    <MultipleSelector
+      value={['aaaa', 'gogoro']}
+      onChange={onChange}
+      options={options}
+      width="350px"
+      placeholder="代理商"
+    />
   )
 }
 
