@@ -26,7 +26,7 @@ const Sidebar: React.FC = () => {
   return (
     <Sider trigger={null} collapsible collapsed={collapsed}>
       <LogoWrapper onClick={() => history.push('/')}>
-        {!collapsed ? '新體育後台' : '體'}
+        {!collapsed ? '反波膽管理' : '反'}
       </LogoWrapper>
       <Menu
         theme="dark"

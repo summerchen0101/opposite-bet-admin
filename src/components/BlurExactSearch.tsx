@@ -3,10 +3,11 @@ import { Input, Tooltip } from 'antd'
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons'
 import IconLink from '@/components/IconLink'
 interface TypeSearchProps {
-  value: string
+  value?: string
   onClick: () => void
   label: string
   icon: JSX.Element
+  placeholder?: string
 }
 
 const TypeSearch: React.FC<TypeSearchProps> = ({
@@ -14,38 +15,43 @@ const TypeSearch: React.FC<TypeSearchProps> = ({
   value,
   onClick,
   icon,
+  placeholder,
 }) => {
+  const tips = placeholder ? `${placeholder} (${label})` : label
   return (
-    <Input
-      placeholder={label}
-      defaultValue={value}
-      addonBefore={
-        <Tooltip title={label}>
-          <IconLink icon={icon} onClick={onClick} />
-        </Tooltip>
-      }
-    />
+    <Tooltip title={tips}>
+      <Input
+        placeholder={tips}
+        defaultValue={value}
+        addonBefore={<IconLink icon={icon} onClick={onClick} />}
+      />
+    </Tooltip>
   )
 }
 
-const BlurExactSearch: React.FC<{ value: string }> = ({ value }) => {
+interface BlueExactSearchProps {
+  value?: string
+  placeholder?: string
+}
+
+const BlurExactSearch: React.FC<BlueExactSearchProps> = (props) => {
   const [mode, setMode] = useState('blur')
   if (mode === 'blur') {
     return (
       <TypeSearch
         label="模糊搜尋"
-        value={value}
         icon={<EyeInvisibleOutlined />}
         onClick={() => setMode('exact')}
+        {...props}
       />
     )
   }
   return (
     <TypeSearch
       label="精準搜尋"
-      value={value}
       icon={<EyeOutlined />}
       onClick={() => setMode('blur')}
+      {...props}
     />
   )
 }

@@ -5,10 +5,10 @@ interface Props {
   onChange: (value: string[], option: any) => void
   options: any[]
   value: any
-  width: string | number
+  width?: string | number
   placeholder?: string
 }
-const MultipleSelector: React.FC<Props> = ({
+const BasicSelector: React.FC<Props> = ({
   options,
   onChange,
   value,
@@ -18,16 +18,14 @@ const MultipleSelector: React.FC<Props> = ({
   return (
     <Tooltip title={placeholder}>
       <Select
-        mode="multiple"
         placeholder={placeholder}
-        allowClear
         defaultValue={value}
         onChange={onChange}
         options={options}
-        style={{ width: width ?? '250px' }}
+        style={{ width: width ?? '180px' }}
       />
     </Tooltip>
   )
 }
 
-export default MultipleSelector
+export default BasicSelector
