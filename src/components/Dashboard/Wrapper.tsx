@@ -39,4 +39,7 @@ export default styled(Layout)`
     margin-top: 80px;
     overflow-y: auto;
   }
+  .ant-layout-sider-children {
+    overflow-y: auto;
+  }
 `
