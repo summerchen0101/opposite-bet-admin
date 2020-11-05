@@ -9,7 +9,7 @@ const initialState: IState = {
   displayCreateModal: false,
 }
 
-export const moduleName = 'memberLabel'
+export const moduleName = 'bankDeposit'
 
 const module = createSlice({
   name: moduleName,

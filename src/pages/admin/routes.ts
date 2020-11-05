@@ -15,12 +15,18 @@ export const AdminRole = new PageG(
   routes.AdminRole,
   pages.AdminRole,
 )
+export const AdminHistory = new PageG(
+  '管理者歷程',
+  routes.AdminHistory,
+  pages.AdminHistory,
+)
 
 // ROUTERS
-RouteG.create([AdminAccount, AdminRole])
+RouteG.create([AdminAccount, AdminRole, AdminHistory])
 
 // MENU
 MenuG.createCategory('管理者管理', routes.Admin, null, [
   AdminAccount,
   AdminRole,
+  AdminHistory,
 ])

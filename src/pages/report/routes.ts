@@ -7,17 +7,17 @@ import { LineChartOutlined } from '@ant-design/icons'
 
 // PAGES
 export const GameReport = new PageG(
-  '每日報表',
+  '遊戲報表',
   routes.GameReport,
   pages.GameReport,
 )
 export const DailyReport = new PageG(
-  '每日報表',
+  '日結算',
   routes.DailyReport,
   pages.DailyReport,
 )
 export const MonthlyReport = new PageG(
-  '每日報表',
+  '月結算',
   routes.MonthlyReport,
   pages.MonthlyReport,
 )
