@@ -2,9 +2,9 @@ import React from 'react'
 import { Button } from 'antd'
 import { FormattedMessage } from 'react-intl'
 
-const CreateButton: React.FC<{ onClick: () => any }> = ({ onClick }) => {
+const CreateButton: React.FC<{ onClick?: () => any }> = ({ onClick }) => {
   return (
-    <Button type="primary" style={{ float: 'right' }} onClick={onClick}>
+    <Button type="primary" onClick={onClick}>
       <FormattedMessage id="button.add" defaultMessage="新增" />
     </Button>
   )
