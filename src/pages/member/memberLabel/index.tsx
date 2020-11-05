@@ -3,6 +3,7 @@ import DateRangePicker from '@/components/DateRangePicker'
 import PageSearchBar from '@/components/PageSearchBar'
 import SearchInput from '@/components/SearchInput'
 import MultipleSelector from './containers/MultipleSelector'
+import KeywordSearch from './containers/KeywordSearch'
 import RelativeDateBtns from '@/components/RelativeDateBtns'
 import { useReducerInjector } from '@/utils/hooks'
 import React, { useEffect } from 'react'
@@ -23,7 +24,7 @@ const Manager: React.FC = () => {
     <Dashboard>
       <PageHeader />
       <PageSearchBar style={{ marginBottom: 10 }}>
-        <MultipleSelector />
+        <KeywordSearch />
       </PageSearchBar>
       <PageSearchBar>
         <DateRangePicker />
