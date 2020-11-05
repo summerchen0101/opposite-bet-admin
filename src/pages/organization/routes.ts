@@ -11,11 +11,17 @@ export const OrganizationManage = new PageG(
   routes.OrganizationManage,
   pages.OrganizationManage,
 )
+export const InvitationCode = new PageG(
+  '組織邀請',
+  routes.InvitationCode,
+  pages.InvitationCode,
+)
 
 // ROUTERS
-RouteG.create([OrganizationManage])
+RouteG.create([OrganizationManage, InvitationCode])
 
 // MENU
 MenuG.createCategory('組織管理', routes.Organization, ApartmentOutlined, [
   OrganizationManage,
+  InvitationCode,
 ])

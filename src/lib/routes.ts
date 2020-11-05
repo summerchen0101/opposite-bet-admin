@@ -14,6 +14,7 @@ export const MemberLabel = '/member/label'
 
 export const Organization = '/organization'
 export const OrganizationManage = '/organization/manage'
+export const InvitationCode = '/organization/invitation-code'
 
 export const Payment = '/payment'
 export const BankDeposit = '/payment/bank/deposit'
