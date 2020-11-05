@@ -7,7 +7,7 @@ import { useReducerInjector } from '@/utils/hooks'
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import PageHeader from './components/PageHeader'
-import OptionalDateRangePicker from './containers/OptionalDateRangePicker'
+import DepositDateRangePicker from './containers/DepositDateRangePicker'
 import BankSelector from './containers/BankSelector'
 import StatusSelector from './containers/StatusSelector'
 import PopupCreateForm from './containers/PopupCreateForm'
@@ -24,7 +24,7 @@ const Manager: React.FC = () => {
     <Dashboard>
       <PageHeader />
       <PageSearchBar>
-        <OptionalDateRangePicker />
+        <DepositDateRangePicker />
         <BankSelector />
         <BlurExactSearch placeholder="會員帳號" />
         <StatusSelector />
