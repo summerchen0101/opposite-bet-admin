@@ -1,32 +1,22 @@
 import React from 'react'
 import PageHeader from '@/components/PageHeader'
-import CreateButton from '../containers/CreateButton'
+import { EventScore as page } from '@/pages/gameEvent/routes'
 const Component: React.FC = () => {
   const routes = [
     {
       path: '/',
       breadcrumbName: '首頁',
     },
+    ...page.parents.map((parent) => ({
+      path: parent.path,
+      breadcrumbName: parent.name,
+    })),
     {
       path: '',
-      breadcrumbName: '賽事管理',
-    },
-    {
-      path: '',
-      breadcrumbName: '賽事列表',
-    },
-    {
-      path: '',
-      breadcrumbName: '比分',
+      breadcrumbName: page.name,
     },
   ]
-  return (
-    <PageHeader
-      title="美國 / NBA / 普羅森斯 VS 比勒菲爾德"
-      breadcrumb={{ routes }}
-      extra={<CreateButton />}
-    />
-  )
+  return <PageHeader title={page.name} breadcrumb={{ routes }} />
 }
 
 export default Component

@@ -1,21 +1,22 @@
 import React from 'react'
 import PageHeader from '@/components/PageHeader'
+import { BettingHistory as page } from '@/pages/gameEvent/routes'
 const Component: React.FC = () => {
   const routes = [
     {
       path: '/',
       breadcrumbName: '首頁',
     },
+    ...page.parents.map((parent) => ({
+      path: parent.path,
+      breadcrumbName: parent.name,
+    })),
     {
       path: '',
-      breadcrumbName: '賽事管理',
-    },
-    {
-      path: '',
-      breadcrumbName: '下注紀錄',
+      breadcrumbName: page.name,
     },
   ]
-  return <PageHeader title="下注紀錄" breadcrumb={{ routes }} />
+  return <PageHeader title={page.name} breadcrumb={{ routes }} />
 }
 
 export default Component

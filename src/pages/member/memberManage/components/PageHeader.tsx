@@ -1,25 +1,25 @@
 import React from 'react'
 import PageHeader from '@/components/PageHeader'
 import CreateButton from '../containers/CreateButton'
-import { MemberManage } from '@/pages/member/routes'
+import { MemberManage as page } from '@/pages/member/routes'
 const Component: React.FC = () => {
   const routes = [
     {
       path: '/',
       breadcrumbName: '首頁',
     },
+    ...page.parents.map((parent) => ({
+      path: parent.path,
+      breadcrumbName: parent.name,
+    })),
     {
-      path: '',
-      breadcrumbName: '會員管理',
-    },
-    {
-      path: MemberManage.path,
-      breadcrumbName: MemberManage.name,
+      path: page.path,
+      breadcrumbName: page.name,
     },
   ]
   return (
     <PageHeader
-      title={MemberManage.name}
+      title={page.name}
       extra={<CreateButton />}
       breadcrumb={{ routes }}
     />

@@ -6,7 +6,7 @@ import { useReducerInjector } from '@/utils/hooks'
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
-import PageHeader from './containers/PageHeader'
+import PageHeader from './components/PageHeader'
 import PopupCreateForm from './containers/PopupCreateForm'
 import TableData from './containers/TableData'
 import reducer, { initSearchState, moduleName } from './reducer'
