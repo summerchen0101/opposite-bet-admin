@@ -20,8 +20,8 @@ const Manager: React.FC = () => {
     <Dashboard>
       <PageHeader />
       <PageSearchBar>
-        <StatusRadioPicker />
         <BankSelector />
+        <StatusRadioPicker />
       </PageSearchBar>
       <TableData />
       <PopupCreateForm />

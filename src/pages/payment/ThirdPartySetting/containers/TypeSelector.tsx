@@ -2,16 +2,16 @@ import { BasicSelector } from '@/components'
 import React from 'react'
 
 const options = [
-  { label: '全部銀行', value: 'all' },
-  { label: '中國信託(822)', value: '822' },
-  { label: '國泰世華(013)', value: '013' },
+  { label: '全部金流類型', value: 'all' },
+  { label: '銀行轉帳', value: 'bank' },
+  { label: '微信支付', value: 'wechat' },
 ]
 const BankSelector: React.FC = () => {
   return (
     <BasicSelector
       options={options}
       value="all"
-      placeholder="銀行名稱"
+      placeholder="金流類型"
       width="150px"
     />
   )

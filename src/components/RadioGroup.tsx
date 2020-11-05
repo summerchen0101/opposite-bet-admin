@@ -14,7 +14,7 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
   label,
 }) => {
   return (
-    <Space size="large">
+    <Space>
       <label>{label}：</label>
       <Radio.Group options={options} onChange={onChange} defaultValue={value} />
     </Space>
