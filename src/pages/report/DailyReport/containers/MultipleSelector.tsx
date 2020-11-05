@@ -6,7 +6,7 @@ const options = [
   { label: 'aaaa(小白)', value: 'aaaa' },
   { label: 'gogoro(Gogo))', value: 'gogoro' },
 ]
-const MemberActivity: React.FC = () => {
+const AgentMultiSelector: React.FC = () => {
   const onChange = () => {}
   return (
     <MultipleSelector
@@ -19,4 +19,4 @@ const MemberActivity: React.FC = () => {
   )
 }
 
-export default MemberActivity
+export default AgentMultiSelector
