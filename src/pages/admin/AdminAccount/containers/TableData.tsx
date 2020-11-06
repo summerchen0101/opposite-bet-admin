@@ -1,112 +1,87 @@
-import DeleteConfirmTip from '@/components/DeleteConfirmTip'
 import IconLink from '@/components/IconLink'
-import { SelectModifyPopover } from '@/components/ModifyPopover'
 import TableSets from '@/components/TableSets'
-import { DeleteOutlined, FilterFilled, EditFilled } from '@ant-design/icons'
-import { Button, Checkbox, Popover, Space } from 'antd'
+import {
+  EditFilled,
+  ClockCircleOutlined,
+  FilterFilled,
+  StopOutlined,
+} from '@ant-design/icons'
+import { Space } from 'antd'
 import React from 'react'
-import Text from '@/components/Text'
+import { Link } from 'react-router-dom'
 
 const columns = [
   {
-    title: '代理商',
+    title: '管理者帳號',
     dataIndex: 'account',
     allowFiltered: true,
-    width: 100,
+    width: 120,
+    render: () => <a>PHMQ647</a>,
   },
   {
-    title: '首次充值(筆)',
+    title: '真實姓名',
     dataIndex: 'firstDepositCount',
     allowFiltered: true,
     width: 120,
+    render: () => '陳大明',
   },
   {
-    title: '首次充值加總(元)',
+    title: '管理者角色',
     dataIndex: 'firstDepositTotal',
     allowFiltered: true,
     width: 140,
+    render: () => 'admin',
   },
   {
-    title: '再次充值(筆)',
+    title: '上次登入時間',
     dataIndex: 'onceAgainDepositCount',
     allowFiltered: true,
-    width: 120,
+    width: 200,
+    render: () => '2020-10-15 13:28:28',
   },
   {
-    title: '再次充值加總(元)',
+    title: '上次登入IP',
     dataIndex: 'onceAgainDepositTotal',
     allowFiltered: true,
     width: 140,
+    render: () => '0.0.0.0',
   },
   {
-    title: '總充值(筆)',
-    dataIndex: 'depositCount',
-    allowFiltered: true,
-    width: 120,
-    render: (_, row) => row.firstDepositCount + row.onceAgainDepositCount,
-  },
-  {
-    title: '總充值加總(元)',
+    title: '啟用狀態',
     dataIndex: 'depositTotal',
     allowFiltered: true,
     width: 140,
-    render: (_, row) => row.firstDepositTotal + row.onceAgainDepositTotal,
+    render: () => '啟用',
   },
   {
-    title: '首次提現(筆)',
+    title: '上線狀態',
     dataIndex: 'firstWithdrawalCount',
     allowFiltered: true,
     width: 120,
+    render: () => '線上',
   },
   {
-    title: '首次提現加總(元)',
-    dataIndex: 'firstWithdrawalTotal',
-    allowFiltered: true,
-    width: 140,
-  },
-  {
-    title: '再次提現(筆)',
-    dataIndex: 'onceAgainWithdrawalCount',
-    allowFiltered: true,
-    width: 120,
-  },
-  {
-    title: '再次提現加總(元)',
-    dataIndex: 'onceAgainWithdrawalTotal',
-    allowFiltered: true,
-    width: 140,
-  },
-  {
-    title: '總提現(筆)',
-    dataIndex: 'withdrawalCount',
-    allowFiltered: true,
-    width: 120,
-    render: (_, row) => row.firstWithdrawalCount + row.onceAgainWithdrawalCount,
-  },
-  {
-    title: '總提現加總(元)',
-    dataIndex: 'withdrawalTotal',
-    allowFiltered: true,
-    width: 140,
-    render: (_, row) => row.firstWithdrawalTotal + row.onceAgainWithdrawalTotal,
-  },
-  {
-    title: '總登入人數',
-    dataIndex: 'loginCount',
-    allowFiltered: true,
-    width: 120,
-  },
-  {
-    title: '註冊人數',
-    dataIndex: 'registerCount',
-    allowFiltered: true,
-    width: 120,
-  },
-  {
-    title: () => <IconLink icon={<FilterFilled />} />,
+    title: () => (
+      <>
+        <Space size="small">操作</Space>
+        <IconLink
+          icon={<FilterFilled />}
+          style={{ float: 'right', marginBottom: -4 }}
+        />
+      </>
+    ),
     key: 'control',
     fixed: ('right' as unknown) as boolean,
-    width: 40,
+    render(_, row) {
+      return (
+        <Space size="small">
+          <IconLink icon={<StopOutlined />} label="停用" color="red" />
+          <IconLink icon={<EditFilled />} label="編輯" />
+          <IconLink icon={<ClockCircleOutlined />} label="歷程" />
+        </Space>
+      )
+    },
+    width: 90,
   },
 ]
 
