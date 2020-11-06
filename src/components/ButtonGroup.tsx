@@ -1,8 +1,9 @@
 import { Radio } from 'antd'
+import { RadioChangeEvent } from 'antd/lib/radio'
 import React from 'react'
 
 interface ButtonGroupProps {
-  onChange?: () => any
+  onChange?: (e: RadioChangeEvent) => void
   value?: any
   options: any[]
   label?: string
