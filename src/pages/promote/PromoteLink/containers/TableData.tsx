@@ -1,112 +1,116 @@
-import DeleteConfirmTip from '@/components/DeleteConfirmTip'
 import IconLink from '@/components/IconLink'
-import { SelectModifyPopover } from '@/components/ModifyPopover'
 import TableSets from '@/components/TableSets'
-import { DeleteOutlined, FilterFilled, EditFilled } from '@ant-design/icons'
-import { Button, Checkbox, Popover, Space } from 'antd'
+import {
+  DeleteOutlined,
+  FilterFilled,
+  FormOutlined,
+  CopyOutlined,
+} from '@ant-design/icons'
+import { Space, Switch } from 'antd'
 import React from 'react'
-import Text from '@/components/Text'
 
 const columns = [
   {
-    title: '代理商',
+    title: '會員帳號',
     dataIndex: 'account',
     allowFiltered: true,
     width: 100,
+    render: () => 'abc222',
   },
   {
-    title: '首次充值(筆)',
+    title: '角色',
     dataIndex: 'firstDepositCount',
     allowFiltered: true,
     width: 120,
+    render: () => '代理商',
   },
   {
-    title: '首次充值加總(元)',
+    title: '允許註冊',
+    dataIndex: 'firstDepositCount',
+    allowFiltered: true,
+    width: 120,
+    render: () => <Switch defaultChecked />,
+  },
+  {
+    title: '邀請碼',
+    dataIndex: 'firstDepositTotal',
+    allowFiltered: true,
+    width: 160,
+    render: () => (
+      <Space>
+        <span>5894wef98</span>
+        <IconLink icon={<CopyOutlined />} label="複製" />
+      </Space>
+    ),
+  },
+  {
+    title: '連結位置',
+    dataIndex: 'firstDepositTotal',
+    allowFiltered: true,
+    width: 250,
+    render: () => (
+      <Space>
+        <span>https://google/5894wef98</span>
+        <IconLink icon={<CopyOutlined />} label="複製" />
+      </Space>
+    ),
+  },
+  {
+    title: '備註',
     dataIndex: 'firstDepositTotal',
     allowFiltered: true,
     width: 140,
+    render: () => '支付寶',
   },
   {
-    title: '再次充值(筆)',
-    dataIndex: 'onceAgainDepositCount',
-    allowFiltered: true,
-    width: 120,
-  },
-  {
-    title: '再次充值加總(元)',
-    dataIndex: 'onceAgainDepositTotal',
+    title: '訪問次數',
+    dataIndex: 'firstDepositTotal',
     allowFiltered: true,
     width: 140,
+    render: () => '支付寶',
   },
   {
-    title: '總充值(筆)',
-    dataIndex: 'depositCount',
-    allowFiltered: true,
-    width: 120,
-    render: (_, row) => row.firstDepositCount + row.onceAgainDepositCount,
-  },
-  {
-    title: '總充值加總(元)',
-    dataIndex: 'depositTotal',
+    title: '完成註冊',
+    dataIndex: 'firstDepositTotal',
     allowFiltered: true,
     width: 140,
-    render: (_, row) => row.firstDepositTotal + row.onceAgainDepositTotal,
+    render: () => '支付寶',
   },
   {
-    title: '首次提現(筆)',
+    title: '更新人員',
     dataIndex: 'firstWithdrawalCount',
     allowFiltered: true,
     width: 120,
+    render: () => 'flora',
   },
   {
-    title: '首次提現加總(元)',
-    dataIndex: 'firstWithdrawalTotal',
+    title: '更新時間',
+    dataIndex: 'depositTotal',
     allowFiltered: true,
-    width: 140,
+    width: 200,
+    render: (_, row) => '2019-07-01 10:54:36',
   },
   {
-    title: '再次提現(筆)',
-    dataIndex: 'onceAgainWithdrawalCount',
-    allowFiltered: true,
-    width: 120,
-  },
-  {
-    title: '再次提現加總(元)',
-    dataIndex: 'onceAgainWithdrawalTotal',
-    allowFiltered: true,
-    width: 140,
-  },
-  {
-    title: '總提現(筆)',
-    dataIndex: 'withdrawalCount',
-    allowFiltered: true,
-    width: 120,
-    render: (_, row) => row.firstWithdrawalCount + row.onceAgainWithdrawalCount,
-  },
-  {
-    title: '總提現加總(元)',
-    dataIndex: 'withdrawalTotal',
-    allowFiltered: true,
-    width: 140,
-    render: (_, row) => row.firstWithdrawalTotal + row.onceAgainWithdrawalTotal,
-  },
-  {
-    title: '總登入人數',
-    dataIndex: 'loginCount',
-    allowFiltered: true,
-    width: 120,
-  },
-  {
-    title: '註冊人數',
-    dataIndex: 'registerCount',
-    allowFiltered: true,
-    width: 120,
-  },
-  {
-    title: () => <IconLink icon={<FilterFilled />} />,
+    title: () => (
+      <>
+        <Space size="small">操作</Space>
+        <IconLink
+          icon={<FilterFilled />}
+          style={{ float: 'right', marginBottom: -4 }}
+        />
+      </>
+    ),
     key: 'control',
     fixed: ('right' as unknown) as boolean,
-    width: 40,
+    render(_, row) {
+      return (
+        <Space size="small">
+          <IconLink icon={<FormOutlined />} label="備註" />
+          <IconLink icon={<DeleteOutlined />} label="刪除" />
+        </Space>
+      )
+    },
+    width: 70,
   },
 ]
 
