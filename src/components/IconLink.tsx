@@ -6,9 +6,11 @@ interface IProps {
   label?: string
   style?: CSSProperties
   onClick?: () => void
+  color?: string
 }
 const CursorWrapper = styled.span`
   cursor: pointer;
+  color: ${({ color }) => color};
 `
 const IconLink: React.FC<IProps> = ({ icon, label, ...props }) => {
   if (!label) return <CursorWrapper {...props}>{icon}</CursorWrapper>
