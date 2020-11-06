@@ -12,6 +12,10 @@ import PageHeader from './components/PageHeader'
 import PopupCreateForm from './containers/PopupCreateForm'
 import TableData from './containers/TableData'
 import reducer, { initSearchState, moduleName } from './reducer'
+import IpSearch from './containers/IpSearch'
+import CountrySearch from './containers/CountrySearch'
+import IpTypeSelector from './containers/IpTypeSelector'
+import StatusRadioPicker from './containers/StatusRadioPicker'
 
 const Manager: React.FC = () => {
   useReducerInjector(moduleName, reducer)
@@ -22,12 +26,11 @@ const Manager: React.FC = () => {
   return (
     <Dashboard>
       <PageHeader />
-      <PageSearchBar style={{ marginBottom: 10 }}>
-        <MultipleSelector />
-      </PageSearchBar>
       <PageSearchBar>
-        <DateRangePicker />
-        <RelativeDateBtns />
+        <IpSearch />
+        <CountrySearch />
+        <IpTypeSelector />
+        <StatusRadioPicker />
       </PageSearchBar>
       <TableData />
       <PopupCreateForm />
