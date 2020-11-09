@@ -27,7 +27,7 @@ const columns = [
     dataIndex: 'firstDepositTotal',
     allowFiltered: true,
     width: 80,
-    render: () => <Text color="red">阻擋</Text>,
+    render: () => <Text color="danger">阻擋</Text>,
   },
   {
     title: '歷史登入IP',

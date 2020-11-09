@@ -12,6 +12,16 @@ import {
 import { Button, Checkbox, Popover, Space } from 'antd'
 import React from 'react'
 import Text from '@/components/Text'
+import { MenuOutlined } from '@ant-design/icons'
+
+import {
+  SortableContainer,
+  SortableElement,
+  SortableHandle,
+} from 'react-sortable-hoc'
+// const DragHandle = sortableHandle(() => (
+//   <MenuOutlined style={{ cursor: 'pointer', color: '#999' }} />
+// ))
 
 const columns = [
   {
