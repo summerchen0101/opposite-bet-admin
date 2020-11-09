@@ -1,50 +1,44 @@
-import { Text, IconLink, TableSets } from '@/components'
-import { FilterFilled } from '@ant-design/icons'
+import IconLink from '@/components/IconLink'
+import TableSets from '@/components/TableSets'
+import Text from '@/components/Text'
+import { DeleteOutlined, FilterFilled } from '@ant-design/icons'
 import { Space } from 'antd'
 import React from 'react'
-import { DeleteOutlined } from '@ant-design/icons'
+
 const columns = [
   {
-    title: '標題',
+    title: '主題',
     dataIndex: 'account',
     allowFiltered: true,
-    width: 140,
-    render: () => <a>如何儲值</a>,
+    width: 180,
+    render: () => '我無法儲值',
   },
   {
-    title: '另開視窗',
+    title: '寄件人',
     dataIndex: 'firstDepositCount',
     allowFiltered: true,
-    width: 80,
-    render: () => '是',
-  },
-  {
-    title: '開始時間',
-    dataIndex: 'firstDepositTotal',
-    allowFiltered: true,
-    width: 140,
-    render: () => '2019-08-21 19:10:08',
-  },
-  {
-    title: '結束時間',
-    dataIndex: 'onceAgainDepositCount',
-    allowFiltered: true,
-    width: 140,
-    render: () => '2019-08-21 19:10:08',
+    width: 120,
+    render: () => 'peggy',
   },
   {
     title: '狀態',
-    dataIndex: 'onceAgainDepositTotal',
-    allowFiltered: true,
-    width: 80,
-    render: () => <Text color="success">啟動</Text>,
-  },
-  {
-    title: '更新人員',
-    dataIndex: 'depositCount',
+    dataIndex: 'firstDepositTotal',
     allowFiltered: true,
     width: 100,
-    render: () => 'summer',
+    render: () => <Text color="success">已讀</Text>,
+  },
+  {
+    title: '信件種類',
+    dataIndex: 'onceAgainDepositCount',
+    allowFiltered: true,
+    width: 100,
+    render: () => '意見反應',
+  },
+  {
+    title: '發送時間',
+    dataIndex: 'onceAgainDepositTotal',
+    allowFiltered: true,
+    width: 140,
   },
   {
     title: () => (
