@@ -1,14 +1,10 @@
+import { PopoverEditor } from '@/components'
 import DeleteConfirmTip from '@/components/DeleteConfirmTip'
 import IconLink from '@/components/IconLink'
-import {
-  InputModifyPopover,
-  SelectModifyPopover,
-} from '@/components/ModifyPopover'
 import TableSets from '@/components/TableSets'
 import { DeleteOutlined, FilterFilled } from '@ant-design/icons'
-import { Button, Checkbox, Popover, Space } from 'antd'
+import { Checkbox, Space } from 'antd'
 import React from 'react'
-import { useHistory } from 'react-router-dom'
 
 const columns = [
   {
@@ -43,9 +39,9 @@ const columns = [
     allowFiltered: true,
     render(value, row) {
       return (
-        <Popover content={<InputModifyPopover value={value} />} trigger="click">
+        <PopoverEditor value={value}>
           <a>{value}</a>
-        </Popover>
+        </PopoverEditor>
       )
     },
   },
@@ -59,12 +55,9 @@ const columns = [
         { label: '美國', value: 'opt2' },
       ]
       return (
-        <Popover
-          content={<SelectModifyPopover options={options} value={value} />}
-          trigger="click"
-        >
+        <PopoverEditor value={value} options={options}>
           <a>{value}</a>
-        </Popover>
+        </PopoverEditor>
       )
     },
   },
@@ -74,9 +67,9 @@ const columns = [
     allowFiltered: true,
     render(value, row) {
       return (
-        <Popover content={<InputModifyPopover value={value} />} trigger="click">
+        <PopoverEditor value={value}>
           <a>{value}</a>
-        </Popover>
+        </PopoverEditor>
       )
     },
   },

@@ -18,6 +18,7 @@ import {
 } from '@/components/ModifyPopover'
 import { useHistory } from 'react-router-dom'
 import { EventScore } from '@/lib/routes'
+import { PopoverEditor } from '@/components'
 
 const columns = [
   {
@@ -50,9 +51,9 @@ const columns = [
     dataIndex: 'league',
     render(value, row) {
       return (
-        <Popover content={<InputModifyPopover value={value} />} trigger="click">
+        <PopoverEditor value={value}>
           <a>{value}</a>
-        </Popover>
+        </PopoverEditor>
       )
     },
   },
@@ -65,12 +66,9 @@ const columns = [
         { label: '美國', value: 'opt2' },
       ]
       return (
-        <Popover
-          content={<SelectModifyPopover options={options} value={value} />}
-          trigger="click"
-        >
+        <PopoverEditor value={value} options={options}>
           <a>{value}</a>
-        </Popover>
+        </PopoverEditor>
       )
     },
   },

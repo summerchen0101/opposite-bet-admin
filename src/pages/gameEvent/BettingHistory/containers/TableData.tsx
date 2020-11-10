@@ -1,9 +1,6 @@
 import DeleteConfirmTip from '@/components/DeleteConfirmTip'
 import IconLink from '@/components/IconLink'
-import {
-  InputModifyPopover,
-  SelectModifyPopover,
-} from '@/components/ModifyPopover'
+import { PopoverEditor } from '@/components'
 import TableSets from '@/components/TableSets'
 import { DeleteOutlined, FilterFilled } from '@ant-design/icons'
 import { Button, Checkbox, Popover, Space } from 'antd'
@@ -45,9 +42,9 @@ const columns = [
     allowFiltered: true,
     render(value, row) {
       return (
-        <Popover content={<InputModifyPopover value={value} />} trigger="click">
+        <PopoverEditor value={value}>
           <a>{value}</a>
-        </Popover>
+        </PopoverEditor>
       )
     },
     width: 150,

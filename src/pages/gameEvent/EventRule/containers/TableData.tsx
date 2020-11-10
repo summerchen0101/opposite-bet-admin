@@ -1,6 +1,6 @@
 import DeleteConfirmTip from '@/components/DeleteConfirmTip'
 import IconLink from '@/components/IconLink'
-import { SelectModifyPopover } from '@/components/ModifyPopover'
+import { PopoverEditor } from '@/components'
 import TableSets from '@/components/TableSets'
 import { DeleteOutlined, FilterFilled, EditFilled } from '@ant-design/icons'
 import { Button, Checkbox, Popover, Space } from 'antd'
@@ -19,12 +19,9 @@ const columns = [
         { label: '上半場反波膽', value: 'firstHalf' },
       ]
       return (
-        <Popover
-          content={<SelectModifyPopover options={options} value={value} />}
-          trigger="click"
-        >
+        <PopoverEditor options={options} value={value}>
           <a>{value}</a>
-        </Popover>
+        </PopoverEditor>
       )
     },
   },
@@ -49,14 +46,9 @@ const columns = [
         value: key,
       }))
       return (
-        <Popover
-          content={
-            <SelectModifyPopover options={selectOptions} value={value} />
-          }
-          trigger="click"
-        >
-          <a>{options[value]}</a>
-        </Popover>
+        <PopoverEditor value={value} options={selectOptions}>
+          {value}
+        </PopoverEditor>
       )
     },
   },
