@@ -3,11 +3,11 @@ import { ColumnType } from 'antd/lib/table'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
-interface IProps {
+interface TableProps {
   data: any[]
   columns: ColumnType<any>[]
 }
-const Table: React.FC<IProps> = ({ data, columns, ...props }) => {
+const Table: React.FC<TableProps> = ({ data, columns, ...props }) => {
   const [columnsWithKey, setColumnsWithKey] = useState([])
   useEffect(() => {
     setColumnsWithKey(

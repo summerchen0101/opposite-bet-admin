@@ -13,15 +13,17 @@ import { Button, Checkbox, Popover, Space } from 'antd'
 import React from 'react'
 import Text from '@/components/Text'
 import { MenuOutlined } from '@ant-design/icons'
+import arrayMove from 'array-move'
 
 import {
   SortableContainer,
   SortableElement,
   SortableHandle,
 } from 'react-sortable-hoc'
-// const DragHandle = sortableHandle(() => (
-//   <MenuOutlined style={{ cursor: 'pointer', color: '#999' }} />
-// ))
+import styled from 'styled-components'
+const DragHandle = SortableHandle(() => (
+  <MenuOutlined style={{ cursor: 'pointer', color: '#999' }} />
+))
 
 const columns = [
   {
@@ -29,18 +31,26 @@ const columns = [
     dataIndex: 'account',
     allowFiltered: true,
     width: 100,
+    render: () => <DragHandle />,
   },
   {
     title: '優惠名稱',
     dataIndex: 'firstDepositCount',
     allowFiltered: true,
     width: 120,
+    render: () => <a>搶搶註冊送</a>,
   },
   {
     title: '優惠期限',
     dataIndex: 'firstDepositTotal',
     allowFiltered: true,
-    width: 140,
+    width: '180px',
+    render: () => (
+      <>
+        2020-10-02 00:00:00 ~ <br />
+        2020-10-31 23:59:59
+      </>
+    ),
   },
   {
     title: '狀態',
@@ -90,9 +100,9 @@ const columns = [
 ]
 
 const data = []
-for (let i = 1; i <= 50; i++) {
+for (let i = 1; i <= 10; i++) {
   data.push({
-    key: i,
+    index: i,
     account: 'aaaa(小白)',
     firstDepositCount: 5,
     firstDepositTotal: 20320,
@@ -106,8 +116,58 @@ for (let i = 1; i <= 50; i++) {
     registerCount: 3,
   })
 }
+
+const SortableItem = SortableElement((props) => <tr {...props} />)
+const SortableWrapper = SortableContainer((props) => <tbody {...props} />)
+
+const DraggableContainer = (props) => (
+  <SortableWrapper useDragHandle helperClass="row-dragging" {...props} />
+)
+const StyledDraggableContainer = styled(DraggableContainer)`
+  .row-dragging {
+    background: #fafafa;
+    border: 1px solid #ccc;
+  }
+
+  .row-dragging td {
+    padding: 16px;
+    visibility: hidden;
+  }
+
+  .row-dragging .drag-visible {
+    visibility: visible;
+  }
+`
+
+const DraggableBodyRow = ({ className, style, ...restProps }) => {
+  const index = data.findIndex((x) => x.index === restProps['data-row-key'])
+  return <SortableItem index={index} {...restProps} />
+}
+
+const onSortEnd = ({ oldIndex, newIndex }) => {
+  if (oldIndex !== newIndex) {
+    const newData = arrayMove([].concat(data), oldIndex, newIndex).filter(
+      (el) => !!el,
+    )
+    console.log('Sorted items: ', newData)
+    // data = newData
+  }
+}
 const TableData: React.FC = () => {
-  return <TableSets columns={columns} data={data} />
+  return (
+    <TableSets
+      columns={columns}
+      data={data}
+      rowKey="index"
+      onSortEnd={onSortEnd}
+      components={{
+        body: {
+          wrapper: StyledDraggableContainer,
+          row: DraggableBodyRow,
+        },
+      }}
+    />
+  )
 }
 
 export default TableData

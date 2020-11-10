@@ -2,11 +2,14 @@ import Table from '@/components/Table'
 import TableFilter from '@/components/TableFilter'
 import { ColumnType } from 'antd/lib/table'
 import React, { useEffect } from 'react'
-interface IProps {
+interface TableSetsProps {
   data: any[]
   columns: (ColumnType<any> & { allowFiltered?: boolean })[]
+  rowKey?: any
+  components?: any
+  onSortEnd?: any
 }
-const TableSets: React.FC<IProps> = ({ data, columns }) => {
+const TableSets: React.FC<TableSetsProps> = ({ data, columns, ...props }) => {
   let filterdColumns = []
   useEffect(() => {
     filterdColumns = columns
@@ -15,7 +18,7 @@ const TableSets: React.FC<IProps> = ({ data, columns }) => {
   }, [])
   return (
     <TableFilter display={false} columns={filterdColumns}>
-      <Table data={data} columns={columns} />
+      <Table data={data} columns={columns} {...props} />
     </TableFilter>
   )
 }
