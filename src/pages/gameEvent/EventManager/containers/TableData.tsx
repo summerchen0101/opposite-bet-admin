@@ -12,10 +12,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleScoreModal } from '../reducer'
 import DeleteConfirmTip from '@/components/DeleteConfirmTip'
-import {
-  InputModifyPopover,
-  SelectModifyPopover,
-} from '@/components/ModifyPopover'
 import { useHistory } from 'react-router-dom'
 import { EventScore } from '@/lib/routes'
 import { PopoverEditor } from '@/components'

@@ -1,6 +1,5 @@
 import DeleteConfirmTip from '@/components/DeleteConfirmTip'
 import IconLink from '@/components/IconLink'
-import { SelectModifyPopover } from '@/components/ModifyPopover'
 import TableSets from '@/components/TableSets'
 import {
   StopOutlined,
