@@ -9,99 +9,164 @@ import Text from '@/components/Text'
 
 const columns = [
   {
-    title: '代理商',
+    title: '公司',
     dataIndex: 'account',
     allowFiltered: true,
     width: 100,
+    render: () => '-',
   },
   {
-    title: '首次充值(筆)',
+    title: '遊戲站',
     dataIndex: 'firstDepositCount',
     allowFiltered: true,
     width: 120,
+    children: [
+      {
+        title: '遊戲平台',
+        dataIndex: 'onceAgainDepositCount',
+        allowFiltered: true,
+        width: 120,
+        render: () => '-',
+      },
+      {
+        title: '遊戲類型',
+        dataIndex: 'onceAgainDepositTotal',
+        allowFiltered: true,
+        width: 140,
+        render: () => '-',
+      },
+    ],
   },
   {
-    title: '首次充值加總(元)',
+    title: '注單統計',
     dataIndex: 'firstDepositTotal',
     allowFiltered: true,
     width: 140,
+    children: [
+      {
+        title: '筆數',
+        dataIndex: 'depositCount',
+        allowFiltered: true,
+        width: 120,
+        render: () => '-',
+      },
+      {
+        title: '注額',
+        dataIndex: 'depositTotal',
+        allowFiltered: true,
+        width: 140,
+        render: () => '-',
+      },
+      {
+        title: '中獎金額',
+        dataIndex: 'firstWithdrawalCount',
+        allowFiltered: true,
+        width: 120,
+        render: () => '-',
+      },
+      {
+        title: '彩金',
+        dataIndex: 'firstWithdrawalTotal',
+        allowFiltered: true,
+        width: 140,
+        render: () => '-',
+      },
+    ],
   },
+
   {
-    title: '再次充值(筆)',
-    dataIndex: 'onceAgainDepositCount',
-    allowFiltered: true,
-    width: 120,
-  },
-  {
-    title: '再次充值加總(元)',
-    dataIndex: 'onceAgainDepositTotal',
-    allowFiltered: true,
-    width: 140,
-  },
-  {
-    title: '總充值(筆)',
-    dataIndex: 'depositCount',
-    allowFiltered: true,
-    width: 120,
-    render: (_, row) => row.firstDepositCount + row.onceAgainDepositCount,
-  },
-  {
-    title: '總充值加總(元)',
-    dataIndex: 'depositTotal',
-    allowFiltered: true,
-    width: 140,
-    render: (_, row) => row.firstDepositTotal + row.onceAgainDepositTotal,
-  },
-  {
-    title: '首次提現(筆)',
-    dataIndex: 'firstWithdrawalCount',
-    allowFiltered: true,
-    width: 120,
-  },
-  {
-    title: '首次提現加總(元)',
-    dataIndex: 'firstWithdrawalTotal',
-    allowFiltered: true,
-    width: 140,
-  },
-  {
-    title: '再次提現(筆)',
+    title: '會員',
     dataIndex: 'onceAgainWithdrawalCount',
     allowFiltered: true,
     width: 120,
+    children: [
+      {
+        title: '會員退水',
+        dataIndex: 'onceAgainWithdrawalTotal',
+        allowFiltered: true,
+        width: 140,
+        render: () => '-',
+      },
+      {
+        title: '會員紅利',
+        dataIndex: 'withdrawalCount',
+        allowFiltered: true,
+        width: 120,
+        render: () => '-',
+      },
+      {
+        title: '會員小計',
+        dataIndex: 'withdrawalTotal',
+        allowFiltered: true,
+        width: 140,
+        render: () => '-',
+      },
+      {
+        title: '佔成(%)',
+        dataIndex: 'loginCount',
+        allowFiltered: true,
+        width: 120,
+        render: () => '-',
+      },
+      {
+        title: '佔比額度',
+        dataIndex: 'registerCount',
+        allowFiltered: true,
+        width: 120,
+        render: () => '-',
+      },
+      {
+        title: '退水',
+        dataIndex: 'loginCount',
+        allowFiltered: true,
+        width: 120,
+        render: () => '-',
+      },
+      {
+        title: '退佣',
+        dataIndex: 'registerCount',
+        allowFiltered: true,
+        width: 120,
+        render: () => '-',
+      },
+    ],
   },
   {
-    title: '再次提現加總(元)',
-    dataIndex: 'onceAgainWithdrawalTotal',
+    title: '成本支出',
+    dataIndex: 'firstDepositTotal',
     allowFiltered: true,
     width: 140,
+    children: [
+      {
+        title: '代理退水',
+        dataIndex: 'depositCount',
+        allowFiltered: true,
+        width: 120,
+        render: () => '-',
+      },
+      {
+        title: '會員退水',
+        dataIndex: 'depositTotal',
+        allowFiltered: true,
+        width: 140,
+        render: (_, row) => row.firstDepositTotal + row.onceAgainDepositTotal,
+      },
+      {
+        title: '會員紅利',
+        dataIndex: 'firstWithdrawalCount',
+        allowFiltered: true,
+        render: () => '-',
+      },
+    ],
   },
   {
-    title: '總提現(筆)',
-    dataIndex: 'withdrawalCount',
+    title: '小計',
+    dataIndex: 'firstWithdrawalTotal',
     allowFiltered: true,
     width: 120,
-    render: (_, row) => row.firstWithdrawalCount + row.onceAgainWithdrawalCount,
+    render: () => '-',
   },
-  {
-    title: '總提現加總(元)',
-    dataIndex: 'withdrawalTotal',
-    allowFiltered: true,
-    width: 140,
-    render: (_, row) => row.firstWithdrawalTotal + row.onceAgainWithdrawalTotal,
-  },
-  {
-    title: '總登入人數',
-    dataIndex: 'loginCount',
-    allowFiltered: true,
-    width: 120,
-  },
-  {
-    title: '註冊人數',
-    dataIndex: 'registerCount',
-    allowFiltered: true,
-    width: 120,
-  },
+
   {
     title: () => <IconLink icon={<FilterFilled />} />,
     key: 'control',
@@ -111,7 +176,7 @@ const columns = [
 ]
 
 const data = []
-for (let i = 1; i <= 50; i++) {
+for (let i = 1; i <= 10; i++) {
   data.push({
     key: i,
     account: 'aaaa(小白)',

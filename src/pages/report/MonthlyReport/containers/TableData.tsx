@@ -9,104 +9,135 @@ import Text from '@/components/Text'
 
 const columns = [
   {
-    title: '代理商',
+    title: '投注資訊',
     dataIndex: 'account',
     allowFiltered: true,
     width: 100,
+    children: [
+      {
+        title: '帳號/名稱',
+        dataIndex: 'account',
+        allowFiltered: true,
+        width: 100,
+      },
+      {
+        title: '結算額',
+        dataIndex: 'firstDepositCount',
+        allowFiltered: true,
+        width: 120,
+        render: () => '-',
+      },
+    ],
   },
+
   {
-    title: '首次充值(筆)',
-    dataIndex: 'firstDepositCount',
-    allowFiltered: true,
-    width: 120,
-  },
-  {
-    title: '首次充值加總(元)',
+    title: '本層總額',
     dataIndex: 'firstDepositTotal',
     allowFiltered: true,
     width: 140,
+    children: [
+      {
+        title: '佔成金額',
+        dataIndex: 'firstDepositTotal',
+        allowFiltered: true,
+        width: 140,
+        render: () => '-',
+      },
+      {
+        title: '手續費',
+        dataIndex: 'onceAgainDepositCount',
+        allowFiltered: true,
+        width: 120,
+        render: () => '-',
+      },
+    ],
   },
   {
-    title: '再次充值(筆)',
-    dataIndex: 'onceAgainDepositCount',
+    title: '下層總額',
+    dataIndex: 'firstDepositTotal',
     allowFiltered: true,
-    width: 120,
+    width: 140,
+    children: [
+      {
+        title: '佔成金額',
+        dataIndex: 'firstDepositTotal',
+        allowFiltered: true,
+        width: 140,
+        render: () => '-',
+      },
+      {
+        title: '手續費',
+        dataIndex: 'onceAgainDepositCount',
+        allowFiltered: true,
+        width: 120,
+        render: () => '-',
+      },
+    ],
   },
+
   {
-    title: '再次充值加總(元)',
+    title: '應交收額',
     dataIndex: 'onceAgainDepositTotal',
     allowFiltered: true,
     width: 140,
+    render: () => '-',
   },
   {
-    title: '總充值(筆)',
+    title: '已交收額',
     dataIndex: 'depositCount',
     allowFiltered: true,
     width: 120,
-    render: (_, row) => row.firstDepositCount + row.onceAgainDepositCount,
+    render: () => '-',
   },
+
   {
-    title: '總充值加總(元)',
-    dataIndex: 'depositTotal',
-    allowFiltered: true,
-    width: 140,
-    render: (_, row) => row.firstDepositTotal + row.onceAgainDepositTotal,
-  },
-  {
-    title: '首次提現(筆)',
-    dataIndex: 'firstWithdrawalCount',
-    allowFiltered: true,
-    width: 120,
-  },
-  {
-    title: '首次提現加總(元)',
-    dataIndex: 'firstWithdrawalTotal',
-    allowFiltered: true,
-    width: 140,
-  },
-  {
-    title: '再次提現(筆)',
+    title: '交收紀錄',
     dataIndex: 'onceAgainWithdrawalCount',
     allowFiltered: true,
     width: 120,
+    children: [
+      {
+        title: '未交收額',
+        dataIndex: 'depositTotal',
+        allowFiltered: true,
+        width: 140,
+        render: () => '-',
+      },
+      {
+        title: '未結算額',
+        dataIndex: 'firstWithdrawalCount',
+        allowFiltered: true,
+        width: 120,
+        render: () => '-',
+      },
+      {
+        title: '結算次數',
+        dataIndex: 'firstWithdrawalTotal',
+        allowFiltered: true,
+        render: () => '-',
+      },
+    ],
   },
   {
-    title: '再次提現加總(元)',
-    dataIndex: 'onceAgainWithdrawalTotal',
-    allowFiltered: true,
-    width: 140,
-  },
-  {
-    title: '總提現(筆)',
-    dataIndex: 'withdrawalCount',
-    allowFiltered: true,
-    width: 120,
-    render: (_, row) => row.firstWithdrawalCount + row.onceAgainWithdrawalCount,
-  },
-  {
-    title: '總提現加總(元)',
-    dataIndex: 'withdrawalTotal',
-    allowFiltered: true,
-    width: 140,
-    render: (_, row) => row.firstWithdrawalTotal + row.onceAgainWithdrawalTotal,
-  },
-  {
-    title: '總登入人數',
-    dataIndex: 'loginCount',
-    allowFiltered: true,
-    width: 120,
-  },
-  {
-    title: '註冊人數',
-    dataIndex: 'registerCount',
-    allowFiltered: true,
-    width: 120,
-  },
-  {
-    title: () => <IconLink icon={<FilterFilled />} />,
+    title: () => (
+      <>
+        <Space size="small">操作</Space>
+        <IconLink
+          icon={<FilterFilled />}
+          style={{ float: 'right', marginBottom: -4 }}
+        />
+      </>
+    ),
     key: 'control',
     fixed: ('right' as unknown) as boolean,
-    width: 40,
+    render(_, row) {
+      return (
+        <Button size="small" type="primary">
+          結算
+        </Button>
+      )
+    },
+    width: 70,
   },
 ]
 
