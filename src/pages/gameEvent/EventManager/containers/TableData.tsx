@@ -1,20 +1,20 @@
-import IconLink from '@/components/IconLink'
+import { PopoverEditor, PopupModalWithTrigger } from '@/components'
+import DeleteConfirmTip from '@/components/DeleteConfirmTip'
+import { Text, IconLink } from '@/components'
 import TableSets from '@/components/TableSets'
+import { EventScore } from '@/lib/routes'
 import {
   ContainerOutlined,
   DeleteOutlined,
-  EyeFilled,
+  EyeOutlined,
   FilterFilled,
-  RedoOutlined,
+  RotateLeftOutlined,
+  StopOutlined,
 } from '@ant-design/icons'
-import { Button, Checkbox, Popconfirm, Popover, Space, Switch } from 'antd'
-import React, { useEffect, useRef, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { toggleScoreModal } from '../reducer'
-import DeleteConfirmTip from '@/components/DeleteConfirmTip'
+import { Checkbox, Space, Switch } from 'antd'
+import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { EventScore } from '@/lib/routes'
-import { PopoverEditor } from '@/components'
+import ScoreForm from './ScoreForm'
 
 const columns = [
   {
@@ -35,9 +35,13 @@ const columns = [
       if (!teams) return '-'
       return (
         <>
-          <span>{teams[0]}</span>
+          <PopoverEditor value={teams[0]}>
+            <a>{teams[0]}</a>
+          </PopoverEditor>
           <br />
-          <span>{teams[1]}</span>
+          <PopoverEditor value={teams[1]}>
+            <a>{teams[1]}</a>
+          </PopoverEditor>
         </>
       )
     },
@@ -76,18 +80,25 @@ const columns = [
     },
   },
   {
-    title: '開始',
+    title: '已開賽',
     dataIndex: 'isOpened',
-    render: (isOpened) => <Switch defaultChecked={isOpened} />,
+    render: (isOpened) => <Text color="success">是</Text>,
+    width: '80px',
   },
   {
     title: '結果',
     dataIndex: 'result',
     render: (result) => {
-      const dispatch = useDispatch()
-      const onCreate = (e) => dispatch(toggleScoreModal(true))
       if (!result) {
-        return <a onClick={onCreate}>點擊添加</a>
+        return (
+          <PopupModalWithTrigger
+            title="添加結果"
+            trigger={(setVisible) => (
+              <a onClick={() => setVisible(true)}>點擊添加</a>
+            )}
+            content={(setVisible) => <ScoreForm setVisible={setVisible} />}
+          />
+        )
       }
       return (
         <>
@@ -119,10 +130,11 @@ const columns = [
         <>
           <Checkbox defaultChecked={false} />
           <Space size="small" style={{ float: 'right' }}>
+            <IconLink label="下架賽事" icon={<StopOutlined />} />
             <DeleteConfirmTip>
-              <IconLink label="查看投注" icon={<EyeFilled />} />
+              <IconLink label="查看投注" icon={<EyeOutlined />} />
             </DeleteConfirmTip>
-            <IconLink label="重置比分" icon={<RedoOutlined />} />
+            <IconLink label="重置比分" icon={<RotateLeftOutlined />} />
             <IconLink
               label="比分"
               icon={<ContainerOutlined />}
@@ -135,7 +147,7 @@ const columns = [
         </>
       )
     },
-    width: 120,
+    width: '150px',
   },
 ]
 

@@ -5,9 +5,6 @@ import { PageGenerator } from '../pageGenerator'
 export default (pageInstance: PageGenerator) => {
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(removeTab(pageInstance.path))
-    return () => {
-      dispatch(addTab(pageInstance.getTab()))
-    }
+    dispatch(addTab(pageInstance.getTab()))
   }, [])
 }

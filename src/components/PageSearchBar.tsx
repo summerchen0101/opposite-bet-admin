@@ -1,8 +1,11 @@
 import React from 'react'
 import { Space } from 'antd'
-
+import styled from 'styled-components'
+const ExtraWrapper = styled.span`
+  float: right;
+`
 const PageSearchBar: React.FC<{
-  extra?: React.ReactNode
+  extra?: JSX.Element
   style?: React.CSSProperties
 }> = ({ children, extra, style, ...props }) => {
   return (
@@ -10,7 +13,7 @@ const PageSearchBar: React.FC<{
       <Space size="small" {...props}>
         {children}
       </Space>
-      {extra}
+      <ExtraWrapper>{extra}</ExtraWrapper>
     </div>
   )
 }

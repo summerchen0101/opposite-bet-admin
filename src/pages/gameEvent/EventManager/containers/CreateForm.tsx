@@ -1,29 +1,18 @@
-import PopupModal from '@/components/PopupModal'
-import { Button, DatePicker, Input, Select, Space, Form as AntForm } from 'antd'
-import React from 'react'
-import { useDispatch } from 'react-redux'
-import { toggleCreateModal } from '../reducer'
-import { selectDisplayCreateModal, useTypedSelector } from '../selectors'
 import Form, { FormField } from '@/components/Form'
-const { Option } = Select
-const CreateForm: React.FC = () => {
-  const dispatch = useDispatch()
-  const isDisplay = useTypedSelector(selectDisplayCreateModal)
-  const [form] = AntForm.useForm()
-  const onCancel = () => {
-    dispatch(toggleCreateModal(false))
-  }
-  const onFinish = (values) => {
-    console.log('Success:', values)
-    dispatch(toggleCreateModal(false))
-  }
+import { Button, DatePicker, Form as AntForm, Input, Select, Space } from 'antd'
+import React from 'react'
 
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
-  }
+const { Option } = Select
+const CreateForm: React.FC<{
+  setVisible: React.Dispatch<React.SetStateAction<boolean>>
+}> = ({ setVisible }) => {
+  const [form] = AntForm.useForm()
   return (
-    <PopupModal visible={isDisplay} title="新增賽事">
-      <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
+    <>
+      <Form
+        onFinish={() => setVisible(false)}
+        onFinishFailed={() => setVisible(false)}
+      >
         <FormField label="請選擇隊伍(主)" name="mainTeam" required>
           <Input />
         </FormField>
@@ -51,13 +40,13 @@ const CreateForm: React.FC = () => {
             <Button type="primary" htmlType="submit">
               送出
             </Button>
-            <Button onClick={onCancel} htmlType="reset">
+            <Button onClick={() => setVisible(false)} htmlType="reset">
               取消
             </Button>
           </Space>
         </FormField>
       </Form>
-    </PopupModal>
+    </>
   )
 }
 
