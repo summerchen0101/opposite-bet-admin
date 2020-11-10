@@ -19,6 +19,7 @@ const Table: React.FC<IProps> = ({ data, columns, ...props }) => {
   }, [])
   return (
     <AntTable
+      bordered
       size="small"
       dataSource={data}
       columns={columnsWithKey}
