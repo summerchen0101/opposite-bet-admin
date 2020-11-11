@@ -140,9 +140,7 @@ const columns = [
           <Checkbox defaultChecked={false} />
           <Space size="small" style={{ float: 'right' }}>
             <IconLink label="下架賽事" icon={<StopOutlined />} />
-            <DeleteConfirmTip>
-              <IconLink label="查看投注" icon={<EyeOutlined />} />
-            </DeleteConfirmTip>
+            <IconLink label="查看投注" icon={<EyeOutlined />} />
             <IconLink label="重置比分" icon={<RotateLeftOutlined />} />
             <IconLink
               label="比分"

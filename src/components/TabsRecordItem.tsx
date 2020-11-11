@@ -16,7 +16,7 @@ const TabRecordItemWrapper = styled.div<{ isCurrentTab: boolean }>`
     isCurrentTab ? '#fff' : '#dfdfdf'};
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  color: ${({ isCurrentTab }) => (isCurrentTab ? '#000' : '#777')};
+  color: ${({ isCurrentTab }) => (isCurrentTab ? '#555' : '#999')};
   letter-spacing: 0.1em;
   cursor: ${({ isCurrentTab }) => (isCurrentTab ? 'auto' : 'pointer')};
   .close-icon {

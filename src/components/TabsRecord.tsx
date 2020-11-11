@@ -1,7 +1,7 @@
 import { clearTabs } from '@/store/reducer'
 import { useTypedSelector } from '@/store/rootReducer'
 import { DeleteOutlined } from '@ant-design/icons'
-import { Space } from 'antd'
+import { Button, Space } from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
@@ -10,10 +10,10 @@ import IconLink from './IconLink'
 import TabsRecordItem from './TabsRecordItem'
 const TabsRecordWrapper = styled.div`
   margin-top: 15px;
+  height: 40px;
   .right-btns {
     float: right;
     line-height: 30px;
-    padding: 0 15px;
   }
 `
 const TabsRecord: React.FC = () => {
@@ -33,11 +33,12 @@ const TabsRecord: React.FC = () => {
         ))}
       </Space>
       <span className="right-btns">
-        <IconLink
-          icon={<DeleteOutlined />}
-          label="清空頁籤"
+        <Button
+          size="small"
           onClick={() => dispatch(clearTabs(location.pathname))}
-        />
+        >
+          清空頁籤
+        </Button>
       </span>
     </TabsRecordWrapper>
   )
