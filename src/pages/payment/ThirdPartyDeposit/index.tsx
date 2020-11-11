@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 import PageHeader from './components/PageHeader'
 import DepositDateRangePicker from './containers/DepositDateRangePicker'
 import DepositIdSearch from './containers/DepositIdSearch'
-import PopupCreateForm from './containers/PopupCreateForm'
+import PopupReviewForm from './containers/PopupReviewForm'
 import StatusSelector from './containers/StatusSelector'
 import TableData from './containers/TableData'
 import ThirdPartySelector from './containers/ThirdPartySelector'
@@ -30,7 +30,7 @@ const Manager: React.FC = () => {
         <StatusSelector />
       </PageSearchBar>
       <TableData />
-      <PopupCreateForm />
+      <PopupReviewForm />
     </Dashboard>
   )
 }

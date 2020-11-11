@@ -1,59 +1,67 @@
 import IconLink from '@/components/IconLink'
 import TableSets from '@/components/TableSets'
-import { EditFilled, FilterFilled } from '@ant-design/icons'
+import { EditFilled, FilterFilled, FormOutlined } from '@ant-design/icons'
 import { Space } from 'antd'
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { toggleReviewModal } from '../reducer'
 
 const columns = [
   {
     title: '編號',
     dataIndex: 'account',
     allowFiltered: true,
-    width: 100,
+    width: 60,
+    render: (_, row, i) => i + 1,
   },
   {
     title: '單號',
     dataIndex: 'firstDepositCount',
     allowFiltered: true,
-    width: 120,
+    width: 180,
+    render: () => '2020091009515118',
   },
   {
     title: '設定名稱',
     dataIndex: 'firstDepositTotal',
     allowFiltered: true,
     width: 140,
+    render: () => '-',
   },
   {
     title: '狀態',
     dataIndex: 'onceAgainDepositCount',
     allowFiltered: true,
     width: 120,
+    render: () => '-',
   },
   {
     title: '帳號/名稱',
     dataIndex: 'onceAgainDepositTotal',
     allowFiltered: true,
     width: 140,
+    render: () => '-',
   },
   {
     title: '初始金額',
     dataIndex: 'depositCount',
     allowFiltered: true,
     width: 120,
-    render: (_, row) => row.firstDepositCount + row.onceAgainDepositCount,
+    render: () => '1,000.00',
   },
   {
     title: '實際入款金額',
     dataIndex: 'depositTotal',
     allowFiltered: true,
     width: 140,
-    render: (_, row) => row.firstDepositTotal + row.onceAgainDepositTotal,
+    render: () => '1,000.00',
   },
   {
     title: '優惠',
     dataIndex: 'firstWithdrawalCount',
     allowFiltered: true,
     width: 120,
+    render: () => '0.00',
   },
   {
     title: () => (
@@ -66,6 +74,11 @@ const columns = [
     dataIndex: 'firstWithdrawalTotal',
     allowFiltered: true,
     width: 200,
+    render: () => (
+      <>
+        2020-09-09 21:51:51 <br />-
+      </>
+    ),
   },
   {
     title: () => (
@@ -78,6 +91,12 @@ const columns = [
     dataIndex: 'onceAgainWithdrawalCount',
     allowFiltered: true,
     width: 200,
+    render: () => (
+      <>
+        flora <br />
+        2020-09-09 21:51:51
+      </>
+    ),
   },
   {
     title: () => (
@@ -92,9 +111,11 @@ const columns = [
     key: 'control',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
+      const dispatch = useDispatch()
+      const onClick = () => dispatch(toggleReviewModal(true))
       return (
         <Space size="small">
-          <IconLink icon={<EditFilled />} label="手動" />
+          <IconLink icon={<FormOutlined />} label="手動" onClick={onClick} />
         </Space>
       )
     },
