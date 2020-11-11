@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
 import PageHeader from '@/components/PageHeader'
 import { EventManager as page, EventScore } from '@/pages/gameEvent/routes'
 import { useBreadcrumb } from '@/utils/hooks'
+import React from 'react'
 import CreateButton from '../containers/CreateButton'
 
 const Component: React.FC = () => {

@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
-
-import { Layout, PageHeader } from 'antd'
-import Sidebar from './Sidebar'
-import Header from './Header'
-import Content from './Content'
-import DashboardContext from '@/contexts/DashboardContext'
-import Wrapper from './Wrapper'
 import TabsRecord from '@/components/TabsRecord'
+import DashboardContext from '@/contexts/DashboardContext'
+import { Layout } from 'antd'
+import React, { useState } from 'react'
+import Content from './Content'
+import Header from './Header'
+import Sidebar from './Sidebar'
+import Wrapper from './Wrapper'
 
-const Component: React.FC = ({ children }) => {
+const Dashboard: React.FC = ({ children }) => {
   const [collapsed, changeCollapsed] = useState(false)
   const toggleCollapsed = () => changeCollapsed(!collapsed)
   return (
@@ -19,7 +18,7 @@ const Component: React.FC = ({ children }) => {
           <Header />
           <Content>
             <TabsRecord />
-            {children}
+            <div className="page-content">{children}</div>
           </Content>
         </Layout>
       </Wrapper>
@@ -27,4 +26,4 @@ const Component: React.FC = ({ children }) => {
   )
 }
 
-export default Component
+export default Dashboard

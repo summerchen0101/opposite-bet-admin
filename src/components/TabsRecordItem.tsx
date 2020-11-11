@@ -1,27 +1,58 @@
 import React from 'react'
 import { Space, Button } from 'antd'
-import { CloseCircleOutlined } from '@ant-design/icons'
+import { CloseOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
+import { IconLink } from '.'
+import { removeTab } from '@/store/reducer'
+import { useDispatch } from 'react-redux'
 
-const ButtonWrapper = styled(Button)`
+const TabRecordItemWrapper = styled.div<{ isCurrentTab: boolean }>`
   display: flex;
   align-items: center;
+  line-height: 40px;
+  padding: 0 15px;
+  background-color: ${({ isCurrentTab }) =>
+    isCurrentTab ? '#fff' : '#dfdfdf'};
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: ${({ isCurrentTab }) => (isCurrentTab ? '#000' : '#777')};
+  letter-spacing: 0.1em;
+  cursor: ${({ isCurrentTab }) => (isCurrentTab ? 'auto' : 'pointer')};
+  .close-icon {
+    margin-bottom: -2px;
+    margin-left: 10px;
+  }
 `
 
 interface IProps {
   label: string
   path: string
+  index: number
 }
-const TabsRecordItem: React.FC<IProps> = ({ label, path }) => {
+const TabsRecordItem: React.FC<IProps> = ({ label, path, index }) => {
   const history = useHistory()
+  const location = useLocation()
+  const dispatch = useDispatch()
   const onClick = () => {
     history.push(path)
   }
+  const onCloseTab = (e) => {
+    dispatch(removeTab(path))
+    e.stopPropagation()
+  }
+  const isCurrentTab = path === location.pathname
   return (
-    <ButtonWrapper onClick={onClick}>
-      {label} <CloseCircleOutlined />
-    </ButtonWrapper>
+    <TabRecordItemWrapper onClick={onClick} isCurrentTab={isCurrentTab}>
+      {label}
+      {!isCurrentTab && (
+        <IconLink
+          className="close-icon"
+          icon={<CloseOutlined />}
+          onClick={onCloseTab}
+        />
+      )}
+    </TabRecordItemWrapper>
   )
 }
 

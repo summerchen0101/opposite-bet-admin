@@ -1,18 +1,19 @@
 import { Tooltip } from 'antd'
 import React, { CSSProperties } from 'react'
 import styled from 'styled-components'
-interface IProps {
+interface IconLinkProps {
   icon: JSX.Element
   label?: string
   style?: CSSProperties
-  onClick?: () => void
+  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
   color?: string
+  className?: any
 }
 const CursorWrapper = styled.span`
   cursor: pointer;
   color: ${({ color }) => color};
 `
-const IconLink: React.FC<IProps> = ({ icon, label, ...props }) => {
+const IconLink: React.FC<IconLinkProps> = ({ icon, label, ...props }) => {
   if (!label) return <CursorWrapper {...props}>{icon}</CursorWrapper>
   return (
     <Tooltip title={label}>

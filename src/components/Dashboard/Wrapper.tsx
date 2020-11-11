@@ -24,12 +24,15 @@ export default styled(Layout)`
   }
 
   .site-content {
-    background: #fff;
+    /* background: #fff; */
     margin: 24px 16px;
-    padding: 24px;
     min-height: 280px;
-    margin-top: 80px;
+    margin-top: 65px;
     overflow-y: auto;
+    .page-content {
+      background-color: #fff;
+      padding: 15px;
+    }
   }
   .ant-layout-sider-children {
     overflow-y: auto;

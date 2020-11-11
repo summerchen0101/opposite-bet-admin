@@ -24,7 +24,7 @@ const Table: React.FC<TableProps> = ({ data, columns, ...props }) => {
       dataSource={data}
       columns={columnsWithKey}
       scroll={{ x: 1000 }}
-      sticky={{ offsetHeader: -24 }}
+      sticky={{ offsetHeader: 0 }}
       pagination={{ pageSize: 30 }}
       {...props}
     />
@@ -32,9 +32,6 @@ const Table: React.FC<TableProps> = ({ data, columns, ...props }) => {
 }
 
 export default styled(Table)`
-  .ant-table-container {
-    margin: 0 -15px;
-  }
   .ant-table-sticky-header {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   }

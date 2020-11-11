@@ -28,10 +28,16 @@ const module = createSlice({
   initialState,
   reducers: {
     addTab(state, action: PayloadAction<TabType>) {
+      if (state.tabs.findIndex((t) => t.path === action.payload.path) > -1) {
+        return
+      }
       state.tabs.push(action.payload)
     },
     removeTab(state, action: PayloadAction<string>) {
       state.tabs = state.tabs.filter((tab) => tab.path !== action.payload)
+    },
+    clearTabs(state, action: PayloadAction<string>) {
+      state.tabs = [state.tabs.find((t) => t.path === action.payload)]
     },
     toggleLoginStatus(state, action: PayloadAction<boolean>) {
       state.isLogin = action.payload
@@ -50,6 +56,7 @@ const module = createSlice({
 export const {
   toggleLoginStatus,
   addTab,
+  clearTabs,
   removeTab,
   setLanguage,
 } = module.actions

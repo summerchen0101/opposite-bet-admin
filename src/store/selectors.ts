@@ -7,3 +7,8 @@ export const selectLoginStatus = createSelector(
   selectModuleState,
   (global) => global.isLogin,
 )
+
+export const selectTabs = createSelector(
+  selectModuleState,
+  (global) => global.tabs,
+)

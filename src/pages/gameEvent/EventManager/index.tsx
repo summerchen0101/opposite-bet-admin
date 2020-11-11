@@ -17,7 +17,7 @@ const createTrigger = (setVisible) => (
 )
 const createForm = (setVisible) => <CreateForm setVisible={setVisible} />
 
-const Manager: React.FC = () => {
+const EventManagerPage: React.FC = () => {
   useReducerInjector(moduleName, reducer)
   useTabRecord(EventManager)
   const dispatch = useDispatch()
@@ -44,4 +44,4 @@ const Manager: React.FC = () => {
   )
 }
 
-export default Manager
+export default EventManagerPage
