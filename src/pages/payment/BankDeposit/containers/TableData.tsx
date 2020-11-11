@@ -1,13 +1,21 @@
 import IconLink from '@/components/IconLink'
 import TableSets from '@/components/TableSets'
 import {
-  EditFilled,
+  StopOutlined,
   FilterFilled,
   CheckCircleOutlined,
+  CoffeeOutlined,
+  FormOutlined,
 } from '@ant-design/icons'
 import { Space } from 'antd'
 import React from 'react'
 import { Text } from '@/components'
+import { useDispatch } from 'react-redux'
+import {
+  toggleRejectModal,
+  toggleReviewModal,
+  toggleWaitingModal,
+} from '../reducer'
 
 const columns = [
   {
@@ -21,57 +29,77 @@ const columns = [
     title: '銀行名稱',
     dataIndex: 'firstDepositCount',
     allowFiltered: true,
-    width: 120,
-    render: () => '存入',
+    width: '150px',
+    render: () => '822 - 中國信託',
   },
   {
-    title: '戶名/付款人',
+    title: '存款資訊',
     dataIndex: 'firstDepositCount',
     allowFiltered: true,
     width: 120,
-    render: () => '人工存入',
+    render: () => '-',
   },
   {
-    title: '銀行分行',
+    title: '入款方式',
     dataIndex: 'firstDepositTotal',
     allowFiltered: true,
     width: 140,
-    render: () => '人工存入',
+    render: () => '網銀',
   },
   {
-    title: '開戶網點',
+    title: '帳號 / 名稱',
     dataIndex: 'onceAgainDepositCount',
     allowFiltered: true,
     width: 120,
     render: (_, row) => '-',
   },
   {
-    title: '帳號',
+    title: '存入金額',
     dataIndex: 'onceAgainDepositTotal',
     allowFiltered: true,
     width: 140,
-    render: (_, row) => '-',
+    render: (_, row) => '1,000.00',
   },
   {
-    title: '顯示會員端',
+    title: '入款優惠',
     dataIndex: 'depositCount',
     allowFiltered: true,
     width: 120,
-    render: (_, row) => '-',
+    render: (_, row) => '0.00',
   },
   {
-    title: '收款人',
+    title: '入款手續費',
     dataIndex: 'depositCount',
     allowFiltered: true,
     width: 120,
-    render: (_, row) => '-',
+    render: (_, row) => '0.00',
+  },
+  {
+    title: '存入總額',
+    dataIndex: 'depositCount',
+    allowFiltered: true,
+    width: 120,
+    render: (_, row) => '1,000.00',
+  },
+  {
+    title: '存入銀行',
+    dataIndex: 'depositCount',
+    allowFiltered: true,
+    width: '180px',
+    render: (_, row) => '808 - 玉山銀行-123',
   },
   {
     title: '狀態',
     dataIndex: 'status',
     allowFiltered: true,
     width: 120,
-    render: (_, row) => <Text color="success">啟用</Text>,
+    render: (_, row) => (
+      <>
+        <Text color="success">擱置</Text>
+        <br />
+        款項確認
+      </>
+    ),
   },
   {
     title: '更新人員',
@@ -100,14 +128,31 @@ const columns = [
     key: 'control',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
+      const dispatch = useDispatch()
+      const handleWaiting = () => dispatch(toggleWaitingModal(true))
+      const handleReview = () => dispatch(toggleReviewModal(true))
+      const handleReject = () => dispatch(toggleRejectModal(true))
       return (
         <Space size="small">
-          <IconLink icon={<CheckCircleOutlined />} label="啟用" color="green" />
-          <IconLink icon={<EditFilled />} label="編輯" />
+          <IconLink
+            icon={<CoffeeOutlined />}
+            label="擱置"
+            onClick={handleWaiting}
+          />
+          <IconLink
+            icon={<FormOutlined />}
+            label="審核"
+            onClick={handleReview}
+          />
+          <IconLink
+            icon={<StopOutlined />}
+            label="拒絕"
+            onClick={handleReject}
+          />
         </Space>
       )
     },
-    width: 70,
+    width: 100,
   },
 ]
 

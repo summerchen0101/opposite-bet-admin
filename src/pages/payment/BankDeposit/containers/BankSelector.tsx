@@ -2,7 +2,7 @@ import { BasicSelector } from '@/components'
 import React from 'react'
 
 const options = [
-  { label: '全部', value: 'all' },
+  { label: '全部銀行帳號', value: 'all' },
   { label: '銀行帳號123', value: 'option1' },
 ]
 const BankSelector: React.FC = () => {

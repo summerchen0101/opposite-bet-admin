@@ -2,7 +2,7 @@ import { BasicSelector } from '@/components'
 import React from 'react'
 
 const options = [
-  { label: '全部', value: 'all' },
+  { label: '全部狀態', value: 'all' },
   { label: '等待', value: 'waiting' },
   { label: '擱置', value: 'hold' },
   { label: '通過', value: 'ok' },
@@ -15,7 +15,7 @@ const StatusSelector: React.FC = () => {
       value={'all'}
       onChange={onChange}
       options={options}
-      placeholder="銀行帳號"
+      placeholder="狀態"
       width="120px"
     />
   )

@@ -7,12 +7,14 @@ import { useDispatch } from 'react-redux'
 import PageHeader from './components/PageHeader'
 import BankSelector from './containers/BankSelector'
 import DepositDateRangePicker from './containers/DepositDateRangePicker'
-import PopupCreateForm from './containers/PopupCreateForm'
+import PopupReviewForm from './containers/PopupReviewForm'
+import PopupWaitingForm from './containers/PopupWaitingForm'
+import PopupRejectForm from './containers/PopupRejectForm'
 import StatusSelector from './containers/StatusSelector'
 import TableData from './containers/TableData'
 import reducer, { initSearchState, moduleName } from './reducer'
 
-const Manager: React.FC = () => {
+const BankDepositPage: React.FC = () => {
   useReducerInjector(moduleName, reducer)
   const dispatch = useDispatch()
   useEffect(() => {
@@ -28,9 +30,11 @@ const Manager: React.FC = () => {
         <StatusSelector />
       </PageSearchBar>
       <TableData />
-      <PopupCreateForm />
+      <PopupReviewForm />
+      <PopupWaitingForm />
+      <PopupRejectForm />
     </Dashboard>
   )
 }
 
-export default Manager
+export default BankDepositPage

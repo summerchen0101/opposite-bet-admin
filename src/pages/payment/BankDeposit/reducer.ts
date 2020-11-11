@@ -2,11 +2,15 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export interface IState {
   tableData: any[]
-  displayCreateModal: boolean
+  displayReviewModal: boolean
+  displayWaitingModal: boolean
+  displayRejectModal: boolean
 }
 const initialState: IState = {
   tableData: [],
-  displayCreateModal: false,
+  displayReviewModal: false,
+  displayWaitingModal: false,
+  displayRejectModal: false,
 }
 
 export const moduleName = 'bankDeposit'
@@ -21,8 +25,14 @@ const module = createSlice({
     initSearchState(state) {
       //
     },
-    toggleCreateModal(state, action: PayloadAction<boolean>) {
-      state.displayCreateModal = action.payload
+    toggleReviewModal(state, action: PayloadAction<boolean>) {
+      state.displayReviewModal = action.payload
+    },
+    toggleWaitingModal(state, action: PayloadAction<boolean>) {
+      state.displayWaitingModal = action.payload
+    },
+    toggleRejectModal(state, action: PayloadAction<boolean>) {
+      state.displayRejectModal = action.payload
     },
   },
 })
@@ -30,6 +40,8 @@ const module = createSlice({
 export const {
   gotTableData,
   initSearchState,
-  toggleCreateModal,
+  toggleReviewModal,
+  toggleWaitingModal,
+  toggleRejectModal,
 } = module.actions
 export default module.reducer
