@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { EventRule } from '../routes'
 import PageHeader from './components/PageHeader'
 import PopupCreateForm from './containers/PopupCreateForm'
+import PopupUpdateForm from './containers/PopupUpdateForm'
 import TableData from './containers/TableData'
 import reducer, { initSearchState, moduleName } from './reducer'
 
@@ -20,6 +21,7 @@ const Manager: React.FC = () => {
       <PageHeader />
       <TableData />
       <PopupCreateForm />
+      <PopupUpdateForm />
     </Dashboard>
   )
 }

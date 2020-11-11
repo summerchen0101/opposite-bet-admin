@@ -17,3 +17,7 @@ export const selectDisplayCreateModal = createSelector(
   selectModuleState,
   (moduleState) => moduleState.displayCreateModal,
 )
+export const selectDisplayUpdateModal = createSelector(
+  selectModuleState,
+  (moduleState) => moduleState.displayUpdateModal,
+)

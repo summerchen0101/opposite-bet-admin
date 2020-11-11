@@ -11,27 +11,27 @@ import {
 } from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { toggleCreateModal } from '../reducer'
-import { selectDisplayCreateModal, useTypedSelector } from '../selectors'
+import { toggleUpdateModal } from '../reducer'
+import { selectDisplayUpdateModal, useTypedSelector } from '../selectors'
 import Form, { FormField } from '@/components/Form'
 const { Option } = Select
 const { TabPane } = Tabs
-const CreateForm: React.FC = () => {
+const UpdateForm: React.FC = () => {
   const dispatch = useDispatch()
-  const isDisplay = useTypedSelector(selectDisplayCreateModal)
+  const isDisplay = useTypedSelector(selectDisplayUpdateModal)
   const onCancel = () => {
-    dispatch(toggleCreateModal(false))
+    dispatch(toggleUpdateModal(false))
   }
   const onFinish = (values) => {
     console.log('Success:', values)
-    dispatch(toggleCreateModal(false))
+    dispatch(toggleUpdateModal(false))
   }
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
   return (
-    <PopupModal visible={isDisplay} title="新增" onCancel={onCancel}>
+    <PopupModal visible={isDisplay} title="編輯" onCancel={onCancel}>
       <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
         <FormField label="標題" name="mainTeam" required>
           <Input />
@@ -70,4 +70,4 @@ const CreateForm: React.FC = () => {
   )
 }
 
-export default CreateForm
+export default UpdateForm
