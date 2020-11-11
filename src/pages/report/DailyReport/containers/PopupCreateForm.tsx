@@ -21,7 +21,7 @@ const CreateForm: React.FC = () => {
     console.log('Failed:', errorInfo)
   }
   return (
-    <PopupModal visible={isDisplay} title="新增賽事">
+    <PopupModal visible={isDisplay} title="新增賽事" onCancel={onCancel}>
       <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
         <FormField label="請選擇隊伍(主)" name="mainTeam" required>
           <Input />
