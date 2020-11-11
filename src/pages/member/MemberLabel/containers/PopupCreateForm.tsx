@@ -9,8 +9,12 @@ const { Option } = Select
 const CreateForm: React.FC = () => {
   const dispatch = useDispatch()
   const isDisplay = useTypedSelector(selectDisplayCreateModal)
+  const [form] = AntForm.useForm()
   const onCancel = () => {
     dispatch(toggleCreateModal(false))
+  }
+  const onReset = () => {
+    form.resetFields()
   }
   const onFinish = (values) => {
     console.log('Success:', values)
@@ -21,37 +25,25 @@ const CreateForm: React.FC = () => {
     console.log('Failed:', errorInfo)
   }
   return (
-    <PopupModal visible={isDisplay} title="新增賽事" onCancel={onCancel}>
-      <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
-        <FormField label="請選擇隊伍(主)" name="mainTeam" required>
+    <PopupModal visible={isDisplay} title="新增標籤" onCancel={onCancel}>
+      <Form form={form} onFinish={onFinish} onFinishFailed={onFinishFailed}>
+        <FormField label="標籤名稱" name="name" required>
           <Input />
         </FormField>
-        <FormField label="請選擇隊伍" name="clientTeam" required>
-          <Input />
+        <FormField label="說明" name="desc" required>
+          <Input.TextArea />
         </FormField>
-        <FormField label="國家" name="country" required>
-          <Select placeholder="請選擇" allowClear>
-            <Option value="opt1">巴西</Option>
-            <Option value="opt2">美國</Option>
-          </Select>
-        </FormField>
-        <FormField label="請選擇聯盟" name="league" required>
-          <Input />
-        </FormField>
-        <FormField label="開賽時間" name="startAt" required>
-          <DatePicker style={{ width: '100%' }} />
-        </FormField>
-        <FormField>
-          <p>＊如果上面結果為撤銷則不用選擇</p>
+        <FormField label="備註" name="notes">
+          <Input.TextArea />
         </FormField>
 
         <FormField style={{ textAlign: 'right' }}>
           <Space size="large">
+            <Button htmlType="reset" onClick={onReset}>
+              重置
+            </Button>
             <Button type="primary" htmlType="submit">
               送出
-            </Button>
-            <Button onClick={onCancel} htmlType="reset">
-              取消
             </Button>
           </Space>
         </FormField>
