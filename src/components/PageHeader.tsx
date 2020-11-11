@@ -13,14 +13,23 @@ function itemRender(route) {
 
 const Wrapper = styled.div`
   margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  .ant-breadcrumb {
+    flex: 1;
+  }
+  .right-btns {
+    //
+  }
 `
 
 const PageHeader: React.FC<
   PageHeaderProps & { title: string; breadcrumb: BreadcrumbProps }
-> = ({ title, breadcrumb, ...props }) => {
+> = ({ title, breadcrumb, extra, ...props }) => {
   return (
     <Wrapper>
       <Breadcrumb itemRender={itemRender} {...breadcrumb} />
+      <span className="right-btns">{extra}</span>
     </Wrapper>
   )
 }

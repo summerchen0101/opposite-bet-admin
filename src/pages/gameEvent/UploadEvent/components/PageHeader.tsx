@@ -10,7 +10,11 @@ const Component: React.FC = () => {
     <PageHeader
       title={page.name}
       breadcrumb={{ routes }}
-      extra={<Button type="primary">採集明天賽事</Button>}
+      extra={
+        <Button size="small" type="primary">
+          採集明天賽事
+        </Button>
+      }
     />
   )
 }

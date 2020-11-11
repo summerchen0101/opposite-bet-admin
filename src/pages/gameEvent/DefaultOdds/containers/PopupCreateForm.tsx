@@ -1,10 +1,19 @@
 import PopupModal from '@/components/PopupModal'
-import { Button, DatePicker, Input, Select, Space, Form as AntForm } from 'antd'
+import {
+  Button,
+  DatePicker,
+  Input,
+  Select,
+  Space,
+  Form as AntForm,
+  Radio,
+} from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleCreateModal } from '../reducer'
 import { selectDisplayCreateModal, useTypedSelector } from '../selectors'
 import Form, { FormField } from '@/components/Form'
+import { FormStaticText } from '@/components'
 const { Option } = Select
 const CreateForm: React.FC = () => {
   const dispatch = useDispatch()
@@ -22,28 +31,34 @@ const CreateForm: React.FC = () => {
     console.log('Failed:', errorInfo)
   }
   return (
-    <PopupModal visible={isDisplay} title="新增賽事">
+    <PopupModal visible={isDisplay} title="新增比分" onCancel={onCancel}>
       <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
-        <FormField label="請選擇隊伍(主)" name="mainTeam" required>
+        <FormField label="比分" name="mainTeam" required>
           <Input />
         </FormField>
-        <FormField label="請選擇隊伍" name="clientTeam" required>
+        <FormField label="利率" name="clientTeam" required>
           <Input />
         </FormField>
-        <FormField label="國家" name="country" required>
-          <Select placeholder="請選擇" allowClear>
-            <Option value="opt1">巴西</Option>
-            <Option value="opt2">美國</Option>
+        <FormField label="可交易量" name="clientTeam" required>
+          <Input />
+        </FormField>
+        <FormField label="類型" name="country" required>
+          <Select placeholder="請選擇" allowClear defaultValue="opt1">
+            <Option value="opt1">全場波膽</Option>
+            <Option value="opt2">半場波膽</Option>
+            <Option value="opt3">總進球數</Option>
           </Select>
         </FormField>
-        <FormField label="請選擇聯盟" name="league" required>
-          <Input />
+        <FormField label="是否穩賺" name="league" required>
+          <Radio.Group defaultValue={0}>
+            <Radio value={0}>不設置</Radio>
+            <Radio value={1}>設置</Radio>
+          </Radio.Group>
         </FormField>
-        <FormField label="開賽時間" name="startAt" required>
-          <DatePicker style={{ width: '100%' }} />
-        </FormField>
-        <FormField>
-          <p>＊如果上面結果為撤銷則不用選擇</p>
+        <FormField wrapperCol={{ offset: 0 }}>
+          <FormStaticText withStartIcon>
+            ＊只要買這個比分就穩贏，只有全場波膽分類才算，這個比分也會限制最多買1000。
+          </FormStaticText>
         </FormField>
 
         <FormField style={{ textAlign: 'right' }}>

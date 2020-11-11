@@ -1,4 +1,5 @@
 import { Form as AntForm } from 'antd'
+import { FormItemProps } from 'antd/lib/form'
 import { NamePath } from 'antd/lib/form/interface'
 import React from 'react'
 
@@ -9,7 +10,10 @@ interface FormFieldProp {
   style?: React.CSSProperties
 }
 
-const FormField: React.FC<FormFieldProp> = ({ children, ...props }) => {
+const FormField: React.FC<FormFieldProp & FormItemProps> = ({
+  children,
+  ...props
+}) => {
   return <AntForm.Item {...props}>{children}</AntForm.Item>
 }
 
