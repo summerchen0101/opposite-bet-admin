@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl'
 const BatchCreateButton: React.FC<{ onClick?: () => any }> = ({ onClick }) => {
   return (
     <Button type="primary" onClick={onClick}>
-      <FormattedMessage id="button.batchAdd" defaultMessage="批次新增" />
+      <FormattedMessage id="button.batchAdd" defaultMessage="批量新增" />
     </Button>
   )
 }

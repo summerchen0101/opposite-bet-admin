@@ -1,4 +1,8 @@
-import { PopoverEditor, PopupModalWithTrigger } from '@/components'
+import {
+  BatchOpperatorDropdown,
+  PopoverEditor,
+  PopupModalWithTrigger,
+} from '@/components'
 import DeleteConfirmTip from '@/components/DeleteConfirmTip'
 import { Text, IconLink } from '@/components'
 import TableSets from '@/components/TableSets'
@@ -114,11 +118,16 @@ const columns = [
       <>
         <Space size="small">
           <Checkbox defaultChecked={false} />
-          操作(0)
+          <BatchOpperatorDropdown
+            options={[
+              { label: '批量刪除', onClick: () => {} },
+              { label: '批量開放', onClick: () => {} },
+            ]}
+          />
         </Space>
         <IconLink
           icon={<FilterFilled />}
-          style={{ float: 'right', marginTop: 4 }}
+          style={{ float: 'right', marginBottom: -4 }}
         />
       </>
     ),

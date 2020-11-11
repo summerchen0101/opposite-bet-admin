@@ -1,9 +1,13 @@
 import DeleteConfirmTip from '@/components/DeleteConfirmTip'
 import IconLink from '@/components/IconLink'
-import { PopoverEditor } from '@/components'
+import { BatchOpperatorDropdown, PopoverEditor } from '@/components'
 import TableSets from '@/components/TableSets'
-import { DeleteOutlined, FilterFilled } from '@ant-design/icons'
-import { Button, Checkbox, Popover, Space } from 'antd'
+import {
+  DeleteOutlined,
+  FilterFilled,
+  CaretDownOutlined,
+} from '@ant-design/icons'
+import { Button, Checkbox, Menu, Popover, Space } from 'antd'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
@@ -109,11 +113,16 @@ const columns = [
       <>
         <Space size="small">
           <Checkbox defaultChecked={false} />
-          操作(0)
+          <BatchOpperatorDropdown
+            options={[
+              { label: '批量刪除', onClick: () => {} },
+              { label: '批量上架', onClick: () => {} },
+            ]}
+          />
         </Space>
         <IconLink
           icon={<FilterFilled />}
-          style={{ float: 'right', marginTop: 4 }}
+          style={{ float: 'right', marginBottom: -4 }}
         />
       </>
     ),
@@ -131,7 +140,7 @@ const columns = [
         </>
       )
     },
-    width: 120,
+    width: '130px',
   },
 ]
 

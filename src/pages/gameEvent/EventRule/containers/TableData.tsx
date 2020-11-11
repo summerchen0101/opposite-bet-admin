@@ -83,7 +83,7 @@ const columns = [
         </Space>
         <IconLink
           icon={<FilterFilled />}
-          style={{ float: 'right', marginTop: 4 }}
+          style={{ float: 'right', marginBottom: -4 }}
         />
       </>
     ),
