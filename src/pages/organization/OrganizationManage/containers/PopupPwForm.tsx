@@ -1,40 +1,56 @@
-import PopupModal from '@/components/PopupModal'
-import { Button, DatePicker, Input, Select, Space, Form as AntForm } from 'antd'
+import { CascaderSelector, PopupModal } from '@/components'
+import {
+  Button,
+  DatePicker,
+  Input,
+  Select,
+  Space,
+  Form as AntForm,
+  Row,
+  Col,
+  Radio,
+} from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { toggleCreateModal } from '../reducer'
-import { selectDisplayCreateModal, useTypedSelector } from '../selectors'
+import { togglePwModal } from '../reducer'
+import { selectDisplayPwModal, useTypedSelector } from '../selectors'
 import Form, { FormField } from '@/components/Form'
 const { Option } = Select
-const CreateForm: React.FC = () => {
+const PwForm: React.FC = () => {
   const dispatch = useDispatch()
-  const isDisplay = useTypedSelector(selectDisplayCreateModal)
+  const isDisplay = useTypedSelector(selectDisplayPwModal)
   const [form] = AntForm.useForm()
   const onCancel = () => {
-    dispatch(toggleCreateModal(false))
+    dispatch(togglePwModal(false))
   }
   const onReset = () => {
     form.resetFields()
   }
   const onFinish = (values) => {
     console.log('Success:', values)
-    dispatch(toggleCreateModal(false))
+    dispatch(togglePwModal(false))
   }
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
+
   return (
-    <PopupModal visible={isDisplay} title="新增標籤" onCancel={onCancel}>
+    <PopupModal
+      visible={isDisplay}
+      title="修改密碼"
+      onCancel={onCancel}
+      width={600}
+    >
       <Form form={form} onFinish={onFinish} onFinishFailed={onFinishFailed}>
-        <FormField label="標籤名稱" name="name" required>
+        <FormField label="會員帳號" name="account" required>
           <Input />
         </FormField>
-        <FormField label="說明" name="desc" required>
-          <Input.TextArea />
+        <FormField label="密碼" name="pw" required>
+          <Input.Password />
         </FormField>
-        <FormField label="備註" name="notes">
-          <Input.TextArea />
+        <FormField label="確認密碼" name="pw_confirm" required>
+          <Input.Password />
         </FormField>
 
         <FormField style={{ marginTop: '20px', textAlign: 'center' }}>
@@ -52,4 +68,4 @@ const CreateForm: React.FC = () => {
   )
 }
 
-export default CreateForm
+export default PwForm

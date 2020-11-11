@@ -37,7 +37,7 @@ const ScoreForm: React.FC<{
           <p>＊如果上面結果為撤銷則不用選擇</p>
         </FormField>
 
-        <FormField style={{ textAlign: 'right' }}>
+        <FormField style={{ marginTop: '20px', textAlign: 'center' }}>
           <Space size="large">
             <Button type="primary" htmlType="submit">
               送出

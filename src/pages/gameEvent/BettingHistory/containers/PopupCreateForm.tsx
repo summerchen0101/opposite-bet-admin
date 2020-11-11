@@ -22,7 +22,7 @@ const CreateForm: React.FC = () => {
     console.log('Failed:', errorInfo)
   }
   return (
-    <PopupModal visible={isDisplay} title="新增賽事"  onCancel={onCancel}>
+    <PopupModal visible={isDisplay} title="新增賽事" onCancel={onCancel}>
       <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
         <FormField label="請選擇隊伍(主)" name="mainTeam" required>
           <Input />
@@ -46,7 +46,7 @@ const CreateForm: React.FC = () => {
           <p>＊如果上面結果為撤銷則不用選擇</p>
         </FormField>
 
-        <FormField style={{ textAlign: 'right' }}>
+        <FormField style={{ marginTop: '20px', textAlign: 'center' }}>
           <Space size="large">
             <Button type="primary" htmlType="submit">
               送出

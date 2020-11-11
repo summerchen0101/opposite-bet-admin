@@ -10,6 +10,13 @@ import {
   PieChartOutlined,
   LockOutlined,
 } from '@ant-design/icons'
+import { useDispatch } from 'react-redux'
+import {
+  toggleLoginHistoryModal,
+  togglePercentageModal,
+  toggleTradeHistoryModal,
+  toggleWhiteListModal,
+} from '../reducer'
 
 const columns = [
   {
@@ -74,14 +81,22 @@ const columns = [
         dataIndex: 'firstWithdrawalCount',
         allowFiltered: true,
         width: 120,
-        render: () => 0,
+        render: () => {
+          const dispatch = useDispatch()
+          const onClick = () => dispatch(toggleTradeHistoryModal(true))
+          return <a onClick={onClick}>0</a>
+        },
       },
       {
         title: '結算金',
         dataIndex: 'firstWithdrawalTotal',
         allowFiltered: true,
         width: 140,
-        render: () => 0,
+        render: () => {
+          const dispatch = useDispatch()
+          const onClick = () => dispatch(toggleTradeHistoryModal(true))
+          return <a onClick={onClick}>100</a>
+        },
       },
     ],
   },
@@ -104,7 +119,11 @@ const columns = [
         dataIndex: 'withdrawalCount',
         allowFiltered: true,
         width: 120,
-        render: () => <a>0</a>,
+        render: () => {
+          const dispatch = useDispatch()
+          const onClick = () => dispatch(toggleWhiteListModal(true))
+          return <a onClick={onClick}>10</a>
+        },
       },
     ],
   },
@@ -145,34 +164,21 @@ const columns = [
         render: () => 0,
       },
       {
-        title: () => (
-          <>
-            註冊
-            <br />
-            最後登入
-          </>
-        ),
+        title: '註冊 / 最後登入',
         dataIndex: 'registerCount',
         allowFiltered: true,
         width: '230px',
-        render: () => (
-          <>
-            註冊：2020-09-16 14:25:42 <br />
-            登入：2020-09-16 14:25:42 <br />
-            登入IP：
-            <Popover
-              content={
-                <>
-                  裝置：desktop <br />
-                  系統：windows <br />
-                  瀏覽器：chrome
-                </>
-              }
-            >
-              <a>149.222.22.111</a>
-            </Popover>
-          </>
-        ),
+        render: () => {
+          const dispatch = useDispatch()
+          const onClick = () => dispatch(toggleLoginHistoryModal(true))
+          return (
+            <>
+              註冊：2020-09-16 14:25:42 <br />
+              登入：2020-09-16 14:25:42 <br />
+              登入IP： <a onClick={onClick}>149.222.22.111</a>
+            </>
+          )
+        },
       },
     ],
   },
@@ -210,11 +216,18 @@ const columns = [
     key: 'control',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
+      const dispatch = useDispatch()
+      const handlePercentageClicked = () =>
+        dispatch(togglePercentageModal(true))
       return (
         <Space size="small">
           <IconLink icon={<PlusCircleOutlined />} label="新增" />
           <IconLink icon={<EditFilled />} label="編輯" />
-          <IconLink icon={<PieChartOutlined />} label="佔成" />
+          <IconLink
+            icon={<PieChartOutlined />}
+            label="佔成"
+            onClick={handlePercentageClicked}
+          />
           <IconLink icon={<LockOutlined />} label="修改密碼" />
         </Space>
       )

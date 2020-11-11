@@ -61,7 +61,7 @@ const CreateForm: React.FC = () => {
           </FormStaticText>
         </FormField>
 
-        <FormField style={{ textAlign: 'right' }}>
+        <FormField style={{ marginTop: '20px', textAlign: 'center' }}>
           <Space size="large">
             <Button type="primary" htmlType="submit">
               送出

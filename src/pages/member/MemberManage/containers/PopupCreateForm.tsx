@@ -131,7 +131,7 @@ const CreateForm: React.FC = () => {
           </Col>
         </Row>
 
-        <FormField style={{ textAlign: 'right' }}>
+        <FormField style={{ marginTop: '20px', textAlign: 'center' }}>
           <Space size="large">
             <Button type="primary" htmlType="submit">
               送出

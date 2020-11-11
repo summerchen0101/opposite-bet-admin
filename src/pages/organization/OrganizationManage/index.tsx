@@ -11,6 +11,12 @@ import { useDispatch } from 'react-redux'
 import AccountSearch from './containers/AccountSearch'
 import PageHeader from './components/PageHeader'
 import PopupCreateForm from './containers/PopupCreateForm'
+import PopupPwForm from './containers/PopupPwForm'
+import PopupPercentageForm from './containers/PopupPercentageForm'
+import PopupWhiteListForm from './containers/PopupWhiteListForm'
+import PopupLoginHistory from './containers/PopupLoginHistory'
+import PopupTradeHistory from './containers/PopupTradeHistory'
+import PopupPointForm from './containers/PopupPointForm'
 import TableData from './containers/TableData'
 import reducer, { initSearchState, moduleName } from './reducer'
 
@@ -30,6 +36,12 @@ const Manager: React.FC = () => {
       </PageSearchBar>
       <TableData />
       <PopupCreateForm />
+      <PopupPwForm />
+      <PopupPercentageForm />
+      <PopupWhiteListForm />
+      <PopupLoginHistory />
+      <PopupTradeHistory />
+      <PopupPointForm />
     </Dashboard>
   )
 }

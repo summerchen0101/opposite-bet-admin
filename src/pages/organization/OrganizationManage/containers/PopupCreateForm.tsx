@@ -1,5 +1,15 @@
-import PopupModal from '@/components/PopupModal'
-import { Button, DatePicker, Input, Select, Space, Form as AntForm } from 'antd'
+import { CascaderSelector, PopupModal } from '@/components'
+import {
+  Button,
+  DatePicker,
+  Input,
+  Select,
+  Space,
+  Form as AntForm,
+  Row,
+  Col,
+  Radio,
+} from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleCreateModal } from '../reducer'
@@ -9,8 +19,12 @@ const { Option } = Select
 const CreateForm: React.FC = () => {
   const dispatch = useDispatch()
   const isDisplay = useTypedSelector(selectDisplayCreateModal)
+  const [form] = AntForm.useForm()
   const onCancel = () => {
     dispatch(toggleCreateModal(false))
+  }
+  const onReset = () => {
+    form.resetFields()
   }
   const onFinish = (values) => {
     console.log('Success:', values)
@@ -20,38 +34,101 @@ const CreateForm: React.FC = () => {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
-  return (
-    <PopupModal visible={isDisplay} title="新增賽事"  onCancel={onCancel}>
-      <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
-        <FormField label="請選擇隊伍(主)" name="mainTeam" required>
-          <Input />
-        </FormField>
-        <FormField label="請選擇隊伍" name="clientTeam" required>
-          <Input />
-        </FormField>
-        <FormField label="國家" name="country" required>
-          <Select placeholder="請選擇" allowClear>
-            <Option value="opt1">巴西</Option>
-            <Option value="opt2">美國</Option>
-          </Select>
-        </FormField>
-        <FormField label="請選擇聯盟" name="league" required>
-          <Input />
-        </FormField>
-        <FormField label="開賽時間" name="startAt" required>
-          <DatePicker style={{ width: '100%' }} />
-        </FormField>
-        <FormField>
-          <p>＊如果上面結果為撤銷則不用選擇</p>
-        </FormField>
 
-        <FormField style={{ textAlign: 'right' }}>
+  const options = [
+    {
+      value: 'zhejiang',
+      label: 'Zhejiang',
+      children: [
+        {
+          value: 'hangzhou',
+          label: 'Hangzhou',
+          children: [
+            {
+              value: 'xihu',
+              label: 'West Lake',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: 'jiangsu',
+      label: 'Jiangsu',
+      children: [
+        {
+          value: 'nanjing',
+          label: 'Nanjing',
+          children: [
+            {
+              value: 'zhonghuamen',
+              label: 'Zhong Hua Men',
+            },
+          ],
+        },
+      ],
+    },
+  ]
+  return (
+    <PopupModal
+      visible={isDisplay}
+      title="新增組織"
+      onCancel={onCancel}
+      width={600}
+    >
+      <Form form={form} onFinish={onFinish} onFinishFailed={onFinishFailed}>
+        <FormField label="組織層級" required>
+          <CascaderSelector
+            options={options}
+            placeholder="加盟商 / 股東 / 總代"
+          />
+        </FormField>
+        <Row gutter={16}>
+          <Col span={12}>
+            <FormField label="會員帳號" required>
+              <Input.Search allowClear enterButton="隨機選號" />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="名稱" required>
+              <Input />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="密碼" required>
+              <Input.Password />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="確認密碼" required>
+              <Input.Password />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="帳號角色" required>
+              <Select placeholder="請選擇" allowClear defaultValue="opt1">
+                <Option value="opt1">管理員</Option>
+              </Select>
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="狀態" required>
+              <Select placeholder="請選擇" allowClear defaultValue="opt1">
+                <Option value="opt1">啟用</Option>
+                <Option value="opt2">停用</Option>
+                <Option value="opt3">凍結</Option>
+              </Select>
+            </FormField>
+          </Col>
+        </Row>
+
+        <FormField style={{ marginTop: '20px', textAlign: 'center' }}>
           <Space size="large">
+            <Button htmlType="reset" onClick={onReset}>
+              重置
+            </Button>
             <Button type="primary" htmlType="submit">
               送出
-            </Button>
-            <Button onClick={onCancel} htmlType="reset">
-              取消
             </Button>
           </Space>
         </FormField>
