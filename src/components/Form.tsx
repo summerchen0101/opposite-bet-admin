@@ -1,29 +1,24 @@
 import { Form as AntForm, Select } from 'antd'
+import { FormProps } from 'antd/lib/form'
 import React from 'react'
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
-}
-interface FormProps {
-  onFinish?: (values: any) => void
-  onFinishFailed?: (errorInfo: any) => void
-}
-const Form: React.FC<FormProps> = ({ onFinish, onFinishFailed, children }) => {
+import styled from 'styled-components'
+
+const Form: React.FC<FormProps> = (props) => {
   const [form] = AntForm.useForm()
   return (
     <AntForm
-      {...layout}
       name="basic"
       form={form}
-      labelAlign="left"
+      layout="vertical"
       initialValues={{ remember: true }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-    >
-      {children}
-    </AntForm>
+      {...props}
+    />
   )
 }
 
 export { default as FormField } from './FormField'
-export default Form
+export default styled(Form)`
+  .ant-form-item {
+    margin-bottom: 15px;
+  }
+`

@@ -1,5 +1,15 @@
-import PopupModal from '@/components/PopupModal'
-import { Button, DatePicker, Input, Select, Space, Form as AntForm } from 'antd'
+import { CascaderSelector, PopupModal } from '@/components'
+import {
+  Button,
+  DatePicker,
+  Input,
+  Select,
+  Space,
+  Form as AntForm,
+  Row,
+  Col,
+  Radio,
+} from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleCreateModal } from '../reducer'
@@ -20,30 +30,106 @@ const CreateForm: React.FC = () => {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
+
+  const options = [
+    {
+      value: 'zhejiang',
+      label: 'Zhejiang',
+      children: [
+        {
+          value: 'hangzhou',
+          label: 'Hangzhou',
+          children: [
+            {
+              value: 'xihu',
+              label: 'West Lake',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: 'jiangsu',
+      label: 'Jiangsu',
+      children: [
+        {
+          value: 'nanjing',
+          label: 'Nanjing',
+          children: [
+            {
+              value: 'zhonghuamen',
+              label: 'Zhong Hua Men',
+            },
+          ],
+        },
+      ],
+    },
+  ]
   return (
-    <PopupModal visible={isDisplay} title="新增賽事" onCancel={onCancel}>
+    <PopupModal
+      visible={isDisplay}
+      title="新增會員"
+      onCancel={onCancel}
+      width={600}
+    >
       <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
-        <FormField label="請選擇隊伍(主)" name="mainTeam" required>
-          <Input />
+        <FormField label="組織層級" required>
+          <CascaderSelector
+            options={options}
+            placeholder="加盟商 / 股東 / 總代"
+          />
         </FormField>
-        <FormField label="請選擇隊伍" name="clientTeam" required>
-          <Input />
-        </FormField>
-        <FormField label="國家" name="country" required>
-          <Select placeholder="請選擇" allowClear>
-            <Option value="opt1">巴西</Option>
-            <Option value="opt2">美國</Option>
-          </Select>
-        </FormField>
-        <FormField label="請選擇聯盟" name="league" required>
-          <Input />
-        </FormField>
-        <FormField label="開賽時間" name="startAt" required>
-          <DatePicker style={{ width: '100%' }} />
-        </FormField>
-        <FormField>
-          <p>＊如果上面結果為撤銷則不用選擇</p>
-        </FormField>
+        <Row gutter={16}>
+          <Col span={12}>
+            <FormField label="會員帳號" required>
+              <Input.Search allowClear enterButton="隨機選號" />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="真實姓名" required>
+              <Input />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="密碼" required>
+              <Input.Password />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="確認密碼" required>
+              <Input.Password />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="手機號碼" required>
+              <Input addonBefore="+886" />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="狀態" required>
+              <Select placeholder="請選擇" allowClear defaultValue="opt1">
+                <Option value="opt1">啟用</Option>
+                <Option value="opt2">停用</Option>
+                <Option value="opt3">凍結</Option>
+              </Select>
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="電子信箱" required>
+              <Input />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="微信" required>
+              <Input />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="生日" required>
+              <DatePicker style={{ width: '100%' }} />
+            </FormField>
+          </Col>
+        </Row>
 
         <FormField style={{ textAlign: 'right' }}>
           <Space size="large">
