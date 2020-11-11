@@ -13,7 +13,19 @@ const selectTableData = createSelector(
   selectModuleState,
   (moduleState) => moduleState.tableData,
 )
-export const selectDisplayCreateModal = createSelector(
+export const selectDisplayDepositModal = createSelector(
   selectModuleState,
-  (moduleState) => moduleState.displayCreateModal,
+  (moduleState) => moduleState.displayDepositModal,
+)
+export const selectDisplayWithdrawalModal = createSelector(
+  selectModuleState,
+  (moduleState) => moduleState.displayWithdrawalModal,
+)
+export const selectDisplayLoginCountModal = createSelector(
+  selectModuleState,
+  (moduleState) => moduleState.displayLoginCountModal,
+)
+export const selectDisplayRegisterCountModal = createSelector(
+  selectModuleState,
+  (moduleState) => moduleState.displayRegisterCountModal,
 )

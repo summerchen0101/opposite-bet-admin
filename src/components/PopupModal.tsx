@@ -1,17 +1,17 @@
 import React from 'react'
 import { Modal } from 'antd'
+import { ModalProps } from 'antd/lib/modal'
 
 interface IProps {
-  title: React.ReactNode
-  visible: boolean
   onCancel?: () => void
 }
 
-const PopupModal: React.FC<IProps> = ({
+const PopupModal: React.FC<IProps & ModalProps> = ({
   title,
-  children,
   visible,
+  children,
   onCancel,
+  ...props
 }) => {
   return (
     <Modal
@@ -20,6 +20,8 @@ const PopupModal: React.FC<IProps> = ({
       footer={null}
       destroyOnClose
       onCancel={onCancel}
+      centered
+      {...props}
     >
       {children}
     </Modal>

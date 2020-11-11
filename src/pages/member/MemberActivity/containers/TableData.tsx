@@ -1,7 +1,14 @@
 import IconLink from '@/components/IconLink'
 import TableSets from '@/components/TableSets'
+import {
+  toggleDepositModal,
+  toggleLoginCountModal,
+  toggleRegisterCountModal,
+  toggleWithdrawalModal,
+} from '../reducer'
 import { FilterFilled } from '@ant-design/icons'
 import React from 'react'
+import { useDispatch } from 'react-redux'
 
 const columns = [
   {
@@ -15,6 +22,11 @@ const columns = [
     dataIndex: 'firstDepositCount',
     allowFiltered: true,
     width: 120,
+    render: () => {
+      const dispatch = useDispatch()
+      const onClick = () => dispatch(toggleDepositModal(true))
+      return <a onClick={onClick}>6</a>
+    },
   },
   {
     title: '首次充值加總(元)',
@@ -27,6 +39,11 @@ const columns = [
     dataIndex: 'onceAgainDepositCount',
     allowFiltered: true,
     width: 120,
+    render: () => {
+      const dispatch = useDispatch()
+      const onClick = () => dispatch(toggleDepositModal(true))
+      return <a onClick={onClick}>6</a>
+    },
   },
   {
     title: '再次充值加總(元)',
@@ -39,7 +56,11 @@ const columns = [
     dataIndex: 'depositCount',
     allowFiltered: true,
     width: 120,
-    render: (_, row) => row.firstDepositCount + row.onceAgainDepositCount,
+    render: () => {
+      const dispatch = useDispatch()
+      const onClick = () => dispatch(toggleDepositModal(true))
+      return <a onClick={onClick}>6</a>
+    },
   },
   {
     title: '總充值加總(元)',
@@ -53,6 +74,11 @@ const columns = [
     dataIndex: 'firstWithdrawalCount',
     allowFiltered: true,
     width: 120,
+    render: () => {
+      const dispatch = useDispatch()
+      const onClick = () => dispatch(toggleWithdrawalModal(true))
+      return <a onClick={onClick}>6</a>
+    },
   },
   {
     title: '首次提現加總(元)',
@@ -65,6 +91,11 @@ const columns = [
     dataIndex: 'onceAgainWithdrawalCount',
     allowFiltered: true,
     width: 120,
+    render: () => {
+      const dispatch = useDispatch()
+      const onClick = () => dispatch(toggleWithdrawalModal(true))
+      return <a onClick={onClick}>6</a>
+    },
   },
   {
     title: '再次提現加總(元)',
@@ -77,7 +108,11 @@ const columns = [
     dataIndex: 'withdrawalCount',
     allowFiltered: true,
     width: 120,
-    render: (_, row) => row.firstWithdrawalCount + row.onceAgainWithdrawalCount,
+    render: () => {
+      const dispatch = useDispatch()
+      const onClick = () => dispatch(toggleWithdrawalModal(true))
+      return <a onClick={onClick}>6</a>
+    },
   },
   {
     title: '總提現加總(元)',
@@ -91,12 +126,22 @@ const columns = [
     dataIndex: 'loginCount',
     allowFiltered: true,
     width: 120,
+    render: () => {
+      const dispatch = useDispatch()
+      const onClick = () => dispatch(toggleLoginCountModal(true))
+      return <a onClick={onClick}>10</a>
+    },
   },
   {
     title: '註冊人數',
     dataIndex: 'registerCount',
     allowFiltered: true,
     width: 120,
+    render: () => {
+      const dispatch = useDispatch()
+      const onClick = () => dispatch(toggleRegisterCountModal(true))
+      return <a onClick={onClick}>13</a>
+    },
   },
   {
     title: () => <IconLink icon={<FilterFilled />} />,

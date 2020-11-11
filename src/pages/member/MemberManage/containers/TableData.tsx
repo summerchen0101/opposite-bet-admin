@@ -1,7 +1,7 @@
 import { Text, IconLink } from '@/components'
 import TableSets from '@/components/TableSets'
 import { FilterFilled } from '@ant-design/icons'
-import { Checkbox, Space } from 'antd'
+import { Checkbox, Popover, Space } from 'antd'
 import React from 'react'
 import { EditFilled, DeleteOutlined } from '@ant-design/icons'
 import { IconButton } from '@/components'
@@ -72,7 +72,18 @@ const columns = [
       <>
         2020-09-16 14:25:42
         <br />
-        IP：<Text color="primary">149.222.22.111</Text>
+        IP：
+        <Popover
+          content={
+            <>
+              裝置：desktop <br />
+              系統：windows <br />
+              瀏覽器：chrome
+            </>
+          }
+        >
+          <a>149.222.22.111</a>
+        </Popover>
       </>
     ),
   },
