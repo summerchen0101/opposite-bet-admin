@@ -6,13 +6,7 @@ import { useBreadcrumb } from '@/utils/hooks'
 
 const Component: React.FC = () => {
   const routes = useBreadcrumb(page)
-  return (
-    <PageHeader
-      title={page.name}
-      extra={<CreateButton />}
-      breadcrumb={{ routes }}
-    />
-  )
+  return <PageHeader title={page.name} breadcrumb={{ routes }} />
 }
 
 export default Component
