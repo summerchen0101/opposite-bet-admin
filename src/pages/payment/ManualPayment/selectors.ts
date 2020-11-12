@@ -17,3 +17,7 @@ export const selectDisplayCreateModal = createSelector(
   selectModuleState,
   (moduleState) => moduleState.displayCreateModal,
 )
+export const selectDisplayBatchCreateModal = createSelector(
+  selectModuleState,
+  (moduleState) => moduleState.displayBatchCreateModal,
+)

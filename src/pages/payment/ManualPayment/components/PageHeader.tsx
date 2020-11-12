@@ -1,9 +1,10 @@
 import React from 'react'
 import PageHeader from '@/components/PageHeader'
 import CreateButton from '../containers/CreateButton'
+import BatchCreateButton from '../containers/BatchCreateButton'
 import { ManualPayment as page } from '@/pages/payment/routes'
 import { useBreadcrumb } from '@/utils/hooks'
-import { BatchCreateButton, DownloadButton } from '@/components'
+import { DownloadButton } from '@/components'
 import { Button, Space } from 'antd'
 
 const ExtraButtons: React.FC = () => {

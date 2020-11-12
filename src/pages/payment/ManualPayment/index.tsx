@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 import PageHeader from './components/PageHeader'
 import DepositDateRangePicker from './containers/DepositDateRangePicker'
 import PopupCreateForm from './containers/PopupCreateForm'
+import PopupBatchCreate from './containers/PopupBatchCreate'
 import StatusSelector from './containers/ActionTypeSelector'
 import TableData from './containers/TableData'
 import reducer, { initSearchState, moduleName } from './reducer'
@@ -27,6 +28,7 @@ const Manager: React.FC = () => {
       </PageSearchBar>
       <TableData />
       <PopupCreateForm />
+      <PopupBatchCreate />
     </Dashboard>
   )
 }
