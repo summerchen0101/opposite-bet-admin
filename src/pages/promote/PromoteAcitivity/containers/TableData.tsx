@@ -1,25 +1,26 @@
-import PopupConfirm from '@/components/PopupConfirm'
 import IconLink from '@/components/IconLink'
+import PopupConfirm from '@/components/PopupConfirm'
 import TableSets from '@/components/TableSets'
-import {
-  StopOutlined,
-  FilterFilled,
-  EditFilled,
-  CopyOutlined,
-  EyeFilled,
-} from '@ant-design/icons'
-import { Button, Checkbox, Popover, Space } from 'antd'
-import React from 'react'
 import Text from '@/components/Text'
-import { MenuOutlined } from '@ant-design/icons'
+import {
+  CopyOutlined,
+  EditOutlined,
+  EyeInvisibleOutlined,
+  EyeOutlined,
+  FilterOutlined,
+  MenuOutlined,
+  StopOutlined,
+} from '@ant-design/icons'
+import { Space } from 'antd'
 import arrayMove from 'array-move'
-
+import React, { useState } from 'react'
 import {
   SortableContainer,
   SortableElement,
   SortableHandle,
 } from 'react-sortable-hoc'
 import styled from 'styled-components'
+
 const DragHandle = SortableHandle(() => (
   <MenuOutlined style={{ cursor: 'pointer', color: '#999' }} />
 ))
@@ -77,7 +78,7 @@ const columns = [
       <>
         <Space size="small">操作</Space>
         <IconLink
-          icon={<FilterFilled />}
+          icon={<FilterOutlined />}
           style={{ float: 'right', marginBottom: -4 }}
         />
       </>
@@ -85,12 +86,29 @@ const columns = [
     key: 'control',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
+      const [visible, setVisible] = useState(false)
       return (
         <Space size="small">
-          <IconLink icon={<StopOutlined />} label="停用" />
-          <IconLink icon={<EditFilled />} label="編輯" />
+          <PopupConfirm title="請確認是否要停用?請按下是進行停用程序">
+            <IconLink icon={<StopOutlined />} label="停用" />
+          </PopupConfirm>
+          <IconLink icon={<EditOutlined />} label="編輯" />
           <IconLink icon={<CopyOutlined />} label="複製" />
-          <IconLink icon={<EyeFilled />} label="開放" />
+          {visible ? (
+            <PopupConfirm
+              title="是否要於前台隱藏？若確定，前台會員將看不到此活動。"
+              onConfirm={() => setVisible(false)}
+            >
+              <IconLink icon={<EyeOutlined />} />
+            </PopupConfirm>
+          ) : (
+            <PopupConfirm
+              title="是否要於前台公開此活動？若確定，前台玩家將看到此活動。"
+              onConfirm={() => setVisible(true)}
+            >
+              <IconLink icon={<EyeInvisibleOutlined />} />
+            </PopupConfirm>
+          )}
         </Space>
       )
     },

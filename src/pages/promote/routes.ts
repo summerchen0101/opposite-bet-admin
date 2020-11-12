@@ -15,9 +15,14 @@ export const PromoteAcitivity = new PageG(
   routes.PromoteAcitivity,
   pages.PromoteAcitivity,
 )
+export const CreatePromoteAcitivity = new PageG(
+  '新增活動',
+  routes.CreatePromoteAcitivity,
+  pages.CreatePromoteAcitivity,
+)
 
 // ROUTERS
-RouteG.create([PromoteLink, PromoteAcitivity])
+RouteG.create([PromoteLink, CreatePromoteAcitivity, PromoteAcitivity])
 
 // MENU
 MenuG.createCategory('活動管理', routes.Promote, TagsOutlined, [

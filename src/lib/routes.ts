@@ -34,6 +34,7 @@ export const MonthlyReport = '/report/monthly'
 export const Promote = '/promote'
 export const PromoteLink = '/promote/link'
 export const PromoteAcitivity = '/promote/activity'
+export const CreatePromoteAcitivity = '/promote/activity/create'
 
 export const Admin = '/admin'
 export const AdminAccount = '/admin/account'
