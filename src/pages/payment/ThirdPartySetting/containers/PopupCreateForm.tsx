@@ -1,5 +1,16 @@
 import PopupModal from '@/components/PopupModal'
-import { Button, DatePicker, Input, Select, Space, Form as AntForm } from 'antd'
+import {
+  Button,
+  DatePicker,
+  Input,
+  Select,
+  Space,
+  Form as AntForm,
+  Row,
+  Col,
+  InputNumber,
+  Radio,
+} from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleCreateModal } from '../reducer'
@@ -21,29 +32,76 @@ const CreateForm: React.FC = () => {
     console.log('Failed:', errorInfo)
   }
   return (
-    <PopupModal visible={isDisplay} title="新增賽事" onCancel={onCancel}>
+    <PopupModal visible={isDisplay} title="新增金流平台" onCancel={onCancel}>
       <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
-        <FormField label="請選擇隊伍(主)" name="mainTeam" required>
-          <Input />
-        </FormField>
-        <FormField label="請選擇隊伍" name="clientTeam" required>
-          <Input />
-        </FormField>
-        <FormField label="國家" name="country" required>
-          <Select placeholder="請選擇" allowClear>
-            <Option value="opt1">巴西</Option>
-            <Option value="opt2">美國</Option>
-          </Select>
-        </FormField>
-        <FormField label="請選擇聯盟" name="league" required>
-          <Input />
-        </FormField>
-        <FormField label="開賽時間" name="startAt" required>
-          <DatePicker style={{ width: '100%' }} />
-        </FormField>
-        <FormField>
-          <p>＊如果上面結果為撤銷則不用選擇</p>
-        </FormField>
+        <Row gutter={16}>
+          <Col span={12}>
+            <FormField label="金流平台">
+              <Input />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="金流類型">
+              <Input />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="設定名稱">
+              <Input />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="平台顯示">
+              <Select placeholder="請選擇" allowClear defaultValue="opt1">
+                <Option value="opt1">全部</Option>
+                <Option value="opt2">手機</Option>
+                <Option value="opt3">桌上型電腦</Option>
+              </Select>
+            </FormField>
+          </Col>
+        </Row>
+
+        <h3>金流參數</h3>
+        <Row gutter={16}>
+          <Col span={12}>
+            <FormField label="商戶編號">
+              <Input />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="商戶密鑰">
+              <Input />
+            </FormField>
+          </Col>
+        </Row>
+
+        <h3>單筆限額</h3>
+        <Row gutter={16}>
+          <Col span={12}>
+            <FormField label="上限">
+              <Input itemType="number" placeholder="5000" />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="下限">
+              <Input itemType="number" placeholder="0" />
+            </FormField>
+          </Col>
+        </Row>
+
+        <h3>停用設置</h3>
+        <Row gutter={16}>
+          <Col span={12}>
+            <FormField label="充值次數">
+              <Input itemType="number" placeholder="0" />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="充值金額">
+              <Input itemType="number" placeholder="0" />
+            </FormField>
+          </Col>
+        </Row>
 
         <FormField style={{ marginTop: '20px', textAlign: 'center' }}>
           <Space size="large">
