@@ -5,6 +5,7 @@ import {
   Button,
   Checkbox,
   Col,
+  Collapse,
   DatePicker,
   Input,
   Radio,
@@ -15,6 +16,11 @@ import {
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import PageHeader from './components/PageHeader'
+import { Editor } from 'react-draft-wysiwyg'
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
+
+const EditorComponent = () => <Editor />
+
 const Manager: React.FC = () => {
   const dispatch = useDispatch()
   const onCancel = () => {}
@@ -64,6 +70,16 @@ const Manager: React.FC = () => {
           <Tabs.TabPane tab="簡中" key="cn">
             <FormField label="前台活動名稱" required>
               <Input placeholder="請輸入內容" />
+            </FormField>
+            <FormField>
+              <Collapse defaultActiveKey={['1']}>
+                <Collapse.Panel header="桌上型電腦" key="1">
+                  <EditorComponent />
+                </Collapse.Panel>
+                <Collapse.Panel header="手機" key="1">
+                  <EditorComponent />
+                </Collapse.Panel>
+              </Collapse>
             </FormField>
           </Tabs.TabPane>
           <Tabs.TabPane tab="English" key="en">
