@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export interface IState {
   tableData: any[]
-  displayCreateModal: boolean
+  displayReviewModal: boolean
 }
 const initialState: IState = {
   tableData: [],
-  displayCreateModal: false,
+  displayReviewModal: false,
 }
 
 export const moduleName = 'withdrawal'
@@ -21,8 +21,8 @@ const module = createSlice({
     initSearchState(state) {
       //
     },
-    toggleCreateModal(state, action: PayloadAction<boolean>) {
-      state.displayCreateModal = action.payload
+    toggleReviewModal(state, action: PayloadAction<boolean>) {
+      state.displayReviewModal = action.payload
     },
   },
 })
@@ -30,6 +30,6 @@ const module = createSlice({
 export const {
   gotTableData,
   initSearchState,
-  toggleCreateModal,
+  toggleReviewModal,
 } = module.actions
 export default module.reducer

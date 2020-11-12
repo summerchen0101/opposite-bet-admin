@@ -4,6 +4,8 @@ import { EditFilled, FilterFilled } from '@ant-design/icons'
 import { Space } from 'antd'
 import React from 'react'
 import { Text } from '@/components'
+import { useDispatch } from 'react-redux'
+import { toggleReviewModal } from '../reducer'
 
 const columns = [
   {
@@ -121,9 +123,11 @@ const columns = [
     key: 'control',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
+      const dispatch = useDispatch()
+      const handleReview = () => dispatch(toggleReviewModal(true))
       return (
         <Space size="small">
-          <IconLink icon={<EditFilled />} label="審核" />
+          <IconLink icon={<EditFilled />} label="審核" onClick={handleReview} />
         </Space>
       )
     },

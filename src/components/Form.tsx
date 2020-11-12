@@ -20,5 +20,8 @@ export { default as FormField } from './FormField'
 export default styled(Form)`
   .ant-form-item {
     margin-bottom: 15px;
+    &.narrow {
+      margin-bottom: 0px;
+    }
   }
 `
