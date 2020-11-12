@@ -3,7 +3,7 @@ import {
   PopoverEditor,
   PopupModalWithTrigger,
 } from '@/components'
-import DeleteConfirmTip from '@/components/DeleteConfirmTip'
+import PopupConfirm from '@/components/PopupConfirm'
 import { Text, IconLink } from '@/components'
 import TableSets from '@/components/TableSets'
 import { EventScore } from '@/lib/routes'
@@ -147,9 +147,9 @@ const columns = [
               icon={<ContainerOutlined />}
               onClick={() => history.push(EventScore)}
             />
-            <DeleteConfirmTip>
+            <PopupConfirm>
               <IconLink icon={<DeleteOutlined />} />
-            </DeleteConfirmTip>
+            </PopupConfirm>
           </Space>
         </>
       )

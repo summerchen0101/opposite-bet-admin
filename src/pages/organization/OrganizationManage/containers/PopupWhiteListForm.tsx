@@ -1,4 +1,4 @@
-import { DeleteConfirmTip, IconLink, PopupModal } from '@/components'
+import { PopupConfirm, IconLink, PopupModal } from '@/components'
 import Form, { FormField } from '@/components/Form'
 import {
   Button,
@@ -47,9 +47,9 @@ const WhiteListForm: React.FC = () => {
       title: '操作',
       width: '80px',
       render: () => (
-        <DeleteConfirmTip>
+        <PopupConfirm>
           <IconLink icon={<DeleteOutlined />} color="#c45555" label="刪除" />
-        </DeleteConfirmTip>
+        </PopupConfirm>
       ),
     },
   ]

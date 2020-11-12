@@ -1,4 +1,4 @@
-import DeleteConfirmTip from '@/components/DeleteConfirmTip'
+import PopupConfirm from '@/components/PopupConfirm'
 import IconLink from '@/components/IconLink'
 import TableSets from '@/components/TableSets'
 import { DeleteOutlined, FilterFilled } from '@ant-design/icons'
@@ -50,9 +50,9 @@ const columns = [
         <>
           <Checkbox defaultChecked={false} />
           <Space size="small" style={{ float: 'right' }}>
-            <DeleteConfirmTip>
+            <PopupConfirm>
               <IconLink icon={<DeleteOutlined />} />
-            </DeleteConfirmTip>
+            </PopupConfirm>
           </Space>
         </>
       )

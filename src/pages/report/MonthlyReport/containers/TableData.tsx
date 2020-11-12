@@ -1,4 +1,4 @@
-import DeleteConfirmTip from '@/components/DeleteConfirmTip'
+import PopupConfirm from '@/components/PopupConfirm'
 import IconLink from '@/components/IconLink'
 import TableSets from '@/components/TableSets'
 import { DeleteOutlined, FilterFilled, EditFilled } from '@ant-design/icons'

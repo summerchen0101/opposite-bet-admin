@@ -1,9 +1,4 @@
-import {
-  CascaderSelector,
-  DeleteConfirmTip,
-  Text,
-  PopupModal,
-} from '@/components'
+import { CascaderSelector, PopupConfirm, Text, PopupModal } from '@/components'
 import Form, { FormField } from '@/components/Form'
 import {
   Alert,

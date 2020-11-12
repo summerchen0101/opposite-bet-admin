@@ -1,4 +1,4 @@
-import DeleteConfirmTip from '@/components/DeleteConfirmTip'
+import PopupConfirm from '@/components/PopupConfirm'
 import IconLink from '@/components/IconLink'
 import { PopoverEditor } from '@/components'
 import TableSets from '@/components/TableSets'
@@ -99,9 +99,9 @@ const columns = [
           <Checkbox defaultChecked={false} />
           <Space size="small" style={{ float: 'right' }}>
             <IconLink icon={<EditFilled />} onClick={handleEditClicked} />
-            <DeleteConfirmTip>
+            <PopupConfirm>
               <IconLink icon={<DeleteOutlined />} />
-            </DeleteConfirmTip>
+            </PopupConfirm>
           </Space>
         </>
       )
