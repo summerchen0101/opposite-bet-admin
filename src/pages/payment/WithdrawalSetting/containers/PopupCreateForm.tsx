@@ -21,73 +21,46 @@ const CreateForm: React.FC = () => {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
-  const layout = {
-    labelCol: { span: 8 },
-  }
-  let columns = [
-    {
-      title: '上限',
-      render: () => <Input itemType="number" placeholder="5000" />,
-    },
-    {
-      title: '下限',
-      render: () => <Input itemType="number" placeholder="0" />,
-    },
-  ]
-  columns = columns.map((t, i) => ({ ...t, key: i }))
-  const data = [...Array(1)].map((t, i) => ({ ...t, key: i }))
   return (
-    <PopupModal
-      visible={isDisplay}
-      title="新增存款資訊"
-      onCancel={onCancel}
-      width={800}
-    >
-      <Form
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        layout="horizontal"
-        labelAlign="left"
-        {...layout}
-      >
-        <Row gutter={40}>
+    <PopupModal visible={isDisplay} title="新增提現資訊" onCancel={onCancel}>
+      <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
+        <FormField label="名稱">
+          <Input />
+        </FormField>
+        <div style={{ marginTop: 30 }}></div>
+        <h3>出款限額設置</h3>
+        <Row gutter={16}>
           <Col span={12}>
-            <FormField label="名稱">
-              <Input />
-            </FormField>
-            <FormField label="銀行名稱">
-              <Select placeholder="請選擇" allowClear defaultValue="opt1">
-                <Option value="opt1">822 中國信託</Option>
-              </Select>
-            </FormField>
-            <FormField label="控端提示">
-              <Select placeholder="請選擇" allowClear defaultValue="opt1">
-                <Option value="opt1">存入</Option>
-                <Option value="opt2">提出</Option>
-              </Select>
-            </FormField>
-            <div style={{ marginTop: 30 }}></div>
-            <h3>入款限額設置</h3>
-            <FormField>
-              <Table
-                bordered
-                size="small"
-                columns={columns}
-                dataSource={data}
-                pagination={false}
-              />
+            <FormField label="上限">
+              <Input itemType="number" placeholder="5000" />
             </FormField>
           </Col>
           <Col span={12}>
-            <h3>會員端顯示</h3>
-            <FormField label="收款人" className="narrow">
-              <FormStaticText>王大明</FormStaticText>
+            <FormField label="下限">
+              <Input itemType="number" placeholder="0" />
             </FormField>
-            <FormField label="開戶行網點" className="narrow">
-              <FormStaticText>11239</FormStaticText>
+          </Col>
+        </Row>
+        <div style={{ marginTop: 30 }}></div>
+        <h3>手續費設置</h3>
+        <Row gutter={16}>
+          <Col span={12}>
+            <FormField label="優惠設置">
+              <Input itemType="number" placeholder="0" />
             </FormField>
-            <FormField label="帳號" className="narrow">
-              <FormStaticText>11234567890</FormStaticText>
+          </Col>
+          <Col span={12}>
+            <FormField label="手續費">
+              <Input itemType="number" placeholder="0" />
+            </FormField>
+          </Col>
+        </Row>
+        <div style={{ marginTop: 30 }}></div>
+        <h3>每日累計出款上限</h3>
+        <Row gutter={16}>
+          <Col span={12}>
+            <FormField label="金額">
+              <Input itemType="number" placeholder="0" />
             </FormField>
           </Col>
         </Row>

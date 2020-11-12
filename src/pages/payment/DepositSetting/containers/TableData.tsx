@@ -25,13 +25,6 @@ const columns = [
     render: () => '存入',
   },
   {
-    title: '套用代理',
-    dataIndex: 'firstDepositCount',
-    allowFiltered: true,
-    width: 120,
-    render: () => '-',
-  },
-  {
     title: '上限',
     dataIndex: 'firstDepositTotal',
     allowFiltered: true,
