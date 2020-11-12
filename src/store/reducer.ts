@@ -37,7 +37,8 @@ const module = createSlice({
       state.tabs = state.tabs.filter((tab) => tab.path !== action.payload)
     },
     clearTabs(state, action: PayloadAction<string>) {
-      state.tabs = [state.tabs.find((t) => t.path === action.payload)]
+      const i = state.tabs.findIndex((t) => t.path === action.payload)
+      state.tabs = i > -1 ? [state.tabs[i]] : []
     },
     toggleLoginStatus(state, action: PayloadAction<boolean>) {
       state.isLogin = action.payload
