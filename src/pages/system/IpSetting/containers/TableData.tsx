@@ -1,4 +1,4 @@
-import { IconLink, Text } from '@/components'
+import { IconLink, PopupConfirm, Text } from '@/components'
 import TableSets from '@/components/TableSets'
 import {
   DeleteOutlined,
@@ -76,7 +76,9 @@ const columns = [
         <Space size="small">
           <IconLink icon={<StopOutlined />} label="阻擋" />
           <IconLink icon={<EditFilled />} label="編輯" />
-          <IconLink icon={<DeleteOutlined />} label="刪除" />
+          <PopupConfirm>
+            <IconLink icon={<DeleteOutlined />} label="刪除" />
+          </PopupConfirm>
         </Space>
       )
     },
