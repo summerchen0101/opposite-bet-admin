@@ -1,5 +1,4 @@
-import Dashboard from '@/components/Dashboard'
-import PageSearchBar from '@/components/PageSearchBar'
+import { Dashboard, DateRangePicker, PageSearchBar } from '@/components'
 import { useReducerInjector } from '@/utils/hooks'
 import { Divider } from 'antd'
 import React, { useEffect, useState } from 'react'
@@ -31,14 +30,10 @@ const Manager: React.FC = () => {
         />
       </PageSearchBar>
       <PageSearchBar>
+        <DateRangePicker />
         <SubjectSearch />
-        <MailTypePicker />
-        {currentTab === 'opt2' && (
-          <>
-            <Divider type="vertical" />
-            <StatusPicker />
-          </>
-        )}
+        <Divider type="vertical" />
+        {currentTab === 'opt2' ? <StatusPicker /> : <MailTypePicker />}
       </PageSearchBar>
       {currentTab === 'opt2' ? <RecieveTableData /> : <SendTableData />}
       <PopupCreateForm />
