@@ -11,6 +11,7 @@ import StatusSelector from './containers/StatusSelector'
 import ProcessSelector from './containers/ProcessSelector'
 import PageHeader from './components/PageHeader'
 import PopupCreateForm from './containers/PopupCreateForm'
+import PopupSecondSetting from './containers/PopupSecondSetting'
 import TableData from './containers/TableData'
 import reducer, { initSearchState, moduleName } from './reducer'
 import TitleSearch from './containers/TitleSearch'
@@ -32,6 +33,7 @@ const Manager: React.FC = () => {
       </PageSearchBar>
       <TableData />
       <PopupCreateForm />
+      <PopupSecondSetting />
     </Dashboard>
   )
 }
