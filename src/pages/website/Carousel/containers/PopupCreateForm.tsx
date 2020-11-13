@@ -1,11 +1,47 @@
+import { DateRangePicker, ImageUpload } from '@/components'
+import Form, { FormField } from '@/components/Form'
 import PopupModal from '@/components/PopupModal'
-import { Button, DatePicker, Input, Select, Space, Form as AntForm } from 'antd'
+import {
+  Button,
+  Col,
+  Collapse,
+  Input,
+  Radio,
+  Row,
+  Select,
+  Space,
+  Tabs,
+} from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleCreateModal } from '../reducer'
 import { selectDisplayCreateModal, useTypedSelector } from '../selectors'
-import Form, { FormField } from '@/components/Form'
 const { Option } = Select
+const extraButton = (
+  <Button size="small" onClick={(e) => e.stopPropagation()}>
+    預覽
+  </Button>
+)
+const panelContent = (
+  <>
+    <FormField
+      label="超連結"
+      required
+      extra="請輸入完整的網路連結(含: http:// 或 https://)"
+    >
+      <Input />
+    </FormField>
+    <FormField label="連結方式" required initialValue="opt1">
+      <Radio.Group>
+        <Radio value="opt1">同頁</Radio>
+        <Radio value="opt2">另開分頁</Radio>
+      </Radio.Group>
+    </FormField>
+    <FormField>
+      <ImageUpload />
+    </FormField>
+  </>
+)
 const CreateForm: React.FC = () => {
   const dispatch = useDispatch()
   const isDisplay = useTypedSelector(selectDisplayCreateModal)
@@ -21,29 +57,40 @@ const CreateForm: React.FC = () => {
     console.log('Failed:', errorInfo)
   }
   return (
-    <PopupModal visible={isDisplay} title="新增賽事" onCancel={onCancel}>
+    <PopupModal visible={isDisplay} title="新增廣告橫幅" onCancel={onCancel}>
       <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
-        <FormField label="請選擇隊伍(主)" name="mainTeam" required>
-          <Input />
+        <Row gutter={16}>
+          <Col span={12}>
+            <FormField label="標題" name="mainTeam" required>
+              <Input />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="廣告期間" name="clientTeam" required>
+              <DateRangePicker />
+            </FormField>
+          </Col>
+        </Row>
+        <FormField label="平台顯示" name="country" required initialValue="opt1">
+          <Radio.Group>
+            <Radio value="opt1">全部</Radio>
+            <Radio value="opt2">手機</Radio>
+            <Radio value="opt3">桌上型電腦</Radio>
+          </Radio.Group>
         </FormField>
-        <FormField label="請選擇隊伍" name="clientTeam" required>
-          <Input />
-        </FormField>
-        <FormField label="國家" name="country" required>
-          <Select placeholder="請選擇" allowClear>
-            <Option value="opt1">巴西</Option>
-            <Option value="opt2">美國</Option>
-          </Select>
-        </FormField>
-        <FormField label="請選擇聯盟" name="league" required>
-          <Input />
-        </FormField>
-        <FormField label="開賽時間" name="startAt" required>
-          <DatePicker style={{ width: '100%' }} />
-        </FormField>
-        <FormField>
-          <p>＊如果上面結果為撤銷則不用選擇</p>
-        </FormField>
+        <h3>廣告圖片上傳</h3>
+        <Tabs defaultActiveKey="cn" type="card" size="small">
+          <Tabs.TabPane tab="簡中" key="cn">
+            <Collapse defaultActiveKey={['1']}>
+              <Collapse.Panel header="桌上型電腦" key="1" extra={extraButton}>
+                {panelContent}
+              </Collapse.Panel>
+              <Collapse.Panel header="手機" key="2" extra={extraButton}>
+                {panelContent}
+              </Collapse.Panel>
+            </Collapse>
+          </Tabs.TabPane>
+        </Tabs>
 
         <FormField style={{ marginTop: '20px', textAlign: 'center' }}>
           <Space size="large">

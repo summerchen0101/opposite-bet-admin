@@ -1,4 +1,4 @@
-import { DateRangePicker } from '@/components'
+import { ContentEditor, DateRangePicker } from '@/components'
 import Dashboard from '@/components/Dashboard'
 import Form, { FormField } from '@/components/Form'
 import {
@@ -16,10 +16,6 @@ import {
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import PageHeader from './components/PageHeader'
-import { Editor } from 'react-draft-wysiwyg'
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
-
-const EditorComponent = () => <Editor />
 
 const Manager: React.FC = () => {
   const dispatch = useDispatch()
@@ -74,10 +70,10 @@ const Manager: React.FC = () => {
             <FormField>
               <Collapse defaultActiveKey={['1']}>
                 <Collapse.Panel header="桌上型電腦" key="1">
-                  <EditorComponent />
+                  <ContentEditor />
                 </Collapse.Panel>
                 <Collapse.Panel header="手機" key="1">
-                  <EditorComponent />
+                  <ContentEditor />
                 </Collapse.Panel>
               </Collapse>
             </FormField>
