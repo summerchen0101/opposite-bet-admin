@@ -17,3 +17,11 @@ export const selectDisplayCreateModal = createSelector(
   selectModuleState,
   (moduleState) => moduleState.displayCreateModal,
 )
+export const selectDisplayCategoryListModal = createSelector(
+  selectModuleState,
+  (moduleState) => moduleState.displayCategoryListModal,
+)
+export const selectDisplayCategoryCreateModal = createSelector(
+  selectModuleState,
+  (moduleState) => moduleState.displayCategoryCreateModal,
+)
