@@ -1,10 +1,22 @@
 import PopupModal from '@/components/PopupModal'
-import { Button, DatePicker, Input, Select, Space, Form as AntForm } from 'antd'
+import {
+  Button,
+  DatePicker,
+  Input,
+  Select,
+  Space,
+  Form as AntForm,
+  Row,
+  Col,
+  Radio,
+} from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleCreateModal } from '../reducer'
 import { selectDisplayCreateModal, useTypedSelector } from '../selectors'
 import Form, { FormField } from '@/components/Form'
+import { Text } from '@/components'
+// const [form] = AntForm.useForm()
 const { Option } = Select
 const CreateForm: React.FC = () => {
   const dispatch = useDispatch()
@@ -20,38 +32,91 @@ const CreateForm: React.FC = () => {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
+  const onReset = () => {
+    // form.resetFields()
+  }
   return (
-    <PopupModal visible={isDisplay} title="新增賽事" onCancel={onCancel}>
+    <PopupModal visible={isDisplay} title="新增管理者" onCancel={onCancel}>
       <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
-        <FormField label="請選擇隊伍(主)" name="mainTeam" required>
-          <Input />
+        <Row gutter={16}>
+          <Col span={12}>
+            <FormField label="管理者帳號" required>
+              <Input />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="真實姓名" required>
+              <Input />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="電子郵箱" required>
+              <Input />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="角色" required>
+              <Input />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="單筆提款審核上限" required>
+              <Input />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="每日提款審核上限" required>
+              <Input />
+            </FormField>
+          </Col>
+        </Row>
+
+        <FormField
+          label="帳號有效時間"
+          required
+          extra={<Text color="danger">(时间到会自动停用)</Text>}
+        >
+          <Radio.Group defaultValue="opt1">
+            <Radio value="opt1">
+              <Space>
+                <span>時間：</span>
+                <DatePicker />
+              </Space>
+            </Radio>
+            <Radio value="opt2">永久</Radio>
+          </Radio.Group>
         </FormField>
-        <FormField label="請選擇隊伍" name="clientTeam" required>
-          <Input />
-        </FormField>
-        <FormField label="國家" name="country" required>
-          <Select placeholder="請選擇" allowClear>
-            <Option value="opt1">巴西</Option>
-            <Option value="opt2">美國</Option>
-          </Select>
-        </FormField>
-        <FormField label="請選擇聯盟" name="league" required>
-          <Input />
-        </FormField>
-        <FormField label="開賽時間" name="startAt" required>
-          <DatePicker style={{ width: '100%' }} />
-        </FormField>
-        <FormField>
-          <p>＊如果上面結果為撤銷則不用選擇</p>
+
+        <Row gutter={16}>
+          <Col span={12}>
+            <FormField
+              label="允許登入IP"
+              extra={<Text color="danger">(多IP請逗號分隔，空白=不限制)</Text>}
+            >
+              <Input />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="狀態">
+              <Radio.Group defaultValue="opt1">
+                <Radio value="opt1">開啟</Radio>
+                <Radio value="opt2">關閉</Radio>
+              </Radio.Group>
+            </FormField>
+          </Col>
+        </Row>
+
+        <FormField label="備註">
+          <Input.TextArea />
         </FormField>
 
         <FormField style={{ marginTop: '20px', textAlign: 'center' }}>
           <Space size="large">
+            <Button htmlType="reset" onClick={onReset}>
+              重置
+            </Button>
             <Button type="primary" htmlType="submit">
               送出
-            </Button>
-            <Button onClick={onCancel} htmlType="reset">
-              取消
             </Button>
           </Space>
         </FormField>
