@@ -5,6 +5,8 @@ import { DeleteOutlined, FilterFilled, EditFilled } from '@ant-design/icons'
 import { Button, Checkbox, Popover, Space } from 'antd'
 import React from 'react'
 import Text from '@/components/Text'
+import { useDispatch } from 'react-redux'
+import { toggleEditModal } from '../reducer'
 
 const columns = [
   {
@@ -62,10 +64,14 @@ const columns = [
     key: 'control',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
+      const dispatch = useDispatch()
+      const handleEdit = () => dispatch(toggleEditModal(true))
       return (
         <Space size="small">
-          <IconLink icon={<EditFilled />} label="編輯" />
-          <IconLink icon={<DeleteOutlined />} label="刪除" />
+          <IconLink icon={<EditFilled />} label="編輯" onClick={handleEdit} />
+          <PopupConfirm>
+            <IconLink icon={<DeleteOutlined />} label="刪除" />
+          </PopupConfirm>
         </Space>
       )
     },

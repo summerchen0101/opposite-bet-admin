@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export interface IState {
   tableData: any[]
-  displayCreateModal: boolean
+  displayEditModal: boolean
 }
 const initialState: IState = {
   tableData: [],
-  displayCreateModal: false,
+  displayEditModal: false,
 }
 
 export const moduleName = 'pageManage'
@@ -21,15 +21,11 @@ const module = createSlice({
     initSearchState(state) {
       //
     },
-    toggleCreateModal(state, action: PayloadAction<boolean>) {
-      state.displayCreateModal = action.payload
+    toggleEditModal(state, action: PayloadAction<boolean>) {
+      state.displayEditModal = action.payload
     },
   },
 })
 
-export const {
-  gotTableData,
-  initSearchState,
-  toggleCreateModal,
-} = module.actions
+export const { gotTableData, initSearchState, toggleEditModal } = module.actions
 export default module.reducer
