@@ -1,3 +1,4 @@
+export { default as InMail } from './InMail'
 export { default as Announcement } from './Announcement'
 export { default as Carousel } from './Carousel'
 export { default as Faq } from './Faq'

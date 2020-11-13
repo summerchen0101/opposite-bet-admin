@@ -22,10 +22,11 @@ export const Announcement = new PageG(
   routes.Announcement,
   pages.Announcement,
 )
+export const InMail = new PageG('信件管理', routes.InMail, pages.InMail)
 export const Faq = new PageG('常見問題', routes.Faq, pages.Faq)
 
 // ROUTERS
-RouteG.create([LandingPage, Carousel, PageManage, Announcement, Faq])
+RouteG.create([LandingPage, Carousel, PageManage, Announcement, InMail, Faq])
 
 // MENU
 MenuG.createCategory('網站管理', routes.Website, HomeOutlined, [
@@ -33,5 +34,6 @@ MenuG.createCategory('網站管理', routes.Website, HomeOutlined, [
   Carousel,
   PageManage,
   Announcement,
+  InMail,
   Faq,
 ])

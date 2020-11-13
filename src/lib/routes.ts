@@ -50,6 +50,7 @@ export const LandingPage = '/website/landing-page'
 export const Carousel = '/website/carousel'
 export const PageManage = '/website/page-manage'
 export const Announcement = '/website/announcement'
+export const InMail = '/website/in-mail'
 export const Faq = '/website/faq'
 
 export const Version = '/version'
