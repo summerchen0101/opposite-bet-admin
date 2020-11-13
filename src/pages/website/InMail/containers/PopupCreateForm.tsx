@@ -40,7 +40,7 @@ const CreateForm: React.FC = () => {
   return (
     <PopupModal
       visible={isDisplay}
-      title="新增公告"
+      title="新增站內信"
       onCancel={onCancel}
       width={700}
     >

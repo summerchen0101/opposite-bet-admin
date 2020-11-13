@@ -1,43 +1,55 @@
-import IconLink from '@/components/IconLink'
-import TableSets from '@/components/TableSets'
+import { TableSets, Text, IconLink } from '@/components'
 import { DeleteOutlined, FilterFilled } from '@ant-design/icons'
 import { Space } from 'antd'
 import React from 'react'
 
 const columns = [
   {
-    title: '主題',
+    title: '標題',
     dataIndex: 'account',
     allowFiltered: true,
     width: 180,
     render: () => '反水活動修改',
   },
   {
-    title: '收件人',
+    title: '公告種類',
     dataIndex: 'firstDepositCount',
     allowFiltered: true,
     width: 120,
-    render: () => 'gogoro99',
+    render: () => '系統通知',
   },
   {
-    title: '收件人數量',
+    title: '前台顯示',
     dataIndex: 'firstDepositTotal',
     allowFiltered: true,
     width: 100,
-    render: () => 30,
+    render: () => <Text color="success">啟用</Text>,
   },
   {
-    title: '讀取數量',
+    title: '期間',
     dataIndex: 'onceAgainDepositCount',
     allowFiltered: true,
-    width: 100,
-    render: () => 4,
+    width: 180,
+    render: () => (
+      <>
+        2019-07-01 10:54:36 <br />
+        2019-07-01 10:54:36
+      </>
+    ),
   },
   {
-    title: '發送時間',
-    dataIndex: 'onceAgainDepositTotal',
+    title: '更新人員',
+    dataIndex: 'firstWithdrawalCount',
     allowFiltered: true,
-    width: 140,
+    width: 120,
+    render: () => 'flora',
+  },
+  {
+    title: '更新時間',
+    dataIndex: 'depositTotal',
+    allowFiltered: true,
+    width: 180,
+    render: (_, row) => '2019-07-01 10:54:36',
   },
   {
     title: () => (
