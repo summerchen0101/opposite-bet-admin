@@ -16,6 +16,11 @@ export const MemberManage = new PageG(
   routes.MemberManage,
   member.MemberManage,
 )
+export const MemberDetail = new PageG(
+  '會員資訊',
+  routes.MemberDetail,
+  member.MemberDetail,
+)
 export const MemberLabel = new PageG(
   '標籤管理',
   routes.MemberLabel,
@@ -23,7 +28,7 @@ export const MemberLabel = new PageG(
 )
 
 // ROUTERS
-RouteG.create([MemberActivity, MemberManage, MemberLabel])
+RouteG.create([MemberActivity, MemberDetail, MemberManage, MemberLabel])
 
 // MENU
 MenuG.createCategory('會員管理', routes.Member, TeamOutlined, [

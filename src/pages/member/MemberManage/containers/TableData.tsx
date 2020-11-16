@@ -5,6 +5,9 @@ import { Checkbox, Popover, Space } from 'antd'
 import React from 'react'
 import { EditFilled, DeleteOutlined } from '@ant-design/icons'
 import { IconButton } from '@/components'
+import { MemberDetail } from '@/lib/routes'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 const columns = [
   {
@@ -107,9 +110,11 @@ const columns = [
     key: 'control',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
+      const history = useHistory()
+      const onEdit = () => history.push(MemberDetail)
       return (
         <Space size="small">
-          <IconLink icon={<EditFilled />} label="編輯" />
+          <IconLink icon={<EditFilled />} onClick={onEdit} label="編輯" />
           <IconLink icon={<DeleteOutlined />} label="停用" />
         </Space>
       )

@@ -9,7 +9,7 @@ export const EventRule = '/game-event/event-rule'
 export const Member = '/member'
 export const MemberActivity = '/member/activity'
 export const MemberManage = '/member/manage'
-export const MemberManageDetail = '/member/manage/detail'
+export const MemberDetail = '/member/manage/detail'
 export const MemberLabel = '/member/label'
 
 export const Organization = '/organization'
