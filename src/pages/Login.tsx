@@ -1,6 +1,11 @@
-import React from 'react'
-import { Card, Form, Input, Button } from 'antd'
+import React, { useState } from 'react'
+import { Card, Form, Input, Button, message, Space } from 'antd'
 import styled from 'styled-components'
+import * as api from '@/utils/apiService'
+import { LoadingOutlined } from '@ant-design/icons'
+import { useHistory } from 'react-router-dom'
+import useService from '@/utils/hooks/useService'
+import errCodes from '@/lib/errCodes'
 
 const Wrapper = styled.div`
   display: flex;
@@ -10,10 +15,30 @@ const Wrapper = styled.div`
   height: 100vh;
 `
 const Login: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(false)
+  const history = useHistory()
+  const { fetchMenuInfo } = useService()
+  const onFinish = async (data) => {
+    try {
+      setIsLoading(true)
+      const res = await api.login(data)
+      setIsLoading(false)
+      if (res.result === 'LOGIN_SUCCESS') {
+        sessionStorage.setItem('token', res.token)
+        fetchMenuInfo()
+        history.push('/')
+      } else {
+        message.error(errCodes[res.result])
+      }
+    } catch (err) {
+      console.log(err)
+      setIsLoading(false)
+    }
+  }
   return (
     <Wrapper>
       <Card title="後台登入" style={{ width: 300 }}>
-        <Form>
+        <Form onFinish={onFinish}>
           <Form.Item
             label="帳號"
             name="username"
@@ -30,8 +55,11 @@ const Login: React.FC = () => {
             <Input.Password />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit">
-              登入
+            <Button type="primary" htmlType="submit" disabled={isLoading}>
+              <Space>
+                登入
+                {isLoading && <LoadingOutlined />}
+              </Space>
             </Button>
           </Form.Item>
         </Form>

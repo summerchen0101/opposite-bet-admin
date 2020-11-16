@@ -1,25 +1,16 @@
-import React from 'react'
-import { BrowserRouter as Router, Switch } from 'react-router-dom'
-import RouteWithSubRoutes from '@/utils/RouteWithSubRoutes'
-import GlobalStyle from '@/utils/global-style'
-import { rootRoutes } from '@/routes'
-import { Helmet } from 'react-helmet'
+import useService from '@/utils/hooks/useService'
+import React, { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 
-const App: React.FC = () => {
-  return (
-    <Router>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>MS反波膽</title>
-      </Helmet>
-      <Switch>
-        {rootRoutes.map((route, i) => (
-          <RouteWithSubRoutes key={i} {...route} />
-        ))}
-      </Switch>
-      <GlobalStyle />
-    </Router>
-  )
+const App: React.FC = ({ children }) => {
+  const { fetchMenuInfo } = useService()
+  const location = useLocation()
+  useEffect(() => {
+    if (location.pathname !== '/login') {
+      fetchMenuInfo()
+    }
+  }, [])
+  return <>{children}</>
 }
 
 export default App

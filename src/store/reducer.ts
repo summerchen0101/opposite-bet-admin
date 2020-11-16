@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
-import * as apis from '@/utils/request'
+import * as apis from '@/utils/apiService'
 export type TabType = {
   path: string
   label: string

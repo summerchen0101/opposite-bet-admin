@@ -1,11 +1,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const path = require('path');
+const Dotenv = require('dotenv-webpack')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
+const path = require('path')
 module.exports = {
   entry: path.resolve(__dirname, 'src/index.tsx'),
   plugins: [
+    new Dotenv(),
     new CaseSensitivePathsPlugin(),
     new CleanWebpackPlugin({
       cleanAfterEveryBuildPatterns: ['public'],
@@ -37,4 +39,4 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
   },
-};
+}

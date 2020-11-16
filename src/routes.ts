@@ -16,7 +16,7 @@ import '@/pages/system/routes'
 
 // PAGES
 export const Home = new PageG('首頁', '/', HomePage, { exact: true })
-export const Version = new PageG('版本資訊', '/', VersionPage, { exact: true })
+export const Version = new PageG('版本資訊', '/version', VersionPage)
 const Login = new PageG('登入頁', '/login', LoginPage)
 
 // ROUTERS
