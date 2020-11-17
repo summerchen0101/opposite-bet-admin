@@ -14,7 +14,6 @@ const columns = [
   {
     title: '投注資訊',
     dataIndex: 'firstWithdrawalCount',
-    allowFiltered: true,
     width: 120,
     children: [
       {
@@ -72,7 +71,6 @@ const columns = [
   {
     title: '結算資料',
     dataIndex: 'registerCount',
-    allowFiltered: true,
     width: 120,
     children: [
       {

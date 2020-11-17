@@ -9,35 +9,30 @@ const columns = [
   {
     title: '主題',
     dataIndex: 'account',
-    allowFiltered: true,
     width: 180,
     render: () => '我無法儲值',
   },
   {
     title: '寄件人',
     dataIndex: 'firstDepositCount',
-    allowFiltered: true,
     width: 120,
     render: () => 'peggy',
   },
   {
     title: '狀態',
     dataIndex: 'firstDepositTotal',
-    allowFiltered: true,
     width: 100,
     render: () => <Text color="success">已讀</Text>,
   },
   {
     title: '信件種類',
     dataIndex: 'onceAgainDepositCount',
-    allowFiltered: true,
     width: 100,
     render: () => '意見反應',
   },
   {
     title: '發送時間',
     dataIndex: 'onceAgainDepositTotal',
-    allowFiltered: true,
     width: 140,
   },
   {

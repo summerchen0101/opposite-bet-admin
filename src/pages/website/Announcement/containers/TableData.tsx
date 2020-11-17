@@ -7,28 +7,24 @@ const columns = [
   {
     title: '標題',
     dataIndex: 'account',
-    allowFiltered: true,
     width: 180,
     render: () => '反水活動修改',
   },
   {
     title: '公告種類',
     dataIndex: 'firstDepositCount',
-    allowFiltered: true,
     width: 120,
     render: () => '系統通知',
   },
   {
     title: '前台顯示',
     dataIndex: 'firstDepositTotal',
-    allowFiltered: true,
     width: 100,
     render: () => <Text color="success">啟用</Text>,
   },
   {
     title: '期間',
     dataIndex: 'onceAgainDepositCount',
-    allowFiltered: true,
     width: 180,
     render: () => (
       <>
@@ -40,14 +36,12 @@ const columns = [
   {
     title: '更新人員',
     dataIndex: 'firstWithdrawalCount',
-    allowFiltered: true,
     width: 120,
     render: () => 'flora',
   },
   {
     title: '更新時間',
     dataIndex: 'depositTotal',
-    allowFiltered: true,
     width: 180,
     render: (_, row) => '2019-07-01 10:54:36',
   },

@@ -15,19 +15,16 @@ const columns = [
   {
     title: '賽事編號',
     dataIndex: 'eventId',
-    allowFiltered: true,
     width: 100,
   },
   {
     title: '開賽時間',
     dataIndex: 'startAt',
-    allowFiltered: true,
     width: 150,
   },
   {
     title: '隊名',
     dataIndex: 'teams',
-    allowFiltered: true,
     render(teams) {
       if (!teams) return '-'
       return (
@@ -43,7 +40,6 @@ const columns = [
   {
     title: '聯盟',
     dataIndex: 'league',
-    allowFiltered: true,
     render(value, row) {
       return (
         <PopoverEditor value={value}>
@@ -56,7 +52,6 @@ const columns = [
   {
     title: '會員帳號',
     dataIndex: 'account',
-    allowFiltered: true,
     render(value, row) {
       return (
         <>
@@ -69,43 +64,36 @@ const columns = [
   {
     title: '類型',
     dataIndex: 'type',
-    allowFiltered: true,
     width: 120,
   },
   {
     title: '比分',
     dataIndex: 'score',
-    allowFiltered: true,
     width: 120,
   },
   {
     title: '金額',
     dataIndex: 'point',
-    allowFiltered: true,
     width: 150,
   },
   {
     title: '撤銷',
     dataIndex: 'rejection',
-    allowFiltered: true,
     width: 120,
   },
   {
     title: '開獎',
     dataIndex: 'opened',
-    allowFiltered: true,
     width: 120,
   },
   {
     title: '盈利',
     dataIndex: 'earning',
-    allowFiltered: true,
     width: 150,
   },
   {
     title: '下注時間',
     dataIndex: 'bettingAt',
-    allowFiltered: true,
     width: 150,
   },
   {

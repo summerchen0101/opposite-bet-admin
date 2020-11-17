@@ -29,21 +29,18 @@ const columns = [
   {
     title: '排序',
     dataIndex: 'account',
-    allowFiltered: true,
     width: 100,
     render: () => <DragHandle />,
   },
   {
     title: '優惠名稱',
     dataIndex: 'firstDepositCount',
-    allowFiltered: true,
     width: 120,
     render: () => <a>搶搶註冊送</a>,
   },
   {
     title: '優惠期限',
     dataIndex: 'firstDepositTotal',
-    allowFiltered: true,
     width: '180px',
     render: () => (
       <>
@@ -55,21 +52,18 @@ const columns = [
   {
     title: '狀態',
     dataIndex: 'status',
-    allowFiltered: true,
     width: 120,
     render: (_, row) => <Text color="success">進行中</Text>,
   },
   {
     title: '更新人員',
     dataIndex: 'firstWithdrawalCount',
-    allowFiltered: true,
     width: 120,
     render: () => 'flora',
   },
   {
     title: '更新時間',
     dataIndex: 'depositTotal',
-    allowFiltered: true,
     width: 200,
     render: (_, row) => '2019-07-01 10:54:36',
   },

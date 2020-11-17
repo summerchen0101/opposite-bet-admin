@@ -11,17 +11,14 @@ const columns = [
     title: '賽事編號',
     dataIndex: 'eventId',
     width: '10%',
-    allowFiltered: true,
   },
   {
     title: '開賽時間',
     dataIndex: 'startAt',
-    allowFiltered: true,
   },
   {
     title: '隊名',
     dataIndex: 'teams',
-    allowFiltered: true,
     render(teams) {
       if (!teams) return '-'
       return (
@@ -36,7 +33,6 @@ const columns = [
   {
     title: '聯盟',
     dataIndex: 'league',
-    allowFiltered: true,
     render(value, row) {
       return (
         <PopoverEditor value={value}>
@@ -48,7 +44,6 @@ const columns = [
   {
     title: '國家',
     dataIndex: 'country',
-    allowFiltered: true,
     render(value, row) {
       const options = [
         { label: '巴西', value: 'opt1' },
@@ -64,7 +59,6 @@ const columns = [
   {
     title: '上架狀態',
     dataIndex: 'status',
-    allowFiltered: true,
     render(value, row) {
       return (
         <PopoverEditor value={value}>
@@ -76,7 +70,6 @@ const columns = [
   {
     title: '採集時間',
     dataIndex: 'collectingTime',
-    allowFiltered: true,
   },
   {
     title: () => (

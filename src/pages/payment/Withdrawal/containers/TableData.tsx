@@ -11,64 +11,54 @@ const columns = [
   {
     title: '編號',
     dataIndex: 'account',
-    allowFiltered: true,
     width: 100,
   },
   {
     title: '帳號/名稱',
     dataIndex: 'firstDepositCount',
-    allowFiltered: true,
     width: 120,
   },
   {
     title: '出款銀行',
     dataIndex: 'firstDepositTotal',
-    allowFiltered: true,
     width: 140,
   },
   {
     title: '代理商',
     dataIndex: 'onceAgainDepositCount',
-    allowFiltered: true,
     width: 120,
   },
   {
     title: '金額',
     dataIndex: 'onceAgainDepositTotal',
-    allowFiltered: true,
     width: 140,
   },
   {
     title: '出款手續費',
     dataIndex: 'depositCount',
-    allowFiltered: true,
     width: 120,
     render: (_, row) => row.firstDepositCount + row.onceAgainDepositCount,
   },
   {
     title: '優惠扣除',
     dataIndex: 'depositTotal',
-    allowFiltered: true,
     width: 140,
     render: (_, row) => row.firstDepositTotal + row.onceAgainDepositTotal,
   },
   {
     title: '行政費扣除',
     dataIndex: 'firstWithdrawalCount',
-    allowFiltered: true,
     width: 120,
   },
   {
     title: '出款金額',
     dataIndex: 'depositTotal',
-    allowFiltered: true,
     width: 140,
     render: (_, row) => row.firstDepositTotal + row.onceAgainDepositTotal,
   },
   {
     title: '狀態',
     dataIndex: 'status',
-    allowFiltered: true,
     width: 120,
     render: () => <Text color="warning">待批</Text>,
   },
@@ -81,7 +71,6 @@ const columns = [
       </>
     ),
     dataIndex: 'firstWithdrawalTotal',
-    allowFiltered: true,
     width: 200,
     render: () => (
       <>
@@ -100,7 +89,6 @@ const columns = [
       </>
     ),
     dataIndex: 'onceAgainWithdrawalCount',
-    allowFiltered: true,
     width: 200,
     render: () => (
       <>

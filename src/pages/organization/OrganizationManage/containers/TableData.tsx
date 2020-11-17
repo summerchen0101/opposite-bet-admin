@@ -22,7 +22,6 @@ const columns = [
   {
     title: '組織資訊',
     dataIndex: 'account',
-    allowFiltered: true,
     width: 100,
     children: [
       {
@@ -73,7 +72,6 @@ const columns = [
   {
     title: '錢包',
     dataIndex: 'depositTotal',
-    allowFiltered: true,
     width: 140,
     children: [
       {
@@ -104,7 +102,6 @@ const columns = [
   {
     title: '狀態',
     dataIndex: 'onceAgainWithdrawalCount',
-    allowFiltered: true,
     width: 120,
     children: [
       {
@@ -131,7 +128,6 @@ const columns = [
   {
     title: '會員資訊',
     dataIndex: 'withdrawalTotal',
-    allowFiltered: true,
     width: 140,
     children: [
       {
@@ -153,7 +149,6 @@ const columns = [
   {
     title: '登入資訊',
     dataIndex: 'withdrawalTotal',
-    allowFiltered: true,
     width: 140,
     children: [
       {
@@ -192,7 +187,6 @@ const columns = [
       </>
     ),
     dataIndex: 'registerCount',
-    allowFiltered: true,
     width: '180px',
     render: () => (
       <>

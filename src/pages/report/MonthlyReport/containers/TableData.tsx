@@ -10,7 +10,6 @@ const columns = [
   {
     title: '投注資訊',
     dataIndex: 'account',
-    allowFiltered: true,
     width: 100,
     children: [
       {
@@ -32,7 +31,6 @@ const columns = [
   {
     title: '本層總額',
     dataIndex: 'firstDepositTotal',
-    allowFiltered: true,
     width: 140,
     children: [
       {
@@ -54,7 +52,6 @@ const columns = [
   {
     title: '下層總額',
     dataIndex: 'firstDepositTotal',
-    allowFiltered: true,
     width: 140,
     children: [
       {
@@ -77,14 +74,12 @@ const columns = [
   {
     title: '應交收額',
     dataIndex: 'onceAgainDepositTotal',
-    allowFiltered: true,
     width: 140,
     render: () => '-',
   },
   {
     title: '已交收額',
     dataIndex: 'depositCount',
-    allowFiltered: true,
     width: 120,
     render: () => '-',
   },
@@ -92,7 +87,6 @@ const columns = [
   {
     title: '交收紀錄',
     dataIndex: 'onceAgainWithdrawalCount',
-    allowFiltered: true,
     width: 120,
     children: [
       {

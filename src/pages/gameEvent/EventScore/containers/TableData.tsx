@@ -9,31 +9,26 @@ const columns = [
   {
     title: '比分',
     dataIndex: 'score',
-    allowFiltered: true,
     width: '10%',
   },
   {
     title: '收益率',
     dataIndex: 'earningRate',
-    allowFiltered: true,
     width: '10%',
   },
   {
     title: '可交易量',
     dataIndex: 'tradeMount',
-    allowFiltered: true,
     width: '15%',
   },
   {
     title: '類別',
     dataIndex: 'type',
-    allowFiltered: true,
     width: '13%',
   },
   {
     title: '0不全賠 1全賠',
     dataIndex: 'betRule',
-    allowFiltered: true,
     width: '13%',
     render: (value) => (
       <Space>
@@ -46,7 +41,6 @@ const columns = [
   {
     title: '賽事',
     dataIndex: 'event',
-    allowFiltered: true,
   },
   {
     title: () => <Checkbox />,

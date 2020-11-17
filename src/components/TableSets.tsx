@@ -4,7 +4,7 @@ import { ColumnType } from 'antd/lib/table'
 import React, { useEffect } from 'react'
 interface TableSetsProps {
   data: any[]
-  columns: (ColumnType<{ name: string }> & { allowFiltered?: boolean })[]
+  columns: ColumnType<any>[]
   rowKey?: any
   components?: any
   onSortEnd?: any
@@ -12,9 +12,10 @@ interface TableSetsProps {
 const TableSets: React.FC<TableSetsProps> = ({ data, columns, ...props }) => {
   let filterdColumns = []
   useEffect(() => {
-    filterdColumns = columns
-      .filter((t) => t.allowFiltered)
-      .map((t) => ({ label: t.title, value: t.dataIndex }))
+    filterdColumns = columns.map((t) => ({
+      label: t.title,
+      value: t.dataIndex,
+    }))
   }, [])
   return (
     <TableFilter display={false} columns={filterdColumns}>

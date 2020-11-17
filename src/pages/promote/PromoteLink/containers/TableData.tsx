@@ -13,28 +13,24 @@ const columns = [
   {
     title: '會員帳號',
     dataIndex: 'account',
-    allowFiltered: true,
     width: 100,
     render: () => 'abc222',
   },
   {
     title: '角色',
     dataIndex: 'firstDepositCount',
-    allowFiltered: true,
     width: 120,
     render: () => '代理商',
   },
   {
     title: '允許註冊',
     dataIndex: 'firstDepositCount',
-    allowFiltered: true,
     width: 120,
     render: () => <Switch defaultChecked />,
   },
   {
     title: '邀請碼',
     dataIndex: 'firstDepositTotal',
-    allowFiltered: true,
     width: 160,
     render: () => (
       <Space>
@@ -46,7 +42,6 @@ const columns = [
   {
     title: '連結位置',
     dataIndex: 'firstDepositTotal',
-    allowFiltered: true,
     width: 250,
     render: () => (
       <Space>
@@ -58,35 +53,30 @@ const columns = [
   {
     title: '備註',
     dataIndex: 'firstDepositTotal',
-    allowFiltered: true,
     width: 140,
     render: () => '支付寶',
   },
   {
     title: '訪問次數',
     dataIndex: 'firstDepositTotal',
-    allowFiltered: true,
     width: 140,
     render: () => '支付寶',
   },
   {
     title: '完成註冊',
     dataIndex: 'firstDepositTotal',
-    allowFiltered: true,
     width: 140,
     render: () => '支付寶',
   },
   {
     title: '更新人員',
     dataIndex: 'firstWithdrawalCount',
-    allowFiltered: true,
     width: 120,
     render: () => 'flora',
   },
   {
     title: '更新時間',
     dataIndex: 'depositTotal',
-    allowFiltered: true,
     width: 200,
     render: (_, row) => '2019-07-01 10:54:36',
   },

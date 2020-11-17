@@ -13,63 +13,54 @@ const columns = [
   {
     title: '會員帳號',
     dataIndex: 'account',
-    allowFiltered: true,
     width: 130,
     render: () => 'gogoro',
   },
   {
     title: '真實姓名',
     dataIndex: 'firstDepositCount',
-    allowFiltered: true,
     width: 120,
     render: () => '陳大明',
   },
   {
     title: '角色',
     dataIndex: 'firstDepositTotal',
-    allowFiltered: true,
     width: 140,
     render: () => '代理商',
   },
   {
     title: '標籤',
     dataIndex: 'onceAgainDepositCount',
-    allowFiltered: true,
     width: 120,
     render: () => '-',
   },
   {
     title: '總餘額',
     dataIndex: 'onceAgainDepositTotal',
-    allowFiltered: true,
     width: 140,
     render: () => 1000,
   },
   {
     title: '總充值',
     dataIndex: 'depositCount',
-    allowFiltered: true,
     width: 120,
     render: (_, row) => 1000,
   },
   {
     title: '總提現',
     dataIndex: 'depositTotal',
-    allowFiltered: true,
     width: 140,
     render: (_, row) => 500,
   },
   {
     title: '註冊時間',
     dataIndex: 'firstWithdrawalCount',
-    allowFiltered: true,
     width: '200px',
     render: () => '2020-09-16 14:25:42',
   },
   {
     title: '登入時間',
     dataIndex: 'firstWithdrawalTotal',
-    allowFiltered: true,
     width: '200px',
     render: () => (
       <>
@@ -93,7 +84,6 @@ const columns = [
   {
     title: '狀態',
     dataIndex: 'onceAgainWithdrawalCount',
-    allowFiltered: true,
     width: 120,
     render: () => <Text color="success">正常</Text>,
   },

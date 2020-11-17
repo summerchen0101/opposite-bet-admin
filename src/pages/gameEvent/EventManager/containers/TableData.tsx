@@ -25,12 +25,10 @@ const columns = [
     title: '賽事編號',
     dataIndex: 'eventId',
     width: '10%',
-    allowFiltered: true,
   },
   {
     title: '開賽時間',
     dataIndex: 'startAt',
-    allowFiltered: true,
   },
   {
     title: '隊名',

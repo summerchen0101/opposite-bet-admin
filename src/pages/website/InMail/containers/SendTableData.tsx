@@ -8,35 +8,30 @@ const columns = [
   {
     title: '主題',
     dataIndex: 'account',
-    allowFiltered: true,
     width: 180,
     render: () => '反水活動修改',
   },
   {
     title: '收件人',
     dataIndex: 'firstDepositCount',
-    allowFiltered: true,
     width: 120,
     render: () => 'gogoro99',
   },
   {
     title: '收件人數量',
     dataIndex: 'firstDepositTotal',
-    allowFiltered: true,
     width: 100,
     render: () => 30,
   },
   {
     title: '讀取數量',
     dataIndex: 'onceAgainDepositCount',
-    allowFiltered: true,
     width: 100,
     render: () => 4,
   },
   {
     title: '發送時間',
     dataIndex: 'onceAgainDepositTotal',
-    allowFiltered: true,
     width: 140,
   },
   {

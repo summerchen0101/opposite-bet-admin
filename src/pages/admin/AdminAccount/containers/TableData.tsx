@@ -9,47 +9,42 @@ import {
 import { Space } from 'antd'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { ColumnType } from 'antd/lib/table'
 
-const columns = [
+const columns: ColumnType<any>[] = [
   {
     title: '管理者帳號',
     dataIndex: 'account',
-    allowFiltered: true,
     width: 120,
     render: (value) => (value ? <a>{value}</a> : '-'),
   },
   {
     title: '真實姓名',
     dataIndex: 'name',
-    allowFiltered: true,
     width: 120,
     render: (value) => value,
   },
   {
     title: '管理者角色',
     dataIndex: 'role',
-    allowFiltered: true,
     width: 140,
     render: (value) => value,
   },
   {
     title: '上次登入時間',
     dataIndex: 'lastLogin',
-    allowFiltered: true,
     width: 200,
     render: (value) => value ?? '-',
   },
   {
     title: '上次登入IP',
     dataIndex: 'lastIp',
-    allowFiltered: true,
     width: 140,
     render: (value) => value ?? '-',
   },
   {
     title: '啟用狀態',
     dataIndex: 'status',
-    allowFiltered: true,
     width: 140,
     render: (value) =>
       value ? (
@@ -61,7 +56,6 @@ const columns = [
   {
     title: '上線狀態',
     dataIndex: 'isOnline',
-    allowFiltered: true,
     width: 120,
     render: (value) => '線上',
   },

@@ -10,14 +10,12 @@ const columns = [
   {
     title: '公司',
     dataIndex: 'account',
-    allowFiltered: true,
     width: 100,
     render: () => '-',
   },
   {
     title: '遊戲站',
     dataIndex: 'firstDepositCount',
-    allowFiltered: true,
     width: 120,
     children: [
       {
@@ -39,7 +37,6 @@ const columns = [
   {
     title: '注單統計',
     dataIndex: 'firstDepositTotal',
-    allowFiltered: true,
     width: 140,
     children: [
       {
@@ -76,7 +73,6 @@ const columns = [
   {
     title: '會員',
     dataIndex: 'onceAgainWithdrawalCount',
-    allowFiltered: true,
     width: 120,
     children: [
       {
@@ -133,7 +129,6 @@ const columns = [
   {
     title: '成本支出',
     dataIndex: 'firstDepositTotal',
-    allowFiltered: true,
     width: 140,
     children: [
       {
@@ -161,7 +156,6 @@ const columns = [
   {
     title: '小計',
     dataIndex: 'firstWithdrawalTotal',
-    allowFiltered: true,
     width: 120,
     render: () => '-',
   },

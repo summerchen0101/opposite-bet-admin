@@ -9,25 +9,21 @@ const columns = [
   {
     title: '賽事編號',
     dataIndex: 'eventId',
-    allowFiltered: true,
     width: 100,
   },
   {
     title: '比分',
     dataIndex: 'score',
-    allowFiltered: true,
     width: 120,
   },
   {
     title: '賠率',
     dataIndex: 'odds',
-    allowFiltered: true,
     width: 120,
   },
   {
     title: '類型',
     dataIndex: 'type',
-    allowFiltered: true,
     width: 120,
   },
   {

@@ -13,7 +13,6 @@ const columns = [
   {
     title: '分類',
     dataIndex: 'category',
-    allowFiltered: true,
     width: 100,
     render(value, row) {
       const options = [
@@ -30,13 +29,11 @@ const columns = [
   {
     title: '類別',
     dataIndex: 'type',
-    allowFiltered: true,
     width: 100,
   },
   {
     title: '語系',
     dataIndex: 'language',
-    allowFiltered: true,
     width: 80,
     render(value, row) {
       const options = {
@@ -57,7 +54,6 @@ const columns = [
   {
     title: '狀態',
     dataIndex: 'status',
-    allowFiltered: true,
     width: 80,
     render: (value) => {
       if (value === 'on') return <span style={{ color: 'green' }}>啟用</span>
@@ -67,13 +63,11 @@ const columns = [
   {
     title: '更新人員',
     dataIndex: 'operator',
-    allowFiltered: true,
     width: 100,
   },
   {
     title: '更新時間',
     dataIndex: 'operatorAt',
-    allowFiltered: true,
     width: 150,
   },
   {

@@ -10,56 +10,48 @@ const columns = [
   {
     title: '編號',
     dataIndex: 'account',
-    allowFiltered: true,
     width: 60,
     render: (_, row, i) => i + 1,
   },
   {
     title: '單號',
     dataIndex: 'firstDepositCount',
-    allowFiltered: true,
     width: 180,
     render: () => '2020091009515118',
   },
   {
     title: '設定名稱',
     dataIndex: 'firstDepositTotal',
-    allowFiltered: true,
     width: 140,
     render: () => '-',
   },
   {
     title: '狀態',
     dataIndex: 'onceAgainDepositCount',
-    allowFiltered: true,
     width: 120,
     render: () => '-',
   },
   {
     title: '帳號/名稱',
     dataIndex: 'onceAgainDepositTotal',
-    allowFiltered: true,
     width: 140,
     render: () => '-',
   },
   {
     title: '初始金額',
     dataIndex: 'depositCount',
-    allowFiltered: true,
     width: 120,
     render: () => '1,000.00',
   },
   {
     title: '實際入款金額',
     dataIndex: 'depositTotal',
-    allowFiltered: true,
     width: 140,
     render: () => '1,000.00',
   },
   {
     title: '優惠',
     dataIndex: 'firstWithdrawalCount',
-    allowFiltered: true,
     width: 120,
     render: () => '0.00',
   },
@@ -72,7 +64,6 @@ const columns = [
       </>
     ),
     dataIndex: 'firstWithdrawalTotal',
-    allowFiltered: true,
     width: 200,
     render: () => (
       <>
@@ -89,7 +80,6 @@ const columns = [
       </>
     ),
     dataIndex: 'onceAgainWithdrawalCount',
-    allowFiltered: true,
     width: 200,
     render: () => (
       <>
