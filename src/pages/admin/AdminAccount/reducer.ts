@@ -13,13 +13,16 @@ interface ListItem {
   status: boolean
   isOnline: boolean
 }
+
 export interface IState {
   tableData: ListItem[]
+  roleOptions: any[]
   permission: Permission
   displayCreateModal: boolean
 }
 const initialState: IState = {
   tableData: [],
+  roleOptions: [],
   permission: { edit: false, view: false },
   displayCreateModal: false,
 }
@@ -31,6 +34,16 @@ export const fetchAdminList = createAsyncThunk(
   async (_, thunkAPI) => {
     const res = await apis.getAdminList()
     return res
+  },
+)
+export const fetchAdminCreateOptions = createAsyncThunk(
+  `${moduleName}/fetchAdminCreateOptions`,
+  async (_, thunkAPI) => {
+    const res = await apis.editAdmin('ADD')
+    if (res.result === 'SUCCESS') {
+      return res
+    }
+    throw res
   },
 )
 
@@ -65,6 +78,21 @@ const module = createSlice({
     builder.addCase(fetchAdminList.rejected, (state, action) => {
       state.tableData = []
       state.permission = { edit: false, view: false }
+    })
+
+    builder.addCase(fetchAdminCreateOptions.fulfilled, (state, action) => {
+      state.roleOptions = Object.keys(action.payload.data.admin_roles).map(
+        (id) => {
+          const role = action.payload.data.admin_roles[id]
+          return {
+            label: role.role_name,
+            value: id,
+          }
+        },
+      )
+    })
+    builder.addCase(fetchAdminCreateOptions.rejected, (state, action) => {
+      state.roleOptions = []
     })
   },
 })

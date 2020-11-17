@@ -17,3 +17,10 @@ export interface Permission {
   view: boolean
   edit: boolean
 }
+
+export interface ResponseBase {
+  result: string
+  data: any
+}
+
+export type MethodType = 'ADD' | 'EDIT'

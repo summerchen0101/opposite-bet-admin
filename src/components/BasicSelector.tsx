@@ -7,6 +7,7 @@ interface Props {
   value?: any
   width?: string | number
   placeholder?: string
+  style?: React.CSSProperties
 }
 const BasicSelector: React.FC<Props> = ({
   options,

@@ -13,9 +13,10 @@ import {
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleCreateModal } from '../reducer'
+import { selectRoleOptions } from '../selectors'
 import { selectDisplayCreateModal, useTypedSelector } from '../selectors'
 import Form, { FormField } from '@/components/Form'
-import { Text } from '@/components'
+import { BasicSelector, Text } from '@/components'
 // const [form] = AntForm.useForm()
 const { Option } = Select
 const CreateForm: React.FC = () => {
@@ -35,6 +36,7 @@ const CreateForm: React.FC = () => {
   const onReset = () => {
     // form.resetFields()
   }
+  const roleOptions = useTypedSelector(selectRoleOptions)
   return (
     <PopupModal visible={isDisplay} title="新增管理者" onCancel={onCancel}>
       <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
@@ -56,7 +58,11 @@ const CreateForm: React.FC = () => {
           </Col>
           <Col span={12}>
             <FormField label="角色" required>
-              <Input />
+              <BasicSelector
+                options={roleOptions}
+                placeholder="請選擇"
+                width="100%"
+              />
             </FormField>
           </Col>
           <Col span={12}>
