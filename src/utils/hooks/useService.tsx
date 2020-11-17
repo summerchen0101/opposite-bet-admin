@@ -1,4 +1,4 @@
-import * as apis from '@/utils/apiService'
+import * as apis from '@/utils/apis'
 import { message } from 'antd'
 import { useHistory } from 'react-router-dom'
 

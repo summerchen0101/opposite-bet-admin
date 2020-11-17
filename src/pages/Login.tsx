@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Card, Form, Input, Button, message, Space } from 'antd'
 import styled from 'styled-components'
-import * as api from '@/utils/apiService'
+import * as api from '@/utils/apis'
 import { LoadingOutlined } from '@ant-design/icons'
 import { useHistory } from 'react-router-dom'
 import useService from '@/utils/hooks/useService'

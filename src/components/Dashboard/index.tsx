@@ -6,7 +6,6 @@ import Content from './Content'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import Wrapper from './Wrapper'
-import * as apis from '@/utils/apiService'
 import { useHistory } from 'react-router-dom'
 
 const Dashboard: React.FC = ({ children }) => {

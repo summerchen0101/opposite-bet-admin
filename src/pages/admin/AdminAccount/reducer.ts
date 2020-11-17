@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
+import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
+import * as apis from '@/utils/apis'
 export interface IState {
   tableData: any[]
   displayCreateModal: boolean
@@ -10,6 +10,17 @@ const initialState: IState = {
 }
 
 export const moduleName = 'adminAccount'
+
+export const fetchAdminList = createAsyncThunk(
+  `${moduleName}/fetchAdminList`,
+  async (_, thunkAPI) => {
+    const res = await apis.getAdminList()
+    if (res.result === 'SUCCESS') {
+      return res.data
+    }
+    throw res
+  },
+)
 
 const module = createSlice({
   name: moduleName,
