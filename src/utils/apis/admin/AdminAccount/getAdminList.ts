@@ -1,6 +1,6 @@
 import Request from '@/utils/request'
 import { StatusType, RemotePermission, RemotePagination } from '@/lib/types'
-interface AdminListRequest {
+interface RequestProps {
   account?: string
   role?: string
   status?: StatusType
@@ -15,15 +15,13 @@ interface Admin {
   status: 1
 }
 
-interface AdminListReponse {
+interface ResponseProps {
   permission: RemotePermission
   admin: Admin[]
   paging: RemotePagination
 }
 
-export const getAdminList = (
-  req: AdminListRequest = {},
-): Promise<AdminListReponse> => {
+export default (req: RequestProps = {}): Promise<ResponseProps> => {
   const data = {
     search_account: req.account,
     search_role: req.role,
@@ -31,8 +29,4 @@ export const getAdminList = (
     search_ip: req.ip,
   }
   return Request.post(`admin/getAdminList`, data)
-}
-
-export const getAdminRoles = (): Promise<any> => {
-  return Request.post(`admin/getAdminRoles`)
 }

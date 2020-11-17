@@ -1,5 +1,6 @@
 import Request from '@/utils/request'
 export * from './admin'
+
 export const getUserList = (id) => {
   return Request.get(`https://jsonplaceholder.typicode.com/users/${id}`)
 }
