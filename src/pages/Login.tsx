@@ -6,6 +6,8 @@ import { LoadingOutlined } from '@ant-design/icons'
 import { useHistory } from 'react-router-dom'
 import useService from '@/utils/hooks/useService'
 import errCodes from '@/lib/errCodes'
+import { fetchUserAndMenu } from '@/store/reducer'
+import { useDispatch } from 'react-redux'
 
 const Wrapper = styled.div`
   display: flex;
@@ -16,7 +18,8 @@ const Wrapper = styled.div`
 `
 const Login: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false)
-  const history = useHistory()
+  const dispatch = useDispatch()
+  // const history = useHistory()
   const { fetchMenuInfo } = useService()
   const onFinish = async (data) => {
     try {
@@ -25,8 +28,7 @@ const Login: React.FC = () => {
       setIsLoading(false)
       if (res.result === 'LOGIN_SUCCESS') {
         sessionStorage.setItem('token', res.token)
-        fetchMenuInfo()
-        history.push('/')
+        dispatch(fetchUserAndMenu())
       } else {
         message.error(errCodes[res.result])
       }

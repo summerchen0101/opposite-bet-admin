@@ -1,6 +1,6 @@
 import { useTypedSelector } from '@/store/rootReducer'
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 
 export default function RouteWithSubRoutes(route) {
   const isLogin = useTypedSelector((state) => state.global.isLogin)
@@ -8,10 +8,14 @@ export default function RouteWithSubRoutes(route) {
     <Route
       path={route.path}
       exact={route.exact}
-      render={(props) => (
-        // pass the sub-routes down to keep nesting
-        <route.component {...props} routes={route.routes} />
-      )}
+      render={(props) => {
+        if (route.path !== '/login' && !isLogin) {
+          return <Redirect to="/login" />
+        } else if (route.path === '/login' && isLogin) {
+          return <Redirect to="/" />
+        }
+        return <route.component {...props} routes={route.routes} />
+      }}
     />
   )
 }

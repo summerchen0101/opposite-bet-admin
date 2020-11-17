@@ -4,24 +4,47 @@ export type TabType = {
   path: string
   label: string
 }
+interface UserProps {
+  name: string
+  role: string
+}
+
+type PermissionType = 'Y' | 'N'
+interface RootMenuProps {
+  id: string | number
+  name: string
+  children?: MenuProps[]
+}
+interface MenuProps {
+  id: string | number
+  name: string
+  permission: { view: PermissionType; edit: PermissionType }
+}
 export type GlobalState = {
   isLogin: boolean
   tabs: TabType[]
   language: string
+  menu: RootMenuProps[]
+  user: UserProps | null
 }
 const initialState: GlobalState = {
-  isLogin: false,
+  isLogin: !!sessionStorage.getItem('token'),
   tabs: [],
   language: 'zh-Hant',
+  menu: [],
+  user: null,
 }
 
-// const fetchUserById = createAsyncThunk(
-//   'users/fetchByIdStatus',
-//   async (userId, thunkAPI) => {
-//     const response = await apis.getUserList(userId);
-//     return response.data;
-//   },
-// );
+export const fetchUserAndMenu = createAsyncThunk(
+  'global/fetchUserAndMenu',
+  async (_, thunkAPI) => {
+    const res = await apis.getUserInfo()
+    if (res.result === 'SUCCESS') {
+      return res.data
+    }
+    throw res
+  },
+)
 
 const module = createSlice({
   name: 'global',
@@ -47,11 +70,33 @@ const module = createSlice({
       state.language = action.payload
     },
   },
-  // extraReducers: (builder) => {
-  //   builder.addCase(fetchUserById.fulfilled, (state, action) => {
-  //     // state.messages = action.payload;
-  //   });
-  // },
+  extraReducers: (builder) => {
+    builder.addCase(fetchUserAndMenu.fulfilled, (state, action) => {
+      state.isLogin = true
+      state.user = action.payload.admin as UserProps
+      for (const rootId in action.payload.menu) {
+        const { root, sub } = action.payload.menu[rootId]
+        const children = []
+        for (const subId in sub) {
+          const { name, url, permission } = sub[subId]
+          children.push({
+            id: subId,
+            name,
+            permission: { view: permission.VIEW, edit: permission.EDIT },
+          })
+        }
+        state.menu.push({
+          id: rootId,
+          name: root.name,
+          children,
+        })
+      }
+    })
+    builder.addCase(fetchUserAndMenu.rejected, (state, action) => {
+      state.isLogin = false
+      sessionStorage.removeItem('token')
+    })
+  },
 })
 
 export const {

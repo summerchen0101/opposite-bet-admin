@@ -2,7 +2,7 @@ import * as apis from '@/utils/apiService'
 import { message } from 'antd'
 import { useHistory } from 'react-router-dom'
 
-const useEntry = () => {
+const useService = () => {
   const history = useHistory()
   const fetchMenuInfo = async () => {
     try {
@@ -20,4 +20,4 @@ const useEntry = () => {
   }
 }
 
-export default useEntry
+export default useService
