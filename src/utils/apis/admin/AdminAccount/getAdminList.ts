@@ -6,7 +6,7 @@ interface RequestProps {
   status?: StatusType
   ip?: string
 }
-interface Admin {
+interface ResponseAdmin {
   admin_account: string | null
   admin_name: string
   admin_role: string
@@ -17,7 +17,7 @@ interface Admin {
 
 interface ResponseProps {
   permission: RemotePermission
-  admin: Admin[]
+  admin: ResponseAdmin[]
   paging: RemotePagination
 }
 

@@ -2,6 +2,7 @@ import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
 import * as apis from '@/utils/apis'
 import { Permission } from '@/lib/types'
 import { permissionTransfer } from '@/utils/dataFactory'
+import { AdminAccount } from '@/lib/types'
 
 interface ListItem {
   key: number
@@ -40,6 +41,17 @@ export const fetchAdminCreateOptions = createAsyncThunk(
   `${moduleName}/fetchAdminCreateOptions`,
   async (_, thunkAPI) => {
     const res = await apis.editAdmin('ADD')
+    if (res.result === 'SUCCESS') {
+      return res
+    }
+    throw res
+  },
+)
+
+export const createAdmin = createAsyncThunk(
+  `${moduleName}/createAdmin`,
+  async (fomrData: AdminAccount.CreateFormProps, thunkAPI) => {
+    const res = await apis.storeAdmin(fomrData)
     if (res.result === 'SUCCESS') {
       return res
     }
@@ -93,6 +105,9 @@ const module = createSlice({
     })
     builder.addCase(fetchAdminCreateOptions.rejected, (state, action) => {
       state.roleOptions = []
+    })
+    builder.addCase(createAdmin.fulfilled, (state, action) => {
+      state.displayCreateModal = false
     })
   },
 })

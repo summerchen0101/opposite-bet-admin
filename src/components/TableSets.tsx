@@ -4,7 +4,7 @@ import { ColumnType } from 'antd/lib/table'
 import React, { useEffect } from 'react'
 interface TableSetsProps {
   data: any[]
-  columns: (ColumnType<any> & { allowFiltered?: boolean })[]
+  columns: (ColumnType<{ name: string }> & { allowFiltered?: boolean })[]
   rowKey?: any
   components?: any
   onSortEnd?: any

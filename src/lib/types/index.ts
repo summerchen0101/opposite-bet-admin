@@ -1,3 +1,5 @@
+export * from './admin'
+
 type RemotePermissionType = 'Y' | 'N'
 export type StatusType = 1 | 0
 
