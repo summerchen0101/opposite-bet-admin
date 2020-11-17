@@ -1,13 +1,11 @@
-import React, { useState } from 'react'
-import { Card, Form, Input, Button, message, Space } from 'antd'
-import styled from 'styled-components'
-import * as api from '@/utils/apis'
-import { LoadingOutlined } from '@ant-design/icons'
-import { useHistory } from 'react-router-dom'
-import useService from '@/utils/hooks/useService'
 import errCodes from '@/lib/errCodes'
 import { fetchUserAndMenu } from '@/store/reducer'
+import * as api from '@/utils/apis'
+import { LoadingOutlined } from '@ant-design/icons'
+import { Button, Card, Form, Input, message, Space } from 'antd'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import styled from 'styled-components'
 
 const Wrapper = styled.div`
   display: flex;
@@ -19,8 +17,6 @@ const Wrapper = styled.div`
 const Login: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false)
   const dispatch = useDispatch()
-  // const history = useHistory()
-  const { fetchMenuInfo } = useService()
   const onFinish = async (data) => {
     try {
       setIsLoading(true)

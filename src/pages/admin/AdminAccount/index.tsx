@@ -10,13 +10,14 @@ import PopupCreateForm from './containers/PopupCreateForm'
 import RoleSelector from './containers/RoleSelector'
 import StatusSelector from './containers/StatusSelector'
 import TableData from './containers/TableData'
-import reducer, { initSearchState, moduleName } from './reducer'
+import reducer, { fetchAdminList, initSearchState, moduleName } from './reducer'
 
 const Manager: React.FC = () => {
   useReducerInjector(moduleName, reducer)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(initSearchState())
+    dispatch(fetchAdminList())
   }, [])
   return (
     <Dashboard>

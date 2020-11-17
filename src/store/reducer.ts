@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
 import * as apis from '@/utils/apis'
+import { Permission } from '@/lib/types'
+import { permissionTransfer } from '@/utils/dataFactory'
 export type TabType = {
   path: string
   label: string
@@ -9,7 +11,6 @@ interface UserProps {
   role: string
 }
 
-type PermissionType = 'Y' | 'N'
 interface RootMenuProps {
   id: string | number
   name: string
@@ -18,7 +19,7 @@ interface RootMenuProps {
 interface MenuProps {
   id: string | number
   name: string
-  permission: { view: PermissionType; edit: PermissionType }
+  permission: Permission
 }
 export type GlobalState = {
   isLogin: boolean
@@ -82,7 +83,7 @@ const module = createSlice({
           children.push({
             id: subId,
             name,
-            permission: { view: permission.VIEW, edit: permission.EDIT },
+            permission: permissionTransfer(permission),
           })
         }
         state.menu.push({

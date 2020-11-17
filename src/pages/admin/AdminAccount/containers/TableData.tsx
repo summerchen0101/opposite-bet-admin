@@ -1,5 +1,5 @@
-import IconLink from '@/components/IconLink'
-import TableSets from '@/components/TableSets'
+import { IconLink, Text, TableSets } from '@/components'
+import { useTypedSelector, selectTableData } from '../selectors'
 import {
   EditFilled,
   ClockCircleOutlined,
@@ -16,49 +16,54 @@ const columns = [
     dataIndex: 'account',
     allowFiltered: true,
     width: 120,
-    render: () => <a>PHMQ647</a>,
+    render: (value) => (value ? <a>{value}</a> : '-'),
   },
   {
     title: '真實姓名',
-    dataIndex: 'firstDepositCount',
+    dataIndex: 'name',
     allowFiltered: true,
     width: 120,
-    render: () => '陳大明',
+    render: (value) => value,
   },
   {
     title: '管理者角色',
-    dataIndex: 'firstDepositTotal',
+    dataIndex: 'role',
     allowFiltered: true,
     width: 140,
-    render: () => 'admin',
+    render: (value) => value,
   },
   {
     title: '上次登入時間',
-    dataIndex: 'onceAgainDepositCount',
+    dataIndex: 'lastLogin',
     allowFiltered: true,
     width: 200,
-    render: () => '2020-10-15 13:28:28',
+    render: (value) => value ?? '-',
   },
   {
     title: '上次登入IP',
-    dataIndex: 'onceAgainDepositTotal',
+    dataIndex: 'lastIp',
     allowFiltered: true,
     width: 140,
-    render: () => '0.0.0.0',
+    render: (value) => value ?? '-',
   },
   {
     title: '啟用狀態',
-    dataIndex: 'depositTotal',
+    dataIndex: 'status',
     allowFiltered: true,
     width: 140,
-    render: () => '啟用',
+    render: (value) =>
+      value ? (
+        <Text color="success">啟用</Text>
+      ) : (
+        <Text color="danger">停用</Text>
+      ),
   },
   {
     title: '上線狀態',
-    dataIndex: 'firstWithdrawalCount',
+    dataIndex: 'isOnline',
     allowFiltered: true,
     width: 120,
-    render: () => '線上',
+    render: (value) => '線上',
   },
   {
     title: () => (
@@ -84,25 +89,8 @@ const columns = [
     width: 90,
   },
 ]
-
-const data = []
-for (let i = 1; i <= 50; i++) {
-  data.push({
-    key: i,
-    account: 'aaaa(小白)',
-    firstDepositCount: 5,
-    firstDepositTotal: 20320,
-    onceAgainDepositCount: 10,
-    onceAgainDepositTotal: 41232,
-    firstWithdrawalCount: 5,
-    firstWithdrawalTotal: 20320,
-    onceAgainWithdrawalCount: 10,
-    onceAgainWithdrawalTotal: 41232,
-    loginCount: 20,
-    registerCount: 3,
-  })
-}
 const TableData: React.FC = () => {
+  const data = useTypedSelector(selectTableData)
   return <TableSets columns={columns} data={data} />
 }
 
