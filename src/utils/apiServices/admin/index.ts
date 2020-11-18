@@ -1,2 +1,2 @@
-export * as AdminAccount from './AdminAccount'
-export * as AdminRole from './AdminRole'
+export * as AdminAccount from './adminAccount'
+export * as AdminRole from './adminRole'

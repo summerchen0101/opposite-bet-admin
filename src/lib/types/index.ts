@@ -36,3 +36,8 @@ export interface LoginFormData {
   username: string
   password: string
 }
+
+export interface UserInfo {
+  name: string
+  role: string
+}

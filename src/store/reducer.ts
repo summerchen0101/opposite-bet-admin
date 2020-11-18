@@ -1,15 +1,9 @@
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
+import { Permission, UserInfo } from '@/lib/types'
 import * as apis from '@/utils/apiServices'
-import { LoginFormData, Permission } from '@/lib/types'
-import { permissionTransfer } from '@/utils/dataFactory'
-import { message } from 'antd'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 export type TabType = {
   path: string
   label: string
-}
-interface UserProps {
-  name: string
-  role: string
 }
 
 interface RootMenuProps {
@@ -27,7 +21,7 @@ export type GlobalState = {
   tabs: TabType[]
   language: string
   menu: RootMenuProps[]
-  user: UserProps | null
+  user: UserInfo | null
   loading: boolean
 }
 const initialState: GlobalState = {
@@ -42,11 +36,7 @@ const initialState: GlobalState = {
 export const fetchUserAndMenu = createAsyncThunk(
   'global/fetchUserAndMenu',
   async (_, thunkAPI) => {
-    const res = await apis.getUserInfo()
-    if (res.result === 'SUCCESS') {
-      return res.data
-    }
-    throw res
+    return await apis.getUserAndMenu()
   },
 )
 
@@ -79,29 +69,9 @@ const module = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchUserAndMenu.fulfilled, (state, action) => {
-      state.isLogin = true
-      state.user = action.payload.admin as UserProps
-      for (const rootId in action.payload.menu) {
-        const { root, sub } = action.payload.menu[rootId]
-        const children = []
-        for (const subId in sub) {
-          const { name, url, permission } = sub[subId]
-          children.push({
-            id: subId,
-            name,
-            permission: permissionTransfer(permission),
-          })
-        }
-        state.menu.push({
-          id: rootId,
-          name: root.name,
-          children,
-        })
-      }
-    })
-    builder.addCase(fetchUserAndMenu.rejected, (state, action) => {
-      sessionStorage.removeItem('token')
-      state.isLogin = false
+      const { admin, menu } = action.payload
+      state.user = admin
+      state.menu = menu
     })
   },
 })
