@@ -1,22 +1,17 @@
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
+import {
+  createSlice,
+  PayloadAction,
+  createAsyncThunk,
+  ActionReducerMapBuilder,
+} from '@reduxjs/toolkit'
 import * as apis from '@/utils/apis'
 import { Permission } from '@/lib/types'
 import { permissionTransfer } from '@/utils/dataFactory'
 import { AdminAccount } from '@/lib/types'
-
-interface ListItem {
-  key: number
-  account: string
-  name: string
-  role: string
-  lastLogin: string
-  lastIp: string
-  status: boolean
-  isOnline: boolean
-}
+import { message } from 'antd'
 
 export interface IState {
-  tableData: ListItem[]
+  tableData: AdminAccount.ListItem[]
   roleOptions: any[]
   permission: Permission
   displayCreateModal: boolean
@@ -52,7 +47,22 @@ export const createAdmin = createAsyncThunk(
   `${moduleName}/createAdmin`,
   async (fomrData: AdminAccount.CreateFormProps, thunkAPI) => {
     const res = await apis.AdminAccount.create(fomrData)
+    console.log(res)
     if (res.result === 'SUCCESS') {
+      thunkAPI.dispatch(fetchAdminList())
+      console.log('success')
+      return res
+    }
+    throw res
+  },
+)
+
+export const removeAdmin = createAsyncThunk(
+  `${moduleName}/removeAdmin`,
+  async (id: number, thunkAPI) => {
+    const res = await apis.AdminAccount.delete(id)
+    if (res.result === 'SUCCESS') {
+      thunkAPI.dispatch(fetchAdminList())
       return res
     }
     throw res
@@ -73,10 +83,11 @@ const module = createSlice({
       state.displayCreateModal = action.payload
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: (builder: ActionReducerMapBuilder<IState>) => {
     builder.addCase(fetchAdminList.fulfilled, (state, action) => {
       state.tableData = action.payload.admin.map((t, i) => ({
         key: i,
+        id: t.admin_id,
         account: t.admin_account,
         name: t.admin_name,
         role: t.admin_role,
@@ -93,21 +104,20 @@ const module = createSlice({
     })
 
     builder.addCase(fetchAdminCreateOptions.fulfilled, (state, action) => {
-      state.roleOptions = Object.keys(action.payload.data.admin_roles).map(
-        (id) => {
-          const role = action.payload.data.admin_roles[id]
-          return {
-            label: role.role_name,
-            value: id,
-          }
-        },
-      )
+      state.roleOptions = action.payload.data.admin_roles.map((t) => ({
+        label: t.role_name,
+        value: t.id,
+      }))
     })
     builder.addCase(fetchAdminCreateOptions.rejected, (state, action) => {
       state.roleOptions = []
     })
     builder.addCase(createAdmin.fulfilled, (state, action) => {
       state.displayCreateModal = false
+    })
+    builder.addCase(removeAdmin.fulfilled, (state, action) => {
+      state.tableData = state.tableData.filter((t) => t.key)
+      message.success('刪除成功')
     })
   },
 })

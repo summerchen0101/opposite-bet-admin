@@ -27,3 +27,15 @@ export interface EditFormProps {
   status: 'on' | 'off'
   notes: string
 }
+
+export interface ListItem {
+  key: number
+  id: number
+  account: string
+  name: string
+  role: string
+  lastLogin: string
+  lastIp: string
+  status: boolean
+  isOnline: boolean
+}

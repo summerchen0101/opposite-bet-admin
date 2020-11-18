@@ -7,6 +7,7 @@ interface RequestProps {
   ip?: string
 }
 interface ResponseAdmin {
+  admin_id: number
   admin_account: string | null
   admin_name: string
   admin_role: string

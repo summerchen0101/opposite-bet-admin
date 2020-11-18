@@ -22,7 +22,7 @@ const Login: React.FC = () => {
       setIsLoading(true)
       const res = await api.login(data)
       setIsLoading(false)
-      if (res.result === 'LOGIN_SUCCESS') {
+      if (res.result === 'SUCCESS') {
         sessionStorage.setItem('token', res.token)
         dispatch(fetchUserAndMenu())
       } else {

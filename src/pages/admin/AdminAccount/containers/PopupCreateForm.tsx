@@ -19,6 +19,7 @@ import { selectDisplayCreateModal, useTypedSelector } from '../selectors'
 import Form, { FormField } from '@/components/Form'
 import { BasicSelector, Text } from '@/components'
 import { AdminAccount } from '@/lib/types'
+import moment from 'moment'
 // const [form] = AntForm.useForm()
 const { Option } = Select
 const initValues: AdminAccount.CreateFormProps = {
@@ -51,6 +52,9 @@ const CreateForm: React.FC = () => {
   }
   const onReset = () => {
     form.resetFields()
+  }
+  const disabledDate = (current) => {
+    return current && current < moment().endOf('day')
   }
   const roleOptions = useTypedSelector(selectRoleOptions)
   return (
@@ -93,6 +97,7 @@ const CreateForm: React.FC = () => {
                   `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
                 }
                 parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
+                style={{ width: '100%' }}
               />
             </FormField>
           </Col>
@@ -103,6 +108,7 @@ const CreateForm: React.FC = () => {
                   `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
                 }
                 parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
+                style={{ width: '100%' }}
               />
             </FormField>
           </Col>
@@ -119,7 +125,7 @@ const CreateForm: React.FC = () => {
               <Space>
                 <span>時間：</span>
                 <FormField name="limitDate">
-                  <DatePicker />
+                  <DatePicker disabledDate={disabledDate} />
                 </FormField>
               </Space>
             </Radio>

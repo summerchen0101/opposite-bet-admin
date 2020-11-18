@@ -1,4 +1,4 @@
-import { IconLink, Text, TableSets } from '@/components'
+import { IconLink, Text, TableSets, PopupConfirm } from '@/components'
 import { useTypedSelector, selectTableData } from '../selectors'
 import {
   EditFilled,
@@ -10,8 +10,10 @@ import { Space } from 'antd'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ColumnType } from 'antd/lib/table'
-
-const columns: ColumnType<any>[] = [
+import { useDispatch } from 'react-redux'
+import { removeAdmin } from '../reducer'
+import { AdminAccount } from '@/lib/types'
+const columns: ColumnType<AdminAccount.ListItem>[] = [
   {
     title: '管理者帳號',
     dataIndex: 'account',
@@ -72,9 +74,13 @@ const columns: ColumnType<any>[] = [
     key: 'control',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
+      const dispatch = useDispatch()
+      const handleDelete = () => dispatch(removeAdmin(row.id))
       return (
         <Space size="small">
-          <IconLink icon={<StopOutlined />} label="停用" color="red" />
+          <PopupConfirm onConfirm={handleDelete}>
+            <IconLink icon={<StopOutlined />} label="停用" color="red" />
+          </PopupConfirm>
           <IconLink icon={<EditFilled />} label="編輯" />
           <IconLink icon={<ClockCircleOutlined />} label="歷程" />
         </Space>
