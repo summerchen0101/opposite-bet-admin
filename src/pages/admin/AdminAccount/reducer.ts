@@ -1,13 +1,11 @@
+import { AdminAccount, OptionType, Permission } from '@/lib/types'
+import * as apis from '@/utils/apiServices'
 import {
+  ActionReducerMapBuilder,
+  createAsyncThunk,
   createSlice,
   PayloadAction,
-  createAsyncThunk,
-  ActionReducerMapBuilder,
 } from '@reduxjs/toolkit'
-import * as apis from '@/utils/apiServices'
-import { Permission } from '@/lib/types'
-import { permissionTransfer } from '@/utils/dataFactory'
-import { AdminAccount, OptionType } from '@/lib/types'
 import { message } from 'antd'
 
 export interface IState {
@@ -44,22 +42,10 @@ export const fetchAdminList = createAsyncThunk(
   },
 )
 
-// 選項(新增)
-export const fetchAdminCreateOptions = createAsyncThunk(
-  `${moduleName}/fetchAdminCreateOptions`,
-  async (_, thunkAPI) => {
-    const res = await apis.AdminAccount.options()
-    if (res.result === 'SUCCESS') {
-      return res
-    }
-    throw res
-  },
-)
-
 // 選項(編輯)
 export const fetchAdminEditOptions = createAsyncThunk(
   `${moduleName}/fetchAdminEditOptions`,
-  async (id: number, thunkAPI) => {
+  async (id: number, { dispatch }) => {
     return await apis.AdminAccount.get(id)
   },
 )
@@ -67,26 +53,31 @@ export const fetchAdminEditOptions = createAsyncThunk(
 // 新增
 export const createAdmin = createAsyncThunk(
   `${moduleName}/createAdmin`,
-  async (fomrData: AdminAccount.DataFormProps, thunkAPI) => {
-    const res = await apis.AdminAccount.create(fomrData)
-    if (res.result === 'SUCCESS') {
-      thunkAPI.dispatch(fetchAdminList({}))
-      return res
-    }
-    throw res
+  async (fomrData: AdminAccount.DataFormProps, { dispatch }) => {
+    await apis.AdminAccount.create(fomrData)
+    dispatch(fetchAdminList({}))
+    return
+  },
+)
+// 編輯
+export const editAdmin = createAsyncThunk(
+  `${moduleName}/editAdmin`,
+  async (fomrData: AdminAccount.DataFormProps, { dispatch, ...options }) => {
+    console.log(options.getState())
+    await apis.AdminAccount.edit({ ...fomrData, id: 9 })
+    dispatch(fetchAdminList({}))
+    return
   },
 )
 
 // 刪除
 export const removeAdmin = createAsyncThunk(
   `${moduleName}/removeAdmin`,
-  async (id: number, thunkAPI) => {
-    const res = await apis.AdminAccount.delete(id)
-    if (res.result === 'SUCCESS') {
-      thunkAPI.dispatch(fetchAdminList({}))
-      return res
-    }
-    throw res
+  async (id: number, { dispatch }) => {
+    await apis.AdminAccount.delete(id)
+    message.success('刪除成功')
+    dispatch(fetchAdminList({}))
+    return
   },
 )
 
@@ -94,18 +85,6 @@ const module = createSlice({
   name: moduleName,
   initialState,
   reducers: {
-    gotTableData(state, action: PayloadAction<any[]>) {
-      state.tableData = action.payload
-    },
-    setRoleOptions(
-      state,
-      action: PayloadAction<AdminAccount.AdminRoleOption[]>,
-    ) {
-      state.roleOptions = action.payload.map((t) => ({
-        label: t.role_name,
-        value: t.id,
-      }))
-    },
     initSearchState(state) {
       //
     },
@@ -140,14 +119,11 @@ const module = createSlice({
     })
     builder.addCase(removeAdmin.fulfilled, (state, action) => {
       state.tableData = state.tableData.filter((t) => t.key)
-      message.success('刪除成功')
     })
   },
 })
 
 export const {
-  gotTableData,
-  setRoleOptions,
   initSearchState,
   toggleCreateModal,
   toggleEditModal,

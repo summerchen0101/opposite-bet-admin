@@ -1,5 +1,6 @@
 import { AdminAccount, ResponseBase, StatusType } from '@/lib/types'
 import Request from '@/utils/request'
+import { toErrorMessage } from '@/utils/transfer'
 
 interface RequestProps {
   method: 'EDIT'
@@ -12,28 +13,37 @@ interface RequestProps {
   daily_withdrawal_limit: number // 每日提款審核上限
   expire_date: string // 2020-11-17 or null
   allow_ips: string
-  status: StatusType
+  status: AdminAccount.AdminStatusOptions
   remark?: string
 }
 
-export default (
-  form: AdminAccount.EditDataFormProps,
-): Promise<ResponseBase<any>> => {
+export default async (
+  form: AdminAccount.DataFormProps & { id: number },
+): Promise<void> => {
   const expireDate =
-    form.effectiveTime === 'limit' ? form.limitDate.format('YYYY-MM-DD') : ''
+    form.effectiveTime === 'limit'
+      ? form.limitDate.format('YYYY-MM-DD')
+      : undefined
   const data: RequestProps = {
     method: 'EDIT',
     admin_id: form.id,
     name: form.realName,
     username: form.account,
-    admin_role_id: 123,
+    admin_role_id: form.role,
     admin_email: form.email,
     single_withdrawal_limit: form.singleLimit, // 單筆提款審核上限
     daily_withdrawal_limit: form.dailyLimit, // 每日提款審核上限
     expire_date: expireDate, // 2020-11-17 or null
     allow_ips: form.ip,
-    status: form.status == 'on' ? 1 : 0,
+    status: form.status,
     remark: form.notes,
   }
-  return Request.post(`admin/storeAdmin`, data)
+  const { result } = await Request.post<{ result: string }>(
+    `admin/storeAdmin`,
+    data,
+  )
+  if (result !== 'SUCCESS') {
+    throw toErrorMessage(result)
+  }
+  return
 }

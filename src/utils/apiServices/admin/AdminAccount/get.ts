@@ -43,7 +43,7 @@ export default async (id: number): Promise<AdminAccount.DataFormProps> => {
     singleLimit: +_admin.single_withdrawal_limit,
     dailyLimit: +_admin.daily_withdrawal_limit,
     effectiveTime: _admin.expire_date ? 'limit' : 'forever',
-    limitDate: _admin.expire_date ? moment(_admin.expire_date) : null,
+    limitDate: _admin.expire_date,
     ip: _admin.allow_ips,
     status: _admin.status,
     notes: _admin.remark,

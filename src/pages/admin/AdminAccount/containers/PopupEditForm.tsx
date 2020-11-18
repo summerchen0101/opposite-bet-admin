@@ -2,7 +2,8 @@ import PopupModal from '@/components/PopupModal'
 import { AdminAccount } from '@/lib/types'
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { createAdmin, toggleEditModal } from '../reducer'
+import { editAdmin, toggleEditModal } from '../reducer'
+import moment from 'moment'
 import {
   selectDisplayEditModal,
   useTypedSelector,
@@ -18,12 +19,13 @@ const EditForm: React.FC = () => {
   }
   const onFinish = (values: AdminAccount.DataFormProps) => {
     console.log('Success:', values)
-    dispatch(createAdmin(values))
+    dispatch(editAdmin(values))
   }
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
-  const values = useTypedSelector(selectEditAdmin)
+  const _v = useTypedSelector(selectEditAdmin)
+  const values = { ..._v, limitDate: moment(_v.limitDate) }
   return (
     <PopupModal visible={isDisplay} title="編輯管理者" onCancel={onCancel}>
       <DataForm

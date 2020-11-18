@@ -1,6 +1,7 @@
 import { LoginFormData, ResponseBase } from '@/lib/types'
 import Request from '@/utils/request'
 import errCodes from '@/lib/errCodes'
+import { toErrorMessage } from '../transfer'
 
 interface RequestProps {
   username: string
@@ -17,12 +18,16 @@ export default async (form: LoginFormData): Promise<string> => {
     username: form.account,
     password: form.password,
   }
-  const res = await Request.post<LoginResponse>('admin/login', reqData, {
-    noAuth: true,
-  })
-  if (res.result !== 'SUCCESS') {
-    throw new Error(errCodes[res.result])
+  const { token, result } = await Request.post<LoginResponse>(
+    'admin/login',
+    reqData,
+    {
+      noAuth: true,
+    },
+  )
+  if (result !== 'SUCCESS') {
+    throw toErrorMessage(result)
   }
-  sessionStorage.setItem('token', res.token)
-  return res.token
+  sessionStorage.setItem('token', token)
+  return token
 }

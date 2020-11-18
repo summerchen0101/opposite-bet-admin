@@ -1,5 +1,4 @@
-import { AdminAccount } from '..'
-import { Moment } from 'moment'
+export type AdminStatusOptions = 0 | 1 | 2 | 3
 export interface DataFormProps {
   account: string
   realName: string
@@ -8,26 +7,11 @@ export interface DataFormProps {
   singleLimit: number
   dailyLimit: number
   effectiveTime: 'limit' | 'forever'
-  limitDate: Moment
+  limitDate: any
   ip: string
-  status: AdminAccount.AdminStatusOptions
+  status: AdminStatusOptions
   notes: string
 }
-export interface EditDataFormProps {
-  id: number
-  account: string
-  realName: string
-  email: string
-  role: string
-  singleLimit: number
-  dailyLimit: number
-  effectiveTime: 'limit' | 'forever'
-  limitDate: Moment
-  ip: string
-  status: 'on' | 'off'
-  notes: string
-}
-
 export interface ListItem {
   key: number
   id: number
@@ -39,8 +23,6 @@ export interface ListItem {
   status: boolean
   isOnline: boolean
 }
-
-export type AdminStatusOptions = 0 | 1 | 2 | 3
 export interface ListSearchForm {
   account?: string
   role?: string

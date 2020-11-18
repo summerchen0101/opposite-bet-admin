@@ -1,5 +1,6 @@
 import { AdminAccount, ResponseBase, StatusType } from '@/lib/types'
 import Request from '@/utils/request'
+import { toErrorMessage } from '@/utils/transfer'
 
 interface RequestProps {
   method: 'ADD'
@@ -15,9 +16,7 @@ interface RequestProps {
   remark?: string
 }
 
-export default (
-  form: AdminAccount.DataFormProps,
-): Promise<ResponseBase<any>> => {
+export default async (form: AdminAccount.DataFormProps): Promise<void> => {
   const expireDate =
     form.effectiveTime === 'limit'
       ? form.limitDate.format('YYYY-MM-DD')
@@ -35,5 +34,12 @@ export default (
     status: form.status,
     remark: form.notes,
   }
-  return Request.post(`admin/storeAdmin`, data)
+  const { result } = await Request.post<{ result: string }>(
+    `admin/storeAdmin`,
+    data,
+  )
+  if (result !== 'SUCCESS') {
+    throw toErrorMessage(result)
+  }
+  return
 }
