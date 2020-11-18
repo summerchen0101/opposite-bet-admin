@@ -1,1 +1,1 @@
-export { default as getAdminRoles } from './getAdminRoles'
+export { default as getList } from './getList'
