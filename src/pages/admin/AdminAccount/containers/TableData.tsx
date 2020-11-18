@@ -11,8 +11,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { ColumnType } from 'antd/lib/table'
 import { useDispatch } from 'react-redux'
-import { removeAdmin } from '../reducer'
+import { fetchAdminEditOptions, removeAdmin } from '../reducer'
 import { AdminAccount } from '@/lib/types'
+import { toggleEditModal } from '../reducer'
 const columns: ColumnType<AdminAccount.ListItem>[] = [
   {
     title: '管理者帳號',
@@ -76,12 +77,15 @@ const columns: ColumnType<AdminAccount.ListItem>[] = [
     render(_, row) {
       const dispatch = useDispatch()
       const handleDelete = () => dispatch(removeAdmin(row.id))
+      const handleEdit = (e) => {
+        dispatch(fetchAdminEditOptions(row.id))
+      }
       return (
         <Space size="small">
           <PopupConfirm onConfirm={handleDelete}>
             <IconLink icon={<StopOutlined />} label="停用" color="red" />
           </PopupConfirm>
-          <IconLink icon={<EditFilled />} label="編輯" />
+          <IconLink icon={<EditFilled />} label="編輯" onClick={handleEdit} />
           <IconLink icon={<ClockCircleOutlined />} label="歷程" />
         </Space>
       )

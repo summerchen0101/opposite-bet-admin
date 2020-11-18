@@ -15,13 +15,17 @@ export interface IState {
   roleOptions: OptionType[]
   permission: Permission
   displayCreateModal: boolean
+  displayEditModal: boolean
   searchData: AdminAccount.ListSearchForm
+  editAdmin: Partial<AdminAccount.DataFormProps>
 }
 const initialState: IState = {
   tableData: [],
   roleOptions: [],
   permission: { edit: false, view: false },
   displayCreateModal: false,
+  displayEditModal: false,
+  editAdmin: {},
   searchData: {
     account: '',
     role: null,
@@ -57,15 +61,21 @@ export const fetchAdminCreateOptions = createAsyncThunk(
   },
 )
 
+// 選項(編輯)
+export const fetchAdminEditOptions = createAsyncThunk(
+  `${moduleName}/fetchAdminEditOptions`,
+  async (id: number, thunkAPI) => {
+    return await apis.AdminAccount.get(id)
+  },
+)
+
 // 新增
 export const createAdmin = createAsyncThunk(
   `${moduleName}/createAdmin`,
-  async (fomrData: AdminAccount.CreateFormProps, thunkAPI) => {
+  async (fomrData: AdminAccount.DataFormProps, thunkAPI) => {
     const res = await apis.AdminAccount.create(fomrData)
-    console.log(res)
     if (res.result === 'SUCCESS') {
       thunkAPI.dispatch(fetchAdminList({}))
-      console.log('success')
       return res
     }
     throw res
@@ -101,26 +111,14 @@ const module = createSlice({
         value: t.id,
       }))
     },
-    setSearchAccount(state, action: PayloadAction<string>) {
-      state.searchData.account = action.payload
-    },
-    setSearchIp(state, action: PayloadAction<string>) {
-      state.searchData.ip = action.payload
-    },
-    setSearchRole(state, action: PayloadAction<string>) {
-      state.searchData.role = action.payload
-    },
-    setSearchStatus(
-      state,
-      action: PayloadAction<AdminAccount.AdminStatusOptions>,
-    ) {
-      state.searchData.status = action.payload
-    },
     initSearchState(state) {
       //
     },
     toggleCreateModal(state, action: PayloadAction<boolean>) {
       state.displayCreateModal = action.payload
+    },
+    toggleEditModal(state, action: PayloadAction<boolean>) {
+      state.displayEditModal = action.payload
     },
   },
   extraReducers: (builder: ActionReducerMapBuilder<IState>) => {
@@ -145,15 +143,13 @@ const module = createSlice({
       state.permission = { edit: false, view: false }
     })
 
-    builder.addCase(fetchAdminCreateOptions.fulfilled, (state, action) => {
-      state.roleOptions = action.payload.data.admin_roles.map((t) => ({
-        label: t.role_name,
-        value: t.id,
-      }))
+    builder.addCase(fetchAdminEditOptions.fulfilled, (state, action) => {
+      state.editAdmin = action.payload
+      state.displayEditModal = true
     })
-    builder.addCase(fetchAdminCreateOptions.rejected, (state, action) => {
-      state.roleOptions = []
-    })
+    // builder.addCase(fetchAdminCreateOptions.rejected, (state, action) => {
+    //   state.roleOptions = []
+    // })
     builder.addCase(createAdmin.fulfilled, (state, action) => {
       state.displayCreateModal = false
     })
@@ -166,12 +162,9 @@ const module = createSlice({
 
 export const {
   gotTableData,
-  setSearchAccount,
-  setSearchIp,
-  setSearchRole,
   setRoleOptions,
-  setSearchStatus,
   initSearchState,
   toggleCreateModal,
+  toggleEditModal,
 } = module.actions
 export default module.reducer

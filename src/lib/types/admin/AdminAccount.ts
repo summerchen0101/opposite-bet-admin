@@ -1,19 +1,19 @@
-import { StatusType } from '..'
+import { AdminAccount } from '..'
 import { Moment } from 'moment'
-export interface CreateFormProps {
+export interface DataFormProps {
   account: string
   realName: string
   email: string
-  role: string
+  role: number
   singleLimit: number
   dailyLimit: number
   effectiveTime: 'limit' | 'forever'
   limitDate: Moment
   ip: string
-  status: 'on' | 'off'
+  status: AdminAccount.AdminStatusOptions
   notes: string
 }
-export interface EditFormProps {
+export interface EditDataFormProps {
   id: number
   account: string
   realName: string

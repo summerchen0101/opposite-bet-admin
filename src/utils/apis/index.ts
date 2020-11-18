@@ -1,3 +1,4 @@
+import { ResponseBase } from '@/lib/types'
 import Request from '@/utils/request'
 export * from './admin'
 
@@ -6,9 +7,9 @@ export const getUserList = (id) => {
 }
 // 登入
 export const login = (data) => {
-  return Request.post(`admin/login`, data, { noAuth: true })
+  return Request.post<any>(`admin/login`, data, { noAuth: true })
 }
 // 取得登入資訊(選單及登入者資料)
 export const getUserInfo = () => {
-  return Request.post('admin/getAdminPortal')
+  return Request.post<any>('admin/getAdminPortal')
 }

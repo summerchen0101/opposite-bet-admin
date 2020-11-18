@@ -1,3 +1,4 @@
+import { ResponseBase } from '@/lib/types'
 import { join } from 'path'
 interface Options {
   noAuth?: boolean
@@ -5,10 +6,10 @@ interface Options {
 export default class Request {
   private static baseUrl = `http://${process.env.API_DOMAIN}`
   private static bashPath = 'api'
-  static get(url, options: Options = {}): Promise<any> {
+  static get<T>(url, options: Options = {}): Promise<T> {
     return this.request('GET', url, options)
   }
-  static post(url, data = null, options: Options = {}): Promise<any> {
+  static post<T>(url, data = null, options: Options = {}): Promise<T> {
     return this.request('POST', url, data, options)
   }
   private static request(method, url, data = null, options: Options = {}) {

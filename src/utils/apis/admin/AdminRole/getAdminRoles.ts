@@ -18,5 +18,5 @@ interface ReponseProps {
 }
 
 export default (): Promise<ReponseProps> => {
-  return Request.post(`admin/getAdminRoles`)
+  return Request.post<ReponseProps>(`admin/getAdminRoles`)
 }
