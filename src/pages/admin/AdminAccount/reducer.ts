@@ -39,13 +39,8 @@ export const moduleName = 'adminAccount'
 // 列表
 export const fetchAdminList = createAsyncThunk(
   `${moduleName}/fetchAdminList`,
-  async (form: AdminAccount.ListSearchForm, thunkAPI) => {
-    const res = await apis.AdminAccount.getList(form)
-    if (res.result === 'SUCCESS') {
-      thunkAPI.dispatch(setRoleOptions(res.data.admin_roles))
-      return res
-    }
-    throw res
+  (form: AdminAccount.ListSearchForm, { dispatch }) => {
+    return apis.AdminAccount.getList(form)
   },
 )
 
@@ -123,20 +118,10 @@ const module = createSlice({
   },
   extraReducers: (builder: ActionReducerMapBuilder<IState>) => {
     builder.addCase(fetchAdminList.fulfilled, (state, action) => {
-      const data = action.payload.data
-      state.tableData =
-        data.admin?.map((t, i) => ({
-          key: i,
-          id: t.admin_id,
-          account: t.admin_account,
-          name: t.admin_name,
-          role: t.admin_role,
-          lastLogin: t.last_login,
-          lastIp: t.last_ip,
-          status: t.status === 1,
-          isOnline: false,
-        })) || []
-      state.permission = permissionTransfer(data.permission)
+      const { list, permission, roleOptions } = action.payload
+      state.tableData = list
+      state.permission = permission
+      state.roleOptions = roleOptions
     })
     builder.addCase(fetchAdminList.rejected, (state, action) => {
       state.tableData = []
