@@ -1,5 +1,5 @@
 import { clearTabs } from '@/store/reducer'
-import { useTypedSelector } from '@/store/rootReducer'
+import { useTypedSelector } from '@/store/selectors'
 import { DeleteOutlined } from '@ant-design/icons'
 import { Button, Space } from 'antd'
 import React from 'react'

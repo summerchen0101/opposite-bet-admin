@@ -21,6 +21,9 @@ export default styled(Layout)`
     position: fixed;
     z-index: 1;
     width: 100%;
+    .logout {
+      margin-left: 20px;
+    }
   }
 
   .site-content {

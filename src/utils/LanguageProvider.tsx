@@ -2,7 +2,7 @@ import React from 'react'
 import { IntlProvider } from 'react-intl'
 import zhHantMessages from '@/lang/zh-Hant.json'
 import enMessages from '@/lang/en.json'
-import { useTypedSelector } from '@/store/rootReducer'
+import { useTypedSelector } from '@/store/selectors'
 
 const messageMap = {
   'zh-Hant': zhHantMessages,

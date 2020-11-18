@@ -4,8 +4,6 @@ export interface RootState {
   global: ReturnType<typeof globalReducer>
 }
 
-export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector
-
 const staticReducer = {
   global: globalReducer,
 }

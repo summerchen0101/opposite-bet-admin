@@ -1,4 +1,4 @@
-import { useTypedSelector } from '@/store/rootReducer'
+import { useTypedSelector } from '@/store/selectors'
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 

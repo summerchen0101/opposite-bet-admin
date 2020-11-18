@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
 import * as apis from '@/utils/apis'
-import { Permission } from '@/lib/types'
+import { LoginFormData, Permission } from '@/lib/types'
 import { permissionTransfer } from '@/utils/dataFactory'
+import { message } from 'antd'
 export type TabType = {
   path: string
   label: string
@@ -27,6 +28,7 @@ export type GlobalState = {
   language: string
   menu: RootMenuProps[]
   user: UserProps | null
+  loading: boolean
 }
 const initialState: GlobalState = {
   isLogin: !!sessionStorage.getItem('token'),
@@ -34,6 +36,7 @@ const initialState: GlobalState = {
   language: 'zh-Hant',
   menu: [],
   user: null,
+  loading: false,
 }
 
 export const fetchUserAndMenu = createAsyncThunk(
@@ -70,6 +73,9 @@ const module = createSlice({
     setLanguage(state, action: PayloadAction<string>) {
       state.language = action.payload
     },
+    toggleLoading(state, action: PayloadAction<boolean>) {
+      state.loading = action.payload
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchUserAndMenu.fulfilled, (state, action) => {
@@ -94,8 +100,8 @@ const module = createSlice({
       }
     })
     builder.addCase(fetchUserAndMenu.rejected, (state, action) => {
-      state.isLogin = false
       sessionStorage.removeItem('token')
+      state.isLogin = false
     })
   },
 })
@@ -106,5 +112,6 @@ export const {
   clearTabs,
   removeTab,
   setLanguage,
+  toggleLoading,
 } = module.actions
 export default module.reducer

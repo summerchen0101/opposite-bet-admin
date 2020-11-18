@@ -1,5 +1,9 @@
+import { TypedUseSelectorHook, useSelector } from 'react-redux'
 import { createSelector } from 'reselect'
 import { GlobalState } from './reducer'
+import { RootState } from './rootReducer'
+
+export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector
 
 const selectModuleState = (state: { global: GlobalState }) => state.global
 
@@ -11,4 +15,8 @@ export const selectLoginStatus = createSelector(
 export const selectTabs = createSelector(
   selectModuleState,
   (global) => global.tabs,
+)
+export const selectLoading = createSelector(
+  selectModuleState,
+  (global) => global.loading,
 )

@@ -1,9 +1,14 @@
-import errCodes from '@/lib/errCodes'
-import { fetchUserAndMenu } from '@/store/reducer'
-import * as api from '@/utils/apis'
+import { LoginFormData } from '@/lib/types'
+import {
+  fetchUserAndMenu,
+  toggleLoading,
+  toggleLoginStatus,
+} from '@/store/reducer'
+import { selectLoading, useTypedSelector } from '@/store/selectors'
+import * as apis from '@/utils/apis'
 import { LoadingOutlined } from '@ant-design/icons'
 import { Button, Card, Form, Input, message, Space } from 'antd'
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
@@ -14,29 +19,30 @@ const Wrapper = styled.div`
   align-items: center;
   height: 100vh;
 `
+const initialValues: LoginFormData = {
+  username: '',
+  password: '',
+}
+
 const Login: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(false)
+  const [form] = Form.useForm<LoginFormData>()
+  const loading = useTypedSelector(selectLoading)
   const dispatch = useDispatch()
-  const onFinish = async (data) => {
+  const onFinish = async (data: LoginFormData) => {
+    dispatch(toggleLoading(true))
     try {
-      setIsLoading(true)
-      const res = await api.login(data)
-      setIsLoading(false)
-      if (res.result === 'SUCCESS') {
-        sessionStorage.setItem('token', res.token)
-        dispatch(fetchUserAndMenu())
-      } else {
-        message.error(errCodes[res.result])
-      }
+      await apis.login(data)
+      dispatch(toggleLoginStatus(true))
+      dispatch(fetchUserAndMenu())
     } catch (err) {
-      console.log(err)
-      setIsLoading(false)
+      message.error(err.message ?? '錯誤發生')
     }
+    dispatch(toggleLoading(false))
   }
   return (
     <Wrapper>
       <Card title="後台登入" style={{ width: 300 }}>
-        <Form onFinish={onFinish}>
+        <Form form={form} onFinish={onFinish} initialValues={initialValues}>
           <Form.Item
             label="帳號"
             name="username"
@@ -53,10 +59,10 @@ const Login: React.FC = () => {
             <Input.Password />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" disabled={isLoading}>
+            <Button type="primary" htmlType="submit" disabled={loading}>
               <Space>
                 登入
-                {isLoading && <LoadingOutlined />}
+                {loading && <LoadingOutlined />}
               </Space>
             </Button>
           </Form.Item>

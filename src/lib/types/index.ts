@@ -31,3 +31,8 @@ export interface OptionType {
   label: string
   value: string | number
 }
+
+export interface LoginFormData {
+  username: string
+  password: string
+}
