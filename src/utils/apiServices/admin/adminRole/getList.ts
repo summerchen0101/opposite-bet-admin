@@ -1,4 +1,5 @@
 import { OptionType, Permission, RemotePermission } from '@/lib/types'
+import { AdminRole } from '@/lib/types/admin'
 import { permissionTransfer } from '@/utils/dataFactory'
 import Request from '@/utils/request'
 
@@ -18,18 +19,9 @@ interface ReponseProps {
   role: ResponseRoleItem[]
 }
 
-interface ListItem {
-  id: number
-  name: string
-  count: number
-  updatedAt: string
-  operator: string
-  menu: string
-}
-
 interface ResultProps {
   permission: Permission
-  list: ListItem[]
+  list: AdminRole.ListItem[]
 }
 
 export default async (): Promise<ResultProps> => {
@@ -42,7 +34,9 @@ export default async (): Promise<ResultProps> => {
       name: t.role_name,
       count: t.used_count,
       updatedAt: t.updated_at,
-      operator: t.updator,
+      updator: t.updator,
+      createdAt: t.created_at,
+      creator: t.createtor,
       menu: t.menu,
     })),
   }

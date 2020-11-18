@@ -4,49 +4,50 @@ import { StopOutlined, EditFilled, FilterFilled } from '@ant-design/icons'
 import { Space } from 'antd'
 import React from 'react'
 import { Text } from '@/components'
+import { useTypedSelector, selectTableData } from '../selectors'
 
 const columns = [
   {
     title: '角色名稱',
-    dataIndex: 'account',
+    dataIndex: 'name',
     width: 100,
-    render: () => '管理員',
+    render: (value) => value,
   },
   {
     title: '人數',
-    dataIndex: 'firstDepositTotal',
+    dataIndex: 'count',
     width: 140,
-    render: () => 10,
+    render: (value) => value,
   },
   {
     title: '創建時間',
-    dataIndex: 'onceAgainDepositCount',
+    dataIndex: 'createdAt',
     width: 120,
-    render: () => '2020-10-15 13:28:28',
+    render: (value) => value,
   },
   {
     title: '創建者',
-    dataIndex: 'onceAgainDepositTotal',
+    dataIndex: 'creator',
     width: 140,
-    render: () => 'flora',
+    render: (value) => value,
   },
   {
     title: '狀態',
-    dataIndex: 'depositCount',
+    dataIndex: 'status',
     width: 120,
-    render: (_, row) => <Text color="success">啟用</Text>,
+    render: (value) => <Text color="success">啟用</Text>,
   },
   {
     title: '更新人員',
-    dataIndex: 'firstWithdrawalCount',
+    dataIndex: 'updator',
     width: 120,
-    render: () => 'flora',
+    render: (value) => value,
   },
   {
     title: '更新時間',
-    dataIndex: 'depositTotal',
+    dataIndex: 'updatedAt',
     width: 200,
-    render: (_, row) => '2019-07-01 10:54:36',
+    render: (value) => value,
   },
   {
     title: () => (
@@ -72,24 +73,8 @@ const columns = [
   },
 ]
 
-const data = []
-for (let i = 1; i <= 50; i++) {
-  data.push({
-    key: i,
-    account: 'aaaa(小白)',
-    firstDepositCount: 5,
-    firstDepositTotal: 20320,
-    onceAgainDepositCount: 10,
-    onceAgainDepositTotal: 41232,
-    firstWithdrawalCount: 5,
-    firstWithdrawalTotal: 20320,
-    onceAgainWithdrawalCount: 10,
-    onceAgainWithdrawalTotal: 41232,
-    loginCount: 20,
-    registerCount: 3,
-  })
-}
 const TableData: React.FC = () => {
+  const data = useTypedSelector(selectTableData)
   return <TableSets columns={columns} data={data} />
 }
 
