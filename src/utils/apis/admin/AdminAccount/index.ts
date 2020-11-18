@@ -1,3 +1,5 @@
-export { default as getAdminList } from './getAdminList'
-export { default as editAdmin } from './editAdmin'
-export { default as storeAdmin } from './create'
+export { default as getList } from './getList'
+export { default as get } from './get'
+export { default as create } from './create'
+export { default as edit } from './edit'
+export { default as options } from './options'

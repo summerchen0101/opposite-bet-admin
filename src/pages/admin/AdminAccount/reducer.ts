@@ -33,14 +33,14 @@ export const moduleName = 'adminAccount'
 export const fetchAdminList = createAsyncThunk(
   `${moduleName}/fetchAdminList`,
   async (_, thunkAPI) => {
-    const res = await apis.getAdminList()
+    const res = await apis.AdminAccount.getList()
     return res
   },
 )
 export const fetchAdminCreateOptions = createAsyncThunk(
   `${moduleName}/fetchAdminCreateOptions`,
   async (_, thunkAPI) => {
-    const res = await apis.editAdmin('ADD')
+    const res = await apis.AdminAccount.options()
     if (res.result === 'SUCCESS') {
       return res
     }
@@ -51,7 +51,7 @@ export const fetchAdminCreateOptions = createAsyncThunk(
 export const createAdmin = createAsyncThunk(
   `${moduleName}/createAdmin`,
   async (fomrData: AdminAccount.CreateFormProps, thunkAPI) => {
-    const res = await apis.storeAdmin(fomrData)
+    const res = await apis.AdminAccount.create(fomrData)
     if (res.result === 'SUCCESS') {
       return res
     }

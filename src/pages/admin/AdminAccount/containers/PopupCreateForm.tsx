@@ -13,7 +13,7 @@ import {
 } from 'antd'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { toggleCreateModal } from '../reducer'
+import { createAdmin, toggleCreateModal } from '../reducer'
 import { selectRoleOptions } from '../selectors'
 import { selectDisplayCreateModal, useTypedSelector } from '../selectors'
 import Form, { FormField } from '@/components/Form'
@@ -29,7 +29,7 @@ const initValues: AdminAccount.CreateFormProps = {
   singleLimit: 1000,
   dailyLimit: 10000,
   effectiveTime: 'limit',
-  limitDate: '',
+  limitDate: null,
   ip: '',
   status: 'on',
   notes: '',
@@ -41,10 +41,9 @@ const CreateForm: React.FC = () => {
   const onCancel = () => {
     dispatch(toggleCreateModal(false))
   }
-  const onFinish = (values) => {
+  const onFinish = (values: AdminAccount.CreateFormProps) => {
     console.log('Success:', values)
-    // dispatch()
-    dispatch(toggleCreateModal(false))
+    dispatch(createAdmin(values))
   }
 
   const onFinishFailed = (errorInfo) => {

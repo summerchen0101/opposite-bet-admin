@@ -1,5 +1,5 @@
 import { StatusType } from '..'
-
+import { Moment } from 'moment'
 export interface CreateFormProps {
   account: string
   realName: string
@@ -8,7 +8,7 @@ export interface CreateFormProps {
   singleLimit: number
   dailyLimit: number
   effectiveTime: 'limit' | 'forever'
-  limitDate: string
+  limitDate: Moment
   ip: string
   status: 'on' | 'off'
   notes: string
@@ -22,7 +22,7 @@ export interface EditFormProps {
   singleLimit: number
   dailyLimit: number
   effectiveTime: 'limit' | 'forever'
-  limitDate: string
+  limitDate: Moment
   ip: string
   status: 'on' | 'off'
   notes: string

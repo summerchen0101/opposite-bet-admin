@@ -12,7 +12,8 @@ interface ResponseAdmin {
   admin_role: string
   last_login: string | null
   last_ip: string
-  status: 1
+  status: StatusType
+  online: string
 }
 
 interface ResponseProps {

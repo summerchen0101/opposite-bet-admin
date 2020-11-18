@@ -1,16 +1,10 @@
+import { ResponseBase } from '@/lib/types'
 import Request from '@/utils/request'
-import { MethodType, ResponseBase } from '@/lib/types'
 
-interface CreateRequestProps {
-  method: 'ADD'
-}
-
-interface EditRequestProps {
+interface RequestProps {
   method: 'EDIT'
   admin_id?: number | string
 }
-
-type RequestProps = CreateRequestProps | EditRequestProps
 
 // interface ResponseProps {
 //   result: string
@@ -23,9 +17,9 @@ type RequestProps = CreateRequestProps | EditRequestProps
 //   }
 // }
 
-export default (method: MethodType, id?: number): Promise<ResponseBase> => {
+export default (id: number): Promise<ResponseBase> => {
   const data: RequestProps = {
-    method,
+    method: 'EDIT',
     admin_id: id,
   }
   return Request.post(`admin/editAdmin`, data)
