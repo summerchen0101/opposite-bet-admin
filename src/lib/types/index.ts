@@ -33,7 +33,7 @@ export interface OptionType {
 }
 
 export interface LoginFormData {
-  username: string
+  account: string
   password: string
 }
 

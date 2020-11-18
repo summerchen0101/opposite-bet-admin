@@ -1,6 +1,5 @@
 import { LoginFormData, ResponseBase } from '@/lib/types'
 import Request from '@/utils/request'
-export * from './admin'
 import errCodes from '@/lib/errCodes'
 
 interface RequestProps {
@@ -13,8 +12,11 @@ interface LoginResponse {
   token: string
 }
 
-export default async (data: LoginFormData): Promise<string> => {
-  const reqData: RequestProps = { ...data }
+export default async (form: LoginFormData): Promise<string> => {
+  const reqData: RequestProps = {
+    username: form.account,
+    password: form.password,
+  }
   const res = await Request.post<LoginResponse>('admin/login', reqData, {
     noAuth: true,
   })

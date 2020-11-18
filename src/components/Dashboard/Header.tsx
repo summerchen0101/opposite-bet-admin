@@ -1,5 +1,5 @@
 import DashboardContext from '@/contexts/DashboardContext'
-import { setLanguage, toggleLoginStatus } from '@/store/reducer'
+import { doLogout, setLanguage, toggleLoginStatus } from '@/store/reducer'
 import {
   LogoutOutlined,
   MenuFoldOutlined,
@@ -16,10 +16,7 @@ const { Option } = Select
 const Sidebar: React.FC = () => {
   const { collapsed, toggleCollapsed } = useContext(DashboardContext)
   const dispatch = useDispatch()
-  const handleLogout = async () => {
-    sessionStorage.removeItem('token')
-    dispatch(toggleLoginStatus(false))
-  }
+  const handleLogout = (e) => dispatch(doLogout())
   return (
     <Header className="site-header">
       {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {

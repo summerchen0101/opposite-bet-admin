@@ -1,6 +1,7 @@
-import { Permission, UserInfo } from '@/lib/types'
+import { LoginFormData, Permission, UserInfo } from '@/lib/types'
 import * as apis from '@/utils/apiServices'
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { message } from 'antd'
 export type TabType = {
   path: string
   label: string
@@ -39,6 +40,25 @@ export const fetchUserAndMenu = createAsyncThunk(
     return await apis.getUserAndMenu()
   },
 )
+export const doLogout = createAsyncThunk(
+  'global/doLogout',
+  async (_, thunkAPI) => {
+    return await apis.logout()
+  },
+)
+export const doLogin = createAsyncThunk(
+  'global/doLogin',
+  async (data: LoginFormData, { dispatch }) => {
+    try {
+      dispatch(toggleLoading(true))
+      await apis.login(data)
+      dispatch(fetchUserAndMenu())
+      dispatch(toggleLoading(false))
+    } catch (err) {
+      message.error(err.message ?? '錯誤發生')
+    }
+  },
+)
 
 const module = createSlice({
   name: 'global',
@@ -72,6 +92,12 @@ const module = createSlice({
       const { admin, menu } = action.payload
       state.user = admin
       state.menu = menu
+    })
+    builder.addCase(doLogin.fulfilled, (state, action) => {
+      state.isLogin = true
+    })
+    builder.addCase(doLogout.fulfilled, (state, action) => {
+      state.isLogin = false
     })
   },
 })
