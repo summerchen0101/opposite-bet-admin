@@ -46,7 +46,7 @@ export const fetchAdminList = createAsyncThunk(
 export const fetchAdminEditOptions = createAsyncThunk(
   `${moduleName}/fetchAdminEditOptions`,
   async (id: number, { dispatch }) => {
-    return await apis.AdminAccount.get(id)
+    return await apis.AdminAccount.getItem(id)
   },
 )
 
