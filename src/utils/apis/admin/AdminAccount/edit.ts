@@ -16,7 +16,9 @@ interface RequestProps {
   remark?: string
 }
 
-export default (form: AdminAccount.EditFormProps): Promise<ResponseBase> => {
+export default (
+  form: AdminAccount.EditFormProps,
+): Promise<ResponseBase<any>> => {
   const expireDate =
     form.effectiveTime === 'limit' ? form.limitDate.format('YYYY-MM-DD') : ''
   const data: RequestProps = {

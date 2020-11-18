@@ -17,7 +17,7 @@ interface RequestProps {
 //   }
 // }
 
-export default (id: number): Promise<ResponseBase> => {
+export default (id: number): Promise<ResponseBase<any>> => {
   const data: RequestProps = {
     method: 'EDIT',
     admin_id: id,

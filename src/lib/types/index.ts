@@ -20,9 +20,14 @@ export interface Permission {
   edit: boolean
 }
 
-export interface ResponseBase {
+export class ResponseBase<T> {
   result: string
-  data: any
+  data: T
 }
 
 export type MethodType = 'ADD' | 'EDIT'
+
+export interface OptionType {
+  label: string
+  value: string | number
+}

@@ -21,3 +21,24 @@ export const selectDisplayCreateModal = createSelector(
   selectModuleState,
   (moduleState) => moduleState.displayCreateModal,
 )
+
+export const selectSearchData = createSelector(
+  selectModuleState,
+  (moduleState) => moduleState.searchData,
+)
+export const selectSearchDataAccount = createSelector(
+  selectSearchData,
+  (searchData) => searchData.account,
+)
+export const selectSearchDataIp = createSelector(
+  selectSearchData,
+  (searchData) => searchData.ip,
+)
+export const selectSearchDataRole = createSelector(
+  selectSearchData,
+  (searchData) => searchData.role,
+)
+export const selectSearchDataStatus = createSelector(
+  selectSearchData,
+  (searchData) => searchData.status,
+)

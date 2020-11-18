@@ -16,7 +16,7 @@ interface RequestProps {
 //   }
 // }
 
-export default (): Promise<ResponseBase> => {
+export default (): Promise<ResponseBase<any>> => {
   const data: RequestProps = {
     method: 'ADD',
   }

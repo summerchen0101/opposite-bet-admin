@@ -39,3 +39,16 @@ export interface ListItem {
   status: boolean
   isOnline: boolean
 }
+
+export type AdminStatusOptions = 0 | 1 | 2 | 3
+export interface ListSearchForm {
+  account?: string
+  role?: string
+  status?: AdminStatusOptions
+  ip?: string
+}
+
+export interface AdminRoleOption {
+  id: number
+  role_name: string
+}

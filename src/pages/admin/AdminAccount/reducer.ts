@@ -7,31 +7,45 @@ import {
 import * as apis from '@/utils/apis'
 import { Permission } from '@/lib/types'
 import { permissionTransfer } from '@/utils/dataFactory'
-import { AdminAccount } from '@/lib/types'
+import { AdminAccount, OptionType } from '@/lib/types'
 import { message } from 'antd'
 
 export interface IState {
   tableData: AdminAccount.ListItem[]
-  roleOptions: any[]
+  roleOptions: OptionType[]
   permission: Permission
   displayCreateModal: boolean
+  searchData: AdminAccount.ListSearchForm
 }
 const initialState: IState = {
   tableData: [],
   roleOptions: [],
   permission: { edit: false, view: false },
   displayCreateModal: false,
+  searchData: {
+    account: '',
+    role: null,
+    status: 1,
+    ip: '',
+  },
 }
 
 export const moduleName = 'adminAccount'
 
+// 列表
 export const fetchAdminList = createAsyncThunk(
   `${moduleName}/fetchAdminList`,
-  async (_, thunkAPI) => {
-    const res = await apis.AdminAccount.getList()
-    return res
+  async (form: AdminAccount.ListSearchForm, thunkAPI) => {
+    const res = await apis.AdminAccount.getList(form)
+    if (res.result === 'SUCCESS') {
+      thunkAPI.dispatch(setRoleOptions(res.data.admin_roles))
+      return res
+    }
+    throw res
   },
 )
+
+// 選項(新增)
 export const fetchAdminCreateOptions = createAsyncThunk(
   `${moduleName}/fetchAdminCreateOptions`,
   async (_, thunkAPI) => {
@@ -43,13 +57,14 @@ export const fetchAdminCreateOptions = createAsyncThunk(
   },
 )
 
+// 新增
 export const createAdmin = createAsyncThunk(
   `${moduleName}/createAdmin`,
   async (fomrData: AdminAccount.CreateFormProps, thunkAPI) => {
     const res = await apis.AdminAccount.create(fomrData)
     console.log(res)
     if (res.result === 'SUCCESS') {
-      thunkAPI.dispatch(fetchAdminList())
+      thunkAPI.dispatch(fetchAdminList({}))
       console.log('success')
       return res
     }
@@ -57,12 +72,13 @@ export const createAdmin = createAsyncThunk(
   },
 )
 
+// 刪除
 export const removeAdmin = createAsyncThunk(
   `${moduleName}/removeAdmin`,
   async (id: number, thunkAPI) => {
     const res = await apis.AdminAccount.delete(id)
     if (res.result === 'SUCCESS') {
-      thunkAPI.dispatch(fetchAdminList())
+      thunkAPI.dispatch(fetchAdminList({}))
       return res
     }
     throw res
@@ -76,6 +92,30 @@ const module = createSlice({
     gotTableData(state, action: PayloadAction<any[]>) {
       state.tableData = action.payload
     },
+    setRoleOptions(
+      state,
+      action: PayloadAction<AdminAccount.AdminRoleOption[]>,
+    ) {
+      state.roleOptions = action.payload.map((t) => ({
+        label: t.role_name,
+        value: t.id,
+      }))
+    },
+    setSearchAccount(state, action: PayloadAction<string>) {
+      state.searchData.account = action.payload
+    },
+    setSearchIp(state, action: PayloadAction<string>) {
+      state.searchData.ip = action.payload
+    },
+    setSearchRole(state, action: PayloadAction<string>) {
+      state.searchData.role = action.payload
+    },
+    setSearchStatus(
+      state,
+      action: PayloadAction<AdminAccount.AdminStatusOptions>,
+    ) {
+      state.searchData.status = action.payload
+    },
     initSearchState(state) {
       //
     },
@@ -85,18 +125,20 @@ const module = createSlice({
   },
   extraReducers: (builder: ActionReducerMapBuilder<IState>) => {
     builder.addCase(fetchAdminList.fulfilled, (state, action) => {
-      state.tableData = action.payload.admin.map((t, i) => ({
-        key: i,
-        id: t.admin_id,
-        account: t.admin_account,
-        name: t.admin_name,
-        role: t.admin_role,
-        lastLogin: t.last_login,
-        lastIp: t.last_ip,
-        status: t.status === 1,
-        isOnline: false,
-      }))
-      state.permission = permissionTransfer(action.payload.permission)
+      const data = action.payload.data
+      state.tableData =
+        data.admin?.map((t, i) => ({
+          key: i,
+          id: t.admin_id,
+          account: t.admin_account,
+          name: t.admin_name,
+          role: t.admin_role,
+          lastLogin: t.last_login,
+          lastIp: t.last_ip,
+          status: t.status === 1,
+          isOnline: false,
+        })) || []
+      state.permission = permissionTransfer(data.permission)
     })
     builder.addCase(fetchAdminList.rejected, (state, action) => {
       state.tableData = []
@@ -124,6 +166,11 @@ const module = createSlice({
 
 export const {
   gotTableData,
+  setSearchAccount,
+  setSearchIp,
+  setSearchRole,
+  setRoleOptions,
+  setSearchStatus,
   initSearchState,
   toggleCreateModal,
 } = module.actions

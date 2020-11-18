@@ -10,6 +10,7 @@ import PopupCreateForm from './containers/PopupCreateForm'
 import RoleSelector from './containers/RoleSelector'
 import StatusSelector from './containers/StatusSelector'
 import TableData from './containers/TableData'
+import SearchForm from './containers/SearchForm'
 import reducer, { fetchAdminList, initSearchState, moduleName } from './reducer'
 
 const Manager: React.FC = () => {
@@ -17,17 +18,19 @@ const Manager: React.FC = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(initSearchState())
-    dispatch(fetchAdminList())
+    dispatch(fetchAdminList({}))
   }, [])
   return (
     <Dashboard>
       <PageHeader />
-      <PageSearchBar>
+      {/* <PageSearchBar>
         <AccountSearch />
         <RoleSelector />
         <StatusSelector />
         <IpSearch />
-      </PageSearchBar>
+      </PageSearchBar> */}
+      <SearchForm />
+      <div style={{ marginTop: '15px' }}></div>
       <TableData />
       <PopupCreateForm />
     </Dashboard>

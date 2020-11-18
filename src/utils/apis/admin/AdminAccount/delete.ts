@@ -6,7 +6,7 @@ interface RequestProps {
   admin_id: number
 }
 
-export default (id: number): Promise<ResponseBase> => {
+export default (id: number): Promise<ResponseBase<any>> => {
   const data: RequestProps = {
     method: 'DELETE',
     admin_id: id,

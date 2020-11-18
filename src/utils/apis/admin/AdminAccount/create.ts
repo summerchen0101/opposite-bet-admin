@@ -1,7 +1,5 @@
+import { AdminAccount, ResponseBase, StatusType } from '@/lib/types'
 import Request from '@/utils/request'
-import { MethodType, ResponseBase, StatusType } from '@/lib/types'
-// import { CreateFormProps } from '@/pages/admin/AdminAccount/containers/PopupCreateForm'
-import { AdminAccount } from '@/lib/types'
 
 interface RequestProps {
   method: 'ADD'
@@ -17,7 +15,9 @@ interface RequestProps {
   remark?: string
 }
 
-export default (form: AdminAccount.CreateFormProps): Promise<ResponseBase> => {
+export default (
+  form: AdminAccount.CreateFormProps,
+): Promise<ResponseBase<any>> => {
   const expireDate =
     form.effectiveTime === 'limit'
       ? form.limitDate.format('YYYY-MM-DD')
