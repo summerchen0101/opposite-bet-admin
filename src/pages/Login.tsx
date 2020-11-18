@@ -5,7 +5,7 @@ import {
   toggleLoginStatus,
 } from '@/store/reducer'
 import { selectLoading, useTypedSelector } from '@/store/selectors'
-import * as apis from '@/utils/apis'
+import * as apis from '@/utils/apiServices'
 import { LoadingOutlined } from '@ant-design/icons'
 import { Button, Card, Form, Input, message, Space } from 'antd'
 import React from 'react'

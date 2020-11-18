@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
-import * as apis from '@/utils/apis'
+import * as apis from '@/utils/apiServices'
 import { LoginFormData, Permission } from '@/lib/types'
 import { permissionTransfer } from '@/utils/dataFactory'
 import { message } from 'antd'

@@ -4,7 +4,7 @@ import {
   createAsyncThunk,
   ActionReducerMapBuilder,
 } from '@reduxjs/toolkit'
-import * as apis from '@/utils/apis'
+import * as apis from '@/utils/apiServices'
 import { Permission } from '@/lib/types'
 import { permissionTransfer } from '@/utils/dataFactory'
 import { AdminAccount, OptionType } from '@/lib/types'
