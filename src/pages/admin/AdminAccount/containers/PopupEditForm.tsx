@@ -25,7 +25,10 @@ const EditForm: React.FC = () => {
     console.log('Failed:', errorInfo)
   }
   const _v = useTypedSelector(selectEditAdmin)
-  const values = { ..._v, limitDate: moment(_v.limitDate) }
+  const values = {
+    ..._v,
+    limitDate: _v.limitDate ? moment(_v.limitDate) : null,
+  }
   return (
     <PopupModal visible={isDisplay} title="編輯管理者" onCancel={onCancel}>
       <DataForm
