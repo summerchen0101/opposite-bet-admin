@@ -38,6 +38,15 @@ export const fetchCreateOptions = createAsyncThunk(
   },
 )
 
+// 新增
+export const doCreate = createAsyncThunk(
+  `${moduleName}/doCreate`,
+  (name: string, { getState }) => {
+    const state = getState()[moduleName] as IState
+    return apis.AdminRole.doCreate({ name, menu: state.menu })
+  },
+)
+
 const module = createSlice({
   name: moduleName,
   initialState,
@@ -47,6 +56,27 @@ const module = createSlice({
     },
     toggleCreateModal(state, action: PayloadAction<boolean>) {
       state.displayCreateModal = action.payload
+    },
+    setMenu(
+      state,
+      action: PayloadAction<{
+        id: number
+        permission: Permission
+        parent: number
+      }>,
+    ) {
+      const { id, permission, parent } = action.payload
+      let currentIndex = null
+      if (parent) {
+        const parentIndex = state.menu.findIndex((t) => t.id == parent)
+        currentIndex = state.menu[parentIndex].children.findIndex(
+          (t) => t.id == id,
+        )
+        state.menu[parentIndex].children[currentIndex].permission = permission
+      } else {
+        currentIndex = state.menu.findIndex((t) => t.id == id)
+        state.menu[currentIndex].permission = permission
+      }
     },
   },
   extraReducers: (builder: ActionReducerMapBuilder<IState>) => {
@@ -63,5 +93,5 @@ const module = createSlice({
   },
 })
 
-export const { initSearchState, toggleCreateModal } = module.actions
+export const { initSearchState, toggleCreateModal, setMenu } = module.actions
 export default module.reducer

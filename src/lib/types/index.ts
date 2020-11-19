@@ -45,5 +45,7 @@ export interface UserInfo {
 export interface MenuItem {
   id: number
   name: string
+  permission?: Permission
+  parent?: number
   children?: MenuItem[]
 }

@@ -22,7 +22,7 @@ const columns = [
   {
     title: '創建時間',
     dataIndex: 'createdAt',
-    width: 120,
+    width: 180,
     render: (value) => value,
   },
   {

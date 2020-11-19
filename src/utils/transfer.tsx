@@ -16,6 +16,7 @@ export const handleMenuTransfer = (menu): MenuItem[] => {
       const { name, url, permission } = sub[subId]
       children.push({
         id: subId,
+        parent: rootId,
         name,
         permission: permissionTransfer(permission),
       })

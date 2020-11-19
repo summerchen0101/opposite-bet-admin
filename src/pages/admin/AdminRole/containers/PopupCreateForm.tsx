@@ -8,30 +8,63 @@ import {
   SettingTwoTone,
 } from '@ant-design/icons'
 import { Button, Input, Select, Space, Table } from 'antd'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { toggleCreateModal } from '../reducer'
+import { setMenu, toggleCreateModal, doCreate } from '../reducer'
 import { selectDisplayCreateModal, useTypedSelector } from '../selectors'
 import {
   useTypedSelector as useGlobalTypedSelector,
   selectMenu,
 } from '@/store/selectors'
-import { AdminRole } from '@/lib/types'
+import { AdminRole, Permission } from '@/lib/types'
+import { ColumnsType } from 'antd/lib/table'
+
+interface MenuPermissionItem {
+  key: number
+  name: string
+  parent?: number
+  children?: MenuPermissionItem[]
+  permission: Permission
+}
 
 const { Option } = Select
 
-const columns = [
+const columns: ColumnsType<MenuPermissionItem> = [
   { title: '功能', dataIndex: 'name' },
   {
     title: '權限',
     dataIndex: 'permission',
     // align: 'right',
-    render: ({ view, edit }) => (
-      <Space>
-        <IconLink icon={view ? <EyeTwoTone /> : <EyeOutlined />} />
-        <IconLink icon={edit ? <SettingTwoTone /> : <SettingOutlined />} />
-      </Space>
-    ),
+    render: ({ view, edit }, row, index) => {
+      const dispatch = useDispatch()
+      const [localView, setLocalView] = useState(view)
+      const [localEdit, setLocalEdit] = useState(edit)
+      useEffect(() => {
+        const permission = {
+          view: localView,
+          edit: localEdit,
+        }
+        dispatch(
+          setMenu({
+            id: row.key,
+            permission,
+            parent: row.parent,
+          }),
+        )
+      }, [localView, localEdit])
+      return (
+        <Space>
+          <IconLink
+            icon={localView ? <EyeTwoTone /> : <EyeOutlined />}
+            onClick={() => setLocalView(!localView)}
+          />
+          <IconLink
+            icon={localEdit ? <SettingTwoTone /> : <SettingOutlined />}
+            onClick={() => setLocalEdit(!localEdit)}
+          />
+        </Space>
+      )
+    },
     width: '100px',
   },
 ]
@@ -43,8 +76,8 @@ const CreateForm: React.FC = () => {
   const onCancel = () => {
     dispatch(toggleCreateModal(false))
   }
-  const onFinish = (values) => {
-    console.log('Success:', values)
+  const onFinish = ({ name }) => {
+    dispatch(doCreate(name))
     dispatch(toggleCreateModal(false))
   }
 
@@ -53,12 +86,16 @@ const CreateForm: React.FC = () => {
   }
 
   const menu = useGlobalTypedSelector(selectMenu)
-  const menuPermissionListCreator = (menu) => {
+  const menuPermissionListCreator = (menu): MenuPermissionItem[] => {
     return menu.map((t, i) => ({
       key: t.id,
       name: t.name,
-      children: t.children ? menuPermissionListCreator(t.children) : undefined,
-      permission: { view: true, edit: false },
+      parent: t.parent,
+      children: t.children ? menuPermissionListCreator(t.children) : [],
+      permission: {
+        view: t.permission?.view ?? false,
+        edit: t.permission?.edit ?? false,
+      },
     }))
   }
 
@@ -66,8 +103,12 @@ const CreateForm: React.FC = () => {
 
   return (
     <PopupModal visible={isDisplay} title="新增管理者角色" onCancel={onCancel}>
-      <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
-        <FormField label="角色名稱" name="mainTeam" required>
+      <Form
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        initialValues={{ name: '' }}
+      >
+        <FormField label="角色名稱" name="name" required>
           <Input />
         </FormField>
         <h3>
