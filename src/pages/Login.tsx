@@ -1,10 +1,11 @@
-import { LoginFormData } from '@/lib/types'
-import { doLogin } from '@/store/reducer'
+// import { LoginFormData } from '@/lib/types'
+import { Login } from '@/lib/types'
+import { useAppDispatch } from '@/store'
+import { doLogin, fetchUserAndMenu, toggleLoading } from '@/store/reducer'
 import { selectLoading, useTypedSelector } from '@/store/selectors'
 import { LoadingOutlined } from '@ant-design/icons'
-import { Button, Card, Form, Input, Space } from 'antd'
+import { Button, Card, Form, Input, message, Space } from 'antd'
 import React from 'react'
-import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -14,16 +15,29 @@ const Wrapper = styled.div`
   align-items: center;
   height: 100vh;
 `
-const initialValues: LoginFormData = {
+const initialValues: Login.FormData = {
   account: '',
   password: '',
 }
 
-const Login: React.FC = () => {
-  const [form] = Form.useForm<LoginFormData>()
+const LoginComponent: React.FC = () => {
+  const [form] = Form.useForm<Login.FormData>()
   const loading = useTypedSelector(selectLoading)
-  const dispatch = useDispatch()
-  const onFinish = (data: LoginFormData) => dispatch(doLogin(data))
+  const dispatch = useAppDispatch()
+  const onFinish = async (f: Login.FormData) => {
+    const data: Login.RequestProps = {
+      username: f.account,
+      password: f.password,
+    }
+    dispatch(toggleLoading(true))
+    const action = await dispatch(doLogin(data))
+    dispatch(toggleLoading(false))
+    if (doLogin.fulfilled.match(action)) {
+      dispatch(fetchUserAndMenu())
+    } else {
+      message.error(action.error.message)
+    }
+  }
   return (
     <Wrapper>
       <Card title="後台登入" style={{ width: 300 }}>
@@ -57,4 +71,4 @@ const Login: React.FC = () => {
   )
 }
 
-export default Login
+export default LoginComponent

@@ -1,5 +1,10 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import { Store, Reducer } from 'redux'
+import {
+  combineReducers,
+  configureStore,
+  ThunkDispatch,
+} from '@reduxjs/toolkit'
+import { useDispatch } from 'react-redux'
+import { Store, Reducer, AnyAction } from 'redux'
 import staticReducers from './rootReducer'
 
 export type StoreType = Store & {
@@ -14,7 +19,7 @@ function createReducer(asyncReducers = {}) {
   })
 }
 
-export default function configureAppStore() {
+const createStore = function configureAppStore() {
   const store: StoreType = {
     ...configureStore({
       reducer: createReducer(),
@@ -34,3 +39,10 @@ export default function configureAppStore() {
 
   return store
 }
+
+const store = createStore()
+
+export const useAppDispatch = () =>
+  useDispatch<ThunkDispatch<unknown, unknown, AnyAction>>()
+
+export default store

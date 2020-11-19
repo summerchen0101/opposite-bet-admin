@@ -1,4 +1,5 @@
 export * from './admin'
+export * as Login from './login'
 
 type RemotePermissionType = 'Y' | 'N'
 export type StatusType = 1 | 0

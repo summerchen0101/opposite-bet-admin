@@ -10,7 +10,7 @@ import { Helmet } from 'react-helmet'
 import GlobalStyle from '@/utils/global-style'
 
 ReactDOM.render(
-  <Provider store={store()}>
+  <Provider store={store}>
     <Helmet>
       <meta charSet="utf-8" />
       <title>MS反波膽</title>

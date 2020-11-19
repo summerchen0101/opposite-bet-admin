@@ -28,6 +28,7 @@ export default async (form: LoginFormData): Promise<string> => {
   if (result !== 'SUCCESS') {
     throw toErrorMessage(result)
   }
-  sessionStorage.setItem('token', token)
+  // console.log(result, toErrorMessage(result))
+  // sessionStorage.setItem('token', token)
   return token
 }

@@ -1,7 +1,15 @@
-import { LoginFormData, Permission, UserInfo } from '@/lib/types'
+import { Login, Permission, UserInfo } from '@/lib/types'
 import * as apis from '@/utils/apiServices'
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import {
+  createAsyncThunk,
+  createSlice,
+  PayloadAction,
+  ThunkDispatch,
+} from '@reduxjs/toolkit'
 import { message } from 'antd'
+import { useHistory } from 'react-router-dom'
+import API from '@/utils/API'
+import { toErrorMessage } from '@/utils/transfer'
 export type TabType = {
   path: string
   label: string
@@ -39,20 +47,17 @@ export const fetchUserAndMenu = createAsyncThunk(
 export const doLogout = createAsyncThunk(
   'global/doLogout',
   async (_, thunkAPI) => {
-    return await apis.logout()
+    return await API.logout()
   },
 )
 export const doLogin = createAsyncThunk(
   'global/doLogin',
-  async (data: LoginFormData, { dispatch }) => {
-    try {
-      dispatch(toggleLoading(true))
-      await apis.login(data)
-      dispatch(fetchUserAndMenu())
-      dispatch(toggleLoading(false))
-    } catch (err) {
-      message.error(err.message ?? '錯誤發生')
+  async (data: Login.RequestProps, { dispatch, rejectWithValue }) => {
+    const { result, token } = await API.login<Login.ResponseProps>(data)
+    if (result !== 'SUCCESS') {
+      throw new Error(toErrorMessage(result))
     }
+    return token
   },
 )
 
@@ -91,9 +96,11 @@ const module = createSlice({
     })
     builder.addCase(doLogin.fulfilled, (state, action) => {
       state.isLogin = true
+      sessionStorage.setItem('token', action.payload)
     })
     builder.addCase(doLogout.fulfilled, (state, action) => {
       state.isLogin = false
+      sessionStorage.removeItem('token')
     })
   },
 })

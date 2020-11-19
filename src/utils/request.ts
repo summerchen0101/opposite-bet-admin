@@ -12,9 +12,15 @@ export default class Request {
   static post<T>(url, data = null, options: Options = {}): Promise<T> {
     return this.request('POST', url, data, options)
   }
-  private static request(method, url, data = null, options: Options = {}) {
-    return (
-      fetch(new URL(join(this.bashPath, url), this.baseUrl).toString(), {
+  private static async request(
+    method,
+    url,
+    data = null,
+    options: Options = {},
+  ) {
+    const response = await fetch(
+      new URL(join(this.bashPath, url), this.baseUrl).toString(),
+      {
         method, // *GET, POST, PUT, DELETE, etc.
         body: data && JSON.stringify(data),
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -28,22 +34,25 @@ export default class Request {
         mode: 'cors', // no-cors, cors, *same-origin
         redirect: 'follow', // manual, *follow, error
         referrer: 'no-referrer', // *client, no-referrer,
-      })
-        // 處理回傳狀態
-        .then((response) => {
-          if (response.status >= 200 && response.status < 300) {
-            return response.json()
-          }
-          throw response
-        })
-        // 處理token過期
-        .then((data) => {
-          if (data.result === 'TOKEN_ERROR') {
-            sessionStorage.removeItem('token')
-            throw 'TOKEN_ERROR'
-          }
-          return data
-        })
+      },
     )
+    return response.json()
+    // // 處理回傳狀態
+    // .then((response) => {
+    //   if (response.status >= 200 && response.status < 300) {
+    //     return response.json()
+    //   }
+    //   throw response
+    // })
+    // // 處理token過期
+    // .then((data) => {
+    //   if (data.result === 'TOKEN_ERROR') {
+    //     sessionStorage.removeItem('token')
+    //     throw 'TOKEN_ERROR'
+    //   }
+    //   return data
+    // })
   }
 }
+
+// export const postRequest = ()
