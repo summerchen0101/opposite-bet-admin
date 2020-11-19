@@ -54,6 +54,16 @@ const DataForm: React.FC<DataDataFormProps> = ({
           </FormField>
         </Col>
         <Col span={12}>
+          <FormField label="密碼" name="pw" required>
+            <Input.Password />
+          </FormField>
+        </Col>
+        <Col span={12}>
+          <FormField label="確認密碼" name="pw_confirm" required>
+            <Input.Password />
+          </FormField>
+        </Col>
+        <Col span={12}>
           <FormField label="電子郵箱" name="email" required>
             <Input />
           </FormField>

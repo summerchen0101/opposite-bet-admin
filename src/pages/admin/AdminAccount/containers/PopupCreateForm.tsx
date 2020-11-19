@@ -9,6 +9,8 @@ import DataForm from './DataForm'
 const initValues: AdminAccount.DataFormProps = {
   account: '',
   realName: '',
+  pw: '',
+  pw_confirm: '',
   email: '',
   role: null,
   singleLimit: 1000,

@@ -38,6 +38,8 @@ export default async (id: number): Promise<AdminAccount.DataFormProps> => {
   const resultData: AdminAccount.DataFormProps = {
     account: _admin.username,
     realName: _admin.name,
+    pw: '',
+    pw_confirm: '',
     email: _admin.admin_email,
     role: _admin.admin_role_id,
     singleLimit: +_admin.single_withdrawal_limit,

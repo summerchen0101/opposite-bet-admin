@@ -2,6 +2,8 @@ export type AdminStatusOptions = 0 | 1 | 2 | 3
 export interface DataFormProps {
   account: string
   realName: string
+  pw: string
+  pw_confirm: string
   email: string
   role: number
   singleLimit: number
