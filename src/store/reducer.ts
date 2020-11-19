@@ -1,4 +1,10 @@
-import { Login, Permission, UserInfo } from '@/lib/types'
+import {
+  Login,
+  Permission,
+  ResponseBase,
+  UserInfo,
+  MenuItem,
+} from '@/lib/types'
 import * as apis from '@/utils/apiServices'
 import {
   createAsyncThunk,
@@ -9,23 +15,17 @@ import {
 import { message } from 'antd'
 import { useHistory } from 'react-router-dom'
 import API from '@/utils/API'
-import { toErrorMessage } from '@/utils/transfer'
+import { handleMenuTransfer, toErrorMessage } from '@/utils/transfer'
 export type TabType = {
   path: string
   label: string
 }
 
-interface MenuProps {
-  id: string | number
-  name: string
-  permission: Permission
-  children?: MenuProps[]
-}
 export type GlobalState = {
   isLogin: boolean
   tabs: TabType[]
   language: string
-  menu: MenuProps[]
+  menu: MenuItem[]
   user: UserInfo | null
   loading: boolean
 }
@@ -38,10 +38,20 @@ const initialState: GlobalState = {
   loading: false,
 }
 
+interface fetchUserAndMenuResponse {
+  admin: UserInfo
+  menu: any
+}
+
 export const fetchUserAndMenu = createAsyncThunk(
   'global/fetchUserAndMenu',
   async (_, thunkAPI) => {
-    return await apis.getUserAndMenu()
+    const res = await API.getUserAndMenu<
+      ResponseBase<fetchUserAndMenuResponse>
+    >()
+    const admin = res.data.admin
+    const menu = handleMenuTransfer(res.data.menu)
+    return { admin, menu }
   },
 )
 export const doLogout = createAsyncThunk(
