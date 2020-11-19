@@ -8,7 +8,7 @@ export type TabType = {
 }
 
 interface RootMenuProps {
-  id: string | number
+  id: number
   name: string
   children?: MenuProps[]
 }

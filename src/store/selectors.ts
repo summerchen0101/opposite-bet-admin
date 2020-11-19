@@ -20,3 +20,7 @@ export const selectLoading = createSelector(
   selectModuleState,
   (global) => global.loading,
 )
+export const selectMenu = createSelector(
+  selectModuleState,
+  (global) => global.menu,
+)

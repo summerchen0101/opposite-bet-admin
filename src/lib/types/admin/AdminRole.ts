@@ -1,3 +1,5 @@
+import { Permission } from '..'
+
 export interface ListItem {
   id: number
   name: string
@@ -7,4 +9,10 @@ export interface ListItem {
   creator: string
   createdAt: string
   menu: string
+}
+
+export interface RolePermissionItem {
+  key: number
+  name: string
+  permission: Permission
 }
