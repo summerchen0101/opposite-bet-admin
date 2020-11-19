@@ -1,5 +1,5 @@
 import DashboardContext from '@/contexts/DashboardContext'
-import { doLogout, setLanguage, toggleLoginStatus } from '@/store/reducer'
+import { doLogout, setLanguage, setLogout } from '@/store/reducer'
 import {
   LogoutOutlined,
   MenuFoldOutlined,

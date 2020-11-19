@@ -16,6 +16,7 @@ import { message } from 'antd'
 import { useHistory } from 'react-router-dom'
 import API from '@/utils/API'
 import { handleMenuTransfer, toErrorMessage } from '@/utils/transfer'
+import { errorHandler } from '@/utils/helper'
 export type TabType = {
   path: string
   label: string
@@ -38,35 +39,33 @@ const initialState: GlobalState = {
   loading: false,
 }
 
-interface fetchUserAndMenuResponse {
-  admin: UserInfo
-  menu: any
-}
-
 export const fetchUserAndMenu = createAsyncThunk(
   'global/fetchUserAndMenu',
-  async (_, thunkAPI) => {
-    const res = await API.getUserAndMenu<
-      ResponseBase<fetchUserAndMenuResponse>
+  async (_, { dispatch }) => {
+    const { result, data } = await API.getUserAndMenu<
+      ResponseBase<{
+        admin: UserInfo
+        menu: any
+      }>
     >()
-    const admin = res.data.admin
-    const menu = handleMenuTransfer(res.data.menu)
-    return { admin, menu }
+    errorHandler(result, dispatch)
+    const { admin, menu } = data
+    return { admin, menu: handleMenuTransfer(menu) }
   },
 )
 export const doLogout = createAsyncThunk(
   'global/doLogout',
-  async (_, thunkAPI) => {
-    return await API.logout()
+  async (_, { dispatch }) => {
+    const { result } = await API.logout<ResponseBase<any>>()
+    errorHandler(result, dispatch)
+    return
   },
 )
 export const doLogin = createAsyncThunk(
   'global/doLogin',
   async (data: Login.RequestProps, { dispatch, rejectWithValue }) => {
     const { result, token } = await API.login<Login.ResponseProps>(data)
-    if (result !== 'SUCCESS') {
-      throw new Error(toErrorMessage(result))
-    }
+    errorHandler(result, dispatch)
     return token
   },
 )
@@ -88,8 +87,9 @@ const module = createSlice({
       const i = state.tabs.findIndex((t) => t.path === action.payload)
       state.tabs = i > -1 ? [state.tabs[i]] : []
     },
-    toggleLoginStatus(state, action: PayloadAction<boolean>) {
-      state.isLogin = action.payload
+    setLogout(state) {
+      state.isLogin = false
+      sessionStorage.removeItem('token')
     },
     setLanguage(state, action: PayloadAction<string>) {
       state.language = action.payload
@@ -116,7 +116,7 @@ const module = createSlice({
 })
 
 export const {
-  toggleLoginStatus,
+  setLogout,
   addTab,
   clearTabs,
   removeTab,
