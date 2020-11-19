@@ -1,11 +1,13 @@
 import React from 'react'
 import CreateButton from '@/components/CreateButton'
 import { useDispatch } from 'react-redux'
-import { toggleCreateModal } from '../reducer'
+import { toggleCreateModal, fetchCreateOptions } from '../reducer'
 
 const Component: React.FC = () => {
   const dispatch = useDispatch()
-  const onCreate = () => dispatch(toggleCreateModal(true))
+  const onCreate = () => {
+    dispatch(fetchCreateOptions())
+  }
   return <CreateButton onClick={onCreate} />
 }
 

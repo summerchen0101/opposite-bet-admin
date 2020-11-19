@@ -14,5 +14,6 @@ export interface ListItem {
 export interface RolePermissionItem {
   key: number
   name: string
+  children?: RolePermissionItem
   permission: Permission
 }

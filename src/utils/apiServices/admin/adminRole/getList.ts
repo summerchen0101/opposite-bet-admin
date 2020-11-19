@@ -1,7 +1,13 @@
-import { OptionType, Permission, RemotePermission } from '@/lib/types'
+import {
+  OptionType,
+  Permission,
+  RemotePermission,
+  ResponseBase,
+} from '@/lib/types'
 import { AdminRole } from '@/lib/types/admin'
 import { permissionTransfer } from '@/utils/dataFactory'
 import Request from '@/utils/request'
+import { toErrorMessage } from '@/utils/transfer'
 
 interface ResponseRoleItem {
   role_id: number
@@ -25,10 +31,15 @@ interface ResultProps {
 }
 
 export default async (): Promise<ResultProps> => {
-  const res = await Request.post<ReponseProps>(`admin/getAdminRoles`)
+  const { result, data } = await Request.post<ResponseBase<ReponseProps>>(
+    `admin/getAdminRoles`,
+  )
+  if (result !== 'SUCCESS') {
+    throw toErrorMessage(result)
+  }
   return {
-    permission: permissionTransfer(res.permission),
-    list: res.role.map((t, i) => ({
+    permission: permissionTransfer(data.permission),
+    list: data.role.map((t, i) => ({
       key: t.role_id,
       id: t.role_id,
       name: t.role_name,

@@ -5,14 +5,14 @@ import { useDispatch } from 'react-redux'
 import PageHeader from './components/PageHeader'
 import PopupCreateForm from './containers/PopupCreateForm'
 import TableData from './containers/TableData'
-import reducer, { initSearchState, moduleName, getList } from './reducer'
+import reducer, { initSearchState, moduleName, fetchList } from './reducer'
 
 const Manager: React.FC = () => {
   useReducerInjector(moduleName, reducer)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(initSearchState())
-    dispatch(getList())
+    dispatch(fetchList())
   }, [])
   return (
     <Dashboard>

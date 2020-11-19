@@ -3,6 +3,7 @@ import Request from '@/utils/request'
 export * from './admin'
 import errCodes from '@/lib/errCodes'
 import { permissionTransfer } from '../dataFactory'
+import { handleMenuTransfer } from '../transfer'
 
 interface ResponseProps {
   admin: UserInfo
@@ -17,23 +18,6 @@ export default async (): Promise<ResponseProps> => {
     throw res
   }
   const admin = res.data.admin
-  const menu = []
-  for (const rootId in res.data.menu) {
-    const { root, sub } = res.data.menu[rootId]
-    const children = []
-    for (const subId in sub) {
-      const { name, url, permission } = sub[subId]
-      children.push({
-        id: subId,
-        name,
-        permission: permissionTransfer(permission),
-      })
-    }
-    menu.push({
-      id: rootId,
-      name: root.name,
-      children,
-    })
-  }
+  const menu = handleMenuTransfer(res.data.menu)
   return { admin, menu }
 }

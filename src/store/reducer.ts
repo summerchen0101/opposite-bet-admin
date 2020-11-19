@@ -7,21 +7,17 @@ export type TabType = {
   label: string
 }
 
-interface RootMenuProps {
-  id: number
-  name: string
-  children?: MenuProps[]
-}
 interface MenuProps {
   id: string | number
   name: string
   permission: Permission
+  children?: MenuProps[]
 }
 export type GlobalState = {
   isLogin: boolean
   tabs: TabType[]
   language: string
-  menu: RootMenuProps[]
+  menu: MenuProps[]
   user: UserInfo | null
   loading: boolean
 }

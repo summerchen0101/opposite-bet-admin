@@ -7,7 +7,7 @@ import {
   SettingOutlined,
   SettingTwoTone,
 } from '@ant-design/icons'
-import { Button, Input, Select, Space } from 'antd'
+import { Button, Input, Select, Space, Table } from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleCreateModal } from '../reducer'
@@ -21,7 +21,7 @@ import { AdminRole } from '@/lib/types'
 const { Option } = Select
 
 const columns = [
-  { title: '功能', dataIndex: 'node' },
+  { title: '功能', dataIndex: 'name' },
   {
     title: '權限',
     dataIndex: 'permission',
@@ -53,12 +53,16 @@ const CreateForm: React.FC = () => {
   }
 
   const menu = useGlobalTypedSelector(selectMenu)
+  const menuPermissionListCreator = (menu) => {
+    return menu.map((t, i) => ({
+      key: t.id,
+      name: t.name,
+      children: t.children ? menuPermissionListCreator(t.children) : undefined,
+      permission: { view: true, edit: false },
+    }))
+  }
 
-  const data: AdminRole.RolePermissionItem[] = menu.map((t, i) => ({
-    key: t.id,
-    name: t.name,
-    permission: { view: true, edit: false },
-  }))
+  const data = menuPermissionListCreator(menu)
 
   return (
     <PopupModal visible={isDisplay} title="新增管理者角色" onCancel={onCancel}>
@@ -79,8 +83,12 @@ const CreateForm: React.FC = () => {
             </Space>
           </Space>
         </h3>
-        <PopupTable columns={columns} data={data} pagination={false} />
-
+        <Table
+          columns={columns}
+          dataSource={data}
+          pagination={false}
+          size="small"
+        />
         <FormField style={{ marginTop: '20px', textAlign: 'center' }}>
           <Space size="large">
             <Button htmlType="reset">重置</Button>

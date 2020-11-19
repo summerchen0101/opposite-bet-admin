@@ -6,25 +6,35 @@ import {
 } from '@reduxjs/toolkit'
 import * as apis from '@/utils/apiServices'
 import { AdminRole } from '@/lib/types/admin'
-import { Permission } from '@/lib/types'
+import { Permission, MenuItem } from '@/lib/types'
 export interface IState {
   tableData: AdminRole.ListItem[]
   displayCreateModal: boolean
   permission: Permission
+  menu: MenuItem[]
 }
 const initialState: IState = {
   tableData: [],
   permission: { edit: false, view: false },
   displayCreateModal: false,
+  menu: [],
 }
 
 export const moduleName = 'adminRole'
 
 // 列表
-export const getList = createAsyncThunk(
-  `${moduleName}/getList`,
+export const fetchList = createAsyncThunk(
+  `${moduleName}/fetchList`,
   (_, { dispatch }) => {
     return apis.AdminRole.getList()
+  },
+)
+
+// 新增(撈選項)
+export const fetchCreateOptions = createAsyncThunk(
+  `${moduleName}/fetchCreateOptions`,
+  (_, { dispatch }) => {
+    return apis.AdminRole.create()
   },
 )
 
@@ -40,10 +50,15 @@ const module = createSlice({
     },
   },
   extraReducers: (builder: ActionReducerMapBuilder<IState>) => {
-    builder.addCase(getList.fulfilled, (state, action) => {
+    builder.addCase(fetchList.fulfilled, (state, action) => {
       const { list, permission } = action.payload
       state.tableData = list
       state.permission = permission
+    })
+    builder.addCase(fetchCreateOptions.fulfilled, (state, action) => {
+      const { menu } = action.payload
+      state.menu = menu
+      state.displayCreateModal = true
     })
   },
 })
