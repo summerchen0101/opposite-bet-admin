@@ -5,6 +5,8 @@ import { Space } from 'antd'
 import React from 'react'
 import { Text } from '@/components'
 import { useTypedSelector, selectTableData } from '../selectors'
+import { fetchEditOptions } from '../reducer'
+import { useDispatch } from 'react-redux'
 
 const columns = [
   {
@@ -62,10 +64,12 @@ const columns = [
     key: 'control',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
+      const dispatch = useDispatch()
+      const handleEdit = () => dispatch(fetchEditOptions(row.key))
       return (
         <Space size="small">
           <IconLink icon={<StopOutlined />} label="停用" color="red" />
-          <IconLink icon={<EditFilled />} label="編輯" />
+          <IconLink icon={<EditFilled />} label="編輯" onClick={handleEdit} />
         </Space>
       )
     },

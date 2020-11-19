@@ -8,26 +8,15 @@ import { AdminRole } from '@/lib/types/admin'
 import { permissionTransfer } from '@/utils/dataFactory'
 import Request from '@/utils/request'
 import { toErrorMessage } from '@/utils/transfer'
-
-interface ResponseRoleItem {
-  role_id: number
-  role_name: string
-  used_count: number
-  created_at: string
-  createtor: string
-  updated_at: string
-  updator: string
-  menu: string
-}
-
-interface ReponseProps {
-  permission: RemotePermission
-  role: ResponseRoleItem[]
-}
-
+import { ResponseRoleItem } from './types'
 interface ResultProps {
   permission: Permission
   list: AdminRole.ListItem[]
+}
+
+export interface ReponseProps {
+  permission: RemotePermission
+  role: ResponseRoleItem[]
 }
 
 export default async (): Promise<ResultProps> => {

@@ -10,14 +10,21 @@ import { Permission, MenuItem } from '@/lib/types'
 export interface IState {
   tableData: AdminRole.ListItem[]
   displayCreateModal: boolean
+  displayEditModal: boolean
   permission: Permission
   menu: MenuItem[]
+  editRole: {
+    id: number
+    name: string
+  } | null
 }
 const initialState: IState = {
   tableData: [],
   permission: { edit: false, view: false },
   displayCreateModal: false,
+  displayEditModal: false,
   menu: [],
+  editRole: null,
 }
 
 export const moduleName = 'adminRole'
@@ -30,7 +37,7 @@ export const fetchList = createAsyncThunk(
   },
 )
 
-// 新增(撈選項)
+// 新增
 export const fetchCreateOptions = createAsyncThunk(
   `${moduleName}/fetchCreateOptions`,
   (_, { dispatch }) => {
@@ -38,9 +45,26 @@ export const fetchCreateOptions = createAsyncThunk(
   },
 )
 
-// 新增
+// 新增送出
 export const doCreate = createAsyncThunk(
   `${moduleName}/doCreate`,
+  (name: string, { getState }) => {
+    const state = getState()[moduleName] as IState
+    return apis.AdminRole.doCreate({ name, menu: state.menu })
+  },
+)
+
+// 編輯
+export const fetchEditOptions = createAsyncThunk(
+  `${moduleName}/fetchEditOptions`,
+  (id: number, { dispatch }) => {
+    return apis.AdminRole.edit(id)
+  },
+)
+
+// 編輯送出
+export const doEdit = createAsyncThunk(
+  `${moduleName}/doEdit`,
   (name: string, { getState }) => {
     const state = getState()[moduleName] as IState
     return apis.AdminRole.doCreate({ name, menu: state.menu })
@@ -56,6 +80,9 @@ const module = createSlice({
     },
     toggleCreateModal(state, action: PayloadAction<boolean>) {
       state.displayCreateModal = action.payload
+    },
+    toggleEditModal(state, action: PayloadAction<boolean>) {
+      state.displayEditModal = action.payload
     },
     setMenu(
       state,
@@ -90,8 +117,28 @@ const module = createSlice({
       state.menu = menu
       state.displayCreateModal = true
     })
+    builder.addCase(fetchEditOptions.fulfilled, (state, action) => {
+      const { menu, name, id } = action.payload
+      state.editRole = {
+        id,
+        name,
+      }
+      state.menu = menu
+      state.displayEditModal = true
+    })
+    builder.addCase(doCreate.fulfilled, (state, action) => {
+      state.displayCreateModal = false
+    })
+    builder.addCase(doEdit.fulfilled, (state, action) => {
+      state.displayEditModal = false
+    })
   },
 })
 
-export const { initSearchState, toggleCreateModal, setMenu } = module.actions
+export const {
+  initSearchState,
+  toggleCreateModal,
+  toggleEditModal,
+  setMenu,
+} = module.actions
 export default module.reducer

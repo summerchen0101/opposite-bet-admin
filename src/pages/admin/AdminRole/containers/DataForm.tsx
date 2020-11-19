@@ -4,17 +4,22 @@ import { Button, Input, Space } from 'antd'
 import React from 'react'
 import DataFormHeader from '../components/DataFormHeader'
 import PermissionTable from './PermissionTable'
+import { Form as AntForm } from 'antd'
 
 const DataForm: React.FC<DataDataFormProps> = ({
   onFinish,
   onFinishFailed,
   values,
 }) => {
+  const [form] = AntForm.useForm()
+  const onReset = () => form.resetFields()
   return (
     <Form
+      form={form}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       initialValues={values}
+      onReset={onReset}
     >
       <FormField label="角色名稱" name="name" required>
         <Input />

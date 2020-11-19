@@ -13,7 +13,15 @@ export const selectTableData = createSelector(
   selectModuleState,
   (moduleState) => moduleState.tableData,
 )
+export const selectEditRole = createSelector(
+  selectModuleState,
+  (moduleState) => moduleState.editRole,
+)
 export const selectDisplayCreateModal = createSelector(
   selectModuleState,
   (moduleState) => moduleState.displayCreateModal,
+)
+export const selectDisplayEditModal = createSelector(
+  selectModuleState,
+  (moduleState) => moduleState.displayEditModal,
 )

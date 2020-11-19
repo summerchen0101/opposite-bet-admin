@@ -1,3 +1,5 @@
 export { default as getList } from './getList'
 export { default as create } from './create'
+export { default as edit } from './edit'
+export { default as doEdit } from './doEdit'
 export { default as doCreate } from './doCreate'
