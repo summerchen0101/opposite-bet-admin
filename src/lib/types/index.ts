@@ -49,3 +49,9 @@ export interface MenuItem {
   parent?: number
   children?: MenuItem[]
 }
+
+export interface DataDataFormProps {
+  values: any
+  onFinish?: (values: any) => void
+  onFinishFailed?: (values: any) => void
+}

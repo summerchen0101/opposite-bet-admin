@@ -36,6 +36,7 @@ export default async (id: number): Promise<AdminAccount.DataFormProps> => {
   }
   const _admin = res.data.admin
   const resultData: AdminAccount.DataFormProps = {
+    id,
     account: _admin.username,
     realName: _admin.name,
     pw: '',

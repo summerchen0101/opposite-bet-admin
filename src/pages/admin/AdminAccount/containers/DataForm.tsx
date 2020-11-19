@@ -1,6 +1,6 @@
 import { BasicSelector, Text } from '@/components'
 import Form, { FormField } from '@/components/Form'
-import { AdminAccount } from '@/lib/types'
+import { DataDataFormProps } from '@/lib/types'
 import {
   Button,
   Col,
@@ -15,12 +15,6 @@ import {
 import moment from 'moment'
 import React from 'react'
 import { selectRoleOptions, useTypedSelector } from '../selectors'
-
-interface DataDataFormProps {
-  values: any
-  onFinish?: (values: any) => void
-  onFinishFailed?: (values: any) => void
-}
 
 const DataForm: React.FC<DataDataFormProps> = ({
   values,

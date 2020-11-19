@@ -42,15 +42,7 @@ export const fetchAdminList = createAsyncThunk(
   },
 )
 
-// 選項(編輯)
-export const fetchAdminEditOptions = createAsyncThunk(
-  `${moduleName}/fetchAdminEditOptions`,
-  async (id: number, { dispatch }) => {
-    return await apis.AdminAccount.getItem(id)
-  },
-)
-
-// 新增
+// 新增送出
 export const createAdmin = createAsyncThunk(
   `${moduleName}/createAdmin`,
   async (fomrData: AdminAccount.DataFormProps, { dispatch }) => {
@@ -59,12 +51,21 @@ export const createAdmin = createAsyncThunk(
     return
   },
 )
+
 // 編輯
+export const fetchAdminEditOptions = createAsyncThunk(
+  `${moduleName}/fetchAdminEditOptions`,
+  (id: number, { dispatch }) => {
+    return apis.AdminAccount.getItem(id)
+  },
+)
+
+// 編輯送出
 export const editAdmin = createAsyncThunk(
   `${moduleName}/editAdmin`,
-  async (fomrData: AdminAccount.DataFormProps, { dispatch, ...options }) => {
-    console.log(options.getState())
-    await apis.AdminAccount.edit({ ...fomrData, id: 9 })
+  async (fomrData: AdminAccount.DataFormProps, { dispatch, getState }) => {
+    const state = getState()[moduleName] as IState
+    await apis.AdminAccount.edit({ ...fomrData, id: state.editAdmin.id })
     dispatch(fetchAdminList({}))
     return
   },
@@ -111,9 +112,9 @@ const module = createSlice({
       state.editAdmin = action.payload
       state.displayEditModal = true
     })
-    // builder.addCase(fetchAdminCreateOptions.rejected, (state, action) => {
-    //   state.roleOptions = []
-    // })
+    builder.addCase(editAdmin.fulfilled, (state, action) => {
+      state.displayEditModal = false
+    })
     builder.addCase(createAdmin.fulfilled, (state, action) => {
       state.displayCreateModal = false
     })
