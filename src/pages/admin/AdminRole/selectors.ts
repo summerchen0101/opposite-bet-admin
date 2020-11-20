@@ -17,6 +17,10 @@ export const selectEditRole = createSelector(
   selectModuleState,
   (moduleState) => moduleState.editRole,
 )
+export const selectMenu = createSelector(
+  selectModuleState,
+  (moduleState) => moduleState.menu,
+)
 export const selectDisplayCreateModal = createSelector(
   selectModuleState,
   (moduleState) => moduleState.displayCreateModal,

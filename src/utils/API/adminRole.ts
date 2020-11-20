@@ -1,20 +1,20 @@
 import Request from '@/utils/request'
-import { RequestWithData, RequestWithoutData } from '@/lib/types'
+import { AdminRole, RequestPromise } from '@/lib/types'
 
-export const getList: RequestWithData = <T>(data) =>
-  Request.post<T>('admin/getAdminRoles', data)
+export const getList: RequestPromise = <T>() =>
+  Request.post<T>('admin/getAdminRoles')
 
-export const create: RequestWithData = <T>() =>
+export const create: RequestPromise = <T>() =>
   Request.post<T>('admin/getAdminRoles', { method: 'ADD' })
 
-export const edit: RequestWithData = <T>(id) =>
+export const edit: RequestPromise = <T>(id: number) =>
   Request.post<T>('admin/getAdminRoles', { method: 'EDIT', role_id: id })
 
-export const doCreate: RequestWithData = <T>(data) =>
+export const doCreate: RequestPromise = <T>(data: AdminRole.DoCreateRequest) =>
   Request.post<T>('admin/storeAdminRole', { method: 'ADD', ...data })
 
-export const doEdit: RequestWithData = <T>(data) =>
+export const doEdit: RequestPromise = <T>(data: AdminRole.DoEditRequest) =>
   Request.post<T>('admin/storeAdminRole', { method: 'EDIT', ...data })
 
-// export const doDelete: RequestWithData = <T>(id) =>
+// export const doDelete: RequestPromise = <T>(id) =>
 //   Request.post<T>('admin/storeAdminRole', { method: 'DELETE', role_id: id })

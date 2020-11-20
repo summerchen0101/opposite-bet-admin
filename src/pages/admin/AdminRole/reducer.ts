@@ -5,8 +5,10 @@ import {
   ActionReducerMapBuilder,
 } from '@reduxjs/toolkit'
 import * as apis from '@/utils/apiServices'
-import { AdminRole } from '@/lib/types/admin'
-import { Permission, MenuItem } from '@/lib/types'
+import API from '@/utils/API'
+import { Permission, MenuItem, AdminRole, ResponseBase } from '@/lib/types'
+import { handleMenuTransfer, permissionTransfer } from '@/utils/transfer'
+import { errorHandler } from '@/utils/helper'
 export interface IState {
   tableData: AdminRole.ListItem[]
   displayCreateModal: boolean
@@ -32,42 +34,84 @@ export const moduleName = 'adminRole'
 // 列表
 export const fetchList = createAsyncThunk(
   `${moduleName}/fetchList`,
-  (_, { dispatch }) => {
-    return apis.AdminRole.getList()
+  async (_, { dispatch }) => {
+    const { result, data } = await API.adminRole.getList<
+      ResponseBase<AdminRole.ListResponse>
+    >()
+    errorHandler(result, dispatch)
+    const pageData: AdminRole.ListResultProps = {
+      permission: permissionTransfer(data.permission),
+      list: data.role.map((t, i) => ({
+        key: t.role_id,
+        id: t.role_id,
+        name: t.role_name,
+        count: t.used_count,
+        updatedAt: t.updated_at,
+        updator: t.updator,
+        createdAt: t.created_at,
+        creator: t.createtor,
+        menu: t.menu,
+      })),
+    }
+    return pageData
   },
 )
 
 // 新增
 export const fetchCreateOptions = createAsyncThunk(
   `${moduleName}/fetchCreateOptions`,
-  (_, { dispatch }) => {
-    return apis.AdminRole.create()
+  async (_, { dispatch }) => {
+    const { result, data } = await API.adminRole.create<ResponseBase<any[]>>()
+    errorHandler(result, dispatch)
+    return handleMenuTransfer(data)
   },
 )
 
 // 新增送出
 export const doCreate = createAsyncThunk(
   `${moduleName}/doCreate`,
-  (name: string, { getState }) => {
-    const state = getState()[moduleName] as IState
-    return apis.AdminRole.doCreate({ name, menu: state.menu })
+  async (name: string, { getState, dispatch }) => {
+    const { menu } = getState()[moduleName] as IState
+    const reqData: AdminRole.DoCreateRequest = {
+      role_name: name,
+      menu_data: JSON.stringify(menu),
+    }
+    const { result } = await API.adminRole.doCreate<ResponseBase<any>>(reqData)
+    errorHandler(result, dispatch)
+    return
   },
 )
 
 // 編輯
 export const fetchEditOptions = createAsyncThunk(
   `${moduleName}/fetchEditOptions`,
-  (id: number, { dispatch }) => {
-    return apis.AdminRole.edit(id)
+  async (id: number, { dispatch }) => {
+    const { result, data } = await API.adminRole.edit<
+      ResponseBase<AdminRole.DoEditResponse>
+    >(id)
+    errorHandler(result, dispatch)
+    const { role_name, role_id, menu } = data.role[0]
+    return {
+      id: role_id,
+      name: role_name,
+      menu: handleMenuTransfer(menu),
+    }
   },
 )
 
 // 編輯送出
 export const doEdit = createAsyncThunk(
   `${moduleName}/doEdit`,
-  (name: string, { getState }) => {
-    const state = getState()[moduleName] as IState
-    return apis.AdminRole.doCreate({ name, menu: state.menu })
+  async (name: string, { getState, dispatch }) => {
+    const { menu, editRole } = getState()[moduleName] as IState
+    const reqData: AdminRole.DoEditRequest = {
+      role_id: editRole.id,
+      role_name: name,
+      menu_data: JSON.stringify(menu),
+    }
+    const { result } = await API.adminRole.doEdit(reqData)
+    errorHandler(result, dispatch)
+    return
   },
 )
 
@@ -113,8 +157,7 @@ const module = createSlice({
       state.permission = permission
     })
     builder.addCase(fetchCreateOptions.fulfilled, (state, action) => {
-      const { menu } = action.payload
-      state.menu = menu
+      state.menu = action.payload
       state.displayCreateModal = true
     })
     builder.addCase(fetchEditOptions.fulfilled, (state, action) => {

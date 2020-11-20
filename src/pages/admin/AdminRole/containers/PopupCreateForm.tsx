@@ -1,8 +1,14 @@
 import PopupModal from '@/components/PopupModal'
+import { useAppDispatch } from '@/store'
+import { message } from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { doCreate, toggleCreateModal } from '../reducer'
-import { selectDisplayCreateModal, useTypedSelector } from '../selectors'
+import {
+  selectDisplayCreateModal,
+  useTypedSelector,
+  selectMenu,
+} from '../selectors'
 import DataForm from './DataForm'
 
 const formValues = {
@@ -10,14 +16,19 @@ const formValues = {
 }
 
 const CreateForm: React.FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const isDisplay = useTypedSelector(selectDisplayCreateModal)
+  const menu = useTypedSelector(selectMenu)
   const onCancel = () => {
     dispatch(toggleCreateModal(false))
   }
-  const onFinish = ({ name }) => {
-    dispatch(doCreate(name))
-    dispatch(toggleCreateModal(false))
+  const onFinish = async ({ name }) => {
+    const action = await dispatch(doCreate(name))
+    if (doCreate.fulfilled.match(action)) {
+      dispatch(toggleCreateModal(false))
+    } else {
+      message.error(action.error.message)
+    }
   }
 
   const onFinishFailed = (errorInfo) => {
@@ -30,6 +41,7 @@ const CreateForm: React.FC = () => {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         values={formValues}
+        menu={menu}
       />
     </PopupModal>
   )

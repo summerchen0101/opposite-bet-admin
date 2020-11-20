@@ -20,10 +20,7 @@ export interface Permission {
   view: boolean
   edit: boolean
 }
-export type RequestWithoutData = <T>() => Promise<T>
-export type RequestWithData = <T>(data: any) => Promise<T>
-// export type RequestWithId = <T>(id: string | number) => Promise<T>
-// export type RequestWithForm = <T>(data: Record<string, any>) => Promise<T>
+export type RequestPromise = <T>(data?: unknown) => Promise<T>
 
 export class ResponseBase<T> {
   result: string

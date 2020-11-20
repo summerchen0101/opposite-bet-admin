@@ -6,7 +6,7 @@ import DataFormHeader from '../components/DataFormHeader'
 import PermissionTable from './PermissionTable'
 import { Form as AntForm } from 'antd'
 
-const DataForm: React.FC<DataDataFormProps> = ({
+const DataForm: React.FC<DataDataFormProps & { menu: any[] }> = ({
   onFinish,
   onFinishFailed,
   values,

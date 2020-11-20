@@ -1,4 +1,5 @@
 import PopupModal from '@/components/PopupModal'
+import { useAppDispatch } from '@/store'
 import { cloneDeep } from 'lodash'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,12 +8,14 @@ import {
   selectDisplayEditModal,
   selectEditRole,
   useTypedSelector,
+  selectMenu,
 } from '../selectors'
 import DataForm from './DataForm'
 
 const EditForm: React.FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const isDisplay = useTypedSelector(selectDisplayEditModal)
+  const menu = useTypedSelector(selectMenu)
   const onCancel = () => {
     dispatch(toggleEditModal(false))
   }
@@ -34,6 +37,7 @@ const EditForm: React.FC = () => {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         values={editRole}
+        menu={menu}
       />
     </PopupModal>
   )

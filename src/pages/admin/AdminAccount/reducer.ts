@@ -52,6 +52,7 @@ export const fetchAdminList = createAsyncThunk(
     const { data, result } = await API.adminAccount.getList<
       ResponseBase<AdminAccount.ListResponse>
     >(reqData)
+    errorHandler(result, dispatch)
     return {
       list:
         data.admin?.map((t) => ({
@@ -81,6 +82,7 @@ export const fetchAdminEditOptions = createAsyncThunk(
     const { result, data } = await API.adminAccount.edit<
       ResponseBase<AdminAccount.EditResponseProps>
     >(id)
+    errorHandler(result, dispatch)
     const { admin: _admin } = data
     const formData: AdminAccount.DataFormProps = {
       id,
