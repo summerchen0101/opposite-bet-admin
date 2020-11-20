@@ -1,7 +1,7 @@
 import errCodes from '@/lib/errCodes'
 import { MenuItem } from '@/lib/types'
 
-import { Permission, RemotePermission } from '@/lib/types'
+import { Permission, RemotePermission, OrgManage } from '@/lib/types'
 
 export const toCurrency = (num: number, decimal = 0) =>
   Number(num.toFixed(decimal)).toLocaleString()
@@ -33,4 +33,23 @@ export const handleMenuTransfer = (menu): MenuItem[] => {
     })
   }
   return newMenu
+}
+
+export const agentStructureCreator = (
+  objList: OrgManage.RemoteAgent,
+): OrgManage.AgentItem[] => {
+  const name = objList.NAME
+  delete objList.NAME
+  const list = []
+  for (const id in objList) {
+    const item: Partial<OrgManage.AgentItem> = {
+      id: +id,
+      children: agentStructureCreator(objList[id]),
+    }
+    if (name) {
+      item.name = name
+    }
+    list.push(item)
+  }
+  return list
 }

@@ -7,7 +7,7 @@ import {
 } from '@reduxjs/toolkit'
 import API from '@/utils/API'
 import { errorHandler } from '@/utils/helper'
-import { permissionTransfer } from '@/utils/transfer'
+import { agentStructureCreator, permissionTransfer } from '@/utils/transfer'
 export interface IState {
   permission: Permission
   tableData: any[]
@@ -69,6 +69,78 @@ export const fetchList = createAsyncThunk(
     return pageData
   },
 )
+
+// 新增
+export const fetchCreateOptions = createAsyncThunk(
+  `${moduleName}/fetchCreateOptions`,
+  async (_, { dispatch }) => {
+    const { result, data } = await API.orgManage.create<
+      ResponseBase<OrgManage.CreateOptionResponse>
+    >()
+    errorHandler(result, dispatch)
+    return {
+      agentStruct: agentStructureCreator(data.agent_struct),
+    }
+  },
+)
+
+// // 新增送出
+// export const doCreate = createAsyncThunk(
+//   `${moduleName}/doCreate`,
+//   async (name: string, { getState, dispatch }) => {
+//     const { menu } = getState()[moduleName] as IState
+//     const reqData: AdminRole.DoCreateRequest = {
+//       role_name: name,
+//       menu_data: JSON.stringify(menu),
+//     }
+//     const { result } = await API.adminRole.doCreate<ResponseBase<any>>(reqData)
+//     errorHandler(result, dispatch)
+//     return
+//   },
+// )
+
+// // 編輯
+// export const fetchEditOptions = createAsyncThunk(
+//   `${moduleName}/fetchEditOptions`,
+//   async (id: number, { dispatch }) => {
+//     const { result, data } = await API.adminRole.edit<
+//       ResponseBase<AdminRole.DoEditResponse>
+//     >(id)
+//     errorHandler(result, dispatch)
+//     const { role_name, role_id, menu } = data.role[0]
+//     return {
+//       id: role_id,
+//       name: role_name,
+//       menu: handleMenuTransfer(menu),
+//     }
+//   },
+// )
+
+// // 編輯送出
+// export const doEdit = createAsyncThunk(
+//   `${moduleName}/doEdit`,
+//   async (name: string, { getState, dispatch }) => {
+//     const { menu, editRole } = getState()[moduleName] as IState
+//     const reqData: AdminRole.DoEditRequest = {
+//       role_id: editRole.id,
+//       role_name: name,
+//       menu_data: JSON.stringify(menu),
+//     }
+//     const { result } = await API.adminRole.doEdit<ResponseBase<any>>(reqData)
+//     errorHandler(result, dispatch)
+//     return
+//   },
+// )
+
+// // 刪除
+// export const doDelete = createAsyncThunk(
+//   `${moduleName}/doDelete`,
+//   async (id: number, { dispatch }) => {
+//     const { result } = await API.adminRole.doDelete<ResponseBase<any>>(id)
+//     errorHandler(result, dispatch)
+//     return
+//   },
+// )
 
 const module = createSlice({
   name: moduleName,

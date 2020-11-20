@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux'
 import {
   toggleLoginHistoryModal,
   togglePercentageModal,
+  togglePwModal,
   toggleTradeHistoryModal,
   toggleWhiteListModal,
 } from '../reducer'
@@ -195,16 +196,26 @@ const columns: ColumnsType<OrgManage.DataTableItem> = [
       const dispatch = useAppDispatch()
       const handlePercentageClicked = () =>
         dispatch(togglePercentageModal(true))
+      const handlePwModify = () => dispatch(togglePwModal(true))
+      const handleCreateChild = () => {}
       return (
         <Space size="small">
-          <IconLink icon={<PlusCircleOutlined />} label="新增" />
+          <IconLink
+            icon={<PlusCircleOutlined />}
+            label="新增下線"
+            onClick={handleCreateChild}
+          />
           <IconLink icon={<EditFilled />} label="編輯" />
           <IconLink
             icon={<PieChartOutlined />}
             label="佔成"
             onClick={handlePercentageClicked}
           />
-          <IconLink icon={<LockOutlined />} label="修改密碼" />
+          <IconLink
+            icon={<LockOutlined />}
+            label="修改密碼"
+            onClick={handlePwModify}
+          />
         </Space>
       )
     },
@@ -214,7 +225,7 @@ const columns: ColumnsType<OrgManage.DataTableItem> = [
 
 const TableData: React.FC = () => {
   const data = useTypedSelector(selectTableData)
-  return <TableSets columns={columns} data={data} />
+  return <TableSets columns={columns} data={[{ key: 1 }]} />
 }
 
 export default TableData

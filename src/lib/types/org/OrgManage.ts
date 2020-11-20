@@ -1,5 +1,11 @@
 import { RemotePagination, RemotePermission } from '..'
 
+export interface AgentItem {
+  id: number
+  name?: string
+  children?: AgentItem[]
+}
+
 export interface DataTableItem {
   key: number
   id: number
@@ -22,7 +28,7 @@ export interface DataTableItem {
   updatedAt: string
   updator: string
 }
-export interface RemoteAgentItem {
+export interface RemoteDataTableItem {
   agent_id: number
   agent_name: string
   agent_account: string
@@ -47,7 +53,7 @@ export interface SearchRequest {
 
 export interface ListResponse {
   permission: RemotePermission
-  agent: RemoteAgentItem[]
+  agent: RemoteDataTableItem[]
   paging: RemotePagination
 }
 
@@ -56,24 +62,18 @@ interface RemoteAdminRole {
   role_name: string
 }
 
-interface RemoteAgentSub {
-  NAME: string
-  [key: number]: RemoteAgentSub
-}
-
-interface RemoteAgentRoot {
-  [key: number]: RemoteAgentSub
+export interface RemoteAgent {
+  NAME?: string
+  [key: number]: RemoteAgent
 }
 
 export interface CreateOptionResponse {
-  agent_struct: {
-    [key: number]: RemoteAgentSub
-  }
+  agent_struct: RemoteAgent
   admin_roles: RemoteAdminRole[]
 }
 
 export interface EditOptionResponse {
-  agent_struct: RemoteAgentRoot
+  agent_struct: RemoteAgent
   admin_roles: RemoteAdminRole[]
   agent: {
     agent_account: string
