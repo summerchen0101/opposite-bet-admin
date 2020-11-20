@@ -3,7 +3,7 @@ import { useAppDispatch } from '@/store'
 import { cloneDeep } from 'lodash'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { doEdit, toggleEditModal } from '../reducer'
+import { doEdit, fetchList, toggleEditModal } from '../reducer'
 import {
   selectDisplayEditModal,
   selectEditRole,
@@ -19,9 +19,12 @@ const EditForm: React.FC = () => {
   const onCancel = () => {
     dispatch(toggleEditModal(false))
   }
-  const onFinish = ({ name }) => {
-    dispatch(doEdit(name))
-    dispatch(toggleEditModal(false))
+  const onFinish = async ({ name }) => {
+    const action = await dispatch(doEdit(name))
+    if (doEdit.fulfilled.match(action)) {
+      dispatch(toggleEditModal(false))
+      dispatch(fetchList())
+    }
   }
 
   const onFinishFailed = (errorInfo) => {

@@ -3,7 +3,7 @@ import { useAppDispatch } from '@/store'
 import { message } from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { doCreate, toggleCreateModal } from '../reducer'
+import { doCreate, toggleCreateModal, fetchList } from '../reducer'
 import {
   selectDisplayCreateModal,
   useTypedSelector,
@@ -25,6 +25,7 @@ const CreateForm: React.FC = () => {
   const onFinish = async ({ name }) => {
     const action = await dispatch(doCreate(name))
     if (doCreate.fulfilled.match(action)) {
+      dispatch(fetchList())
       dispatch(toggleCreateModal(false))
     } else {
       message.error(action.error.message)
