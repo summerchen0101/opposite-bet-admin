@@ -73,24 +73,26 @@ const DataForm: React.FC<DataDataFormProps> = ({
         </Col>
         <Col span={12}>
           <FormField label="單筆提款審核上限" name="singleLimit" required>
-            <InputNumber
+            {/* <InputNumber
               formatter={(value) =>
                 `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
               }
               parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
               style={{ width: '100%' }}
-            />
+            /> */}
+            <Input itemType="number" allowClear />
           </FormField>
         </Col>
         <Col span={12}>
           <FormField label="每日提款審核上限" name="dailyLimit" required>
-            <InputNumber
+            {/* <InputNumber
               formatter={(value) =>
                 `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
               }
               parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
               style={{ width: '100%' }}
-            />
+            /> */}
+            <Input itemType="number" allowClear />
           </FormField>
         </Col>
       </Row>
