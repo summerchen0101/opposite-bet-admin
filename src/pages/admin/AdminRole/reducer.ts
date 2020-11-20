@@ -109,7 +109,17 @@ export const doEdit = createAsyncThunk(
       role_name: name,
       menu_data: JSON.stringify(menu),
     }
-    const { result } = await API.adminRole.doEdit(reqData)
+    const { result } = await API.adminRole.doEdit<ResponseBase<any>>(reqData)
+    errorHandler(result, dispatch)
+    return
+  },
+)
+
+// 刪除
+export const doDelete = createAsyncThunk(
+  `${moduleName}/doDelete`,
+  async (id: number, { dispatch }) => {
+    const { result } = await API.adminRole.doDelete<ResponseBase<any>>(id)
     errorHandler(result, dispatch)
     return
   },

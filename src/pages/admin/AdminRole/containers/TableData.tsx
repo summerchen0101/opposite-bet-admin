@@ -1,12 +1,18 @@
 import IconLink from '@/components/IconLink'
 import TableSets from '@/components/TableSets'
-import { StopOutlined, EditFilled, FilterFilled } from '@ant-design/icons'
-import { Space } from 'antd'
+import {
+  StopOutlined,
+  EditFilled,
+  FilterFilled,
+  DeleteOutlined,
+} from '@ant-design/icons'
+import { message, Space } from 'antd'
 import React from 'react'
-import { Text } from '@/components'
+import { PopupConfirm, Text } from '@/components'
 import { useTypedSelector, selectTableData } from '../selectors'
-import { fetchEditOptions } from '../reducer'
+import { fetchEditOptions, doDelete, fetchList } from '../reducer'
 import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '@/store'
 
 const columns = [
   {
@@ -64,12 +70,24 @@ const columns = [
     key: 'control',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
-      const dispatch = useDispatch()
+      const dispatch = useAppDispatch()
       const handleEdit = () => dispatch(fetchEditOptions(row.key))
+      const handleDelete = async () => {
+        const action = await dispatch(doDelete(row.id))
+        if (doDelete.fulfilled.match(action)) {
+          message.success('刪除成功')
+          dispatch(fetchList())
+        } else {
+          message.error('刪除失敗')
+        }
+      }
       return (
         <Space size="small">
           <IconLink icon={<StopOutlined />} label="停用" color="red" />
           <IconLink icon={<EditFilled />} label="編輯" onClick={handleEdit} />
+          <PopupConfirm onConfirm={handleDelete}>
+            <IconLink icon={<DeleteOutlined />} label="刪除" />
+          </PopupConfirm>
         </Space>
       )
     },
