@@ -1,5 +1,4 @@
 import { AdminAccount, OptionType, Permission, ResponseBase } from '@/lib/types'
-import * as apis from '@/utils/apiServices'
 import API from '@/utils/API'
 import {
   ActionReducerMapBuilder,
@@ -172,9 +171,8 @@ export const editAdmin = createAsyncThunk(
 export const removeAdmin = createAsyncThunk(
   `${moduleName}/removeAdmin`,
   async (id: number, { dispatch }) => {
-    await apis.AdminAccount.delete(id)
-    message.success('刪除成功')
-    dispatch(fetchAdminList({}))
+    const { result } = await API.adminAccount.doDelete(id)
+    errorHandler(result, dispatch)
     return
   },
 )

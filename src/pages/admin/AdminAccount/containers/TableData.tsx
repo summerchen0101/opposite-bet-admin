@@ -5,15 +5,17 @@ import {
   ClockCircleOutlined,
   FilterFilled,
   StopOutlined,
+  DeleteOutlined,
 } from '@ant-design/icons'
-import { Space } from 'antd'
+import { message, Space } from 'antd'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ColumnType } from 'antd/lib/table'
 import { useDispatch } from 'react-redux'
-import { fetchAdminEditOptions, removeAdmin } from '../reducer'
+import { fetchAdminEditOptions, fetchAdminList, removeAdmin } from '../reducer'
 import { AdminAccount } from '@/lib/types'
 import { toggleEditModal } from '../reducer'
+import { useAppDispatch } from '@/store'
 const columns: ColumnType<AdminAccount.ListItem>[] = [
   {
     title: '管理者帳號',
@@ -75,22 +77,35 @@ const columns: ColumnType<AdminAccount.ListItem>[] = [
     key: 'control',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
-      const dispatch = useDispatch()
-      const handleDelete = () => dispatch(removeAdmin(row.id))
-      const handleEdit = (e) => {
-        dispatch(fetchAdminEditOptions(row.id))
+      const dispatch = useAppDispatch()
+      const handleDelete = async () => {
+        const action = await dispatch(removeAdmin(row.id))
+        if (removeAdmin.fulfilled.match(action)) {
+          message.success('刪除成功')
+          dispatch(fetchAdminList())
+        } else {
+          message.error('刪除失敗')
+        }
+      }
+      const handleEdit = async (e) => {
+        const action = await dispatch(fetchAdminEditOptions(row.id))
+        if (fetchAdminEditOptions.rejected.match(action)) {
+          message.error(action.error.message)
+        }
       }
       return (
         <Space size="small">
-          <PopupConfirm onConfirm={handleDelete}>
-            <IconLink icon={<StopOutlined />} label="停用" color="red" />
-          </PopupConfirm>
+          <IconLink icon={<StopOutlined />} label="停用" color="red" />
           <IconLink icon={<EditFilled />} label="編輯" onClick={handleEdit} />
           <IconLink icon={<ClockCircleOutlined />} label="歷程" />
+
+          <PopupConfirm onConfirm={handleDelete}>
+            <IconLink icon={<DeleteOutlined />} label="刪除" />
+          </PopupConfirm>
         </Space>
       )
     },
-    width: 90,
+    width: 120,
   },
 ]
 const TableData: React.FC = () => {
