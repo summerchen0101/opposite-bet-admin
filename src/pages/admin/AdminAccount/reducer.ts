@@ -41,9 +41,18 @@ export const moduleName = 'adminAccount'
 export const fetchAdminList = createAsyncThunk(
   `${moduleName}/fetchAdminList`,
   async (form: AdminAccount.ListSearchForm | void, { dispatch }) => {
+    let reqData: AdminAccount.SearchRequest | undefined
+    if (form) {
+      reqData = {
+        search_account: form.account || undefined,
+        search_role: form.role ?? undefined,
+        search_status: form.status ?? undefined,
+        search_ip: form.ip || undefined,
+      }
+    }
     const { data, result } = await API.adminAccount.getList<
       ResponseBase<AdminAccount.ListResponse>
-    >(form)
+    >(reqData)
     return {
       list:
         data.admin?.map((t) => ({

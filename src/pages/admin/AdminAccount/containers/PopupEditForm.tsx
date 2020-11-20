@@ -37,12 +37,7 @@ const EditForm: React.FC = () => {
     limitDate: _v.limitDate ? moment(_v.limitDate) : null,
   }
   return (
-    <PopupModal
-      visible={isDisplay}
-      title="編輯管理者"
-      maskClosable={false}
-      onCancel={onCancel}
-    >
+    <PopupModal visible={isDisplay} title="編輯管理者" onCancel={onCancel}>
       <DataForm
         values={values}
         onFinish={onFinish}

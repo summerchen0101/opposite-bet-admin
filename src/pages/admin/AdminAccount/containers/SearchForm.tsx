@@ -38,7 +38,11 @@ const SearchForm: React.FC = () => {
       onFinish={onFinished}
     >
       <FormField name="account">
-        <Input.Search placeholder="管理者帳號" onSearch={onFormChanged} />
+        <Input.Search
+          placeholder="管理者帳號"
+          onSearch={onFormChanged}
+          allowClear
+        />
       </FormField>
       <FormField name="role">
         <Select
@@ -46,6 +50,7 @@ const SearchForm: React.FC = () => {
           placeholder="全部角色"
           style={{ width: 150 }}
           onChange={onFormChanged}
+          allowClear
         />
       </FormField>
       <FormField name="status">
@@ -54,10 +59,11 @@ const SearchForm: React.FC = () => {
           placeholder="全部狀態"
           style={{ width: 150 }}
           onChange={onFormChanged}
+          allowClear
         />
       </FormField>
       <FormField name="ip">
-        <Input.Search placeholder="IP" onSearch={onFormChanged} />
+        <Input.Search placeholder="IP" onSearch={onFormChanged} allowClear />
       </FormField>
     </AntForm>
   )

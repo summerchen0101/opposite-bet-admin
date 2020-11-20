@@ -43,12 +43,7 @@ const CreateForm: React.FC = () => {
     console.log('Failed:', errorInfo)
   }
   return (
-    <PopupModal
-      visible={isDisplay}
-      title="新增管理者"
-      onCancel={onCancel}
-      maskClosable={false}
-    >
+    <PopupModal visible={isDisplay} title="新增管理者" onCancel={onCancel}>
       <DataForm
         values={initValues}
         onFinish={onFinish}
