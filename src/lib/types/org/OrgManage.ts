@@ -1,5 +1,27 @@
 import { RemotePagination, RemotePermission } from '..'
 
+export interface DataTableItem {
+  key: number
+  id: number
+  name: string
+  account: string
+  role: number
+  childCount: number
+  parent: string
+  subAccCount: number
+  points: number
+  bonus: number
+  status: number
+  whiteIpCount: string
+  memberCount: number
+  memberBalance: number
+  failedLogin: number
+  registerAt: string
+  lastloginAt: string
+  lastLoginIp: string
+  updatedAt: string
+  updator: string
+}
 export interface RemoteAgentItem {
   agent_id: number
   agent_name: string

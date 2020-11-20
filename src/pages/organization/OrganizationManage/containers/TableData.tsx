@@ -18,8 +18,11 @@ import {
   toggleWhiteListModal,
 } from '../reducer'
 import { useTypedSelector, selectTableData } from '../selectors'
+import { ColumnsType } from 'antd/lib/table'
+import { OrgManage } from '@/lib/types'
+import { useAppDispatch } from '@/store'
 
-const columns = [
+const columns: ColumnsType<OrgManage.DataTableItem> = [
   {
     title: '組織資訊',
     dataIndex: 'account',
@@ -27,74 +30,61 @@ const columns = [
     children: [
       {
         title: '加盟商',
-        dataIndex: 'firstDepositCount',
-        allowFiltered: true,
         width: 120,
-        render: () => 'cntd01',
+        render: (_, row) => row.account,
       },
       {
         title: '帳號/名稱',
-        dataIndex: 'firstDepositTotal',
-        allowFiltered: true,
         width: 140,
-        render: () => <a>cntd01 [陳]</a>,
+        render: (_, row) => (
+          <a>
+            {row.account} [{row.name}]
+          </a>
+        ),
       },
       {
         title: '角色',
-        dataIndex: 'onceAgainDepositCount',
-        allowFiltered: true,
         width: 120,
-        render: () => '加盟-虚层(预设)',
+        render: (_, row) => row.role,
       },
       {
         title: '上層',
-        dataIndex: 'onceAgainDepositTotal',
-        allowFiltered: true,
         width: '180px',
-        render: () => <a>new01 【STG加盟主】</a>,
+        render: (_, row) => row.parent,
       },
       {
         title: '下層',
-        dataIndex: 'onceAgainDepositTotal',
-        allowFiltered: true,
         width: '100px',
-        render: () => <a>3</a>,
+        render: (_, row) => <a>{row.childCount}</a>,
       },
       {
         title: '子帳號',
-        dataIndex: 'depositCount',
-        allowFiltered: true,
         width: '100px',
-        render: () => <a>5</a>,
+        render: (_, row) => row.subAccCount,
       },
     ],
   },
 
   {
     title: '錢包',
-    dataIndex: 'depositTotal',
     width: 140,
     children: [
       {
         title: '可用餘額',
-        dataIndex: 'firstWithdrawalCount',
-        allowFiltered: true,
         width: 120,
-        render: () => {
+        render: (_, row) => {
           const dispatch = useDispatch()
           const onClick = () => dispatch(toggleTradeHistoryModal(true))
-          return <a onClick={onClick}>0</a>
+          return <a onClick={onClick}>{row.points}</a>
         },
       },
       {
         title: '結算金',
-        dataIndex: 'firstWithdrawalTotal',
-        allowFiltered: true,
         width: 140,
-        render: () => {
+        render: (_, row) => {
           const dispatch = useDispatch()
           const onClick = () => dispatch(toggleTradeHistoryModal(true))
-          return <a onClick={onClick}>100</a>
+          return <a onClick={onClick}>{row.bonus}</a>
         },
       },
     ],
@@ -102,25 +92,27 @@ const columns = [
 
   {
     title: '狀態',
-    dataIndex: 'onceAgainWithdrawalCount',
     width: 120,
     children: [
       {
         title: '啟/停用',
         dataIndex: 'onceAgainWithdrawalTotal',
-        allowFiltered: true,
         width: 140,
-        render: () => <Text color="success">啟用</Text>,
+        render: (_, row) => {
+          return row.status ? (
+            <Text color="success">啟用</Text>
+          ) : (
+            <Text color="danger">關閉</Text>
+          )
+        },
       },
       {
         title: '白名單',
-        dataIndex: 'withdrawalCount',
-        allowFiltered: true,
         width: 120,
-        render: () => {
+        render: (_, row) => {
           const dispatch = useDispatch()
           const onClick = () => dispatch(toggleWhiteListModal(true))
-          return <a onClick={onClick}>10</a>
+          return <a onClick={onClick}>{row.whiteIpCount}</a>
         },
       },
     ],
@@ -128,50 +120,40 @@ const columns = [
 
   {
     title: '會員資訊',
-    dataIndex: 'withdrawalTotal',
     width: 140,
     children: [
       {
         title: '人數',
-        dataIndex: 'loginCount',
-        allowFiltered: true,
         width: 120,
-        render: () => 3,
+        render: (_, row) => row.memberCount,
       },
       {
         title: '餘額',
-        dataIndex: 'registerCount',
-        allowFiltered: true,
         width: 120,
-        render: () => '10,225.60',
+        render: (_, row) => row.memberBalance,
       },
     ],
   },
   {
     title: '登入資訊',
-    dataIndex: 'withdrawalTotal',
     width: 140,
     children: [
       {
         title: '失敗次數',
-        dataIndex: 'loginCount',
-        allowFiltered: true,
         width: 120,
-        render: () => 0,
+        render: (_, row) => row.failedLogin,
       },
       {
         title: '註冊 / 最後登入',
-        dataIndex: 'registerCount',
-        allowFiltered: true,
         width: '230px',
-        render: () => {
+        render: (_, row) => {
           const dispatch = useDispatch()
           const onClick = () => dispatch(toggleLoginHistoryModal(true))
           return (
             <>
-              註冊：2020-09-16 14:25:42 <br />
-              登入：2020-09-16 14:25:42 <br />
-              登入IP： <a onClick={onClick}>149.222.22.111</a>
+              註冊：{row.registerAt} <br />
+              登入：{row.lastloginAt} <br />
+              登入IP： <a onClick={onClick}>{row.lastLoginIp}</a>
             </>
           )
         },
@@ -187,13 +169,12 @@ const columns = [
         更新時間
       </>
     ),
-    dataIndex: 'registerCount',
     width: '180px',
-    render: () => (
+    render: (_, row) => (
       <>
-        summer
+        {row.updator}
         <br />
-        2020-12-12 10:49
+        {row.updatedAt}
       </>
     ),
   },
@@ -211,7 +192,7 @@ const columns = [
     key: 'control',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
-      const dispatch = useDispatch()
+      const dispatch = useAppDispatch()
       const handlePercentageClicked = () =>
         dispatch(togglePercentageModal(true))
       return (
