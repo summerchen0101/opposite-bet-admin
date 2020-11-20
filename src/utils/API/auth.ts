@@ -1,8 +1,5 @@
 import Request from '@/utils/request'
-
-type RequestWithoutData = <T>() => Promise<T>
-type RequestWithData = <T>(data: Record<string, any>) => Promise<T>
-type RequestTypes = RequestWithData | RequestWithoutData
+import { RequestWithData, RequestWithoutData } from '@/lib/types'
 
 export const login: RequestWithData = <T>(data) =>
   Request.post<T>('admin/login', data, { noAuth: true })

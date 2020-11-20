@@ -21,6 +21,9 @@ export interface Permission {
   edit: boolean
 }
 
+export type RequestWithoutData = <T>() => Promise<T>
+export type RequestWithData = <T>(data: any) => Promise<T>
+
 export class ResponseBase<T> {
   result: string
   data: T
