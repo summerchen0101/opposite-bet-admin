@@ -1,5 +1,6 @@
 import { ResponseBase } from '@/lib/types'
 import { join } from 'path'
+import httpStatus from 'http-status'
 interface Options {
   noAuth?: boolean
 }
@@ -36,6 +37,11 @@ export default class Request {
         referrer: 'no-referrer', // *client, no-referrer,
       },
     )
+    const { status } = response
+    if (status > 300) {
+      throw httpStatus[status]
+    }
+
     return response.json()
     // // 處理回傳狀態
     // .then((response) => {

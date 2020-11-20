@@ -17,6 +17,7 @@ import {
   toggleTradeHistoryModal,
   toggleWhiteListModal,
 } from '../reducer'
+import { useTypedSelector, selectTableData } from '../selectors'
 
 const columns = [
   {
@@ -230,24 +231,8 @@ const columns = [
   },
 ]
 
-const data = []
-for (let i = 1; i <= 50; i++) {
-  data.push({
-    key: i,
-    account: 'aaaa(小白)',
-    firstDepositCount: 5,
-    firstDepositTotal: 20320,
-    onceAgainDepositCount: 10,
-    onceAgainDepositTotal: 41232,
-    firstWithdrawalCount: 5,
-    firstWithdrawalTotal: 20320,
-    onceAgainWithdrawalCount: 10,
-    onceAgainWithdrawalTotal: 41232,
-    loginCount: 20,
-    registerCount: 3,
-  })
-}
 const TableData: React.FC = () => {
+  const data = useTypedSelector(selectTableData)
   return <TableSets columns={columns} data={data} />
 }
 

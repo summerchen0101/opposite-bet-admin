@@ -9,7 +9,7 @@ interface IModuleState {
 export const useTypedSelector: TypedUseSelectorHook<IModuleState> = useSelector
 
 const selectModuleState = (state: IModuleState) => state[moduleName]
-const selectTableData = createSelector(
+export const selectTableData = createSelector(
   selectModuleState,
   (moduleState) => moduleState.tableData,
 )

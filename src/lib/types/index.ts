@@ -1,4 +1,5 @@
 export * from './admin'
+export * from './org'
 export * as Login from './login'
 
 type RemotePermissionType = 'Y' | 'N'
