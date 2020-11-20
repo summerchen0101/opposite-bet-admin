@@ -8,7 +8,7 @@ import {
   Permission,
   OptionType,
 } from '@/lib/types'
-import { permissionTransfer } from '@/utils/dataFactory'
+import { permissionTransfer } from '@/utils/transfer'
 interface RequestProps {
   search_account?: string
   search_role?: string

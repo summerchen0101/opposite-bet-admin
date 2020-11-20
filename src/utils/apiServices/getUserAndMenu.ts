@@ -2,7 +2,7 @@ import { ResponseBase, UserInfo } from '@/lib/types'
 import Request from '@/utils/request'
 export * from './admin'
 import errCodes from '@/lib/errCodes'
-import { permissionTransfer } from '../dataFactory'
+import { permissionTransfer } from '../transfer'
 import { handleMenuTransfer } from '../transfer'
 
 interface ResponseProps {

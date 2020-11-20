@@ -5,7 +5,7 @@ import {
   ResponseBase,
 } from '@/lib/types'
 import { AdminRole } from '@/lib/types/admin'
-import { permissionTransfer } from '@/utils/dataFactory'
+import { permissionTransfer } from '@/utils/transfer'
 import Request from '@/utils/request'
 import { toErrorMessage } from '@/utils/transfer'
 import { ResponseRoleItem } from './types'

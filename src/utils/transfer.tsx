@@ -1,11 +1,16 @@
 import errCodes from '@/lib/errCodes'
 import { MenuItem } from '@/lib/types'
-import { permissionTransfer } from './dataFactory'
+
+import { Permission, RemotePermission } from '@/lib/types'
 
 export const toCurrency = (num: number, decimal = 0) =>
   Number(num.toFixed(decimal)).toLocaleString()
 
 export const toErrorMessage = (code: string) => errCodes[code]
+
+export const permissionTransfer = (per: RemotePermission): Permission => {
+  return { view: per.VIEW === 'Y', edit: per.EDIT === 'Y' }
+}
 
 export const handleMenuTransfer = (menu): MenuItem[] => {
   const newMenu = []
