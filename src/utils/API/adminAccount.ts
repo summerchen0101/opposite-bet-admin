@@ -4,10 +4,10 @@ import { RequestWithData, RequestWithoutData } from '@/lib/types'
 export const getList: RequestWithData = <T>(data) =>
   Request.post<T>('admin/getAdminList', data)
 
-export const create: RequestWithData = <T>() =>
+export const create: RequestWithoutData = <T>() =>
   Request.post<T>('admin/editAdmin', { method: 'ADD' })
 
-export const edit: RequestWithData = <T>(id) =>
+export const edit: RequestWithData = <T>(id: number) =>
   Request.post<T>('admin/editAdmin', { method: 'EDIT', admin_id: id })
 
 export const doCreate: RequestWithData = <T>(data) =>

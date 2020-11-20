@@ -2,7 +2,7 @@ import PopupModal from '@/components/PopupModal'
 import { AdminAccount } from '@/lib/types'
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { editAdmin, toggleEditModal } from '../reducer'
+import { editAdmin, fetchAdminList, toggleEditModal } from '../reducer'
 import moment from 'moment'
 import {
   selectDisplayEditModal,
@@ -10,16 +10,23 @@ import {
   selectEditAdmin,
 } from '../selectors'
 import DataForm from './DataForm'
+import { message } from 'antd'
+import { useAppDispatch } from '@/store'
 
 const EditForm: React.FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const isDisplay = useTypedSelector(selectDisplayEditModal)
   const onCancel = () => {
     dispatch(toggleEditModal(false))
   }
-  const onFinish = (values: AdminAccount.DataFormProps) => {
+  const onFinish = async (values: AdminAccount.DataFormProps) => {
     console.log('Success:', values)
-    dispatch(editAdmin(values))
+    const action = await dispatch(editAdmin(values))
+    if (editAdmin.fulfilled.match(action)) {
+      dispatch(fetchAdminList())
+    } else {
+      message.error(action.error.message)
+    }
   }
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
@@ -30,7 +37,12 @@ const EditForm: React.FC = () => {
     limitDate: _v.limitDate ? moment(_v.limitDate) : null,
   }
   return (
-    <PopupModal visible={isDisplay} title="編輯管理者" onCancel={onCancel}>
+    <PopupModal
+      visible={isDisplay}
+      title="編輯管理者"
+      maskClosable={false}
+      onCancel={onCancel}
+    >
       <DataForm
         values={values}
         onFinish={onFinish}

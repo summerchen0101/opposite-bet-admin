@@ -1,5 +1,6 @@
-import { AdminAccount, OptionType, Permission } from '@/lib/types'
+import { AdminAccount, OptionType, Permission, ResponseBase } from '@/lib/types'
 import * as apis from '@/utils/apiServices'
+import API from '@/utils/API'
 import {
   ActionReducerMapBuilder,
   createAsyncThunk,
@@ -7,6 +8,8 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit'
 import { message } from 'antd'
+import { permissionTransfer } from '@/utils/transfer'
+import { errorHandler } from '@/utils/helper'
 
 export interface IState {
   tableData: AdminAccount.ListItem[]
@@ -37,36 +40,121 @@ export const moduleName = 'adminAccount'
 // 列表
 export const fetchAdminList = createAsyncThunk(
   `${moduleName}/fetchAdminList`,
-  (form: AdminAccount.ListSearchForm, { dispatch }) => {
-    return apis.AdminAccount.getList(form)
-  },
-)
-
-// 新增送出
-export const createAdmin = createAsyncThunk(
-  `${moduleName}/createAdmin`,
-  async (fomrData: AdminAccount.DataFormProps, { dispatch }) => {
-    await apis.AdminAccount.create(fomrData)
-    dispatch(fetchAdminList({}))
-    return
+  async (form: AdminAccount.ListSearchForm | void, { dispatch }) => {
+    const { data, result } = await API.adminAccount.getList<
+      ResponseBase<AdminAccount.ListResponse>
+    >(form)
+    return {
+      list:
+        data.admin?.map((t) => ({
+          key: t.admin_id,
+          id: t.admin_id,
+          account: t.admin_account,
+          name: t.admin_name,
+          role: t.admin_role,
+          lastLogin: t.last_login,
+          lastIp: t.last_ip,
+          status: t.status === 1,
+          isOnline: false,
+        })) ?? [],
+      permission: permissionTransfer(data.permission),
+      roleOptions: data.admin_roles.map((t) => ({
+        label: t.role_name,
+        value: t.id,
+      })),
+    }
   },
 )
 
 // 編輯
 export const fetchAdminEditOptions = createAsyncThunk(
   `${moduleName}/fetchAdminEditOptions`,
-  (id: number, { dispatch }) => {
-    return apis.AdminAccount.getItem(id)
+  async (id: number, { dispatch }) => {
+    const { result, data } = await API.adminAccount.edit<
+      ResponseBase<AdminAccount.EditResponseProps>
+    >(id)
+    const { admin: _admin } = data
+    const formData: AdminAccount.DataFormProps = {
+      id,
+      account: _admin.username,
+      realName: _admin.name,
+      pw: '',
+      pw_confirm: '',
+      email: _admin.admin_email,
+      role: _admin.admin_role_id,
+      singleLimit: +_admin.single_withdrawal_limit,
+      dailyLimit: +_admin.daily_withdrawal_limit,
+      effectiveTime: _admin.expire_date ? 'limit' : 'forever',
+      limitDate: _admin.expire_date,
+      ip: _admin.allow_ips,
+      status: _admin.status,
+      notes: _admin.remark,
+    }
+    return formData
+  },
+)
+
+const formToCreateReqData = (form) => {
+  const expireDate =
+    form.effectiveTime === 'limit' ? form.limitDate.format('YYYY-MM-DD') : null
+  const data: AdminAccount.RequestCreateData = {
+    name: form.realName,
+    username: form.account,
+    password: form.pw,
+    confirm_password: form.pw_confirm,
+    admin_role_id: form.role,
+    admin_email: form.email,
+    single_withdrawal_limit: form.singleLimit, // 單筆提款審核上限
+    daily_withdrawal_limit: form.dailyLimit, // 每日提款審核上限
+    expire_date: expireDate, // 2020-11-17 or null
+    allow_ips: form.ip,
+    status: form.status,
+    remark: form.notes,
+  }
+  return data
+}
+const formToEditReqData = (id, form) => {
+  const expireDate =
+    form.effectiveTime === 'limit' ? form.limitDate.format('YYYY-MM-DD') : null
+  const data: AdminAccount.RequestEditData = {
+    admin_id: id,
+    name: form.realName,
+    username: form.account,
+    password: form.pw,
+    confirm_password: form.pw_confirm,
+    admin_role_id: form.role,
+    admin_email: form.email,
+    single_withdrawal_limit: form.singleLimit, // 單筆提款審核上限
+    daily_withdrawal_limit: form.dailyLimit, // 每日提款審核上限
+    expire_date: expireDate, // 2020-11-17 or null
+    allow_ips: form.ip,
+    status: form.status,
+    remark: form.notes,
+  }
+  return data
+}
+
+// 新增送出
+export const createAdmin = createAsyncThunk(
+  `${moduleName}/createAdmin`,
+  async (form: AdminAccount.DataFormProps, { dispatch }) => {
+    const reqData = formToCreateReqData(form)
+    const { result } = await API.adminAccount.doCreate<ResponseBase<any>>(
+      reqData,
+    )
+    errorHandler(result, dispatch)
+    return
   },
 )
 
 // 編輯送出
 export const editAdmin = createAsyncThunk(
   `${moduleName}/editAdmin`,
-  async (fomrData: AdminAccount.DataFormProps, { dispatch, getState }) => {
-    const state = getState()[moduleName] as IState
-    await apis.AdminAccount.edit({ ...fomrData, id: state.editAdmin.id })
-    dispatch(fetchAdminList({}))
+  async (form: AdminAccount.DataFormProps, { dispatch, getState }) => {
+    const { editAdmin } = getState()[moduleName] as IState
+    const reqData = formToEditReqData(editAdmin.id, form)
+    const { result } = await API.adminAccount.doEdit(reqData)
+    errorHandler(result, dispatch)
     return
   },
 )

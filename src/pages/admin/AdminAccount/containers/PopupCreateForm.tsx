@@ -1,8 +1,10 @@
 import PopupModal from '@/components/PopupModal'
 import { AdminAccount } from '@/lib/types'
+import { useAppDispatch } from '@/store'
+import { message } from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { createAdmin, toggleCreateModal } from '../reducer'
+import { createAdmin, fetchAdminList, toggleCreateModal } from '../reducer'
 import { selectDisplayCreateModal, useTypedSelector } from '../selectors'
 import DataForm from './DataForm'
 
@@ -23,20 +25,30 @@ const initValues: AdminAccount.DataFormProps = {
 }
 
 const CreateForm: React.FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const isDisplay = useTypedSelector(selectDisplayCreateModal)
   const onCancel = () => {
     dispatch(toggleCreateModal(false))
   }
-  const onFinish = (values: AdminAccount.DataFormProps) => {
+  const onFinish = async (values: AdminAccount.DataFormProps) => {
     console.log('Success:', values)
-    dispatch(createAdmin(values))
+    const action = await dispatch(createAdmin(values))
+    if (createAdmin.fulfilled.match(action)) {
+      dispatch(fetchAdminList())
+    } else {
+      message.error(action.error.message)
+    }
   }
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
   return (
-    <PopupModal visible={isDisplay} title="新增管理者" onCancel={onCancel}>
+    <PopupModal
+      visible={isDisplay}
+      title="新增管理者"
+      onCancel={onCancel}
+      maskClosable={false}
+    >
       <DataForm
         values={initValues}
         onFinish={onFinish}

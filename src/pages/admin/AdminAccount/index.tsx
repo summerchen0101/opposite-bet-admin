@@ -12,9 +12,12 @@ import reducer, { fetchAdminList, initSearchState, moduleName } from './reducer'
 const Manager: React.FC = () => {
   useReducerInjector(moduleName, reducer)
   const dispatch = useDispatch()
+  const getTableData = async () => {
+    await dispatch(fetchAdminList())
+  }
   useEffect(() => {
     dispatch(initSearchState())
-    dispatch(fetchAdminList({}))
+    getTableData()
   }, [])
   return (
     <Dashboard>
