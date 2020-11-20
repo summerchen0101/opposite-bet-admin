@@ -1,22 +1,8 @@
-import {
-  Login,
-  Permission,
-  ResponseBase,
-  UserInfo,
-  MenuItem,
-} from '@/lib/types'
-import * as apis from '@/utils/apiServices'
-import {
-  createAsyncThunk,
-  createSlice,
-  PayloadAction,
-  ThunkDispatch,
-} from '@reduxjs/toolkit'
-import { message } from 'antd'
-import { useHistory } from 'react-router-dom'
+import { Login, MenuItem, ResponseBase, UserInfo } from '@/lib/types'
 import API from '@/utils/API'
-import { handleMenuTransfer, toErrorMessage } from '@/utils/transfer'
 import { errorHandler } from '@/utils/helper'
+import { handleMenuTransfer } from '@/utils/transfer'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 export type TabType = {
   path: string
   label: string

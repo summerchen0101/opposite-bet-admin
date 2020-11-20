@@ -1,14 +1,13 @@
+import { AdminRole, MenuItem, Permission, ResponseBase } from '@/lib/types'
+import API from '@/utils/API'
+import { errorHandler } from '@/utils/helper'
+import { handleMenuTransfer, permissionTransfer } from '@/utils/transfer'
 import {
+  ActionReducerMapBuilder,
+  createAsyncThunk,
   createSlice,
   PayloadAction,
-  createAsyncThunk,
-  ActionReducerMapBuilder,
 } from '@reduxjs/toolkit'
-import * as apis from '@/utils/apiServices'
-import API from '@/utils/API'
-import { Permission, MenuItem, AdminRole, ResponseBase } from '@/lib/types'
-import { handleMenuTransfer, permissionTransfer } from '@/utils/transfer'
-import { errorHandler } from '@/utils/helper'
 export interface IState {
   tableData: AdminRole.ListItem[]
   displayCreateModal: boolean

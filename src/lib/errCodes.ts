@@ -4,4 +4,5 @@ export default {
   LOGOUT_FAIL: '登出錯誤',
   EMPTY: '欄位為空',
   EXISTED: '帳號已存在',
+  SAVE_FAIL: '存擋失敗',
 }
