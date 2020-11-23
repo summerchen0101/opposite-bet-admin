@@ -1,10 +1,9 @@
-import { addTab, removeTab } from '@/store/reducer'
-import { useEffect } from 'react'
-import { useDispatch, useStore } from 'react-redux'
+import { TabContext } from '@/contexts/TabContextProvider'
+import { useContext, useEffect } from 'react'
 import { PageGenerator } from '../pageGenerator'
 export default (pageInstance: PageGenerator) => {
-  const dispatch = useDispatch()
+  const { addTab } = useContext(TabContext)
   useEffect(() => {
-    dispatch(addTab(pageInstance.getTab()))
+    addTab(pageInstance.getTab())
   }, [])
 }

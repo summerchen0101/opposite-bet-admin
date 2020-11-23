@@ -1,17 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Space, Button } from 'antd'
 import { CloseOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
 import { useHistory, useLocation } from 'react-router-dom'
 import { IconLink } from '.'
-import { removeTab } from '@/store/reducer'
 import { useDispatch } from 'react-redux'
+import { TabContext } from '@/contexts/TabContextProvider'
 
 const TabRecordItemWrapper = styled.div<{ isCurrentTab: boolean }>`
   display: flex;
   align-items: center;
-  line-height: 40px;
-  padding: 0 15px;
+  line-height: 35px;
+  padding: 0 10px;
   background-color: ${({ isCurrentTab }) =>
     isCurrentTab ? '#fff' : '#dfdfdf'};
   border-top-left-radius: 8px;
@@ -21,7 +21,7 @@ const TabRecordItemWrapper = styled.div<{ isCurrentTab: boolean }>`
   cursor: ${({ isCurrentTab }) => (isCurrentTab ? 'auto' : 'pointer')};
   .close-icon {
     margin-bottom: -2px;
-    margin-left: 10px;
+    margin-left: 5px;
   }
 `
 
@@ -33,12 +33,12 @@ interface IProps {
 const TabsRecordItem: React.FC<IProps> = ({ label, path, index }) => {
   const history = useHistory()
   const location = useLocation()
-  const dispatch = useDispatch()
+  const { removeTab } = useContext(TabContext)
   const onClick = () => {
     history.push(path)
   }
   const onCloseTab = (e) => {
-    dispatch(removeTab(path))
+    removeTab(path)
     e.stopPropagation()
   }
   const isCurrentTab = path === location.pathname

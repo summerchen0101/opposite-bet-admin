@@ -1,24 +1,18 @@
-import { clearTabs } from '@/store/reducer'
-import { useTypedSelector } from '@/store/selectors'
-import { DeleteOutlined } from '@ant-design/icons'
+import { TabContext } from '@/contexts/TabContextProvider'
 import { Button, Space } from 'antd'
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useContext } from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import IconLink from './IconLink'
 import TabsRecordItem from './TabsRecordItem'
 const TabsRecordWrapper = styled.div`
-  margin-top: 15px;
-  height: 40px;
+  height: 35px;
   .right-btns {
     float: right;
     line-height: 30px;
   }
 `
 const TabsRecord: React.FC = () => {
-  const tabs = useTypedSelector((state) => state.global.tabs)
-  const dispatch = useDispatch()
+  const { tabs, clearTabs } = useContext(TabContext)
   const location = useLocation()
   return (
     <TabsRecordWrapper>
@@ -33,10 +27,7 @@ const TabsRecord: React.FC = () => {
         ))}
       </Space>
       <span className="right-btns">
-        <Button
-          size="small"
-          onClick={() => dispatch(clearTabs(location.pathname))}
-        >
+        <Button size="small" onClick={() => clearTabs(location.pathname)}>
           清空頁籤
         </Button>
       </span>

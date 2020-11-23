@@ -1,4 +1,5 @@
 import Dashboard from '@/components/Dashboard'
+import { TabContext } from '@/contexts/TabContextProvider'
 import { useReducerInjector } from '@/utils/hooks'
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'

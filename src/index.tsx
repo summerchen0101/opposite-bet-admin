@@ -8,6 +8,7 @@ import AntDesignProvider from '@/utils/AntDesignProvider'
 import RouterProvider from '@/utils/RouterProvider'
 import { Helmet } from 'react-helmet'
 import GlobalStyle from '@/utils/global-style'
+import TabContextProvider from './contexts/TabContextProvider'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -17,10 +18,12 @@ ReactDOM.render(
     </Helmet>
     <LanguageProvider>
       <AntDesignProvider>
-        <RouterProvider>
-          <App />
-          <GlobalStyle />
-        </RouterProvider>
+        <TabContextProvider>
+          <RouterProvider>
+            <App />
+            <GlobalStyle />
+          </RouterProvider>
+        </TabContextProvider>
       </AntDesignProvider>
     </LanguageProvider>
   </Provider>,

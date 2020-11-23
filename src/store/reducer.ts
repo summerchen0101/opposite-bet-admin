@@ -10,7 +10,6 @@ export type TabType = {
 
 export type GlobalState = {
   isLogin: boolean
-  tabs: TabType[]
   language: string
   menu: MenuItem[]
   user: UserInfo | null
@@ -18,7 +17,6 @@ export type GlobalState = {
 }
 const initialState: GlobalState = {
   isLogin: !!sessionStorage.getItem('token'),
-  tabs: [],
   language: 'zh-Hant',
   menu: [],
   user: null,
@@ -60,19 +58,6 @@ const module = createSlice({
   name: 'global',
   initialState,
   reducers: {
-    addTab(state, action: PayloadAction<TabType>) {
-      if (state.tabs.findIndex((t) => t.path === action.payload.path) > -1) {
-        return
-      }
-      state.tabs.push(action.payload)
-    },
-    removeTab(state, action: PayloadAction<string>) {
-      state.tabs = state.tabs.filter((tab) => tab.path !== action.payload)
-    },
-    clearTabs(state, action: PayloadAction<string>) {
-      const i = state.tabs.findIndex((t) => t.path === action.payload)
-      state.tabs = i > -1 ? [state.tabs[i]] : []
-    },
     setLogout(state) {
       state.isLogin = false
       sessionStorage.removeItem('token')
@@ -101,12 +86,5 @@ const module = createSlice({
   },
 })
 
-export const {
-  setLogout,
-  addTab,
-  clearTabs,
-  removeTab,
-  setLanguage,
-  toggleLoading,
-} = module.actions
+export const { setLogout, setLanguage, toggleLoading } = module.actions
 export default module.reducer

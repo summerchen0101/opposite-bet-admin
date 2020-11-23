@@ -12,10 +12,6 @@ export const selectLoginStatus = createSelector(
   (global) => global.isLogin,
 )
 
-export const selectTabs = createSelector(
-  selectModuleState,
-  (global) => global.tabs,
-)
 export const selectLoading = createSelector(
   selectModuleState,
   (global) => global.loading,
