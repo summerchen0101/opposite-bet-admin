@@ -9,6 +9,7 @@ import {
 import { message } from 'antd'
 import { permissionTransfer } from '@/utils/transfer'
 import { errorHandler } from '@/utils/helper'
+import { RequestSetStatus } from '@/lib/types/admin/AdminAccount'
 
 export interface IState {
   tableData: AdminAccount.ListItem[]
@@ -174,6 +175,19 @@ export const removeAdmin = createAsyncThunk(
   `${moduleName}/removeAdmin`,
   async (id: number, { dispatch }) => {
     const { result } = await API.adminAccount.doDelete(id)
+    errorHandler(result, dispatch)
+    return
+  },
+)
+
+export const setStatus = createAsyncThunk(
+  `${moduleName}/setStatus`,
+  async ({ id, status }: { id: number; status: number }, { dispatch }) => {
+    const reqData: RequestSetStatus = {
+      data_id: id,
+      status,
+    }
+    const { result } = await API.adminAccount.setStatus(reqData)
     errorHandler(result, dispatch)
     return
   },

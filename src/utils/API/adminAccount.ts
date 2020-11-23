@@ -18,3 +18,9 @@ export const doEdit: RequestPromise = <T>(data) =>
 
 export const doDelete: RequestPromise = <T>(id) =>
   Request.post<T>('admin/storeAdmin', { method: 'DELETE', admin_id: id })
+
+export const setStatus: RequestPromise = <T>(data) =>
+  Request.post<T>('admin/commonStatusChanger', {
+    module: 'Admin',
+    ...data,
+  })

@@ -14,7 +14,7 @@ import { ColumnType } from 'antd/lib/table'
 import { useDispatch } from 'react-redux'
 import { fetchAdminEditOptions, fetchAdminList, removeAdmin } from '../reducer'
 import { AdminAccount } from '@/lib/types'
-import { toggleEditModal } from '../reducer'
+import { toggleEditModal, setStatus } from '../reducer'
 import { useAppDispatch } from '@/store'
 const columns: ColumnType<AdminAccount.ListItem>[] = [
   {
@@ -93,9 +93,31 @@ const columns: ColumnType<AdminAccount.ListItem>[] = [
           message.error(action.error.message)
         }
       }
+      const handleStatus = async (status: number) => {
+        const action = await dispatch(setStatus({ status, id: row.id }))
+        if (fetchAdminEditOptions.fulfilled.match(action)) {
+          dispatch(fetchAdminList())
+        } else if (fetchAdminEditOptions.rejected.match(action)) {
+          message.error(action.error.message)
+        }
+      }
       return (
         <Space size="small">
-          <IconLink icon={<StopOutlined />} label="停用" color="red" />
+          {row.status ? (
+            <IconLink
+              icon={<StopOutlined />}
+              label="停用"
+              color="red"
+              onClick={() => handleStatus(0)}
+            />
+          ) : (
+            <IconLink
+              icon={<ClockCircleOutlined />}
+              label="啟用"
+              color="green"
+              onClick={() => handleStatus(1)}
+            />
+          )}
           <IconLink icon={<EditFilled />} label="編輯" onClick={handleEdit} />
           <IconLink icon={<ClockCircleOutlined />} label="歷程" />
 
