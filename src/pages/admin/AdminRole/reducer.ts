@@ -1,4 +1,10 @@
-import { AdminRole, MenuItem, Permission, ResponseBase } from '@/lib/types'
+import {
+  AdminRole,
+  MenuItem,
+  Permission,
+  RequestSetStatus,
+  ResponseBase,
+} from '@/lib/types'
 import API from '@/utils/API'
 import { errorHandler } from '@/utils/helper'
 import { handleMenuTransfer, permissionTransfer } from '@/utils/transfer'
@@ -50,6 +56,7 @@ export const fetchList = createAsyncThunk(
         createdAt: t.created_at,
         creator: t.createtor,
         menu: t.menu,
+        status: t.status,
       })),
     }
     return pageData
@@ -119,6 +126,20 @@ export const doDelete = createAsyncThunk(
   `${moduleName}/doDelete`,
   async (id: number, { dispatch }) => {
     const { result } = await API.adminRole.doDelete<ResponseBase<any>>(id)
+    errorHandler(result, dispatch)
+    return
+  },
+)
+
+// 狀態切換
+export const setStatus = createAsyncThunk(
+  `${moduleName}/setStatus`,
+  async ({ id, status }: { id: number; status: number }, { dispatch }) => {
+    const reqData: RequestSetStatus = {
+      data_id: id,
+      status,
+    }
+    const { result } = await API.adminAccount.setStatus(reqData)
     errorHandler(result, dispatch)
     return
   },

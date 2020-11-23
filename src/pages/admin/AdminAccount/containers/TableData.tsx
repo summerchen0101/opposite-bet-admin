@@ -95,9 +95,9 @@ const columns: ColumnType<AdminAccount.ListItem>[] = [
       }
       const handleStatus = async (status: number) => {
         const action = await dispatch(setStatus({ status, id: row.id }))
-        if (fetchAdminEditOptions.fulfilled.match(action)) {
+        if (setStatus.fulfilled.match(action)) {
           dispatch(fetchAdminList())
-        } else if (fetchAdminEditOptions.rejected.match(action)) {
+        } else {
           message.error(action.error.message)
         }
       }

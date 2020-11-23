@@ -58,3 +58,8 @@ export interface DataDataFormProps {
   onFinish?: (values: any) => void
   onFinishFailed?: (values: any) => void
 }
+
+export interface RequestSetStatus {
+  data_id: number
+  status: number
+}

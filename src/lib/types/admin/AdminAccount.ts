@@ -126,8 +126,3 @@ export interface RequestEditData {
   status: AdminStatusOptions
   remark?: string
 }
-
-export interface RequestSetStatus {
-  data_id: number
-  status: number
-}

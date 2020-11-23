@@ -9,6 +9,7 @@ export interface ListItem {
   creator: string
   createdAt: string
   menu: string
+  status: number
 }
 
 export interface RolePermissionItem {
@@ -30,6 +31,7 @@ interface ResponseRoleItem {
   createtor: string
   updated_at: string
   updator: string
+  status: number
   menu: string
 }
 

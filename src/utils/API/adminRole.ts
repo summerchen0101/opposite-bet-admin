@@ -18,3 +18,9 @@ export const doEdit: RequestPromise = <T>(data: AdminRole.DoEditRequest) =>
 
 export const doDelete: RequestPromise = <T>(id) =>
   Request.post<T>('admin/storeAdminRole', { method: 'DELETE', role_id: id })
+
+export const setStatus: RequestPromise = <T>(data) =>
+  Request.post<T>('admin/commonStatusChanger', {
+    module: 'AdminRole',
+    ...data,
+  })

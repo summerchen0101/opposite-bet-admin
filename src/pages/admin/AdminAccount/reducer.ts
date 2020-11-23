@@ -9,7 +9,7 @@ import {
 import { message } from 'antd'
 import { permissionTransfer } from '@/utils/transfer'
 import { errorHandler } from '@/utils/helper'
-import { RequestSetStatus } from '@/lib/types/admin/AdminAccount'
+import { RequestSetStatus } from '@/lib/types'
 
 export interface IState {
   tableData: AdminAccount.ListItem[]
@@ -180,6 +180,7 @@ export const removeAdmin = createAsyncThunk(
   },
 )
 
+// 狀態切換
 export const setStatus = createAsyncThunk(
   `${moduleName}/setStatus`,
   async ({ id, status }: { id: number; status: number }, { dispatch }) => {
