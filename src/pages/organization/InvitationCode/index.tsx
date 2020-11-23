@@ -1,15 +1,14 @@
 import Dashboard from '@/components/Dashboard'
 import { useReducerInjector } from '@/utils/hooks'
-import { Card, Col, Row } from 'antd'
+import { Col, Row } from 'antd'
 import React from 'react'
 import PageHeader from './components/PageHeader'
-import QrcodeBox from './components/QrcodeBox'
 import AgentInfo from './containers/AgentInfo'
 import ChildLevelInfo from './containers/ChildLevelInfo'
 import InvitedLinks from './containers/InvitedLinks'
 import reducer, { moduleName } from './reducer'
 
-const Manager: React.FC = () => {
+const InvitationCode: React.FC = () => {
   useReducerInjector(moduleName, reducer)
   return (
     <Dashboard>
@@ -28,4 +27,4 @@ const Manager: React.FC = () => {
   )
 }
 
-export default Manager
+export default InvitationCode
