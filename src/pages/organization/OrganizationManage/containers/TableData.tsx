@@ -36,7 +36,7 @@ const columns: ColumnsType<OrgManage.DataTableItem> = [
       },
       {
         title: '帳號/名稱',
-        width: 140,
+        width: 180,
         render: (_, row) => (
           <a>
             {row.account} [{row.name}]
@@ -225,7 +225,7 @@ const columns: ColumnsType<OrgManage.DataTableItem> = [
 
 const TableData: React.FC = () => {
   const data = useTypedSelector(selectTableData)
-  return <TableSets columns={columns} data={[{ key: 1 }]} />
+  return <TableSets columns={columns} data={data} />
 }
 
 export default TableData
