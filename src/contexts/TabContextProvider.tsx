@@ -27,8 +27,10 @@ const reducer = createReducer(initialState, (builder) => {
       state.tabs = state.tabs.filter((tab) => tab.path !== action.payload)
     })
     .addCase(clearTabs, (state, action) => {
-      const i = state.tabs.findIndex((t) => t.path === action.payload)
-      state.tabs = i > -1 ? [state.tabs[i]] : []
+      state.tabs = state.tabs.filter((tab) => {
+        console.log(tab.path, action.payload)
+        return tab.path === action.payload
+      })
     })
 })
 
@@ -47,7 +49,7 @@ const TabContextProvider: React.FC = ({ children }) => {
         tabs: state.tabs,
         addTab: (tab: TabType) => dispatch(addTab(tab)),
         removeTab: (path: string) => dispatch(removeTab(path)),
-        clearTabs: () => dispatch(clearTabs()),
+        clearTabs: (path: string) => dispatch(clearTabs(path)),
       }}
     >
       {children}
