@@ -139,7 +139,7 @@ export const setStatus = createAsyncThunk(
       data_id: id,
       status,
     }
-    const { result } = await API.adminAccount.setStatus(reqData)
+    const { result } = await API.adminRole.setStatus(reqData)
     errorHandler(result, dispatch)
     return
   },

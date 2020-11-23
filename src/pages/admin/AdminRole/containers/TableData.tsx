@@ -6,6 +6,7 @@ import {
   FilterFilled,
   DeleteOutlined,
   CheckCircleOutlined,
+  CloseCircleOutlined,
 } from '@ant-design/icons'
 import { message, Space } from 'antd'
 import React from 'react'
@@ -101,7 +102,7 @@ const columns: ColumnsType<AdminRole.ListItem> = [
         <Space size="small">
           {row.status ? (
             <IconLink
-              icon={<StopOutlined />}
+              icon={<CloseCircleOutlined />}
               label="停用"
               color="red"
               onClick={() => handleStatus(0)}
@@ -121,7 +122,7 @@ const columns: ColumnsType<AdminRole.ListItem> = [
         </Space>
       )
     },
-    width: 70,
+    width: 80,
   },
 ]
 

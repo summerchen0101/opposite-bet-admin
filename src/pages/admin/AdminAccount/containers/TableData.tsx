@@ -2,10 +2,11 @@ import { IconLink, Text, TableSets, PopupConfirm } from '@/components'
 import { useTypedSelector, selectTableData } from '../selectors'
 import {
   EditFilled,
-  ClockCircleOutlined,
   FilterFilled,
-  StopOutlined,
+  CloseCircleOutlined,
+  ClockCircleOutlined,
   DeleteOutlined,
+  CheckCircleOutlined,
 } from '@ant-design/icons'
 import { message, Space } from 'antd'
 import React from 'react'
@@ -105,14 +106,14 @@ const columns: ColumnType<AdminAccount.ListItem>[] = [
         <Space size="small">
           {row.status ? (
             <IconLink
-              icon={<StopOutlined />}
+              icon={<CloseCircleOutlined />}
               label="停用"
               color="red"
               onClick={() => handleStatus(0)}
             />
           ) : (
             <IconLink
-              icon={<ClockCircleOutlined />}
+              icon={<CheckCircleOutlined />}
               label="啟用"
               color="green"
               onClick={() => handleStatus(1)}

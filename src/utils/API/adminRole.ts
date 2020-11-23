@@ -21,6 +21,6 @@ export const doDelete: RequestPromise = <T>(id) =>
 
 export const setStatus: RequestPromise = <T>(data) =>
   Request.post<T>('admin/commonStatusChanger', {
-    module: 'AdminRole',
+    module_id: 'AdminRole',
     ...data,
   })
