@@ -1,6 +1,7 @@
 import errCodes from '@/lib/errCodes'
 import { MenuItem } from '@/lib/types'
 
+import QRCode from 'qrcode'
 import { Permission, RemotePermission, OrgManage } from '@/lib/types'
 
 export const toCurrency = (num: number, decimal = 0) =>
@@ -65,4 +66,17 @@ export const agentStructureCreator = (
   })
 
   return [levelItem, ...items]
+}
+
+export const generateQR = async (text) => {
+  try {
+    return await QRCode.toDataURL(text)
+  } catch (err) {
+    console.error(err)
+    return ''
+  }
+}
+
+export const addKeyToArrayItem = function <T>(arr: T[]): T[] {
+  return arr.map((t, i) => ({ key: i, ...t }))
 }

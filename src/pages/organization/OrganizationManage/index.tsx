@@ -37,7 +37,6 @@ const Manager: React.FC = () => {
       <PageHeader />
       <PageSearchBar>
         <AccountSearch />
-        <MultipleSelector />
         <StatusSelector />
       </PageSearchBar>
       <TableData />

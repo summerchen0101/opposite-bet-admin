@@ -38,6 +38,7 @@
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
     "numeral": "^2.0.6",
+    "qrcode": "^1.4.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-draft-wysiwyg": "^1.14.5",

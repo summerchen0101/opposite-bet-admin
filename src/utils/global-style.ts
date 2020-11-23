@@ -9,4 +9,7 @@ export default createGlobalStyle`
       margin-bottom: 15px;
     }
   }
+  .bg-grey {
+    background-color: #efefef
+  }
 `

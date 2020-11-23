@@ -66,8 +66,8 @@ export const fetchList = createAsyncThunk(
         registerAt: '',
         lastloginAt: '',
         lastLoginIp: '',
-        updatedAt: '',
-        updator: '',
+        updatedAt: t.updated_at,
+        updator: t.updated_by,
       })),
     }
     return pageData

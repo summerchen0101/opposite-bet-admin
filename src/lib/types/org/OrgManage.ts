@@ -43,6 +43,8 @@ export interface RemoteDataTableItem {
   allow_ip: string
   member_count: string
   member_balance: string
+  updated_by: string
+  updated_at: string
 }
 
 export interface SearchRequest {
