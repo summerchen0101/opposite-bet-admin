@@ -1,9 +1,10 @@
 import { RemotePagination, RemotePermission } from '..'
 
 export interface AgentItem {
-  id: number
-  name?: string
+  value?: number
+  label: string
   children?: AgentItem[]
+  disabled?: boolean
 }
 
 export interface DataTableItem {

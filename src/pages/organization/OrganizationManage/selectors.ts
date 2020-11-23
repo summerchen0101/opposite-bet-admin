@@ -13,6 +13,14 @@ export const selectTableData = createSelector(
   selectModuleState,
   (moduleState) => moduleState.tableData,
 )
+export const selectRoleOptions = createSelector(
+  selectModuleState,
+  (moduleState) => moduleState.roleOptions,
+)
+export const selectAgentStruct = createSelector(
+  selectModuleState,
+  (moduleState) => moduleState.agentStruct,
+)
 export const selectDisplayCreateModal = createSelector(
   selectModuleState,
   (moduleState) => moduleState.displayCreateModal,

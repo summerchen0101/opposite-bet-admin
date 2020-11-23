@@ -13,7 +13,12 @@ import {
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleCreateModal } from '../reducer'
-import { selectDisplayCreateModal, useTypedSelector } from '../selectors'
+import {
+  selectDisplayCreateModal,
+  useTypedSelector,
+  selectRoleOptions,
+  selectAgentStruct,
+} from '../selectors'
 import Form, { FormField } from '@/components/Form'
 const { Option } = Select
 const CreateForm: React.FC = () => {
@@ -35,40 +40,13 @@ const CreateForm: React.FC = () => {
     console.log('Failed:', errorInfo)
   }
 
-  const options = [
-    {
-      value: 'zhejiang',
-      label: 'Zhejiang',
-      children: [
-        {
-          value: 'hangzhou',
-          label: 'Hangzhou',
-          children: [
-            {
-              value: 'xihu',
-              label: 'West Lake',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      value: 'jiangsu',
-      label: 'Jiangsu',
-      children: [
-        {
-          value: 'nanjing',
-          label: 'Nanjing',
-          children: [
-            {
-              value: 'zhonghuamen',
-              label: 'Zhong Hua Men',
-            },
-          ],
-        },
-      ],
-    },
-  ]
+  const roleOptions = useTypedSelector(selectRoleOptions)
+
+  const agentStruct = useTypedSelector(selectAgentStruct)
+
+  const values = {
+    role: 1,
+  }
   return (
     <PopupModal
       visible={isDisplay}
@@ -76,11 +54,16 @@ const CreateForm: React.FC = () => {
       onCancel={onCancel}
       width={600}
     >
-      <Form form={form} onFinish={onFinish} onFinishFailed={onFinishFailed}>
+      <Form
+        form={form}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        initialValues={values}
+      >
         <FormField label="組織層級" required>
           <CascaderSelector
-            options={options}
-            placeholder="加盟商 / 股東 / 總代"
+            options={agentStruct}
+            placeholder="請選擇組織層級"
           />
         </FormField>
         <Row gutter={16}>
@@ -105,10 +88,12 @@ const CreateForm: React.FC = () => {
             </FormField>
           </Col>
           <Col span={12}>
-            <FormField label="帳號角色" required>
-              <Select placeholder="請選擇" allowClear defaultValue="opt1">
-                <Option value="opt1">管理員</Option>
-              </Select>
+            <FormField label="帳號角色" required name="role">
+              <Select
+                options={roleOptions}
+                placeholder="請選擇"
+                allowClear
+              ></Select>
             </FormField>
           </Col>
           <Col span={12}>

@@ -1,4 +1,4 @@
-import { ResponseBase, OrgManage, Permission } from '@/lib/types'
+import { ResponseBase, OrgManage, Permission, OptionType } from '@/lib/types'
 import {
   ActionReducerMapBuilder,
   createAsyncThunk,
@@ -18,6 +18,8 @@ export interface IState {
   displayLoginHistoryModal: boolean
   displayTradeHistoryModal: boolean
   displayPointFormModal: boolean
+  agentStruct: OrgManage.AgentItem[]
+  roleOptions: OptionType[]
 }
 const initialState: IState = {
   permission: null,
@@ -29,9 +31,11 @@ const initialState: IState = {
   displayLoginHistoryModal: false,
   displayTradeHistoryModal: false,
   displayPointFormModal: false,
+  agentStruct: [],
+  roleOptions: [],
 }
 
-export const moduleName = 'memberLabel'
+export const moduleName = 'orgManage'
 
 // 列表
 export const fetchList = createAsyncThunk(
@@ -80,6 +84,10 @@ export const fetchCreateOptions = createAsyncThunk(
     errorHandler(result, dispatch)
     return {
       agentStruct: agentStructureCreator(data.agent_struct),
+      roleOption: data.admin_roles.map((t) => ({
+        label: t.role_name,
+        value: t.id,
+      })),
     }
   },
 )
@@ -179,6 +187,11 @@ const module = createSlice({
       const { list, permission } = action.payload
       state.tableData = list
       state.permission = permission
+    })
+    builder.addCase(fetchCreateOptions.fulfilled, (state, action) => {
+      const { agentStruct, roleOption } = action.payload
+      state.agentStruct = agentStruct
+      state.roleOptions = roleOption
     })
   },
 })
