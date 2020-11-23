@@ -10,7 +10,7 @@ const addTab = createAction<TabType>('addTab')
 const removeTab = createAction<string>('removeTab')
 const clearTabs = createAction<string>('clearTabs')
 
-const TabLimit = 5
+const TabLimit = 10
 
 const reducer = createReducer(initialState, (builder) => {
   builder

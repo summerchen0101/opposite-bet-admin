@@ -6,6 +6,10 @@ import styled from 'styled-components'
 import TabsRecordItem from './TabsRecordItem'
 const TabsRecordWrapper = styled.div`
   height: 35px;
+  .ant-space {
+    width: calc(100% - 90px);
+    overflow-x: auto;
+  }
   .right-btns {
     float: right;
     line-height: 30px;
