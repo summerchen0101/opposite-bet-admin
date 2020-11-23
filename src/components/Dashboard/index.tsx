@@ -1,5 +1,5 @@
 import TabsRecord from '@/components/TabsRecord'
-import DashboardContext from '@/contexts/DashboardContext'
+import DashboardContextProvider from '@/contexts/DashboardContextProvider'
 import { Layout, message } from 'antd'
 import React, { useEffect, useState } from 'react'
 import Content from './Content'
@@ -9,11 +9,9 @@ import Wrapper from './Wrapper'
 import { useHistory, useLocation } from 'react-router-dom'
 
 const Dashboard: React.FC = ({ children }) => {
-  const [collapsed, changeCollapsed] = useState(false)
-  const toggleCollapsed = () => changeCollapsed(!collapsed)
   const location = useLocation()
   return (
-    <DashboardContext.Provider value={{ collapsed, toggleCollapsed }}>
+    <DashboardContextProvider>
       <Wrapper>
         <Sidebar />
         <Layout>
@@ -24,7 +22,7 @@ const Dashboard: React.FC = ({ children }) => {
           </Content>
         </Layout>
       </Wrapper>
-    </DashboardContext.Provider>
+    </DashboardContextProvider>
   )
 }
 

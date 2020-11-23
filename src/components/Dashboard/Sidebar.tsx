@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Layout, Menu } from 'antd'
 import { Link, useHistory, useLocation, useRouteMatch } from 'react-router-dom'
-import DashboardContext from '@/contexts/DashboardContext'
+import { DashboardContext } from '@/contexts/DashboardContextProvider'
 import MenuWithSubMenu from '@/utils/MenuWithSubMenu'
 import { menu } from '@/routes'
 import styled from 'styled-components'

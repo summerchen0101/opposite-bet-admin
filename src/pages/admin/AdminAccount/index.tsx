@@ -1,8 +1,9 @@
 import Dashboard from '@/components/Dashboard'
 import { TabContext } from '@/contexts/TabContextProvider'
-import { useReducerInjector } from '@/utils/hooks'
+import { useReducerInjector, useTabRecord } from '@/utils/hooks'
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import { AdminAccount } from '../routes'
 import PageHeader from './components/PageHeader'
 import PopupCreateForm from './containers/PopupCreateForm'
 import PopupEditForm from './containers/PopupEditForm'
@@ -16,6 +17,7 @@ const Manager: React.FC = () => {
   const getTableData = async () => {
     await dispatch(fetchAdminList())
   }
+  useTabRecord(AdminAccount)
   useEffect(() => {
     dispatch(initSearchState())
     getTableData()
