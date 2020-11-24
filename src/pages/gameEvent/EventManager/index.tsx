@@ -11,6 +11,7 @@ import CreateForm from './containers/CreateForm'
 import TableData from './containers/TableData'
 import reducer, { initSearchState, moduleName } from './reducer'
 import { EventManager } from '../routes'
+import TableContextProvider from './context/TableContextProvider'
 
 const createTrigger = (setVisible) => (
   <CreateButton onClick={() => setVisible(true)} />
@@ -39,7 +40,9 @@ const EventManagerPage: React.FC = () => {
         <DateRangePicker />
         <RelativeDateBtns />
       </PageSearchBar>
-      <TableData />
+      <TableContextProvider>
+        <TableData />
+      </TableContextProvider>
     </Dashboard>
   )
 }

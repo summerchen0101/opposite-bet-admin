@@ -45,7 +45,6 @@ const LoginComponent: React.FC = () => {
           <Form.Item
             label="帳號"
             name="account"
-            requiredMark={false}
             rules={[{ required: true, message: '請輸入帳號!' }]}
           >
             <Input />
@@ -54,7 +53,6 @@ const LoginComponent: React.FC = () => {
           <Form.Item
             label="密碼"
             name="password"
-            requiredMark={false}
             rules={[{ required: true, message: '請輸入密碼!' }]}
           >
             <Input.Password />

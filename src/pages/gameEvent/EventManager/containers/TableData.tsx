@@ -16,11 +16,45 @@ import {
   StopOutlined,
 } from '@ant-design/icons'
 import { Checkbox, Space, Switch } from 'antd'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import ScoreForm from './ScoreForm'
+import { ColumnsType } from 'antd/lib/table'
+import { TableItem } from '../types'
+import TableContextProvider, {
+  TableContext,
+} from '../context/TableContextProvider'
+import { useTypedSelector, selectTableData } from '../selectors'
+import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 
-const columns = [
+const TableHeaderController: React.FC = () => {
+  const tableData = useTypedSelector(selectTableData)
+  const { selectAll, unselectAll } = useContext(TableContext)
+  const handleSelectAll = (check) =>
+    check ? selectAll(tableData.map((t) => t.id)) : unselectAll()
+  return (
+    <>
+      <Space size="small">
+        <Checkbox
+          defaultChecked={false}
+          onChange={(e) => handleSelectAll(e.target.checked)}
+        />
+        <BatchOpperatorDropdown
+          options={[
+            { label: '批量刪除', onClick: () => {} },
+            { label: '批量開放', onClick: () => {} },
+          ]}
+        />
+      </Space>
+      <IconLink
+        icon={<FilterFilled />}
+        style={{ float: 'right', marginBottom: -4 }}
+      />
+    </>
+  )
+}
+
+const columns: ColumnsType<TableItem> = [
   {
     title: '賽事編號',
     dataIndex: 'eventId',
@@ -112,30 +146,21 @@ const columns = [
     },
   },
   {
-    title: () => (
-      <>
-        <Space size="small">
-          <Checkbox defaultChecked={false} />
-          <BatchOpperatorDropdown
-            options={[
-              { label: '批量刪除', onClick: () => {} },
-              { label: '批量開放', onClick: () => {} },
-            ]}
-          />
-        </Space>
-        <IconLink
-          icon={<FilterFilled />}
-          style={{ float: 'right', marginBottom: -4 }}
-        />
-      </>
-    ),
+    title: <TableHeaderController />,
     key: 'control',
     fixed: ('right' as unknown) as boolean,
-    render: () => {
+    render: (_, row) => {
       const history = useHistory()
+      const { selectOne, unselectOne, selected } = useContext(TableContext)
+      const isSelected = selected.includes(row.id)
+      const handleSelect = (check) =>
+        check ? selectOne(row.id) : unselectOne(row.id)
       return (
         <>
-          <Checkbox defaultChecked={false} />
+          <Checkbox
+            defaultChecked={isSelected}
+            onChange={(e) => handleSelect(e.target.checked)}
+          />
           <Space size="small" style={{ float: 'right' }}>
             <IconLink label="下架賽事" icon={<StopOutlined />} />
             <IconLink label="查看投注" icon={<EyeOutlined />} />
@@ -156,26 +181,15 @@ const columns = [
   },
 ]
 
-const data = []
-for (let i = 1; i <= 50; i++) {
-  data.push({
-    key: i,
-    eventId: 3123,
-    startAt: '2020-12-02',
-    teams: ['AAA', 'BBB'],
-    league: '大聯盟123',
-    country: '美國',
-    count: 10,
-    volume: 20320,
-    isOpened: true,
-    // result: {
-    //   full: '3:2',
-    //   firstHalf: '2:1',
-    // },
-  })
-}
 const Component: React.FC = () => {
-  return <TableSets columns={columns} data={data} />
+  const data = useTypedSelector(selectTableData)
+  const { selected } = useContext(TableContext)
+  return (
+    <>
+      {JSON.stringify(selected)}
+      <TableSets columns={columns} data={data} />
+    </>
+  )
 }
 
 export default Component
