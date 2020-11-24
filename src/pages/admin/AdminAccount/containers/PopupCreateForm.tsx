@@ -1,5 +1,5 @@
 import PopupModal from '@/components/PopupModal'
-import { AdminAccount } from '@/lib/types'
+import * as AdminAccount from '../types'
 import { useAppDispatch } from '@/store'
 import { message } from 'antd'
 import React from 'react'

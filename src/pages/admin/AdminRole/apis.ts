@@ -1,5 +1,6 @@
 import Request from '@/utils/request'
-import { AdminRole, RequestPromise } from '@/lib/types'
+import { RequestPromise } from '@/types'
+import * as AdminRole from './types'
 
 export const getList: RequestPromise = <T>() =>
   Request.post<T>('admin/getAdminRoles')

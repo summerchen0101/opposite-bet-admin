@@ -1,5 +1,5 @@
 import Form, { FormField } from '@/components/Form'
-import { DataDataFormProps } from '@/lib/types'
+import { DataDataFormProps } from '@/types'
 import { Button, Input, Space } from 'antd'
 import React from 'react'
 import DataFormHeader from '../components/DataFormHeader'

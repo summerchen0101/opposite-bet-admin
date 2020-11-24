@@ -1,5 +1,5 @@
 import PopupModal from '@/components/PopupModal'
-import { AdminAccount } from '@/lib/types'
+import * as AdminAccount from '../types'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { editAdmin, fetchAdminList, toggleEditModal } from '../reducer'

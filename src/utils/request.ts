@@ -1,4 +1,4 @@
-import { ResponseBase } from '@/lib/types'
+import { ResponseBase } from '@/types'
 import { join } from 'path'
 import httpStatus from 'http-status'
 interface Options {

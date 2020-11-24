@@ -4,7 +4,7 @@ import {
   RemotePagination,
   RemotePermission,
   StatusType,
-} from '..'
+} from '@/types'
 
 export type AdminStatusOptions = 0 | 1 | 2 | 3
 

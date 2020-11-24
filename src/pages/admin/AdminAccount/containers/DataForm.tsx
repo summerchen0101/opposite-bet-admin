@@ -1,6 +1,6 @@
 import { BasicSelector, Text } from '@/components'
 import Form, { FormField } from '@/components/Form'
-import { DataDataFormProps } from '@/lib/types'
+import { DataDataFormProps } from '@/types'
 import {
   Button,
   Col,

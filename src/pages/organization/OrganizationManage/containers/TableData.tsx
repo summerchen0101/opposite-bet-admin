@@ -20,7 +20,7 @@ import {
 } from '../reducer'
 import { useTypedSelector, selectTableData } from '../selectors'
 import { ColumnsType } from 'antd/lib/table'
-import { OrgManage } from '@/lib/types'
+import * as OrgManage from '../types'
 import { useAppDispatch } from '@/store'
 
 const columns: ColumnsType<OrgManage.DataTableItem> = [

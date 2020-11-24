@@ -1,13 +1,14 @@
-import { ResponseBase, OrgManage, Permission, OptionType } from '@/lib/types'
+import { ResponseBase, Permission, OptionType } from '@/types'
 import {
   ActionReducerMapBuilder,
   createAsyncThunk,
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit'
-import API from '@/utils/API'
+import * as API from './apis'
+import * as OrgManage from './types'
 import { errorHandler } from '@/utils/helper'
-import { agentStructureCreator, permissionTransfer } from '@/utils/transfer'
+import { permissionTransfer } from '@/utils/transfer'
 export interface IState {
   permission: Permission
   tableData: any[]
@@ -41,7 +42,7 @@ export const moduleName = 'orgManage'
 export const fetchList = createAsyncThunk(
   `${moduleName}/fetchList`,
   async (search: OrgManage.SearchRequest | void, { dispatch }) => {
-    const { result, data } = await API.orgManage.getList<
+    const { result, data } = await API.getList<
       ResponseBase<OrgManage.ListResponse>
     >(search)
     errorHandler(result, dispatch)
@@ -78,7 +79,7 @@ export const fetchList = createAsyncThunk(
 export const fetchCreateOptions = createAsyncThunk(
   `${moduleName}/fetchCreateOptions`,
   async (_, { dispatch }) => {
-    const { result, data } = await API.orgManage.create<
+    const { result, data } = await API.create<
       ResponseBase<OrgManage.CreateOptionResponse>
     >()
     errorHandler(result, dispatch)
@@ -101,7 +102,7 @@ export const fetchCreateOptions = createAsyncThunk(
 //       role_name: name,
 //       menu_data: JSON.stringify(menu),
 //     }
-//     const { result } = await API.adminRole.doCreate<ResponseBase<any>>(reqData)
+//     const { result } = await API.doCreate<ResponseBase<any>>(reqData)
 //     errorHandler(result, dispatch)
 //     return
 //   },
@@ -111,7 +112,7 @@ export const fetchCreateOptions = createAsyncThunk(
 // export const fetchEditOptions = createAsyncThunk(
 //   `${moduleName}/fetchEditOptions`,
 //   async (id: number, { dispatch }) => {
-//     const { result, data } = await API.adminRole.edit<
+//     const { result, data } = await API.edit<
 //       ResponseBase<AdminRole.DoEditResponse>
 //     >(id)
 //     errorHandler(result, dispatch)
@@ -134,7 +135,7 @@ export const fetchCreateOptions = createAsyncThunk(
 //       role_name: name,
 //       menu_data: JSON.stringify(menu),
 //     }
-//     const { result } = await API.adminRole.doEdit<ResponseBase<any>>(reqData)
+//     const { result } = await API.doEdit<ResponseBase<any>>(reqData)
 //     errorHandler(result, dispatch)
 //     return
 //   },
@@ -144,7 +145,7 @@ export const fetchCreateOptions = createAsyncThunk(
 // export const doDelete = createAsyncThunk(
 //   `${moduleName}/doDelete`,
 //   async (id: number, { dispatch }) => {
-//     const { result } = await API.adminRole.doDelete<ResponseBase<any>>(id)
+//     const { result } = await API.doDelete<ResponseBase<any>>(id)
 //     errorHandler(result, dispatch)
 //     return
 //   },
@@ -208,3 +209,35 @@ export const {
   togglePointFormModal,
 } = module.actions
 export default module.reducer
+
+function agentStructureCreator(
+  obj: OrgManage.RemoteAgent,
+  level = 0,
+): OrgManage.AgentItem[] {
+  const levelMap = {
+    0: '廠商',
+    1: '股東',
+    2: '總代',
+    3: '代理',
+    4: '會員',
+  }
+  const levelItem = {
+    label: levelMap[level],
+    value: 0,
+    disabled: true,
+  }
+  const items = Object.keys(obj).map((key) => {
+    const name = obj[key].NAME as string
+    delete obj[key].NAME
+    const item: OrgManage.AgentItem = {
+      value: (key as unknown) as number,
+      label: name,
+    }
+    if (Object.keys(obj[key]).length > 0) {
+      item.children = agentStructureCreator(obj[key], ++level)
+    }
+    return item
+  })
+
+  return [levelItem, ...items]
+}

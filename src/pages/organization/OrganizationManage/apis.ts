@@ -1,5 +1,6 @@
 import Request from '@/utils/request'
-import { OrgManage, RequestPromise } from '@/lib/types'
+import { RequestPromise } from '@/types'
+import * as OrgManage from './types'
 
 export const getList: RequestPromise = <T>(
   data?: Partial<OrgManage.SearchRequest>,

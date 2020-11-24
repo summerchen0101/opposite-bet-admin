@@ -1,5 +1,5 @@
-import { Login, MenuItem, ResponseBase, UserInfo } from '@/lib/types'
-import API from '@/utils/API'
+import { Login, MenuItem, ResponseBase, UserInfo } from '@/types'
+import * as API from '@/apis'
 import { errorHandler } from '@/utils/helper'
 import { handleMenuTransfer } from '@/utils/transfer'
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'

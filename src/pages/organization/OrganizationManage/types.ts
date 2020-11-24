@@ -1,4 +1,4 @@
-import { RemotePagination, RemotePermission } from '..'
+import { RemotePagination, RemotePermission } from '@/types'
 
 export interface AgentItem {
   value?: number

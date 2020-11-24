@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom'
 import { ColumnType } from 'antd/lib/table'
 import { useDispatch } from 'react-redux'
 import { fetchAdminEditOptions, fetchAdminList, removeAdmin } from '../reducer'
-import { AdminAccount } from '@/lib/types'
+import * as AdminAccount from '../types'
 import { toggleEditModal, setStatus } from '../reducer'
 import { useAppDispatch } from '@/store'
 const columns: ColumnType<AdminAccount.ListItem>[] = [

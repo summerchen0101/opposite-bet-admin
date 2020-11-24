@@ -1,6 +1,5 @@
 import React from 'react'
 import Dashboard from '@/components/Dashboard'
-import ColorRate from './ColorRate'
 import { Statistic, Col, Row, Divider, Card, Table, Form } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import { addKeyToArrayItem } from '@/utils/transfer'

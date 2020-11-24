@@ -1,5 +1,5 @@
 import Request from '@/utils/request'
-import { RequestPromise } from '@/lib/types'
+import { RequestPromise } from '@/types'
 
 export const login: RequestPromise = <T>(data) =>
   Request.post<T>('admin/login', data, { noAuth: true })

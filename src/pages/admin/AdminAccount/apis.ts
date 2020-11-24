@@ -1,5 +1,5 @@
 import Request from '@/utils/request'
-import { RequestPromise } from '@/lib/types'
+import { RequestPromise } from '@/types'
 
 export const getList: RequestPromise = <T>(data) =>
   Request.post<T>('admin/getAdminList', data)

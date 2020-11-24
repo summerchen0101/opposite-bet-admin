@@ -16,7 +16,7 @@ import { fetchEditOptions, doDelete, fetchList, setStatus } from '../reducer'
 import { useDispatch } from 'react-redux'
 import { useAppDispatch } from '@/store'
 import { ColumnsType } from 'antd/lib/table'
-import { AdminRole } from '@/lib/types'
+import * as AdminRole from '../types'
 
 const columns: ColumnsType<AdminRole.ListItem> = [
   {

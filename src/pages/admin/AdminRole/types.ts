@@ -1,4 +1,4 @@
-import { Permission, RemotePermission, MenuItem } from '..'
+import { Permission, RemotePermission, MenuItem } from '@/types'
 
 export interface ListItem {
   id: number
