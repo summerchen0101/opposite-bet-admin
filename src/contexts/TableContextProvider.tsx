@@ -1,5 +1,6 @@
 import { createReducer, createAction } from '@reduxjs/toolkit'
 import React, { useReducer, useState } from 'react'
+import { ContextDevTool } from 'react-context-devtool'
 
 const initialState: { selected: string[] } = {
   selected: [],
@@ -35,6 +36,7 @@ interface TableContextProps {
 }
 
 export const TableContext = React.createContext<TableContextProps | null>(null)
+TableContext.displayName = 'TableContext'
 
 const TableContextProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -48,6 +50,11 @@ const TableContextProvider: React.FC = ({ children }) => {
         unselectAll: () => dispatch(unselectAll()),
       }}
     >
+      <ContextDevTool
+        context={TableContext}
+        id="uniqContextId"
+        displayName="TableContext"
+      />
       {children}
     </TableContext.Provider>
   )
