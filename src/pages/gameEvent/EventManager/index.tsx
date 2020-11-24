@@ -11,7 +11,7 @@ import CreateForm from './containers/CreateForm'
 import TableData from './containers/TableData'
 import reducer, { initSearchState, moduleName } from './reducer'
 import { EventManager } from '../routes'
-import TableContextProvider from './context/TableContextProvider'
+import TableContextProvider from '@/contexts/TableContextProvider'
 
 const createTrigger = (setVisible) => (
   <CreateButton onClick={() => setVisible(true)} />

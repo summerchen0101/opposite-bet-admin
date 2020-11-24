@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { TableItem } from './types'
+
 const data: TableItem[] = []
 for (let i = 1; i <= 50; i++) {
   data.push({
