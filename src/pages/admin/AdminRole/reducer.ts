@@ -1,6 +1,6 @@
 import { MenuItem, Permission, RequestSetStatus, ResponseBase } from '@/types'
-import * as AdminRole from './types'
-import * as API from './apis'
+import * as Types from './types'
+import * as API from './API'
 import { errorHandler } from '@/utils/helper'
 import { handleMenuTransfer, permissionTransfer } from '@/utils/transfer'
 import {
@@ -10,13 +10,13 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit'
 export interface IState {
-  tableData: AdminRole.ListItem[]
+  tableData: Types.ListItem[]
   displayCreateModal: boolean
   displayEditModal: boolean
   permission: Permission
   menu: MenuItem[]
   editRole: {
-    id: number
+    id: string
     name: string
   } | null
 }
@@ -35,11 +35,9 @@ export const moduleName = 'adminRole'
 export const fetchList = createAsyncThunk(
   `${moduleName}/fetchList`,
   async (_, { dispatch }) => {
-    const { result, data } = await API.getList<
-      ResponseBase<AdminRole.ListResponse>
-    >()
+    const { result, data } = await API.fetchAll()
     errorHandler(result, dispatch)
-    const pageData: AdminRole.ListResultProps = {
+    const pageData = {
       permission: permissionTransfer(data.permission),
       list: data.role.map((t, i) => ({
         key: t.role_id,
@@ -62,7 +60,7 @@ export const fetchList = createAsyncThunk(
 export const fetchCreateOptions = createAsyncThunk(
   `${moduleName}/fetchCreateOptions`,
   async (_, { dispatch }) => {
-    const { result, data } = await API.create<ResponseBase<any[]>>()
+    const { result, data } = await API.fetchCreateOption()
     errorHandler(result, dispatch)
     return handleMenuTransfer(data)
   },
@@ -73,11 +71,11 @@ export const doCreate = createAsyncThunk(
   `${moduleName}/doCreate`,
   async (name: string, { getState, dispatch }) => {
     const { menu } = getState()[moduleName] as IState
-    const reqData: AdminRole.DoCreateRequest = {
+    const reqData = {
       role_name: name,
       menu_data: JSON.stringify(menu),
     }
-    const { result } = await API.doCreate<ResponseBase<any>>(reqData)
+    const { result } = await API.create(reqData)
     errorHandler(result, dispatch)
     return
   },
@@ -86,10 +84,8 @@ export const doCreate = createAsyncThunk(
 // 編輯
 export const fetchEditOptions = createAsyncThunk(
   `${moduleName}/fetchEditOptions`,
-  async (id: number, { dispatch }) => {
-    const { result, data } = await API.edit<
-      ResponseBase<AdminRole.DoEditResponse>
-    >(id)
+  async (id: string, { dispatch }) => {
+    const { result, data } = await API.fetchById(id)
     errorHandler(result, dispatch)
     const { role_name, role_id, menu } = data.role[0]
     return {
@@ -105,12 +101,11 @@ export const doEdit = createAsyncThunk(
   `${moduleName}/doEdit`,
   async (name: string, { getState, dispatch }) => {
     const { menu, editRole } = getState()[moduleName] as IState
-    const reqData: AdminRole.DoEditRequest = {
-      role_id: editRole.id,
+    const reqData = {
       role_name: name,
       menu_data: JSON.stringify(menu),
     }
-    const { result } = await API.doEdit<ResponseBase<any>>(reqData)
+    const { result } = await API.edit(editRole.id, reqData)
     errorHandler(result, dispatch)
     return
   },
@@ -119,22 +114,8 @@ export const doEdit = createAsyncThunk(
 // 刪除
 export const doDelete = createAsyncThunk(
   `${moduleName}/doDelete`,
-  async (id: number, { dispatch }) => {
-    const { result } = await API.doDelete<ResponseBase<any>>(id)
-    errorHandler(result, dispatch)
-    return
-  },
-)
-
-// 狀態切換
-export const setStatus = createAsyncThunk(
-  `${moduleName}/setStatus`,
-  async ({ id, status }: { id: number; status: number }, { dispatch }) => {
-    const reqData: RequestSetStatus = {
-      data_id: id,
-      status,
-    }
-    const { result } = await API.setStatus(reqData)
+  async (id: string, { dispatch }) => {
+    const { result } = await API.deleteById(id)
     errorHandler(result, dispatch)
     return
   },

@@ -7,17 +7,18 @@ import {
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit'
-import * as API from './apis'
-import * as AdminAccount from './types'
+import * as API from './API'
+import * as Types from './types'
+import * as RemoteTypes from './API/types'
 
 export interface IState {
-  tableData: AdminAccount.ListItem[]
+  tableData: Types.ListItem[]
   roleOptions: OptionType[]
   permission: Permission
   displayCreateModal: boolean
   displayEditModal: boolean
-  searchData: AdminAccount.ListSearchForm
-  editAdmin: Partial<AdminAccount.DataFormProps>
+  searchData: Types.ListSearchForm
+  editAdmin: Partial<Types.DataFormProps>
 }
 const initialState: IState = {
   tableData: [],
@@ -39,8 +40,8 @@ export const moduleName = 'adminAccount'
 // 列表
 export const fetchAdminList = createAsyncThunk(
   `${moduleName}/fetchAdminList`,
-  async (form: AdminAccount.ListSearchForm | void, { dispatch }) => {
-    let reqData: AdminAccount.SearchRequest | undefined
+  async (form: Types.ListSearchForm | void, { dispatch }) => {
+    let reqData: RemoteTypes.SearchRequest
     if (form) {
       reqData = {
         search_account: form.account || undefined,
@@ -49,9 +50,7 @@ export const fetchAdminList = createAsyncThunk(
         search_ip: form.ip || undefined,
       }
     }
-    const { data, result } = await API.getList<
-      ResponseBase<AdminAccount.ListResponse>
-    >(reqData)
+    const { data, result } = await API.fetchAll(reqData)
     errorHandler(result, dispatch)
     return {
       list:
@@ -78,13 +77,11 @@ export const fetchAdminList = createAsyncThunk(
 // 編輯
 export const fetchAdminEditOptions = createAsyncThunk(
   `${moduleName}/fetchAdminEditOptions`,
-  async (id: number, { dispatch }) => {
-    const { result, data } = await API.edit<
-      ResponseBase<AdminAccount.EditResponseProps>
-    >(id)
+  async (id: string, { dispatch }) => {
+    const { result, data } = await API.fetchById(id)
     errorHandler(result, dispatch)
     const { admin: _admin } = data
-    const formData: AdminAccount.DataFormProps = {
+    const formData = {
       id,
       account: _admin.username,
       realName: _admin.name,
@@ -107,7 +104,7 @@ export const fetchAdminEditOptions = createAsyncThunk(
 const formToCreateReqData = (form) => {
   const expireDate =
     form.effectiveTime === 'limit' ? form.limitDate.format('YYYY-MM-DD') : null
-  const data: AdminAccount.RequestCreateData = {
+  const data = {
     name: form.realName,
     username: form.account,
     password: form.pw,
@@ -126,7 +123,7 @@ const formToCreateReqData = (form) => {
 const formToEditReqData = (id, form) => {
   const expireDate =
     form.effectiveTime === 'limit' ? form.limitDate.format('YYYY-MM-DD') : null
-  const data: AdminAccount.RequestEditData = {
+  const data = {
     admin_id: id,
     name: form.realName,
     username: form.account,
@@ -147,9 +144,9 @@ const formToEditReqData = (id, form) => {
 // 新增送出
 export const createAdmin = createAsyncThunk(
   `${moduleName}/createAdmin`,
-  async (form: AdminAccount.DataFormProps, { dispatch }) => {
+  async (form: Types.DataFormProps, { dispatch }) => {
     const reqData = formToCreateReqData(form)
-    const { result } = await API.doCreate<ResponseBase<any>>(reqData)
+    const { result } = await API.create(reqData)
     errorHandler(result, dispatch)
     return
   },
@@ -158,10 +155,10 @@ export const createAdmin = createAsyncThunk(
 // 編輯送出
 export const editAdmin = createAsyncThunk(
   `${moduleName}/editAdmin`,
-  async (form: AdminAccount.DataFormProps, { dispatch, getState }) => {
+  async (form: Types.DataFormProps, { dispatch, getState }) => {
     const { editAdmin } = getState()[moduleName] as IState
     const reqData = formToEditReqData(editAdmin.id, form)
-    const { result } = await API.doEdit(reqData)
+    const { result } = await API.edit(editAdmin.id.toString(), reqData)
     errorHandler(result, dispatch)
     return
   },
@@ -170,22 +167,8 @@ export const editAdmin = createAsyncThunk(
 // 刪除
 export const removeAdmin = createAsyncThunk(
   `${moduleName}/removeAdmin`,
-  async (id: number, { dispatch }) => {
-    const { result } = await API.doDelete(id)
-    errorHandler(result, dispatch)
-    return
-  },
-)
-
-// 狀態切換
-export const setStatus = createAsyncThunk(
-  `${moduleName}/setStatus`,
-  async ({ id, status }: { id: number; status: number }, { dispatch }) => {
-    const reqData: RequestSetStatus = {
-      data_id: id,
-      status,
-    }
-    const { result } = await API.setStatus(reqData)
+  async (id: string, { dispatch }) => {
+    const { result } = await API.deleteById(id)
     errorHandler(result, dispatch)
     return
   },

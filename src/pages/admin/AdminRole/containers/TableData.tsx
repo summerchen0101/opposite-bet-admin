@@ -12,7 +12,7 @@ import { message, Space } from 'antd'
 import React from 'react'
 import { PopupConfirm, Text } from '@/components'
 import { useTypedSelector, selectTableData } from '../selectors'
-import { fetchEditOptions, doDelete, fetchList, setStatus } from '../reducer'
+import { fetchEditOptions, doDelete, fetchList } from '../reducer'
 import { useDispatch } from 'react-redux'
 import { useAppDispatch } from '@/store'
 import { ColumnsType } from 'antd/lib/table'
@@ -91,12 +91,12 @@ const columns: ColumnsType<AdminRole.ListItem> = [
         }
       }
       const handleStatus = async (status: number) => {
-        const action = await dispatch(setStatus({ status, id: row.id }))
-        if (setStatus.fulfilled.match(action)) {
-          dispatch(fetchList())
-        } else {
-          message.error(action.error.message)
-        }
+        // const action = await dispatch(setStatus({ status, id: row.id }))
+        // if (setStatus.fulfilled.match(action)) {
+        //   dispatch(fetchList())
+        // } else {
+        //   message.error(action.error.message)
+        // }
       }
       return (
         <Space size="small">

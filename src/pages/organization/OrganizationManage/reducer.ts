@@ -5,10 +5,11 @@ import {
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit'
-import * as API from './apis'
-import * as OrgManage from './types'
+import * as API from './API'
+import * as Types from './types'
 import { errorHandler } from '@/utils/helper'
 import { permissionTransfer } from '@/utils/transfer'
+import { SearchRequest } from './API/fetchAll'
 export interface IState {
   permission: Permission
   tableData: any[]
@@ -19,7 +20,7 @@ export interface IState {
   displayLoginHistoryModal: boolean
   displayTradeHistoryModal: boolean
   displayPointFormModal: boolean
-  agentStruct: OrgManage.AgentItem[]
+  agentStruct: Types.AgentItem[]
   roleOptions: OptionType[]
 }
 const initialState: IState = {
@@ -41,10 +42,8 @@ export const moduleName = 'orgManage'
 // 列表
 export const fetchList = createAsyncThunk(
   `${moduleName}/fetchList`,
-  async (search: OrgManage.SearchRequest | void, { dispatch }) => {
-    const { result, data } = await API.getList<
-      ResponseBase<OrgManage.ListResponse>
-    >(search)
+  async (search: SearchRequest | void, { dispatch }) => {
+    const { result, data } = await API.fetchAll(search || undefined)
     errorHandler(result, dispatch)
     const pageData = {
       permission: permissionTransfer(data.permission),
@@ -79,9 +78,7 @@ export const fetchList = createAsyncThunk(
 export const fetchCreateOptions = createAsyncThunk(
   `${moduleName}/fetchCreateOptions`,
   async (_, { dispatch }) => {
-    const { result, data } = await API.create<
-      ResponseBase<OrgManage.CreateOptionResponse>
-    >()
+    const { result, data } = await API.fetchCreateOption()
     errorHandler(result, dispatch)
     return {
       agentStruct: agentStructureCreator(data.agent_struct),
@@ -92,64 +89,6 @@ export const fetchCreateOptions = createAsyncThunk(
     }
   },
 )
-
-// // 新增送出
-// export const doCreate = createAsyncThunk(
-//   `${moduleName}/doCreate`,
-//   async (name: string, { getState, dispatch }) => {
-//     const { menu } = getState()[moduleName] as IState
-//     const reqData: AdminRole.DoCreateRequest = {
-//       role_name: name,
-//       menu_data: JSON.stringify(menu),
-//     }
-//     const { result } = await API.doCreate<ResponseBase<any>>(reqData)
-//     errorHandler(result, dispatch)
-//     return
-//   },
-// )
-
-// // 編輯
-// export const fetchEditOptions = createAsyncThunk(
-//   `${moduleName}/fetchEditOptions`,
-//   async (id: number, { dispatch }) => {
-//     const { result, data } = await API.edit<
-//       ResponseBase<AdminRole.DoEditResponse>
-//     >(id)
-//     errorHandler(result, dispatch)
-//     const { role_name, role_id, menu } = data.role[0]
-//     return {
-//       id: role_id,
-//       name: role_name,
-//       menu: handleMenuTransfer(menu),
-//     }
-//   },
-// )
-
-// // 編輯送出
-// export const doEdit = createAsyncThunk(
-//   `${moduleName}/doEdit`,
-//   async (name: string, { getState, dispatch }) => {
-//     const { menu, editRole } = getState()[moduleName] as IState
-//     const reqData: AdminRole.DoEditRequest = {
-//       role_id: editRole.id,
-//       role_name: name,
-//       menu_data: JSON.stringify(menu),
-//     }
-//     const { result } = await API.doEdit<ResponseBase<any>>(reqData)
-//     errorHandler(result, dispatch)
-//     return
-//   },
-// )
-
-// // 刪除
-// export const doDelete = createAsyncThunk(
-//   `${moduleName}/doDelete`,
-//   async (id: number, { dispatch }) => {
-//     const { result } = await API.doDelete<ResponseBase<any>>(id)
-//     errorHandler(result, dispatch)
-//     return
-//   },
-// )
 
 const module = createSlice({
   name: moduleName,
@@ -211,9 +150,9 @@ export const {
 export default module.reducer
 
 function agentStructureCreator(
-  obj: OrgManage.RemoteAgent,
+  obj: Types.RemoteAgent,
   level = 0,
-): OrgManage.AgentItem[] {
+): Types.AgentItem[] {
   const levelMap = {
     0: '廠商',
     1: '股東',
@@ -229,7 +168,7 @@ function agentStructureCreator(
   const items = Object.keys(obj).map((key) => {
     const name = obj[key].NAME as string
     delete obj[key].NAME
-    const item: OrgManage.AgentItem = {
+    const item: Types.AgentItem = {
       value: (key as unknown) as number,
       label: name,
     }

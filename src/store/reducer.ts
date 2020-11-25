@@ -1,5 +1,5 @@
 import { Login, MenuItem, ResponseBase, UserInfo } from '@/types'
-import * as API from '@/apis'
+import * as API from '@/API'
 import { errorHandler } from '@/utils/helper'
 import { handleMenuTransfer } from '@/utils/transfer'
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
@@ -26,12 +26,7 @@ const initialState: GlobalState = {
 export const fetchUserAndMenu = createAsyncThunk(
   'global/fetchUserAndMenu',
   async (_, { dispatch }) => {
-    const { result, data } = await API.getUserAndMenu<
-      ResponseBase<{
-        admin: UserInfo
-        menu: any
-      }>
-    >()
+    const { result, data } = await API.fetchUserAndMenu()
     errorHandler(result, dispatch)
     const { admin, menu } = data
     return { admin, menu: handleMenuTransfer(menu) }
@@ -40,17 +35,17 @@ export const fetchUserAndMenu = createAsyncThunk(
 export const doLogout = createAsyncThunk(
   'global/doLogout',
   async (_, { dispatch }) => {
-    const { result } = await API.logout<ResponseBase<any>>()
+    const { result } = await API.logout()
     errorHandler(result, dispatch)
     return
   },
 )
 export const doLogin = createAsyncThunk(
   'global/doLogin',
-  async (data: Login.RequestProps, { dispatch, rejectWithValue }) => {
-    const { result, token } = await API.login<Login.ResponseProps>(data)
+  async (reqData: Login.RequestProps, { dispatch, rejectWithValue }) => {
+    const { result, data } = await API.login(reqData)
     errorHandler(result, dispatch)
-    return token
+    return data
   },
 )
 

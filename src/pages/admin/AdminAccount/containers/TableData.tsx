@@ -15,7 +15,7 @@ import { ColumnType } from 'antd/lib/table'
 import { useDispatch } from 'react-redux'
 import { fetchAdminEditOptions, fetchAdminList, removeAdmin } from '../reducer'
 import * as AdminAccount from '../types'
-import { toggleEditModal, setStatus } from '../reducer'
+import { toggleEditModal } from '../reducer'
 import { useAppDispatch } from '@/store'
 const columns: ColumnType<AdminAccount.ListItem>[] = [
   {
@@ -95,12 +95,12 @@ const columns: ColumnType<AdminAccount.ListItem>[] = [
         }
       }
       const handleStatus = async (status: number) => {
-        const action = await dispatch(setStatus({ status, id: row.id }))
-        if (setStatus.fulfilled.match(action)) {
-          dispatch(fetchAdminList())
-        } else {
-          message.error(action.error.message)
-        }
+        // const action = await dispatch(setStatus({ status, id: row.id }))
+        // if (setStatus.fulfilled.match(action)) {
+        //   dispatch(fetchAdminList())
+        // } else {
+        //   message.error(action.error.message)
+        // }
       }
       return (
         <Space size="small">
