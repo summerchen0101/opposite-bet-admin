@@ -1,6 +1,6 @@
 import { OptionType, Permission, RequestSetStatus, ResponseBase } from '@/types'
 import { errorHandler } from '@/utils/helper'
-import { permissionTransfer } from '@/utils/transfer'
+import { addKeyToArrayItem, permissionTransfer } from '@/utils/transfer'
 import {
   ActionReducerMapBuilder,
   createAsyncThunk,
@@ -11,9 +11,10 @@ import * as API from './API'
 import * as Types from './types'
 import { SearchRequest } from './API/fetchAll'
 import numeral from 'numeral'
+import { TableItem } from './containers/TableData'
 
 export interface IState {
-  tableData: Types.ListItem[]
+  tableData: TableItem[]
   roleOptions: OptionType[]
   permission: Permission
   displayCreateModal: boolean
@@ -55,8 +56,8 @@ export const fetchAdminList = createAsyncThunk(
     errorHandler(result, dispatch)
     return {
       list:
-        data.admin?.map((t) => ({
-          key: t.admin_id,
+        data.admin?.map((t, i) => ({
+          key: i,
           id: t.admin_id,
           account: t.admin_account,
           name: t.admin_name,

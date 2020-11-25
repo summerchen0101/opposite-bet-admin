@@ -1,24 +1,34 @@
+import { PopupConfirm, Text } from '@/components'
 import IconLink from '@/components/IconLink'
 import TableSets from '@/components/TableSets'
+import { useAppDispatch } from '@/store'
 import {
-  StopOutlined,
-  EditFilled,
-  FilterFilled,
-  DeleteOutlined,
   CheckCircleOutlined,
   CloseCircleOutlined,
+  DeleteOutlined,
+  EditFilled,
+  FilterFilled,
 } from '@ant-design/icons'
 import { message, Space } from 'antd'
-import React from 'react'
-import { PopupConfirm, Text } from '@/components'
-import { useTypedSelector, selectTableData } from '../selectors'
-import { fetchEditOptions, doDelete, fetchList } from '../reducer'
-import { useDispatch } from 'react-redux'
-import { useAppDispatch } from '@/store'
 import { ColumnsType } from 'antd/lib/table'
-import * as AdminRole from '../types'
+import React from 'react'
+import { doDelete, fetchEditOptions, fetchList } from '../reducer'
+import { selectTableData, useTypedSelector } from '../selectors'
 
-const columns: ColumnsType<AdminRole.ListItem> = [
+export interface TableItem {
+  key: number
+  id: string
+  name: string
+  count: number
+  updatedAt: string
+  updator: string
+  creator: string
+  createdAt: string
+  menu: string
+  status: number
+}
+
+const columns: ColumnsType<TableItem> = [
   {
     title: '角色名稱',
     dataIndex: 'name',
@@ -128,7 +138,7 @@ const columns: ColumnsType<AdminRole.ListItem> = [
 
 const TableData: React.FC = () => {
   const data = useTypedSelector(selectTableData)
-  return <TableSets columns={columns} data={data} />
+  return <TableSets<TableItem> columns={columns} data={data} />
 }
 
 export default TableData

@@ -1,6 +1,10 @@
 import { MenuItem, Permission } from '@/types'
 import { errorHandler } from '@/utils/helper'
-import { handleMenuTransfer, permissionTransfer } from '@/utils/transfer'
+import {
+  addKeyToArrayItem,
+  handleMenuTransfer,
+  permissionTransfer,
+} from '@/utils/transfer'
 import {
   ActionReducerMapBuilder,
   createAsyncThunk,
@@ -8,9 +12,9 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit'
 import * as API from './API'
-import * as Types from './types'
+import { TableItem } from './containers/TableData'
 export interface IState {
-  tableData: Types.ListItem[]
+  tableData: TableItem[]
   displayCreateModal: boolean
   displayEditModal: boolean
   permission: Permission
@@ -40,7 +44,7 @@ export const fetchList = createAsyncThunk(
     const pageData = {
       permission: permissionTransfer(data.permission),
       list: data.role.map((t, i) => ({
-        key: t.role_id,
+        key: i,
         id: t.role_id,
         name: t.role_name,
         count: t.used_count,

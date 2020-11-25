@@ -1,231 +1,92 @@
 import IconLink from '@/components/IconLink'
 import TableSets from '@/components/TableSets'
-import Text from '@/components/Text'
-import { FilterFilled } from '@ant-design/icons'
-import { Popover, Space } from 'antd'
-import React from 'react'
-import {
-  PlusCircleOutlined,
-  EditFilled,
-  PieChartOutlined,
-  LockOutlined,
-} from '@ant-design/icons'
-import { useDispatch } from 'react-redux'
-import {
-  toggleLoginHistoryModal,
-  togglePercentageModal,
-  togglePwModal,
-  toggleTradeHistoryModal,
-  toggleWhiteListModal,
-} from '../reducer'
-import { useTypedSelector, selectTableData } from '../selectors'
+import { toDateTime } from '@/utils/transfer'
+import { EditOutlined, LockOutlined } from '@ant-design/icons'
+import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
-import * as OrgManage from '../types'
-import { useAppDispatch } from '@/store'
+import React from 'react'
 
-const columns: ColumnsType<OrgManage.DataTableItem> = [
-  {
-    title: '組織資訊',
-    dataIndex: 'account',
-    width: 100,
-    children: [
-      {
-        title: '加盟商',
-        width: 120,
-        render: (_, row) => row.account,
-      },
-      {
-        title: '帳號/名稱',
-        width: 180,
-        render: (_, row) => (
-          <a>
-            {row.account} [{row.name}]
-          </a>
-        ),
-      },
-      {
-        title: '角色',
-        width: 120,
-        render: (_, row) => row.role,
-      },
-      {
-        title: '上層',
-        width: '180px',
-        render: (_, row) => row.parent,
-      },
-      {
-        title: '下層',
-        width: '100px',
-        render: (_, row) => <a>{row.childCount}</a>,
-      },
-      {
-        title: '子帳號',
-        width: '100px',
-        render: (_, row) => row.subAccCount,
-      },
-    ],
-  },
+interface TableItem {
+  key: number
+  account: string
+  childCount: number
+  subAccCount: number
+  status: boolean
+  whiteIPCount: number
+  points: number
+  memberCount: number
+  memberPoints: number
+  failTimes: number
+  registerAt: number
+  loginAt: number
+  loginIP: string
+  updatedBy: string
+  updatedAt: number
+}
 
+const columns: ColumnsType<TableItem> = [
+  { title: '廠商', render: (_, row) => row.account, width: '130px' },
+  { title: '廠商', render: (_, row) => row.account, width: '130px' },
+  { title: '下層', render: (_, row) => row.childCount, width: '130px' },
+  { title: '子帳號', render: (_, row) => row.subAccCount, width: '130px' },
+  { title: '啟/停用', render: (_, row) => row.status, width: '130px' },
+  { title: '白名單', render: (_, row) => row.whiteIPCount, width: '130px' },
+  { title: '廠商餘額', render: (_, row) => row.points, width: '130px' },
+  { title: '會員人數', render: (_, row) => row.memberCount, width: '130px' },
+  { title: '會員餘額', render: (_, row) => row.memberPoints, width: '130px' },
+  { title: '失敗次數', render: (_, row) => row.failTimes, width: '130px' },
   {
-    title: '錢包',
-    width: 140,
-    children: [
-      {
-        title: '可用餘額',
-        width: 120,
-        render: (_, row) => {
-          const dispatch = useDispatch()
-          const onClick = () => dispatch(toggleTradeHistoryModal(true))
-          return <a onClick={onClick}>{row.points}</a>
-        },
-      },
-      {
-        title: '結算金',
-        width: 140,
-        render: (_, row) => {
-          const dispatch = useDispatch()
-          const onClick = () => dispatch(toggleTradeHistoryModal(true))
-          return <a onClick={onClick}>{row.bonus}</a>
-        },
-      },
-    ],
-  },
-
-  {
-    title: '狀態',
-    width: 120,
-    children: [
-      {
-        title: '啟/停用',
-        dataIndex: 'onceAgainWithdrawalTotal',
-        width: 140,
-        render: (_, row) => {
-          return row.status ? (
-            <Text color="success">啟用</Text>
-          ) : (
-            <Text color="danger">關閉</Text>
-          )
-        },
-      },
-      {
-        title: '白名單',
-        width: 120,
-        render: (_, row) => {
-          const dispatch = useDispatch()
-          const onClick = () => dispatch(toggleWhiteListModal(true))
-          return <a onClick={onClick}>{row.whiteIpCount}</a>
-        },
-      },
-    ],
-  },
-
-  {
-    title: '會員資訊',
-    width: 140,
-    children: [
-      {
-        title: '人數',
-        width: 120,
-        render: (_, row) => row.memberCount,
-      },
-      {
-        title: '餘額',
-        width: 120,
-        render: (_, row) => row.memberBalance,
-      },
-    ],
-  },
-  {
-    title: '登入資訊',
-    width: 140,
-    children: [
-      {
-        title: '失敗次數',
-        width: 120,
-        render: (_, row) => row.failedLogin,
-      },
-      {
-        title: '註冊 / 最後登入',
-        width: '230px',
-        render: (_, row) => {
-          const dispatch = useDispatch()
-          const onClick = () => dispatch(toggleLoginHistoryModal(true))
-          return (
-            <>
-              註冊：{row.registerAt} <br />
-              登入：{row.lastloginAt} <br />
-              登入IP： <a onClick={onClick}>{row.lastLoginIp}</a>
-            </>
-          )
-        },
-      },
-    ],
-  },
-
-  {
-    title: () => (
-      <>
-        更新人員
-        <br />
-        更新時間
-      </>
-    ),
-    width: '180px',
+    title: '註冊/最後登入',
     render: (_, row) => (
       <>
-        {row.updator}
-        <br />
-        {row.updatedAt}
+        註冊：{toDateTime(row.registerAt)} <br />
+        登入：{toDateTime(row.loginAt)} <br />
+        登入IP：{row.loginIP}
       </>
     ),
+    width: '230px',
   },
-
   {
-    title: () => (
+    title: '更新人員/時間',
+    render: (_, row) => (
       <>
-        <Space size="small">操作</Space>
-        <IconLink
-          icon={<FilterFilled />}
-          style={{ float: 'right', marginBottom: -4 }}
-        />
+        {row.updatedBy} <br />
+        {toDateTime(row.updatedAt)}
       </>
     ),
-    key: 'control',
-    fixed: ('right' as unknown) as boolean,
-    render(_, row) {
-      const dispatch = useAppDispatch()
-      const handlePercentageClicked = () =>
-        dispatch(togglePercentageModal(true))
-      const handlePwModify = () => dispatch(togglePwModal(true))
-      const handleCreateChild = () => {}
-      return (
-        <Space size="small">
-          <IconLink
-            icon={<PlusCircleOutlined />}
-            label="新增下線"
-            onClick={handleCreateChild}
-          />
-          <IconLink icon={<EditFilled />} label="編輯" />
-          <IconLink
-            icon={<PieChartOutlined />}
-            label="佔成"
-            onClick={handlePercentageClicked}
-          />
-          <IconLink
-            icon={<LockOutlined />}
-            label="修改密碼"
-            onClick={handlePwModify}
-          />
-        </Space>
-      )
-    },
-    width: '110px',
+    width: '200px',
+  },
+  {
+    title: '操作',
+    render: (_, row) => (
+      <Space>
+        <IconLink icon={<EditOutlined />} />
+        <IconLink icon={<LockOutlined />} />
+      </Space>
+    ),
+    width: 100,
   },
 ]
 
+const data = [...Array(5)].map((_, i) => ({
+  key: i,
+  account: 'abbc',
+  childCount: 5,
+  subAccCount: 2,
+  status: true,
+  whiteIPCount: 3,
+  points: 32200,
+  memberCount: 10,
+  memberPoints: 232404,
+  failTimes: 2,
+  registerAt: new Date().getTime(),
+  loginAt: new Date().getTime(),
+  loginIP: '0.0.0.0',
+  updatedBy: 'gogoro',
+  updatedAt: new Date().getTime(),
+}))
 const TableData: React.FC = () => {
-  const data = useTypedSelector(selectTableData)
-  return <TableSets columns={columns} data={data} />
+  return <TableSets<TableItem> title="廠商列表" columns={columns} data={data} />
 }
 
 export default TableData

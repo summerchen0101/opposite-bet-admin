@@ -1,23 +1,31 @@
-import { IconLink, Text, TableSets, PopupConfirm } from '@/components'
-import { useTypedSelector, selectTableData } from '../selectors'
+import { IconLink, PopupConfirm, TableSets, Text } from '@/components'
+import { useAppDispatch } from '@/store'
 import {
+  CheckCircleOutlined,
+  ClockCircleOutlined,
+  CloseCircleOutlined,
+  DeleteOutlined,
   EditFilled,
   FilterFilled,
-  CloseCircleOutlined,
-  ClockCircleOutlined,
-  DeleteOutlined,
-  CheckCircleOutlined,
 } from '@ant-design/icons'
 import { message, Space } from 'antd'
-import React from 'react'
-import { Link } from 'react-router-dom'
 import { ColumnType } from 'antd/lib/table'
-import { useDispatch } from 'react-redux'
+import React from 'react'
 import { fetchAdminEditOptions, fetchAdminList, removeAdmin } from '../reducer'
-import * as AdminAccount from '../types'
-import { toggleEditModal } from '../reducer'
-import { useAppDispatch } from '@/store'
-const columns: ColumnType<AdminAccount.ListItem>[] = [
+import { selectTableData, useTypedSelector } from '../selectors'
+
+export interface TableItem {
+  key: number
+  id: string
+  account: string
+  name: string
+  role: string
+  lastLogin: string
+  lastIp: string
+  status: boolean
+  isOnline: boolean
+}
+const columns: ColumnType<TableItem>[] = [
   {
     title: '管理者帳號',
     dataIndex: 'account',

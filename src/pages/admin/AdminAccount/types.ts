@@ -16,17 +16,6 @@ export interface DataFormProps {
   status: AdminStatusOptions
   notes: string
 }
-export interface ListItem {
-  key: string
-  id: string
-  account: string
-  name: string
-  role: string
-  lastLogin: string
-  lastIp: string
-  status: boolean
-  isOnline: boolean
-}
 export interface ListSearchForm {
   account?: string
   role?: string

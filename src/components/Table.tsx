@@ -1,38 +1,43 @@
 import { Table as AntTable } from 'antd'
-import { ColumnType } from 'antd/lib/table'
+import { ColumnsType, ColumnType } from 'antd/lib/table'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
-interface TableProps {
-  data: any[]
-  columns: ColumnType<any>[]
+interface TableProps<T extends { key: number }> {
+  data: T[]
+  columns: ColumnsType<T>
 }
-const Table: React.FC<TableProps> = ({ data, columns, ...props }) => {
+
+const StyledTable = styled(AntTable)`
+  .ant-table-sticky-header {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+  .ant-table-cell {
+    text-align: center;
+  }
+`
+
+const Table = <T extends { key: number }>(props: TableProps<T>) => {
   const [columnsWithKey, setColumnsWithKey] = useState([])
   useEffect(() => {
     setColumnsWithKey(
-      columns.map((t) => ({
+      props.columns.map((t) => ({
         ...t,
-        key: t.key ?? t.dataIndex,
+        key: t.key,
       })),
     )
   }, [])
   return (
-    <AntTable
+    <StyledTable
       bordered
       size="small"
-      dataSource={data}
+      dataSource={props.data}
       columns={columnsWithKey}
       scroll={{ x: 1000 }}
       sticky={{ offsetHeader: 0 }}
       pagination={{ pageSize: 30 }}
-      {...props}
     />
   )
 }
 
-export default styled(Table)`
-  .ant-table-sticky-header {
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  }
-`
+export default Table

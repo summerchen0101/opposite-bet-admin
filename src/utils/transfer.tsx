@@ -3,6 +3,7 @@ import { MenuItem } from '@/types'
 
 import QRCode from 'qrcode'
 import { Permission, RemotePermission } from '@/types'
+import moment from 'moment'
 
 export const toCurrency = (num: number, decimal = 0) =>
   Number(num.toFixed(decimal)).toLocaleString()
@@ -48,3 +49,6 @@ export const generateQR = async (text) => {
 export const addKeyToArrayItem = function <T>(arr: T[]): T[] {
   return arr.map((t, i) => ({ key: i, ...t }))
 }
+
+export const toDateTime = (unixTime) =>
+  moment(unixTime).format('YYYY-MM-DD HH:mm:ss')

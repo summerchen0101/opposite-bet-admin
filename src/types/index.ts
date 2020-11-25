@@ -61,3 +61,14 @@ export interface RequestSetStatus {
   data_id: number
   status: number
 }
+
+type OptionValue = string | number
+type Option<T extends OptionValue> = {
+  value: T
+  label: string
+}
+type SelectProps<T extends OptionValue> = {
+  options: Option<T>[]
+  value: T
+  onChange: (value: T) => void
+}

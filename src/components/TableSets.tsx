@@ -1,26 +1,31 @@
 import Table from '@/components/Table'
 import TableFilter from '@/components/TableFilter'
-import { ColumnType } from 'antd/lib/table'
-import React, { useEffect } from 'react'
-interface TableSetsProps {
-  data: any[]
-  columns: ColumnType<any>[]
+import { ColumnsType, ColumnType, TableProps } from 'antd/lib/table'
+import React, { ReactNode, useEffect } from 'react'
+interface TableSetsProps<T> {
+  title?: ReactNode
+  data: T[]
+  columns: ColumnsType<T>
   rowKey?: any
   components?: any
   onSortEnd?: any
+  scrollWidth?: number
 }
-const TableSets: React.FC<TableSetsProps> = ({ data, columns, ...props }) => {
-  let filterdColumns = []
-  useEffect(() => {
-    filterdColumns = columns.map((t) => ({
-      label: t.title,
-      value: t.dataIndex,
-    }))
-  }, [])
+interface TableItem {
+  key: number
+  name: string
+}
+const TableSets = <T extends { key: number }>({
+  title,
+  data,
+  columns,
+  ...props
+}: TableSetsProps<T>): JSX.Element => {
   return (
-    <TableFilter display={false} columns={filterdColumns}>
-      <Table data={data} columns={columns} {...props} />
-    </TableFilter>
+    <>
+      {title && <h3>{title}</h3>}
+      <Table<T> data={data} columns={columns} {...props} />
+    </>
   )
 }
 
