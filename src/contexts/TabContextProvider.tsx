@@ -28,7 +28,6 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(clearTabs, (state, action) => {
       state.tabs = state.tabs.filter((tab) => {
-        console.log(tab.path, action.payload)
         return tab.path === action.payload
       })
     })

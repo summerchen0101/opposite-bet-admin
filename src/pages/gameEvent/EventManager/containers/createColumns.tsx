@@ -8,6 +8,7 @@ import PopupConfirm from '@/components/PopupConfirm'
 import TableHeaderController from '@/containers/TableHeaderController'
 import { TableContext } from '@/contexts/TableContextProvider'
 import { EventScore } from '@/lib/routes'
+import { useTableSelect } from '@/utils/hooks/usetTableSelector'
 import {
   ContainerOutlined,
   DeleteOutlined,
@@ -120,10 +121,7 @@ export const createColumns = (data: TableItem[]): ColumnsType<TableItem> => {
       fixed: ('right' as unknown) as boolean,
       render: (_, row) => {
         const history = useHistory()
-        const { selectOne, unselectOne, selected } = useContext(TableContext)
-        const isSelected = selected.includes(row.id)
-        const handleSelect = (check) =>
-          check ? selectOne(row.id) : unselectOne(row.id)
+        const { handleSelect, isSelected } = useTableSelect(row.id)
         return (
           <>
             <Checkbox

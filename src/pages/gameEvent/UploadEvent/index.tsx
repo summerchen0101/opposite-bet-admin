@@ -2,6 +2,7 @@ import Dashboard from '@/components/Dashboard'
 import DateRangePicker from '@/components/DateRangePicker'
 import PageSearchBar from '@/components/PageSearchBar'
 import RelativeDateBtns from '@/components/RelativeDateBtns'
+import TableContextProvider from '@/contexts/TableContextProvider'
 import { useReducerInjector, useTabRecord } from '@/utils/hooks'
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
@@ -22,7 +23,9 @@ const Manager: React.FC = () => {
   return (
     <Dashboard>
       <PageHeader />
-      <TableData />
+      <TableContextProvider>
+        <TableData />
+      </TableContextProvider>
       <PopupCreateForm />
     </Dashboard>
   )

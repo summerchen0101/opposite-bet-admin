@@ -1,14 +1,11 @@
 import { BatchOpperatorDropdown, IconLink } from '@/components'
-import { TableContext } from '@/contexts/TableContextProvider'
+import { useTableSelectAll } from '@/utils/hooks/usetTableSelector'
 import { FilterFilled } from '@ant-design/icons'
 import { Checkbox, Space } from 'antd'
-import React, { useContext } from 'react'
-// import { selectTableData, useTypedSelector } from '../selectors'
+import React from 'react'
 
 const TableHeaderController: React.FC<{ data: any[] }> = ({ data }) => {
-  const { selectAll, unselectAll } = useContext(TableContext)
-  const handleSelectAll = (check) =>
-    check ? selectAll(data.map((t) => t.id)) : unselectAll()
+  const { handleSelectAll } = useTableSelectAll(data)
   return (
     <>
       <Space size="small">
