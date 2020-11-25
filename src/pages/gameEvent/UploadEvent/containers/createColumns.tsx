@@ -2,17 +2,14 @@ import { PopoverEditor } from '@/components'
 import IconLink from '@/components/IconLink'
 import PopupConfirm from '@/components/PopupConfirm'
 import TableHeaderController from '@/containers/TableHeaderController'
-import {
-  useTableSelect,
-  useTableSelectAll,
-} from '@/utils/hooks/usetTableSelector'
-import { DeleteOutlined, FilterFilled } from '@ant-design/icons'
+import { ColumnsGenerator } from '@/types'
+import { useTableSelect } from '@/utils/hooks/usetTableSelector'
+import { DeleteOutlined } from '@ant-design/icons'
 import { Checkbox, Space } from 'antd'
-import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
 import { TableItem } from '../types'
 
-export const createColumns = (data: TableItem[]): ColumnsType<TableItem> => {
+export const createColumns: ColumnsGenerator<TableItem> = (data) => {
   return [
     {
       title: '賽事編號',

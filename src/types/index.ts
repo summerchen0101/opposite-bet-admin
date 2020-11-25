@@ -1,3 +1,5 @@
+import { ColumnsType } from 'antd/lib/table'
+
 export * as Login from './login'
 
 type RemotePermissionType = 'Y' | 'N'
@@ -72,3 +74,5 @@ type SelectProps<T extends OptionValue> = {
   value: T
   onChange: (value: T) => void
 }
+
+export type ColumnsGenerator<T> = (data: T[]) => ColumnsType<T>

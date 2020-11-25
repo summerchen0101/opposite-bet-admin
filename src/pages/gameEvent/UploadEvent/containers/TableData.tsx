@@ -17,7 +17,7 @@ for (let i = 1; i <= 50; i++) {
   })
 }
 const Component: React.FC = () => {
-  return <TableSets columns={createColumns(data)} data={data} />
+  return <TableSets createColumns={createColumns} data={data} />
 }
 
 export default Component

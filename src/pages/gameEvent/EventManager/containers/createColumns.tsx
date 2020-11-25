@@ -6,8 +6,8 @@ import {
 } from '@/components'
 import PopupConfirm from '@/components/PopupConfirm'
 import TableHeaderController from '@/containers/TableHeaderController'
-import { TableContext } from '@/contexts/TableContextProvider'
 import { EventScore } from '@/lib/routes'
+import { ColumnsGenerator } from '@/types'
 import { useTableSelect } from '@/utils/hooks/usetTableSelector'
 import {
   ContainerOutlined,
@@ -17,13 +17,12 @@ import {
   StopOutlined,
 } from '@ant-design/icons'
 import { Checkbox, Space } from 'antd'
-import { ColumnsType } from 'antd/lib/table'
-import React, { useContext } from 'react'
+import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { TableItem } from '../types'
 import ScoreForm from './ScoreForm'
+import { TableItem } from './TableData'
 
-export const createColumns = (data: TableItem[]): ColumnsType<TableItem> => {
+export const createColumns: ColumnsGenerator<TableItem> = (data) => {
   return [
     {
       title: '賽事編號',
