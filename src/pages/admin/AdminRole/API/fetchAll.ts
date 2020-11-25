@@ -1,4 +1,19 @@
+import { RemotePermission } from '@/types'
 import Request from '@/utils/request'
-import { ListResponse } from './types'
+export interface ResponseTableItem {
+  role_id: string
+  role_name: string
+  used_count: number
+  created_at: string
+  createtor: string
+  updated_at: string
+  updator: string
+  status: number
+  menu: string
+}
 
-export const fetchAll = () => Request.get<ListResponse>('admin/getAdminList')
+export interface ResponseData {
+  permission: RemotePermission
+  role: ResponseTableItem[]
+}
+export const fetchAll = () => Request.post<ResponseData>('admin/getAdminRoles')

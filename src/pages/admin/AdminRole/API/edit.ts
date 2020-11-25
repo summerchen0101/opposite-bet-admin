@@ -9,4 +9,8 @@ interface RequestData {
 }
 
 export const edit = (role_id: string, reqData: RequestData) =>
-  Request.post<ResponseData>('admin/editAdmin', { role_id, ...reqData })
+  Request.post<ResponseData>('admin/storeAdminRole', {
+    method: 'EDIT',
+    role_id,
+    ...reqData,
+  })

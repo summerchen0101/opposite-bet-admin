@@ -4,5 +4,5 @@ interface ResponseData {
   [key: string]: any
 }
 
-export const fetchById = (id: string) =>
-  Request.post<ResponseData>('admin/getAdminList', { id })
+export const fetchById = (role_id: string) =>
+  Request.post<ResponseData>('admin/getAdminRoles', { method: 'EDIT', role_id })

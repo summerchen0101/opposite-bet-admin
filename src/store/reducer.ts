@@ -43,9 +43,9 @@ export const doLogout = createAsyncThunk(
 export const doLogin = createAsyncThunk(
   'global/doLogin',
   async (reqData: Login.RequestProps, { dispatch, rejectWithValue }) => {
-    const { result, data } = await API.login(reqData)
+    const { result, token } = await API.login(reqData)
     errorHandler(result, dispatch)
-    return data
+    return token
   },
 )
 

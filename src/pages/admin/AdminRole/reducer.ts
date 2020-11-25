@@ -1,6 +1,4 @@
-import { MenuItem, Permission, RequestSetStatus, ResponseBase } from '@/types'
-import * as Types from './types'
-import * as API from './API'
+import { MenuItem, Permission } from '@/types'
 import { errorHandler } from '@/utils/helper'
 import { handleMenuTransfer, permissionTransfer } from '@/utils/transfer'
 import {
@@ -9,6 +7,8 @@ import {
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit'
+import * as API from './API'
+import * as Types from './types'
 export interface IState {
   tableData: Types.ListItem[]
   displayCreateModal: boolean

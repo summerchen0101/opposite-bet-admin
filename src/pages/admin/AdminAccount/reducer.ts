@@ -9,7 +9,8 @@ import {
 } from '@reduxjs/toolkit'
 import * as API from './API'
 import * as Types from './types'
-import * as RemoteTypes from './API/types'
+import { SearchRequest } from './API/fetchAll'
+import numeral from 'numeral'
 
 export interface IState {
   tableData: Types.ListItem[]
@@ -41,7 +42,7 @@ export const moduleName = 'adminAccount'
 export const fetchAdminList = createAsyncThunk(
   `${moduleName}/fetchAdminList`,
   async (form: Types.ListSearchForm | void, { dispatch }) => {
-    let reqData: RemoteTypes.SearchRequest
+    let reqData: SearchRequest
     if (form) {
       reqData = {
         search_account: form.account || undefined,
@@ -89,8 +90,8 @@ export const fetchAdminEditOptions = createAsyncThunk(
       pw_confirm: '',
       email: _admin.admin_email,
       role: _admin.admin_role_id,
-      singleLimit: +_admin.single_withdrawal_limit,
-      dailyLimit: +_admin.daily_withdrawal_limit,
+      singleLimit: numeral(_admin.single_withdrawal_limit).value(),
+      dailyLimit: numeral(_admin.daily_withdrawal_limit).value(),
       effectiveTime: _admin.expire_date ? 'limit' : 'forever',
       limitDate: _admin.expire_date,
       ip: _admin.allow_ips,

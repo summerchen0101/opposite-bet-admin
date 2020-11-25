@@ -1,4 +1,6 @@
-import { ResponseBase, Permission, OptionType } from '@/types'
+import { OptionType, Permission } from '@/types'
+import { errorHandler } from '@/utils/helper'
+import { permissionTransfer } from '@/utils/transfer'
 import {
   ActionReducerMapBuilder,
   createAsyncThunk,
@@ -6,10 +8,8 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit'
 import * as API from './API'
+import { RequestData as SearchRequest } from './API/fetchAll'
 import * as Types from './types'
-import { errorHandler } from '@/utils/helper'
-import { permissionTransfer } from '@/utils/transfer'
-import { SearchRequest } from './API/fetchAll'
 export interface IState {
   permission: Permission
   tableData: any[]

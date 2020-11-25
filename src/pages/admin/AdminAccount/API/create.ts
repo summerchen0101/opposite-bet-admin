@@ -1,9 +1,11 @@
 import Request from '@/utils/request'
-import { RequestCreateData } from './types'
+import { ResponseTableItemSchema } from './types'
 
 interface ResponseData {
   [key: string]: any
 }
 
-export const create = (reqData: RequestCreateData) =>
+type RequestData = ResponseTableItemSchema
+
+export const create = (reqData: RequestData) =>
   Request.post<ResponseData>('admin/editAdmin', reqData)

@@ -17,5 +17,5 @@ interface ResponseData {
   }
 }
 
-export const fetchById = (id: string) =>
-  Request.post<ResponseData>('admin/getAdminList', { id })
+export const fetchById = (admin_id: string) =>
+  Request.post<ResponseData>('admin/editAdmin', { method: 'EDIT', admin_id })

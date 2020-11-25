@@ -4,10 +4,13 @@ interface ResponseData {
   [key: string]: any
 }
 
-interface RequestCreateData {
+interface RequestData {
   role_name: string
   menu_data: string // JSON string
 }
 
-export const create = (reqData: RequestCreateData) =>
-  Request.post<ResponseData>('admin/editAdmin', reqData)
+export const create = (reqData: RequestData) =>
+  Request.post<ResponseData>('admin/storeAdminRole', {
+    method: 'ADD',
+    ...reqData,
+  })

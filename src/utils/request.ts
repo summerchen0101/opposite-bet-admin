@@ -7,9 +7,11 @@ interface Options {
 export default class Request {
   private static baseUrl = `http://${process.env.API_DOMAIN}`
   private static bashPath = 'api'
+
   static get<T>(url, options: Options = {}): Promise<ResponseBase<T>> {
     return this.request('GET', url, options)
   }
+
   static post<T>(
     url,
     data = null,
@@ -17,6 +19,11 @@ export default class Request {
   ): Promise<ResponseBase<T>> {
     return this.request('POST', url, data, options)
   }
+
+  static purePost<T>(url, data = null, options: Options = {}): Promise<T> {
+    return this.request('POST', url, data, options)
+  }
+
   private static async request(
     method,
     url,

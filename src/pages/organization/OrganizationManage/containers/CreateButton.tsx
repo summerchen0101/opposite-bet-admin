@@ -3,6 +3,7 @@ import CreateButton from '@/components/CreateButton'
 import { useDispatch } from 'react-redux'
 import { toggleCreateModal, fetchCreateOptions } from '../reducer'
 import { useAppDispatch } from '@/store'
+import { message } from 'antd'
 
 const Component: React.FC = () => {
   const dispatch = useAppDispatch()
@@ -10,6 +11,8 @@ const Component: React.FC = () => {
     const action = await dispatch(fetchCreateOptions())
     if (fetchCreateOptions.fulfilled.match(action)) {
       dispatch(toggleCreateModal(true))
+    } else {
+      message.error(action.error.message)
     }
   }
   return <CreateButton onClick={onCreate} />

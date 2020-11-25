@@ -1,8 +1,14 @@
 import Request from '@/utils/request'
-import { RequestEditData } from './types'
 interface ResponseData {
   [key: string]: any
 }
+interface RequestData {
+  [key: string]: any
+}
 
-export const edit = (id: string, reqData: RequestEditData) =>
-  Request.post<ResponseData>('admin/editAdmin', { id, ...reqData })
+export const edit = (id: string, reqData: RequestData) =>
+  Request.post<ResponseData>('admin/storeAgent', {
+    method: 'EDIT',
+    id,
+    ...reqData,
+  })

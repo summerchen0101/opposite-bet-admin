@@ -1,9 +1,11 @@
 import Request from '@/utils/request'
-import { RequestCreateData } from './types'
 
 interface ResponseData {
   [key: string]: any
 }
+interface RequestData {
+  [key: string]: any
+}
 
-export const create = (reqData: RequestCreateData) =>
-  Request.post<ResponseData>('admin/editAdmin', reqData)
+export const create = (reqData: RequestData) =>
+  Request.post<ResponseData>('admin/storeAgent', { method: 'ADD', ...reqData })

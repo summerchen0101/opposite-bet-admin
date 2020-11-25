@@ -4,5 +4,8 @@ interface ResponseData {
   [key: string]: any
 }
 
-export const deleteById = (id: string) =>
-  Request.post<ResponseData>('admin/editAdmin', { id })
+export const deleteById = (role_id: string) =>
+  Request.post<ResponseData>('admin/storeAdminRole', {
+    method: 'DELETE',
+    role_id,
+  })

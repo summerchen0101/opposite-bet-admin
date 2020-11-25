@@ -4,6 +4,10 @@ interface RequestData {
   username: string
   password: string
 }
+interface ResponseData {
+  result: string
+  token: string
+}
 
 export const login = (reqData: RequestData) =>
-  Request.post<string>('admin/login', reqData)
+  Request.purePost<ResponseData>('admin/login', reqData)

@@ -5,4 +5,4 @@ interface ResponseData {
 }
 
 export const fetchCreateOption = () =>
-  Request.get<ResponseData>('admin/editAdmin')
+  Request.post<ResponseData>('admin/editAdmin', { method: 'ADD' })
