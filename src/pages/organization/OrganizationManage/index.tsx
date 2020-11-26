@@ -4,10 +4,8 @@ import { useAppDispatch } from '@/store'
 import { useReducerInjector } from '@/utils/hooks'
 import { message } from 'antd'
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
 import PageHeader from './components/PageHeader'
 import AccountSearch from './containers/AccountSearch'
-import MultipleSelector from './containers/MultipleSelector'
 import PopupCreateForm from './containers/PopupCreateForm'
 import PopupLoginHistory from './containers/PopupLoginHistory'
 import PopupPercentageForm from './containers/PopupPercentageForm'
@@ -17,7 +15,8 @@ import PopupTradeHistory from './containers/PopupTradeHistory'
 import PopupWhiteListForm from './containers/PopupWhiteListForm'
 import StatusSelector from './containers/StatusSelector'
 import TableData from './containers/TableData'
-import reducer, { initSearchState, moduleName, fetchList } from './reducer'
+import { TablePickerProvider } from './containers/TablePickerProvider'
+import reducer, { fetchList, initSearchState, moduleName } from './reducer'
 
 const Manager: React.FC = () => {
   useReducerInjector(moduleName, reducer)
@@ -32,6 +31,7 @@ const Manager: React.FC = () => {
     dispatch(initSearchState())
     getTableData()
   }, [])
+
   return (
     <Dashboard>
       <PageHeader />
@@ -39,7 +39,9 @@ const Manager: React.FC = () => {
         <AccountSearch />
         <StatusSelector />
       </PageSearchBar>
-      <TableData />
+      <TablePickerProvider>
+        <TableData />
+      </TablePickerProvider>
       <PopupCreateForm />
       <PopupPwForm />
       <PopupPercentageForm />
