@@ -1,18 +1,12 @@
 import { ColumnsGenerator } from '@/types'
 import { addKeyToArrayItem } from '@/utils/transfer'
 import { Table as AntTable } from 'antd'
-import { ColumnsType } from 'antd/lib/table'
-import React, { ReactNode } from 'react'
+import { ColumnsType, TableProps } from 'antd/lib/table'
+import React from 'react'
 import styled from 'styled-components'
 
 interface TableSetsProps<T> {
-  title?: ReactNode
   data: T[]
-  columns?: ColumnsType<T>
-  rowKey?: any
-  components?: any
-  onSortEnd?: any
-  scrollWidth?: number
   createColumns?: ColumnsGenerator<T>
 }
 
@@ -25,27 +19,24 @@ const StyledTable = styled(AntTable)`
   } */
 `
 
-const TableSets = <T extends { key: number }>({
-  title,
+const TableSets = <T extends { id: number | string }>({
   data,
   columns,
   createColumns,
   ...props
-}: TableSetsProps<T>): JSX.Element => {
+}: TableProps<T> & TableSetsProps<T>): JSX.Element => {
   return (
-    <>
-      {title && <h3>{title}</h3>}
-      <StyledTable
-        bordered
-        size="small"
-        dataSource={data}
-        columns={addKeyToArrayItem(columns || createColumns(data))}
-        scroll={{ x: 1000 }}
-        sticky={{ offsetHeader: 0 }}
-        pagination={{ pageSize: 30 }}
-        {...props}
-      />
-    </>
+    <StyledTable
+      bordered
+      size="small"
+      rowKey="id"
+      dataSource={data}
+      columns={addKeyToArrayItem(columns || createColumns(data))}
+      scroll={{ x: 1000 }}
+      sticky={{ offsetHeader: 0 }}
+      pagination={{ pageSize: 30 }}
+      {...props}
+    />
   )
 }
 

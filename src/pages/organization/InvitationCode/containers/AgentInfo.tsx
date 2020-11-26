@@ -15,7 +15,7 @@ let columns: ColumnsType<{ label: string; content: string }> = [
     render: (_, row) => row.content,
   },
 ]
-columns = columns.map((t, i) => ({ key: i, ...t }))
+columns = columns.map((t, i) => ({ id: i, ...t }))
 let data = [
   { label: '代理帳號', content: '-' },
   { label: '代理层级', content: '-' },

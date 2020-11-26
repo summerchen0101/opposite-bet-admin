@@ -16,7 +16,6 @@ import { doDelete, fetchEditOptions, fetchList } from '../reducer'
 import { selectTableData, useTypedSelector } from '../selectors'
 
 export interface TableItem {
-  key: number
   id: string
   name: string
   count: number

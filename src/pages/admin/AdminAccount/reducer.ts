@@ -57,7 +57,6 @@ export const fetchAdminList = createAsyncThunk(
     return {
       list:
         data.admin?.map((t, i) => ({
-          key: i,
           id: t.admin_id,
           account: t.admin_account,
           name: t.admin_name,
@@ -172,7 +171,7 @@ export const removeAdmin = createAsyncThunk(
   async (id: string, { dispatch }) => {
     const { result } = await API.deleteById(id)
     errorHandler(result, dispatch)
-    return
+    return id
   },
 )
 
@@ -213,7 +212,7 @@ const module = createSlice({
       state.displayCreateModal = false
     })
     builder.addCase(removeAdmin.fulfilled, (state, action) => {
-      state.tableData = state.tableData.filter((t) => t.key)
+      state.tableData = state.tableData.filter((t) => t.id === action.payload)
     })
   },
 })

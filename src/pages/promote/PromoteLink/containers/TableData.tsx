@@ -107,7 +107,7 @@ const columns = [
 const data = []
 for (let i = 1; i <= 50; i++) {
   data.push({
-    key: i,
+    id: i,
     account: 'aaaa(小白)',
     firstDepositCount: 5,
     firstDepositTotal: 20320,

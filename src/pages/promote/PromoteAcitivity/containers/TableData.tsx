@@ -132,7 +132,12 @@ const SortableItem = SortableElement((props) => <tr {...props} />)
 const SortableWrapper = SortableContainer((props) => <tbody {...props} />)
 
 const DraggableContainer = (props) => (
-  <SortableWrapper useDragHandle helperClass="row-dragging" {...props} />
+  <SortableWrapper
+    useDragHandle
+    helperClass="row-dragging"
+    onSortEnd={onSortEnd}
+    {...props}
+  />
 )
 const StyledDraggableContainer = styled(DraggableContainer)`
   .row-dragging {
@@ -170,7 +175,6 @@ const TableData: React.FC = () => {
       columns={columns}
       data={data}
       rowKey="index"
-      onSortEnd={onSortEnd}
       components={{
         body: {
           wrapper: StyledDraggableContainer,

@@ -107,7 +107,7 @@ const columns = [
 const data = []
 for (let i = 1; i <= 50; i++) {
   data.push({
-    key: i,
+    id: i,
     category: '全場反波膽',
     type: '會員',
     language: 'cn',

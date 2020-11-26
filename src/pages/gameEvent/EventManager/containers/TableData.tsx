@@ -3,7 +3,6 @@ import React from 'react'
 import { createColumns } from './createColumns'
 
 export interface TableItem {
-  key: number
   id: string
   eventId: number
   startAt: string
@@ -20,7 +19,6 @@ export interface TableItem {
 }
 
 const data: TableItem[] = [...Array(5)].map((t, i) => ({
-  key: i,
   id: i.toString(),
   eventId: 3123,
   startAt: '2020-12-02',

@@ -60,7 +60,7 @@ const columns = [
 const data = []
 for (let i = 1; i <= 50; i++) {
   data.push({
-    key: i,
+    id: i,
     eventId: 3123,
     score: '3:2',
     odds: 2,

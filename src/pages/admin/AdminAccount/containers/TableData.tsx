@@ -15,7 +15,6 @@ import { fetchAdminEditOptions, fetchAdminList, removeAdmin } from '../reducer'
 import { selectTableData, useTypedSelector } from '../selectors'
 
 export interface TableItem {
-  key: number
   id: string
   account: string
   name: string

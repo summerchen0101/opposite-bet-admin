@@ -5,7 +5,6 @@ import { createColumns } from './createColumns'
 const data = []
 for (let i = 1; i <= 50; i++) {
   data.push({
-    key: i,
     id: i,
     eventId: 3123,
     startAt: '2020-12-02',

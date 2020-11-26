@@ -44,7 +44,6 @@ export const fetchList = createAsyncThunk(
     const pageData = {
       permission: permissionTransfer(data.permission),
       list: data.role.map((t, i) => ({
-        key: i,
         id: t.role_id,
         name: t.role_name,
         count: t.used_count,

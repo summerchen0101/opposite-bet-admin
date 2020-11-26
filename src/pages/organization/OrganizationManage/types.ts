@@ -8,7 +8,6 @@ export interface AgentItem {
 }
 
 export interface DataTableItem {
-  key: number
   id: number
   name: string
   account: string
