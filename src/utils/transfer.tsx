@@ -47,7 +47,7 @@ export const generateQR = async (text) => {
 }
 
 export const addKeyToArrayItem = function <T>(arr: T[]): T[] {
-  return arr.map((t, i) => ({ id: i, ...t }))
+  return arr.map((t, i) => ({ key: i, ...t }))
 }
 
 export const toDateTime = (unixTime) =>

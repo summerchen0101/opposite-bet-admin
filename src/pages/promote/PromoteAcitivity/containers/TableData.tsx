@@ -2,6 +2,7 @@ import IconLink from '@/components/IconLink'
 import PopupConfirm from '@/components/PopupConfirm'
 import TableSets from '@/components/TableSets'
 import Text from '@/components/Text'
+import { toDateTime } from '@/utils/transfer'
 import {
   CopyOutlined,
   EditOutlined,
@@ -12,6 +13,7 @@ import {
   StopOutlined,
 } from '@ant-design/icons'
 import { Space } from 'antd'
+import { ColumnsType } from 'antd/lib/table'
 import arrayMove from 'array-move'
 import React, { useState } from 'react'
 import {
@@ -25,27 +27,36 @@ const DragHandle = SortableHandle(() => (
   <MenuOutlined style={{ cursor: 'pointer', color: '#999' }} />
 ))
 
-const columns = [
+interface TableItem {
+  index: number
+  id: string
+  name: string
+  startAt: string
+  endAt: string
+  status: number
+  updatedBy: string
+  updatedAt: string
+}
+
+const columns: ColumnsType<TableItem> = [
   {
     title: '排序',
-    dataIndex: 'account',
     width: 100,
     render: () => <DragHandle />,
   },
   {
     title: '優惠名稱',
-    dataIndex: 'firstDepositCount',
+    dataIndex: 'name',
     width: 120,
-    render: () => <a>搶搶註冊送</a>,
+    render: (_, row) => <a>{row.name}</a>,
   },
   {
     title: '優惠期限',
-    dataIndex: 'firstDepositTotal',
     width: '180px',
-    render: () => (
+    render: (_, row) => (
       <>
-        2020-10-02 00:00:00 ~ <br />
-        2020-10-31 23:59:59
+        {toDateTime(row.startAt)}~ <br />
+        {toDateTime(row.endAt)}
       </>
     ),
   },
@@ -53,19 +64,25 @@ const columns = [
     title: '狀態',
     dataIndex: 'status',
     width: 120,
-    render: (_, row) => <Text color="success">進行中</Text>,
+    render: (_, row) => {
+      switch (row.status) {
+        case 1:
+          return <Text color="success">進行中</Text>
+        case 0:
+          return <Text color="danger">未開啟</Text>
+      }
+    },
   },
   {
-    title: '更新人員',
+    title: '更新人員/時間',
     dataIndex: 'firstWithdrawalCount',
-    width: 120,
-    render: () => 'flora',
-  },
-  {
-    title: '更新時間',
-    dataIndex: 'depositTotal',
-    width: 200,
-    render: (_, row) => '2019-07-01 10:54:36',
+    width: 160,
+    render: (_, row) => (
+      <>
+        {row.updatedBy} <br />
+        {toDateTime(row.updatedAt)}
+      </>
+    ),
   },
   {
     title: () => (
@@ -114,17 +131,13 @@ const data = []
 for (let i = 1; i <= 10; i++) {
   data.push({
     index: i,
-    account: 'aaaa(小白)',
-    firstDepositCount: 5,
-    firstDepositTotal: 20320,
-    onceAgainDepositCount: 10,
-    onceAgainDepositTotal: 41232,
-    firstWithdrawalCount: 5,
-    firstWithdrawalTotal: 20320,
-    onceAgainWithdrawalCount: 10,
-    onceAgainWithdrawalTotal: 41232,
-    loginCount: 20,
-    registerCount: 3,
+    id: i.toString(),
+    name: '會員首儲優惠',
+    startAt: new Date().getTime(),
+    endAt: new Date().getTime(),
+    status: 1,
+    updatedBy: 'frola',
+    updatedAt: new Date().getTime(),
   })
 }
 

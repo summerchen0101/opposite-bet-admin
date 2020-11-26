@@ -10,7 +10,7 @@ import TableData from './containers/TableData'
 import TitleSearch from './containers/TitleSearch'
 import reducer, { initSearchState, moduleName } from './reducer'
 
-const Manager: React.FC = () => {
+const PromoteActivity: React.FC = () => {
   useReducerInjector(moduleName, reducer)
   const dispatch = useDispatch()
   useEffect(() => {
@@ -29,4 +29,4 @@ const Manager: React.FC = () => {
   )
 }
 
-export default Manager
+export default PromoteActivity
