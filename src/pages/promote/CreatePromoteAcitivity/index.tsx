@@ -72,7 +72,7 @@ const Manager: React.FC = () => {
                 <Collapse.Panel header="桌上型電腦" key="1">
                   <ContentEditor />
                 </Collapse.Panel>
-                <Collapse.Panel header="手機" key="1">
+                <Collapse.Panel header="手機" key="2">
                   <ContentEditor />
                 </Collapse.Panel>
               </Collapse>

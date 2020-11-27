@@ -1,12 +1,11 @@
-import React from 'react'
 import CreateButton from '@/components/CreateButton'
-import { useDispatch } from 'react-redux'
-import { toggleCreateModal } from '../reducer'
+import { CreatePromoteAcitivity } from '@/lib/routes'
+import React from 'react'
 import { useHistory } from 'react-router-dom'
 
 const Component: React.FC = () => {
   const history = useHistory()
-  const onClicked = () => history.push('/')
+  const onClicked = () => history.push(CreatePromoteAcitivity)
   return <CreateButton onClick={onClicked} />
 }
 
