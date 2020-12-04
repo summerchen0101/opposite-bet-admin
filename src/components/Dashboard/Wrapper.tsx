@@ -22,7 +22,9 @@ export default styled(Layout)`
     z-index: 1;
     width: calc(100% - 200px);
     .logout {
-      margin-left: 20px;
+      line-height: 64px;
+      margin-right: 15px;
+      margin-top: -2px;
     }
   }
 

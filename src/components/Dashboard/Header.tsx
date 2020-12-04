@@ -64,6 +64,7 @@ const Sidebar: React.FC = () => {
 
         <IconLink
           className="logout"
+          label="登出"
           icon={<LogoutOutlined />}
           onClick={handleLogout}
         />
