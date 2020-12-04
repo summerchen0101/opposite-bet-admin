@@ -12,4 +12,7 @@ export default createGlobalStyle`
   .bg-grey {
     background-color: #efefef
   }
+  .ant-form-item {
+    margin-bottom: 18px
+  }
 `

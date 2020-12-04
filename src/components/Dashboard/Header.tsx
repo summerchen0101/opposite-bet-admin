@@ -1,11 +1,12 @@
 import { DashboardContext } from '@/contexts/DashboardContextProvider'
+import { usePopup } from '@/contexts/PopupContextProvider'
 import { doLogout, setLanguage, setLogout } from '@/store/reducer'
 import {
   LogoutOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
 } from '@ant-design/icons'
-import { Layout, Select } from 'antd'
+import { Button, Layout, Popover, Select, Space } from 'antd'
 import React, { useContext } from 'react'
 import { useDispatch } from 'react-redux'
 import IconLink from '../IconLink'
@@ -17,6 +18,7 @@ const Sidebar: React.FC = () => {
   const { collapsed, toggleCollapsed } = useContext(DashboardContext)
   const dispatch = useDispatch()
   const handleLogout = (e) => dispatch(doLogout())
+  const { setVisible } = usePopup('changePw')
   return (
     <Header className="site-header">
       {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
@@ -31,11 +33,29 @@ const Sidebar: React.FC = () => {
         <Option value="zh-Hant">繁體中文</Option>
         <Option value="en">English</Option>
       </Select>
-      <IconLink
-        className="logout"
-        icon={<LogoutOutlined />}
-        onClick={handleLogout}
-      />
+      <Space className="float-right mr-2">
+        <Popover
+          content={
+            <div style={{ width: '100px' }}>
+              <Button block className="mb-1" onClick={(e) => setVisible(true)}>
+                修改密碼
+              </Button>
+              <Button block className="mb-1">
+                登入歷程
+              </Button>
+              <Button block>個人限額</Button>
+            </div>
+          }
+        >
+          <Button type="link">summer</Button>
+        </Popover>
+
+        <IconLink
+          className="logout"
+          icon={<LogoutOutlined />}
+          onClick={handleLogout}
+        />
+      </Space>
     </Header>
   )
 }

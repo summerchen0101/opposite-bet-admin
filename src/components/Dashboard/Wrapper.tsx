@@ -20,7 +20,7 @@ export default styled(Layout)`
     padding: 0;
     position: fixed;
     z-index: 1;
-    width: 100%;
+    width: calc(100% - 200px);
     .logout {
       margin-left: 20px;
     }
