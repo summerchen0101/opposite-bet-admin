@@ -1,4 +1,4 @@
-import { ContentEditor, DateRangePicker } from '@/components'
+import { ContentEditor, DateRangePicker, ImageUpload } from '@/components'
 import Dashboard from '@/components/Dashboard'
 import Form, { FormField } from '@/components/Form'
 import {
@@ -11,6 +11,7 @@ import {
   Radio,
   Row,
   Space,
+  Switch,
   Tabs,
 } from 'antd'
 import React from 'react'
@@ -27,39 +28,44 @@ const Manager: React.FC = () => {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
+  const options = [
+    { label: '公告', value: 'opt1' },
+    { label: '輪播', value: 'opt2' },
+    { label: '跑馬燈', value: 'opt3' },
+  ]
   return (
     <Dashboard>
       <PageHeader />
       <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
         <Row gutter={16}>
-          <Col span={12}>
+          <Col span={10}>
             <FormField label="活動名稱" required>
               <Input placeholder="請輸入內容" />
             </FormField>
           </Col>
-          <Col span={12}>
-            <FormField label="平台顯示" required>
-              <Radio.Group defaultValue="opt1">
-                <Radio value="opt1">全部</Radio>
-                <Radio value="opt2">手機</Radio>
-                <Radio value="opt3">桌上型電腦</Radio>
-              </Radio.Group>
+          <Col span={4}>
+            <FormField label="置頂">
+              <Switch defaultChecked />
+            </FormField>
+          </Col>
+          <Col span={10}>
+            <FormField label="顯示" required>
+              <Checkbox.Group options={options} defaultValue={['opt1']} />
             </FormField>
           </Col>
         </Row>
 
-        <h3>活動期間</h3>
-        <FormField>
-          <Checkbox.Group defaultValue={['opt1']}>
-            <Checkbox value="opt1">
+        <FormField label="活動期間">
+          <Radio.Group defaultValue="opt1">
+            <Radio value="opt1">
               <span style={{ marginRight: '5px' }}>無限期</span>
               <DatePicker />
-            </Checkbox>
-            <Checkbox value="opt2">
+            </Radio>
+            <Radio value="opt2">
               <span style={{ marginRight: '5px' }}>日期區間</span>
               <DateRangePicker />
-            </Checkbox>
-          </Checkbox.Group>
+            </Radio>
+          </Radio.Group>
         </FormField>
 
         <Tabs defaultActiveKey="cn" type="card" size="small">
@@ -70,10 +76,16 @@ const Manager: React.FC = () => {
             <FormField>
               <Collapse defaultActiveKey={['1']}>
                 <Collapse.Panel header="桌上型電腦" key="1">
-                  <ContentEditor />
+                  <Space>
+                    <ImageUpload />
+                    <ContentEditor />
+                  </Space>
                 </Collapse.Panel>
                 <Collapse.Panel header="手機" key="2">
-                  <ContentEditor />
+                  <Space>
+                    <ImageUpload />
+                    <ContentEditor />
+                  </Space>
                 </Collapse.Panel>
               </Collapse>
             </FormField>
