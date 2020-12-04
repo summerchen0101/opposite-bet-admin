@@ -9,6 +9,7 @@ import {
 import { Button, Layout, Popover, Select, Space } from 'antd'
 import React, { useContext } from 'react'
 import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import IconLink from '../IconLink'
 
 const { Header } = Layout
@@ -21,6 +22,7 @@ const Sidebar: React.FC = () => {
   const { setVisible: setVisible_changePw } = usePopup('changePw')
   const { setVisible: setVisible_bettingLimit } = usePopup('bettingLimit')
   const { setVisible: setVisible_loginHistory } = usePopup('loginHistory')
+  const history = useHistory()
   return (
     <Header className="site-header">
       {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {

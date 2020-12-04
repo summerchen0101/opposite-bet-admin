@@ -1,49 +1,51 @@
-import * as routes from '@/lib/routes'
 import * as pages from '@/pages/payment'
 import { MenuGenerator as MenuG } from '@/utils/menuGenerator'
 import { PageGenerator as PageG } from '@/utils/pageGenerator'
 import { RouteGenerator as RouteG } from '@/utils/routeGenerator'
 import { DollarOutlined } from '@ant-design/icons'
 
+const rootName = '金流管理'
+const rootPath = '/payment'
+
 // PAGES
 export const BankDeposit = new PageG(
   '銀行轉帳',
-  routes.BankDeposit,
+  `${rootPath}/bank-deposit`,
   pages.BankDeposit,
 )
 export const ThirdPartyDeposit = new PageG(
   '第三方金流',
-  routes.ThirdPartyDeposit,
+  `${rootPath}/third-deposit`,
   pages.ThirdPartyDeposit,
 )
 export const Withdrawal = new PageG(
   '提現紀錄',
-  routes.Withdrawal,
+  `${rootPath}/withdraw-record`,
   pages.Withdrawal,
 )
 export const ManualPayment = new PageG(
   '人工存提',
-  routes.ManualPayment,
+  `${rootPath}/manual`,
   pages.ManualPayment,
 )
 export const DepositSetting = new PageG(
   '充值設置',
-  routes.DepositSetting,
+  `${rootPath}/deposit-setting`,
   pages.DepositSetting,
 )
 export const WithdrawalSetting = new PageG(
   '提現設置',
-  routes.WithdrawalSetting,
+  `${rootPath}/withdraw-setting`,
   pages.WithdrawalSetting,
 )
 export const BankAccountSetting = new PageG(
   '帳戶資料設置',
-  routes.BankAccountSetting,
+  `${rootPath}/bank-account-setting`,
   pages.BankAccountSetting,
 )
 export const ThirdPartySetting = new PageG(
   '金流平台設置',
-  routes.ThirdPartySetting,
+  `${rootPath}/third-setting`,
   pages.ThirdPartySetting,
 )
 
@@ -60,7 +62,7 @@ RouteG.create([
 ])
 
 // MENU
-MenuG.createCategory('金流管理', routes.Payment, DollarOutlined, [
+MenuG.createCategory(rootName, rootPath, DollarOutlined, [
   BankDeposit,
   ThirdPartyDeposit,
   Withdrawal,

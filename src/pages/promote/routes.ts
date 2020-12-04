@@ -1,28 +1,31 @@
-import * as routes from '@/lib/routes'
 import * as pages from '@/pages/promote'
 import { MenuGenerator as MenuG } from '@/utils/menuGenerator'
 import { PageGenerator as PageG } from '@/utils/pageGenerator'
 import { RouteGenerator as RouteG } from '@/utils/routeGenerator'
 import { TagsOutlined } from '@ant-design/icons'
+
+const rootName = '活動管理'
+const rootPath = '/promote'
+
 // PAGES
 export const PromoteLink = new PageG(
   '推廣網址',
-  routes.PromoteLink,
+  `${rootPath}/link`,
   pages.PromoteLink,
 )
 export const PromoteAcitivity = new PageG(
   '活動列表',
-  routes.PromoteAcitivity,
+  `${rootPath}/list`,
   pages.PromoteAcitivity,
 )
 export const CreatePromoteAcitivity = new PageG(
   '新增活動',
-  routes.CreatePromoteAcitivity,
+  `${rootPath}/add`,
   pages.CreatePromoteAcitivity,
 )
 export const PromoteReview = new PageG(
   '活動審核',
-  routes.PromoteReview,
+  `${rootPath}/review`,
   pages.PromoteReview,
 )
 
@@ -35,7 +38,7 @@ RouteG.create([
 ])
 
 // MENU
-MenuG.createCategory('活動管理', routes.Promote, TagsOutlined, [
+MenuG.createCategory(rootName, rootPath, TagsOutlined, [
   PromoteLink,
   PromoteAcitivity,
   PromoteReview,

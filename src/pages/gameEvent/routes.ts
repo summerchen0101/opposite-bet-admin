@@ -1,38 +1,44 @@
-import * as routes from '@/lib/routes'
 import * as pages from '@/pages/gameEvent'
 import { MenuGenerator as MenuG } from '@/utils/menuGenerator'
 import { PageGenerator as PageG } from '@/utils/pageGenerator'
 import { RouteGenerator as RouteG } from '@/utils/routeGenerator'
 import { DribbbleOutlined } from '@ant-design/icons'
 
+const rootName = '賽事管理'
+const rootPath = '/event'
+
 // PAGES
 export const EventManager = new PageG(
   '賽事列表',
-  routes.EventManager,
+  `${rootPath}/list`,
   pages.EventManager,
   {
     exact: true,
   },
 )
-export const EventScore = new PageG('比分', routes.EventScore, pages.EventScore)
+export const EventScore = new PageG(
+  '比分',
+  `${rootPath}/score`,
+  pages.EventScore,
+)
 export const UploadEvent = new PageG(
   '上架賽事',
-  routes.UploadEvent,
+  `${rootPath}/upload`,
   pages.UploadEvent,
 )
 export const BettingHistory = new PageG(
   '下注紀錄',
-  routes.BettingHistory,
+  `${rootPath}/betting-history`,
   pages.BettingHistory,
 )
 export const DefaultOdds = new PageG(
   '默認賠率',
-  routes.DefaultOdds,
+  `${rootPath}/odds`,
   pages.DefaultOdds,
 )
 export const EventRule = new PageG(
   '賽事規則',
-  routes.EventRule,
+  `${rootPath}/rule`,
   pages.EventRule,
 )
 
@@ -47,7 +53,7 @@ RouteG.create([
 ])
 
 // MENU
-MenuG.createCategory('賽事管理', routes.Event, DribbbleOutlined, [
+MenuG.createCategory(rootName, rootPath, DribbbleOutlined, [
   EventManager,
   UploadEvent,
   BettingHistory,

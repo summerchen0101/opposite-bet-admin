@@ -6,7 +6,7 @@ import {
 } from '@/components'
 import PopupConfirm from '@/components/PopupConfirm'
 import TableHeaderController from '@/containers/TableHeaderController'
-import { EventScore } from '@/lib/routes'
+import { EventScore } from '@/pages/gameEvent/routes'
 import { ColumnsGenerator } from '@/types'
 import { useTableSelect } from '@/utils/hooks/usetTableSelector'
 import {
@@ -134,7 +134,7 @@ export const createColumns: ColumnsGenerator<TableItem> = (data) => {
               <IconLink
                 label="比分"
                 icon={<ContainerOutlined />}
-                onClick={() => history.push(EventScore)}
+                onClick={() => history.push(EventScore.path)}
               />
               <PopupConfirm>
                 <IconLink icon={<DeleteOutlined />} />

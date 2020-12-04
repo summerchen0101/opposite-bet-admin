@@ -11,7 +11,7 @@ import StatusRadioPicker from './containers/StatusRadioPicker'
 import TableData from './containers/TableData'
 import reducer, { initSearchState, moduleName } from './reducer'
 
-const Manager: React.FC = () => {
+const CarouselPage: React.FC = () => {
   useReducerInjector(moduleName, reducer)
   const dispatch = useDispatch()
   useEffect(() => {
@@ -31,4 +31,4 @@ const Manager: React.FC = () => {
   )
 }
 
-export default Manager
+export default CarouselPage
