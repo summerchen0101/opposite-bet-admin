@@ -28,11 +28,33 @@ export const Announcement = new PageG(
   `${rootPath}/announcement`,
   pages.Announcement,
 )
+export const MemberLabel = new PageG(
+  '標籤管理',
+  `${rootPath}/member-label`,
+  pages.MemberLabel,
+  {
+    exact: true,
+  },
+)
+export const MemberLabelDetail = new PageG(
+  '會員數',
+  `${rootPath}/member-label/detail`,
+  pages.MemberLabelDetail,
+)
 export const InMail = new PageG('信件管理', `${rootPath}/in-mail`, pages.InMail)
 export const Faq = new PageG('常見問題', `${rootPath}/faq`, pages.Faq)
 
 // ROUTERS
-RouteG.create([LandingPage, Carousel, PageManage, Announcement, InMail, Faq])
+RouteG.create([
+  LandingPage,
+  Carousel,
+  PageManage,
+  Announcement,
+  InMail,
+  Faq,
+  MemberLabel,
+  MemberLabelDetail,
+])
 
 // MENU
 MenuG.createCategory(rootName, rootPath, HomeOutlined, [
@@ -42,4 +64,5 @@ MenuG.createCategory(rootName, rootPath, HomeOutlined, [
   Announcement,
   InMail,
   Faq,
+  MemberLabel,
 ])
