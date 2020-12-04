@@ -20,6 +20,7 @@ const Sidebar: React.FC = () => {
   const handleLogout = (e) => dispatch(doLogout())
   const { setVisible: setVisible_changePw } = usePopup('changePw')
   const { setVisible: setVisible_bettingLimit } = usePopup('bettingLimit')
+  const { setVisible: setVisible_loginHistory } = usePopup('loginHistory')
   return (
     <Header className="site-header">
       {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
@@ -45,7 +46,11 @@ const Sidebar: React.FC = () => {
               >
                 修改密碼
               </Button>
-              <Button block className="mb-1">
+              <Button
+                block
+                className="mb-1"
+                onClick={(e) => setVisible_loginHistory(true)}
+              >
                 登入歷程
               </Button>
               <Button block onClick={(e) => setVisible_bettingLimit(true)}>

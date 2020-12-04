@@ -1,16 +1,19 @@
 import BettingLimitPopup from '@/components/popups/BettingLimitPopup'
 import ChangePwPopup from '@/components/popups/ChangePwPopup'
+import LoginHistoryPopup from '@/components/popups/LoginHistoryPopup'
 import React, { createContext, useContext, useState } from 'react'
 import { ContextDevTool } from 'react-context-devtool'
 
 interface IState {
   changePw: boolean
   bettingLimit: boolean
+  loginHistory: boolean
 }
 
 const initialState: IState = {
   changePw: false,
   bettingLimit: false,
+  loginHistory: false,
 }
 
 interface ContextState<T> {
@@ -31,6 +34,7 @@ export const PopupContextProvider: React.FC = ({ children }) => {
       {children}
       <ChangePwPopup />
       <BettingLimitPopup />
+      <LoginHistoryPopup />
     </PopupContext.Provider>
   )
 }
