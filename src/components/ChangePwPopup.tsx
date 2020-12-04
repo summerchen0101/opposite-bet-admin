@@ -1,14 +1,14 @@
 import { usePopup } from '@/contexts/PopupContextProvider'
-import { Button, Form, Input } from 'antd'
+import { Button, Form, Input, Modal, Space } from 'antd'
 import React from 'react'
-import PopupModal from './PopupModal'
 
 const ChangePwPopup: React.FC = () => {
   const { visible, setVisible } = usePopup('changePw')
   return (
-    <PopupModal
-      visible={visible}
+    <Modal
       title="修改密碼"
+      visible={visible}
+      onOk={() => {}}
       onCancel={() => setVisible(false)}
       width="350px"
     >
@@ -29,13 +29,8 @@ const ChangePwPopup: React.FC = () => {
         >
           <Input.Password />
         </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-        </Form.Item>
       </Form>
-    </PopupModal>
+    </Modal>
   )
 }
 
