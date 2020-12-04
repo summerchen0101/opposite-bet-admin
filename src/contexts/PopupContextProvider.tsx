@@ -1,22 +1,26 @@
-import ChangePwPopup from '@/components/ChangePwPopup'
-import { createAction, createReducer } from '@reduxjs/toolkit'
-import React, { createContext, useContext, useReducer, useState } from 'react'
+import BettingLimitPopup from '@/components/popups/BettingLimitPopup'
+import ChangePwPopup from '@/components/popups/ChangePwPopup'
+import React, { createContext, useContext, useState } from 'react'
 import { ContextDevTool } from 'react-context-devtool'
 
-interface PopupModals {
+interface IState {
   changePw: boolean
+  bettingLimit: boolean
+}
+
+const initialState: IState = {
+  changePw: false,
+  bettingLimit: false,
 }
 
 interface ContextState<T> {
   popups: T
   setPopups: React.Dispatch<React.SetStateAction<T>>
 }
-const PopupContext = createContext<ContextState<PopupModals>>(null)
+const PopupContext = createContext<ContextState<IState>>(null)
 
 export const PopupContextProvider: React.FC = ({ children }) => {
-  const [popups, setPopups] = useState({
-    changePw: false,
-  })
+  const [popups, setPopups] = useState(initialState)
   return (
     <PopupContext.Provider value={{ popups, setPopups }}>
       <ContextDevTool
@@ -26,11 +30,12 @@ export const PopupContextProvider: React.FC = ({ children }) => {
       />
       {children}
       <ChangePwPopup />
+      <BettingLimitPopup />
     </PopupContext.Provider>
   )
 }
 
-export const usePopup = (target: keyof PopupModals) => {
+export const usePopup = (target: keyof IState) => {
   const { popups, setPopups } = useContext(PopupContext)
   const visible = popups[target]
   const setVisible = (value: boolean) =>

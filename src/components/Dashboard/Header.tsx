@@ -18,7 +18,8 @@ const Sidebar: React.FC = () => {
   const { collapsed, toggleCollapsed } = useContext(DashboardContext)
   const dispatch = useDispatch()
   const handleLogout = (e) => dispatch(doLogout())
-  const { setVisible } = usePopup('changePw')
+  const { setVisible: setVisible_changePw } = usePopup('changePw')
+  const { setVisible: setVisible_bettingLimit } = usePopup('bettingLimit')
   return (
     <Header className="site-header">
       {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
@@ -37,13 +38,19 @@ const Sidebar: React.FC = () => {
         <Popover
           content={
             <div style={{ width: '100px' }}>
-              <Button block className="mb-1" onClick={(e) => setVisible(true)}>
+              <Button
+                block
+                className="mb-1"
+                onClick={(e) => setVisible_changePw(true)}
+              >
                 修改密碼
               </Button>
               <Button block className="mb-1">
                 登入歷程
               </Button>
-              <Button block>個人限額</Button>
+              <Button block onClick={(e) => setVisible_bettingLimit(true)}>
+                個人限額
+              </Button>
             </div>
           }
         >
