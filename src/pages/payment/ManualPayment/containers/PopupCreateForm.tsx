@@ -36,25 +36,29 @@ const CreateForm: React.FC = () => {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
+  const platformOptions = [
+    { label: '主帳戶', value: 'main' },
+    { label: '反波膽', value: 'opposite' },
+  ]
   return (
     <PopupModal visible={isDisplay} title="新增 - 人工存取" onCancel={onCancel}>
       <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
-        <FormField label="會員帳號" name="account" required>
+        <FormField label="會員帳號" name="account">
           <Input />
         </FormField>
-        <FormField label="平台" name="platform" required>
-          <Input />
+        <FormField label="平台" name="platform" initialValue="main">
+          <Select options={platformOptions} />
         </FormField>
-        <FormField label="類型" name="type" required>
+        <FormField label="類型" name="type" initialValue="opt1">
           <Select placeholder="請選擇" allowClear>
             <Option value="opt1">存入</Option>
             <Option value="opt2">提出</Option>
           </Select>
         </FormField>
-        <FormField label="存提項目" name="trade" required>
+        <FormField label="存提項目" name="trade" initialValue="all">
           <Select placeholder="請選擇" allowClear options={tradeOptions} />
         </FormField>
-        <FormField label="金額" name="point" required>
+        <FormField label="金額" name="point">
           <Input />
         </FormField>
         <FormField label="備註" name="notes">

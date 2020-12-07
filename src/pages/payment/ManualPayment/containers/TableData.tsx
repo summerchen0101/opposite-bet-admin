@@ -4,61 +4,71 @@ import { EditFilled, FilterFilled, CopyOutlined } from '@ant-design/icons'
 import { Space } from 'antd'
 import React from 'react'
 import { Text } from '@/components'
+import { ColumnsType } from 'antd/lib/table'
+import { toDateTime } from '@/utils/transfer'
 
-const columns = [
+interface TableItem {
+  id: string
+  account: string
+  nick: string
+  type: number
+  method: number
+  point: number
+  notes: string
+  updatedAt: number
+  updatedBy: string
+}
+
+const columns: ColumnsType<TableItem> = [
   {
     title: '編號',
-    dataIndex: 'account',
+    render: (_, row) => row.id,
     width: 100,
-    render: () => '112',
   },
   {
     title: '類型',
-    dataIndex: 'firstDepositCount',
+    render: (_, row) => '存入',
     width: 120,
-    render: () => '存入',
   },
   {
     title: '項目',
-    dataIndex: 'firstDepositTotal',
+    render: (_, row) => '人工存入',
     width: 140,
-    render: () => '人工存入',
   },
   {
     title: '代理商',
-    dataIndex: 'onceAgainDepositCount',
+    render: (_, row) => 'AAABB',
     width: 120,
-    render: () => 'xxxx',
   },
   {
     title: '帳號/名稱',
-    dataIndex: 'onceAgainDepositTotal',
+    render: (_, row) => (
+      <>
+        {row.account}
+        <br />[{row.nick}]
+      </>
+    ),
     width: 140,
-    render: () => 'xxxx',
   },
   {
     title: '金額',
-    dataIndex: 'depositCount',
+    render: (_, row) => row.point,
     width: 120,
-    render: (_, row) => (2200).toLocaleString(),
   },
   {
     title: '備註',
-    dataIndex: 'depositTotal',
+    render: (_, row) => row.notes,
     width: 140,
-    render: (_, row) => '-',
   },
   {
-    title: '更新人員',
-    dataIndex: 'firstWithdrawalCount',
-    width: 120,
-    render: () => 'flora',
-  },
-  {
-    title: '更新時間',
-    dataIndex: 'depositTotal',
+    title: '更新人員/時間',
+    render: (_, row) => (
+      <>
+        {row.updatedBy} <br />
+        {toDateTime(row.updatedAt)}
+      </>
+    ),
     width: 200,
-    render: (_, row) => '2019-07-01 10:54:36',
   },
   {
     title: () => (
@@ -83,23 +93,17 @@ const columns = [
   },
 ]
 
-const data = []
-for (let i = 1; i <= 50; i++) {
-  data.push({
-    id: i,
-    account: 'aaaa(小白)',
-    firstDepositCount: 5,
-    firstDepositTotal: 20320,
-    onceAgainDepositCount: 10,
-    onceAgainDepositTotal: 41232,
-    firstWithdrawalCount: 5,
-    firstWithdrawalTotal: 20320,
-    onceAgainWithdrawalCount: 10,
-    onceAgainWithdrawalTotal: 41232,
-    loginCount: 20,
-    registerCount: 3,
-  })
-}
+const data: TableItem[] = [...Array(5)].map((t, i) => ({
+  id: Math.ceil(Math.random() * 10000).toString(),
+  account: 'gogoro',
+  nick: 'GOGORO',
+  type: 1,
+  method: 2,
+  point: 2000,
+  notes: '-',
+  updatedAt: Date.now(),
+  updatedBy: 'summer',
+}))
 const TableData: React.FC = () => {
   return <TableSets columns={columns} data={data} />
 }
