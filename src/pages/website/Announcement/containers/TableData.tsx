@@ -8,25 +8,25 @@ const columns = [
     title: '標題',
     dataIndex: 'account',
     width: 180,
-    render: () => '反水活動修改',
+    render: (_, row) => '反水活動修改',
   },
   {
     title: '公告種類',
     dataIndex: 'firstDepositCount',
     width: 120,
-    render: () => '系統通知',
+    render: (_, row) => '系統通知',
   },
   {
     title: '前台顯示',
     dataIndex: 'firstDepositTotal',
     width: 100,
-    render: () => <Text color="success">啟用</Text>,
+    render: (_, row) => <Text color="success">啟用</Text>,
   },
   {
     title: '期間',
     dataIndex: 'onceAgainDepositCount',
     width: 180,
-    render: () => (
+    render: (_, row) => (
       <>
         2019-07-01 10:54:36 <br />
         2019-07-01 10:54:36
@@ -37,7 +37,7 @@ const columns = [
     title: '更新人員',
     dataIndex: 'firstWithdrawalCount',
     width: 120,
-    render: () => 'flora',
+    render: (_, row) => 'flora',
   },
   {
     title: '更新時間',

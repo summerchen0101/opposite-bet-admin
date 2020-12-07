@@ -14,25 +14,25 @@ const columns = [
     title: '會員帳號',
     dataIndex: 'account',
     width: 100,
-    render: () => 'abc222',
+    render: (_, row) => 'abc222',
   },
   {
     title: '角色',
     dataIndex: 'firstDepositCount',
     width: 120,
-    render: () => '代理商',
+    render: (_, row) => '代理商',
   },
   {
     title: '允許註冊',
     dataIndex: 'firstDepositCount',
     width: 120,
-    render: () => <Switch defaultChecked />,
+    render: (_, row) => <Switch defaultChecked />,
   },
   {
     title: '邀請碼',
     dataIndex: 'firstDepositTotal',
     width: 160,
-    render: () => (
+    render: (_, row) => (
       <Space>
         <span>5894wef98</span>
         <IconLink icon={<CopyOutlined />} label="複製" />
@@ -43,7 +43,7 @@ const columns = [
     title: '連結位置',
     dataIndex: 'firstDepositTotal',
     width: 250,
-    render: () => (
+    render: (_, row) => (
       <Space>
         <span>https://google/5894wef98</span>
         <IconLink icon={<CopyOutlined />} label="複製" />
@@ -54,25 +54,25 @@ const columns = [
     title: '備註',
     dataIndex: 'firstDepositTotal',
     width: 140,
-    render: () => '支付寶',
+    render: (_, row) => '支付寶',
   },
   {
     title: '訪問次數',
     dataIndex: 'firstDepositTotal',
     width: 140,
-    render: () => '支付寶',
+    render: (_, row) => '支付寶',
   },
   {
     title: '完成註冊',
     dataIndex: 'firstDepositTotal',
     width: 140,
-    render: () => '支付寶',
+    render: (_, row) => '支付寶',
   },
   {
     title: '更新人員',
     dataIndex: 'firstWithdrawalCount',
     width: 120,
-    render: () => 'flora',
+    render: (_, row) => 'flora',
   },
   {
     title: '更新時間',

@@ -17,26 +17,26 @@ const PopupWithdrawalTable: React.FC = () => {
       title: '帐号 / 会员名称',
       dataIndex: 'name',
       key: 'name',
-      render: () => 'qq13995774106 【秦小强】',
+      render: (_, row) => 'qq13995774106 【秦小强】',
     },
     {
       title: '手续费',
       dataIndex: 'age',
       key: 'age',
       width: 100,
-      render: () => '10',
+      render: (_, row) => '10',
     },
     {
       title: '金额',
       dataIndex: 'address',
       key: 'address',
-      render: () => '1,000',
+      render: (_, row) => '1,000',
     },
     {
       title: '完成时间',
       dataIndex: 'address',
       key: 'address',
-      render: () => '2020-10-23 09:47:05',
+      render: (_, row) => '2020-10-23 09:47:05',
     },
   ]
   return (

@@ -18,25 +18,25 @@ const PopupRegisterCountTable: React.FC = () => {
       title: '帐号 / 会员名称',
       dataIndex: 'name',
       key: 'name',
-      render: () => 'qq13995774106 【秦小强】',
+      render: (_, row) => 'qq13995774106 【秦小强】',
     },
     {
       title: '角色',
       dataIndex: 'age',
       key: 'age',
-      render: () => '第三方存款',
+      render: (_, row) => '第三方存款',
     },
     {
       title: '標籤',
       dataIndex: 'address',
       key: 'address',
-      render: () => '-',
+      render: (_, row) => '-',
     },
     {
       title: '登入时间',
       dataIndex: 'address',
       key: 'address',
-      render: () => (
+      render: (_, row) => (
         <>
           2020-10-23 09:47:05
           <br />

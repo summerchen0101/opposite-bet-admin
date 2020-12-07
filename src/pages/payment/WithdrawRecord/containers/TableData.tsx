@@ -87,7 +87,7 @@ const columns: ColumnsType<TableItem> = [
     ),
     dataIndex: 'firstWithdrawalTotal',
     width: 200,
-    render: () => (
+    render: (_, row) => (
       <>
         2020-09-09 21:51:51
         <br />
@@ -105,7 +105,7 @@ const columns: ColumnsType<TableItem> = [
     ),
     dataIndex: 'onceAgainWithdrawalCount',
     width: 200,
-    render: () => (
+    render: (_, row) => (
       <>
         flora
         <br />

@@ -25,7 +25,7 @@ const columns = [
     title: '首次充值(筆)',
     dataIndex: 'firstDepositCount',
     width: 120,
-    render: () => {
+    render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleDepositModal(true))
       return (
@@ -44,7 +44,7 @@ const columns = [
     title: '再次充值(筆)',
     dataIndex: 'onceAgainDepositCount',
     width: 120,
-    render: () => {
+    render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleDepositModal(true))
       return (
@@ -63,7 +63,7 @@ const columns = [
     title: '總充值(筆)',
     dataIndex: 'depositCount',
     width: 120,
-    render: () => {
+    render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleDepositModal(true))
       return (
@@ -83,7 +83,7 @@ const columns = [
     title: '首次提現(筆)',
     dataIndex: 'firstWithdrawalCount',
     width: 120,
-    render: () => {
+    render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleWithdrawalModal(true))
       return (
@@ -102,7 +102,7 @@ const columns = [
     title: '再次提現(筆)',
     dataIndex: 'onceAgainWithdrawalCount',
     width: 120,
-    render: () => {
+    render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleWithdrawalModal(true))
       return (
@@ -121,7 +121,7 @@ const columns = [
     title: '總提現(筆)',
     dataIndex: 'withdrawalCount',
     width: 120,
-    render: () => {
+    render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleWithdrawalModal(true))
       return (
@@ -141,7 +141,7 @@ const columns = [
     title: '總登入人數',
     dataIndex: 'loginCount',
     width: 120,
-    render: () => {
+    render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleLoginCountModal(true))
       return (
@@ -155,7 +155,7 @@ const columns = [
     title: '註冊人數',
     dataIndex: 'registerCount',
     width: 120,
-    render: () => {
+    render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleRegisterCountModal(true))
       return (

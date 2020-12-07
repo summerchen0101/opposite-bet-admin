@@ -15,19 +15,19 @@ const columns = [
     title: '標題',
     dataIndex: 'account',
     width: 250,
-    render: () => <a className="link">大特價大特價大特價</a>,
+    render: (_, row) => <a className="link">大特價大特價大特價</a>,
   },
   {
     title: '裝置',
     dataIndex: 'firstDepositTotal',
     width: 140,
-    render: () => '-',
+    render: (_, row) => '-',
   },
   {
     title: '前台顯示',
     dataIndex: 'onceAgainDepositCount',
     width: 120,
-    render: () => <Text color="danger">關閉</Text>,
+    render: (_, row) => <Text color="danger">關閉</Text>,
   },
   {
     title: '狀態',
@@ -51,7 +51,7 @@ const columns = [
     title: '更新人員',
     dataIndex: 'firstWithdrawalCount',
     width: 120,
-    render: () => 'flora',
+    render: (_, row) => 'flora',
   },
   {
     title: '更新時間',

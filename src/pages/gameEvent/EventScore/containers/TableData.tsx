@@ -45,11 +45,11 @@ const columns = [
   {
     title: () => <Checkbox />,
     dataIndex: 'selected',
-    render: () => <Checkbox />,
+    render: (_, row) => <Checkbox />,
   },
   {
     title: () => <IconLink icon={<FilterFilled />} />,
-    render: () => (
+    render: (_, row) => (
       <PopupConfirm>
         <IconLink icon={<DeleteOutlined />} />
       </PopupConfirm>

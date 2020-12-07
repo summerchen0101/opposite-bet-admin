@@ -17,31 +17,31 @@ const PopupLoginCountTable: React.FC = () => {
       title: '帐号 / 会员名称',
       dataIndex: 'name',
       key: 'name',
-      render: () => 'qq13995774106 【秦小强】',
+      render: (_, row) => 'qq13995774106 【秦小强】',
     },
     {
       title: 'IP',
       dataIndex: 'age',
       key: 'age',
-      render: () => '0,0,0,0',
+      render: (_, row) => '0,0,0,0',
     },
     {
       title: '系統 / 瀏覽器',
       dataIndex: 'address',
       key: 'address',
-      render: () => 'window / chrome',
+      render: (_, row) => 'window / chrome',
     },
     {
       title: '狀態',
       dataIndex: 'address',
       key: 'address',
-      render: () => <Text color="success">成功</Text>,
+      render: (_, row) => <Text color="success">成功</Text>,
     },
     {
       title: '完成时间',
       dataIndex: 'address',
       key: 'address',
-      render: () => '2020-10-23 09:47:05',
+      render: (_, row) => '2020-10-23 09:47:05',
     },
   ]
   return (

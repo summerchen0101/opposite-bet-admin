@@ -1,80 +1,77 @@
-import IconLink from '@/components/IconLink'
-import TableSets from '@/components/TableSets'
+import { Text, IconLink, TableSets } from '@/components'
+import { getFakeID } from '@/utils/helper'
 import {
   EditFilled,
   FilterFilled,
   CheckCircleOutlined,
 } from '@ant-design/icons'
 import { Space } from 'antd'
+import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
-import { Text } from '@/components'
 
-const columns = [
+interface TableItem {
+  id: string
+}
+const columns: ColumnsType<TableItem> = [
   {
     title: '編號',
-    dataIndex: 'account',
+    render: (_, row) => row.id,
     width: 100,
-    render: () => '112',
   },
   {
     title: '名稱',
-    dataIndex: 'firstDepositCount',
+    render: (_, row) => '存入',
     width: 120,
-    render: () => '存入',
   },
   {
     title: '上限',
-    dataIndex: 'firstDepositTotal',
+    render: (_, row) => '-',
     width: 140,
-    render: () => '-',
   },
   {
     title: '下限',
-    dataIndex: 'onceAgainDepositCount',
-    width: 120,
     render: (_, row) => '-',
+    width: 120,
   },
   {
     title: '控端提示',
-    dataIndex: 'onceAgainDepositTotal',
-    width: 140,
     render: (_, row) => '-',
+    width: 140,
   },
   {
     title: '銀行資料',
-    dataIndex: 'depositCount',
-    width: 120,
     render: (_, row) => '-',
+    width: 120,
   },
   {
     title: '收款人',
-    dataIndex: 'depositCount',
-    width: 120,
     render: (_, row) => '-',
+    width: 120,
   },
   {
     title: '開戶網點',
-    dataIndex: 'depositCount',
-    width: 120,
     render: (_, row) => '-',
+    width: 120,
   },
   {
     title: '帳號',
-    dataIndex: 'depositCount',
-    width: 120,
     render: (_, row) => 'gogog1',
+    width: 120,
   },
   {
     title: '更新人員',
-    dataIndex: 'firstWithdrawalCount',
+    render: (_, row) => 'flora',
     width: 120,
-    render: () => 'flora',
   },
   {
     title: '更新時間',
-    dataIndex: 'depositTotal',
-    width: 200,
     render: (_, row) => '2019-07-01 10:54:36',
+    width: 200,
+  },
+  {
+    title: '狀態',
+    render: (_, row) => <Text color="danger">停用</Text>,
+    width: 100,
   },
   {
     title: () => (
@@ -100,23 +97,9 @@ const columns = [
   },
 ]
 
-const data = []
-for (let i = 1; i <= 50; i++) {
-  data.push({
-    id: i,
-    account: 'aaaa(小白)',
-    firstDepositCount: 5,
-    firstDepositTotal: 20320,
-    onceAgainDepositCount: 10,
-    onceAgainDepositTotal: 41232,
-    firstWithdrawalCount: 5,
-    firstWithdrawalTotal: 20320,
-    onceAgainWithdrawalCount: 10,
-    onceAgainWithdrawalTotal: 41232,
-    loginCount: 20,
-    registerCount: 3,
-  })
-}
+const data: TableItem[] = [...Array(5)].map((t, i) => ({
+  id: getFakeID(),
+}))
 const TableData: React.FC = () => {
   return <TableSets columns={columns} data={data} />
 }

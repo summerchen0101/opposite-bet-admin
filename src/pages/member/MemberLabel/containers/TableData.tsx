@@ -9,37 +9,37 @@ const columns = [
     title: '標籤名稱',
     dataIndex: 'account',
     width: 100,
-    render: () => '危險客戶',
+    render: (_, row) => '危險客戶',
   },
   {
     title: '說明',
     dataIndex: 'firstDepositCount',
     width: 120,
-    render: () => '-',
+    render: (_, row) => '-',
   },
   {
     title: '會員數',
     dataIndex: 'firstDepositTotal',
     width: 140,
-    render: () => 80,
+    render: (_, row) => 80,
   },
   {
     title: '備註',
     dataIndex: 'onceAgainDepositCount',
     width: 120,
-    render: () => '-',
+    render: (_, row) => '-',
   },
   {
     title: '更新人員',
     dataIndex: 'onceAgainDepositTotal',
     width: 140,
-    render: () => 'summer',
+    render: (_, row) => 'summer',
   },
   {
     title: '更新時間',
     dataIndex: 'depositCount',
     width: 120,
-    render: () => '2020-12-12 10:49',
+    render: (_, row) => '2020-12-12 10:49',
   },
   {
     title: () => (

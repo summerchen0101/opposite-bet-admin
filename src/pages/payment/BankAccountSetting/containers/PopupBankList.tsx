@@ -24,27 +24,27 @@ const BankListForm: React.FC = () => {
   const columns = [
     {
       title: '編號',
-      render: () => '123',
+      render: (_, row) => '123',
     },
     {
       title: '銀行代碼',
-      render: () => '822',
+      render: (_, row) => '822',
     },
     {
       title: '銀行名稱',
-      render: () => '中國信託',
+      render: (_, row) => '中國信託',
     },
     {
       title: '顯示會員端',
-      render: () => '入款 & 出款',
+      render: (_, row) => '入款 & 出款',
     },
     {
       title: '更新人員',
-      render: () => 'frola',
+      render: (_, row) => 'frola',
     },
     {
       title: '更新時間',
-      render: () => '2019-07-01 10:50:22',
+      render: (_, row) => '2019-07-01 10:50:22',
     },
   ]
   const data = [...Array(10)].map((t, i) => ({ ...t, key: i }))

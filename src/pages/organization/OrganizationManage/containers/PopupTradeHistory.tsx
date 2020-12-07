@@ -35,24 +35,24 @@ const TradeHistoryForm: React.FC = () => {
   let columns = [
     {
       title: '建立時間',
-      render: () => '2020-08-28 17:54:03',
+      render: (_, row) => '2020-08-28 17:54:03',
       width: '180px',
     },
     {
       title: '交易類型',
-      render: () => '-',
+      render: (_, row) => '-',
     },
     {
       title: '可用點數',
       children: [
         {
           title: '異動前',
-          render: () => '0',
+          render: (_, row) => '0',
           key: 'point-before',
         },
         {
           title: '異動後',
-          render: () => '0',
+          render: (_, row) => '0',
           key: 'point-after',
         },
       ],
@@ -63,30 +63,30 @@ const TradeHistoryForm: React.FC = () => {
         {
           title: '異動前',
           key: 'result-before',
-          render: () => <Text color="danger">-500</Text>,
+          render: (_, row) => <Text color="danger">-500</Text>,
         },
         {
           title: '異動後',
           key: 'result-after',
-          render: () => <Text color="success">1,200</Text>,
+          render: (_, row) => <Text color="success">1,200</Text>,
         },
       ],
     },
     {
       title: '備註',
-      render: () => '-',
+      render: (_, row) => '-',
     },
     {
       title: 'IP',
-      render: () => '0.0.0.0',
+      render: (_, row) => '0.0.0.0',
     },
     {
       title: '更新人員',
-      render: () => 'flora',
+      render: (_, row) => 'flora',
     },
     {
       title: '更新時間',
-      render: () => '2020-12-12 10:49',
+      render: (_, row) => '2020-12-12 10:49',
       width: '180px',
     },
   ]

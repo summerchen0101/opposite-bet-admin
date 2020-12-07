@@ -35,11 +35,11 @@ const CategoryListForm: React.FC = () => {
     },
     {
       title: '分類標題',
-      render: () => '存款',
+      render: (_, row) => '存款',
     },
     {
       title: '狀態',
-      render: () => '啟用',
+      render: (_, row) => '啟用',
       width: '80px',
     },
     {

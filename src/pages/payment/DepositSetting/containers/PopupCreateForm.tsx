@@ -22,47 +22,57 @@ const CreateForm: React.FC = () => {
     console.log('Failed:', errorInfo)
   }
   return (
-    <PopupModal visible={isDisplay} title="新增充值資訊" onCancel={onCancel}>
+    <PopupModal
+      visible={isDisplay}
+      title="新增充值資訊"
+      onCancel={onCancel}
+      width="700px"
+    >
       <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
-        <FormField label="名稱">
-          <Input />
-        </FormField>
-        <FormField label="銀行名稱">
-          <Select placeholder="請選擇" allowClear defaultValue="opt1">
-            <Option value="opt1">822 中國信託</Option>
-          </Select>
-        </FormField>
-        <FormField label="控端提示">
-          <Select placeholder="請選擇" allowClear defaultValue="opt1">
-            <Option value="opt1">存入</Option>
-            <Option value="opt2">提出</Option>
-          </Select>
-        </FormField>
-        <div style={{ marginTop: 30 }}></div>
-        <h5>入款限額設置</h5>
-        <Row gutter={16}>
+        <Row gutter={24}>
           <Col span={12}>
-            <FormField label="上限">
-              <Input itemType="number" placeholder="5000" />
+            <FormField label="名稱">
+              <Input />
             </FormField>
+            <FormField label="銀行名稱">
+              <Select placeholder="請選擇" allowClear defaultValue="opt1">
+                <Option value="opt1">822 中國信託</Option>
+              </Select>
+            </FormField>
+            <FormField label="控端提示">
+              <Select placeholder="請選擇" allowClear defaultValue="opt1">
+                <Option value="opt1">存入</Option>
+                <Option value="opt2">提出</Option>
+              </Select>
+            </FormField>
+            <div style={{ marginTop: 30 }}></div>
+            <h5>入款限額設置</h5>
+            <Row gutter={16}>
+              <Col span={12}>
+                <FormField label="上限">
+                  <Input itemType="number" placeholder="5000" />
+                </FormField>
+              </Col>
+              <Col span={12}>
+                <FormField label="下限">
+                  <Input itemType="number" placeholder="0" />
+                </FormField>
+              </Col>
+            </Row>
           </Col>
           <Col span={12}>
-            <FormField label="下限">
-              <Input itemType="number" placeholder="0" />
+            <h5>會員端顯示</h5>
+            <FormField label="收款人">
+              <div>王大明</div>
+            </FormField>
+            <FormField label="開戶行網點">
+              <div>123232</div>
+            </FormField>
+            <FormField label="帳號">
+              <div>141241241241234123</div>
             </FormField>
           </Col>
         </Row>
-        <div style={{ marginTop: 10 }}></div>
-        <h5>會員端顯示</h5>
-        <FormField label="收款人" className="narrow">
-          <FormStaticText>王大明</FormStaticText>
-        </FormField>
-        <FormField label="開戶行網點" className="narrow">
-          <FormStaticText>11239</FormStaticText>
-        </FormField>
-        <FormField label="帳號" className="narrow">
-          <FormStaticText>11234567890</FormStaticText>
-        </FormField>
         <FormField style={{ marginTop: '20px', textAlign: 'center' }}>
           <Space size="large">
             <Button type="primary" htmlType="submit">

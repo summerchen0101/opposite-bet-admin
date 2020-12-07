@@ -42,7 +42,7 @@ const columns: ColumnsType<TableItem> = [
   {
     title: '排序',
     width: 100,
-    render: () => <DragHandle />,
+    render: (_, row) => <DragHandle />,
   },
   {
     title: '優惠名稱',

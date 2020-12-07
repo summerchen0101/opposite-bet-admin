@@ -39,31 +39,31 @@ const PointFormForm: React.FC = () => {
   let columns = [
     {
       title: '加盟商',
-      render: () => '-',
+      render: (_, row) => '-',
     },
     {
       title: '代理',
-      render: () => '-',
+      render: (_, row) => '-',
     },
     {
       title: 'IP',
-      render: () => '0.0.0.0',
+      render: (_, row) => '0.0.0.0',
     },
     {
       title: '系統 / 瀏覽器',
-      render: () => '-',
+      render: (_, row) => '-',
     },
     {
       title: '狀態',
-      render: () => <Text color="success">成功</Text>,
+      render: (_, row) => <Text color="success">成功</Text>,
     },
     {
       title: '國家',
-      render: () => '-',
+      render: (_, row) => '-',
     },
     {
       title: '登入時間',
-      render: () => '2020-12-12 10:49',
+      render: (_, row) => '2020-12-12 10:49',
     },
   ]
   columns = columns.map((t, i) => ({ ...t, key: i }))

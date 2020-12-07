@@ -32,13 +32,13 @@ const WhiteListForm: React.FC = () => {
       key: 1,
       title: 'IP',
       dataIndex: 'ip',
-      render: () => '0.0.0.0',
+      render: (_, row) => '0.0.0.0',
     },
     {
       key: 2,
       title: '操作',
       width: '80px',
-      render: () => (
+      render: (_, row) => (
         <PopupConfirm>
           <IconLink icon={<DeleteOutlined />} color="#c45555" label="刪除" />
         </PopupConfirm>

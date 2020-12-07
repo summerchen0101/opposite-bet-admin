@@ -28,15 +28,15 @@ const ReviewForm: React.FC = () => {
   let columns = [
     {
       title: '入款類型',
-      render: () => '線上入款',
+      render: (_, row) => '線上入款',
     },
     {
       title: '入款時間',
-      render: () => '2020-09-30 01:16:01',
+      render: (_, row) => '2020-09-30 01:16:01',
     },
     {
       title: '入款金額',
-      render: () => '5,000.00',
+      render: (_, row) => '5,000.00',
     },
   ]
   columns = columns.map((t, i) => ({ ...t, key: i }))

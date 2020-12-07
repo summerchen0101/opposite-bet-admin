@@ -40,23 +40,23 @@ const BatchCreateForm: React.FC = () => {
   let columns = [
     {
       title: '編號',
-      render: () => '1223',
+      render: (_, row) => '1223',
     },
     {
       title: '帳號 / 名稱',
-      render: () => '-',
+      render: (_, row) => '-',
     },
     {
       title: '金額',
-      render: () => '1,000.00',
+      render: (_, row) => '1,000.00',
     },
     {
       title: '備註',
-      render: () => '-',
+      render: (_, row) => '-',
     },
     {
       title: '狀態',
-      render: () => '-',
+      render: (_, row) => '-',
     },
   ]
   columns = columns.map((t, i) => ({ ...t, key: i }))

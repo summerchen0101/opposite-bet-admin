@@ -15,25 +15,25 @@ const columns = [
     title: '編號',
     dataIndex: 'account',
     width: 100,
-    render: () => '112',
+    render: (_, row) => '112',
   },
   {
     title: '金流平台',
     dataIndex: 'firstDepositCount',
     width: 120,
-    render: () => '數支富(szfupay)',
+    render: (_, row) => '數支富(szfupay)',
   },
   {
     title: '金流類型',
     dataIndex: 'firstDepositCount',
     width: 120,
-    render: () => '代碼繳費',
+    render: (_, row) => '代碼繳費',
   },
   {
     title: '設定名稱',
     dataIndex: 'firstDepositTotal',
     width: 140,
-    render: () => '支付寶',
+    render: (_, row) => '支付寶',
   },
   {
     title: () => (
@@ -85,7 +85,7 @@ const columns = [
     title: '更新人員',
     dataIndex: 'firstWithdrawalCount',
     width: 120,
-    render: () => 'flora',
+    render: (_, row) => 'flora',
   },
   {
     title: '更新時間',
