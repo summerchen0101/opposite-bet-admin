@@ -78,13 +78,7 @@ const columns: ColumnsType<TableItem> = [
     title: '狀態',
     dataIndex: 'status',
     width: 120,
-    render: (_, row) => (
-      <>
-        <Text color="success">擱置</Text>
-        <br />
-        款項確認
-      </>
-    ),
+    render: (_, row) => '等待',
   },
   {
     title: '更新人員/時間',

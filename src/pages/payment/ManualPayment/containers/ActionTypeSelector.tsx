@@ -2,7 +2,7 @@ import { BasicSelector } from '@/components'
 import React from 'react'
 
 const options = [
-  { label: '全部', value: 'all' },
+  { label: '全部存提項目', value: 'all' },
   { label: '存入-手動入款', value: 'opt1' },
   { label: '存入-人工存入', value: 'opt2' },
   { label: '存入-存款優惠', value: 'opt3' },

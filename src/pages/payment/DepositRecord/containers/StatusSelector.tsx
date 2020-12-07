@@ -4,7 +4,6 @@ import React from 'react'
 const options = [
   { label: '全部狀態', value: 'all' },
   { label: '等待', value: 'waiting' },
-  { label: '擱置', value: 'hold' },
   { label: '通過', value: 'ok' },
   { label: '拒絕', value: 'reject' },
 ]
