@@ -79,23 +79,20 @@ const columns = [
   },
 ]
 
-const data = []
-for (let i = 1; i <= 50; i++) {
-  data.push({
-    id: i,
-    account: 'aaaa(小白)',
-    firstDepositCount: 5,
-    firstDepositTotal: 20320,
-    onceAgainDepositCount: 10,
-    onceAgainDepositTotal: 41232,
-    firstWithdrawalCount: 5,
-    firstWithdrawalTotal: 20320,
-    onceAgainWithdrawalCount: 10,
-    onceAgainWithdrawalTotal: 41232,
-    loginCount: 20,
-    registerCount: 3,
-  })
-}
+const data = [...Array(50)].map((t, i) => ({
+  id: i,
+  account: 'aaaa(小白)',
+  firstDepositCount: 5,
+  firstDepositTotal: 20320,
+  onceAgainDepositCount: 10,
+  onceAgainDepositTotal: 41232,
+  firstWithdrawalCount: 5,
+  firstWithdrawalTotal: 20320,
+  onceAgainWithdrawalCount: 10,
+  onceAgainWithdrawalTotal: 41232,
+  loginCount: 20,
+  registerCount: 3,
+}))
 const TableData: React.FC = () => {
   return <TableSets columns={columns} data={data} />
 }
