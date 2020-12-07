@@ -26,7 +26,7 @@ const BatchOpperatorDropdown: React.FC<BatchOpperatorDropdownProps> = ({
 }) => {
   return (
     <Dropdown overlay={createMenu(options)} {...props}>
-      <a onClick={(e) => e.preventDefault()}>
+      <a className="link" onClick={(e) => e.preventDefault()}>
         操作(0)
         <DownOutlined />
       </a>

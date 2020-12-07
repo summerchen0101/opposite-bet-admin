@@ -36,7 +36,11 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
       title: '下層',
       render: (_, row) => {
         const { setCurrentTable } = useTablePicker()
-        return <a onClick={(e) => setCurrentTable('main')}>{row.childCount}</a>
+        return (
+          <a className="link" onClick={(e) => setCurrentTable('main')}>
+            {row.childCount}
+          </a>
+        )
       },
       width: 100,
     },

@@ -30,7 +30,7 @@ const columns: ColumnsType<TableItem> = [
   {
     title: '申請單編號',
     width: 100,
-    render: (_, row) => <a>{row.id}</a>,
+    render: (_, row) => <a className="link">{row.id}</a>,
   },
   {
     title: '帳號/姓名',

@@ -41,11 +41,11 @@ export const createColumns: ColumnsGenerator<TableItem> = (data) => {
         return (
           <>
             <PopoverEditor value={teams[0]}>
-              <a>{teams[0]}</a>
+              <a className="link">{teams[0]}</a>
             </PopoverEditor>
             <br />
             <PopoverEditor value={teams[1]}>
-              <a>{teams[1]}</a>
+              <a className="link">{teams[1]}</a>
             </PopoverEditor>
           </>
         )
@@ -57,7 +57,7 @@ export const createColumns: ColumnsGenerator<TableItem> = (data) => {
       render(value, row) {
         return (
           <PopoverEditor value={value}>
-            <a>{value}</a>
+            <a className="link">{value}</a>
           </PopoverEditor>
         )
       },
@@ -72,7 +72,7 @@ export const createColumns: ColumnsGenerator<TableItem> = (data) => {
         ]
         return (
           <PopoverEditor value={value} options={options}>
-            <a>{value}</a>
+            <a className="link">{value}</a>
           </PopoverEditor>
         )
       },
@@ -99,7 +99,9 @@ export const createColumns: ColumnsGenerator<TableItem> = (data) => {
             <PopupModalWithTrigger
               title="添加結果"
               trigger={(setVisible) => (
-                <a onClick={() => setVisible(true)}>點擊添加</a>
+                <a onClick={() => setVisible(true)} className="link">
+                  點擊添加
+                </a>
               )}
               content={(setVisible) => <ScoreForm setVisible={setVisible} />}
             />

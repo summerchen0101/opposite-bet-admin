@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+import { blue } from '@ant-design/colors'
 
 export default createGlobalStyle`
   label {
@@ -14,5 +15,8 @@ export default createGlobalStyle`
   }
   .ant-form-item {
     margin-bottom: 18px
+  }
+  .link {
+    color: ${blue.primary}
   }
 `

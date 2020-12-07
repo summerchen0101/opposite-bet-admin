@@ -33,7 +33,11 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
       title: '上層',
       render: (_, row) => {
         const { setCurrentTable } = useTablePicker()
-        return <a onClick={(e) => setCurrentTable('top')}>{row.parent}</a>
+        return (
+          <a className="link" onClick={(e) => setCurrentTable('top')}>
+            {row.parent}
+          </a>
+        )
       },
       width: 100,
     },
@@ -42,7 +46,9 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
       render: (_, row) => {
         const { setCurrentTable } = useTablePicker()
         return (
-          <a onClick={(e) => setCurrentTable('member')}>{row.childCount}</a>
+          <a className="link" onClick={(e) => setCurrentTable('member')}>
+            {row.childCount}
+          </a>
         )
       },
       width: 100,

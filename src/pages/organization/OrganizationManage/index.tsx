@@ -1,5 +1,6 @@
 import Dashboard from '@/components/Dashboard'
 import PageSearchBar from '@/components/PageSearchBar'
+import LevelSelector from './containers/LevelSelector'
 import { useAppDispatch } from '@/store'
 import { useReducerInjector } from '@/utils/hooks'
 import { message } from 'antd'
@@ -37,6 +38,7 @@ const Manager: React.FC = () => {
       <PageHeader />
       <PageSearchBar>
         <AccountSearch />
+        <LevelSelector />
         <StatusSelector />
       </PageSearchBar>
       <TablePickerProvider>

@@ -76,7 +76,7 @@ const columns = [
             </>
           }
         >
-          <a>149.222.22.111</a>
+          <a className="link">149.222.22.111</a>
         </Popover>
       </>
     ),
