@@ -18,10 +18,10 @@ export const ThirdPartyDeposit = new PageG(
   `${rootPath}/third-deposit`,
   pages.ThirdPartyDeposit,
 )
-export const Withdrawal = new PageG(
+export const WithdrawRecord = new PageG(
   '提現紀錄',
   `${rootPath}/withdraw-record`,
-  pages.Withdrawal,
+  pages.WithdrawRecord,
 )
 export const ManualPayment = new PageG(
   '人工存提',
@@ -53,7 +53,7 @@ export const ThirdPartySetting = new PageG(
 RouteG.create([
   BankDeposit,
   ThirdPartyDeposit,
-  Withdrawal,
+  WithdrawRecord,
   ManualPayment,
   DepositSetting,
   WithdrawalSetting,
@@ -65,7 +65,7 @@ RouteG.create([
 MenuG.createCategory(rootName, rootPath, DollarOutlined, [
   BankDeposit,
   ThirdPartyDeposit,
-  Withdrawal,
+  WithdrawRecord,
   ManualPayment,
   DepositSetting,
   WithdrawalSetting,

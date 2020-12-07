@@ -1,6 +1,6 @@
 import React from 'react'
 import PageHeader from '@/components/PageHeader'
-import { Withdrawal as page } from '@/pages/payment/routes'
+import { WithdrawRecord as page } from '@/pages/payment/routes'
 import { useBreadcrumb } from '@/utils/hooks'
 
 const Component: React.FC = () => {
