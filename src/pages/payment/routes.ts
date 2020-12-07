@@ -8,15 +8,10 @@ const rootName = '金流管理'
 const rootPath = '/payment'
 
 // PAGES
-export const BankDeposit = new PageG(
-  '銀行轉帳',
-  `${rootPath}/bank-deposit`,
-  pages.BankDeposit,
-)
-export const ThirdPartyDeposit = new PageG(
-  '第三方金流',
-  `${rootPath}/third-deposit`,
-  pages.ThirdPartyDeposit,
+export const DepositRecord = new PageG(
+  '充值紀錄',
+  `${rootPath}/deposit-record`,
+  pages.DepositRecord,
 )
 export const WithdrawRecord = new PageG(
   '提現紀錄',
@@ -51,8 +46,7 @@ export const ThirdPartySetting = new PageG(
 
 // ROUTERS
 RouteG.create([
-  BankDeposit,
-  ThirdPartyDeposit,
+  DepositRecord,
   WithdrawRecord,
   ManualPayment,
   DepositSetting,
@@ -63,8 +57,7 @@ RouteG.create([
 
 // MENU
 MenuG.createCategory(rootName, rootPath, DollarOutlined, [
-  BankDeposit,
-  ThirdPartyDeposit,
+  DepositRecord,
   WithdrawRecord,
   ManualPayment,
   DepositSetting,

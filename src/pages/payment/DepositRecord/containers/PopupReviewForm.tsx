@@ -26,11 +26,7 @@ const ReviewForm: React.FC = () => {
     wrapperCol: { span: 16 },
   }
   return (
-    <PopupModal
-      visible={isDisplay}
-      title="gogoro 手動 - 第三方金流"
-      onCancel={onCancel}
-    >
+    <PopupModal visible={isDisplay} title="gogoro 充值審核" onCancel={onCancel}>
       <Form
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
@@ -41,13 +37,13 @@ const ReviewForm: React.FC = () => {
         <FormField label="會員名稱">
           <FormStaticText>gogoro</FormStaticText>
         </FormField>
-        <FormField label="單號">
-          <FormStaticText>2020091517395623</FormStaticText>
-        </FormField>
         <FormField label="存入金額">
           <h5 style={{ margin: 0 }}>3,000</h5>
         </FormField>
-        <FormField label="金流單號">
+        <FormField label="入款優惠">
+          <Input placeholder="請輸入" />
+        </FormField>
+        <FormField label="入款手續費">
           <Input placeholder="請輸入" />
         </FormField>
         <FormField label="備註">
