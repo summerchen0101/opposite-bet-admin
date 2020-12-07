@@ -1,9 +1,12 @@
 import { TableSets, Text, IconLink } from '@/components'
+import { useAppDispatch } from '@/store'
 import { ColumnsGenerator } from '@/types'
 import { toDateTime } from '@/utils/transfer'
 import { EditOutlined, LockOutlined } from '@ant-design/icons'
 import { Space } from 'antd'
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { toggleLoginHistoryModal, toggleWhiteListModal } from '../../reducer'
 import { useTablePicker } from '../TablePickerProvider'
 
 interface TableItem {
@@ -76,7 +79,21 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
             ),
           width: 100,
         },
-        { title: '白名單', render: (_, row) => row.whiteIPCount, width: 100 },
+        {
+          title: '白名單',
+          render: (_, row) => {
+            const dispatch = useDispatch()
+            return (
+              <a
+                className="link"
+                onClick={(e) => dispatch(toggleWhiteListModal(true))}
+              >
+                {row.whiteIPCount}
+              </a>
+            )
+          },
+          width: 100,
+        },
       ],
     },
     {
@@ -85,13 +102,22 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
         { title: '失敗次數', render: (_, row) => row.failTimes, width: 100 },
         {
           title: '註冊/最後登入',
-          render: (_, row) => (
-            <>
-              註冊：{toDateTime(row.registerAt)} <br />
-              登入：{toDateTime(row.loginAt)} <br />
-              登入IP：{row.loginIP}
-            </>
-          ),
+          render: (_, row) => {
+            const dispatch = useDispatch()
+            return (
+              <>
+                註冊：{toDateTime(row.registerAt)} <br />
+                登入：{toDateTime(row.loginAt)} <br />
+                登入IP：
+                <a
+                  className="link"
+                  onClick={(e) => dispatch(toggleLoginHistoryModal(true))}
+                >
+                  {row.loginIP}
+                </a>
+              </>
+            )
+          },
           width: 230,
         },
       ],

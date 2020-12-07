@@ -15,6 +15,7 @@ import { useDispatch } from 'react-redux'
 import { toggleLoginHistoryModal } from '../reducer'
 import { selectDisplayLoginHistoryModal, useTypedSelector } from '../selectors'
 import { DeleteOutlined } from '@ant-design/icons'
+import { addKeyToArrayItem } from '@/utils/transfer'
 const { Option } = Select
 const LoginHistoryForm: React.FC = () => {
   const dispatch = useDispatch()
@@ -129,7 +130,7 @@ const LoginHistoryForm: React.FC = () => {
 
         <FormField>
           <Table
-            dataSource={data}
+            dataSource={addKeyToArrayItem(data)}
             columns={columns}
             size="small"
             bordered

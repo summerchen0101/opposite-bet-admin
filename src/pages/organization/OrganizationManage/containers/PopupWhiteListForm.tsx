@@ -1,20 +1,12 @@
-import { PopupConfirm, IconLink, PopupModal } from '@/components'
+import { IconLink, PopupConfirm, PopupModal } from '@/components'
 import Form, { FormField } from '@/components/Form'
-import {
-  Button,
-  Col,
-  Form as AntForm,
-  Input,
-  Row,
-  Select,
-  Space,
-  Table,
-} from 'antd'
+import { addKeyToArrayItem } from '@/utils/transfer'
+import { DeleteOutlined } from '@ant-design/icons'
+import { Button, Form as AntForm, Input, Select, Space, Table } from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleWhiteListModal } from '../reducer'
 import { selectDisplayWhiteListModal, useTypedSelector } from '../selectors'
-import { DeleteOutlined } from '@ant-design/icons'
 const { Option } = Select
 const WhiteListForm: React.FC = () => {
   const dispatch = useDispatch()
@@ -67,7 +59,7 @@ const WhiteListForm: React.FC = () => {
 
         <FormField>
           <Table
-            dataSource={data}
+            dataSource={addKeyToArrayItem(data)}
             columns={columns}
             size="small"
             bordered
