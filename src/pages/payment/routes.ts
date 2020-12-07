@@ -14,7 +14,7 @@ export const DepositRecord = new PageG(
   pages.DepositRecord,
 )
 export const WithdrawRecord = new PageG(
-  '提現紀錄',
+  '提領紀錄',
   `${rootPath}/withdraw-record`,
   pages.WithdrawRecord,
 )
@@ -28,10 +28,10 @@ export const DepositSetting = new PageG(
   `${rootPath}/deposit-setting`,
   pages.DepositSetting,
 )
-export const WithdrawalSetting = new PageG(
-  '提現設置',
+export const WithdrawSetting = new PageG(
+  '提領設置',
   `${rootPath}/withdraw-setting`,
-  pages.WithdrawalSetting,
+  pages.WithdrawSetting,
 )
 export const BankAccountSetting = new PageG(
   '帳戶資料設置',
@@ -50,7 +50,7 @@ RouteG.create([
   WithdrawRecord,
   ManualPayment,
   DepositSetting,
-  WithdrawalSetting,
+  WithdrawSetting,
   BankAccountSetting,
   ThirdPartySetting,
 ])
@@ -61,7 +61,7 @@ MenuG.createCategory(rootName, rootPath, DollarOutlined, [
   WithdrawRecord,
   ManualPayment,
   DepositSetting,
-  WithdrawalSetting,
+  WithdrawSetting,
   BankAccountSetting,
   ThirdPartySetting,
 ])

@@ -8,55 +8,56 @@ import {
 import { Space } from 'antd'
 import React from 'react'
 import { Text } from '@/components'
-
-const columns = [
+import { ColumnsType } from 'antd/lib/table'
+import { getFakeID } from '@/utils/helper'
+interface TableItem {
+  id: string
+}
+const columns: ColumnsType<TableItem> = [
   {
     title: '編號',
-    dataIndex: 'account',
+    render: (_, row) => row.id,
     width: 100,
-    render: (_, row) => '112',
   },
   {
     title: '名稱',
-    dataIndex: 'firstDepositCount',
+    render: (_, row) => '-',
     width: 120,
-    render: (_, row) => '存入',
   },
   {
     title: '上限',
-    dataIndex: 'firstDepositTotal',
+    render: (_, row) => '-',
     width: 140,
-    render: (_, row) => '人工存入',
   },
   {
     title: '下限',
-    dataIndex: 'onceAgainDepositCount',
+    render: (_, row) => '-',
     width: 120,
-    render: (_, row) => 'xxxx',
   },
   {
     title: '單日累計上限人數',
-    dataIndex: 'onceAgainDepositTotal',
+    render: (_, row) => 2000,
     width: 140,
-    render: (_, row) => 'xxxx',
   },
   {
     title: '單日手續費優惠',
-    dataIndex: 'depositCount',
+    render: (_, row) => 300,
     width: 120,
-    render: (_, row) => (2200).toLocaleString(),
+  },
+  {
+    title: '狀態',
+    render: (_, row) => <Text color="danger">停用</Text>,
+    width: 100,
   },
   {
     title: '更新人員',
-    dataIndex: 'firstWithdrawalCount',
-    width: 120,
     render: (_, row) => 'flora',
+    width: 120,
   },
   {
     title: '更新時間',
-    dataIndex: 'depositTotal',
-    width: 200,
     render: (_, row) => '2019-07-01 10:54:36',
+    width: 200,
   },
   {
     title: () => (
@@ -82,23 +83,9 @@ const columns = [
   },
 ]
 
-const data = []
-for (let i = 1; i <= 50; i++) {
-  data.push({
-    id: i,
-    account: 'aaaa(小白)',
-    firstDepositCount: 5,
-    firstDepositTotal: 20320,
-    onceAgainDepositCount: 10,
-    onceAgainDepositTotal: 41232,
-    firstWithdrawalCount: 5,
-    firstWithdrawalTotal: 20320,
-    onceAgainWithdrawalCount: 10,
-    onceAgainWithdrawalTotal: 41232,
-    loginCount: 20,
-    registerCount: 3,
-  })
-}
+const data: TableItem[] = [...Array(5)].map((t, i) => ({
+  id: getFakeID(),
+}))
 const TableData: React.FC = () => {
   return <TableSets columns={columns} data={data} />
 }

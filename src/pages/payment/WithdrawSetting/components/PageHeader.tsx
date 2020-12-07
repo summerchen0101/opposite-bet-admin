@@ -1,7 +1,7 @@
 import React from 'react'
 import PageHeader from '@/components/PageHeader'
 import CreateButton from '../containers/CreateButton'
-import { WithdrawalSetting as page } from '@/pages/payment/routes'
+import { WithdrawSetting as page } from '@/pages/payment/routes'
 import { useBreadcrumb } from '@/utils/hooks'
 
 const Component: React.FC = () => {

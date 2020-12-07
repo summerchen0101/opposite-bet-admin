@@ -45,7 +45,7 @@ const CreateForm: React.FC = () => {
         <h5>手續費設置</h5>
         <Row gutter={16}>
           <Col span={12}>
-            <FormField label="優惠設置">
+            <FormField label="優惠次數">
               <Input itemType="number" placeholder="0" />
             </FormField>
           </Col>
@@ -60,7 +60,7 @@ const CreateForm: React.FC = () => {
         <Row gutter={16}>
           <Col span={12}>
             <FormField label="金額">
-              <Input itemType="number" placeholder="0" />
+              <Input itemType="number" placeholder="5000" />
             </FormField>
           </Col>
         </Row>
