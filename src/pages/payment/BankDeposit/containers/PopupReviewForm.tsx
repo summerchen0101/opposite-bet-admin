@@ -38,7 +38,7 @@ const ReviewForm: React.FC = () => {
           <FormStaticText>gogoro</FormStaticText>
         </FormField>
         <FormField label="存入金額">
-          <h3 style={{ margin: 0 }}>3,000</h3>
+          <h5 style={{ margin: 0 }}>3,000</h5>
         </FormField>
         <FormField label="入款優惠">
           <Input placeholder="請輸入" />

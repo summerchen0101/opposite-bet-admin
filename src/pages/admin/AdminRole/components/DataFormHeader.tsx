@@ -4,7 +4,7 @@ import { EyeOutlined, SettingOutlined } from '@ant-design/icons'
 
 const DataFormHeader: React.FC = () => {
   return (
-    <h3>
+    <h5>
       選擇許可權層級
       <Space style={{ float: 'right', fontWeight: 400, fontSize: '14px' }}>
         <EyeOutlined />
@@ -12,7 +12,7 @@ const DataFormHeader: React.FC = () => {
         <SettingOutlined />
         <span>管理</span>
       </Space>
-    </h3>
+    </h5>
   )
 }
 

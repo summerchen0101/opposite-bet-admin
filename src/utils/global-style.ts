@@ -6,7 +6,7 @@ export default createGlobalStyle`
     margin-bottom: 0
   }
   .ant-form {
-    h3 {
+    h5 {
       margin-bottom: 15px;
     }
   }

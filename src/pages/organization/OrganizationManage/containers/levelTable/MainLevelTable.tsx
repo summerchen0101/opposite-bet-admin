@@ -179,7 +179,7 @@ const data: TableItem[] = [...Array(5)].map((_, i) => ({
 const MainLevelTable: React.FC = () => {
   return (
     <>
-      <h3>階層列表</h3>
+      <h5>階層列表</h5>
       <TableSets<TableItem>
         createColumns={createColumns}
         data={data}

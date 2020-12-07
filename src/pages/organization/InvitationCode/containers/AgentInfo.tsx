@@ -33,7 +33,7 @@ data = addKeyToArrayItem(data)
 const AgentInfo: React.FC = () => {
   return (
     <>
-      <h3>代理資訊</h3>
+      <h5>代理資訊</h5>
       <Table
         bordered
         showHeader={false}

@@ -28,7 +28,7 @@ const CreateForm: React.FC = () => {
           <Input />
         </FormField>
         <div style={{ marginTop: 30 }}></div>
-        <h3>出款限額設置</h3>
+        <h5>出款限額設置</h5>
         <Row gutter={16}>
           <Col span={12}>
             <FormField label="上限">
@@ -42,7 +42,7 @@ const CreateForm: React.FC = () => {
           </Col>
         </Row>
         <div style={{ marginTop: 30 }}></div>
-        <h3>手續費設置</h3>
+        <h5>手續費設置</h5>
         <Row gutter={16}>
           <Col span={12}>
             <FormField label="優惠設置">
@@ -56,7 +56,7 @@ const CreateForm: React.FC = () => {
           </Col>
         </Row>
         <div style={{ marginTop: 30 }}></div>
-        <h3>每日累計出款上限</h3>
+        <h5>每日累計出款上限</h5>
         <Row gutter={16}>
           <Col span={12}>
             <FormField label="金額">

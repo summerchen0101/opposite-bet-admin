@@ -45,7 +45,7 @@ const ReviewForm: React.FC = () => {
           <FormStaticText>2020091517395623</FormStaticText>
         </FormField>
         <FormField label="存入金額">
-          <h3 style={{ margin: 0 }}>3,000</h3>
+          <h5 style={{ margin: 0 }}>3,000</h5>
         </FormField>
         <FormField label="金流單號">
           <Input placeholder="請輸入" />

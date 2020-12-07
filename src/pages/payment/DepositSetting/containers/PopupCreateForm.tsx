@@ -39,7 +39,7 @@ const CreateForm: React.FC = () => {
           </Select>
         </FormField>
         <div style={{ marginTop: 30 }}></div>
-        <h3>入款限額設置</h3>
+        <h5>入款限額設置</h5>
         <Row gutter={16}>
           <Col span={12}>
             <FormField label="上限">
@@ -53,7 +53,7 @@ const CreateForm: React.FC = () => {
           </Col>
         </Row>
         <div style={{ marginTop: 10 }}></div>
-        <h3>會員端顯示</h3>
+        <h5>會員端顯示</h5>
         <FormField label="收款人" className="narrow">
           <FormStaticText>王大明</FormStaticText>
         </FormField>
