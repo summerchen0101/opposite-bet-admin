@@ -129,9 +129,6 @@ const ReviewForm: React.FC = () => {
               通過
             </Button>
             <Button type="primary" htmlType="submit">
-              扣押
-            </Button>
-            <Button type="primary" htmlType="submit">
               拒絕
             </Button>
           </Space>

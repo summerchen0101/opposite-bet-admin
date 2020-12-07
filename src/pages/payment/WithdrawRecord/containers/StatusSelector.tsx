@@ -2,7 +2,7 @@ import { BasicSelector } from '@/components'
 import React from 'react'
 
 const options = [
-  { label: '全部', value: 'all' },
+  { label: '全部狀態', value: 'all' },
   { label: '待批', value: 'waiting' },
   { label: '批准', value: 'confirm' },
   { label: '扣押', value: 'seize' },
