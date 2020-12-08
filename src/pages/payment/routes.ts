@@ -34,7 +34,7 @@ export const WithdrawSetting = new PageG(
   pages.WithdrawSetting,
 )
 export const BankAccountSetting = new PageG(
-  '銀行列表',
+  '銀行帳戶',
   `${rootPath}/bank-account-setting`,
   pages.BankAccountSetting,
 )

@@ -29,17 +29,6 @@ const BankCreateForm: React.FC = () => {
         <FormField label="銀行代碼" name="clientTeam" required>
           <Input />
         </FormField>
-        <FormField
-          label="顯示會員端"
-          name="country"
-          required
-          initialValue={['opt1']}
-        >
-          <Checkbox.Group>
-            <Checkbox value="opt1">入款</Checkbox>
-            <Checkbox value="opt2">出款</Checkbox>
-          </Checkbox.Group>
-        </FormField>
 
         <FormField style={{ marginTop: '20px', textAlign: 'center' }}>
           <Space size="large">

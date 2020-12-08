@@ -1,5 +1,13 @@
 import PopupModal from '@/components/PopupModal'
-import { Button, DatePicker, Input, Select, Space, Form as AntForm } from 'antd'
+import {
+  Button,
+  DatePicker,
+  Input,
+  Select,
+  Space,
+  Form as AntForm,
+  Checkbox,
+} from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleCreateModal } from '../reducer'
@@ -23,25 +31,28 @@ const CreateForm: React.FC = () => {
   return (
     <PopupModal visible={isDisplay} title="新增常用帳戶" onCancel={onCancel}>
       <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
-        <FormField label="銀行名稱" name="mainTeam" required>
+        <FormField label="銀行名稱" name="bankName">
           <Select placeholder="請選擇" allowClear>
             <Option value="opt1">822 中國信託</Option>
           </Select>
         </FormField>
-        <FormField label="銀行帳戶" name="clientTeam" required>
+        <FormField label="分行" name="branch">
           <Input />
         </FormField>
-        <FormField label="開戶行網點" name="country" required>
+        <FormField label="戶名" name="accountName">
           <Input />
         </FormField>
-        <FormField label="帳戶" name="league" required>
+        <FormField label="帳號" name="accountNumber">
           <Input />
         </FormField>
-        <FormField label="類型" name="startAt" required>
-          <Select placeholder="請選擇" allowClear>
-            <Option value="opt1">存入</Option>
-            <Option value="opt2">提出</Option>
-          </Select>
+        <FormField label="用途" name="usage" initialValue={['opt1']}>
+          <Checkbox.Group>
+            <Checkbox value="opt1">入款</Checkbox>
+            <Checkbox value="opt2">出款</Checkbox>
+          </Checkbox.Group>
+        </FormField>
+        <FormField label="備註" name="notes">
+          <Input.TextArea />
         </FormField>
 
         <FormField style={{ marginTop: '20px', textAlign: 'center' }}>

@@ -35,10 +35,6 @@ const BankListForm: React.FC = () => {
       render: (_, row) => '中國信託',
     },
     {
-      title: '顯示會員端',
-      render: (_, row) => '入款 & 出款',
-    },
-    {
       title: '更新人員',
       render: (_, row) => 'frola',
     },
