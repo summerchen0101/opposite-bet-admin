@@ -23,11 +23,6 @@ export const PageManage = new PageG(
   `${rootPath}/page-manage`,
   pages.PageManage,
 )
-export const Announcement = new PageG(
-  '公告管理',
-  `${rootPath}/announcement`,
-  pages.Announcement,
-)
 export const MemberLabel = new PageG(
   '標籤管理',
   `${rootPath}/member-label`,
@@ -49,7 +44,6 @@ RouteG.create([
   LandingPage,
   Carousel,
   PageManage,
-  Announcement,
   InMail,
   Faq,
   MemberLabel,
@@ -61,7 +55,6 @@ MenuG.createCategory(rootName, rootPath, HomeOutlined, [
   LandingPage,
   Carousel,
   PageManage,
-  Announcement,
   InMail,
   Faq,
   MemberLabel,

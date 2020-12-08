@@ -2,7 +2,7 @@ import { BasicSelector } from '@/components'
 import React from 'react'
 
 const options = [
-  { label: '前台顯示(全部)', value: 'all' },
+  { label: '前台顯示(啟/停用)', value: 'all' },
   { label: '啟用', value: 'opt1' },
   { label: '停用', value: 'opt2' },
 ]

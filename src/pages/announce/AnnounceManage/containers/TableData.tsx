@@ -1,5 +1,5 @@
 import { TableSets, Text, IconLink } from '@/components'
-import { DeleteOutlined, FilterFilled } from '@ant-design/icons'
+import { DeleteOutlined, FilterFilled, EditFilled } from '@ant-design/icons'
 import { Space } from 'antd'
 import React from 'react'
 
@@ -55,16 +55,16 @@ const columns = [
         />
       </>
     ),
-    key: 'control',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
       return (
         <Space size="small">
+          <IconLink icon={<EditFilled />} label="編輯" />
           <IconLink icon={<DeleteOutlined />} label="刪除" />
         </Space>
       )
     },
-    width: 70,
+    width: 100,
   },
 ]
 

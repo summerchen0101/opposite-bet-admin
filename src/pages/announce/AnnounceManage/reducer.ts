@@ -9,7 +9,7 @@ const initialState: IState = {
   displayCreateModal: false,
 }
 
-export const moduleName = 'announcement'
+export const moduleName = 'announceManage'
 
 const module = createSlice({
   name: moduleName,
