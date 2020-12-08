@@ -43,7 +43,7 @@ const columns = [
     render(value, row) {
       return (
         <PopoverEditor value={value}>
-          <a className="link">{value}</a>
+          <a>{value}</a>
         </PopoverEditor>
       )
     },

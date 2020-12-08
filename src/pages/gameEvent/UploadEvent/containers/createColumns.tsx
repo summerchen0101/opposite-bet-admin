@@ -40,7 +40,7 @@ export const createColumns: ColumnsGenerator<TableItem> = (data) => {
       render(value, row) {
         return (
           <PopoverEditor value={value}>
-            <a className="link">{value}</a>
+            <a>{value}</a>
           </PopoverEditor>
         )
       },
@@ -55,7 +55,7 @@ export const createColumns: ColumnsGenerator<TableItem> = (data) => {
         ]
         return (
           <PopoverEditor value={value} options={options}>
-            <a className="link">{value}</a>
+            <a>{value}</a>
           </PopoverEditor>
         )
       },
@@ -66,7 +66,7 @@ export const createColumns: ColumnsGenerator<TableItem> = (data) => {
       render(value, row) {
         return (
           <PopoverEditor value={value}>
-            <a className="link">{value}</a>
+            <a>{value}</a>
           </PopoverEditor>
         )
       },

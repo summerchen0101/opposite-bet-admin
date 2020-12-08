@@ -70,9 +70,9 @@ const ReviewForm: React.FC = () => {
               <FormStaticText>2020-07-10 06:59:30</FormStaticText>
             </FormField>
             <FormField label="金額">
-              <h5 style={{ margin: 0 }}>3,000.00</h5>
+              <h3 style={{ margin: 0 }}>3,000.00</h3>
             </FormField>
-            <h5>上次出款後之存款</h5>
+            <h3>上次出款後之存款</h3>
             <FormField>
               <Table
                 bordered
@@ -84,7 +84,7 @@ const ReviewForm: React.FC = () => {
             </FormField>
           </Col>
           <Col span={12}>
-            <h5>可扣除項目</h5>
+            <h3>可扣除項目</h3>
             <FormField>
               <Checkbox.Group defaultValue={['opt1']}>
                 <Checkbox style={checkboxStyle} value="opt1">
@@ -98,11 +98,11 @@ const ReviewForm: React.FC = () => {
                 </Checkbox>
               </Checkbox.Group>
             </FormField>
-            <h5>備註</h5>
+            <h3>備註</h3>
             <FormField>
               <Input.TextArea style={{ width: '100%' }} />
             </FormField>
-            <h5>出款明細</h5>
+            <h3>出款明細</h3>
             <FormField label="出款金額" className="narrow">
               <FormStaticText>3,000.00</FormStaticText>
             </FormField>

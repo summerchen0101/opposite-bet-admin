@@ -26,7 +26,7 @@ data = addKeyToArrayItem(data)
 const ChildLevelInfo: React.FC = () => {
   return (
     <div>
-      <h5>下線資訊</h5>
+      <h3>下線資訊</h3>
       <Table
         columns={columns}
         dataSource={data}

@@ -21,7 +21,7 @@ const columns = [
       ]
       return (
         <PopoverEditor options={options} value={value}>
-          <a className="link">{value}</a>
+          <a>{value}</a>
         </PopoverEditor>
       )
     },

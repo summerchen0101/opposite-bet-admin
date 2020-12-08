@@ -11,9 +11,9 @@ const MemberResult: React.FC<{
   color?: string
 }> = ({ label, value, ...props }) => {
   return (
-    <h5 {...props}>
+    <h3 {...props}>
       {label}： <span className="score">{value}</span>
-    </h5>
+    </h3>
   )
 }
 

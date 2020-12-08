@@ -50,7 +50,7 @@ const PopupRegisterCountTable: React.FC = () => {
               </>
             }
           >
-            <a className="link">149.222.22.111</a>
+            <a>149.222.22.111</a>
           </Popover>
         </>
       ),

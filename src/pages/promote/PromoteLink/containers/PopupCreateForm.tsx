@@ -67,7 +67,7 @@ const CreateForm: React.FC = () => {
     <PopupModal visible={isDisplay} title="新增推廣連結" onCancel={onCancel}>
       <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
         <FormField label="帳號名稱" name="mainTeam" required>
-          <h5 style={{ margin: 0 }}>aaahcd (總代理)</h5>
+          <h3 style={{ margin: 0 }}>aaahcd (總代理)</h3>
         </FormField>
         <FormField label="組織層級" required>
           <CascaderSelector

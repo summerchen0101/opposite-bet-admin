@@ -156,7 +156,7 @@ const data: TableItem[] = [...Array(5)].map((t, i) => ({
 const TableData: React.FC = () => {
   return (
     <>
-      <h5 className="mb-2">危險客戶 (5)</h5>
+      <h3 className="mb-2">危險客戶 (5)</h3>
       <TableSets columns={columns} data={data} scroll={{ x: 1800 }} />
     </>
   )

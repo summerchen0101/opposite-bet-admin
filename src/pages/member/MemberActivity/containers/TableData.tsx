@@ -23,11 +23,7 @@ const columns = [
     render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleDepositModal(true))
-      return (
-        <a className="link" onClick={onClick}>
-          6
-        </a>
-      )
+      return <a onClick={onClick}>6</a>
     },
   },
   {
@@ -42,11 +38,7 @@ const columns = [
     render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleDepositModal(true))
-      return (
-        <a className="link" onClick={onClick}>
-          6
-        </a>
-      )
+      return <a onClick={onClick}>6</a>
     },
   },
   {
@@ -61,11 +53,7 @@ const columns = [
     render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleDepositModal(true))
-      return (
-        <a className="link" onClick={onClick}>
-          6
-        </a>
-      )
+      return <a onClick={onClick}>6</a>
     },
   },
   {
@@ -81,11 +69,7 @@ const columns = [
     render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleWithdrawalModal(true))
-      return (
-        <a className="link" onClick={onClick}>
-          6
-        </a>
-      )
+      return <a onClick={onClick}>6</a>
     },
   },
   {
@@ -100,11 +84,7 @@ const columns = [
     render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleWithdrawalModal(true))
-      return (
-        <a className="link" onClick={onClick}>
-          6
-        </a>
-      )
+      return <a onClick={onClick}>6</a>
     },
   },
   {
@@ -119,11 +99,7 @@ const columns = [
     render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleWithdrawalModal(true))
-      return (
-        <a className="link" onClick={onClick}>
-          6
-        </a>
-      )
+      return <a onClick={onClick}>6</a>
     },
   },
   {
@@ -139,11 +115,7 @@ const columns = [
     render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleLoginCountModal(true))
-      return (
-        <a className="link" onClick={onClick}>
-          10
-        </a>
-      )
+      return <a onClick={onClick}>10</a>
     },
   },
   {
@@ -153,11 +125,7 @@ const columns = [
     render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleRegisterCountModal(true))
-      return (
-        <a className="link" onClick={onClick}>
-          13
-        </a>
-      )
+      return <a onClick={onClick}>13</a>
     },
   },
   {

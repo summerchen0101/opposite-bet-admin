@@ -29,7 +29,7 @@ const columns: ColumnType<TableItem>[] = [
     title: '管理者帳號',
     dataIndex: 'account',
     width: 120,
-    render: (value) => (value ? <a className="link">{value}</a> : '-'),
+    render: (value) => (value ? <a>{value}</a> : '-'),
   },
   {
     title: '真實姓名',

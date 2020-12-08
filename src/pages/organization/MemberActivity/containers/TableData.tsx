@@ -29,7 +29,7 @@ const columns = [
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleDepositModal(true))
       return (
-        <a className="link" onClick={onClick}>
+        <a onClick={onClick}>
           6
         </a>
       )
@@ -48,7 +48,7 @@ const columns = [
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleDepositModal(true))
       return (
-        <a className="link" onClick={onClick}>
+        <a onClick={onClick}>
           6
         </a>
       )
@@ -67,7 +67,7 @@ const columns = [
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleDepositModal(true))
       return (
-        <a className="link" onClick={onClick}>
+        <a onClick={onClick}>
           6
         </a>
       )
@@ -87,7 +87,7 @@ const columns = [
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleWithdrawalModal(true))
       return (
-        <a className="link" onClick={onClick}>
+        <a onClick={onClick}>
           6
         </a>
       )
@@ -106,7 +106,7 @@ const columns = [
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleWithdrawalModal(true))
       return (
-        <a className="link" onClick={onClick}>
+        <a onClick={onClick}>
           6
         </a>
       )
@@ -125,7 +125,7 @@ const columns = [
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleWithdrawalModal(true))
       return (
-        <a className="link" onClick={onClick}>
+        <a onClick={onClick}>
           6
         </a>
       )
@@ -145,7 +145,7 @@ const columns = [
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleLoginCountModal(true))
       return (
-        <a className="link" onClick={onClick}>
+        <a onClick={onClick}>
           10
         </a>
       )
@@ -159,7 +159,7 @@ const columns = [
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleRegisterCountModal(true))
       return (
-        <a className="link" onClick={onClick}>
+        <a onClick={onClick}>
           13
         </a>
       )

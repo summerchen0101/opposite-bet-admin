@@ -15,7 +15,7 @@ const columns = [
     title: '標題',
     dataIndex: 'account',
     width: 250,
-    render: (_, row) => <a className="link">大特價大特價大特價</a>,
+    render: (_, row) => <a>大特價大特價大特價</a>,
   },
   {
     title: '裝置',

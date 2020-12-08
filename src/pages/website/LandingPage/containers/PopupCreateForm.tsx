@@ -55,7 +55,7 @@ const CreateForm: React.FC = () => {
                 </FormField>
                 <FormField label="裝置" required>
                   <Radio.Group defaultValue="op3">
-                    <Radio value="op1">H5</Radio>
+                    <Radio value="op1">h3</Radio>
                     <Radio value="op2">手機版</Radio>
                     <Radio value="op3">兩者皆上傳</Radio>
                   </Radio.Group>

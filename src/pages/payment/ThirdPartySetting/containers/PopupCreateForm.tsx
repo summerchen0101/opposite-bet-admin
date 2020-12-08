@@ -61,7 +61,7 @@ const CreateForm: React.FC = () => {
           </Col>
         </Row>
 
-        <h5>金流參數</h5>
+        <h3>金流參數</h3>
         <Row gutter={16}>
           <Col span={12}>
             <FormField label="商戶編號">
@@ -75,7 +75,7 @@ const CreateForm: React.FC = () => {
           </Col>
         </Row>
 
-        <h5>單筆限額</h5>
+        <h3>單筆限額</h3>
         <Row gutter={16}>
           <Col span={12}>
             <FormField label="上限">
@@ -89,7 +89,7 @@ const CreateForm: React.FC = () => {
           </Col>
         </Row>
 
-        <h5>停用設置</h5>
+        <h3>停用設置</h3>
         <Row gutter={16}>
           <Col span={12}>
             <FormField label="充值次數">

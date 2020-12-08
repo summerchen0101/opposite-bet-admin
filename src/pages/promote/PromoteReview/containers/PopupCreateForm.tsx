@@ -58,7 +58,7 @@ const CreateForm: React.FC = () => {
           </Col>
         </Row>
 
-        <h5>活動期間</h5>
+        <h3>活動期間</h3>
         <FormField>
           <Checkbox.Group defaultValue={['opt1']}>
             <Checkbox value="opt1">

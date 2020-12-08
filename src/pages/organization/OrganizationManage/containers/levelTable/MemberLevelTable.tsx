@@ -34,7 +34,7 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
       render: (_, row) => {
         const { setCurrentTable } = useTablePicker()
         return (
-          <a className="link" onClick={(e) => setCurrentTable('top')}>
+          <a onClick={(e) => setCurrentTable('top')}>
             {row.parent}
           </a>
         )
@@ -103,7 +103,7 @@ const data = [...Array(5)].map((_, i) => ({
 const MemberLevelTable: React.FC = () => {
   return (
     <>
-      <h5>會員列表</h5>
+      <h3>會員列表</h3>
       <TableSets<TableItem>
         createColumns={createColumns}
         data={data}

@@ -43,7 +43,7 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
           render: (_, row) => {
             const { setCurrentTable } = useTablePicker()
             return (
-              <a className="link" onClick={(e) => setCurrentTable('main')}>
+              <a onClick={(e) => setCurrentTable('main')}>
                 {row.childCount}
               </a>
             )
@@ -85,7 +85,7 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
             const dispatch = useDispatch()
             return (
               <a
-                className="link"
+
                 onClick={(e) => dispatch(toggleWhiteListModal(true))}
               >
                 {row.whiteIPCount}
@@ -110,7 +110,7 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
                 登入：{toDateTime(row.loginAt)} <br />
                 登入IP：
                 <a
-                  className="link"
+
                   onClick={(e) => dispatch(toggleLoginHistoryModal(true))}
                 >
                   {row.loginIP}
@@ -166,7 +166,7 @@ const data = [...Array(5)].map((_, i) => ({
 const TopLevelTable: React.FC = () => {
   return (
     <>
-      <h5>廠商列表</h5>
+      <h3>廠商列表</h3>
       <TableSets<TableItem>
         createColumns={createColumns}
         data={data}

@@ -6,7 +6,7 @@ export default createGlobalStyle`
     margin-bottom: 0
   }
   .ant-form {
-    h5 {
+    h3 {
       margin-bottom: 15px;
     }
   }
@@ -15,8 +15,5 @@ export default createGlobalStyle`
   }
   .ant-form-item {
     margin-bottom: 18px
-  }
-  .link {
-    color: ${blue.primary}
   }
 `

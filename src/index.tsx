@@ -9,7 +9,6 @@ import RouterProvider from '@/utils/RouterProvider'
 import { Helmet } from 'react-helmet'
 import GlobalStyle from '@/utils/global-style'
 import TabContextProvider from './contexts/TabContextProvider'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import PopupContextProvider from './contexts/PopupContextProvider'
 
 ReactDOM.render(

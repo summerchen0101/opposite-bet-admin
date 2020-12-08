@@ -48,7 +48,7 @@ const columns: ColumnsType<TableItem> = [
     title: '優惠名稱',
     dataIndex: 'name',
     width: 120,
-    render: (_, row) => <a className="link">{row.name}</a>,
+    render: (_, row) => <a>{row.name}</a>,
   },
   {
     title: '優惠期限',

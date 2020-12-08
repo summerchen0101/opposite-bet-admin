@@ -60,7 +60,7 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
           render: (_, row) => {
             const { setCurrentTable } = useTablePicker()
             return (
-              <a className="link" onClick={(e) => setCurrentTable('top')}>
+              <a onClick={(e) => setCurrentTable('top')}>
                 {row.parent.account}[{row.parent.nick}]
               </a>
             )
@@ -72,7 +72,7 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
           render: (_, row) => {
             const { setCurrentTable } = useTablePicker()
             return (
-              <a className="link" onClick={(e) => setCurrentTable('member')}>
+              <a onClick={(e) => setCurrentTable('member')}>
                 {row.childCount}
               </a>
             )
@@ -179,7 +179,7 @@ const data: TableItem[] = [...Array(5)].map((_, i) => ({
 const MainLevelTable: React.FC = () => {
   return (
     <>
-      <h5>階層列表</h5>
+      <h3>階層列表</h3>
       <TableSets<TableItem>
         createColumns={createColumns}
         data={data}

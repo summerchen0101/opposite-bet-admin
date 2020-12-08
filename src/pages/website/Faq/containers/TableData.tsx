@@ -8,7 +8,7 @@ const columns = [
     title: '標題',
     dataIndex: 'account',
     width: 140,
-    render: (_, row) => <a className="link">如何儲值</a>,
+    render: (_, row) => <a>如何儲值</a>,
   },
   {
     title: '另開視窗',
