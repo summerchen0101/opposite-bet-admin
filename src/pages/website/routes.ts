@@ -36,7 +36,6 @@ export const MemberLabelDetail = new PageG(
   `${rootPath}/member-label/detail`,
   pages.MemberLabelDetail,
 )
-export const InMail = new PageG('信件管理', `${rootPath}/in-mail`, pages.InMail)
 export const Faq = new PageG('常見問題', `${rootPath}/faq`, pages.Faq)
 
 // ROUTERS
@@ -44,7 +43,6 @@ RouteG.create([
   LandingPage,
   Carousel,
   PageManage,
-  InMail,
   Faq,
   MemberLabel,
   MemberLabelDetail,
@@ -55,7 +53,6 @@ MenuG.createCategory(rootName, rootPath, HomeOutlined, [
   LandingPage,
   Carousel,
   PageManage,
-  InMail,
   Faq,
   MemberLabel,
 ])

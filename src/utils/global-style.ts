@@ -17,15 +17,19 @@ export default createGlobalStyle`
     margin-bottom: 18px
   }
   .mb-1 {
-    margin-bottom: 7.5px
+    margin-bottom: 7.5px !important
   }
   .mb-2 {
-    margin-bottom: 15px
+    margin-bottom: 15px !important
   }
   .mr-2 {
-    margin-right: 15px
+    margin-right: 15px !important
+  }
+  .mb-0 {
+    margin-bottom: 0 !important
   }
   .float-right {
     float: right
   }
+
 `

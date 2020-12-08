@@ -6,7 +6,7 @@ import React from 'react'
 
 const columns = [
   {
-    title: '主題',
+    title: '標題',
     dataIndex: 'account',
     width: 180,
     render: (_, row) => '反水活動修改',
@@ -44,7 +44,6 @@ const columns = [
         />
       </>
     ),
-    key: 'control',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
       return (
@@ -53,7 +52,7 @@ const columns = [
         </Space>
       )
     },
-    width: 70,
+    width: 50,
   },
 ]
 

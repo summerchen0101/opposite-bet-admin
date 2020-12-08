@@ -10,12 +10,16 @@ const rootPath = '/announce'
 // PAGES
 export const AnnounceManage = new PageG(
   '公告列表',
-  `${rootPath}/account`,
+  `${rootPath}/manage`,
   pages.AnnounceManage,
 )
+export const InMail = new PageG('站內信', `${rootPath}/message`, pages.InMail)
 
 // ROUTERS
-RouteG.create([AnnounceManage])
+RouteG.create([AnnounceManage, InMail])
 
 // MENU
-MenuG.createCategory(rootName, rootPath, ControlOutlined, [AnnounceManage])
+MenuG.createCategory(rootName, rootPath, ControlOutlined, [
+  AnnounceManage,
+  InMail,
+])

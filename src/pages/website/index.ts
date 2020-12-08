@@ -1,4 +1,3 @@
-export { default as InMail } from './InMail'
 export { default as Carousel } from './Carousel'
 export { default as Faq } from './Faq'
 export { default as LandingPage } from './LandingPage'
