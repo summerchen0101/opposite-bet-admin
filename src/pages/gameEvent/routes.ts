@@ -36,11 +36,6 @@ export const DefaultOdds = new PageG(
   `${rootPath}/odds`,
   pages.DefaultOdds,
 )
-export const EventRule = new PageG(
-  '賽事規則',
-  `${rootPath}/rule`,
-  pages.EventRule,
-)
 
 // ROUTERS
 RouteG.create([
@@ -49,7 +44,6 @@ RouteG.create([
   UploadEvent,
   BettingHistory,
   DefaultOdds,
-  EventRule,
 ])
 
 // MENU
@@ -58,5 +52,4 @@ MenuG.createCategory(rootName, rootPath, DribbbleOutlined, [
   UploadEvent,
   BettingHistory,
   DefaultOdds,
-  EventRule,
 ])

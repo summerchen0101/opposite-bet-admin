@@ -1,6 +1,5 @@
 export { default as BettingHistory } from './BettingHistory'
 export { default as DefaultOdds } from './DefaultOdds'
 export { default as EventManager } from './EventManager'
-export { default as EventRule } from './EventRule'
 export { default as EventScore } from './EventScore'
 export { default as UploadEvent } from './UploadEvent'
