@@ -6,33 +6,28 @@ import React from 'react'
 const columns = [
   {
     title: '管理者帳號',
-    dataIndex: 'account',
     width: 140,
     render: (_, row) => 'PHMQ647',
   },
   {
     title: '日期',
-    dataIndex: 'firstDepositCount',
     width: 180,
     render: (_, row) => '2020-10-15 13:28:28',
   },
   {
     title: '變動',
-    dataIndex: 'firstDepositTotal',
     width: 300,
     render: (_, row) => 'Login successful. (loginip:24.111.96.143/32)',
   },
   {
     title: 'IP位址',
-    dataIndex: 'onceAgainDepositCount',
     width: 120,
     render: (_, row) => '0.0.0.0',
   },
   {
     title: '更新人員',
-    dataIndex: 'onceAgainDepositTotal',
-    width: 140,
     render: (_, row) => 'flora',
+    width: 140,
   },
   {
     title: () => <IconLink icon={<FilterFilled />} />,

@@ -9,55 +9,46 @@ import Text from '@/components/Text'
 const columns = [
   {
     title: '編號',
-    dataIndex: 'account',
     width: 100,
     render: (_, row) => 111,
   },
   {
     title: '標題',
-    dataIndex: 'firstDepositCount',
     width: 180,
     render: (_, row) => '反波膽開始',
   },
   {
     title: '開始時間',
-    dataIndex: 'firstDepositTotal',
     width: 180,
     render: (_, row) => '2019-08-21 19:10:08',
   },
   {
     title: '結束時間',
-    dataIndex: 'onceAgainDepositCount',
     width: 180,
     render: (_, row) => '2019-08-21 19:10:08',
   },
   {
     title: '網址',
-    dataIndex: 'onceAgainDepositTotal',
-    width: 140,
     render: (_, row) => '-',
+    width: 140,
   },
   {
     title: '連結方式',
-    dataIndex: 'depositCount',
     width: 120,
     render: (_, row) => '-',
   },
   {
     title: '狀態',
-    dataIndex: 'depositCount',
     width: 120,
     render: (_, row) => <Switch defaultChecked />,
   },
   {
     title: '更新人員',
-    dataIndex: 'firstWithdrawalCount',
     width: 120,
     render: (_, row) => 'flora',
   },
   {
     title: '更新時間',
-    dataIndex: 'depositTotal',
     width: 200,
     render: (_, row) => '2019-07-01 10:54:36',
   },

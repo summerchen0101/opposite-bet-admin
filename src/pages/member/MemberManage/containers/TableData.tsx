@@ -1,66 +1,54 @@
-import { Text, IconLink } from '@/components'
+import { IconLink, Text } from '@/components'
 import TableSets from '@/components/TableSets'
-import { FilterFilled } from '@ant-design/icons'
-import { Checkbox, Popover, Space } from 'antd'
-import React from 'react'
-import { EditFilled, DeleteOutlined } from '@ant-design/icons'
-import { IconButton } from '@/components'
 import { MemberDetail } from '@/pages/member/routes'
-import { useDispatch } from 'react-redux'
+import { DeleteOutlined, EditFilled, FilterFilled } from '@ant-design/icons'
+import { Popover, Space } from 'antd'
+import React from 'react'
 import { useHistory } from 'react-router-dom'
 
 const columns = [
   {
     title: '會員帳號',
-    dataIndex: 'account',
     width: 130,
     render: (_, row) => 'gogoro',
   },
   {
     title: '真實姓名',
-    dataIndex: 'firstDepositCount',
     width: 120,
     render: (_, row) => '陳大明',
   },
   {
     title: '角色',
-    dataIndex: 'firstDepositTotal',
     width: 140,
     render: (_, row) => '代理商',
   },
   {
     title: '標籤',
-    dataIndex: 'onceAgainDepositCount',
     width: 120,
     render: (_, row) => '-',
   },
   {
     title: '總餘額',
-    dataIndex: 'onceAgainDepositTotal',
-    width: 140,
     render: (_, row) => 1000,
+    width: 140,
   },
   {
     title: '總充值',
-    dataIndex: 'depositCount',
     width: 120,
     render: (_, row) => 1000,
   },
   {
     title: '總提現',
-    dataIndex: 'depositTotal',
     width: 140,
     render: (_, row) => 500,
   },
   {
     title: '註冊時間',
-    dataIndex: 'firstWithdrawalCount',
     width: '200px',
     render: (_, row) => '2020-09-16 14:25:42',
   },
   {
     title: '登入時間',
-    dataIndex: 'firstWithdrawalTotal',
     width: '200px',
     render: (_, row) => (
       <>
@@ -83,7 +71,6 @@ const columns = [
   },
   {
     title: '狀態',
-    dataIndex: 'onceAgainWithdrawalCount',
     width: 120,
     render: (_, row) => <Text color="success">正常</Text>,
   },

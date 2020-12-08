@@ -75,7 +75,6 @@ const columns: ColumnsType<TableItem> = [
   },
   {
     title: '更新人員/時間',
-    dataIndex: 'firstWithdrawalCount',
     width: 160,
     render: (_, row) => (
       <>

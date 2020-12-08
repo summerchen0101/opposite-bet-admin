@@ -9,39 +9,33 @@ import { MemberLabelDetail } from '@/pages/website/routes'
 const columns = [
   {
     title: '標籤名稱',
-    dataIndex: 'account',
     width: 100,
     render: (_, row) => <Link to={MemberLabelDetail.path}>危險客戶</Link>,
   },
   {
     title: '說明',
-    dataIndex: 'firstDepositCount',
     width: 120,
     render: (_, row) => '-',
   },
   {
     title: '會員數',
-    dataIndex: 'firstDepositTotal',
     width: 140,
     render: (_, row) => 80,
   },
   {
     title: '備註',
-    dataIndex: 'onceAgainDepositCount',
     width: 120,
     render: (_, row) => '-',
   },
   {
     title: '更新人員',
-    dataIndex: 'onceAgainDepositTotal',
-    width: 140,
     render: (_, row) => 'summer',
+    width: 140,
   },
   {
     title: '更新時間',
-    dataIndex: 'depositCount',
-    width: 120,
     render: (_, row) => '2020-12-12 10:49',
+    width: 120,
   },
   {
     title: () => (

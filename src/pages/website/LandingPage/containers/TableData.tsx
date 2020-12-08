@@ -13,49 +13,41 @@ import { Text } from '@/components'
 const columns = [
   {
     title: '標題',
-    dataIndex: 'account',
     width: 250,
     render: (_, row) => <a>大特價大特價大特價</a>,
   },
   {
     title: '裝置',
-    dataIndex: 'firstDepositTotal',
     width: 140,
     render: (_, row) => '-',
   },
   {
     title: '前台顯示',
-    dataIndex: 'onceAgainDepositCount',
     width: 120,
     render: (_, row) => <Text color="danger">關閉</Text>,
   },
   {
     title: '狀態',
-    dataIndex: 'depositCount',
     width: 120,
     render: (_, row) => <Text>進行中</Text>,
   },
   {
     title: '發布時間',
-    dataIndex: 'depositTotal',
     width: 200,
     render: (_, row) => '2019-07-01 10:54:36',
   },
   {
     title: '預約下架時間',
-    dataIndex: 'depositTotal',
     width: 200,
     render: (_, row) => '2019-07-01 10:54:36',
   },
   {
     title: '更新人員',
-    dataIndex: 'firstWithdrawalCount',
     width: 120,
     render: (_, row) => 'flora',
   },
   {
     title: '更新時間',
-    dataIndex: 'depositTotal',
     width: 200,
     render: (_, row) => '2019-07-01 10:54:36',
   },

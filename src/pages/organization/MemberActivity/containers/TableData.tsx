@@ -13,103 +13,73 @@ import { useDispatch } from 'react-redux'
 const columns = [
   {
     title: '代理商',
-    dataIndex: 'account',
     width: 100,
   },
   {
     title: '股東',
-    dataIndex: 'account',
     width: 100,
   },
   {
     title: '首次充值(筆)',
-    dataIndex: 'firstDepositCount',
     width: 120,
     render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleDepositModal(true))
-      return (
-        <a onClick={onClick}>
-          6
-        </a>
-      )
+      return <a onClick={onClick}>6</a>
     },
   },
   {
     title: '首次充值加總(元)',
-    dataIndex: 'firstDepositTotal',
     width: 140,
   },
   {
     title: '再次充值(筆)',
-    dataIndex: 'onceAgainDepositCount',
     width: 120,
     render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleDepositModal(true))
-      return (
-        <a onClick={onClick}>
-          6
-        </a>
-      )
+      return <a onClick={onClick}>6</a>
     },
   },
   {
     title: '再次充值加總(元)',
-    dataIndex: 'onceAgainDepositTotal',
+    render: (_, row) => '-',
     width: 140,
   },
   {
     title: '總充值(筆)',
-    dataIndex: 'depositCount',
     width: 120,
     render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleDepositModal(true))
-      return (
-        <a onClick={onClick}>
-          6
-        </a>
-      )
+      return <a onClick={onClick}>6</a>
     },
   },
   {
     title: '總充值加總(元)',
-    dataIndex: 'depositTotal',
     width: 140,
     render: (_, row) => row.firstDepositTotal + row.onceAgainDepositTotal,
   },
   {
     title: '首次提現(筆)',
-    dataIndex: 'firstWithdrawalCount',
     width: 120,
     render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleWithdrawalModal(true))
-      return (
-        <a onClick={onClick}>
-          6
-        </a>
-      )
+      return <a onClick={onClick}>6</a>
     },
   },
   {
     title: '首次提現加總(元)',
-    dataIndex: 'firstWithdrawalTotal',
     width: 140,
   },
   {
     title: '再次提現(筆)',
-    dataIndex: 'onceAgainWithdrawalCount',
     width: 120,
     render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleWithdrawalModal(true))
-      return (
-        <a onClick={onClick}>
-          6
-        </a>
-      )
+      return <a onClick={onClick}>6</a>
     },
   },
   {
@@ -124,11 +94,7 @@ const columns = [
     render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleWithdrawalModal(true))
-      return (
-        <a onClick={onClick}>
-          6
-        </a>
-      )
+      return <a onClick={onClick}>6</a>
     },
   },
   {
@@ -144,11 +110,7 @@ const columns = [
     render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleLoginCountModal(true))
-      return (
-        <a onClick={onClick}>
-          10
-        </a>
-      )
+      return <a onClick={onClick}>10</a>
     },
   },
   {
@@ -158,11 +120,7 @@ const columns = [
     render: (_, row) => {
       const dispatch = useDispatch()
       const onClick = () => dispatch(toggleRegisterCountModal(true))
-      return (
-        <a onClick={onClick}>
-          13
-        </a>
-      )
+      return <a onClick={onClick}>13</a>
     },
   },
   {

@@ -85,7 +85,6 @@ const columns: ColumnsType<TableItem> = [
         交易完成時間(GMT+8)
       </>
     ),
-    dataIndex: 'firstWithdrawalTotal',
     width: 200,
     render: (_, row) => (
       <>
@@ -103,7 +102,6 @@ const columns: ColumnsType<TableItem> = [
         更新時間
       </>
     ),
-    dataIndex: 'onceAgainWithdrawalCount',
     width: 200,
     render: (_, row) => (
       <>

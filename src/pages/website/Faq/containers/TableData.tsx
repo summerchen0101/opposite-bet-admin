@@ -6,37 +6,31 @@ import { DeleteOutlined } from '@ant-design/icons'
 const columns = [
   {
     title: '標題',
-    dataIndex: 'account',
     width: 140,
     render: (_, row) => <a>如何儲值</a>,
   },
   {
     title: '另開視窗',
-    dataIndex: 'firstDepositCount',
     width: 80,
     render: (_, row) => '是',
   },
   {
     title: '開始時間',
-    dataIndex: 'firstDepositTotal',
     width: 140,
     render: (_, row) => '2019-08-21 19:10:08',
   },
   {
     title: '結束時間',
-    dataIndex: 'onceAgainDepositCount',
     width: 140,
     render: (_, row) => '2019-08-21 19:10:08',
   },
   {
     title: '狀態',
-    dataIndex: 'onceAgainDepositTotal',
-    width: 80,
     render: (_, row) => <Text color="success">啟動</Text>,
+    width: 80,
   },
   {
     title: '更新人員',
-    dataIndex: 'depositCount',
     width: 100,
     render: (_, row) => 'summer',
   },

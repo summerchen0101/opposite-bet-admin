@@ -6,25 +6,21 @@ import React from 'react'
 const columns = [
   {
     title: '標題',
-    dataIndex: 'account',
     width: 180,
     render: (_, row) => '反水活動修改',
   },
   {
     title: '公告種類',
-    dataIndex: 'firstDepositCount',
     width: 120,
     render: (_, row) => '系統通知',
   },
   {
     title: '前台顯示',
-    dataIndex: 'firstDepositTotal',
     width: 100,
     render: (_, row) => <Text color="success">啟用</Text>,
   },
   {
     title: '期間',
-    dataIndex: 'onceAgainDepositCount',
     width: 180,
     render: (_, row) => (
       <>
@@ -35,13 +31,11 @@ const columns = [
   },
   {
     title: '更新人員',
-    dataIndex: 'firstWithdrawalCount',
     width: 120,
     render: (_, row) => 'flora',
   },
   {
     title: '更新時間',
-    dataIndex: 'depositTotal',
     width: 180,
     render: (_, row) => '2019-07-01 10:54:36',
   },

@@ -9,7 +9,6 @@ import Text from '@/components/Text'
 const columns = [
   {
     title: '投注資訊',
-    dataIndex: 'account',
     width: 100,
     children: [
       {
@@ -30,7 +29,6 @@ const columns = [
 
   {
     title: '本層總額',
-    dataIndex: 'firstDepositTotal',
     width: 140,
     children: [
       {
@@ -51,7 +49,6 @@ const columns = [
   },
   {
     title: '下層總額',
-    dataIndex: 'firstDepositTotal',
     width: 140,
     children: [
       {
@@ -73,20 +70,17 @@ const columns = [
 
   {
     title: '應交收額',
-    dataIndex: 'onceAgainDepositTotal',
-    width: 140,
     render: (_, row) => '-',
+    width: 140,
   },
   {
     title: '已交收額',
-    dataIndex: 'depositCount',
     width: 120,
     render: (_, row) => '-',
   },
 
   {
     title: '交收紀錄',
-    dataIndex: 'onceAgainWithdrawalCount',
     width: 120,
     children: [
       {

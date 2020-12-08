@@ -17,31 +17,26 @@ const columns = [
   },
   {
     title: '語系',
-    dataIndex: 'firstDepositCount',
     width: 100,
     render: (_, row) => '簡中',
   },
   {
     title: '類型',
-    dataIndex: 'firstDepositTotal',
     width: 100,
     render: (_, row) => 'HTML',
   },
   {
     title: '狀態',
-    dataIndex: 'onceAgainDepositCount',
     width: 100,
     render: (_, row) => <Text color="success">啟用</Text>,
   },
   {
     title: '更新人員',
-    dataIndex: 'firstWithdrawalCount',
     width: 100,
     render: (_, row) => 'flora',
   },
   {
     title: '更新時間',
-    dataIndex: 'depositTotal',
     width: 200,
     render: (_, row) => '2019-07-01 10:54:36',
   },

@@ -9,43 +9,36 @@ import Text from '@/components/Text'
 const columns = [
   {
     title: '會員帳號',
-    dataIndex: 'account',
     width: 100,
     render: (_, row) => 'summer99',
   },
   {
     title: '角色',
-    dataIndex: 'firstDepositCount',
     width: 100,
     render: (_, row) => '管理員',
   },
   {
     title: '狀態',
-    dataIndex: 'firstDepositTotal',
     width: 80,
     render: (_, row) => <Text color="danger">阻擋</Text>,
   },
   {
     title: '歷史登入IP',
-    dataIndex: 'onceAgainDepositCount',
     width: 120,
     render: (_, row) => '2019-07-01 10:54:36',
   },
   {
     title: '歷史登入時間',
-    dataIndex: 'onceAgainDepositTotal',
-    width: 150,
     render: (_, row) => '2019-07-01 10:54:36',
+    width: 150,
   },
   {
     title: '是否登入成功',
-    dataIndex: 'depositCount',
     width: 80,
     render: (_, row) => <Text color="danger">失敗</Text>,
   },
   {
     title: '歷程建立時間',
-    dataIndex: 'depositTotal',
     width: 150,
     render: (_, row) => '2019-07-01 10:54:36',
   },

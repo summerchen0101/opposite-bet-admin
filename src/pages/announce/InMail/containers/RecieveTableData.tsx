@@ -8,31 +8,27 @@ import React from 'react'
 const columns = [
   {
     title: '主題',
-    dataIndex: 'account',
     width: 180,
     render: (_, row) => '我無法儲值',
   },
   {
     title: '寄件人',
-    dataIndex: 'firstDepositCount',
     width: 120,
     render: (_, row) => 'peggy',
   },
   {
     title: '狀態',
-    dataIndex: 'firstDepositTotal',
     width: 100,
     render: (_, row) => <Text color="success">已讀</Text>,
   },
   {
     title: '信件種類',
-    dataIndex: 'onceAgainDepositCount',
     width: 100,
     render: (_, row) => '意見反應',
   },
   {
     title: '發送時間',
-    dataIndex: 'onceAgainDepositTotal',
+    render: (_, row) => '-',
     width: 140,
   },
   {

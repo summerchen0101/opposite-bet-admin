@@ -13,7 +13,6 @@ import Text from '@/components/Text'
 const columns = [
   {
     title: '投注資訊',
-    dataIndex: 'firstWithdrawalCount',
     width: 120,
     children: [
       {
@@ -46,10 +45,9 @@ const columns = [
       },
       {
         title: '已開獎',
-        dataIndex: 'onceAgainDepositTotal',
+        render: (_, row) => '-',
         allowFiltered: true,
         width: 140,
-        render: (_, row) => '-',
       },
       {
         title: '下注中',

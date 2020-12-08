@@ -51,7 +51,6 @@ const columns = [
   },
   {
     title: '會員帳號',
-    dataIndex: 'account',
     render(value, row) {
       return (
         <>

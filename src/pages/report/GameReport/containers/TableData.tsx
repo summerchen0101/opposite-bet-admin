@@ -9,13 +9,11 @@ import Text from '@/components/Text'
 const columns = [
   {
     title: '公司',
-    dataIndex: 'account',
     width: 100,
     render: (_, row) => '-',
   },
   {
     title: '遊戲站',
-    dataIndex: 'firstDepositCount',
     width: 120,
     children: [
       {
@@ -27,16 +25,14 @@ const columns = [
       },
       {
         title: '遊戲類型',
-        dataIndex: 'onceAgainDepositTotal',
+        render: (_, row) => '-',
         allowFiltered: true,
         width: 140,
-        render: (_, row) => '-',
       },
     ],
   },
   {
     title: '注單統計',
-    dataIndex: 'firstDepositTotal',
     width: 140,
     children: [
       {
@@ -72,7 +68,6 @@ const columns = [
 
   {
     title: '會員',
-    dataIndex: 'onceAgainWithdrawalCount',
     width: 120,
     children: [
       {
@@ -128,7 +123,6 @@ const columns = [
   },
   {
     title: '成本支出',
-    dataIndex: 'firstDepositTotal',
     width: 140,
     children: [
       {
@@ -155,7 +149,6 @@ const columns = [
   },
   {
     title: '小計',
-    dataIndex: 'firstWithdrawalTotal',
     width: 120,
     render: (_, row) => '-',
   },
