@@ -25,4 +25,7 @@ export default createGlobalStyle`
   .mr-2 {
     margin-right: 15px
   }
+  .float-right {
+    float: right
+  }
 `
