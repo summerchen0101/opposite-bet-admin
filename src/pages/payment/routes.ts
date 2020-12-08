@@ -38,12 +38,6 @@ export const BankAccountSetting = new PageG(
   `${rootPath}/bank-account-setting`,
   pages.BankAccountSetting,
 )
-export const ThirdPartySetting = new PageG(
-  '金流平台設置',
-  `${rootPath}/third-setting`,
-  pages.ThirdPartySetting,
-)
-
 // ROUTERS
 RouteG.create([
   DepositRecord,
@@ -52,7 +46,6 @@ RouteG.create([
   DepositSetting,
   WithdrawSetting,
   BankAccountSetting,
-  ThirdPartySetting,
 ])
 
 // MENU
@@ -63,5 +56,4 @@ MenuG.createCategory(rootName, rootPath, DollarOutlined, [
   DepositSetting,
   WithdrawSetting,
   BankAccountSetting,
-  ThirdPartySetting,
 ])
