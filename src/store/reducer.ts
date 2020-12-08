@@ -3,6 +3,7 @@ import * as API from '@/API'
 import { errorHandler } from '@/utils/helper'
 import { handleMenuTransfer } from '@/utils/transfer'
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import mockAPI from '@/utils/mock'
 export type TabType = {
   path: string
   label: string
@@ -26,7 +27,7 @@ const initialState: GlobalState = {
 export const fetchUserAndMenu = createAsyncThunk(
   'global/fetchUserAndMenu',
   async (_, { dispatch }) => {
-    const { result, data } = await API.fetchUserAndMenu()
+    const { result, data } = await mockAPI.fetchUserAndMenu()
     errorHandler(result, dispatch)
     const { admin, menu } = data
     return { admin, menu: handleMenuTransfer(menu) }
@@ -43,7 +44,7 @@ export const doLogout = createAsyncThunk(
 export const doLogin = createAsyncThunk(
   'global/doLogin',
   async (reqData: Login.RequestProps, { dispatch, rejectWithValue }) => {
-    const { result, token } = await API.login(reqData)
+    const { result, token } = await mockAPI.login(reqData)
     errorHandler(result, dispatch)
     return token
   },
