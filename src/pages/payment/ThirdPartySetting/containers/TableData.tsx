@@ -3,7 +3,7 @@ import TableSets from '@/components/TableSets'
 import {
   EditFilled,
   FilterFilled,
-  CheckCircleOutlined,
+  CloseCircleOutlined,
   ExclamationCircleOutlined,
 } from '@ant-design/icons'
 import { Space } from 'antd'
@@ -20,7 +20,7 @@ const columns = [
   {
     title: '金流平台',
     dataIndex: 'firstDepositCount',
-    width: 120,
+    width: 150,
     render: (_, row) => '數支富(szfupay)',
   },
   {
@@ -108,7 +108,7 @@ const columns = [
     render(_, row) {
       return (
         <Space size="small">
-          <IconLink icon={<CheckCircleOutlined />} label="啟用" color="green" />
+          <IconLink icon={<CloseCircleOutlined />} label="停用" color="red" />
           <IconLink icon={<EditFilled />} label="編輯" />
         </Space>
       )
