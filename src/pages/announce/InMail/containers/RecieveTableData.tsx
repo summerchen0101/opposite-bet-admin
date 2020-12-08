@@ -1,13 +1,14 @@
 import IconLink from '@/components/IconLink'
 import TableSets from '@/components/TableSets'
 import Text from '@/components/Text'
+import { toDateTime } from '@/utils/transfer'
 import { DeleteOutlined, FilterFilled } from '@ant-design/icons'
 import { Space } from 'antd'
 import React from 'react'
 
 const columns = [
   {
-    title: '主題',
+    title: '標題',
     width: 180,
     render: (_, row) => '我無法儲值',
   },
@@ -28,7 +29,7 @@ const columns = [
   },
   {
     title: '發送時間',
-    render: (_, row) => '-',
+    render: (_, row) => toDateTime(Date.now()),
     width: 140,
   },
   {

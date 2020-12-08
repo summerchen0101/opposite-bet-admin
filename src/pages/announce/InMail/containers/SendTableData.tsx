@@ -1,6 +1,7 @@
 import IconLink from '@/components/IconLink'
 import TableSets from '@/components/TableSets'
 import { getFakeID } from '@/utils/helper'
+import { toDateTime } from '@/utils/transfer'
 import { DeleteOutlined, FilterFilled } from '@ant-design/icons'
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
@@ -31,7 +32,7 @@ const columns: ColumnsType<TableItem> = [
   },
   {
     title: '發送時間',
-    render: (_, row) => '-',
+    render: (_, row) => toDateTime(Date.now()),
     width: 140,
   },
   {
