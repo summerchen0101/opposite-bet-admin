@@ -16,4 +16,13 @@ export default createGlobalStyle`
   .ant-form-item {
     margin-bottom: 18px
   }
+  .mb-1 {
+    margin-bottom: 7.5px
+  }
+  .mb-2 {
+    margin-bottom: 15px
+  }
+  .mr-2 {
+    margin-right: 15px
+  }
 `
