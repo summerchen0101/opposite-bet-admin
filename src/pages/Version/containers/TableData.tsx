@@ -52,18 +52,15 @@ const columns = [
   },
   {
     title: '再次提現加總(元)',
-    dataIndex: 'onceAgainWithdrawalTotal',
     width: 140,
   },
   {
     title: '總提現(筆)',
-    dataIndex: 'withdrawalCount',
     width: 120,
     render: (_, row) => row.firstWithdrawalCount + row.onceAgainWithdrawalCount,
   },
   {
     title: '總提現加總(元)',
-    dataIndex: 'withdrawalTotal',
     width: 140,
     render: (_, row) => row.firstWithdrawalTotal + row.onceAgainWithdrawalTotal,
   },

@@ -6,7 +6,7 @@ import { useReducerInjector } from '@/utils/hooks'
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import PageHeader from './components/PageHeader'
-import MultipleSelector from './containers/MultipleSelector'
+import KeywordSearch from './containers/KeywordSearch'
 import PopupDepositTable from './containers/PopupDepositTable'
 import PopupWithdrawalTable from './containers/PopupWithdrawalTable'
 import PopupLoginCountTable from './containers/PopupLoginCountTable'
@@ -24,7 +24,7 @@ const Manager: React.FC = () => {
     <Dashboard>
       <PageHeader />
       <PageSearchBar style={{ marginBottom: 10 }}>
-        <MultipleSelector />
+        <KeywordSearch />
       </PageSearchBar>
       <PageSearchBar>
         <DateRangePicker />
