@@ -1,16 +1,21 @@
 import IconLink from '@/components/IconLink'
 import TableSets from '@/components/TableSets'
+import { useAppDispatch } from '@/store'
 import { ColumnsGenerator } from '@/types'
 import { toDateTime } from '@/utils/transfer'
-import { EditOutlined, LockOutlined } from '@ant-design/icons'
+import { EditOutlined, LockOutlined, ShareAltOutlined } from '@ant-design/icons'
 import { Space } from 'antd'
 import React from 'react'
-import { useTablePicker } from '../TablePickerProvider'
+import { Link, useLocation } from 'react-router-dom'
+import { toggleInvitedFormModal } from '../../reducer'
 
 interface TableItem {
   id: number
   account: string
-  parent: string
+  parent: {
+    nick: string
+    account: string
+  }
   childCount: number
   subAccCount: number
   status: boolean
@@ -32,11 +37,11 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
     {
       title: '上層',
       render: (_, row) => {
-        const { setCurrentTable } = useTablePicker()
+        const location = useLocation()
         return (
-          <a onClick={(e) => setCurrentTable('top')}>
-            {row.parent}
-          </a>
+          <Link to={location.pathname + '?level=' + 2}>
+            {row.parent.account}[{row.parent.nick}]
+          </Link>
         )
       },
       width: 100,
@@ -71,12 +76,19 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
     },
     {
       title: '操作',
-      render: (_, row) => (
-        <Space>
-          <IconLink icon={<EditOutlined />} />
-          <IconLink icon={<LockOutlined />} />
-        </Space>
-      ),
+      render: (_, row) => {
+        const dispatch = useAppDispatch()
+        const handleShare = () => {
+          dispatch(toggleInvitedFormModal(true))
+        }
+        return (
+          <Space>
+            <IconLink icon={<EditOutlined />} />
+            <IconLink icon={<LockOutlined />} />
+            <IconLink icon={<ShareAltOutlined />} onClick={handleShare} />
+          </Space>
+        )
+      },
       width: 100,
     },
   ]
@@ -85,7 +97,10 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
 const data = [...Array(5)].map((_, i) => ({
   id: i,
   account: 'abbc',
-  parent: 'gogo123',
+  parent: {
+    account: 'gogo123',
+    nick: 'GOGO',
+  },
   childCount: 5,
   subAccCount: 2,
   status: true,

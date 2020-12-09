@@ -1,10 +1,18 @@
 import { TableSets, Text, IconLink } from '@/components'
+import { useAppDispatch } from '@/store'
 import { ColumnsGenerator } from '@/types'
 import { toDateTime } from '@/utils/transfer'
-import { EditOutlined, LockOutlined } from '@ant-design/icons'
+import { EditOutlined, LockOutlined, ShareAltOutlined } from '@ant-design/icons'
 import { Space } from 'antd'
 import React from 'react'
+import {
+  setCurrentLevel,
+  toggleInvitedFormModal,
+  togglePwModal,
+} from '../../reducer'
 import { useTablePicker } from '../TablePickerProvider'
+import qs from 'qs'
+import { Link, useLocation } from 'react-router-dom'
 
 interface TableItem {
   id: number
@@ -34,7 +42,7 @@ interface TableItem {
 const createColumns: ColumnsGenerator<TableItem> = (data) => {
   return [
     {
-      title: '股東資訊',
+      title: '組織資訊',
       children: [
         {
           title: '廠商',
@@ -42,7 +50,7 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
           width: 100,
         },
         {
-          title: '帳號/名稱',
+          title: '總代',
           render: (_, row) => (
             <>
               {row.account}[{row.nick}]
@@ -51,18 +59,13 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
           width: 150,
         },
         {
-          title: '角色',
-          render: (_, row) => '股東',
-          width: 100,
-        },
-        {
           title: '上層',
           render: (_, row) => {
-            const { setCurrentTable } = useTablePicker()
+            const location = useLocation()
             return (
-              <a onClick={(e) => setCurrentTable('top')}>
+              <Link to={location.pathname + '?level=' + 1}>
                 {row.parent.account}[{row.parent.nick}]
-              </a>
+              </Link>
             )
           },
           width: 150,
@@ -70,11 +73,11 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
         {
           title: '下層',
           render: (_, row) => {
-            const { setCurrentTable } = useTablePicker()
+            const location = useLocation()
             return (
-              <a onClick={(e) => setCurrentTable('member')}>
+              <Link to={location.pathname + '?level=' + 3}>
                 {row.childCount}
-              </a>
+              </Link>
             )
           },
           width: 100,
@@ -141,12 +144,20 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
     },
     {
       title: '操作',
-      render: (_, row) => (
-        <Space>
-          <IconLink icon={<EditOutlined />} />
-          <IconLink icon={<LockOutlined />} />
-        </Space>
-      ),
+      render: (_, row) => {
+        const dispatch = useAppDispatch()
+        const handleShare = () => {
+          dispatch(toggleInvitedFormModal(true))
+        }
+        const handlePwChange = () => dispatch(togglePwModal(true))
+        return (
+          <Space>
+            <IconLink icon={<EditOutlined />} />
+            <IconLink icon={<LockOutlined />} onClick={handlePwChange} />
+            <IconLink icon={<ShareAltOutlined />} onClick={handleShare} />
+          </Space>
+        )
+      },
       width: 100,
     },
   ]
@@ -180,6 +191,7 @@ const MainLevelTable: React.FC = () => {
   return (
     <>
       <h3>階層列表</h3>
+      <p>cntd [廠商] {`>`} cute123 [股東]</p>
       <TableSets<TableItem>
         createColumns={createColumns}
         data={data}

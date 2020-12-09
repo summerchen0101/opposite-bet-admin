@@ -1,8 +1,10 @@
+import { baseResponse } from '@/utils/mock'
 import Request from '@/utils/request'
 
 interface ResponseData {
   [key: string]: any
 }
 
-export const fetchCreateOption = () =>
-  Request.post<ResponseData>('admin/editAgent', { method: 'ADD' })
+export const fetchCreateOption = () => baseResponse({})
+// export const fetchCreateOption = () =>
+//   Request.post<ResponseData>('admin/editAgent', { method: 'ADD' })

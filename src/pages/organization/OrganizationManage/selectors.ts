@@ -13,6 +13,10 @@ export const selectTableData = createSelector(
   selectModuleState,
   (moduleState) => moduleState.tableData,
 )
+export const selectCurrentLevel = createSelector(
+  selectModuleState,
+  (moduleState) => moduleState.currentLevel,
+)
 export const selectRoleOptions = createSelector(
   selectModuleState,
   (moduleState) => moduleState.roleOptions,
@@ -48,4 +52,8 @@ export const selectDisplayTradeHistoryModal = createSelector(
 export const selectDisplayPointFormModal = createSelector(
   selectModuleState,
   (moduleState) => moduleState.displayPointFormModal,
+)
+export const selectDisplayInvitedFormModal = createSelector(
+  selectModuleState,
+  (moduleState) => moduleState.displayInvitedFormModal,
 )

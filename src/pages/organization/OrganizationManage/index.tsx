@@ -14,14 +14,26 @@ import PopupPointForm from './containers/PopupPointForm'
 import PopupPwForm from './containers/PopupPwForm'
 import PopupTradeHistory from './containers/PopupTradeHistory'
 import PopupWhiteListForm from './containers/PopupWhiteListForm'
+import PopupInvitedForm from './containers/PopupInvitedForm'
 import StatusSelector from './containers/StatusSelector'
 import TableData from './containers/TableData'
 import { TablePickerProvider } from './containers/TablePickerProvider'
-import reducer, { fetchList, initSearchState, moduleName } from './reducer'
+import reducer, {
+  fetchList,
+  initSearchState,
+  moduleName,
+  setCurrentLevel,
+} from './reducer'
+import qs from 'qs'
+import { useLocation } from 'react-router-dom'
 
 const Manager: React.FC = () => {
-  useReducerInjector(moduleName, reducer)
+  const location = useLocation()
   const dispatch = useAppDispatch()
+  const query = qs.parse(location.search, { ignoreQueryPrefix: true }) || {}
+  const currentLevel = +query?.level
+  dispatch(setCurrentLevel(currentLevel || 1))
+  useReducerInjector(moduleName, reducer)
   const getTableData = async () => {
     const action = await dispatch(fetchList())
     if (fetchList.rejected.match(action)) {
@@ -51,6 +63,7 @@ const Manager: React.FC = () => {
       <PopupLoginHistory />
       <PopupTradeHistory />
       <PopupPointForm />
+      <PopupInvitedForm />
     </Dashboard>
   )
 }

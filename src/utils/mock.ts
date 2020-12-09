@@ -1,5 +1,7 @@
 const result = 'SUCCESS'
 
+export const baseResponse = (data: any) => ({ result, data })
+
 const mockAPI = {
   login: (req: any) => Promise.resolve({ result, token: 'Have a good day!' }),
   fetchUserAndMenu: () =>

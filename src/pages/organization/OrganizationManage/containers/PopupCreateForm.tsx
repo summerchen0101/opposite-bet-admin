@@ -20,6 +20,7 @@ import {
   selectAgentStruct,
 } from '../selectors'
 import Form, { FormField } from '@/components/Form'
+import { Protocal } from '@/lib/enums'
 const { Option } = Select
 const CreateForm: React.FC = () => {
   const dispatch = useDispatch()
@@ -39,18 +40,29 @@ const CreateForm: React.FC = () => {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
-
-  const roleOptions = useTypedSelector(selectRoleOptions)
-
-  const agentStruct = useTypedSelector(selectAgentStruct)
-
-  const values = {
-    role: 1,
+  const protocalOpts = Object.entries(Protocal).map(([label, value]) => ({
+    label: value,
+    value,
+  }))
+  const selectBefore = <Select options={protocalOpts} defaultValue="http://" />
+  const formValues = {
+    account: '',
+    name: '',
+    status: 1,
+    host: '',
   }
+  const statusOpts = [
+    { label: '啟用', value: 1 },
+    { label: '停用', value: 0 },
+  ]
+  const accTypeOpts = [
+    { label: '一般', value: 'normal' },
+    { label: '測試', value: 'testing' },
+  ]
   return (
     <PopupModal
       visible={isDisplay}
-      title="新增組織"
+      title="新增廠商"
       onCancel={onCancel}
       width={600}
     >
@@ -58,51 +70,47 @@ const CreateForm: React.FC = () => {
         form={form}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
-        initialValues={values}
+        initialValues={formValues}
       >
-        <FormField label="組織層級" required>
-          <CascaderSelector
-            options={agentStruct}
-            placeholder="請選擇組織層級"
-          />
-        </FormField>
         <Row gutter={16}>
           <Col span={12}>
-            <FormField label="會員帳號" required>
-              <Input.Search allowClear enterButton="隨機選號" />
+            <FormField
+              label="帳號"
+              name="account"
+              help="請輸入3個英文字母作為帳號"
+            >
+              <Input.Search
+                allowClear
+                addonBefore={
+                  <Select options={accTypeOpts} defaultValue="normal" />
+                }
+                enterButton="隨機選號"
+              />
             </FormField>
           </Col>
           <Col span={12}>
-            <FormField label="名稱" required>
+            <FormField label="名稱" name="name">
               <Input />
             </FormField>
           </Col>
           <Col span={12}>
-            <FormField label="密碼" required>
+            <FormField label="密碼">
               <Input.Password />
             </FormField>
           </Col>
           <Col span={12}>
-            <FormField label="確認密碼" required>
+            <FormField label="確認密碼">
               <Input.Password />
             </FormField>
           </Col>
           <Col span={12}>
-            <FormField label="帳號角色" required name="role">
-              <Select
-                options={roleOptions}
-                placeholder="請選擇"
-                allowClear
-              ></Select>
+            <FormField label="官網Host" name="host">
+              <Input addonBefore={selectBefore} />
             </FormField>
           </Col>
           <Col span={12}>
-            <FormField label="狀態" required>
-              <Select placeholder="請選擇" allowClear defaultValue="opt1">
-                <Option value="opt1">啟用</Option>
-                <Option value="opt2">停用</Option>
-                <Option value="opt3">凍結</Option>
-              </Select>
+            <FormField label="狀態" name="status">
+              <Radio.Group options={statusOpts} />
             </FormField>
           </Col>
         </Row>

@@ -1,46 +1,47 @@
 import { PopupModal } from '@/components'
 import Form, { FormField } from '@/components/Form'
+import { Protocal } from '@/lib/enums'
 import { Button, Form as AntForm, Input, Select, Space } from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { togglePwModal } from '../reducer'
-import { selectDisplayPwModal, useTypedSelector } from '../selectors'
-const { Option } = Select
-const PwForm: React.FC = () => {
+import { toggleInvitedFormModal } from '../reducer'
+import { selectDisplayInvitedFormModal, useTypedSelector } from '../selectors'
+const PopupInvitedForm: React.FC = () => {
   const dispatch = useDispatch()
-  const isDisplay = useTypedSelector(selectDisplayPwModal)
+  const isDisplay = useTypedSelector(selectDisplayInvitedFormModal)
   const [form] = AntForm.useForm()
   const onCancel = () => {
-    dispatch(togglePwModal(false))
+    dispatch(toggleInvitedFormModal(false))
   }
   const onReset = () => {
     form.resetFields()
   }
   const onFinish = (values) => {
     console.log('Success:', values)
-    dispatch(togglePwModal(false))
+    dispatch(toggleInvitedFormModal(false))
   }
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
 
+  const protocalOpts = Object.entries(Protocal).map(([label, value]) => ({
+    label: value,
+    value,
+  }))
+
   return (
-    <PopupModal
-      visible={isDisplay}
-      title="修改密碼"
-      onCancel={onCancel}
-      width={600}
-    >
+    <PopupModal visible={isDisplay} title="邀请连结" onCancel={onCancel}>
       <Form form={form} onFinish={onFinish} onFinishFailed={onFinishFailed}>
-        <FormField label="帳號" name="account" required>
-          <Input />
+        <FormField label="連結網址" name="link">
+          <Input.Search
+            addonBefore={<Select options={protocalOpts} defaultValue="http" />}
+            allowClear
+            enterButton="複製"
+          />
         </FormField>
-        <FormField label="密碼" name="pw" required>
-          <Input.Password />
-        </FormField>
-        <FormField label="確認密碼" name="pw_confirm" required>
-          <Input.Password />
+        <FormField label="推廣碼" name="code">
+          <Input.Search allowClear enterButton="複製" />
         </FormField>
 
         <FormField style={{ marginTop: '20px', textAlign: 'center' }}>
@@ -58,4 +59,4 @@ const PwForm: React.FC = () => {
   )
 }
 
-export default PwForm
+export default PopupInvitedForm

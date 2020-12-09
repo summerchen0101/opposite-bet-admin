@@ -1,4 +1,5 @@
 import { RemotePagination, RemotePermission } from '@/types'
+import { baseResponse } from '@/utils/mock'
 import Request from '@/utils/request'
 
 export interface RequestData {

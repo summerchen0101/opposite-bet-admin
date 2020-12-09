@@ -14,6 +14,7 @@ import * as Types from './types'
 export interface IState {
   permission: Permission
   tableData: any[]
+  currentLevel: number
   displayCreateModal: boolean
   displayPwModal: boolean
   displayPercentageModal: boolean
@@ -21,12 +22,14 @@ export interface IState {
   displayLoginHistoryModal: boolean
   displayTradeHistoryModal: boolean
   displayPointFormModal: boolean
+  displayInvitedFormModal: boolean
   agentStruct: Types.AgentItem[]
   roleOptions: OptionType[]
 }
 const initialState: IState = {
   permission: null,
   tableData: [],
+  currentLevel: 1,
   displayCreateModal: false,
   displayPwModal: false,
   displayPercentageModal: false,
@@ -34,6 +37,7 @@ const initialState: IState = {
   displayLoginHistoryModal: false,
   displayTradeHistoryModal: false,
   displayPointFormModal: false,
+  displayInvitedFormModal: false,
   agentStruct: [],
   roleOptions: [],
 }
@@ -79,7 +83,7 @@ export const fetchList = createAsyncThunk(
 export const fetchCreateOptions = createAsyncThunk(
   `${moduleName}/fetchCreateOptions`,
   async (_, { dispatch }) => {
-    const { result, data } = await mockAPI.fetchCreateOption()
+    const { result, data } = await API.fetchCreateOption()
     errorHandler(result, dispatch)
     // return {
     //   agentStruct: agentStructureCreator(data.agent_struct),
@@ -104,6 +108,9 @@ const module = createSlice({
     initSearchState(state) {
       //
     },
+    setCurrentLevel(state, action: PayloadAction<number>) {
+      state.currentLevel = action.payload
+    },
     toggleCreateModal(state, action: PayloadAction<boolean>) {
       state.displayCreateModal = action.payload
     },
@@ -125,6 +132,9 @@ const module = createSlice({
     togglePointFormModal(state, action: PayloadAction<boolean>) {
       state.displayPointFormModal = action.payload
     },
+    toggleInvitedFormModal(state, action: PayloadAction<boolean>) {
+      state.displayInvitedFormModal = action.payload
+    },
   },
   extraReducers: (builder: ActionReducerMapBuilder<IState>) => {
     builder.addCase(fetchList.fulfilled, (state, action) => {
@@ -142,6 +152,7 @@ const module = createSlice({
 
 export const {
   gotTableData,
+  setCurrentLevel,
   initSearchState,
   toggleCreateModal,
   togglePwModal,
@@ -150,6 +161,7 @@ export const {
   toggleLoginHistoryModal,
   toggleTradeHistoryModal,
   togglePointFormModal,
+  toggleInvitedFormModal,
 } = module.actions
 export default module.reducer
 

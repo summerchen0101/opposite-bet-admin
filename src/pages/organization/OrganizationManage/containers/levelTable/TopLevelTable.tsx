@@ -3,11 +3,17 @@ import { useAppDispatch } from '@/store'
 import { ColumnsGenerator } from '@/types'
 import { toDateTime } from '@/utils/transfer'
 import { EditOutlined, LockOutlined } from '@ant-design/icons'
-import { Space } from 'antd'
+import { Breadcrumb, Space } from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { toggleLoginHistoryModal, toggleWhiteListModal } from '../../reducer'
+import { Link, useHistory, useLocation } from 'react-router-dom'
+import {
+  toggleLoginHistoryModal,
+  togglePwModal,
+  toggleWhiteListModal,
+} from '../../reducer'
 import { useTablePicker } from '../TablePickerProvider'
+import qs from 'qs'
 
 interface TableItem {
   id: number
@@ -31,7 +37,7 @@ interface TableItem {
 const createColumns: ColumnsGenerator<TableItem> = (data) => {
   return [
     {
-      title: '階層資訊',
+      title: '組織資訊',
       children: [
         {
           title: '廠商',
@@ -41,9 +47,11 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
         {
           title: '下層',
           render: (_, row) => {
-            const { setCurrentTable } = useTablePicker()
+            const location = useLocation()
             return (
-              <a onClick={(e) => setCurrentTable('main')}>{row.childCount}</a>
+              <Link to={location.pathname + '?level=' + 2}>
+                {row.childCount}
+              </Link>
             )
           },
           width: 100,
@@ -126,12 +134,16 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
     },
     {
       title: '操作',
-      render: (_, row) => (
-        <Space>
-          <IconLink icon={<EditOutlined />} />
-          <IconLink icon={<LockOutlined />} />
-        </Space>
-      ),
+      render: (_, row) => {
+        const dispatch = useAppDispatch()
+        const handlePwChange = () => dispatch(togglePwModal(true))
+        return (
+          <Space>
+            <IconLink icon={<EditOutlined />} />
+            <IconLink icon={<LockOutlined />} onClick={handlePwChange} />
+          </Space>
+        )
+      },
       width: 100,
     },
   ]
