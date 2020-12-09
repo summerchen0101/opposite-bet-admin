@@ -4,6 +4,7 @@ import React from 'react'
 import PageHeader from './components/PageHeader'
 import CreatePopup from './containers/CreatePopup'
 import PercentFormPopup from './containers/PercentFormPopup'
+import PwFormPopup from './containers/PwFormPopup'
 import SearchForm from './containers/SearchForm'
 import TableData from './containers/TableData'
 import LevelProvider from './context/LevelProvider'
@@ -22,6 +23,7 @@ const Manager: React.FC = () => {
           <TableData />
           <CreatePopup />
           <PercentFormPopup />
+          <PwFormPopup />
         </LevelProvider>
       </PopupProvider>
     </Dashboard>

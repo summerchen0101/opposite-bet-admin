@@ -16,6 +16,7 @@ import qs from 'qs'
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useLevelProvider } from '../context/LevelProvider'
+import { usePopupProvider } from '../context/PopupProvider'
 import TableTitle from './TableTitle'
 interface TableItem {
   id: string
@@ -144,6 +145,7 @@ const TableData: React.FC = () => {
       fixed: ('right' as unknown) as boolean,
       width: 120,
       render: (_, row) => {
+        const [pwFormVisible, setPwFormVisible] = usePopupProvider('pwForm')
         return (
           <Space>
             <IconLink icon={<PlusCircleOutlined />} label="新增下線" />
@@ -151,7 +153,11 @@ const TableData: React.FC = () => {
             {currentLevel !== LevelCode.Vendor && (
               <IconLink icon={<PieChartOutlined />} label="佔成" />
             )}
-            <IconLink icon={<LockOutlined />} label="修改密碼" />
+            <IconLink
+              icon={<LockOutlined />}
+              label="修改密碼"
+              onClick={() => setPwFormVisible(true)}
+            />
             {currentLevel === LevelCode.Agent && (
               <IconLink icon={<ShareAltOutlined />} label="推廣連結" />
             )}

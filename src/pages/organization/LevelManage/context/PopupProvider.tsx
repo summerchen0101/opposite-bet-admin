@@ -4,6 +4,7 @@ type PopupProps<T> = [T, React.Dispatch<React.SetStateAction<T>>]
 interface IState {
   createForm: PopupProps<boolean>
   percentForm: PopupProps<boolean>
+  pwForm: PopupProps<boolean>
 }
 
 const PopupContext = createContext<IState | null>(null)
@@ -12,6 +13,7 @@ const PopupProvider: React.FC = ({ children }) => {
   const initialState = {
     createForm: useState(false),
     percentForm: useState(false),
+    pwForm: useState(false),
   }
   return (
     <PopupContext.Provider value={initialState}>
