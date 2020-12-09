@@ -1,33 +1,40 @@
-import { PopupModal } from '@/components'
-import Form, { FormField } from '@/components/Form'
-import { Protocal } from '@/lib/enums'
+import { CascaderSelector, PopupModal } from '@/components'
 import {
   Button,
-  Col,
-  Form as AntForm,
+  DatePicker,
   Input,
-  Radio,
-  Row,
   Select,
   Space,
+  Form as AntForm,
+  Row,
+  Col,
+  Radio,
 } from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { toggleMemberCreateModal } from '../reducer'
-import { selectDisplayMemberCreateModal, useTypedSelector } from '../selectors'
+import { toggleCreateModal } from '../../reducer'
+import {
+  selectDisplayCreateModal,
+  useTypedSelector,
+  selectRoleOptions,
+  selectAgentStruct,
+} from '../../selectors'
+import Form, { FormField } from '@/components/Form'
+import { Protocal } from '@/lib/enums'
+const { Option } = Select
 const CreateForm: React.FC = () => {
   const dispatch = useDispatch()
-  const isDisplay = useTypedSelector(selectDisplayMemberCreateModal)
+  const isDisplay = useTypedSelector(selectDisplayCreateModal)
   const [form] = AntForm.useForm()
   const onCancel = () => {
-    dispatch(toggleMemberCreateModal(false))
+    dispatch(toggleCreateModal(false))
   }
   const onReset = () => {
     form.resetFields()
   }
   const onFinish = (values) => {
     console.log('Success:', values)
-    dispatch(toggleMemberCreateModal(false))
+    dispatch(toggleCreateModal(false))
   }
 
   const onFinishFailed = (errorInfo) => {
@@ -55,7 +62,7 @@ const CreateForm: React.FC = () => {
   return (
     <PopupModal
       visible={isDisplay}
-      title="新增會員"
+      title="新增廠商"
       onCancel={onCancel}
       width={600}
     >

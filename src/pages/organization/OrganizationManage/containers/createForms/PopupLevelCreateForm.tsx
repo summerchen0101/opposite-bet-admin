@@ -13,8 +13,11 @@ import {
 } from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { toggleLevelCreateModal } from '../reducer'
-import { selectDisplayLevelCreateModal, useTypedSelector } from '../selectors'
+import { toggleLevelCreateModal, togglePercentageModal } from '../../reducer'
+import {
+  selectDisplayLevelCreateModal,
+  useTypedSelector,
+} from '../../selectors'
 const CreateForm: React.FC = () => {
   const dispatch = useDispatch()
   const isDisplay = useTypedSelector(selectDisplayLevelCreateModal)
@@ -28,30 +31,22 @@ const CreateForm: React.FC = () => {
   const onFinish = (values) => {
     console.log('Success:', values)
     dispatch(toggleLevelCreateModal(false))
+    dispatch(togglePercentageModal(true))
   }
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
-  const protocalOpts = Object.entries(Protocal).map(([label, value]) => ({
-    label: value,
-    value,
-  }))
-  const selectBefore = <Select options={protocalOpts} defaultValue="http://" />
-  const formValues = {
-    account: '',
-    name: '',
-    status: 1,
-    host: '',
-  }
   const statusOpts = [
     { label: '啟用', value: 1 },
     { label: '停用', value: 0 },
   ]
-  const accTypeOpts = [
-    { label: '一般', value: 'normal' },
-    { label: '測試', value: 'testing' },
+  const roleTypeOpts = [
+    { label: '子帳號', value: 'sub' },
+    { label: '代理', value: 'normal' },
+    { label: '測試代理', value: 'testing' },
   ]
+  const accOpts = ['fwrwe', 'afwefwe', 'aaaae33']
   return (
     <PopupModal
       visible={isDisplay}
@@ -59,30 +54,25 @@ const CreateForm: React.FC = () => {
       onCancel={onCancel}
       width={600}
     >
-      <Form
-        form={form}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        initialValues={formValues}
-      >
+      <Form form={form} onFinish={onFinish} onFinishFailed={onFinishFailed}>
         <Row gutter={16}>
           <Col span={12}>
-            <FormField
-              label="帳號"
-              name="account"
-              help="請輸入3個英文字母作為帳號"
-            >
-              <Input.Search
-                allowClear
-                addonBefore={
-                  <Select options={accTypeOpts} defaultValue="normal" />
-                }
-                enterButton="隨機選號"
-              />
+            <FormField label="帳號角色" name="roleType" initialValue="normal">
+              <Radio.Group options={roleTypeOpts} />
             </FormField>
           </Col>
           <Col span={12}>
-            <FormField label="名稱" name="name">
+            <FormField label="組織層級">
+              <div>{'aaa[AA] > bbb[BB] > ccc[CC]'}</div>
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="會員帳號" initialValue="fwrwe">
+              <Select options={accOpts.map((t) => ({ label: t, value: t }))} />
+            </FormField>
+          </Col>
+          <Col span={12}>
+            <FormField label="會員名稱">
               <Input />
             </FormField>
           </Col>
@@ -97,12 +87,7 @@ const CreateForm: React.FC = () => {
             </FormField>
           </Col>
           <Col span={12}>
-            <FormField label="官網Host" name="host">
-              <Input addonBefore={selectBefore} />
-            </FormField>
-          </Col>
-          <Col span={12}>
-            <FormField label="狀態" name="status">
+            <FormField label="狀態" initialValue={1}>
               <Radio.Group options={statusOpts} />
             </FormField>
           </Col>
@@ -114,7 +99,7 @@ const CreateForm: React.FC = () => {
               重置
             </Button>
             <Button type="primary" htmlType="submit">
-              送出
+              儲存，前往占成设定
             </Button>
           </Space>
         </FormField>

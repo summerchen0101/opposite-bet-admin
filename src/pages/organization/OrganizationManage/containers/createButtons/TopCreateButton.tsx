@@ -2,7 +2,7 @@ import CreateButton from '@/components/CreateButton'
 import { useAppDispatch } from '@/store'
 import { message } from 'antd'
 import React from 'react'
-import { fetchCreateOptions, toggleCreateModal } from '../reducer'
+import { fetchCreateOptions, toggleCreateModal } from '../../reducer'
 
 const Component: React.FC = () => {
   const dispatch = useAppDispatch()
