@@ -5,10 +5,11 @@ import {
   localizeMessage,
 } from '@/utils/transfer'
 import { Col, Form, Input, Radio, Row, Select } from 'antd'
+import { FormInstance } from 'antd/lib/form'
 import React from 'react'
 import { useLevelProvider } from '../context/LevelProvider'
 
-const CreateForm: React.FC = () => {
+const CreateForm: React.FC<{ form: FormInstance<any> }> = ({ form }) => {
   const { currentLevel } = useLevelProvider()
   const protocolOpts = Object.values(Protocal).map((v) => ({
     label: v,
@@ -20,7 +21,7 @@ const CreateForm: React.FC = () => {
   ]
   const parents = getParentLevelCodes(currentLevel)
   return (
-    <Form layout="vertical">
+    <Form form={form} layout="vertical">
       <Row gutter={16}>
         {currentLevel !== LevelCode.Vendor && (
           <>

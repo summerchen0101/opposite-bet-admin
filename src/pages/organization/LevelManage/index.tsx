@@ -3,6 +3,7 @@ import { useReducerInjector } from '@/utils/hooks'
 import React from 'react'
 import PageHeader from './components/PageHeader'
 import CreatePopup from './containers/CreatePopup'
+import PercentFormPopup from './containers/PercentFormPopup'
 import SearchForm from './containers/SearchForm'
 import TableData from './containers/TableData'
 import LevelProvider from './context/LevelProvider'
@@ -20,6 +21,7 @@ const Manager: React.FC = () => {
           <SearchForm />
           <TableData />
           <CreatePopup />
+          <PercentFormPopup />
         </LevelProvider>
       </PopupProvider>
     </Dashboard>

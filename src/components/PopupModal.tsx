@@ -2,11 +2,7 @@ import React from 'react'
 import { Modal } from 'antd'
 import { ModalProps } from 'antd/lib/modal'
 
-interface IProps {
-  onCancel?: () => void
-}
-
-const PopupModal: React.FC<IProps & ModalProps> = ({
+const PopupModal: React.FC<ModalProps> = ({
   title,
   visible,
   children,

@@ -8,6 +8,7 @@ import {
   LockOutlined,
   PieChartOutlined,
   PlusCircleOutlined,
+  ShareAltOutlined,
 } from '@ant-design/icons'
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
@@ -151,6 +152,9 @@ const TableData: React.FC = () => {
               <IconLink icon={<PieChartOutlined />} label="佔成" />
             )}
             <IconLink icon={<LockOutlined />} label="修改密碼" />
+            {currentLevel === LevelCode.Agent && (
+              <IconLink icon={<ShareAltOutlined />} label="推廣連結" />
+            )}
           </Space>
         )
       },
