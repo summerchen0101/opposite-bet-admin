@@ -3,5 +3,11 @@
   "breadcrumb.account.manager": "管理員管理",
   "breadcrumb.home": "首頁",
   "button.add": "新增",
-  "button.batchAdd": "批量新增"
+  "button.batchAdd": "批量新增",
+
+  "level.L1": "廠商",
+  "level.L2": "股東",
+  "level.L3": "總代",
+  "level.L4": "代理",
+  "level.L5": "會員"
 }

@@ -8,10 +8,10 @@ const rootName = '組織管理'
 const rootPath = '/org'
 
 // PAGES
-export const OrganizationManage = new PageG(
+export const LevelManage = new PageG(
   '組織列表',
-  `${rootPath}/list`,
-  pages.OrganizationManage,
+  `${rootPath}/level-manage`,
+  pages.LevelManage,
 )
 export const MemberActivity = new PageG(
   '會員活躍情況',
@@ -20,10 +20,10 @@ export const MemberActivity = new PageG(
 )
 
 // ROUTERS
-RouteG.create([MemberActivity, OrganizationManage])
+RouteG.create([MemberActivity, LevelManage])
 
 // MENU
 MenuG.createCategory(rootName, rootPath, ApartmentOutlined, [
   MemberActivity,
-  OrganizationManage,
+  LevelManage,
 ])

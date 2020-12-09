@@ -3,7 +3,7 @@ import PageHeader from '@/components/PageHeader'
 import TopCreateButton from '../containers/createButtons/TopCreateButton'
 import LevelCreateButton from '../containers/createButtons/LevelCreateButton'
 import MemberCreateButton from '../containers/createButtons/MemberCreateButton'
-import { OrganizationManage as page } from '@/pages/organization/routes'
+import { LevelManage as page } from '@/pages/organization/routes'
 import { useBreadcrumb } from '@/utils/hooks'
 import { selectCurrentLevel, useTypedSelector } from '../selectors'
 

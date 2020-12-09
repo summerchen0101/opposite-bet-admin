@@ -1,4 +1,10 @@
 {
   "breadcrumb.home": "Homepage",
-  "button.add": "ADD"
+  "button.add": "ADD",
+
+  "level.L1": "Vendor",
+  "level.L2": "Shareholder",
+  "level.L3": "MajorAgent",
+  "level.L4": "Agent",
+  "level.L5": "Member"
 }

@@ -1,8 +1,6 @@
+import { LevelCode } from '@/lib/enums'
 import errCodes from '@/lib/errCodes'
-import { MenuItem } from '@/types'
-
-import QRCode from 'qrcode'
-import { Permission, RemotePermission } from '@/types'
+import { MenuItem, Permission, RemotePermission } from '@/types'
 import moment from 'moment'
 
 export const toCurrency = (num: number, decimal = 0) =>
@@ -37,18 +35,23 @@ export const handleMenuTransfer = (menu): MenuItem[] => {
   return newMenu
 }
 
-export const generateQR = async (text) => {
-  try {
-    return await QRCode.toDataURL(text)
-  } catch (err) {
-    console.error(err)
-    return ''
-  }
-}
-
 export const addKeyToArrayItem = function <T>(arr: T[]): T[] {
   return arr.map((t, i) => ({ key: i, ...t }))
 }
 
 export const toDateTime = (unixTime) =>
   moment(unixTime).format('YYYY-MM-DD HH:mm:ss')
+
+const levelCodes = Object.values(LevelCode)
+export const getLevelCode = (
+  currentLevel: LevelCode,
+  operator = 0,
+): LevelCode => {
+  const currentIndex = levelCodes.indexOf(currentLevel)
+  return levelCodes[currentIndex + operator]
+}
+
+export const getParentLevelCodes = (currentLevel: LevelCode) => {
+  const currentIndex = levelCodes.indexOf(currentLevel)
+  return levelCodes.slice(0, currentIndex)
+}
