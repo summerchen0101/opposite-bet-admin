@@ -16,6 +16,8 @@ export interface IState {
   tableData: any[]
   currentLevel: number
   displayCreateModal: boolean
+  displayLevelCreateModal: boolean
+  displayMemberCreateModal: boolean
   displayPwModal: boolean
   displayPercentageModal: boolean
   displayWhiteListModal: boolean
@@ -31,6 +33,8 @@ const initialState: IState = {
   tableData: [],
   currentLevel: 1,
   displayCreateModal: false,
+  displayLevelCreateModal: false,
+  displayMemberCreateModal: false,
   displayPwModal: false,
   displayPercentageModal: false,
   displayWhiteListModal: false,
@@ -114,6 +118,12 @@ const module = createSlice({
     toggleCreateModal(state, action: PayloadAction<boolean>) {
       state.displayCreateModal = action.payload
     },
+    toggleLevelCreateModal(state, action: PayloadAction<boolean>) {
+      state.displayLevelCreateModal = action.payload
+    },
+    toggleMemberCreateModal(state, action: PayloadAction<boolean>) {
+      state.displayMemberCreateModal = action.payload
+    },
     togglePwModal(state, action: PayloadAction<boolean>) {
       state.displayPwModal = action.payload
     },
@@ -155,6 +165,8 @@ export const {
   setCurrentLevel,
   initSearchState,
   toggleCreateModal,
+  toggleLevelCreateModal,
+  toggleMemberCreateModal,
   togglePwModal,
   togglePercentageModal,
   toggleWhiteListModal,

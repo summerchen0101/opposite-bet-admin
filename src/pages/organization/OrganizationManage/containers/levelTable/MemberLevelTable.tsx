@@ -12,46 +12,42 @@ import { toggleInvitedFormModal } from '../../reducer'
 interface TableItem {
   id: number
   account: string
+  nick: string
+  root: {
+    nick: string
+    account: string
+  }
   parent: {
     nick: string
     account: string
   }
-  childCount: number
-  subAccCount: number
+  labels: string[]
   status: boolean
-  whiteIPCount: number
   points: number
-  memberCount: number
-  memberPoints: number
   failTimes: number
   registerAt: number
   loginAt: number
   loginIP: string
   updatedBy: string
   updatedAt: number
+  memberLevel: number
+  allowLogin: boolean
+  allowBetting: boolean
 }
 
 const createColumns: ColumnsGenerator<TableItem> = (data) => {
   return [
-    { title: '廠商', render: (_, row) => row.account, width: 100 },
+    { title: '廠商', render: (_, row) => 'qqaa[QQA]', width: 100 },
     {
-      title: '上層',
-      render: (_, row) => {
-        const location = useLocation()
-        return (
-          <Link to={location.pathname + '?level=' + 2}>
-            {row.parent.account}[{row.parent.nick}]
-          </Link>
-        )
-      },
+      title: '會員',
+      render: (_, row) => `${row.account}[${row.nick}]`,
       width: 100,
     },
-    { title: '子帳號', render: (_, row) => row.subAccCount, width: 100 },
-    { title: '啟/停用', render: (_, row) => row.status, width: 100 },
-    { title: '白名單', render: (_, row) => row.whiteIPCount, width: 100 },
-    { title: '廠商餘額', render: (_, row) => row.points, width: 100 },
-    { title: '會員人數', render: (_, row) => row.memberCount, width: 100 },
-    { title: '會員餘額', render: (_, row) => row.memberPoints, width: 100 },
+    { title: '用戶類型', render: (_, row) => '一級會員', width: 100 },
+    { title: '標籤', render: (_, row) => '危險客戶、同IP', width: 150 },
+    { title: '允許登入', render: (_, row) => '是', width: 100 },
+    { title: '允許投注', render: (_, row) => '是', width: 100 },
+    { title: '可用餘額', render: (_, row) => row.points, width: 100 },
     { title: '失敗次數', render: (_, row) => row.failTimes, width: 100 },
     {
       title: '註冊/最後登入',
@@ -97,17 +93,21 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
 const data = [...Array(5)].map((_, i) => ({
   id: i,
   account: 'abbc',
+  nick: 'ABBC',
+  root: {
+    account: 'gogo123',
+    nick: 'GOGO',
+  },
   parent: {
     account: 'gogo123',
     nick: 'GOGO',
   },
-  childCount: 5,
-  subAccCount: 2,
+  labels: [],
+  allowLogin: true,
+  allowBetting: true,
+  memberLevel: 1,
   status: true,
-  whiteIPCount: 3,
   points: 32200,
-  memberCount: 10,
-  memberPoints: 232404,
   failTimes: 2,
   registerAt: new Date().getTime(),
   loginAt: new Date().getTime(),

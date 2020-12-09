@@ -29,6 +29,14 @@ export const selectDisplayCreateModal = createSelector(
   selectModuleState,
   (moduleState) => moduleState.displayCreateModal,
 )
+export const selectDisplayLevelCreateModal = createSelector(
+  selectModuleState,
+  (moduleState) => moduleState.displayLevelCreateModal,
+)
+export const selectDisplayMemberCreateModal = createSelector(
+  selectModuleState,
+  (moduleState) => moduleState.displayMemberCreateModal,
+)
 export const selectDisplayPwModal = createSelector(
   selectModuleState,
   (moduleState) => moduleState.displayPwModal,

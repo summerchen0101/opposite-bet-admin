@@ -8,6 +8,8 @@ import React, { useEffect } from 'react'
 import PageHeader from './components/PageHeader'
 import AccountSearch from './containers/AccountSearch'
 import PopupCreateForm from './containers/PopupCreateForm'
+import PopupLevelCreateForm from './containers/PopupLevelCreateForm'
+import PopupMemberCreateForm from './containers/PopupMemberCreateForm'
 import PopupLoginHistory from './containers/PopupLoginHistory'
 import PopupPercentageForm from './containers/PopupPercentageForm'
 import PopupPointForm from './containers/PopupPointForm'
@@ -57,6 +59,8 @@ const Manager: React.FC = () => {
         <TableData />
       </TablePickerProvider>
       <PopupCreateForm />
+      <PopupLevelCreateForm />
+      <PopupMemberCreateForm />
       <PopupPwForm />
       <PopupPercentageForm />
       <PopupWhiteListForm />
