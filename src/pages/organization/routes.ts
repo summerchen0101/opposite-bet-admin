@@ -13,11 +13,6 @@ export const OrganizationManage = new PageG(
   `${rootPath}/list`,
   pages.OrganizationManage,
 )
-export const InvitationCode = new PageG(
-  '組織邀請',
-  `${rootPath}/invitation`,
-  pages.InvitationCode,
-)
 export const MemberActivity = new PageG(
   '會員活躍情況',
   `${rootPath}/member-activity`,
@@ -25,11 +20,10 @@ export const MemberActivity = new PageG(
 )
 
 // ROUTERS
-RouteG.create([OrganizationManage, InvitationCode, MemberActivity])
+RouteG.create([MemberActivity, OrganizationManage])
 
 // MENU
 MenuG.createCategory(rootName, rootPath, ApartmentOutlined, [
-  OrganizationManage,
-  InvitationCode,
   MemberActivity,
+  OrganizationManage,
 ])

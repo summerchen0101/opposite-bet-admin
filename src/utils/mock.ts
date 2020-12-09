@@ -7,6 +7,7 @@ const mockAPI = {
       result,
       data: { admin: { name: 'abc', role: 'qqq' }, menu: {} },
     }),
+  fetchCreateOption: () => Promise.resolve({ result, data: {} }),
 }
 
 export default mockAPI

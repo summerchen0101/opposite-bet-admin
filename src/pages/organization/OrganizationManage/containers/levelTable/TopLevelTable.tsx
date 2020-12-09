@@ -43,9 +43,7 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
           render: (_, row) => {
             const { setCurrentTable } = useTablePicker()
             return (
-              <a onClick={(e) => setCurrentTable('main')}>
-                {row.childCount}
-              </a>
+              <a onClick={(e) => setCurrentTable('main')}>{row.childCount}</a>
             )
           },
           width: 100,
@@ -84,10 +82,7 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
           render: (_, row) => {
             const dispatch = useDispatch()
             return (
-              <a
-
-                onClick={(e) => dispatch(toggleWhiteListModal(true))}
-              >
+              <a onClick={(e) => dispatch(toggleWhiteListModal(true))}>
                 {row.whiteIPCount}
               </a>
             )
@@ -109,10 +104,7 @@ const createColumns: ColumnsGenerator<TableItem> = (data) => {
                 註冊：{toDateTime(row.registerAt)} <br />
                 登入：{toDateTime(row.loginAt)} <br />
                 登入IP：
-                <a
-
-                  onClick={(e) => dispatch(toggleLoginHistoryModal(true))}
-                >
+                <a onClick={(e) => dispatch(toggleLoginHistoryModal(true))}>
                   {row.loginIP}
                 </a>
               </>

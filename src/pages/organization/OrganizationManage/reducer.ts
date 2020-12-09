@@ -1,5 +1,6 @@
 import { OptionType, Permission } from '@/types'
 import { errorHandler } from '@/utils/helper'
+import mockAPI from '@/utils/mock'
 import { permissionTransfer } from '@/utils/transfer'
 import {
   ActionReducerMapBuilder,
@@ -78,14 +79,17 @@ export const fetchList = createAsyncThunk(
 export const fetchCreateOptions = createAsyncThunk(
   `${moduleName}/fetchCreateOptions`,
   async (_, { dispatch }) => {
-    const { result, data } = await API.fetchCreateOption()
+    const { result, data } = await mockAPI.fetchCreateOption()
     errorHandler(result, dispatch)
+    // return {
+    //   agentStruct: agentStructureCreator(data.agent_struct),
+    //   roleOption: data.admin_roles.map((t) => ({
+    //     label: t.role_name,
+    //     value: t.id,
+    //   })),
     return {
-      agentStruct: agentStructureCreator(data.agent_struct),
-      roleOption: data.admin_roles.map((t) => ({
-        label: t.role_name,
-        value: t.id,
-      })),
+      agentStruct: [],
+      roleOption: [],
     }
   },
 )
