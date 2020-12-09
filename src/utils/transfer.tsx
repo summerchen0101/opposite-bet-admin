@@ -2,6 +2,9 @@ import { LevelCode } from '@/lib/enums'
 import errCodes from '@/lib/errCodes'
 import { MenuItem, Permission, RemotePermission } from '@/types'
 import moment from 'moment'
+import { FormattedMessage } from 'react-intl'
+import React from 'react'
+import { ColumnsType } from 'antd/lib/table'
 
 export const toCurrency = (num: number, decimal = 0) =>
   Number(num.toFixed(decimal)).toLocaleString()
@@ -54,4 +57,21 @@ export const getLevelCode = (
 export const getParentLevelCodes = (currentLevel: LevelCode) => {
   const currentIndex = levelCodes.indexOf(currentLevel)
   return levelCodes.slice(0, currentIndex)
+}
+
+export const localizeMessage = (msgId: string) => (
+  <FormattedMessage id={msgId} />
+)
+
+export const getLevelName = (levelCode: LevelCode) => (
+  <FormattedMessage id={`level.${levelCode}`} />
+)
+
+export const filterColumns = function <T>(
+  originColumns: ColumnsType<T>,
+  filterColumnsKey: string[],
+) {
+  return originColumns.filter(
+    (c) => !filterColumnsKey.includes(c.key as string),
+  )
 }

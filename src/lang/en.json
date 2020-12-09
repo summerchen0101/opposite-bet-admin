@@ -2,6 +2,9 @@
   "breadcrumb.home": "Homepage",
   "button.add": "ADD",
 
+  "status.on": "ON",
+  "status.off": "OFF",
+
   "level.L1": "Vendor",
   "level.L2": "Shareholder",
   "level.L3": "MajorAgent",

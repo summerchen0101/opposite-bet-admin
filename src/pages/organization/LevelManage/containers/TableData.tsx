@@ -1,18 +1,18 @@
 import { IconLink, TableSets, Text } from '@/components'
 import { LevelCode } from '@/lib/enums'
 import { getFakeID } from '@/utils/helper'
-import { getLevelCode, toDateTime } from '@/utils/transfer'
+import { filterColumns, getLevelName, toDateTime } from '@/utils/transfer'
 import {
-  CheckCircleOutlined,
-  CloseCircleOutlined,
   EditFilled,
   FilterFilled,
+  LockOutlined,
+  PieChartOutlined,
+  PlusCircleOutlined,
 } from '@ant-design/icons'
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import qs from 'qs'
 import React from 'react'
-import { FormattedMessage } from 'react-intl'
 import { Link, useLocation } from 'react-router-dom'
 import { useLevelProvider } from '../context/LevelProvider'
 import TableTitle from './TableTitle'
@@ -23,18 +23,6 @@ interface TableItem {
   updatedAt: number
   updatedBy: string
   status: boolean
-}
-
-const getLevelName = (levelCode: LevelCode) => (
-  <FormattedMessage id={`level.${levelCode}`} />
-)
-const filterColumns = function <T>(
-  originColumns: ColumnsType<T>,
-  filterColumnsKey: string[],
-) {
-  return originColumns.filter(
-    (c) => !filterColumnsKey.includes(c.key as string),
-  )
 }
 
 const data: TableItem[] = [...Array(50)].map((t, i) => ({
@@ -153,24 +141,16 @@ const TableData: React.FC = () => {
     {
       title: () => <IconLink icon={<FilterFilled />} />,
       fixed: ('right' as unknown) as boolean,
-      width: 100,
+      width: 120,
       render: (_, row) => {
         return (
           <Space>
-            {row.status ? (
-              <IconLink
-                icon={<CloseCircleOutlined />}
-                label="停用"
-                color="red"
-              />
-            ) : (
-              <IconLink
-                icon={<CheckCircleOutlined />}
-                label="啟用"
-                color="green"
-              />
-            )}
+            <IconLink icon={<PlusCircleOutlined />} label="新增下線" />
             <IconLink icon={<EditFilled />} label="編輯" />
+            {currentLevel !== LevelCode.Vendor && (
+              <IconLink icon={<PieChartOutlined />} label="佔成" />
+            )}
+            <IconLink icon={<LockOutlined />} label="修改密碼" />
           </Space>
         )
       },

@@ -1,3 +1,4 @@
+import { getLevelName } from '@/utils/transfer'
 import { Modal } from 'antd'
 import React from 'react'
 import { useLevelProvider } from '../context/LevelProvider'
@@ -9,7 +10,7 @@ const CreatePopup: React.FC = () => {
   const { currentLevel } = useLevelProvider()
   return (
     <Modal
-      title={`新增${currentLevel}`}
+      title={<>新增{getLevelName(currentLevel)}</>}
       visible={value}
       onOk={() => setValue(false)}
       onCancel={() => setValue(false)}

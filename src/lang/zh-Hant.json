@@ -5,6 +5,9 @@
   "button.add": "新增",
   "button.batchAdd": "批量新增",
 
+  "status.on": "啟用",
+  "status.off": "停用",
+
   "level.L1": "廠商",
   "level.L2": "股東",
   "level.L3": "總代",

@@ -1,4 +1,8 @@
-import { getLevelCode, getParentLevelCodes } from '@/utils/transfer'
+import {
+  getLevelCode,
+  getLevelName,
+  getParentLevelCodes,
+} from '@/utils/transfer'
 import { Breadcrumb } from 'antd'
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
@@ -21,14 +25,13 @@ const TableTitle: React.FC = () => {
           </Breadcrumb.Item>
         )}
         {getParentLevelCodes(currentLevel).map((code) => {
-          const levelName = <FormattedMessage id={`level.${code}`} />
           return (
             <Breadcrumb.Item key={code}>
               {code === getLevelCode(currentLevel, -1) ? (
-                <span>abCC1xx[{levelName}]</span>
+                <span>abCC1xx[{getLevelName(code)}]</span>
               ) : (
                 <Link to={`${location.pathname}?parent=${code}`}>
-                  abCC1xx[{levelName}]
+                  abCC1xx[{getLevelName(code)}]
                 </Link>
               )}
             </Breadcrumb.Item>
