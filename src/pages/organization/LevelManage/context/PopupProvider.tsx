@@ -5,15 +5,17 @@ interface IState {
   createForm: PopupProps<boolean>
   percentForm: PopupProps<boolean>
   pwForm: PopupProps<boolean>
+  invitedForm: PopupProps<boolean>
 }
 
 const PopupContext = createContext<IState | null>(null)
 
 const PopupProvider: React.FC = ({ children }) => {
-  const initialState = {
+  const initialState: IState = {
     createForm: useState(false),
     percentForm: useState(false),
     pwForm: useState(false),
+    invitedForm: useState(false),
   }
   return (
     <PopupContext.Provider value={initialState}>

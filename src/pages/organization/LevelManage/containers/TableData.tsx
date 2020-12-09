@@ -146,6 +146,9 @@ const TableData: React.FC = () => {
       width: 120,
       render: (_, row) => {
         const [pwFormVisible, setPwFormVisible] = usePopupProvider('pwForm')
+        const [invitedFormVisible, setInvitedFormVisible] = usePopupProvider(
+          'invitedForm',
+        )
         return (
           <Space>
             <IconLink icon={<PlusCircleOutlined />} label="新增下線" />
@@ -159,7 +162,11 @@ const TableData: React.FC = () => {
               onClick={() => setPwFormVisible(true)}
             />
             {currentLevel === LevelCode.Agent && (
-              <IconLink icon={<ShareAltOutlined />} label="推廣連結" />
+              <IconLink
+                icon={<ShareAltOutlined />}
+                label="推廣連結"
+                onClick={() => setInvitedFormVisible(true)}
+              />
             )}
           </Space>
         )
