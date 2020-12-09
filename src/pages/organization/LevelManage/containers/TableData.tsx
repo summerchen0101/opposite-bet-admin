@@ -1,4 +1,5 @@
 import { IconLink, TableSets, Text } from '@/components'
+import { LevelCode } from '@/lib/enums'
 import { getFakeID } from '@/utils/helper'
 import { getLevelCode, toDateTime } from '@/utils/transfer'
 import {
@@ -17,10 +18,23 @@ import { useLevelProvider } from '../context/LevelProvider'
 import TableTitle from './TableTitle'
 interface TableItem {
   id: string
+  key?: string | number
   bank: { code: string; name: string }
   updatedAt: number
   updatedBy: string
   status: boolean
+}
+
+const getLevelName = (levelCode: LevelCode) => (
+  <FormattedMessage id={`level.${levelCode}`} />
+)
+const filterColumns = function <T>(
+  originColumns: ColumnsType<T>,
+  filterColumnsKey: string[],
+) {
+  return originColumns.filter(
+    (c) => !filterColumnsKey.includes(c.key as string),
+  )
 }
 
 const data: TableItem[] = [...Array(50)].map((t, i) => ({
@@ -33,23 +47,43 @@ const data: TableItem[] = [...Array(50)].map((t, i) => ({
 const TableData: React.FC = () => {
   const { currentLevel } = useLevelProvider()
   const location = useLocation()
-  const currentLevelName = <FormattedMessage id={`level.${currentLevel}`} />
+
+  const orgInfoColumns = [
+    {
+      title: getLevelName(LevelCode.Vendor),
+      key: 'vendor',
+      render: (_, row) => 'wwa[明]',
+    },
+    {
+      title: getLevelName(currentLevel),
+      render: (_, row) => 'wwa98[陳]',
+    },
+    {
+      title: '下層',
+      key: 'childs',
+      render: (_, row) => {
+        const query = qs.stringify(
+          {
+            parent: currentLevel,
+          },
+          { addQueryPrefix: true },
+        )
+        return <Link to={`${location.pathname}${query}`}>3</Link>
+      },
+    },
+    {
+      title: '子帳號',
+      render: (_, row) => <a>5</a>,
+    },
+  ]
+
   const columns: ColumnsType<TableItem> = [
     {
       title: '組織資訊',
-      children: [
-        { title: currentLevelName, render: (_, row) => 'ffaa[陳]' },
-        {
-          title: '下層',
-          render: (_, row) => (
-            <Link to={`${location.pathname}?parent=${currentLevel}`}>3</Link>
-          ),
-        },
-        {
-          title: '子帳號',
-          render: (_, row) => <a>5</a>,
-        },
-      ],
+      children:
+        currentLevel === LevelCode.Vendor
+          ? filterColumns(orgInfoColumns, ['vendor'])
+          : orgInfoColumns,
     },
     {
       title: '狀態',
