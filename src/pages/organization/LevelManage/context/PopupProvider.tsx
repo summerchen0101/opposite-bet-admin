@@ -10,6 +10,7 @@ interface IState {
   tradeHistory: PopupProps<boolean>
   depositHistory: PopupProps<boolean>
   withdrawHistory: PopupProps<boolean>
+  pointForm: PopupProps<boolean>
 }
 
 const PopupContext = createContext<IState | null>(null)
@@ -24,6 +25,7 @@ const PopupProvider: React.FC = ({ children }) => {
     tradeHistory: useState(false),
     depositHistory: useState(false),
     withdrawHistory: useState(false),
+    pointForm: useState(false),
   }
   return (
     <PopupContext.Provider value={initialState}>

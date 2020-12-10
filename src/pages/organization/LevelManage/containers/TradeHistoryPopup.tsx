@@ -108,6 +108,9 @@ const TradeHistoryPopup: React.FC = () => {
             <Option value="opt7">預借/交收</Option>
           </Select>
         </FormField>
+        <FormField>
+          <Button>調節金額</Button>
+        </FormField>
       </Form>
       <Table
         dataSource={data}

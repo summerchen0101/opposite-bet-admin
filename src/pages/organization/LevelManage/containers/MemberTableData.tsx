@@ -112,6 +112,7 @@ const MemberTableData: React.FC = () => {
         const [_w, setWithdrawHistoryVisible] = usePopupProvider(
           'withdrawHistory',
         )
+        const [_point, setPointFormVisible] = usePopupProvider('pointForm')
         return (
           <Space>
             <IconLink icon={<EditOutlined />} label="編輯" />
@@ -130,7 +131,11 @@ const MemberTableData: React.FC = () => {
               label="修改密碼"
               onClick={() => setPwFormVisible(true)}
             />
-            <IconLink icon={<DollarCircleOutlined />} label="調節金額" />
+            <IconLink
+              icon={<DollarCircleOutlined />}
+              label="調節金額"
+              onClick={() => setPointFormVisible(true)}
+            />
           </Space>
         )
       },

@@ -15,6 +15,7 @@ import LevelProvider from './context/LevelProvider'
 import PopupProvider from './context/PopupProvider'
 import reducer, { moduleName } from './reducer'
 import WithdrawHistoryPopup from './containers/WithdrawHistoryPopup'
+import PointFormPopup from './containers/PointFormPopup'
 
 const Manager: React.FC = () => {
   useReducerInjector(moduleName, reducer)
@@ -34,6 +35,7 @@ const Manager: React.FC = () => {
           <TradeHistoryPopup />
           <DepositHistoryPopup />
           <WithdrawHistoryPopup />
+          <PointFormPopup />
         </LevelProvider>
       </PopupProvider>
     </Dashboard>
