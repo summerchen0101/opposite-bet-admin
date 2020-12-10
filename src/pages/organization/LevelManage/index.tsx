@@ -9,10 +9,12 @@ import PwFormPopup from './containers/PwFormPopup'
 import SearchForm from './containers/SearchForm'
 import TableData from './containers/TableData'
 import TradeHistoryPopup from './containers/TradeHistoryPopup'
+import DepositHistoryPopup from './containers/DepositHistoryPopup'
 import WhiteListPopup from './containers/WhiteListPopup'
 import LevelProvider from './context/LevelProvider'
 import PopupProvider from './context/PopupProvider'
 import reducer, { moduleName } from './reducer'
+import WithdrawHistoryPopup from './containers/WithdrawHistoryPopup'
 
 const Manager: React.FC = () => {
   useReducerInjector(moduleName, reducer)
@@ -30,6 +32,8 @@ const Manager: React.FC = () => {
           <InvitedFormPopup />
           <WhiteListPopup />
           <TradeHistoryPopup />
+          <DepositHistoryPopup />
+          <WithdrawHistoryPopup />
         </LevelProvider>
       </PopupProvider>
     </Dashboard>

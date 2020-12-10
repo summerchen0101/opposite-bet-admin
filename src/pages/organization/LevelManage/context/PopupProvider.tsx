@@ -8,6 +8,8 @@ interface IState {
   invitedForm: PopupProps<boolean>
   whiteList: PopupProps<boolean>
   tradeHistory: PopupProps<boolean>
+  depositHistory: PopupProps<boolean>
+  withdrawHistory: PopupProps<boolean>
 }
 
 const PopupContext = createContext<IState | null>(null)
@@ -20,6 +22,8 @@ const PopupProvider: React.FC = ({ children }) => {
     invitedForm: useState(false),
     whiteList: useState(false),
     tradeHistory: useState(false),
+    depositHistory: useState(false),
+    withdrawHistory: useState(false),
   }
   return (
     <PopupContext.Provider value={initialState}>

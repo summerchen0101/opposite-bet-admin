@@ -28,6 +28,9 @@ export default createGlobalStyle`
   .mb-0 {
     margin-bottom: 0 !important
   }
+  .ml-1 {
+    margin-left: 7.5px !important
+  }
   .ml-2 {
     margin-left: 15px !important
   }
