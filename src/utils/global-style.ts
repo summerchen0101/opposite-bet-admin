@@ -16,6 +16,9 @@ export default createGlobalStyle`
   .ant-form-item {
     margin-bottom: 18px
   }
+  .mb-0 {
+    margin-bottom: 0 !important
+  }
   .mb-1 {
     margin-bottom: 7.5px !important
   }
@@ -25,11 +28,14 @@ export default createGlobalStyle`
   .mr-2 {
     margin-right: 15px !important
   }
-  .mb-0 {
-    margin-bottom: 0 !important
+  .mr-3 {
+    margin-right: 22.5px !important
   }
   .ml-1 {
     margin-left: 7.5px !important
+  }
+  .ml-2 {
+    margin-left: 15px !important
   }
   .ml-2 {
     margin-left: 15px !important

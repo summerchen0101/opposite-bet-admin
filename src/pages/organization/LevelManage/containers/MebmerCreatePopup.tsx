@@ -10,6 +10,7 @@ import {
   Radio,
   Row,
   Select,
+  Space,
 } from 'antd'
 import React from 'react'
 import { usePopupProvider } from '../context/PopupProvider'
@@ -17,6 +18,8 @@ import { usePopupProvider } from '../context/PopupProvider'
 const MemberCreatePopup: React.FC = () => {
   const [createVisible, setCreateVisible] = usePopupProvider('memberCreateForm')
   const [editVisible, setEditVisible] = usePopupProvider('memberEditForm')
+  const [pointFormVisible, setPointFormVisible] = usePopupProvider('pointForm')
+  const [bankCardVisible, setBankCardVisible] = usePopupProvider('bankCard')
   const currentType = createVisible ? 'create' : 'edit'
 
   const [form] = Form.useForm()
@@ -49,7 +52,22 @@ const MemberCreatePopup: React.FC = () => {
   ]
   return (
     <PopupModal
-      title={<>{localizeMessage(`form.${currentType}`)}會員</>}
+      title={
+        <div>
+          <span>{localizeMessage(`form.${currentType}`)}會員</span>
+          {currentType === 'edit' && (
+            <Space className="float-right mr-3">
+              <Button size="small">添加註解</Button>
+              <Button size="small" onClick={() => setPointFormVisible(true)}>
+                調節金額
+              </Button>
+              <Button size="small" onClick={() => setBankCardVisible(true)}>
+                銀行卡
+              </Button>
+            </Space>
+          )}
+        </div>
+      }
       visible={createVisible || editVisible}
       onCancel={() => {
         setCreateVisible(false)
