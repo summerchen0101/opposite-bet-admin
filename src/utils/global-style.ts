@@ -43,8 +43,20 @@ export default createGlobalStyle`
   .float-right {
     float: right
   }
+  .float-left {
+    float: left
+  }
   .d-inline-block {
     display: inline-block !important
+  }
+  .text-nowrap {
+    white-space: nowrap
+  }
+  .text-center {
+    text-align: center
+  }
+  .align-top {
+    vertical-align: top
   }
 
 `

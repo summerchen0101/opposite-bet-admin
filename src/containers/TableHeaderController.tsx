@@ -1,5 +1,5 @@
 import { BatchOpperatorDropdown, IconLink } from '@/components'
-import { useTableSelectAll } from '@/utils/hooks/usetTableSelector'
+import { useTableSelectAll } from '@/utils/hooks/useTableSelector'
 import { FilterFilled } from '@ant-design/icons'
 import { Checkbox, Space } from 'antd'
 import React from 'react'

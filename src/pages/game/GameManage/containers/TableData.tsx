@@ -16,7 +16,7 @@ interface TableItem {
 const columns: ColumnsType<TableItem> = [
   { title: '賽事編號', render: (_, row) => '3381' },
   { title: '比賽時間', render: (_, row) => toDateTime(Date.now()) },
-  { title: '帳務日期', render: (_, row) => toDateTime(Date.now()) },
+  { title: '帳務日期', render: (_, row) => '2020-12-31' },
   { title: '聯盟', render: (_, row) => '球友會友誼' },
   {
     title: '對陣',
