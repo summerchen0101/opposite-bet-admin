@@ -80,14 +80,17 @@ const MemberTableData: React.FC = () => {
     },
     {
       title: '註冊/最後登入',
-      render: (_, row) => (
-        <>
-          註冊：2020-09-16 14:25:42 <br />
-          登入：2020-09-16 14:25:42
-          <br />
-          登入IP：149.222.22.111
-        </>
-      ),
+      render: (_, row) => {
+        const [visible, setVisible] = usePopupProvider('loginHistory')
+        return (
+          <>
+            註冊：2020-09-16 14:25:42 <br />
+            登入：2020-09-16 14:25:42
+            <br />
+            登入IP：<a onClick={() => setVisible(true)}>149.222.22.111</a>
+          </>
+        )
+      },
       width: 230,
     },
     {

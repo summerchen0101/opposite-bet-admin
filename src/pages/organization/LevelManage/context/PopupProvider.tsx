@@ -15,6 +15,7 @@ interface IState {
   pointForm: PopupProps<boolean>
   bankCardList: PopupProps<boolean>
   bankCardForm: PopupProps<boolean>
+  loginHistory: PopupProps<boolean>
 }
 
 const PopupContext = createContext<IState | null>(null)
@@ -34,6 +35,7 @@ const PopupProvider: React.FC = ({ children }) => {
     pointForm: useState(false),
     bankCardList: useState(false),
     bankCardForm: useState(false),
+    loginHistory: useState(false),
   }
   return (
     <PopupContext.Provider value={initialState}>
