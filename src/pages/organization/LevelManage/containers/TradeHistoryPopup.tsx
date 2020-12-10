@@ -78,6 +78,7 @@ const TradeHistoryPopup: React.FC = () => {
   ]
   columns = columns.map((t, i) => ({ ...t, key: i }))
   const data = [...Array(10)].map((t, i) => ({ ...t, key: i }))
+  const [pointFormVisible, setPointFormVisible] = usePopupProvider('pointForm')
   return (
     <PopupModal
       visible={visible}
@@ -109,7 +110,7 @@ const TradeHistoryPopup: React.FC = () => {
           </Select>
         </FormField>
         <FormField>
-          <Button>調節金額</Button>
+          <Button onClick={() => setPointFormVisible(true)}>調節金額</Button>
         </FormField>
       </Form>
       <Table

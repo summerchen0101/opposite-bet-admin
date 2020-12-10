@@ -32,10 +32,10 @@ const Manager: React.FC = () => {
           <PwFormPopup />
           <InvitedFormPopup />
           <WhiteListPopup />
-          <TradeHistoryPopup />
           <DepositHistoryPopup />
           <WithdrawHistoryPopup />
           <PointFormPopup />
+          <TradeHistoryPopup />
         </LevelProvider>
       </PopupProvider>
     </Dashboard>
