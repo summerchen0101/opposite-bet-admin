@@ -1,4 +1,5 @@
 import { FormField, PopupModal } from '@/components'
+import { localizeMessage } from '@/utils/transfer'
 import {
   Button,
   Col,
@@ -6,6 +7,7 @@ import {
   DatePicker,
   Form,
   Input,
+  Radio,
   Row,
   Select,
 } from 'antd'
@@ -13,28 +15,46 @@ import React from 'react'
 import { usePopupProvider } from '../context/PopupProvider'
 
 const MemberCreatePopup: React.FC = () => {
-  const [visible, setVisible] = usePopupProvider('memberCreateForm')
+  const [createVisible, setCreateVisible] = usePopupProvider('memberCreateForm')
+  const [editVisible, setEditVisible] = usePopupProvider('memberEditForm')
+  const currentType = createVisible ? 'create' : 'edit'
+
   const [form] = Form.useForm()
   const onCreate = (values) => {
     console.log('Received values of form: ', values)
-    setVisible(false)
+    setCreateVisible(false)
+  }
+  const onEdit = (values) => {
+    console.log('Received values of form: ', values)
+    setEditVisible(false)
   }
   const handleSubmit = async () => {
     try {
       const values = await form.validateFields()
       form.resetFields()
-      onCreate(values)
+      if (currentType === 'create') {
+        onCreate(values)
+      } else {
+        onEdit(values)
+      }
     } catch (info) {
       console.log('Validate Failed:', info)
     }
   }
   const { Panel } = Collapse
   const accOpts = [...Array(5)].map((t, i) => 'abbcc' + i)
+  const allowOpts = [
+    { label: '是', value: 'yes' },
+    { label: '否', value: 'no' },
+  ]
   return (
     <PopupModal
-      title="新增會員"
-      visible={visible}
-      onCancel={() => setVisible(false)}
+      title={<>{localizeMessage(`form.${currentType}`)}會員</>}
+      visible={createVisible || editVisible}
+      onCancel={() => {
+        setCreateVisible(false)
+        setEditVisible(false)
+      }}
       footer={[
         <Button key="reset" onClick={() => form.resetFields()}>
           重置
@@ -72,16 +92,20 @@ const MemberCreatePopup: React.FC = () => {
               <Input />
             </FormField>
           </Col>
-          <Col span={12}>
-            <FormField label="密碼">
-              <Input.Password />
-            </FormField>
-          </Col>
-          <Col span={12}>
-            <FormField label="確認密碼">
-              <Input.Password />
-            </FormField>
-          </Col>
+          {currentType === 'create' && (
+            <>
+              <Col span={12}>
+                <FormField label="密碼">
+                  <Input.Password />
+                </FormField>
+              </Col>
+              <Col span={12}>
+                <FormField label="確認密碼">
+                  <Input.Password />
+                </FormField>
+              </Col>
+            </>
+          )}
           <Col span={12}>
             <FormField label="單注下限">
               <Input />
@@ -102,6 +126,28 @@ const MemberCreatePopup: React.FC = () => {
               <Input addonBefore="+86" />
             </FormField>
           </Col>
+          {currentType === 'edit' && (
+            <>
+              <Col span={12}>
+                <FormField
+                  label="允許登入"
+                  name="allowLogin"
+                  initialValue="yes"
+                >
+                  <Radio.Group options={allowOpts} />
+                </FormField>
+              </Col>
+              <Col span={12}>
+                <FormField
+                  label="允許投注"
+                  name="allowBetting"
+                  initialValue="yes"
+                >
+                  <Radio.Group options={allowOpts} />
+                </FormField>
+              </Col>
+            </>
+          )}
           <Col span={24}>
             <FormField label="備註">
               <Input.TextArea />

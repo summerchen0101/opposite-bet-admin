@@ -113,9 +113,14 @@ const MemberTableData: React.FC = () => {
           'withdrawHistory',
         )
         const [_point, setPointFormVisible] = usePopupProvider('pointForm')
+        const [_m, setMemberEditVisible] = usePopupProvider('memberEditForm')
         return (
           <Space>
-            <IconLink icon={<EditOutlined />} label="編輯" />
+            <IconLink
+              icon={<EditOutlined />}
+              label="編輯"
+              onClick={() => setMemberEditVisible(true)}
+            />
             <IconLink
               icon={<DownloadOutlined />}
               label="充值紀錄"

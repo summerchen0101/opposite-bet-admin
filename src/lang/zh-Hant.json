@@ -5,6 +5,9 @@
   "button.add": "新增",
   "button.batchAdd": "批量新增",
 
+  "form.create": "新增",
+  "form.edit": "編輯",
+
   "status.on": "啟用",
   "status.off": "停用",
 

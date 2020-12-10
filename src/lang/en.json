@@ -2,6 +2,9 @@
   "breadcrumb.home": "Homepage",
   "button.add": "ADD",
 
+  "form.create": "Create",
+  "form.edit": "Edit",
+
   "status.on": "ON",
   "status.off": "OFF",
 
