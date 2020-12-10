@@ -1,5 +1,6 @@
 import { IconLink, PopupConfirm, PopupModal, Text } from '@/components'
 import Form, { FormField } from '@/components/Form'
+import { LevelCode } from '@/lib/enums'
 import { addKeyToArrayItem, getParentLevelCodes } from '@/utils/transfer'
 import { DeleteOutlined } from '@ant-design/icons'
 import { Button, Form as AntForm, Input, Space, Table } from 'antd'
@@ -52,16 +53,18 @@ const LoginHistoryPopup: React.FC = () => {
       width={800}
     >
       <Form form={form}>
-        <FormField label="組織層級">
-          {parents.map((code, i) => {
-            return (
-              <span key={code}>
-                <span>abCC1xx</span>
-                {i < parents.length - 1 && ' / '}
-              </span>
-            )
-          })}
-        </FormField>
+        {currentLevel !== LevelCode.Vendor && (
+          <FormField label="組織層級">
+            {parents.map((code, i) => {
+              return (
+                <span key={code}>
+                  <span>abCC1xx</span>
+                  {i < parents.length - 1 && ' / '}
+                </span>
+              )
+            })}
+          </FormField>
+        )}
 
         <FormField>
           <Table
