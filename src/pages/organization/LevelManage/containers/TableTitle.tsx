@@ -6,18 +6,23 @@ import {
 import { Breadcrumb } from 'antd'
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 import { useLevelProvider } from '../context/LevelProvider'
-import { HomeOutlined } from '@ant-design/icons'
+import { HomeOutlined, ArrowLeftOutlined } from '@ant-design/icons'
+import { IconLink } from '@/components'
+import { LevelCode } from '@/lib/enums'
 const TableTitle: React.FC = () => {
-  const { currentLevel } = useLevelProvider()
+  const { currentLevel, alias, parentLevel } = useLevelProvider()
   // const currentLevelNum = parseInt(currentLevel)
   const location = useLocation()
+  const history = useHistory()
   return (
     <>
-      <h3>{<FormattedMessage id={`level.${currentLevel}`} />}列表</h3>
+      {currentLevel === LevelCode.Vendor && (
+        <h3>{getLevelName(currentLevel)}列表</h3>
+      )}
       <Breadcrumb className="mb-1">
-        {location.search && (
+        {parentLevel && (
           <Breadcrumb.Item>
             <Link to={location.pathname}>
               <HomeOutlined />
@@ -38,6 +43,15 @@ const TableTitle: React.FC = () => {
           )
         })}
       </Breadcrumb>
+      {alias && (
+        <>
+          <IconLink
+            icon={<ArrowLeftOutlined />}
+            onClick={() => history.goBack()}
+          />
+          <h3 className="d-inline-block ml-2">{alias} 子帳號</h3>
+        </>
+      )}
     </>
   )
 }

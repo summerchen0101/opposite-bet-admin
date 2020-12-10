@@ -28,8 +28,14 @@ export default createGlobalStyle`
   .mb-0 {
     margin-bottom: 0 !important
   }
+  .ml-2 {
+    margin-left: 15px !important
+  }
   .float-right {
     float: right
+  }
+  .d-inline-block {
+    display: inline-block !important
   }
 
 `

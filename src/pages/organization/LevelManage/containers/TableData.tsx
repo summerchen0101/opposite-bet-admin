@@ -1,7 +1,12 @@
 import { IconLink, TableSets, Text } from '@/components'
 import { LevelCode } from '@/lib/enums'
 import { getFakeID } from '@/utils/helper'
-import { filterColumns, getLevelName, toDateTime } from '@/utils/transfer'
+import {
+  filterColumns,
+  getLevelCode,
+  getLevelName,
+  toDateTime,
+} from '@/utils/transfer'
 import {
   EditFilled,
   FilterFilled,
@@ -14,7 +19,7 @@ import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import qs from 'qs'
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 import { useLevelProvider } from '../context/LevelProvider'
 import { usePopupProvider } from '../context/PopupProvider'
 import TableTitle from './TableTitle'
@@ -35,7 +40,7 @@ const data: TableItem[] = [...Array(50)].map((t, i) => ({
   status: true,
 }))
 const TableData: React.FC = () => {
-  const { currentLevel } = useLevelProvider()
+  const { currentLevel, alias } = useLevelProvider()
   const location = useLocation()
 
   const orgInfoColumns = [
@@ -63,17 +68,38 @@ const TableData: React.FC = () => {
     },
     {
       title: '子帳號',
-      render: (_, row) => <a>5</a>,
+      key: 'alias',
+      render: (_, row) => {
+        return (
+          <Link
+            to={`${location.pathname}${qs.stringify(
+              {
+                alias: 'gogo123',
+                parent: getLevelCode(currentLevel, -1),
+              },
+              { addQueryPrefix: true },
+            )}`}
+          >
+            5
+          </Link>
+        )
+      },
     },
   ]
+
+  const getOrgInfoColumns = () => {
+    if (currentLevel === LevelCode.Vendor) {
+      return filterColumns(orgInfoColumns, ['vendor'])
+    } else if (alias) {
+      return filterColumns(orgInfoColumns, ['vendor', 'alias', 'childs'])
+    }
+    return orgInfoColumns
+  }
 
   const columns: ColumnsType<TableItem> = [
     {
       title: '組織資訊',
-      children:
-        currentLevel === LevelCode.Vendor
-          ? filterColumns(orgInfoColumns, ['vendor'])
-          : orgInfoColumns,
+      children: getOrgInfoColumns(),
     },
     {
       title: '狀態',
@@ -160,9 +186,11 @@ const TableData: React.FC = () => {
         )
         return (
           <Space>
-            <IconLink icon={<PlusCircleOutlined />} label="新增下線" />
+            {!alias && (
+              <IconLink icon={<PlusCircleOutlined />} label="新增下線" />
+            )}
             <IconLink icon={<EditFilled />} label="編輯" />
-            {currentLevel !== LevelCode.Vendor && (
+            {currentLevel !== LevelCode.Vendor && !alias && (
               <IconLink icon={<PieChartOutlined />} label="佔成" />
             )}
             <IconLink
