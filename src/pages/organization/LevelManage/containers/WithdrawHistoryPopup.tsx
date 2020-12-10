@@ -15,11 +15,6 @@ const WithdrawHistoryPopup: React.FC = () => {
       render: (_, row) => '99123',
     },
     {
-      title: '新增時間',
-      render: (_, row) => toDateTime(Date.now()),
-      width: '180px',
-    },
-    {
       title: '提領金額',
       render: (_, row) => '2,000.00',
     },
@@ -32,6 +27,16 @@ const WithdrawHistoryPopup: React.FC = () => {
       render: (_, row) => '提領成功',
     },
     {
+      title: '建立時間',
+      render: (_, row) => toDateTime(Date.now()),
+      width: '180px',
+    },
+    {
+      title: '完成時間',
+      render: (_, row) => toDateTime(Date.now()),
+      width: '180px',
+    },
+    {
       title: '備註',
       render: (_, row) => '-',
       width: 130,
@@ -42,7 +47,7 @@ const WithdrawHistoryPopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="wxg1111[沈沈] 充值記錄"
+      title="wxg1111[沈沈] 提領記錄"
       onCancel={() => setVisible(false)}
       width={800}
     >

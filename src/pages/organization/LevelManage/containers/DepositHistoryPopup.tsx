@@ -1,16 +1,7 @@
-import { IconLink, PopupModal, Text } from '@/components'
+import { PopupModal, Text } from '@/components'
 import Form, { FormField } from '@/components/Form'
-import { ReloadOutlined } from '@ant-design/icons'
-import {
-  Button,
-  Col,
-  Form as AntForm,
-  Input,
-  Row,
-  Select,
-  Space,
-  Table,
-} from 'antd'
+import { toDateTime } from '@/utils/transfer'
+import { Form as AntForm, Select, Table } from 'antd'
 import React from 'react'
 import { usePopupProvider } from '../context/PopupProvider'
 const { Option } = Select
@@ -20,60 +11,55 @@ const DepositHistoryPopup: React.FC = () => {
 
   let columns = [
     {
+      title: '編號',
+      render: (_, row) => '99123',
+    },
+    {
+      title: '充值類型',
+      render: (_, row) => '人工扣錢(計入調整金額)',
+    },
+    {
+      title: '充值金額',
+      render: (_, row) => '2,000.00',
+    },
+    {
+      title: '流水限制',
+      render: (_, row) => '2,000.00',
+    },
+    {
+      title: '當下流水',
+      render: (_, row) => '2,000.00',
+    },
+    {
+      title: '未完成流水',
+      render: (_, row) => '2,000.00',
+    },
+    {
+      title: '可提領資金',
+      render: (_, row) => '2,000.00',
+    },
+    {
+      title: '是否解鎖',
+      render: (_, row) => '是',
+    },
+    {
+      title: '狀態',
+      render: (_, row) => '充值成功',
+    },
+    {
       title: '建立時間',
-      render: (_, row) => '2020-08-28 17:54:03',
+      render: (_, row) => toDateTime(Date.now()),
       width: '180px',
     },
     {
-      title: '交易類型',
-      render: (_, row) => '-',
-    },
-    {
-      title: '可用點數',
-      children: [
-        {
-          title: '異動前',
-          render: (_, row) => '0',
-          key: 'point-before',
-        },
-        {
-          title: '異動後',
-          render: (_, row) => '0',
-          key: 'point-after',
-        },
-      ],
-    },
-    {
-      title: '結算金',
-      children: [
-        {
-          title: '異動前',
-          key: 'result-before',
-          render: (_, row) => <Text color="danger">-500</Text>,
-        },
-        {
-          title: '異動後',
-          key: 'result-after',
-          render: (_, row) => <Text color="success">1,200</Text>,
-        },
-      ],
+      title: '完成時間',
+      render: (_, row) => toDateTime(Date.now()),
+      width: '180px',
     },
     {
       title: '備註',
       render: (_, row) => '-',
-    },
-    {
-      title: 'IP',
-      render: (_, row) => '0.0.0.0',
-    },
-    {
-      title: '更新人員',
-      render: (_, row) => 'flora',
-    },
-    {
-      title: '更新時間',
-      render: (_, row) => '2020-12-12 10:49',
-      width: '180px',
+      width: 130,
     },
   ]
   columns = columns.map((t, i) => ({ ...t, key: i }))
@@ -81,52 +67,41 @@ const DepositHistoryPopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title={
-        <Space>
-          <span>goo123交易记录</span>
-          <IconLink icon={<ReloadOutlined />} label="重新整理" />
-        </Space>
-      }
+      title="wxg1111[沈沈] 充值記錄"
       onCancel={() => setVisible(false)}
-      width={1000}
+      width={800}
     >
-      <Form form={form}>
-        <Row gutter={16}>
-          <Col span={8}>
-            <FormField label="可用點數">
-              <Input itemType="number" placeholder="0" />
-            </FormField>
-          </Col>
-          <Col span={8}>
-            <FormField label="結算金">
-              <Input itemType="number" placeholder="0" />
-            </FormField>
-          </Col>
-          <Col span={8}>
-            <FormField label="類型">
-              <Select placeholder="請選擇" allowClear defaultValue="opt1">
-                <Option value="opt1">全部</Option>
-                <Option value="opt2">公司修改</Option>
-                <Option value="opt3">派點/收回</Option>
-                <Option value="opt4">收到點數/被收回</Option>
-                <Option value="opt5">錯誤補點/收回</Option>
-                <Option value="opt6">兌換結算/可用點數</Option>
-                <Option value="opt7">預借/交收</Option>
-              </Select>
-            </FormField>
-          </Col>
-        </Row>
-
-        <FormField>
-          <Table
-            dataSource={data}
-            columns={columns}
-            size="small"
-            bordered
-            pagination={{ pageSize: 8 }}
-          />
+      <Form form={form} layout="inline">
+        <FormField label="狀態" name="status" initialValue="opt1">
+          <Select placeholder="請選擇" style={{ width: '130px' }}>
+            <Option value="opt1">全部</Option>
+            <Option value="opt2">待審核</Option>
+            <Option value="opt3">充值成功</Option>
+            <Option value="opt4">充值失敗</Option>
+            <Option value="opt5">訂單超時</Option>
+            <Option value="opt6">訂單建立失敗</Option>
+            <Option value="opt7">待付款</Option>
+          </Select>
         </FormField>
+        <FormField label="充值類型" name="type" initialValue="opt1">
+          <Select placeholder="請選擇" style={{ width: '130px' }}>
+            <Option value="opt1">全部</Option>
+            <Option value="opt2">公司入款</Option>
+            <Option value="opt3">新增存款(計入存款)</Option>
+            <Option value="opt4">人工加錢(計入調整金額)</Option>
+            <Option value="opt5">人工優惠(計入優惠)</Option>
+          </Select>
+        </FormField>
+        <FormField className="ml-1">鎖定金額：0</FormField>
       </Form>
+      <Table
+        dataSource={data}
+        columns={columns}
+        size="small"
+        bordered
+        pagination={{ pageSize: 8 }}
+        scroll={{ x: 1400 }}
+      />
     </PopupModal>
   )
 }

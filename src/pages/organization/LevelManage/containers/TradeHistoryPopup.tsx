@@ -90,43 +90,32 @@ const TradeHistoryPopup: React.FC = () => {
       onCancel={() => setVisible(false)}
       width={1000}
     >
-      <Form form={form}>
-        <Row gutter={16}>
-          <Col span={8}>
-            <FormField label="可用點數">
-              <Input itemType="number" placeholder="0" />
-            </FormField>
-          </Col>
-          <Col span={8}>
-            <FormField label="結算金">
-              <Input itemType="number" placeholder="0" />
-            </FormField>
-          </Col>
-          <Col span={8}>
-            <FormField label="類型">
-              <Select placeholder="請選擇" allowClear defaultValue="opt1">
-                <Option value="opt1">全部</Option>
-                <Option value="opt2">公司修改</Option>
-                <Option value="opt3">派點/收回</Option>
-                <Option value="opt4">收到點數/被收回</Option>
-                <Option value="opt5">錯誤補點/收回</Option>
-                <Option value="opt6">兌換結算/可用點數</Option>
-                <Option value="opt7">預借/交收</Option>
-              </Select>
-            </FormField>
-          </Col>
-        </Row>
-
-        <FormField>
-          <Table
-            dataSource={data}
-            columns={columns}
-            size="small"
-            bordered
-            pagination={{ pageSize: 8 }}
-          />
+      <Form form={form} layout="inline">
+        <FormField label="可用點數">
+          <Input itemType="number" placeholder="0" style={{ width: '130px' }} />
+        </FormField>
+        <FormField label="結算金">
+          <Input itemType="number" placeholder="0" style={{ width: '130px' }} />
+        </FormField>
+        <FormField label="類型" name="">
+          <Select placeholder="請選擇" style={{ width: '130px' }}>
+            <Option value="opt1">全部</Option>
+            <Option value="opt2">公司修改</Option>
+            <Option value="opt3">派點/收回</Option>
+            <Option value="opt4">收到點數/被收回</Option>
+            <Option value="opt5">錯誤補點/收回</Option>
+            <Option value="opt6">兌換結算/可用點數</Option>
+            <Option value="opt7">預借/交收</Option>
+          </Select>
         </FormField>
       </Form>
+      <Table
+        dataSource={data}
+        columns={columns}
+        size="small"
+        bordered
+        pagination={{ pageSize: 8 }}
+      />
     </PopupModal>
   )
 }

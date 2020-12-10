@@ -65,7 +65,14 @@ const MemberTableData: React.FC = () => {
     },
     {
       title: '可用餘額',
-      render: (_, row) => numeral(8100).format('0,0.00'),
+      render: (_, row) => {
+        const [visible, setVisible] = usePopupProvider('tradeHistory')
+        return (
+          <a onClick={() => setVisible(true)}>
+            {numeral(8100).format('0,0.00')}
+          </a>
+        )
+      },
     },
     {
       title: '失敗次數',
