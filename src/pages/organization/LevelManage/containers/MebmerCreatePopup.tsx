@@ -19,7 +19,7 @@ const MemberCreatePopup: React.FC = () => {
   const [createVisible, setCreateVisible] = usePopupProvider('memberCreateForm')
   const [editVisible, setEditVisible] = usePopupProvider('memberEditForm')
   const [pointFormVisible, setPointFormVisible] = usePopupProvider('pointForm')
-  const [bankCardVisible, setBankCardVisible] = usePopupProvider('bankCard')
+  const [bankCardVisible, setBankCardVisible] = usePopupProvider('bankCardList')
   const currentType = createVisible ? 'create' : 'edit'
 
   const [form] = Form.useForm()

@@ -1,12 +1,15 @@
 import { IconLink, PopupConfirm, PopupModal } from '@/components'
 import { addKeyToArrayItem, toDateTime } from '@/utils/transfer'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
-import { Button, Form as AntForm, Space, Table } from 'antd'
+import { Button, Space, Table } from 'antd'
 import React from 'react'
 import { usePopupProvider } from '../context/PopupProvider'
 
-const BankCardPopup: React.FC = () => {
-  const [visible, setVisible] = usePopupProvider('bankCard')
+const BankCardListPopup: React.FC = () => {
+  const [visible, setVisible] = usePopupProvider('bankCardList')
+  const [bankCardFormVisible, setBankCardFormVisible] = usePopupProvider(
+    'bankCardForm',
+  )
 
   const columns = [
     {
@@ -56,7 +59,11 @@ const BankCardPopup: React.FC = () => {
       title={
         <div>
           银行卡管理
-          <Button className="float-right mr-3" type="primary">
+          <Button
+            className="float-right mr-3"
+            type="primary"
+            onClick={() => setBankCardFormVisible(true)}
+          >
             新增
           </Button>
         </div>
@@ -68,10 +75,11 @@ const BankCardPopup: React.FC = () => {
         columns={addKeyToArrayItem(columns)}
         size="small"
         bordered
+        scroll={{ x: 900 }}
         pagination={{ pageSize: 8 }}
       />
     </PopupModal>
   )
 }
 
-export default BankCardPopup
+export default BankCardListPopup

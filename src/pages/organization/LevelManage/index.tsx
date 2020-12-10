@@ -17,7 +17,8 @@ import reducer, { moduleName } from './reducer'
 import WithdrawHistoryPopup from './containers/WithdrawHistoryPopup'
 import PointFormPopup from './containers/PointFormPopup'
 import MemberCreatePopup from './containers/MebmerCreatePopup'
-import BankCardPopup from './containers/BankCardPopup'
+import BankCardListPopup from './containers/BankCardListPopup'
+import BankCardFormPopup from './containers/BankCardFormPopup'
 
 const Manager: React.FC = () => {
   useReducerInjector(moduleName, reducer)
@@ -39,7 +40,8 @@ const Manager: React.FC = () => {
           <PointFormPopup />
           <TradeHistoryPopup />
           <MemberCreatePopup />
-          <BankCardPopup />
+          <BankCardListPopup />
+          <BankCardFormPopup />
         </LevelProvider>
       </PopupProvider>
     </Dashboard>
