@@ -84,7 +84,10 @@ const TableData: React.FC = () => {
         },
         {
           title: '白名單',
-          render: (_, row) => <a>3</a>,
+          render: (_, row) => {
+            const [visible, setVisible] = usePopupProvider('whiteList')
+            return <a onClick={() => setVisible(true)}>3</a>
+          },
         },
       ],
     },

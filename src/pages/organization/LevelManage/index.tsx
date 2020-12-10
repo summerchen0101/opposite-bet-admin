@@ -8,6 +8,7 @@ import PercentFormPopup from './containers/PercentFormPopup'
 import PwFormPopup from './containers/PwFormPopup'
 import SearchForm from './containers/SearchForm'
 import TableData from './containers/TableData'
+import WhiteListPopup from './containers/WhiteListPopup'
 import LevelProvider from './context/LevelProvider'
 import PopupProvider from './context/PopupProvider'
 import reducer, { moduleName } from './reducer'
@@ -26,6 +27,7 @@ const Manager: React.FC = () => {
           <PercentFormPopup />
           <PwFormPopup />
           <InvitedFormPopup />
+          <WhiteListPopup />
         </LevelProvider>
       </PopupProvider>
     </Dashboard>
