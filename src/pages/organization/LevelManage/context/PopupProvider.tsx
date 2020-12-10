@@ -7,6 +7,7 @@ interface IState {
   pwForm: PopupProps<boolean>
   invitedForm: PopupProps<boolean>
   whiteList: PopupProps<boolean>
+  tradeHistory: PopupProps<boolean>
 }
 
 const PopupContext = createContext<IState | null>(null)
@@ -18,6 +19,7 @@ const PopupProvider: React.FC = ({ children }) => {
     pwForm: useState(false),
     invitedForm: useState(false),
     whiteList: useState(false),
+    tradeHistory: useState(false),
   }
   return (
     <PopupContext.Provider value={initialState}>

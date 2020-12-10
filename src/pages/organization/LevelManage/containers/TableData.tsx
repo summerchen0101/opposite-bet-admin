@@ -96,11 +96,17 @@ const TableData: React.FC = () => {
       children: [
         {
           title: '未結帳注額',
-          render: (_, row) => 0,
+          render: (_, row) => {
+            const [visible, setVisible] = usePopupProvider('tradeHistory')
+            return <a onClick={() => setVisible(true)}>2</a>
+          },
         },
         {
           title: '已下注',
-          render: (_, row) => 0,
+          render: (_, row) => {
+            const [visible, setVisible] = usePopupProvider('tradeHistory')
+            return <a onClick={() => setVisible(true)}>2</a>
+          },
         },
         {
           title: '人數',
