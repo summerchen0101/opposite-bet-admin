@@ -2,7 +2,7 @@ import { PopupModal } from '@/components'
 import { IconLink, PopupConfirm, TableSets } from '@/components'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import { addKeyToArrayItem } from '@/utils/transfer'
-import { Button, Space, Table } from 'antd'
+import { Button, Select, Space, Table } from 'antd'
 import React from 'react'
 import { usePopupProvider } from '../../context/PopupProvider'
 
@@ -33,6 +33,9 @@ const TeamListPopup: React.FC = () => {
 
   const data = [...Array(5)]
 
+  const areaOpts = [{ label: '美國', value: 'USA' }]
+  const leagueOpts = [{ label: '乙組聯賽', value: 'xxxx' }]
+
   return (
     <PopupModal
       visible={visible}
@@ -40,6 +43,8 @@ const TeamListPopup: React.FC = () => {
         <>
           隊伍列表
           <Space className="float-right mr-3">
+            <Select options={areaOpts} defaultValue="USA" />
+            <Select options={leagueOpts} defaultValue="xxxx" />
             <Button
               size="small"
               type="primary"

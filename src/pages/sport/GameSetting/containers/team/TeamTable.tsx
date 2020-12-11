@@ -1,7 +1,7 @@
 import { IconLink, PopupConfirm, TableSets } from '@/components'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import { usePopupProvider } from '../../context/PopupProvider'
-import { Button, Space } from 'antd'
+import { Button, Select, Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
 interface TableItem {
@@ -37,11 +37,15 @@ const columns: ColumnsType<TableItem> = [
 const TeamTable: React.FC = () => {
   const [listVisible, setListVisible] = usePopupProvider('teamList')
   const [formVIsible, setFormVisible] = usePopupProvider('teamForm')
+  const areaOpts = [{ label: '美國', value: 'USA' }]
+  const leagueOpts = [{ label: '乙組聯賽', value: 'xxxx' }]
   return (
     <div>
       <h3 className="text-primary">
         隊伍
         <Space className="float-right">
+          <Select options={areaOpts} defaultValue="USA" size="small" />
+          <Select options={leagueOpts} defaultValue="xxxx" size="small" />
           <Button
             size="small"
             type="primary"

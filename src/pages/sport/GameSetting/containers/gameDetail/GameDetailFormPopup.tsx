@@ -1,5 +1,5 @@
 import { PopupModal } from '@/components'
-import { Button, Form, Input } from 'antd'
+import { Button, Form, Input, Select } from 'antd'
 import React from 'react'
 import { usePopupProvider } from '../../context/PopupProvider'
 
@@ -16,6 +16,18 @@ const GameDetailFormPopup: React.FC = () => {
       console.log('Validate Failed:', info)
     }
   }
+
+  const gameOpts = [
+    { label: '反波膽', value: 'opposite' },
+    { label: '總得分', value: 'total' },
+  ]
+
+  const nameAddonOpts = [
+    { label: '主', value: 1 },
+    { label: '客', value: 2 },
+    { label: '和', value: 0 },
+    { label: '無', value: 3 },
+  ]
 
   return (
     <PopupModal
@@ -36,8 +48,13 @@ const GameDetailFormPopup: React.FC = () => {
         <Form.Item label="代碼">
           <Input />
         </Form.Item>
+        <Form.Item label="玩法">
+          <Select options={gameOpts} defaultValue="opposite" />
+        </Form.Item>
         <Form.Item label="名稱">
-          <Input />
+          <Input
+            addonAfter={<Select options={nameAddonOpts} defaultValue={1} />}
+          />
         </Form.Item>
         <Form.Item label="備註">
           <Input />

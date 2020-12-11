@@ -2,7 +2,7 @@ import { PopupModal } from '@/components'
 import { IconLink, PopupConfirm, TableSets } from '@/components'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import { addKeyToArrayItem } from '@/utils/transfer'
-import { Button, Space, Table } from 'antd'
+import { Button, Select, Space, Table } from 'antd'
 import React from 'react'
 import { usePopupProvider } from '../../context/PopupProvider'
 
@@ -13,7 +13,7 @@ const GameDetailListPopup: React.FC = () => {
   const columns = [
     { title: '代碼', render: (_, row) => 'xxx', width: 150 },
     { title: '名稱', render: (_, row) => '1-0', width: 150 },
-    { title: '主客和', render: (_, row) => '1', width: 150 },
+    { title: '主客和', render: (_, row) => '主', width: 150 },
     {
       title: '操作',
       render: (_, row) => (
@@ -33,7 +33,10 @@ const GameDetailListPopup: React.FC = () => {
   ]
 
   const data = [...Array(5)]
-
+  const gameOpts = [
+    { label: '反波膽', value: 'opposite' },
+    { label: '總得分', value: 'total' },
+  ]
   return (
     <PopupModal
       visible={visible}
@@ -41,6 +44,7 @@ const GameDetailListPopup: React.FC = () => {
         <>
           玩法細項列表
           <Space className="float-right mr-3">
+            <Select options={gameOpts} defaultValue="opposite" size="small" />
             <Button
               size="small"
               type="primary"

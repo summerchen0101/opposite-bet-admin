@@ -1,5 +1,5 @@
 import { PopupModal } from '@/components'
-import { Button, Form, Input } from 'antd'
+import { Button, Form, Input, Select } from 'antd'
 import React from 'react'
 import { usePopupProvider } from '../../context/PopupProvider'
 
@@ -16,6 +16,11 @@ const LeagueFormPopup: React.FC = () => {
       console.log('Validate Failed:', info)
     }
   }
+
+  const areaOpts = [
+    { label: '美國', value: 'opt1' },
+    { label: '英國', value: 'opt2' },
+  ]
 
   return (
     <PopupModal
@@ -35,6 +40,9 @@ const LeagueFormPopup: React.FC = () => {
       <Form form={form} layout="vertical">
         <Form.Item label="代碼">
           <Input />
+        </Form.Item>
+        <Form.Item label="地區">
+          <Select options={areaOpts} />
         </Form.Item>
         <Form.Item label="名稱">
           <Input />

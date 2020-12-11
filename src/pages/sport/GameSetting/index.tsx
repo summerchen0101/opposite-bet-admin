@@ -54,8 +54,8 @@ const GameSettingPage: React.FC = () => {
       <EventFormPopup />
       <GameListPopup />
       <GameFormPopup />
-      <GameDetailListPopup />
       <GameDetailFormPopup />
+      <GameDetailListPopup />
       <LeagueListPopup />
       <LeagueFormPopup />
       <TeamListPopup />
