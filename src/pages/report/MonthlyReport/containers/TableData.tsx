@@ -1,10 +1,8 @@
-import PopupConfirm from '@/components/PopupConfirm'
 import IconLink from '@/components/IconLink'
 import TableSets from '@/components/TableSets'
-import { DeleteOutlined, FilterFilled, EditFilled } from '@ant-design/icons'
-import { Button, Checkbox, Popover, Space } from 'antd'
+import { FilterFilled } from '@ant-design/icons'
+import { Button, Space } from 'antd'
 import React from 'react'
-import Text from '@/components/Text'
 
 const columns = [
   {

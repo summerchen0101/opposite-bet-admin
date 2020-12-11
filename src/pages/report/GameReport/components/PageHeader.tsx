@@ -1,9 +1,8 @@
-import React from 'react'
 import PageHeader from '@/components/PageHeader'
-import CreateButton from '../containers/CreateButton'
 import { GameReport as page } from '@/pages/report/routes'
 import { useBreadcrumb } from '@/utils/hooks'
 import { Button } from 'antd'
+import React from 'react'
 
 const Component: React.FC = () => {
   const routes = useBreadcrumb(page)
