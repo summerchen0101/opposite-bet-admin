@@ -10,6 +10,7 @@ import {
 } from '@ant-design/icons'
 import React, { useEffect } from 'react'
 import useMultiPicker from '@/utils/hooks/useMultiPicker'
+import { usePopupProvider } from '../context/PopupProvider'
 
 interface TableItem {
   id: string
@@ -42,7 +43,13 @@ const TableData: React.FC = () => {
       title: '全場',
       children: [
         { title: '筆數', render: (_, row) => '0' },
-        { title: '實貨量', render: (_, row) => '0.00' },
+        {
+          title: '實貨量',
+          render: (_, row) => {
+            const [visible, setVisible] = usePopupProvider('gameDetail')
+            return <a onClick={() => setVisible(true)}>0.00</a>
+          },
+        },
       ],
     },
     {

@@ -25,6 +25,9 @@ export default createGlobalStyle`
   .mb-2 {
     margin-bottom: 15px !important
   }
+  .mr-1 {
+    margin-right: 7.5px !important
+  }
   .mr-2 {
     margin-right: 15px !important
   }
@@ -57,6 +60,15 @@ export default createGlobalStyle`
   }
   .align-top {
     vertical-align: top
+  }
+  .justify-content-between {
+    justify-content: space-between
+  }
+  .w-100 {
+    width: 100%
+  }
+  .h-100 {
+    height: 100%
   }
 
 `
