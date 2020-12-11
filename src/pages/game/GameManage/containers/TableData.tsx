@@ -24,6 +24,37 @@ const TableData: React.FC = () => {
   const { items, addAll, removeAll, removeOne, addOne } = useMultiPicker(
     data.map((t) => t.id),
   )
+  const events = [
+    {
+      title: '全場',
+      count: 3,
+      volume: '3,000.00',
+    },
+    {
+      title: '半場',
+      count: 3,
+      volume: '3,000.00',
+    },
+  ]
+  const eventsColumn = events.map(({ title, count, volume }) => ({
+    title,
+    children: [
+      {
+        title: '筆數',
+        render: (_, row) => {
+          const [visible, setVisible] = usePopupProvider('gameDetail')
+          return <a onClick={() => setVisible(true)}>{count}</a>
+        },
+      },
+      {
+        title: '實貨量',
+        render: (_, row) => {
+          const [visible, setVisible] = usePopupProvider('gameDetail')
+          return <a onClick={() => setVisible(true)}>{volume}</a>
+        },
+      },
+    ],
+  }))
   const columns: ColumnsType<TableItem> = [
     { title: '賽事編號', render: (_, row) => '3381' },
     { title: '比賽時間', render: (_, row) => toDateTime(Date.now()) },
@@ -39,26 +70,7 @@ const TableData: React.FC = () => {
       ),
     },
     { title: '狀態', render: (_, row) => '已上架' },
-    {
-      title: '全場',
-      children: [
-        { title: '筆數', render: (_, row) => '0' },
-        {
-          title: '實貨量',
-          render: (_, row) => {
-            const [visible, setVisible] = usePopupProvider('gameDetail')
-            return <a onClick={() => setVisible(true)}>0.00</a>
-          },
-        },
-      ],
-    },
-    {
-      title: '半場',
-      children: [
-        { title: '筆數', render: (_, row) => '0' },
-        { title: '實貨量', render: (_, row) => '0.00' },
-      ],
-    },
+    ...eventsColumn,
     {
       title: (
         <Space>

@@ -1,12 +1,13 @@
 import { PopupModal } from '@/components'
-import useMultiPicker from '@/utils/hooks/useMultiPicker'
 import { addKeyToArrayItem } from '@/utils/transfer'
-import { Checkbox, Input, Space, Table } from 'antd'
-import { ColumnsType } from 'antd/lib/table'
+import { Space, Table } from 'antd'
 import React from 'react'
 import { usePopupProvider } from '../context/PopupProvider'
 const GameDetailPopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('gameDetail')
+  const [gameOrdersVisible, setGameOrdersVisible] = usePopupProvider(
+    'gameOrders',
+  )
 
   const eventTypes = [
     { label: '主', count: 8 },
@@ -23,7 +24,7 @@ const GameDetailPopup: React.FC = () => {
           {data.map((d, i) => (
             <Space key={i} className="mb-1 w-100 justify-content-between">
               <span className="text-nowrap">1-0</span>
-              <span>7.5</span>
+              <a onClick={() => setGameOrdersVisible(true)}>7.5</a>
               <span>32,120</span>
             </Space>
           ))}
