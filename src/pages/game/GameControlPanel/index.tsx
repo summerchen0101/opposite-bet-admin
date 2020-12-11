@@ -1,8 +1,9 @@
 import { usePopupProvider } from '../GameManage/context/PopupProvider'
 import { addKeyToArrayItem } from '@/utils/transfer'
 import { Input, Layout, Space, Table } from 'antd'
-import { PlusOutlined, MinusOutlined } from '@ant-design/icons'
+import { PlusOutlined, MinusOutlined, ReloadOutlined } from '@ant-design/icons'
 import React from 'react'
+import { IconLink } from '@/components'
 
 const { Header, Content } = Layout
 
@@ -56,7 +57,10 @@ const GameControlPanel: React.FC = () => {
   const events = [{ label: '全場' }, { label: '半場' }]
   return (
     <div style={{ padding: '20px' }}>
-      <h3>反波膽(3381)</h3>
+      <h3>
+        <span className="mr-2">反波膽(3381)</span>
+        <IconLink icon={<ReloadOutlined />} label="重新整理" />
+      </h3>
       <div className="mb-2">
         <span className="mr-1">賽事編號：3381</span>
         <span className="mr-1">比賽時間：2020-11-18 00:01:51</span>
