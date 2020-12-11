@@ -3,6 +3,7 @@ import TableSets from '@/components/TableSets'
 import { FilterFilled } from '@ant-design/icons'
 import { Button, Space } from 'antd'
 import React from 'react'
+import { usePopupProvider } from '../context/PopupProvider'
 
 const columns = [
   {
@@ -116,8 +117,9 @@ const columns = [
     key: 'control',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
+      const [visible, setVisible] = usePopupProvider('checkoutForm')
       return (
-        <Button size="small" type="primary">
+        <Button size="small" type="primary" onClick={() => setVisible(true)}>
           結算
         </Button>
       )

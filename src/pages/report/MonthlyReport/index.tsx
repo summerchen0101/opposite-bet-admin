@@ -4,6 +4,7 @@ import PageHeader from './components/PageHeader'
 import TableData from './containers/TableData'
 import SearchBar from './containers/SearchBar'
 import PopupProvider from './context/PopupProvider'
+import CheckoutFormPopup from './containers/CheckoutFormPopup'
 
 const MonthlyReport: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const MonthlyReport: React.FC = () => {
         <PageHeader />
         <SearchBar />
         <TableData />
+        <CheckoutFormPopup />
       </PopupProvider>
     </Dashboard>
   )
