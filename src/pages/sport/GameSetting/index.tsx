@@ -5,6 +5,7 @@ import React from 'react'
 import PageHeader from './components/PageHeader'
 import AreaTable from './containers/AreaTable'
 import AreaListPopup from './containers/AreaListPopup'
+import AreaFormPopup from './containers/AreaFormPopup'
 
 const infoList = [
   { title: '地區', code: 'area' },
@@ -26,6 +27,7 @@ const GameSettingPage: React.FC = () => {
         </Row>
       </Dashboard>
       <AreaListPopup />
+      <AreaFormPopup />
     </PopupProvider>
   )
 }

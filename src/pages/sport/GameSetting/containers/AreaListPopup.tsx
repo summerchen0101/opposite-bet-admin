@@ -1,4 +1,6 @@
 import { PopupModal } from '@/components'
+import { IconLink, PopupConfirm, TableSets } from '@/components'
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import { addKeyToArrayItem } from '@/utils/transfer'
 import { Button, Space, Table } from 'antd'
 import React from 'react'
@@ -6,6 +8,7 @@ import { usePopupProvider } from '../context/PopupProvider'
 
 const AreaListPopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('areaList')
+  const [formVisible, setFormVisible] = usePopupProvider('areaForm')
 
   const columns = [
     { title: '代碼', render: (_, row) => 'USA' },
@@ -14,11 +17,17 @@ const AreaListPopup: React.FC = () => {
       title: '操作',
       render: (_, row) => (
         <Space>
-          <a>編輯</a>
-          <a>刪除</a>
+          <IconLink
+            icon={<EditOutlined />}
+            label="編輯"
+            onClick={() => setVisible(true)}
+          />
+          <PopupConfirm>
+            <IconLink icon={<DeleteOutlined />} label="刪除" />
+          </PopupConfirm>
         </Space>
       ),
-      width: 120,
+      width: 80,
     },
   ]
 
@@ -31,7 +40,11 @@ const AreaListPopup: React.FC = () => {
         <>
           地區列表
           <Space className="float-right mr-3">
-            <Button size="small" type="primary">
+            <Button
+              size="small"
+              type="primary"
+              onClick={() => setFormVisible(true)}
+            >
               新增
             </Button>
           </Space>
