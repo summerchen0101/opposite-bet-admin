@@ -12,7 +12,7 @@ import React, { useEffect } from 'react'
 import useMultiPicker from '@/utils/hooks/useMultiPicker'
 import { usePopupProvider } from '../context/PopupProvider'
 import { GameControlPanel } from '../../routes'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 interface TableItem {
   id: string
@@ -98,8 +98,15 @@ const TableData: React.FC = () => {
             <IconLink label="下架" icon={<CloseCircleOutlined />} />
             <IconLink
               label="控盤"
-              icon={<SettingOutlined />}
-              onClick={() => history.push(GameControlPanel.path)}
+              icon={
+                <Link
+                  to={GameControlPanel.path}
+                  target="_blank"
+                  className="text-default"
+                >
+                  <SettingOutlined />
+                </Link>
+              }
             />
             <IconLink
               label="編輯"

@@ -76,5 +76,11 @@ export default createGlobalStyle`
   .text-white {
     color: #fff
   }
+  .text-default {
+    color: rgba(0, 0, 0, 0.85);
+    &:hover {
+      color: rgba(0, 0, 0, 0.85);
+    }
+  }
 
 `
