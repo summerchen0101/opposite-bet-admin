@@ -13,6 +13,11 @@ export const GameManage = new PageG(
   `${rootPath}/manage`,
   pages.GameManage,
 )
+export const GameControlPanel = new PageG(
+  '控盤',
+  `${rootPath}/manage/ctrl`,
+  pages.GameControlPanel,
+)
 
 // ROUTERS
 RouteG.create([GameManage])

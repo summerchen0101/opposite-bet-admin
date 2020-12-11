@@ -11,6 +11,8 @@ import {
 import React, { useEffect } from 'react'
 import useMultiPicker from '@/utils/hooks/useMultiPicker'
 import { usePopupProvider } from '../context/PopupProvider'
+import { GameControlPanel } from '../../routes'
+import { useHistory } from 'react-router-dom'
 
 interface TableItem {
   id: string
@@ -83,6 +85,7 @@ const TableData: React.FC = () => {
       ),
       render: (_, row) => {
         const [visible, setVisible] = usePopupProvider('createForm')
+        const history = useHistory()
         return (
           <Space>
             <Checkbox
@@ -93,7 +96,11 @@ const TableData: React.FC = () => {
             />
             {/* <IconLink label="上架" icon={<CheckCircleOutlined />} /> */}
             <IconLink label="下架" icon={<CloseCircleOutlined />} />
-            <IconLink label="控盤" icon={<SettingOutlined />} />
+            <IconLink
+              label="控盤"
+              icon={<SettingOutlined />}
+              onClick={() => history.push(GameControlPanel.path)}
+            />
             <IconLink
               label="編輯"
               icon={<FormOutlined />}

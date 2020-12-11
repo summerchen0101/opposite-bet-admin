@@ -73,5 +73,8 @@ export default createGlobalStyle`
   .text-primary {
     color: ${blue.primary}
   }
+  .text-white {
+    color: #fff
+  }
 
 `
