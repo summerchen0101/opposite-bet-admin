@@ -82,6 +82,7 @@ const TableData: React.FC = () => {
         </Space>
       ),
       render: (_, row) => {
+        const [visible, setVisible] = usePopupProvider('createForm')
         return (
           <Space>
             <Checkbox
@@ -93,7 +94,11 @@ const TableData: React.FC = () => {
             {/* <IconLink label="上架" icon={<CheckCircleOutlined />} /> */}
             <IconLink label="下架" icon={<CloseCircleOutlined />} />
             <IconLink label="控盤" icon={<SettingOutlined />} />
-            <IconLink label="編輯" icon={<FormOutlined />} />
+            <IconLink
+              label="編輯"
+              icon={<FormOutlined />}
+              onClick={() => setVisible(true)}
+            />
           </Space>
         )
       },
