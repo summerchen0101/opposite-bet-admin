@@ -1,7 +1,7 @@
 import { PopupModal } from '@/components'
 import { Button, Form, Input } from 'antd'
 import React from 'react'
-import { usePopupProvider } from '../context/PopupProvider'
+import { usePopupProvider } from '../../context/PopupProvider'
 
 const AreaFormPopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('areaForm')

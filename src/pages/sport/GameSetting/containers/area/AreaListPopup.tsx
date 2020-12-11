@@ -4,7 +4,7 @@ import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import { addKeyToArrayItem } from '@/utils/transfer'
 import { Button, Space, Table } from 'antd'
 import React from 'react'
-import { usePopupProvider } from '../context/PopupProvider'
+import { usePopupProvider } from '../../context/PopupProvider'
 
 const AreaListPopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('areaList')

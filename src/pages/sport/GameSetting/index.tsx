@@ -3,9 +3,9 @@ import PopupProvider from './context/PopupProvider'
 import { Col, Row } from 'antd'
 import React from 'react'
 import PageHeader from './components/PageHeader'
-import AreaTable from './containers/AreaTable'
-import AreaListPopup from './containers/AreaListPopup'
-import AreaFormPopup from './containers/AreaFormPopup'
+import AreaTable from './containers/area/AreaTable'
+import AreaListPopup from './containers/area/AreaListPopup'
+import AreaFormPopup from './containers/area/AreaFormPopup'
 
 const infoList = [
   { title: '地區', code: 'area' },

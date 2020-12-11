@@ -1,6 +1,6 @@
 import { IconLink, PopupConfirm, TableSets } from '@/components'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
-import { usePopupProvider } from '../context/PopupProvider'
+import { usePopupProvider } from '../../context/PopupProvider'
 import { Button, Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
