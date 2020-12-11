@@ -7,7 +7,7 @@ const SearchBar: React.FC = () => {
   return (
     <Form layout="inline" className="mb-2">
       <div className="mb-1 d-flex">
-        <Form.Item label="層級" initialValue="all">
+        <Form.Item label="層級" name="level" initialValue="all">
           <Select
             options={[...levelOpts, { label: '全部', value: 'all' }]}
             style={{ width: '130px' }}

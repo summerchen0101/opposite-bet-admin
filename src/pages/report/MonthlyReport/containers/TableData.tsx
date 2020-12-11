@@ -1,5 +1,4 @@
-import IconLink from '@/components/IconLink'
-import TableSets from '@/components/TableSets'
+import { IconLink, TableSets, ColorText } from '@/components'
 import { FilterFilled } from '@ant-design/icons'
 import { Button, Space } from 'antd'
 import React from 'react'
@@ -8,18 +7,14 @@ import { usePopupProvider } from '../context/PopupProvider'
 const columns = [
   {
     title: '投注資訊',
-    width: 100,
     children: [
       {
         title: '帳號/名稱',
-        dataIndex: 'account',
-        allowFiltered: true,
         width: 100,
+        render: (_, row) => 'gogo[陳]',
       },
       {
         title: '結算額',
-        dataIndex: 'firstDepositCount',
-        allowFiltered: true,
         width: 120,
         render: (_, row) => '-',
       },
@@ -28,93 +23,71 @@ const columns = [
 
   {
     title: '本層總額',
-    width: 140,
     children: [
       {
         title: '佔成金額',
-        dataIndex: 'firstDepositTotal',
-        allowFiltered: true,
         width: 140,
-        render: (_, row) => '-',
+        render: (_, row) => <ColorText red>-75</ColorText>,
       },
       {
         title: '手續費',
-        dataIndex: 'onceAgainDepositCount',
-        allowFiltered: true,
         width: 120,
-        render: (_, row) => '-',
+        render: (_, row) => '0',
       },
     ],
   },
   {
     title: '下層總額',
-    width: 140,
     children: [
       {
         title: '佔成金額',
-        dataIndex: 'firstDepositTotal',
-        allowFiltered: true,
         width: 140,
-        render: (_, row) => '-',
+        render: (_, row) => <ColorText green>8,154,662</ColorText>,
       },
       {
         title: '手續費',
-        dataIndex: 'onceAgainDepositCount',
-        allowFiltered: true,
         width: 120,
-        render: (_, row) => '-',
+        render: (_, row) => '0',
       },
     ],
   },
 
   {
     title: '應交收額',
-    render: (_, row) => '-',
+    render: (_, row) => <ColorText green>8,154,586</ColorText>,
     width: 140,
   },
   {
     title: '已交收額',
     width: 120,
-    render: (_, row) => '-',
+    render: (_, row) => '0',
   },
 
   {
     title: '交收紀錄',
-    width: 120,
     children: [
       {
         title: '未交收額',
-        dataIndex: 'depositTotal',
-        allowFiltered: true,
         width: 140,
-        render: (_, row) => '-',
+        render: (_, row) => <ColorText red>8,154,586.22</ColorText>,
       },
       {
         title: '未結算額',
-        dataIndex: 'firstWithdrawalCount',
-        allowFiltered: true,
         width: 120,
-        render: (_, row) => '-',
+        render: (_, row) => <ColorText red>75.98</ColorText>,
       },
       {
         title: '結算次數',
-        dataIndex: 'firstWithdrawalTotal',
-        allowFiltered: true,
-        render: (_, row) => '-',
+        render: (_, row) => {
+          const [visible, setVisible] = usePopupProvider('checkoutHistory')
+          return <a onClick={() => setVisible(true)}>0</a>
+        },
+        width: 120,
       },
     ],
   },
   {
-    title: () => (
-      <>
-        <Space size="small">操作</Space>
-        <IconLink
-          icon={<FilterFilled />}
-          style={{ float: 'right', marginBottom: -4 }}
-        />
-      </>
-    ),
-    key: 'control',
+    title: '操作',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
       const [visible, setVisible] = usePopupProvider('checkoutForm')
@@ -128,20 +101,7 @@ const columns = [
   },
 ]
 
-const data = [...Array(50)].map((t, i) => ({
-  id: i,
-  account: 'aaaa(小白)',
-  firstDepositCount: 5,
-  firstDepositTotal: 20320,
-  onceAgainDepositCount: 10,
-  onceAgainDepositTotal: 41232,
-  firstWithdrawalCount: 5,
-  firstWithdrawalTotal: 20320,
-  onceAgainWithdrawalCount: 10,
-  onceAgainWithdrawalTotal: 41232,
-  loginCount: 20,
-  registerCount: 3,
-}))
+const data = [...Array(5)].map((t, i) => ({ id: i }))
 const TableData: React.FC = () => {
   return <TableSets columns={columns} data={data} />
 }
