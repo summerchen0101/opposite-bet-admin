@@ -36,7 +36,7 @@ export const fetchUserAndMenu = createAsyncThunk(
 export const doLogout = createAsyncThunk(
   'global/doLogout',
   async (_, { dispatch }) => {
-    const { result } = await API.logout()
+    const { result } = await mockAPI.logout()
     errorHandler(result, dispatch)
     return
   },
