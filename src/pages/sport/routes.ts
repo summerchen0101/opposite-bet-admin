@@ -13,9 +13,17 @@ export const GameSetting = new PageG(
   `${rootPath}/manage`,
   pages.GameSetting,
 )
+export const GameLimit = new PageG(
+  '玩法數值調整',
+  `${rootPath}/game-limit`,
+  pages.GameLimit,
+)
 
 // ROUTERS
-RouteG.create([GameSetting])
+RouteG.create([GameSetting, GameLimit])
 
 // MENU
-MenuG.createCategory(rootName, rootPath, DribbbleOutlined, [GameSetting])
+MenuG.createCategory(rootName, rootPath, DribbbleOutlined, [
+  GameSetting,
+  GameLimit,
+])
