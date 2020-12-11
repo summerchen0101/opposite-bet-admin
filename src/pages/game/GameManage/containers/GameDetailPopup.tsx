@@ -24,8 +24,10 @@ const GameDetailPopup: React.FC = () => {
           {data.map((d, i) => (
             <Space key={i} className="mb-1 w-100 justify-content-between">
               <span className="text-nowrap">1-0</span>
-              <a onClick={() => setGameOrdersVisible(true)}>7.5</a>
-              <span>32,120</span>
+              <span>7.5</span>
+              <span>
+                <a onClick={() => setGameOrdersVisible(true)}>200</a> / 32,120
+              </span>
             </Space>
           ))}
         </>
