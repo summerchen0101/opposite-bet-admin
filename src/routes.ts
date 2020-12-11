@@ -1,6 +1,7 @@
 import '@/pages/global/routes'
 import '@/pages/admin/routes'
 import '@/pages/announce/routes'
+import '@/pages/sport/routes'
 import '@/pages/game/routes'
 import '@/pages/organization/routes'
 import '@/pages/payment/routes'

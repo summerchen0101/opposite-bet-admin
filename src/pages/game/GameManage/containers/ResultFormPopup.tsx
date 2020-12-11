@@ -1,18 +1,5 @@
 import { PopupModal } from '@/components'
-import useMultiPicker from '@/utils/hooks/useMultiPicker'
-import { addKeyToArrayItem } from '@/utils/transfer'
-import {
-  Button,
-  Checkbox,
-  Col,
-  DatePicker,
-  Form,
-  Input,
-  Row,
-  Select,
-  Space,
-  Table,
-} from 'antd'
+import { Button, Form, Input } from 'antd'
 import React from 'react'
 import { usePopupProvider } from '../context/PopupProvider'
 const ResultFormPopup: React.FC = () => {
