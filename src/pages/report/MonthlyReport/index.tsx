@@ -1,10 +1,8 @@
 import Dashboard from '@/components/Dashboard'
-import DateRangePicker from '@/components/DateRangePicker'
-import PageSearchBar from '@/components/PageSearchBar'
-import RelativeDateBtns from '@/components/RelativeDateBtns'
 import React from 'react'
 import PageHeader from './components/PageHeader'
 import TableData from './containers/TableData'
+import SearchBar from './containers/SearchBar'
 import PopupProvider from './context/PopupProvider'
 
 const MonthlyReport: React.FC = () => {
@@ -12,6 +10,7 @@ const MonthlyReport: React.FC = () => {
     <Dashboard>
       <PopupProvider>
         <PageHeader />
+        <SearchBar />
         <TableData />
       </PopupProvider>
     </Dashboard>
