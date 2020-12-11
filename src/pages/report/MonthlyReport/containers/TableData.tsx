@@ -74,7 +74,7 @@ const columns = [
       {
         title: '未結算額',
         width: 120,
-        render: (_, row) => <ColorText red>75.98</ColorText>,
+        render: (_, row) => '75.98',
       },
       {
         title: '結算次數',

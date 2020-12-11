@@ -1,8 +1,9 @@
 import { PopupModal } from '@/components'
 import { Button, Col, Divider, Form, Input, Row, Select } from 'antd'
 import React from 'react'
-import styled from 'styled-components'
 import { usePopupProvider } from '../context/PopupProvider'
+import { MinusOutlined } from '@ant-design/icons'
+import styled from 'styled-components'
 
 const StyledText = styled.div<{ red?: boolean; green?: boolean }>`
   background: #eee;

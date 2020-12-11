@@ -3,6 +3,7 @@ import React from 'react'
 import PageHeader from './components/PageHeader'
 import TableData from './containers/TableData'
 import SearchBar from './containers/SearchBar'
+import CheckoutFormPopup from './containers/CheckoutFormPopup'
 import PopupProvider from './context/PopupProvider'
 
 const Manager: React.FC = () => {
@@ -12,6 +13,7 @@ const Manager: React.FC = () => {
         <PageHeader />
         <SearchBar />
         <TableData />
+        <CheckoutFormPopup />
       </PopupProvider>
     </Dashboard>
   )

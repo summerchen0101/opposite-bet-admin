@@ -1,185 +1,160 @@
-import PopupConfirm from '@/components/PopupConfirm'
 import IconLink from '@/components/IconLink'
 import TableSets from '@/components/TableSets'
-import { DeleteOutlined, FilterFilled, EditFilled } from '@ant-design/icons'
-import { Button, Checkbox, Popover, Space } from 'antd'
+import { usePopupProvider } from '../context/PopupProvider'
+import { FilterFilled } from '@ant-design/icons'
+import { Button, Space } from 'antd'
 import React from 'react'
-import Text from '@/components/Text'
+import { ColorText } from '@/components'
 
 const columns = [
   {
-    title: '公司',
-    width: 100,
-    render: (_, row) => '-',
-  },
-  {
-    title: '遊戲站',
-    width: 120,
+    title: '一般資訊',
     children: [
       {
-        title: '遊戲平台',
-        dataIndex: 'onceAgainDepositCount',
-        allowFiltered: true,
-        width: 120,
-        render: (_, row) => '-',
+        title: '廠商',
+        width: 140,
+        render: (_, row) => 'sky123[天天]',
       },
       {
-        title: '遊戲類型',
-        render: (_, row) => '-',
-        allowFiltered: true,
-        width: 140,
+        title: '股東',
+        width: 100,
+        render: (_, row) => {
+          return <a>5</a>
+        },
       },
     ],
   },
   {
     title: '注單統計',
-    width: 140,
     children: [
       {
         title: '筆數',
-        dataIndex: 'depositCount',
-        allowFiltered: true,
-        width: 120,
-        render: (_, row) => '-',
+        width: 100,
+        render: (_, row) => {
+          return <a>100</a>
+        },
       },
       {
         title: '注額',
-        dataIndex: 'depositTotal',
-        allowFiltered: true,
         width: 140,
-        render: (_, row) => '-',
+        render: (_, row) => <ColorText green>3,119,687.24</ColorText>,
+      },
+      {
+        title: '有效投注額',
+        width: 140,
+        render: (_, row) => <ColorText green>80,967.58</ColorText>,
       },
       {
         title: '中獎金額',
-        dataIndex: 'firstWithdrawalCount',
-        allowFiltered: true,
         width: 120,
-        render: (_, row) => '-',
+        render: (_, row) => <ColorText green>3,167,005.18</ColorText>,
       },
       {
         title: '彩金',
-        dataIndex: 'firstWithdrawalTotal',
-        allowFiltered: true,
-        width: 140,
-        render: (_, row) => '-',
+        width: 100,
+        render: (_, row) => '0.00',
       },
     ],
   },
-
   {
     title: '會員',
-    width: 120,
     children: [
       {
         title: '會員退水',
-        dataIndex: 'onceAgainWithdrawalTotal',
-        allowFiltered: true,
-        width: 140,
-        render: (_, row) => '-',
+        width: 100,
+        render: (_, row) => '0.00',
       },
       {
         title: '會員紅利',
-        dataIndex: 'withdrawalCount',
-        allowFiltered: true,
-        width: 120,
-        render: (_, row) => '-',
+        width: 100,
+        render: (_, row) => '0.00',
       },
       {
         title: '會員小計',
-        dataIndex: 'withdrawalTotal',
-        allowFiltered: true,
-        width: 140,
-        render: (_, row) => '-',
+        width: 100,
+        render: (_, row) => <ColorText green>47,317.94</ColorText>,
       },
       {
         title: '佔成(%)',
-        dataIndex: 'loginCount',
-        allowFiltered: true,
-        width: 120,
-        render: (_, row) => '-',
+        width: 100,
+        render: (_, row) => '40%',
       },
       {
         title: '佔比額度',
-        dataIndex: 'registerCount',
-        allowFiltered: true,
-        width: 120,
-        render: (_, row) => '-',
+        width: 100,
+        render: (_, row) => <ColorText red>-18,927.17</ColorText>,
       },
       {
         title: '退水',
-        dataIndex: 'loginCount',
-        allowFiltered: true,
-        width: 120,
-        render: (_, row) => '-',
+        width: 100,
+        render: (_, row) => '0.00',
       },
       {
         title: '退佣',
-        dataIndex: 'registerCount',
-        allowFiltered: true,
-        width: 120,
-        render: (_, row) => '-',
+        width: 100,
+        render: (_, row) => '0.00',
       },
     ],
   },
   {
     title: '成本支出',
-    width: 140,
     children: [
       {
         title: '代理退水',
-        dataIndex: 'depositCount',
-        allowFiltered: true,
-        width: 120,
-        render: (_, row) => '-',
+        width: 100,
+        render: (_, row) => '0.00',
       },
       {
         title: '會員退水',
-        dataIndex: 'depositTotal',
-        allowFiltered: true,
-        width: 140,
-        render: (_, row) => row.firstDepositTotal + row.onceAgainDepositTotal,
+        width: 100,
+        render: (_, row) => '0.00',
       },
       {
         title: '會員紅利',
-        dataIndex: 'firstWithdrawalCount',
-        allowFiltered: true,
-        render: (_, row) => '-',
+        width: 100,
+        render: (_, row) => '0.00',
       },
     ],
   },
   {
     title: '小計',
-    width: 120,
-    render: (_, row) => '-',
+    width: 100,
+    render: (_, row) => '0.00',
   },
-
   {
-    title: () => <IconLink icon={<FilterFilled />} />,
+    title: () => (
+      <>
+        <Space size="small">操作</Space>
+        <IconLink
+          icon={<FilterFilled />}
+          style={{ float: 'right', marginBottom: -4 }}
+        />
+      </>
+    ),
     key: 'control',
     fixed: ('right' as unknown) as boolean,
-    width: 40,
+    render(_, row) {
+      const [visible, setVisible] = usePopupProvider('checkoutForm')
+      return (
+        <Button size="small" type="primary" onClick={() => setVisible(true)}>
+          重新結算
+        </Button>
+      )
+    },
+    width: 120,
   },
 ]
 
-const data = []
-for (let i = 1; i <= 10; i++) {
-  data.push({
-    id: i,
-    account: 'aaaa(小白)',
-    firstDepositCount: 5,
-    firstDepositTotal: 20320,
-    onceAgainDepositCount: 10,
-    onceAgainDepositTotal: 41232,
-    firstWithdrawalCount: 5,
-    firstWithdrawalTotal: 20320,
-    onceAgainWithdrawalCount: 10,
-    onceAgainWithdrawalTotal: 41232,
-    loginCount: 20,
-    registerCount: 3,
-  })
-}
+const data = [...Array(10)].map((t, i) => ({
+  id: i,
+}))
 const TableData: React.FC = () => {
-  return <TableSets columns={columns} data={data} />
+  return (
+    <>
+      <h3>全部</h3>
+      <TableSets columns={columns} data={data} scroll={{ x: 1800 }} />
+    </>
+  )
 }
 
 export default TableData

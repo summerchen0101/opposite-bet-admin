@@ -1,5 +1,6 @@
 import IconLink from '@/components/IconLink'
 import TableSets from '@/components/TableSets'
+import { usePopupProvider } from '../context/PopupProvider'
 import { FilterFilled } from '@ant-design/icons'
 import { Button, Space } from 'antd'
 import React from 'react'
@@ -11,51 +12,38 @@ const columns = [
     children: [
       {
         title: '代理商',
-        dataIndex: 'account',
-        allowFiltered: true,
         width: 100,
         render: (_, row) => '-',
       },
       {
         title: '日期',
-        dataIndex: 'firstDepositCount',
-        allowFiltered: true,
         width: 120,
-        render: (_, row) => '-',
+        render: (_, row) => '2020-12-01',
       },
       {
         title: '注單錯誤',
-        dataIndex: 'firstDepositTotal',
-        allowFiltered: true,
         width: 140,
-        render: (_, row) => '-',
+        render: (_, row) => '0',
       },
       {
         title: '已取消回滾',
-        dataIndex: 'onceAgainDepositCount',
-        allowFiltered: true,
         width: 120,
-        render: (_, row) => '-',
+        render: (_, row) => '58',
       },
       {
         title: '已開獎',
-        render: (_, row) => '-',
-        allowFiltered: true,
+        render: (_, row) => '0',
         width: 140,
       },
       {
         title: '下注中',
-        dataIndex: 'depositCount',
-        allowFiltered: true,
         width: 120,
-        render: (_, row) => '-',
+        render: (_, row) => '135',
       },
       {
         title: '已完成注單',
-        dataIndex: 'depositTotal',
-        allowFiltered: true,
         width: 140,
-        render: (_, row) => '-',
+        render: (_, row) => '505',
       },
     ],
   },
@@ -67,64 +55,46 @@ const columns = [
     children: [
       {
         title: '筆數',
-        dataIndex: 'firstWithdrawalTotal',
-        allowFiltered: true,
         width: 140,
         render: (_, row) => '-',
       },
       {
         title: '注額',
-        dataIndex: 'onceAgainWithdrawalCount',
-        allowFiltered: true,
         width: 120,
         render: (_, row) => '-',
       },
       {
         title: '會員結果',
-        dataIndex: 'onceAgainWithdrawalTotal',
-        allowFiltered: true,
         width: 140,
         render: (_, row) => '-',
       },
       {
         title: '公司結果',
-        dataIndex: 'withdrawalCount',
-        allowFiltered: true,
         width: 120,
         render: (_, row) => '-',
       },
       {
         title: '加盟主結果',
-        dataIndex: 'withdrawalTotal',
-        allowFiltered: true,
         width: 140,
         render: (_, row) => '-',
       },
       {
         title: '大股東結果',
-        dataIndex: 'loginCount',
-        allowFiltered: true,
         width: 120,
         render: (_, row) => '-',
       },
       {
         title: '股東結果',
-        dataIndex: 'registerCount',
-        allowFiltered: true,
         width: 120,
         render: (_, row) => '-',
       },
       {
         title: '總代理結果',
-        dataIndex: 'loginCount',
-        allowFiltered: true,
         width: 120,
         render: (_, row) => '-',
       },
       {
         title: '代理結果',
-        dataIndex: 'registerCount',
-        allowFiltered: true,
         width: 120,
         render: (_, row) => '-',
       },
@@ -143,8 +113,9 @@ const columns = [
     key: 'control',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
+      const [visible, setVisible] = usePopupProvider('checkoutForm')
       return (
-        <Button size="small" type="primary">
+        <Button size="small" type="primary" onClick={() => setVisible(true)}>
           重新結算
         </Button>
       )
@@ -155,17 +126,6 @@ const columns = [
 
 const data = [...Array(50)].map((t, i) => ({
   id: i,
-  account: 'aaaa(小白)',
-  firstDepositCount: 5,
-  firstDepositTotal: 20320,
-  onceAgainDepositCount: 10,
-  onceAgainDepositTotal: 41232,
-  firstWithdrawalCount: 5,
-  firstWithdrawalTotal: 20320,
-  onceAgainWithdrawalCount: 10,
-  onceAgainWithdrawalTotal: 41232,
-  loginCount: 20,
-  registerCount: 3,
 }))
 const TableData: React.FC = () => {
   return <TableSets columns={columns} data={data} />
