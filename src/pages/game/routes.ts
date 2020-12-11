@@ -18,9 +18,17 @@ export const GameControlPanel = new PageG(
   `${rootPath}/manage/ctrl`,
   pages.GameControlPanel,
 )
+export const CheckoutManage = new PageG(
+  '已結單賽事',
+  `${rootPath}/manage/checkout`,
+  pages.CheckoutManage,
+)
 
 // ROUTERS
 RouteG.create([GameManage])
 
 // MENU
-MenuG.createCategory(rootName, rootPath, DribbbleOutlined, [GameManage])
+MenuG.createCategory(rootName, rootPath, DribbbleOutlined, [
+  GameManage,
+  CheckoutManage,
+])

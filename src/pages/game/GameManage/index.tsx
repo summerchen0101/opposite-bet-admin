@@ -5,10 +5,11 @@ import PageHeader from './components/PageHeader'
 import CreateFormPopup from './containers/CreateFormPopup'
 import GameDetailPopup from './containers/GameDetailPopup'
 import GameOrdersPopup from './containers/GameOrdersPopup'
+import ResultFormPopup from './containers/ResultFormPopup'
 import SearchBar from './containers/SearchBar'
 import TableData from './containers/TableData'
 import PopupProvider from './context/PopupProvider'
-import { GameManage, GameControlPanel } from '../routes'
+import { GameManage, GameControlPanel, CheckoutManage } from '../routes'
 
 const GameManagePage: React.FC = () => {
   return (
@@ -18,6 +19,10 @@ const GameManagePage: React.FC = () => {
           <Route
             path={GameControlPanel.path}
             component={GameControlPanel.component}
+          />
+          <Route
+            path={CheckoutManage.path}
+            component={CheckoutManage.component}
           />
           <Route path={GameManage.path}>
             <Dashboard>
@@ -30,6 +35,7 @@ const GameManagePage: React.FC = () => {
         <CreateFormPopup />
         <GameDetailPopup />
         <GameOrdersPopup />
+        <ResultFormPopup />
       </PopupProvider>
     </>
   )

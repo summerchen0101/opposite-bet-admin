@@ -61,6 +61,9 @@ export default createGlobalStyle`
   .align-top {
     vertical-align: top
   }
+  .d-flex {
+    display: flex
+  }
   .justify-content-between {
     justify-content: space-between
   }

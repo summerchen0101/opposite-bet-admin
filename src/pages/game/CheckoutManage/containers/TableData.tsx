@@ -10,7 +10,7 @@ import {
 } from '@ant-design/icons'
 import React, { useEffect } from 'react'
 import useMultiPicker from '@/utils/hooks/useMultiPicker'
-import { usePopupProvider } from '../context/PopupProvider'
+import { usePopupProvider } from '../../GameManage/context/PopupProvider'
 import { GameControlPanel } from '../../routes'
 import { Link, useHistory } from 'react-router-dom'
 
@@ -42,11 +42,20 @@ const TableData: React.FC = () => {
     title,
     children: [
       {
+        title: '結果',
+        render: (_, row) => {
+          const [visible, setVisible] = usePopupProvider('resultForm')
+          return <a onClick={() => setVisible(true)}>添加</a>
+        },
+        width: 80,
+      },
+      {
         title: '筆數',
         render: (_, row) => {
           const [visible, setVisible] = usePopupProvider('gameDetail')
           return <a onClick={() => setVisible(true)}>{count}</a>
         },
+        width: 80,
       },
       {
         title: '實貨量',
@@ -71,53 +80,8 @@ const TableData: React.FC = () => {
         </>
       ),
     },
-    { title: '狀態', render: (_, row) => '已上架' },
+    { title: '狀態', render: (_, row) => '已結單' },
     ...eventsColumn,
-    {
-      title: (
-        <Space>
-          <Checkbox
-            checked={items.length > 0 && items.length === data.length}
-            onChange={(e) => (e.target.checked ? addAll() : removeAll())}
-          />
-          操作
-        </Space>
-      ),
-      render: (_, row) => {
-        const [visible, setVisible] = usePopupProvider('createForm')
-        const history = useHistory()
-        return (
-          <Space>
-            <Checkbox
-              checked={items.includes(row.id)}
-              onChange={(e) =>
-                e.target.checked ? addOne(row.id) : removeOne(row.id)
-              }
-            />
-            {/* <IconLink label="上架" icon={<CheckCircleOutlined />} /> */}
-            <IconLink label="下架" icon={<CloseCircleOutlined />} />
-            <IconLink
-              label="控盤"
-              icon={
-                <Link
-                  to={GameControlPanel.path}
-                  target="_blank"
-                  className="text-default"
-                >
-                  <SettingOutlined />
-                </Link>
-              }
-            />
-            <IconLink
-              label="編輯"
-              icon={<FormOutlined />}
-              onClick={() => setVisible(true)}
-            />
-          </Space>
-        )
-      },
-      width: 130,
-    },
   ]
   return <TableSets columns={columns} data={data} scroll={{ x: 1500 }} />
 }
