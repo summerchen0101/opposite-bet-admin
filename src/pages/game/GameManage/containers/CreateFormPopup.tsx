@@ -1,4 +1,5 @@
 import { PopupModal } from '@/components'
+import useMultiPicker from '@/utils/hooks/useMultiPicker'
 import { addKeyToArrayItem } from '@/utils/transfer'
 import {
   Button,
@@ -14,14 +15,6 @@ import {
 } from 'antd'
 import React from 'react'
 import { usePopupProvider } from '../context/PopupProvider'
-const Unit: React.FC = () => (
-  <Space className="mb-1">
-    <Checkbox />
-    <span className="text-nowrap">1-0</span>
-    <Input size="small" defaultValue="7.5" />
-    <Input size="small" defaultValue="32,120" />
-  </Space>
-)
 const CreateFormPopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('createForm')
   const [form] = Form.useForm()
@@ -62,23 +55,45 @@ const CreateFormPopup: React.FC = () => {
     { label: '客', count: 8 },
   ]
 
-  const columns = eventTypes.map((t, i) => ({
-    title: (
-      <div className="text-center">
-        <Checkbox className="float-left" />
-        {t.label}
-      </div>
-    ),
-    render: (_, row) => (
-      <>
-        {[...Array(t.count)].map((t, i) => (
-          <Unit key={i} />
-        ))}
-      </>
-    ),
-    className: 'align-top',
-    width: 100,
-  }))
+  const columns = eventTypes.map((t, i) => {
+    const data = [...Array(t.count)]
+    const { items, addOne, removeOne, addAll, removeAll } = useMultiPicker(
+      data.map((d, i) => `${t.label}-${i.toString()}`),
+    )
+    return {
+      title: (
+        <div className="text-center">
+          <Checkbox
+            className="float-left"
+            checked={items.length > 0 && items.length === data.length}
+            onChange={(e) => (e.target.checked ? addAll() : removeAll())}
+          />
+          {t.label}
+        </div>
+      ),
+      render: (_, row) => (
+        <>
+          {data.map((d, i) => (
+            <Space key={i} className="mb-1">
+              <Checkbox
+                checked={items.includes(`${t.label}-${i.toString()}`)}
+                onChange={(e) =>
+                  e.target.checked
+                    ? addOne(`${t.label}-${i.toString()}`)
+                    : removeOne(`${t.label}-${i.toString()}`)
+                }
+              />
+              <span className="text-nowrap">1-0</span>
+              <Input size="small" defaultValue="7.5" />
+              <Input size="small" defaultValue="32,120" />
+            </Space>
+          ))}
+        </>
+      ),
+      className: 'align-top',
+      width: 100,
+    }
+  })
 
   const data = [{ key: 1 }]
 
