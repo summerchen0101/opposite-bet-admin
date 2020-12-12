@@ -4,15 +4,18 @@ import PageHeader from './components/PageHeader'
 import TableData from './containers/TableData'
 import SearchBar from './containers/SearchBar'
 import PopupProvider from './context/PopupProvider'
+import LevelProvider from './context/LevelProvider'
 
 const Manager: React.FC = () => {
   return (
     <Dashboard>
-      <PopupProvider>
-        <PageHeader />
-        <SearchBar />
-        <TableData />
-      </PopupProvider>
+      <LevelProvider>
+        <PopupProvider>
+          <PageHeader />
+          <SearchBar />
+          <TableData />
+        </PopupProvider>
+      </LevelProvider>
     </Dashboard>
   )
 }
