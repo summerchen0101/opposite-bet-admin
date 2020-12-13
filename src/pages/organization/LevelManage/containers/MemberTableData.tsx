@@ -17,6 +17,7 @@ import { useLevelProvider } from '../context/LevelProvider'
 import TableTitle from './TableTitle'
 import numeral from 'numeral'
 import { usePopupProvider } from '../context/PopupProvider'
+import Popups from './Popups'
 
 interface TableItem {
   id: string
@@ -35,9 +36,6 @@ const data: TableItem[] = [...Array(50)].map((t, i) => ({
   status: true,
 }))
 const MemberTableData: React.FC = () => {
-  const { currentLevel, alias } = useLevelProvider()
-  const location = useLocation()
-
   const columns: ColumnsType<TableItem> = [
     {
       title: '廠商',
@@ -153,6 +151,7 @@ const MemberTableData: React.FC = () => {
     <>
       <TableTitle />
       <TableSets columns={columns} data={data} scroll={{ x: 1800 }} />
+      <Popups />
     </>
   )
 }

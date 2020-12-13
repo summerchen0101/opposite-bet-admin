@@ -7,30 +7,16 @@ import {
   getLevelName,
   toDateTime,
 } from '@/utils/transfer'
-import {
-  EditFilled,
-  FilterFilled,
-  LockOutlined,
-  PieChartOutlined,
-  PlusCircleOutlined,
-  ShareAltOutlined,
-} from '@ant-design/icons'
+import { EditFilled, FilterFilled, LockOutlined } from '@ant-design/icons'
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
-import qs from 'qs'
 import React from 'react'
-import {
-  Link,
-  useHistory,
-  useLocation,
-  useParams,
-  useRouteMatch,
-} from 'react-router-dom'
+import { Link, useLocation, useRouteMatch } from 'react-router-dom'
+import { LevelManage } from '../../routes'
 import { useLevelProvider } from '../context/LevelProvider'
 import { usePopupProvider } from '../context/PopupProvider'
-import TableTitle from './TableTitle'
-import { LevelManage, LevelManageAliasTable } from '../../routes'
 import Popups from './Popups'
+import TableTitle from './TableTitle'
 interface TableItem {
   id: string
   key?: string | number
@@ -47,11 +33,10 @@ const data: TableItem[] = [...Array(50)].map((t, i) => ({
   updatedBy: 'summer',
   status: true,
 }))
-const LevelTableData: React.FC = () => {
+const AliasTableData: React.FC = () => {
   const { currentLevel } = useLevelProvider()
   const location = useLocation()
   const { path } = useRouteMatch()
-  const alias = LevelManageAliasTable.path === path
   const orgInfoColumns = [
     {
       title: getLevelName(LevelCode.Vendor),
@@ -83,12 +68,7 @@ const LevelTableData: React.FC = () => {
   ]
 
   const getOrgInfoColumns = () => {
-    if (alias) {
-      return filterColumns(orgInfoColumns, ['vendor', 'alias', 'childs'])
-    } else if (currentLevel === LevelCode.Vendor) {
-      return filterColumns(orgInfoColumns, ['vendor'])
-    }
-    return orgInfoColumns
+    return filterColumns(orgInfoColumns, ['vendor', 'alias', 'childs'])
   }
 
   const columns: ColumnsType<TableItem> = [
@@ -179,37 +159,14 @@ const LevelTableData: React.FC = () => {
       width: 120,
       render: (_, row) => {
         const [pwFormVisible, setPwFormVisible] = usePopupProvider('pwForm')
-        const [percentFormVisible, setPercentFormVisible] = usePopupProvider(
-          'percentForm',
-        )
-        const [invitedFormVisible, setInvitedFormVisible] = usePopupProvider(
-          'invitedForm',
-        )
         return (
           <Space>
-            {!alias && (
-              <IconLink icon={<PlusCircleOutlined />} label="新增下線" />
-            )}
             <IconLink icon={<EditFilled />} label="編輯" />
-            {currentLevel !== LevelCode.Vendor && !alias && (
-              <IconLink
-                icon={<PieChartOutlined />}
-                label="佔成"
-                onClick={() => setPercentFormVisible(true)}
-              />
-            )}
             <IconLink
               icon={<LockOutlined />}
               label="修改密碼"
               onClick={() => setPwFormVisible(true)}
             />
-            {currentLevel === LevelCode.Agent && (
-              <IconLink
-                icon={<ShareAltOutlined />}
-                label="推廣連結"
-                onClick={() => setInvitedFormVisible(true)}
-              />
-            )}
           </Space>
         )
       },
@@ -224,4 +181,4 @@ const LevelTableData: React.FC = () => {
   )
 }
 
-export default LevelTableData
+export default AliasTableData
