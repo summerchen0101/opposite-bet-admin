@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState } from 'react'
 type PopupProps<T> = [T, React.Dispatch<React.SetStateAction<T>>]
 interface IState {
   createForm: PopupProps<boolean>
+  editForm: PopupProps<boolean>
   memberCreateForm: PopupProps<boolean>
   memberEditForm: PopupProps<boolean>
   percentForm: PopupProps<boolean>
@@ -23,6 +24,7 @@ const PopupContext = createContext<IState | null>(null)
 const PopupProvider: React.FC = ({ children }) => {
   const initialState: IState = {
     createForm: useState(false),
+    editForm: useState(false),
     memberCreateForm: useState(false),
     memberEditForm: useState(false),
     percentForm: useState(false),

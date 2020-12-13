@@ -51,7 +51,6 @@ const LevelTableData: React.FC = () => {
   const { currentLevel } = useLevelProvider()
   const location = useLocation()
   const { path } = useRouteMatch()
-  const alias = LevelManageAliasTable.path === path
   const orgInfoColumns = [
     {
       title: getLevelName(LevelCode.Vendor),
@@ -83,9 +82,7 @@ const LevelTableData: React.FC = () => {
   ]
 
   const getOrgInfoColumns = () => {
-    if (alias) {
-      return filterColumns(orgInfoColumns, ['vendor', 'alias', 'childs'])
-    } else if (currentLevel === LevelCode.Vendor) {
+    if (currentLevel === LevelCode.Vendor) {
       return filterColumns(orgInfoColumns, ['vendor'])
     }
     return orgInfoColumns
@@ -178,6 +175,9 @@ const LevelTableData: React.FC = () => {
       fixed: ('right' as unknown) as boolean,
       width: 120,
       render: (_, row) => {
+        const [editFormVisible, setEditFormVisible] = usePopupProvider(
+          'editForm',
+        )
         const [pwFormVisible, setPwFormVisible] = usePopupProvider('pwForm')
         const [percentFormVisible, setPercentFormVisible] = usePopupProvider(
           'percentForm',
@@ -187,11 +187,13 @@ const LevelTableData: React.FC = () => {
         )
         return (
           <Space>
-            {!alias && (
-              <IconLink icon={<PlusCircleOutlined />} label="新增下線" />
-            )}
-            <IconLink icon={<EditFilled />} label="編輯" />
-            {currentLevel !== LevelCode.Vendor && !alias && (
+            <IconLink icon={<PlusCircleOutlined />} label="新增下線" />
+            <IconLink
+              icon={<EditFilled />}
+              label="編輯"
+              onClick={() => setEditFormVisible(true)}
+            />
+            {currentLevel !== LevelCode.Vendor && (
               <IconLink
                 icon={<PieChartOutlined />}
                 label="佔成"

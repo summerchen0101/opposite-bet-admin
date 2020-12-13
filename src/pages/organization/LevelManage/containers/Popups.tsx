@@ -1,5 +1,6 @@
 import React from 'react'
 import CreatePopup from '../containers/CreatePopup'
+import EditPopup from '../containers/EditPopup'
 import InvitedFormPopup from '../containers/InvitatedFormPopup'
 import PercentFormPopup from '../containers/PercentFormPopup'
 import PwFormPopup from '../containers/PwFormPopup'
@@ -16,6 +17,7 @@ const Popups: React.FC = () => {
   return (
     <>
       <CreatePopup />
+      <EditPopup />
       <PercentFormPopup />
       <PwFormPopup />
       <InvitedFormPopup />

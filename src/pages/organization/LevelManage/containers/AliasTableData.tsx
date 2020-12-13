@@ -158,10 +158,17 @@ const AliasTableData: React.FC = () => {
       fixed: ('right' as unknown) as boolean,
       width: 120,
       render: (_, row) => {
+        const [editFormVisible, setEditFormVisible] = usePopupProvider(
+          'editForm',
+        )
         const [pwFormVisible, setPwFormVisible] = usePopupProvider('pwForm')
         return (
           <Space>
-            <IconLink icon={<EditFilled />} label="編輯" />
+            <IconLink
+              icon={<EditFilled />}
+              label="編輯"
+              onClick={() => setEditFormVisible(true)}
+            />
             <IconLink
               icon={<LockOutlined />}
               label="修改密碼"
