@@ -80,6 +80,7 @@ const WithdrawHistoryPopup: React.FC = () => {
         size="small"
         bordered
         pagination={{ pageSize: 8 }}
+        scroll={{ x: 1200 }}
       />
     </PopupModal>
   )
