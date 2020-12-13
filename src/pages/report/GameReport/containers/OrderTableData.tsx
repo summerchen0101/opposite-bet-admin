@@ -3,6 +3,7 @@ import TableSets from '@/components/TableSets'
 import React from 'react'
 import { useLevelProvider } from '../context/LevelProvider'
 import { FileSearchOutlined } from '@ant-design/icons'
+import LevelBreadcrumb from './LevelBreadcrumb'
 
 const OrderTableData: React.FC = () => {
   const { currentLevel } = useLevelProvider()
@@ -84,7 +85,12 @@ const OrderTableData: React.FC = () => {
   const data = [...Array(10)].map((t, i) => ({
     id: i,
   }))
-  return <TableSets columns={columns} data={data} />
+  return (
+    <>
+      <LevelBreadcrumb />
+      <TableSets columns={columns} data={data} />
+    </>
+  )
 }
 
 export default OrderTableData

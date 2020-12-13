@@ -6,19 +6,17 @@ import {
 import { HomeOutlined } from '@ant-design/icons'
 import { Breadcrumb } from 'antd'
 import React from 'react'
-import { Link, useHistory, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useLevelProvider } from '../context/LevelProvider'
+import { GameReport } from '../../routes'
 
 const LevelBreadcrumb: React.FC = () => {
-  const { currentLevel, alias, parentLevel } = useLevelProvider()
-  // const currentLevelNum = parseInt(currentLevel)
-  const location = useLocation()
-  const history = useHistory()
+  const { currentLevel, parentLevel } = useLevelProvider()
   return (
     <Breadcrumb className="mb-1">
       {parentLevel && (
         <Breadcrumb.Item>
-          <Link to={location.pathname}>
+          <Link to={GameReport.path}>
             <HomeOutlined />
           </Link>
         </Breadcrumb.Item>
@@ -29,7 +27,7 @@ const LevelBreadcrumb: React.FC = () => {
             {code === getLevelCode(currentLevel, -1) ? (
               <span>abCC1xx[{getLevelName(code)}]</span>
             ) : (
-              <Link to={`${location.pathname}?parent=${code}`}>
+              <Link to={`${GameReport.path}/${getLevelCode(code, 1)}`}>
                 abCC1xx[{getLevelName(code)}]
               </Link>
             )}

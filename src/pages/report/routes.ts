@@ -1,3 +1,4 @@
+import { LevelCode } from '@/lib/enums'
 import * as pages from '@/pages/report'
 import { MenuGenerator as MenuG } from '@/utils/menuGenerator'
 import { PageGenerator as PageG } from '@/utils/pageGenerator'

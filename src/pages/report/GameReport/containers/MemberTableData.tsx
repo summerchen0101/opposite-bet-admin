@@ -1,8 +1,11 @@
 import { ColorText } from '@/components'
 import TableSets from '@/components/TableSets'
 import React from 'react'
+import { Link, useLocation, useRouteMatch } from 'react-router-dom'
 import { useLevelProvider } from '../context/LevelProvider'
-
+import qs from 'qs'
+import LevelBreadcrumb from './LevelBreadcrumb'
+import { GameReport } from '../../routes'
 const data = [...Array(10)].map((t, i) => ({
   id: i,
 }))
@@ -14,7 +17,8 @@ const MemberTableData: React.FC = () => {
       title: '筆數',
       width: 100,
       render: (_, row) => {
-        return <a>100</a>
+        const { url } = useRouteMatch()
+        return <Link to={`${GameReport.path}/order/${currentLevel}`}>100</Link>
       },
     },
     {

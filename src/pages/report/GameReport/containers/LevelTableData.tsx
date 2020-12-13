@@ -1,9 +1,9 @@
 import { ColorText } from '@/components'
 import TableSets from '@/components/TableSets'
 import { getLevelCode, getLevelName } from '@/utils/transfer'
-import qs from 'qs'
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import { GameReport } from '../../routes'
 import { useLevelProvider } from '../context/LevelProvider'
 import LevelBreadcrumb from './LevelBreadcrumb'
 
@@ -25,14 +25,11 @@ const LevelTableData: React.FC = () => {
           title: getLevelName(getLevelCode(currentLevel, 1)),
           width: 100,
           render: (_, row) => {
-            const query = qs.stringify(
-              {
-                parent: currentLevel,
-              },
-              { addQueryPrefix: true },
+            return (
+              <Link to={`${GameReport.path}/${getLevelCode(currentLevel, 1)}`}>
+                5
+              </Link>
             )
-            const location = useLocation()
-            return <Link to={`${location.pathname}${query}`}>5</Link>
           },
         },
       ],
@@ -44,7 +41,9 @@ const LevelTableData: React.FC = () => {
           title: '筆數',
           width: 100,
           render: (_, row) => {
-            return <a>100</a>
+            return (
+              <Link to={`${GameReport.path}/order/${currentLevel}`}>100</Link>
+            )
           },
         },
         {
