@@ -86,4 +86,8 @@ export default createGlobalStyle`
     }
   }
 
+  .ant-form-inline .ant-form-item {
+    margin-bottom: 8px;
+  }
+
 `

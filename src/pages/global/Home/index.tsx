@@ -1,6 +1,16 @@
 import React from 'react'
 import Dashboard from '@/components/Dashboard'
-import { Statistic, Col, Row, Divider, Card, Table, Form } from 'antd'
+import {
+  Statistic,
+  Col,
+  Row,
+  Divider,
+  Card,
+  Table,
+  Form,
+  Select,
+  Radio,
+} from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import { addKeyToArrayItem } from '@/utils/transfer'
 import {
@@ -9,6 +19,9 @@ import {
   FormField,
   RelativeDateBtns,
 } from '@/components'
+import { levelOpts } from '@/lib/dropdownOptions'
+import { cloneDeep } from 'lodash'
+import { LevelCode } from '@/lib/enums'
 
 interface TableItem {
   key?: number
@@ -48,12 +61,6 @@ let data: TableItem[] = [
 ]
 data = addKeyToArrayItem(data)
 
-const options = [
-  { label: '全部', value: 0 },
-  { label: '代理商', value: 1 },
-  { label: '總代', value: 2 },
-  { label: '代理', value: 3 },
-]
 const Component: React.FC = () => (
   <Dashboard>
     <Form layout="inline">
@@ -63,8 +70,34 @@ const Component: React.FC = () => (
       <FormField>
         <RelativeDateBtns />
       </FormField>
-      <FormField>
-        <BasicSelector options={options} value={0} />
+      <FormField label="組織層級" name="level" initialValue="all">
+        <Select
+          options={[{ label: '全部', value: 'all' }, ...cloneDeep(levelOpts)]}
+          style={{ width: '130px' }}
+        />
+      </FormField>
+      <FormField label="代理" name="agent" initialValue={['abc']}>
+        <Select
+          mode="multiple"
+          allowClear
+          showSearch
+          options={[
+            { label: 'abc', value: 'abc' },
+            { label: 'bbb', value: 'bbb' },
+          ]}
+          style={{ width: '200px' }}
+        />
+      </FormField>
+      <FormField name="searchType" initialValue="all">
+        <Radio.Group
+          options={[
+            { label: '全部', value: 'all' },
+            { label: '排除測試帳號', value: 'excludeTest' },
+            { label: '只有測試帳號', value: 'onlyTest' },
+          ]}
+          optionType="button"
+          buttonStyle="solid"
+        />
       </FormField>
     </Form>
     <div style={{ marginTop: '15px' }}></div>
