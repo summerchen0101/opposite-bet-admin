@@ -1,33 +1,18 @@
-import PopupModal from '@/components/PopupModal'
-import {
-  Button,
-  DatePicker,
-  Input,
-  Select,
-  Space,
-  Form as AntForm,
-  Radio,
-  Row,
-  Col,
-  Tabs,
-  Card,
-} from 'antd'
-import React from 'react'
-import { useDispatch } from 'react-redux'
-import { toggleCreateModal } from '../reducer'
-import { selectDisplayCreateModal, useTypedSelector } from '../selectors'
-import Form, { FormField } from '@/components/Form'
 import { ContentEditor, FormStaticText } from '@/components'
+import Form, { FormField } from '@/components/Form'
+import PopupModal from '@/components/PopupModal'
+import { Button, Col, Radio, Row, Select, Space, Tabs } from 'antd'
+import React from 'react'
+import { usePopupProvider } from '../context/PopupProvider'
 const { Option } = Select
 const CreateForm: React.FC = () => {
-  const dispatch = useDispatch()
-  const isDisplay = useTypedSelector(selectDisplayCreateModal)
+  const [visible, setVisible] = usePopupProvider('createForm')
   const onCancel = () => {
-    dispatch(toggleCreateModal(false))
+    setVisible(false)
   }
   const onFinish = (values) => {
     console.log('Success:', values)
-    dispatch(toggleCreateModal(false))
+    setVisible(false)
   }
 
   const onFinishFailed = (errorInfo) => {
@@ -39,7 +24,7 @@ const CreateForm: React.FC = () => {
   ]
   return (
     <PopupModal
-      visible={isDisplay}
+      visible={visible}
       title="新增站內信"
       onCancel={onCancel}
       width={700}

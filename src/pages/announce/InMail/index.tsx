@@ -1,42 +1,29 @@
-import { Dashboard, DateRangePicker, PageSearchBar } from '@/components'
-import { useReducerInjector } from '@/utils/hooks'
-import { Divider } from 'antd'
-import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { Dashboard } from '@/components'
+import React, { useEffect } from 'react'
+import { Route, Switch, useHistory } from 'react-router-dom'
 import PageHeader from './components/PageHeader'
-import MailTypePicker from './containers/MailTypePicker'
 import PopupCreateForm from './containers/PopupCreateForm'
-import RecieveTableData from './containers/RecieveTableData'
-import SendTableData from './containers/SendTableData'
-import StatusPicker from './containers/StatusPicker'
-import SubjectSearch from './containers/SubjectSearch'
-import TypePicker from './containers/TypePicker'
-import reducer, { initSearchState, moduleName } from './reducer'
+import TableData from './containers/TableData'
+import SearchBar from './containers/SearchBar'
+import ModuleProvider from './context/ModuleProvider'
+import PopupProvider from './context/PopupProvider'
+import { InMail } from '../routes'
 
 const Manager: React.FC = () => {
-  useReducerInjector(moduleName, reducer)
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(initSearchState())
-  }, [])
-  const [currentTab, setCurrentTab] = useState('opt1')
   return (
     <Dashboard>
-      <PageHeader />
-      <PageSearchBar style={{ marginBottom: '20px' }}>
-        <TypePicker
-          value={currentTab}
-          onChange={(e) => setCurrentTab(e.target.value)}
-        />
-      </PageSearchBar>
-      <PageSearchBar>
-        <DateRangePicker />
-        <SubjectSearch />
-        <Divider type="vertical" />
-        {currentTab === 'opt2' ? <StatusPicker /> : <MailTypePicker />}
-      </PageSearchBar>
-      {currentTab === 'opt2' ? <RecieveTableData /> : <SendTableData />}
-      <PopupCreateForm />
+      <ModuleProvider>
+        <PopupProvider>
+          <PageHeader />
+          <Switch>
+            <Route path={`${InMail.path}/:type?`}>
+              <SearchBar />
+              <TableData />
+            </Route>
+          </Switch>
+          <PopupCreateForm />
+        </PopupProvider>
+      </ModuleProvider>
     </Dashboard>
   )
 }

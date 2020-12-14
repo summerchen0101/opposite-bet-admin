@@ -14,6 +14,9 @@ export default function RouteWithSubRoutes(route) {
         } else if (route.path === '/login' && isLogin) {
           return <Redirect to="/" />
         }
+        if (route.redirect) {
+          return <Redirect to={route.redirect} />
+        }
         return <route.component {...props} routes={route.routes} />
       }}
     />

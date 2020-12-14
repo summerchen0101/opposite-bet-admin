@@ -69,8 +69,8 @@ const data = [...Array(50)].map((t, i) => ({
   loginCount: 20,
   registerCount: 3,
 }))
-const TableData: React.FC = () => {
+const RecieveTableData: React.FC = () => {
   return <TableSets columns={columns} data={data} />
 }
 
-export default TableData
+export default RecieveTableData

@@ -18,7 +18,7 @@ export class RouteGenerator {
     this.routes.push({
       path: pageRoute.path,
       component: pageRoute.component,
-      exact: pageRoute.option?.exact,
+      ...pageRoute.option,
     })
   }
   static getRootRoutes(): RouteProps[] {

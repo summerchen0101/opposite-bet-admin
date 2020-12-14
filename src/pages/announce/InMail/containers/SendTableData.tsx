@@ -60,8 +60,8 @@ const columns: ColumnsType<TableItem> = [
 const data = [...Array(50)].map((t, i) => ({
   id: getFakeID(),
 }))
-const TableData: React.FC = () => {
+const SendTableData: React.FC = () => {
   return <TableSets columns={columns} data={data} />
 }
 
-export default TableData
+export default SendTableData

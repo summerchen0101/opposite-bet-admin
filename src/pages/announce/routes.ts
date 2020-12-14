@@ -13,6 +13,7 @@ export const AnnounceManage = new PageG(
   `${rootPath}/manage`,
   pages.AnnounceManage,
 )
+
 export const InMail = new PageG('站內信', `${rootPath}/message`, pages.InMail)
 
 // ROUTERS
