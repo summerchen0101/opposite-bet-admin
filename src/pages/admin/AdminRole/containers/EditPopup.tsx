@@ -7,7 +7,7 @@ const formValues = {
   name: '',
 }
 
-const CreateForm: React.FC = () => {
+const EditPopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('createForm')
   const onFinish = async ({ name }) => {
     setVisible(false)
@@ -21,7 +21,7 @@ const CreateForm: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="新增管理者角色"
+      title="編輯管理者角色"
       onCancel={() => setVisible(false)}
     >
       <DataForm
@@ -33,4 +33,4 @@ const CreateForm: React.FC = () => {
   )
 }
 
-export default CreateForm
+export default EditPopup

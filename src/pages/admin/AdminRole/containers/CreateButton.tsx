@@ -1,14 +1,10 @@
-import React from 'react'
 import CreateButton from '@/components/CreateButton'
-import { useDispatch } from 'react-redux'
-import { toggleCreateModal, fetchCreateOptions } from '../reducer'
+import React from 'react'
+import { usePopupProvider } from '../context/PopupProvider'
 
 const Component: React.FC = () => {
-  const dispatch = useDispatch()
-  const onCreate = () => {
-    dispatch(fetchCreateOptions())
-  }
-  return <CreateButton onClick={onCreate} />
+  const [visible, setVisible] = usePopupProvider('createForm')
+  return <CreateButton onClick={() => setVisible(true)} />
 }
 
 export default Component
