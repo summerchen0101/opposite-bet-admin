@@ -10,7 +10,4 @@ interface RequestData {
 }
 
 export const create = (reqData: RequestData) =>
-  Request.post<ResponseData>('admin/storeAdminRole', {
-    method: 'ADD',
-    ...reqData,
-  })
+  Request.post<ResponseData>('admin_role/add', reqData)

@@ -34,89 +34,6 @@ const initialState: IState = {
 
 export const moduleName = 'adminRole'
 
-// 列表
-export const fetchList = createAsyncThunk(
-  `${moduleName}/fetchList`,
-  async (_, { dispatch }) => {
-    const { code, data } = await API.fetchAll()
-    const pageData = {
-      permission: permissionTransfer(data.permission),
-      list: data.role.map((t, i) => ({
-        id: t.role_id,
-        name: t.role_name,
-        count: t.used_count,
-        updatedAt: t.updated_at,
-        updator: t.updator,
-        createdAt: t.created_at,
-        creator: t.createtor,
-        menu: t.menu,
-        status: t.status,
-      })),
-    }
-    return pageData
-  },
-)
-
-// 新增
-export const fetchCreateOptions = createAsyncThunk(
-  `${moduleName}/fetchCreateOptions`,
-  async (_, { dispatch }) => {
-    const { code, data } = await API.fetchCreateOption()
-    return handleMenuTransfer(data)
-  },
-)
-
-// 新增送出
-export const doCreate = createAsyncThunk(
-  `${moduleName}/doCreate`,
-  async (name: string, { getState, dispatch }) => {
-    const { menu } = getState()[moduleName] as IState
-    const reqData = {
-      role_name: name,
-      menu_data: JSON.stringify(menu),
-    }
-    const { code } = await API.create(reqData)
-    return
-  },
-)
-
-// 編輯
-export const fetchEditOptions = createAsyncThunk(
-  `${moduleName}/fetchEditOptions`,
-  async (id: string, { dispatch }) => {
-    const { code, data } = await API.fetchById(id)
-    const { role_name, role_id, menu } = data.role[0]
-    return {
-      id: role_id,
-      name: role_name,
-      menu: handleMenuTransfer(menu),
-    }
-  },
-)
-
-// 編輯送出
-export const doEdit = createAsyncThunk(
-  `${moduleName}/doEdit`,
-  async (name: string, { getState, dispatch }) => {
-    const { menu, editRole } = getState()[moduleName] as IState
-    const reqData = {
-      role_name: name,
-      menu_data: JSON.stringify(menu),
-    }
-    const { code } = await API.edit(editRole.id, reqData)
-    return
-  },
-)
-
-// 刪除
-export const doDelete = createAsyncThunk(
-  `${moduleName}/doDelete`,
-  async (id: string, { dispatch }) => {
-    const { code } = await API.deleteById(id)
-    return
-  },
-)
-
 const module = createSlice({
   name: moduleName,
   initialState,
@@ -152,32 +69,7 @@ const module = createSlice({
       }
     },
   },
-  extraReducers: (builder: ActionReducerMapBuilder<IState>) => {
-    builder.addCase(fetchList.fulfilled, (state, action) => {
-      const { list, permission } = action.payload
-      state.tableData = list
-      state.permission = permission
-    })
-    builder.addCase(fetchCreateOptions.fulfilled, (state, action) => {
-      state.menu = action.payload
-      state.displayCreateModal = true
-    })
-    builder.addCase(fetchEditOptions.fulfilled, (state, action) => {
-      const { menu, name, id } = action.payload
-      state.editRole = {
-        id,
-        name,
-      }
-      state.menu = menu
-      state.displayEditModal = true
-    })
-    builder.addCase(doCreate.fulfilled, (state, action) => {
-      state.displayCreateModal = false
-    })
-    builder.addCase(doEdit.fulfilled, (state, action) => {
-      state.displayEditModal = false
-    })
-  },
+  extraReducers: (builder: ActionReducerMapBuilder<IState>) => {},
 })
 
 export const {

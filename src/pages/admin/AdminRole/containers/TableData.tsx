@@ -12,7 +12,6 @@ import {
 import { message, Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
-import { doDelete, fetchEditOptions, fetchList } from '../reducer'
 import { selectTableData, useTypedSelector } from '../selectors'
 
 export interface TableItem {
@@ -89,24 +88,9 @@ const columns: ColumnsType<TableItem> = [
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
       const dispatch = useAppDispatch()
-      const handleEdit = () => dispatch(fetchEditOptions(row.id))
-      const handleDelete = async () => {
-        const action = await dispatch(doDelete(row.id))
-        if (doDelete.fulfilled.match(action)) {
-          message.success('刪除成功')
-          dispatch(fetchList())
-        } else {
-          message.error('刪除失敗')
-        }
-      }
-      const handleStatus = async (status: number) => {
-        // const action = await dispatch(setStatus({ status, id: row.id }))
-        // if (setStatus.fulfilled.match(action)) {
-        //   dispatch(fetchList())
-        // } else {
-        //   message.error(action.error.message)
-        // }
-      }
+      const handleEdit = () => {}
+      const handleDelete = () => {}
+      const handleStatus = async (status: number) => {}
       return (
         <Space size="small">
           {row.status ? (

@@ -5,7 +5,7 @@
       "amd":true,
       "node":true
    },
-   "parser":"@typescript-eslint/parser",
+   "parser": "@typescript-eslint/parser",
    "plugins":[
       "@typescript-eslint",
       "prettier",
