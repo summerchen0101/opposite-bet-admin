@@ -27,7 +27,6 @@ const LoginComponent: React.FC = () => {
     setLoading(true)
     try {
       await API.login(formData)
-      await API.checkLogin()
       dispatch(setLogin())
     } catch (err) {
       apiErr(err)

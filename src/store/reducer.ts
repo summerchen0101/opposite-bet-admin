@@ -13,7 +13,7 @@ export type GlobalState = {
   loading: boolean
 }
 const initialState: GlobalState = {
-  isLogin: false,
+  isLogin: !!sessionStorage.getItem('isLogin'),
   language: 'zh-Hant',
   menu: [],
   user: null,
@@ -26,9 +26,11 @@ const module = createSlice({
   reducers: {
     setLogout(state) {
       state.isLogin = false
+      sessionStorage.remove('isLogin')
     },
     setLogin(state) {
       state.isLogin = true
+      sessionStorage.setItem('isLogin', 'yes')
     },
     setLanguage(state, action: PayloadAction<string>) {
       state.language = action.payload
