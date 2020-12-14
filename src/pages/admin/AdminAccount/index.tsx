@@ -1,37 +1,29 @@
 import Dashboard from '@/components/Dashboard'
-import { TabContext } from '@/contexts/TabContextProvider'
 import { useReducerInjector, useTabRecord } from '@/utils/hooks'
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import React from 'react'
 import { AdminAccount } from '../routes'
 import PageHeader from './components/PageHeader'
-import PopupCreateForm from './containers/PopupCreateForm'
-import PopupEditForm from './containers/PopupEditForm'
-import SearchForm from './containers/SearchForm'
+import CreatePopup from './containers/CreatePopup'
+import EditPopup from './containers/EditPopup'
+import SearchBar from './containers/SearchBar'
 import TableData from './containers/TableData'
-import reducer, { fetchAdminList, initSearchState, moduleName } from './reducer'
+import PopupProvider from './context/PopupProvider'
+import reducer, { moduleName } from './reducer'
 
-const Manager: React.FC = () => {
+const AdminAccountPage: React.FC = () => {
   useReducerInjector(moduleName, reducer)
-  const dispatch = useDispatch()
-  const getTableData = async () => {
-    await dispatch(fetchAdminList())
-  }
   useTabRecord(AdminAccount)
-  useEffect(() => {
-    dispatch(initSearchState())
-    getTableData()
-  }, [])
   return (
     <Dashboard>
-      <PageHeader />
-      <SearchForm />
-      <div style={{ marginTop: '15px' }}></div>
-      <TableData />
-      <PopupCreateForm />
-      <PopupEditForm />
+      <PopupProvider>
+        <PageHeader />
+        <SearchBar />
+        <TableData />
+        <CreatePopup />
+        <EditPopup />
+      </PopupProvider>
     </Dashboard>
   )
 }
 
-export default Manager
+export default AdminAccountPage
