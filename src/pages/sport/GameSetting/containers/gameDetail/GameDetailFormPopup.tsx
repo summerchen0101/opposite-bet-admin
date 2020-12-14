@@ -1,10 +1,14 @@
 import { PopupModal } from '@/components'
-import { Button, Form, Input, Select } from 'antd'
-import React from 'react'
+import { MinusOutlined, PlusOutlined } from '@ant-design/icons'
+import { Button, Form, Input, Select, Space } from 'antd'
+import React, { useState } from 'react'
 import { usePopupProvider } from '../../context/PopupProvider'
-
 const GameDetailFormPopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('gameDetailForm')
+  const [nameArr, setNameArr] = useState<string[]>([''])
+  const pushNameArr = () => setNameArr([...nameArr, ''])
+  const popNameArr = () =>
+    setNameArr(nameArr.filter((t, i) => nameArr.length - 1 !== i))
   const [form] = Form.useForm()
   const handleSubmit = async () => {
     try {
@@ -52,9 +56,28 @@ const GameDetailFormPopup: React.FC = () => {
           <Select options={gameOpts} defaultValue="opposite" />
         </Form.Item>
         <Form.Item label="名稱">
-          <Input
-            addonAfter={<Select options={nameAddonOpts} defaultValue={1} />}
-          />
+          {nameArr.map((t, i) => (
+            <Space key={i} className="mb-1">
+              <Input
+                addonAfter={<Select options={nameAddonOpts} defaultValue={1} />}
+              />
+              {i === nameArr.length - 1 && (
+                <div style={{ width: '75px' }}>
+                  <Button
+                    className="mr-1"
+                    type="primary"
+                    icon={<PlusOutlined />}
+                    onClick={() => pushNameArr()}
+                  />
+                  {i !== 0 && (
+                    <Button
+                      icon={<MinusOutlined onClick={() => popNameArr()} />}
+                    />
+                  )}
+                </div>
+              )}
+            </Space>
+          ))}
         </Form.Item>
         <Form.Item label="備註">
           <Input />
