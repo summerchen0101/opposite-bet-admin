@@ -27,7 +27,7 @@ const OddsSettingForm: React.FC = () => {
       </Form.Item>
       <Form.Item {...tailLayout}>
         {[...Array(2)].map((t, i) => (
-          <Space className="mb-1" key={i}>
+          <Space className="mb-1 w-100" key={i}>
             <Input
               placeholder="100000"
               addonAfter="元"
