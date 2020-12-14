@@ -1,8 +1,5 @@
-import { MenuItem, ResponseBase, UserInfo } from '@/types'
-import * as API from '@/API'
-import { handleMenuTransfer } from '@/utils/transfer'
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import mockAPI from '@/utils/mock'
+import { MenuItem, UserInfo } from '@/types'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 export type TabType = {
   path: string
   label: string
@@ -23,21 +20,6 @@ const initialState: GlobalState = {
   loading: false,
 }
 
-export const fetchUserAndMenu = createAsyncThunk(
-  'global/fetchUserAndMenu',
-  async (_, { dispatch }) => {
-    const { result, data } = await mockAPI.fetchUserAndMenu()
-    const { admin, menu } = data
-    return { admin, menu: handleMenuTransfer(menu) }
-  },
-)
-export const doLogout = createAsyncThunk(
-  'global/doLogout',
-  async (_, { dispatch }) => {
-    const { result } = await mockAPI.logout()
-    return
-  },
-)
 const module = createSlice({
   name: 'global',
   initialState,
@@ -55,17 +37,7 @@ const module = createSlice({
       state.loading = action.payload
     },
   },
-  extraReducers: (builder) => {
-    builder.addCase(fetchUserAndMenu.fulfilled, (state, action) => {
-      const { admin, menu } = action.payload
-      state.user = admin
-      state.menu = menu
-    })
-    builder.addCase(doLogout.fulfilled, (state, action) => {
-      state.isLogin = false
-      sessionStorage.removeItem('token')
-    })
-  },
+  extraReducers: (builder) => {},
 })
 
 export const {

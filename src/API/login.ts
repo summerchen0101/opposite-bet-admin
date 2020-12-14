@@ -5,5 +5,4 @@ interface RequestData {
   pass: string
 }
 
-export const login = (reqData: RequestData) =>
-  Request.post<null>('login', reqData)
+export default (reqData: RequestData) => Request.post<null>('login', reqData)

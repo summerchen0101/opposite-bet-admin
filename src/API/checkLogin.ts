@@ -4,4 +4,5 @@ interface ResponseData {
   [key: string]: any
 }
 
-export const checkLogin = () => Request.get<ResponseData>('check_login')
+// export default () => Request.get<ResponseData>('check_login')
+export default () => Promise.resolve({ data: true, code: 0 })

@@ -1,11 +1,14 @@
 // import { LoginFormData } from '@/lib/types'
-import { login, checkLogin } from '@/API'
+
+import API from '@/API'
 import { useAppDispatch } from '@/store'
 import { setLogout, setLogin } from '@/store/reducer'
+import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { LoadingOutlined } from '@ant-design/icons'
 import { Button, Card, Form, Input, message, Space } from 'antd'
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { ErrorCallback } from 'typescript'
 
 const Wrapper = styled.div`
   display: flex;
@@ -17,17 +20,18 @@ const Wrapper = styled.div`
 
 const LoginComponent: React.FC = () => {
   const dispatch = useAppDispatch()
+  const { apiErr } = useErrorHandler()
   const [loading, setLoading] = useState(false)
   const [form] = Form.useForm()
   const onFinish = async (formData) => {
     setLoading(true)
     try {
-      await login(formData)
+      await API.login(formData)
+      dispatch(setLogin())
     } catch (err) {
-      message.error(err)
+      apiErr(err)
     }
-    dispatch(setLogin())
-    await checkLogin()
+    setLoading(false)
   }
   return (
     <Wrapper>

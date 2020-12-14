@@ -1,6 +1,7 @@
 import { ResponseBase } from '@/types'
 import Axios from 'axios'
 import errCodes from '@/lib/errCodes'
+
 const baseUrl = `http://${process.env.API_DOMAIN}`
 const bashPath = 'api/v1'
 

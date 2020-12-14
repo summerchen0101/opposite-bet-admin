@@ -1,6 +1,6 @@
 import { DashboardContext } from '@/contexts/DashboardContextProvider'
 import { usePopup } from '@/contexts/PopupContextProvider'
-import { doLogout, setLanguage, setLogout } from '@/store/reducer'
+import { setLanguage, setLogout } from '@/store/reducer'
 import {
   LogoutOutlined,
   MenuFoldOutlined,
@@ -18,7 +18,7 @@ const { Option } = Select
 const Sidebar: React.FC = () => {
   const { collapsed, toggleCollapsed } = useContext(DashboardContext)
   const dispatch = useDispatch()
-  const handleLogout = (e) => dispatch(doLogout())
+  const handleLogout = (e) => dispatch(setLogout())
   const { setVisible: setVisible_changePw } = usePopup('changePw')
   const { setVisible: setVisible_bettingLimit } = usePopup('bettingLimit')
   const { setVisible: setVisible_loginHistory } = usePopup('loginHistory')

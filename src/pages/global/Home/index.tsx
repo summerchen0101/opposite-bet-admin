@@ -1,27 +1,11 @@
-import React from 'react'
+import { DateRangePicker, FormField, RelativeDateBtns } from '@/components'
 import Dashboard from '@/components/Dashboard'
-import {
-  Statistic,
-  Col,
-  Row,
-  Divider,
-  Card,
-  Table,
-  Form,
-  Select,
-  Radio,
-} from 'antd'
-import { ColumnsType } from 'antd/lib/table'
-import { addKeyToArrayItem } from '@/utils/transfer'
-import {
-  BasicSelector,
-  DateRangePicker,
-  FormField,
-  RelativeDateBtns,
-} from '@/components'
 import { levelOpts } from '@/lib/dropdownOptions'
+import { addKeyToArrayItem } from '@/utils/transfer'
+import { Card, Col, Form, Radio, Row, Select, Statistic, Table } from 'antd'
+import { ColumnsType } from 'antd/lib/table'
 import { cloneDeep } from 'lodash'
-import { LevelCode } from '@/lib/enums'
+import React from 'react'
 
 interface TableItem {
   key?: number
