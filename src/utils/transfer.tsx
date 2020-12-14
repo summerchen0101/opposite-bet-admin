@@ -1,5 +1,5 @@
 import { LevelCode } from '@/lib/enums'
-import errCodes from '@/lib/errCodes'
+
 import { MenuItem, Permission, RemotePermission } from '@/types'
 import moment from 'moment'
 import { FormattedMessage } from 'react-intl'
@@ -8,8 +8,6 @@ import { ColumnsType } from 'antd/lib/table'
 
 export const toCurrency = (num: number, decimal = 0) =>
   Number(num.toFixed(decimal)).toLocaleString()
-
-export const toErrorMessage = (code: string) => errCodes[code]
 
 export const permissionTransfer = (per: RemotePermission): Permission => {
   return { view: per.VIEW === 'Y', edit: per.EDIT === 'Y' }

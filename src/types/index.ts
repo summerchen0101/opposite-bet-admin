@@ -1,7 +1,5 @@
 import { ColumnsType } from 'antd/lib/table'
 
-export * as Login from './login'
-
 type RemotePermissionType = 'Y' | 'N'
 export type StatusType = 1 | 0
 
@@ -24,7 +22,7 @@ export interface Permission {
 export type RequestPromise = <T>(data?: unknown) => Promise<T>
 
 export class ResponseBase<T> {
-  result: string
+  code: number
   data: T
 }
 

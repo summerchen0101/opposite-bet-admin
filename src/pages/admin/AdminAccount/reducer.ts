@@ -1,5 +1,4 @@
 import { OptionType, Permission, RequestSetStatus, ResponseBase } from '@/types'
-import { errorHandler } from '@/utils/helper'
 import { addKeyToArrayItem, permissionTransfer } from '@/utils/transfer'
 import {
   ActionReducerMapBuilder,
@@ -52,8 +51,7 @@ export const fetchAdminList = createAsyncThunk(
         search_ip: form.ip || undefined,
       }
     }
-    const { data, result } = await API.fetchAll(reqData)
-    errorHandler(result, dispatch)
+    const { data, code } = await API.fetchAll(reqData)
     return {
       list:
         data.admin?.map((t, i) => ({
@@ -79,8 +77,7 @@ export const fetchAdminList = createAsyncThunk(
 export const fetchAdminEditOptions = createAsyncThunk(
   `${moduleName}/fetchAdminEditOptions`,
   async (id: string, { dispatch }) => {
-    const { result, data } = await API.fetchById(id)
-    errorHandler(result, dispatch)
+    const { code, data } = await API.fetchById(id)
     const { admin: _admin } = data
     const formData = {
       id,
@@ -147,8 +144,7 @@ export const createAdmin = createAsyncThunk(
   `${moduleName}/createAdmin`,
   async (form: Types.DataFormProps, { dispatch }) => {
     const reqData = formToCreateReqData(form)
-    const { result } = await API.create(reqData)
-    errorHandler(result, dispatch)
+    const { code } = await API.create(reqData)
     return
   },
 )
@@ -159,8 +155,7 @@ export const editAdmin = createAsyncThunk(
   async (form: Types.DataFormProps, { dispatch, getState }) => {
     const { editAdmin } = getState()[moduleName] as IState
     const reqData = formToEditReqData(editAdmin.id, form)
-    const { result } = await API.edit(editAdmin.id.toString(), reqData)
-    errorHandler(result, dispatch)
+    const { code } = await API.edit(editAdmin.id.toString(), reqData)
     return
   },
 )
@@ -169,8 +164,7 @@ export const editAdmin = createAsyncThunk(
 export const removeAdmin = createAsyncThunk(
   `${moduleName}/removeAdmin`,
   async (id: string, { dispatch }) => {
-    const { result } = await API.deleteById(id)
-    errorHandler(result, dispatch)
+    const { code } = await API.deleteById(id)
     return id
   },
 )

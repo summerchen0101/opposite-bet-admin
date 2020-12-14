@@ -1,5 +1,4 @@
 import { MenuItem, Permission } from '@/types'
-import { errorHandler } from '@/utils/helper'
 import {
   addKeyToArrayItem,
   handleMenuTransfer,
@@ -39,8 +38,7 @@ export const moduleName = 'adminRole'
 export const fetchList = createAsyncThunk(
   `${moduleName}/fetchList`,
   async (_, { dispatch }) => {
-    const { result, data } = await API.fetchAll()
-    errorHandler(result, dispatch)
+    const { code, data } = await API.fetchAll()
     const pageData = {
       permission: permissionTransfer(data.permission),
       list: data.role.map((t, i) => ({
@@ -63,8 +61,7 @@ export const fetchList = createAsyncThunk(
 export const fetchCreateOptions = createAsyncThunk(
   `${moduleName}/fetchCreateOptions`,
   async (_, { dispatch }) => {
-    const { result, data } = await API.fetchCreateOption()
-    errorHandler(result, dispatch)
+    const { code, data } = await API.fetchCreateOption()
     return handleMenuTransfer(data)
   },
 )
@@ -78,8 +75,7 @@ export const doCreate = createAsyncThunk(
       role_name: name,
       menu_data: JSON.stringify(menu),
     }
-    const { result } = await API.create(reqData)
-    errorHandler(result, dispatch)
+    const { code } = await API.create(reqData)
     return
   },
 )
@@ -88,8 +84,7 @@ export const doCreate = createAsyncThunk(
 export const fetchEditOptions = createAsyncThunk(
   `${moduleName}/fetchEditOptions`,
   async (id: string, { dispatch }) => {
-    const { result, data } = await API.fetchById(id)
-    errorHandler(result, dispatch)
+    const { code, data } = await API.fetchById(id)
     const { role_name, role_id, menu } = data.role[0]
     return {
       id: role_id,
@@ -108,8 +103,7 @@ export const doEdit = createAsyncThunk(
       role_name: name,
       menu_data: JSON.stringify(menu),
     }
-    const { result } = await API.edit(editRole.id, reqData)
-    errorHandler(result, dispatch)
+    const { code } = await API.edit(editRole.id, reqData)
     return
   },
 )
@@ -118,8 +112,7 @@ export const doEdit = createAsyncThunk(
 export const doDelete = createAsyncThunk(
   `${moduleName}/doDelete`,
   async (id: string, { dispatch }) => {
-    const { result } = await API.deleteById(id)
-    errorHandler(result, dispatch)
+    const { code } = await API.deleteById(id)
     return
   },
 )

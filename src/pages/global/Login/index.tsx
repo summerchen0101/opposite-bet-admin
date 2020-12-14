@@ -1,11 +1,10 @@
 // import { LoginFormData } from '@/lib/types'
-import { Login } from '@/types'
+import { login, checkLogin } from '@/API'
 import { useAppDispatch } from '@/store'
-import { doLogin, fetchUserAndMenu, toggleLoading } from '@/store/reducer'
-import { selectLoading, useTypedSelector } from '@/store/selectors'
+import { setLogout, setLogin } from '@/store/reducer'
 import { LoadingOutlined } from '@ant-design/icons'
 import { Button, Card, Form, Input, message, Space } from 'antd'
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -15,36 +14,28 @@ const Wrapper = styled.div`
   align-items: center;
   height: 100vh;
 `
-const initialValues: Login.FormData = {
-  account: '',
-  password: '',
-}
 
 const LoginComponent: React.FC = () => {
-  const [form] = Form.useForm<Login.FormData>()
-  const loading = useTypedSelector(selectLoading)
   const dispatch = useAppDispatch()
-  const onFinish = async (f: Login.FormData) => {
-    const data: Login.RequestProps = {
-      username: f.account,
-      password: f.password,
+  const [loading, setLoading] = useState(false)
+  const [form] = Form.useForm()
+  const onFinish = async (formData) => {
+    setLoading(true)
+    try {
+      await login(formData)
+    } catch (err) {
+      message.error(err)
     }
-    dispatch(toggleLoading(true))
-    const action = await dispatch(doLogin(data))
-    dispatch(toggleLoading(false))
-    if (doLogin.fulfilled.match(action)) {
-      dispatch(fetchUserAndMenu())
-    } else {
-      message.error(action.error.message)
-    }
+    dispatch(setLogin())
+    await checkLogin()
   }
   return (
     <Wrapper>
       <Card title="後台登入" style={{ width: 300 }}>
-        <Form form={form} onFinish={onFinish} initialValues={initialValues}>
+        <Form form={form} onFinish={onFinish}>
           <Form.Item
             label="帳號"
-            name="account"
+            name="acc"
             rules={[{ required: true, message: '請輸入帳號!' }]}
           >
             <Input />
@@ -52,7 +43,7 @@ const LoginComponent: React.FC = () => {
 
           <Form.Item
             label="密碼"
-            name="password"
+            name="pass"
             rules={[{ required: true, message: '請輸入密碼!' }]}
           >
             <Input.Password />

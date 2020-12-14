@@ -1,6 +1,5 @@
-import { Login, MenuItem, ResponseBase, UserInfo } from '@/types'
+import { MenuItem, ResponseBase, UserInfo } from '@/types'
 import * as API from '@/API'
-import { errorHandler } from '@/utils/helper'
 import { handleMenuTransfer } from '@/utils/transfer'
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import mockAPI from '@/utils/mock'
@@ -17,7 +16,7 @@ export type GlobalState = {
   loading: boolean
 }
 const initialState: GlobalState = {
-  isLogin: !!sessionStorage.getItem('token'),
+  isLogin: false,
   language: 'zh-Hant',
   menu: [],
   user: null,
@@ -28,7 +27,6 @@ export const fetchUserAndMenu = createAsyncThunk(
   'global/fetchUserAndMenu',
   async (_, { dispatch }) => {
     const { result, data } = await mockAPI.fetchUserAndMenu()
-    errorHandler(result, dispatch)
     const { admin, menu } = data
     return { admin, menu: handleMenuTransfer(menu) }
   },
@@ -37,26 +35,18 @@ export const doLogout = createAsyncThunk(
   'global/doLogout',
   async (_, { dispatch }) => {
     const { result } = await mockAPI.logout()
-    errorHandler(result, dispatch)
     return
   },
 )
-export const doLogin = createAsyncThunk(
-  'global/doLogin',
-  async (reqData: Login.RequestProps, { dispatch, rejectWithValue }) => {
-    const { result, token } = await mockAPI.login(reqData)
-    errorHandler(result, dispatch)
-    return token
-  },
-)
-
 const module = createSlice({
   name: 'global',
   initialState,
   reducers: {
     setLogout(state) {
       state.isLogin = false
-      sessionStorage.removeItem('token')
+    },
+    setLogin(state) {
+      state.isLogin = true
     },
     setLanguage(state, action: PayloadAction<string>) {
       state.language = action.payload
@@ -71,10 +61,6 @@ const module = createSlice({
       state.user = admin
       state.menu = menu
     })
-    builder.addCase(doLogin.fulfilled, (state, action) => {
-      state.isLogin = true
-      sessionStorage.setItem('token', action.payload)
-    })
     builder.addCase(doLogout.fulfilled, (state, action) => {
       state.isLogin = false
       sessionStorage.removeItem('token')
@@ -82,5 +68,10 @@ const module = createSlice({
   },
 })
 
-export const { setLogout, setLanguage, toggleLoading } = module.actions
+export const {
+  setLogout,
+  setLogin,
+  setLanguage,
+  toggleLoading,
+} = module.actions
 export default module.reducer
