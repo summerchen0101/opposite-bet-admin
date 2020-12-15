@@ -1,8 +1,5 @@
 import Request from '@/utils/request'
+import { Permission, Role } from './types'
 
-interface ResponseData {
-  [key: string]: any
-}
-
-export const fetchById = (role_id: string) =>
-  Request.post<ResponseData>('admin/getAdminRoles', { method: 'EDIT', role_id })
+export const fetchById = (id: number) =>
+  Request.get<Role>(`admin_role/view/${id}`)

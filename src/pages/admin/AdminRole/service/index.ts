@@ -2,11 +2,29 @@ import API from '@/API'
 import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { message } from 'antd'
 import { useDispatch } from 'react-redux'
-import { setTableData } from '../reducer'
+import { setEditData, setTableData, setPermissionOpts } from '../reducer'
 
 export const useAPIService = () => {
   const { apiErr } = useErrorHandler()
   const dispatch = useDispatch()
+
+  const getOptions = async () => {
+    try {
+      const res = await API.permission.options()
+      dispatch(setPermissionOpts(res.data.permissions))
+    } catch (err) {
+      apiErr(err)
+    }
+  }
+
+  const getFormData = async (id: number) => {
+    try {
+      const res = await API.adminRole.fetchById(id)
+      dispatch(setEditData(res.data))
+    } catch (err) {
+      apiErr(err)
+    }
+  }
 
   const getTableData = async () => {
     try {
@@ -27,5 +45,15 @@ export const useAPIService = () => {
     }
   }
 
-  return { getTableData, onCreate }
+  const onEdit = async (values) => {
+    try {
+      await API.adminRole.edit(values)
+      await getTableData()
+      message.success('修改成功')
+    } catch (err) {
+      apiErr(err)
+    }
+  }
+
+  return { getTableData, onCreate, onEdit, getFormData, getOptions }
 }

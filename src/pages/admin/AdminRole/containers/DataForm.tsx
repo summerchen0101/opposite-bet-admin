@@ -4,6 +4,7 @@ import React from 'react'
 import { useTypedSelector, selectPermissionOpts } from '../selectors'
 
 export interface FormData {
+  id?: number
   name: string
   permission_ids: number[]
   is_active: boolean

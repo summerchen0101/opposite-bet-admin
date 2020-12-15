@@ -5,20 +5,13 @@ import DataForm, { FormData } from './DataForm'
 import { Form, message } from 'antd'
 import API from '@/API'
 import useErrorHandler from '@/utils/hooks/useErrorHandler'
+import { useAPIService } from '../service'
 
 const CreatePopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('createForm')
+  const { onCreate } = useAPIService()
   const { apiErr } = useErrorHandler()
   const [form] = Form.useForm<FormData>()
-  const onCreate = async (values) => {
-    try {
-      await API.adminRole.create(values as FormData)
-      await API.adminRole.fetchAll()
-      message.success('新增成功')
-    } catch (err) {
-      apiErr(err)
-    }
-  }
   const handleSubmit = async () => {
     try {
       const values = await form.validateFields()
@@ -29,11 +22,15 @@ const CreatePopup: React.FC = () => {
       console.log('Validate Failed:', info)
     }
   }
+  const handleCancel = () => {
+    form.resetFields()
+    setVisible(false)
+  }
   return (
     <PopupModal
       visible={visible}
       title="新增管理者角色"
-      onCancel={() => setVisible(false)}
+      onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
     >
       <DataForm

@@ -13,8 +13,11 @@ import { message, Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
 import { selectTableData, useTypedSelector } from '../selectors'
-import { Role } from '../API/fetchAll'
+import { Role } from '../API/types'
 import { toDateTime } from '@/utils/transfer'
+import { usePopupProvider } from '../context/PopupProvider'
+import { useAPIService } from '../service'
+import { setEditData } from '../reducer'
 
 const columns: ColumnsType<Role> = [
   {
@@ -51,8 +54,12 @@ const columns: ColumnsType<Role> = [
     key: 'control',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
-      const dispatch = useAppDispatch()
-      const handleEdit = () => {}
+      const [visible, setVisible] = usePopupProvider('editForm')
+      const { getFormData, getOptions } = useAPIService()
+      const handleEdit = async () => {
+        await Promise.all([getOptions(), getFormData(row.id)])
+        setVisible(true)
+      }
       const handleDelete = () => {}
       const handleStatus = async (status: number) => {}
       return (
