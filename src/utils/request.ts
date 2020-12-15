@@ -1,11 +1,28 @@
 import { ResponseBase } from '@/types'
 import Axios, { AxiosRequestConfig } from 'axios'
 import errCodes from '@/lib/errCodes'
+import { message } from 'antd'
+import httpStatus from 'http-status'
 
 const config: AxiosRequestConfig = {
   withCredentials: true,
   baseURL: '/api',
+  validateStatus: (status) => {
+    // if (status === 401) {
+    //   message.error('請重新登入')
+    // }
+    return true
+  },
 }
+
+Axios.interceptors.response.use((res) => {
+  if (res.data.code !== 0) {
+    throw new Error(
+      errCodes[res.data.code] || httpStatus[res.status] || 'Error occur!',
+    )
+  }
+  return res.data
+})
 
 export const get = function <T>(
   url: string,
@@ -17,11 +34,7 @@ export const post = async function <T>(
   url: string,
   data = null,
 ): Promise<ResponseBase<T>> {
-  const res = await Axios.post<ResponseBase<T>>(url, data, config)
-  if (res.data.code !== 0) {
-    throw new Error(errCodes[res.data.code] || 'Error occur!')
-  }
-  return res.data
+  return Axios.post(url, data, config)
 }
 export default {
   get,

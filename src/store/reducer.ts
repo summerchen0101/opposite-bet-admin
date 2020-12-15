@@ -26,7 +26,7 @@ const module = createSlice({
   reducers: {
     setLogout(state) {
       state.isLogin = false
-      sessionStorage.remove('isLogin')
+      sessionStorage.removeItem('isLogin')
     },
     setLogin(state) {
       state.isLogin = true
