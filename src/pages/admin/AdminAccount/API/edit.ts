@@ -1,13 +1,11 @@
 import Request from '@/utils/request'
-import { ResponseTableItemSchema, AdminRoleOption } from './types'
-export interface ResponseData {
-  admin_roles: AdminRoleOption[]
-  admin: ResponseTableItemSchema
+
+interface Request {
+  id: number
+  name: string
+  permission_ids: number[]
+  is_active: boolean
 }
 
-export interface RequestData extends ResponseTableItemSchema {
-  admin_id: string
-}
-
-export const edit = (id: string, reqData: RequestData) =>
-  Request.post<ResponseData>('admin/editAdmin', { id, ...reqData })
+export const edit = (reqData: Request) =>
+  Request.post<null>('admin_user/edit', reqData)

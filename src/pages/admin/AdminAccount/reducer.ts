@@ -1,219 +1,39 @@
-import { OptionType, Permission, RequestSetStatus, ResponseBase } from '@/types'
-import { addKeyToArrayItem, permissionTransfer } from '@/utils/transfer'
 import {
   ActionReducerMapBuilder,
-  createAsyncThunk,
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit'
-import * as API from './API'
-import * as Types from './types'
-import { SearchRequest } from './API/fetchAll'
-import numeral from 'numeral'
-import { TableItem } from './containers/TableData'
-
+import { User } from './API/types'
+import { Permission } from '@/API/permission/options'
 export interface IState {
-  tableData: TableItem[]
-  roleOptions: OptionType[]
-  permission: Permission
-  displayCreateModal: boolean
-  displayEditModal: boolean
-  searchData: Types.ListSearchForm
-  editAdmin: Partial<Types.DataFormProps>
+  tableData: User[]
+  editData: User
+  permissionOpts: Permission[]
 }
 const initialState: IState = {
   tableData: [],
-  roleOptions: [],
-  permission: { edit: false, view: false },
-  displayCreateModal: false,
-  displayEditModal: false,
-  editAdmin: {},
-  searchData: {
-    account: '',
-    role: null,
-    status: 1,
-    ip: '',
-  },
+  editData: null,
+  permissionOpts: [],
 }
 
 export const moduleName = 'adminAccount'
-
-// 列表
-export const fetchAdminList = createAsyncThunk(
-  `${moduleName}/fetchAdminList`,
-  async (form: Types.ListSearchForm | void, { dispatch }) => {
-    let reqData: SearchRequest
-    if (form) {
-      reqData = {
-        search_account: form.account || undefined,
-        search_role: form.role ?? undefined,
-        search_status: form.status ?? undefined,
-        search_ip: form.ip || undefined,
-      }
-    }
-    const { data, code } = await API.fetchAll(reqData)
-    return {
-      list:
-        data.admin?.map((t, i) => ({
-          id: t.admin_id,
-          account: t.admin_account,
-          name: t.admin_name,
-          role: t.admin_role,
-          lastLogin: t.last_login,
-          lastIp: t.last_ip,
-          status: t.status === 1,
-          isOnline: false,
-        })) ?? [],
-      permission: permissionTransfer(data.permission),
-      roleOptions: data.admin_roles.map((t) => ({
-        label: t.role_name,
-        value: t.id,
-      })),
-    }
-  },
-)
-
-// 編輯
-export const fetchAdminEditOptions = createAsyncThunk(
-  `${moduleName}/fetchAdminEditOptions`,
-  async (id: string, { dispatch }) => {
-    const { code, data } = await API.fetchById(id)
-    const { admin: _admin } = data
-    const formData = {
-      id,
-      account: _admin.username,
-      realName: _admin.name,
-      pw: '',
-      pw_confirm: '',
-      email: _admin.admin_email,
-      role: _admin.admin_role_id,
-      singleLimit: numeral(_admin.single_withdrawal_limit).value(),
-      dailyLimit: numeral(_admin.daily_withdrawal_limit).value(),
-      effectiveTime: _admin.expire_date ? 'limit' : 'forever',
-      limitDate: _admin.expire_date,
-      ip: _admin.allow_ips,
-      status: _admin.status,
-      notes: _admin.remark,
-    }
-    return formData
-  },
-)
-
-const formToCreateReqData = (form) => {
-  const expireDate =
-    form.effectiveTime === 'limit' ? form.limitDate.format('YYYY-MM-DD') : null
-  const data = {
-    name: form.realName,
-    username: form.account,
-    password: form.pw,
-    confirm_password: form.pw_confirm,
-    admin_role_id: form.role,
-    admin_email: form.email,
-    single_withdrawal_limit: form.singleLimit, // 單筆提款審核上限
-    daily_withdrawal_limit: form.dailyLimit, // 每日提款審核上限
-    expire_date: expireDate, // 2020-11-17 or null
-    allow_ips: form.ip,
-    status: form.status,
-    remark: form.notes,
-  }
-  return data
-}
-const formToEditReqData = (id, form) => {
-  const expireDate =
-    form.effectiveTime === 'limit' ? form.limitDate.format('YYYY-MM-DD') : null
-  const data = {
-    admin_id: id,
-    name: form.realName,
-    username: form.account,
-    password: form.pw,
-    confirm_password: form.pw_confirm,
-    admin_role_id: form.role,
-    admin_email: form.email,
-    single_withdrawal_limit: form.singleLimit, // 單筆提款審核上限
-    daily_withdrawal_limit: form.dailyLimit, // 每日提款審核上限
-    expire_date: expireDate, // 2020-11-17 or null
-    allow_ips: form.ip,
-    status: form.status,
-    remark: form.notes,
-  }
-  return data
-}
-
-// 新增送出
-export const createAdmin = createAsyncThunk(
-  `${moduleName}/createAdmin`,
-  async (form: Types.DataFormProps, { dispatch }) => {
-    const reqData = formToCreateReqData(form)
-    const { code } = await API.create(reqData)
-    return
-  },
-)
-
-// 編輯送出
-export const editAdmin = createAsyncThunk(
-  `${moduleName}/editAdmin`,
-  async (form: Types.DataFormProps, { dispatch, getState }) => {
-    const { editAdmin } = getState()[moduleName] as IState
-    const reqData = formToEditReqData(editAdmin.id, form)
-    const { code } = await API.edit(editAdmin.id.toString(), reqData)
-    return
-  },
-)
-
-// 刪除
-export const removeAdmin = createAsyncThunk(
-  `${moduleName}/removeAdmin`,
-  async (id: string, { dispatch }) => {
-    const { code } = await API.deleteById(id)
-    return id
-  },
-)
 
 const module = createSlice({
   name: moduleName,
   initialState,
   reducers: {
-    initSearchState(state) {
-      //
+    setTableData(state, action: PayloadAction<User[]>) {
+      state.tableData = action.payload
     },
-    toggleCreateModal(state, action: PayloadAction<boolean>) {
-      state.displayCreateModal = action.payload
+    setEditData(state, action: PayloadAction<User>) {
+      state.editData = action.payload
     },
-    toggleEditModal(state, action: PayloadAction<boolean>) {
-      state.displayEditModal = action.payload
+    setPermissionOpts(state, action: PayloadAction<Permission[]>) {
+      state.permissionOpts = action.payload
     },
   },
-  extraReducers: (builder: ActionReducerMapBuilder<IState>) => {
-    builder.addCase(fetchAdminList.fulfilled, (state, action) => {
-      const { list, permission, roleOptions } = action.payload
-      state.tableData = list
-      state.permission = permission
-      state.roleOptions = roleOptions
-    })
-    builder.addCase(fetchAdminList.rejected, (state, action) => {
-      state.tableData = []
-      state.permission = { edit: false, view: false }
-    })
-
-    builder.addCase(fetchAdminEditOptions.fulfilled, (state, action) => {
-      state.editAdmin = action.payload
-      state.displayEditModal = true
-    })
-    builder.addCase(editAdmin.fulfilled, (state, action) => {
-      state.displayEditModal = false
-    })
-    builder.addCase(createAdmin.fulfilled, (state, action) => {
-      state.displayCreateModal = false
-    })
-    builder.addCase(removeAdmin.fulfilled, (state, action) => {
-      state.tableData = state.tableData.filter((t) => t.id === action.payload)
-    })
-  },
+  extraReducers: (builder: ActionReducerMapBuilder<IState>) => {},
 })
 
-export const {
-  initSearchState,
-  toggleCreateModal,
-  toggleEditModal,
-} = module.actions
+export const { setTableData, setPermissionOpts, setEditData } = module.actions
 export default module.reducer

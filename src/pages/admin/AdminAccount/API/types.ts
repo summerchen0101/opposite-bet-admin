@@ -1,19 +1,21 @@
-export interface AdminRoleOption {
-  id: number
-  role_name: string
+import { Permission } from '@/pages/admin/AdminRole/API/types'
+
+export enum Status {
+  Normal = 1, // 正常
+  Blocked = 2, // 鎖定
 }
 
-export interface ResponseTableItemSchema {
+interface Role {
+  id: number
   name: string
-  username: string
-  password: string
-  confirm_password: string
-  admin_role_id: number // 角色代碼
-  admin_email: string
-  single_withdrawal_limit: number // 單筆提款審核上限
-  daily_withdrawal_limit: number // 每日提款審核上限
-  expire_date: string // 2020-11-17 or null
-  allow_ips: string
-  status: number
-  remark?: string
+}
+export interface User {
+  id: number
+  acc: string
+  pass: string
+  name: string
+  roles: Role[]
+  permissions: Permission[]
+  is_active: true
+  status: Status
 }

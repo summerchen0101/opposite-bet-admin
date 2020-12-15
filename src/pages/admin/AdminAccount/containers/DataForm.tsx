@@ -10,11 +10,12 @@ import {
   InputNumber,
   Radio,
   Row,
+  Select,
   Space,
 } from 'antd'
 import moment from 'moment'
 import React from 'react'
-import { selectRoleOptions, useTypedSelector } from '../selectors'
+import { useTypedSelector } from '../selectors'
 
 const DataForm: React.FC<DataDataFormProps> = ({
   values,
@@ -28,7 +29,7 @@ const DataForm: React.FC<DataDataFormProps> = ({
   const disabledDate = (current) => {
     return current && current < moment().endOf('day')
   }
-  const roleOptions = useTypedSelector(selectRoleOptions)
+  // const roleOptions = useTypedSelector(selectRoleOptions)
   return (
     <Form
       onFinish={onFinish}
@@ -38,68 +39,39 @@ const DataForm: React.FC<DataDataFormProps> = ({
     >
       <Row gutter={16}>
         <Col span={12}>
-          <FormField label="管理者帳號" name="account" required>
+          <FormField label="管理者帳號" name="account">
             <Input />
           </FormField>
         </Col>
         <Col span={12}>
-          <FormField label="真實姓名" name="realName" required>
+          <FormField label="真實姓名" name="realName">
             <Input />
           </FormField>
         </Col>
         <Col span={12}>
-          <FormField label="密碼" name="pw" required>
+          <FormField label="密碼" name="pw">
             <Input.Password />
           </FormField>
         </Col>
         <Col span={12}>
-          <FormField label="確認密碼" name="pw_confirm" required>
+          <FormField label="確認密碼" name="pw_confirm">
             <Input.Password />
           </FormField>
         </Col>
         <Col span={12}>
-          <FormField label="電子郵箱" name="email" required>
+          <FormField label="電子郵箱" name="email">
             <Input />
           </FormField>
         </Col>
         <Col span={12}>
-          <FormField label="角色" name="role" required>
-            <BasicSelector
-              options={roleOptions}
-              placeholder="請選擇"
-              width="100%"
-            />
-          </FormField>
-        </Col>
-        <Col span={12}>
-          <FormField label="單筆提款審核上限" name="singleLimit" required>
-            {/* <InputNumber
-              formatter={(value) =>
-                `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-              }
-              parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
-              style={{ width: '100%' }}
-            /> */}
-            <Input itemType="number" allowClear />
-          </FormField>
-        </Col>
-        <Col span={12}>
-          <FormField label="每日提款審核上限" name="dailyLimit" required>
-            {/* <InputNumber
-              formatter={(value) =>
-                `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-              }
-              parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
-              style={{ width: '100%' }}
-            /> */}
-            <Input itemType="number" allowClear />
+          <FormField label="角色" name="role">
+            <Select />
           </FormField>
         </Col>
       </Row>
 
       <FormField
         label="帳號有效時間"
-        required
         name="effectiveTime"
         extra={<Text color="danger">(时间到会自动停用)</Text>}
       >

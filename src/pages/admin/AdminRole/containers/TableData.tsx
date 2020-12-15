@@ -1,23 +1,20 @@
 import { PopupConfirm, Text } from '@/components'
 import IconLink from '@/components/IconLink'
 import TableSets from '@/components/TableSets'
-import { useAppDispatch } from '@/store'
+import { toDateTime } from '@/utils/transfer'
 import {
   CheckCircleOutlined,
   CloseCircleOutlined,
   DeleteOutlined,
   EditFilled,
-  FilterFilled,
 } from '@ant-design/icons'
-import { message, Space } from 'antd'
+import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
-import { selectTableData, useTypedSelector } from '../selectors'
 import { Role } from '../API/types'
-import { toDateTime } from '@/utils/transfer'
 import { usePopupProvider } from '../context/PopupProvider'
+import { selectTableData, useTypedSelector } from '../selectors'
 import { useAPIService } from '../service'
-import { setEditData } from '../reducer'
 
 const columns: ColumnsType<Role> = [
   {
@@ -59,7 +56,7 @@ const columns: ColumnsType<Role> = [
         getFormData,
         getOptions,
         onDelete,
-        changeStatus,
+        changeActive,
       } = useAPIService()
       const handleEdit = async () => {
         await Promise.all([getOptions(), getFormData(row.id)])
@@ -72,14 +69,14 @@ const columns: ColumnsType<Role> = [
               icon={<CloseCircleOutlined />}
               label="停用"
               color="red"
-              onClick={() => changeStatus(row.id, false)}
+              onClick={() => changeActive(row.id, false)}
             />
           ) : (
             <IconLink
               icon={<CheckCircleOutlined />}
               label="啟用"
               color="green"
-              onClick={() => changeStatus(row.id, true)}
+              onClick={() => changeActive(row.id, true)}
             />
           )}
           <IconLink icon={<EditFilled />} label="編輯" onClick={handleEdit} />

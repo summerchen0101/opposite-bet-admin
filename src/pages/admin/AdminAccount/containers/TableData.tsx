@@ -1,69 +1,63 @@
 import { IconLink, PopupConfirm, TableSets, Text } from '@/components'
 import {
-  CheckCircleOutlined,
   ClockCircleOutlined,
   CloseCircleOutlined,
+  CheckCircleOutlined,
   DeleteOutlined,
   EditFilled,
-  StopOutlined,
+  LockOutlined,
+  UnlockOutlined,
 } from '@ant-design/icons'
 import { Space } from 'antd'
 import { ColumnType } from 'antd/lib/table'
 import React from 'react'
+import { Status, User } from '../API/types'
 import { usePopupProvider } from '../context/PopupProvider'
 import { selectTableData, useTypedSelector } from '../selectors'
+import { useAPIService } from '../service'
 
-export interface TableItem {
-  id: string
-  account: string
-  name: string
-  role: string
-  lastLogin: string
-  lastIp: string
-  status: boolean
-  isOnline: boolean
-}
-const columns: ColumnType<TableItem>[] = [
+const columns: ColumnType<User>[] = [
   {
     title: '管理者帳號',
     width: 120,
-    render: (_, row) => <a>PHMQ647</a>,
+    render: (_, row) => <a>{row.acc}</a>,
   },
   {
     title: '真實姓名',
-    dataIndex: 'name',
     width: 120,
-    render: (_, row) => '王大明',
+    render: (_, row) => row.name,
   },
   {
     title: '管理者角色',
-    dataIndex: 'role',
     width: 140,
-    render: (_, row) => '財務管理員',
-  },
-  {
-    title: '上次登入時間',
-    dataIndex: 'lastLogin',
-    width: 200,
-    render: (_, row) => '2020-10-15 13:28:28',
+    render: (_, row) => row.roles.map((t) => t.name).join(', '),
   },
   {
     title: '上次登入IP',
-    dataIndex: 'lastIp',
     width: 140,
     render: (_, row) => '0.0.0.0',
   },
   {
     title: '啟用狀態',
-    dataIndex: 'status',
-    width: 140,
-    render: (_, row) => <Text color="success">啟用</Text>,
+    width: 100,
+    render: (_, row) => {
+      if (row.is_active) {
+        return <Text color="success">啟用</Text>
+      }
+      return <Text color="danger">關閉</Text>
+    },
   },
   {
-    title: '上線狀態',
-    dataIndex: 'isOnline',
-    width: 120,
-    render: (_, row) => '線上',
+    title: '鎖定狀態',
+    width: 100,
+    render: (_, row) => {
+      switch (row.status) {
+        case Status.Normal:
+          return <Text color="success">正常</Text>
+        case Status.Blocked:
+          return <Text color="danger">鎖定</Text>
+      }
+    },
   },
   {
     title: '操作',
@@ -71,19 +65,55 @@ const columns: ColumnType<TableItem>[] = [
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
       const [visible, setVisible] = usePopupProvider('editForm')
+      const {
+        getFormData,
+        getOptions,
+        onDelete,
+        changeStatus,
+        changeActive,
+      } = useAPIService()
+      const handleEdit = async () => {
+        await Promise.all([getOptions(), getFormData(row.id)])
+        setVisible(true)
+      }
       return (
         <Space size="small">
-          <IconLink icon={<StopOutlined />} label="凍結" />
-          {/* <IconLink icon={<CheckCircleOutlined />} label="啟用" color="green" /> */}
-          <IconLink icon={<CloseCircleOutlined />} label="停用" color="red" />
+          {row.status === Status.Normal ? (
+            <IconLink
+              icon={<UnlockOutlined />}
+              label="鎖定"
+              onClick={() => changeStatus(row.id, Status.Blocked)}
+            />
+          ) : (
+            <IconLink
+              icon={<LockOutlined />}
+              label="解鎖"
+              onClick={() => changeStatus(row.id, Status.Normal)}
+            />
+          )}
+          {row.is_active ? (
+            <IconLink
+              icon={<CloseCircleOutlined />}
+              label="停用"
+              color="red"
+              onClick={() => changeActive(row.id, false)}
+            />
+          ) : (
+            <IconLink
+              icon={<CheckCircleOutlined />}
+              label="啟用"
+              color="green"
+              onClick={() => changeActive(row.id, true)}
+            />
+          )}
           <IconLink
             icon={<EditFilled />}
             label="編輯"
-            onClick={() => setVisible(true)}
+            onClick={() => handleEdit()}
           />
           <IconLink icon={<ClockCircleOutlined />} label="歷程" />
 
-          <PopupConfirm>
+          <PopupConfirm onConfirm={() => onDelete(row.id)}>
             <IconLink icon={<DeleteOutlined />} label="刪除" />
           </PopupConfirm>
         </Space>
@@ -93,7 +123,7 @@ const columns: ColumnType<TableItem>[] = [
   },
 ]
 const TableData: React.FC = () => {
-  const data = [...Array(5)].map((t, i) => ({ id: i.toString() }))
+  const data = useTypedSelector(selectTableData)
   return <TableSets columns={columns} data={data} />
 }
 

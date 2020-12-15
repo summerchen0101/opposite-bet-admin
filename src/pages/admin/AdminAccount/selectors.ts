@@ -8,24 +8,17 @@ interface IModuleState {
 
 export const useTypedSelector: TypedUseSelectorHook<IModuleState> = useSelector
 
-const selectModuleState = (state: IModuleState) => state[moduleName]
+export const selectModuleState = (state: IModuleState) => state[moduleName]
+
 export const selectTableData = createSelector(
   selectModuleState,
   (moduleState) => moduleState.tableData,
 )
-export const selectRoleOptions = createSelector(
+export const selectEditData = createSelector(
   selectModuleState,
-  (moduleState) => moduleState.roleOptions,
+  (moduleState) => moduleState.editData,
 )
-export const selectDisplayCreateModal = createSelector(
+export const selectPermissionOpts = createSelector(
   selectModuleState,
-  (moduleState) => moduleState.displayCreateModal,
-)
-export const selectDisplayEditModal = createSelector(
-  selectModuleState,
-  (moduleState) => moduleState.displayEditModal,
-)
-export const selectEditAdmin = createSelector(
-  selectModuleState,
-  (moduleState) => moduleState.editAdmin,
+  (moduleState) => moduleState.permissionOpts,
 )

@@ -1,8 +1,4 @@
 import Request from '@/utils/request'
 
-interface ResponseData {
-  [key: string]: any
-}
-
-export const deleteById = (id: string) =>
-  Request.post<ResponseData>('admin/editAdmin', { id })
+export const deleteById = (id: number) =>
+  Request.get<null>(`admin_user/remove/${id}`)

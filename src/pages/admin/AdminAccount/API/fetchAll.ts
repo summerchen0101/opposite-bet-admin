@@ -1,30 +1,19 @@
-import { RemotePagination, RemotePermission, StatusType } from '@/types'
 import Request from '@/utils/request'
-import { AdminRoleOption } from './types'
+import { User } from './types'
 
-export interface SearchRequest {
-  search_account?: string
-  search_role?: string
-  search_status?: number
-  search_ip?: string
-}
-export interface ResponseTableItem {
-  admin_id: string
-  admin_account: string | null
-  admin_name: string
-  admin_role: string
-  last_login: string | null
-  last_ip: string
-  status: StatusType
-  online: string
+export interface Response {
+  users: User[]
+  total_count: number
+  total_page: number
 }
 
-export interface ListResponse {
-  admin_roles: AdminRoleOption[]
-  permission: RemotePermission
-  admin: ResponseTableItem[]
-  paging: RemotePagination
+interface Request {
+  page?: number
+  perpage?: number
 }
-
-export const fetchAll = (reqData?: SearchRequest) =>
-  Request.post<ListResponse>('admin/getAdminList', reqData)
+export const fetchAll = (reqData?: Request) =>
+  Request.post<Response>('admin_user/list', {
+    page: 1,
+    perpage: 20,
+    ...reqData,
+  })
