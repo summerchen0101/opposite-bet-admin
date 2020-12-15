@@ -64,6 +64,23 @@ export const useAPIService = () => {
       apiErr(err)
     }
   }
+  const changeStatus = async (id: number, status: boolean) => {
+    try {
+      await API.adminRole.active({ id, is_active: status })
+      await getTableData()
+      message.success('狀態更新成功')
+    } catch (err) {
+      apiErr(err)
+    }
+  }
 
-  return { getTableData, onCreate, onEdit, getFormData, getOptions, onDelete }
+  return {
+    getTableData,
+    onCreate,
+    onEdit,
+    getFormData,
+    getOptions,
+    onDelete,
+    changeStatus,
+  }
 }

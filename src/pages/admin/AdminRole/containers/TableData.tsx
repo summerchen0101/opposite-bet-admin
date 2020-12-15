@@ -55,12 +55,16 @@ const columns: ColumnsType<Role> = [
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
       const [visible, setVisible] = usePopupProvider('editForm')
-      const { getFormData, getOptions, onDelete } = useAPIService()
+      const {
+        getFormData,
+        getOptions,
+        onDelete,
+        changeStatus,
+      } = useAPIService()
       const handleEdit = async () => {
         await Promise.all([getOptions(), getFormData(row.id)])
         setVisible(true)
       }
-      const handleStatus = async (status: number) => {}
       return (
         <Space size="small">
           {row.is_active ? (
@@ -68,14 +72,14 @@ const columns: ColumnsType<Role> = [
               icon={<CloseCircleOutlined />}
               label="停用"
               color="red"
-              onClick={() => handleStatus(0)}
+              onClick={() => changeStatus(row.id, false)}
             />
           ) : (
             <IconLink
               icon={<CheckCircleOutlined />}
               label="啟用"
               color="green"
-              onClick={() => handleStatus(1)}
+              onClick={() => changeStatus(row.id, true)}
             />
           )}
           <IconLink icon={<EditFilled />} label="編輯" onClick={handleEdit} />
