@@ -1,44 +1,64 @@
 import PopupModal from '@/components/PopupModal'
 import React from 'react'
 import { usePopupProvider } from '../context/PopupProvider'
-import * as AdminAccount from '../types'
 import DataForm from './DataForm'
-
-const initValues: AdminAccount.DataFormProps = {
-  account: '',
-  realName: '',
-  pw: '',
-  pw_confirm: '',
-  email: '',
-  role: null,
-  singleLimit: 1000,
-  dailyLimit: 10000,
-  effectiveTime: 'limit',
-  limitDate: null,
-  ip: '',
-  status: 1,
-  notes: '',
-}
+import { Form } from 'antd'
+import { useAPIService } from '../service'
+import { useTypedSelector, selectEditData } from '../selectors'
+import { Status } from '../API/types'
 
 const EditPopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('editForm')
-
-  const onCancel = () => setVisible(false)
-  const onFinish = async (values: AdminAccount.DataFormProps) => {
-    console.log('Success:', values)
-    setVisible(false)
+  const [form] = Form.useForm()
+  const f = useTypedSelector(selectEditData)
+  const { onEdit } = useAPIService()
+  const handleSubmit = async () => {
+    try {
+      const v = await form.validateFields()
+      await onEdit({
+        id: f.id,
+        acc: v.acc,
+        pass: v.pass,
+        name: v.name,
+        role_ids: v.role_ids,
+        permission_ids: v.permission_ids,
+        is_active: v.is_active,
+        status: v.is_lock ? Status.Blocked : Status.Normal,
+      })
+      form.resetFields()
+      setVisible(false)
+    } catch (info) {
+      console.log('Validate Failed:', info)
+    }
   }
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
+  const handleCancel = () => {
+    form.resetFields()
     setVisible(false)
   }
   return (
-    <PopupModal visible={visible} title="編輯管理者" onCancel={onCancel}>
-      <DataForm
-        values={initValues}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-      />
+    <PopupModal
+      visible={visible}
+      title="編輯管理者角色"
+      onCancel={() => handleCancel()}
+      onOk={() => handleSubmit()}
+      destroyOnClose
+    >
+      {f && (
+        <DataForm
+          form={form}
+          values={{
+            id: f.id,
+            name: f.name,
+            acc: f.acc,
+            pass: '',
+            pass_c: '',
+            is_active: f.is_active,
+            is_lock: f.status === Status.Blocked,
+            permission_ids: f.permissions.map((t) => t.id),
+            role_ids: f.roles.map((t) => t.id),
+          }}
+        />
+      )}
     </PopupModal>
   )
 }

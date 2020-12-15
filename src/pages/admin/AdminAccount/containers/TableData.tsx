@@ -1,8 +1,8 @@
 import { IconLink, PopupConfirm, TableSets, Text } from '@/components'
+import { toDateTime } from '@/utils/transfer'
 import {
-  ClockCircleOutlined,
-  CloseCircleOutlined,
   CheckCircleOutlined,
+  CloseCircleOutlined,
   DeleteOutlined,
   EditFilled,
   LockOutlined,
@@ -29,13 +29,18 @@ const columns: ColumnType<User>[] = [
   },
   {
     title: '管理者角色',
-    width: 140,
-    render: (_, row) => row.roles.map((t) => t.name).join(', '),
+    width: 180,
+    render: (_, row) => row.roles.map((t) => t.name).join(', ') || '-',
+  },
+  {
+    title: '上次登入時間',
+    width: 200,
+    render: (_, row) => (row.logined_at ? toDateTime(row.logined_at) : '-'),
   },
   {
     title: '上次登入IP',
     width: 140,
-    render: (_, row) => '0.0.0.0',
+    render: (_, row) => row.login_ip || '-',
   },
   {
     title: '啟用狀態',
@@ -111,7 +116,7 @@ const columns: ColumnType<User>[] = [
             label="編輯"
             onClick={() => handleEdit()}
           />
-          <IconLink icon={<ClockCircleOutlined />} label="歷程" />
+          {/* <IconLink icon={<ClockCircleOutlined />} label="歷程" /> */}
 
           <PopupConfirm onConfirm={() => onDelete(row.id)}>
             <IconLink icon={<DeleteOutlined />} label="刪除" />

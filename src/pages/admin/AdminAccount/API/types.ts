@@ -18,4 +18,9 @@ export interface User {
   permissions: Permission[]
   is_active: true
   status: Status
+
+  login_ip: string
+  logined_at: number
+  created_at: number
+  updated_at: number
 }

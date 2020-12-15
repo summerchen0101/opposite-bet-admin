@@ -4,10 +4,10 @@ export interface Permission {
   route: string
 }
 export interface Role {
-  created_at: number
   id: number
   is_active: boolean
   name: string
   permissions: Permission[]
+  created_at: number
   updated_at: number
 }

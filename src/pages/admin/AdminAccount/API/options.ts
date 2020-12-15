@@ -4,4 +4,4 @@ interface ResponseData {
   [key: string]: any
 }
 
-export const fetchOption = () => Request.get<ResponseData>('admin_user/options')
+export const options = () => Request.get<ResponseData>('admin_user/options')

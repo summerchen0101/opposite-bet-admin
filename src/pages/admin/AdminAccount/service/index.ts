@@ -3,7 +3,13 @@ import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { message } from 'antd'
 import { useDispatch } from 'react-redux'
 import { Status } from '../API/types'
-import { setEditData, setTableData, setPermissionOpts } from '../reducer'
+import { Request as CreateRequest } from '../API/create'
+import {
+  setEditData,
+  setTableData,
+  setPermissionOpts,
+  setRoleOpts,
+} from '../reducer'
 
 export const useAPIService = () => {
   const { apiErr } = useErrorHandler()
@@ -11,8 +17,12 @@ export const useAPIService = () => {
 
   const getOptions = async () => {
     try {
-      const res = await API.permission.options()
-      dispatch(setPermissionOpts(res.data.permissions))
+      const [p_res, r_res] = await Promise.all([
+        API.permission.options(),
+        API.adminRole.options(),
+      ])
+      dispatch(setPermissionOpts(p_res.data.permissions))
+      dispatch(setRoleOpts(r_res.data.roles))
     } catch (err) {
       apiErr(err)
     }
@@ -36,7 +46,7 @@ export const useAPIService = () => {
     }
   }
 
-  const onCreate = async (values) => {
+  const onCreate = async function (values: CreateRequest) {
     try {
       await API.adminAccount.create(values)
       await getTableData()

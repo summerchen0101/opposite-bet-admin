@@ -1,127 +1,92 @@
-import { BasicSelector, Text } from '@/components'
-import Form, { FormField } from '@/components/Form'
-import { DataDataFormProps } from '@/types'
-import {
-  Button,
-  Col,
-  DatePicker,
-  Form as AntForm,
-  Input,
-  InputNumber,
-  Radio,
-  Row,
-  Select,
-  Space,
-} from 'antd'
-import moment from 'moment'
+import { Col, Form, Input, Row, Select, Switch } from 'antd'
+import { FormInstance } from 'antd/lib/form'
 import React from 'react'
-import { useTypedSelector } from '../selectors'
+import {
+  selectPermissionOpts,
+  selectRoleOpts,
+  useTypedSelector,
+} from '../selectors'
 
-const DataForm: React.FC<DataDataFormProps> = ({
-  values,
-  onFinish,
-  onFinishFailed,
-}) => {
-  const [form] = AntForm.useForm()
-  const onReset = () => {
-    form.resetFields()
-  }
-  const disabledDate = (current) => {
-    return current && current < moment().endOf('day')
-  }
-  // const roleOptions = useTypedSelector(selectRoleOptions)
+export interface FormData {
+  id?: number
+  acc: string
+  pass: string
+  pass_c: string
+  name: string
+  role_ids: number[]
+  permission_ids: number[]
+  is_active: boolean
+  is_lock: boolean
+}
+interface FormProps {
+  form: FormInstance<any>
+  values?: FormData
+}
+const DataForm: React.FC<FormProps> = ({ form, values }) => {
+  const onReset = () => form.resetFields()
+  const permissionOpts = useTypedSelector(selectPermissionOpts).map((t) => ({
+    label: t.name,
+    value: t.id,
+  }))
+  const roleOpts = useTypedSelector(selectRoleOpts).map((t) => ({
+    label: t.name,
+    value: t.id,
+  }))
+
+  const activeOpts = [
+    { label: '啟用', value: true },
+    { label: '停用', value: false },
+  ]
+
   return (
     <Form
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      initialValues={values}
+      layout="vertical"
       form={form}
+      onReset={onReset}
+      initialValues={values}
     >
       <Row gutter={16}>
         <Col span={12}>
-          <FormField label="管理者帳號" name="account">
+          <Form.Item label="管理者帳號" name="acc">
             <Input />
-          </FormField>
+          </Form.Item>
         </Col>
         <Col span={12}>
-          <FormField label="真實姓名" name="realName">
+          <Form.Item label="真實姓名" name="name">
             <Input />
-          </FormField>
+          </Form.Item>
         </Col>
         <Col span={12}>
-          <FormField label="密碼" name="pw">
+          <Form.Item label="密碼" name="pass">
             <Input.Password />
-          </FormField>
+          </Form.Item>
         </Col>
         <Col span={12}>
-          <FormField label="確認密碼" name="pw_confirm">
+          <Form.Item label="確認密碼" name="pass_c">
             <Input.Password />
-          </FormField>
+          </Form.Item>
+        </Col>
+        <Col span={24}>
+          <Form.Item label="角色" name="role_ids">
+            <Select mode="multiple" options={roleOpts} />
+          </Form.Item>
+        </Col>
+        <Col span={24}>
+          <Form.Item label="權限" name="permission_ids">
+            <Select mode="multiple" options={permissionOpts} />
+          </Form.Item>
         </Col>
         <Col span={12}>
-          <FormField label="電子郵箱" name="email">
-            <Input />
-          </FormField>
+          <Form.Item label="狀態" name="is_active" valuePropName="checked">
+            <Switch />
+          </Form.Item>
         </Col>
         <Col span={12}>
-          <FormField label="角色" name="role">
-            <Select />
-          </FormField>
+          <Form.Item label="鎖定" name="is_lock" valuePropName="checked">
+            <Switch />
+          </Form.Item>
         </Col>
       </Row>
-
-      <FormField
-        label="帳號有效時間"
-        name="effectiveTime"
-        extra={<Text color="danger">(时间到会自动停用)</Text>}
-      >
-        <Radio.Group>
-          <Radio value="limit">
-            <Space>
-              <span>時間：</span>
-              <FormField name="limitDate">
-                <DatePicker disabledDate={disabledDate} />
-              </FormField>
-            </Space>
-          </Radio>
-          <Radio value="forever">永久</Radio>
-        </Radio.Group>
-      </FormField>
-
-      <Row gutter={16}>
-        <Col span={12}>
-          <FormField
-            label="允許登入IP"
-            name="ip"
-            extra={<Text color="danger">(多IP請逗號分隔，空白=不限制)</Text>}
-          >
-            <Input />
-          </FormField>
-        </Col>
-        <Col span={12}>
-          <FormField label="狀態" name="status">
-            <Radio.Group>
-              <Radio value={1}>啟用</Radio>
-              <Radio value={0}>關閉</Radio>
-            </Radio.Group>
-          </FormField>
-        </Col>
-      </Row>
-
-      <FormField label="備註" name="notes">
-        <Input.TextArea />
-      </FormField>
-
-      <FormField style={{ marginTop: '20px', textAlign: 'center' }}>
-        <Space size="large">
-          <Button htmlType="reset" onClick={onReset}>
-            重置
-          </Button>
-          <Button type="primary" htmlType="submit">
-            送出
-          </Button>
-        </Space>
-      </FormField>
     </Form>
   )
 }
