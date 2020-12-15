@@ -55,5 +55,15 @@ export const useAPIService = () => {
     }
   }
 
-  return { getTableData, onCreate, onEdit, getFormData, getOptions }
+  const onDelete = async (id: number) => {
+    try {
+      await API.adminRole.deleteById(id)
+      await getTableData()
+      message.success('刪除成功')
+    } catch (err) {
+      apiErr(err)
+    }
+  }
+
+  return { getTableData, onCreate, onEdit, getFormData, getOptions, onDelete }
 }

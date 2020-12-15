@@ -55,12 +55,11 @@ const columns: ColumnsType<Role> = [
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
       const [visible, setVisible] = usePopupProvider('editForm')
-      const { getFormData, getOptions } = useAPIService()
+      const { getFormData, getOptions, onDelete } = useAPIService()
       const handleEdit = async () => {
         await Promise.all([getOptions(), getFormData(row.id)])
         setVisible(true)
       }
-      const handleDelete = () => {}
       const handleStatus = async (status: number) => {}
       return (
         <Space size="small">
@@ -80,7 +79,7 @@ const columns: ColumnsType<Role> = [
             />
           )}
           <IconLink icon={<EditFilled />} label="編輯" onClick={handleEdit} />
-          <PopupConfirm onConfirm={handleDelete}>
+          <PopupConfirm onConfirm={() => onDelete(row.id)}>
             <IconLink icon={<DeleteOutlined />} label="刪除" />
           </PopupConfirm>
         </Space>
