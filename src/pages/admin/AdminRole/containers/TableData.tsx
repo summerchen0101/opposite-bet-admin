@@ -13,77 +13,41 @@ import { message, Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
 import { selectTableData, useTypedSelector } from '../selectors'
+import { Role } from '../API/fetchAll'
+import { toDateTime } from '@/utils/transfer'
 
-export interface TableItem {
-  id: string
-  name: string
-  count: number
-  updatedAt: string
-  updator: string
-  creator: string
-  createdAt: string
-  menu: string
-  status: number
-}
-
-const columns: ColumnsType<TableItem> = [
+const columns: ColumnsType<Role> = [
   {
     title: '角色名稱',
     dataIndex: 'name',
     width: 100,
-    render: (value) => value,
-  },
-  {
-    title: '人數',
-    dataIndex: 'count',
-    width: 140,
-    render: (value) => value,
+    render: (_, row) => row.name,
   },
   {
     title: '創建時間',
     dataIndex: 'createdAt',
     width: 180,
-    render: (value) => value,
-  },
-  {
-    title: '創建者',
-    dataIndex: 'creator',
-    width: 140,
-    render: (value) => value,
+    render: (_, row) => toDateTime(row.created_at),
   },
   {
     title: '狀態',
     dataIndex: 'status',
     width: 120,
     render: (_, row) => {
-      if (row.status === 1) {
+      if (row.is_active) {
         return <Text color="success">啟用</Text>
       }
       return <Text color="danger">關閉</Text>
     },
   },
   {
-    title: '更新人員',
-    dataIndex: 'updator',
-    width: 120,
-    render: (value) => value,
-  },
-  {
     title: '更新時間',
     dataIndex: 'updatedAt',
     width: 200,
-    render: (value) => value,
+    render: (_, row) => toDateTime(row.updated_at),
   },
   {
-    title: () => (
-      <>
-        <Space size="small">操作</Space>
-        <IconLink
-          icon={<FilterFilled />}
-          style={{ float: 'right', marginBottom: -4 }}
-        />
-      </>
-    ),
+    title: '操作',
     key: 'control',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
@@ -93,7 +57,7 @@ const columns: ColumnsType<TableItem> = [
       const handleStatus = async (status: number) => {}
       return (
         <Space size="small">
-          {row.status ? (
+          {row.is_active ? (
             <IconLink
               icon={<CloseCircleOutlined />}
               label="停用"
@@ -121,7 +85,7 @@ const columns: ColumnsType<TableItem> = [
 
 const TableData: React.FC = () => {
   const data = useTypedSelector(selectTableData)
-  return <TableSets<TableItem> columns={columns} data={data} />
+  return <TableSets<Role> columns={columns} data={data} />
 }
 
 export default TableData

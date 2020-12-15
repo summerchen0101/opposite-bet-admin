@@ -13,7 +13,6 @@ const PopupModal: React.FC<ModalProps> = ({
     <Modal
       title={title}
       visible={visible}
-      footer={null}
       destroyOnClose
       onCancel={onCancel}
       centered

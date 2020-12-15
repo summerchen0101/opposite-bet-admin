@@ -1,5 +1,5 @@
 export * from './fetchAll'
-export * from './fetchCreateOption'
+export * from './fetchOption'
 export * from './create'
 export * from './deleteById'
 export * from './edit'

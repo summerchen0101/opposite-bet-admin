@@ -2,21 +2,11 @@ import PopupModal from '@/components/PopupModal'
 import React from 'react'
 import { usePopupProvider } from '../context/PopupProvider'
 import DataForm from './DataForm'
-
-const formValues = {
-  name: '',
-}
+import { Form } from 'antd'
 
 const EditPopup: React.FC = () => {
-  const [visible, setVisible] = usePopupProvider('createForm')
-  const onFinish = async ({ name }) => {
-    setVisible(false)
-  }
-
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
-    setVisible(false)
-  }
+  const [visible, setVisible] = usePopupProvider('editForm')
+  const [form] = Form.useForm()
 
   return (
     <PopupModal
@@ -24,11 +14,7 @@ const EditPopup: React.FC = () => {
       title="編輯管理者角色"
       onCancel={() => setVisible(false)}
     >
-      <DataForm
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        values={formValues}
-      />
+      <DataForm form={form} />2
     </PopupModal>
   )
 }

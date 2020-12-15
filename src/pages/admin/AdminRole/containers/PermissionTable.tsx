@@ -14,7 +14,6 @@ import { Space, Table } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setMenu } from '../reducer'
 
 interface MenuPermissionItem {
   key: number
@@ -34,19 +33,6 @@ const columns: ColumnsType<MenuPermissionItem> = [
       const dispatch = useDispatch()
       const [localView, setLocalView] = useState(view)
       const [localEdit, setLocalEdit] = useState(edit)
-      useEffect(() => {
-        const permission = {
-          view: localView,
-          edit: localEdit,
-        }
-        dispatch(
-          setMenu({
-            id: row.key,
-            permission,
-            parent: row.parent,
-          }),
-        )
-      }, [localView, localEdit])
       return (
         <Space>
           <IconLink

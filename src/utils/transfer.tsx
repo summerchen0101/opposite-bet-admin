@@ -41,7 +41,7 @@ export const addKeyToArrayItem = function <T>(arr: T[]): T[] {
 }
 
 export const toDateTime = (unixTime) =>
-  moment(unixTime).format('YYYY-MM-DD HH:mm:ss')
+  moment.unix(unixTime).format('YYYY-MM-DD HH:mm:ss')
 
 const levelCodes = Object.values(LevelCode)
 export const getLevelCode = (

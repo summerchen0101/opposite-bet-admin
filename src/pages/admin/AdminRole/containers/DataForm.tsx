@@ -1,39 +1,49 @@
-import Form, { FormField } from '@/components/Form'
-import { DataDataFormProps } from '@/types'
-import { Button, Input, Space } from 'antd'
+import { Button, Form, Input, Radio, Select, Space, Switch } from 'antd'
+import { FormInstance } from 'antd/lib/form'
 import React from 'react'
-import DataFormHeader from '../components/DataFormHeader'
-import PermissionTable from './PermissionTable'
-import { Form as AntForm } from 'antd'
+import { useTypedSelector, selectPermissionOpts } from '../selectors'
 
-const DataForm: React.FC<DataDataFormProps> = ({
-  onFinish,
-  onFinishFailed,
-  values,
-}) => {
-  const [form] = AntForm.useForm()
+export interface FormData {
+  name: string
+  permission_ids: number[]
+  is_active: boolean
+}
+interface FormProps {
+  form: FormInstance<any>
+  values?: FormData
+}
+const DataForm: React.FC<FormProps> = ({ form, values }) => {
   const onReset = () => form.resetFields()
+  const permissionOpts = useTypedSelector(selectPermissionOpts).map((t) => ({
+    label: t.name,
+    value: t.id,
+  }))
+
+  const statusOpts = [
+    { label: '啟用', value: true },
+    { label: '停用', value: false },
+  ]
+
   return (
     <Form
+      layout="vertical"
       form={form}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      initialValues={values}
       onReset={onReset}
+      initialValues={values}
     >
-      <FormField label="角色名稱" name="name" required>
+      <Form.Item label="角色名稱" name="name" rules={[{ required: true }]}>
         <Input />
-      </FormField>
-      <DataFormHeader />
-      <PermissionTable />
-      <FormField style={{ marginTop: '20px', textAlign: 'center' }}>
-        <Space size="large">
-          <Button htmlType="reset">重置</Button>
-          <Button type="primary" htmlType="submit">
-            送出
-          </Button>
-        </Space>
-      </FormField>
+      </Form.Item>
+      <Form.Item
+        label="權限"
+        name="permission_ids"
+        rules={[{ required: true }]}
+      >
+        <Select mode="multiple" options={permissionOpts} />
+      </Form.Item>
+      <Form.Item label="狀態" name="is_active">
+        <Radio.Group options={statusOpts} />
+      </Form.Item>
     </Form>
   )
 }

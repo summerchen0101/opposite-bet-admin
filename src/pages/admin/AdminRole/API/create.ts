@@ -1,13 +1,10 @@
 import Request from '@/utils/request'
 
-interface ResponseData {
-  [key: string]: any
+interface Request {
+  name: string
+  permission_ids: number[]
+  is_active: boolean
 }
 
-interface RequestData {
-  role_name: string
-  menu_data: string // JSON string
-}
-
-export const create = (reqData: RequestData) =>
-  Request.post<ResponseData>('admin_role/add', reqData)
+export const create = (reqData: Request) =>
+  Request.post<null>('admin_role/add', reqData)
