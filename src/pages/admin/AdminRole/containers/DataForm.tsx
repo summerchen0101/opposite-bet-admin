@@ -35,7 +35,11 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
       onReset={onReset}
       initialValues={values}
     >
-      <Form.Item label="角色名稱" name="name" rules={[{ required: true }]}>
+      <Form.Item
+        label="角色名稱"
+        name="name"
+        rules={[{ required: true }, { max: 30 }]}
+      >
         <Input />
       </Form.Item>
       <Form.Item
