@@ -1,4 +1,4 @@
-import { PopupConfirm, Text } from '@/components'
+import { ColorText, PopupConfirm, Text } from '@/components'
 import IconLink from '@/components/IconLink'
 import TableSets from '@/components/TableSets'
 import { toDateTime } from '@/utils/transfer'
@@ -19,36 +19,31 @@ import { useAPIService } from '../service'
 const columns: ColumnsType<Role> = [
   {
     title: '角色名稱',
-    dataIndex: 'name',
     width: 100,
     render: (_, row) => row.name,
   },
   {
     title: '創建時間',
-    dataIndex: 'createdAt',
     width: 180,
     render: (_, row) => toDateTime(row.created_at),
   },
   {
     title: '狀態',
-    dataIndex: 'status',
     width: 120,
     render: (_, row) => {
       if (row.is_active) {
-        return <Text color="success">啟用</Text>
+        return <ColorText green>啟用</ColorText>
       }
-      return <Text color="danger">關閉</Text>
+      return <ColorText red>關閉</ColorText>
     },
   },
   {
     title: '更新時間',
-    dataIndex: 'updatedAt',
     width: 200,
     render: (_, row) => toDateTime(row.updated_at),
   },
   {
     title: '操作',
-    key: 'control',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
       const [visible, setVisible] = usePopupProvider('editForm')

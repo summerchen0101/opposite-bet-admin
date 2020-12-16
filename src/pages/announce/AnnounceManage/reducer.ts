@@ -1,35 +1,39 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
+import {
+  ActionReducerMapBuilder,
+  createSlice,
+  PayloadAction,
+} from '@reduxjs/toolkit'
+import { News } from './API/types'
+import { Permission } from '@/API/permission/options'
 export interface IState {
-  tableData: any[]
-  displayCreateModal: boolean
+  tableData: News[]
+  editData: News
+  permissionOpts: Permission[]
 }
 const initialState: IState = {
   tableData: [],
-  displayCreateModal: false,
+  editData: null,
+  permissionOpts: [],
 }
 
-export const moduleName = 'announceManage'
+export const moduleName = 'annouceManage'
 
 const module = createSlice({
   name: moduleName,
   initialState,
   reducers: {
-    gotTableData(state, action: PayloadAction<any[]>) {
+    setTableData(state, action: PayloadAction<News[]>) {
       state.tableData = action.payload
     },
-    initSearchState(state) {
-      //
+    setEditData(state, action: PayloadAction<News>) {
+      state.editData = action.payload
     },
-    toggleCreateModal(state, action: PayloadAction<boolean>) {
-      state.displayCreateModal = action.payload
+    setPermissionOpts(state, action: PayloadAction<Permission[]>) {
+      state.permissionOpts = action.payload
     },
   },
+  extraReducers: (builder: ActionReducerMapBuilder<IState>) => {},
 })
 
-export const {
-  gotTableData,
-  initSearchState,
-  toggleCreateModal,
-} = module.actions
+export const { setTableData, setPermissionOpts, setEditData } = module.actions
 export default module.reducer
