@@ -1,3 +1,4 @@
+import useValidator from '@/utils/hooks/useValidator'
 import { Col, Form, Input, Row, Select, Switch } from 'antd'
 import { FormInstance } from 'antd/lib/form'
 import React, { useEffect } from 'react'
@@ -23,6 +24,7 @@ interface FormProps {
   values?: FormData
 }
 const DataForm: React.FC<FormProps> = ({ form, values }) => {
+  const VD = useValidator()
   const onReset = () => form.resetFields()
   const editMode = !!values.id
   // initalValue updated
@@ -42,30 +44,50 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
   return (
     <Form
       layout="vertical"
+      validateTrigger="onBlur"
       form={form}
       onReset={onReset}
       initialValues={values}
     >
       <Row gutter={16}>
         <Col span={12}>
-          <Form.Item label="管理者帳號" name="acc">
+          <Form.Item
+            label="管理者帳號"
+            name="acc"
+            rules={[
+              { required: true },
+              { pattern: /^\w{4,12}$/, message: '4~12個英數字' },
+            ]}
+          >
             <Input />
           </Form.Item>
         </Col>
         <Col span={12}>
-          <Form.Item label="真實姓名" name="name">
+          <Form.Item
+            label="真實姓名"
+            name="name"
+            rules={[{ required: true }, { max: 30 }]}
+          >
             <Input />
           </Form.Item>
         </Col>
         {!editMode && (
           <>
             <Col span={12}>
-              <Form.Item label="密碼" name="pass">
+              <Form.Item
+                label="密碼"
+                name="pass"
+                rules={[{ required: true }, VD.userPassword]}
+              >
                 <Input.Password />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item label="確認密碼" name="pass_c">
+              <Form.Item
+                label="確認密碼"
+                name="pass_c"
+                rules={[{ required: true }, VD.sameAs('pass')]}
+              >
                 <Input.Password />
               </Form.Item>
             </Col>

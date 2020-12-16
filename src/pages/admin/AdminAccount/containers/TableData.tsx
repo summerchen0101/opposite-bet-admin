@@ -7,6 +7,7 @@ import {
   EditFilled,
   LockOutlined,
   UnlockOutlined,
+  FilePptOutlined,
 } from '@ant-design/icons'
 import { Space } from 'antd'
 import { ColumnType } from 'antd/lib/table'
@@ -15,6 +16,8 @@ import { Status, User } from '../API/types'
 import { usePopupProvider } from '../context/PopupProvider'
 import { selectTableData, useTypedSelector } from '../selectors'
 import { useAPIService } from '../service'
+import { setEditId } from '../reducer'
+import { useDispatch } from 'react-redux'
 
 const columns: ColumnType<User>[] = [
   {
@@ -70,6 +73,8 @@ const columns: ColumnType<User>[] = [
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
       const [visible, setVisible] = usePopupProvider('editForm')
+      const [pwFormVisible, setPwFormVisible] = usePopupProvider('pwForm')
+      const dispatch = useDispatch()
       const {
         getFormData,
         getOptions,
@@ -80,6 +85,10 @@ const columns: ColumnType<User>[] = [
       const handleEdit = async () => {
         await Promise.all([getOptions(), getFormData(row.id)])
         setVisible(true)
+      }
+      const handlePassword = async (id: number) => {
+        dispatch(setEditId(id))
+        setPwFormVisible(true)
       }
       return (
         <Space size="small">
@@ -115,6 +124,11 @@ const columns: ColumnType<User>[] = [
             icon={<EditFilled />}
             label="編輯"
             onClick={() => handleEdit()}
+          />
+          <IconLink
+            icon={<FilePptOutlined />}
+            label="修改密碼"
+            onClick={() => handlePassword(row.id)}
           />
           {/* <IconLink icon={<ClockCircleOutlined />} label="歷程" /> */}
 

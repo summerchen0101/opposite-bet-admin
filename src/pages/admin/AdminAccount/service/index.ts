@@ -93,6 +93,14 @@ export const useAPIService = () => {
       apiErr(err)
     }
   }
+  const changePassword = async (id: number, pass: string) => {
+    try {
+      await API.adminAccount.pass({ id, pass })
+      message.success('密碼更新成功')
+    } catch (err) {
+      apiErr(err)
+    }
+  }
 
   return {
     getTableData,
@@ -103,5 +111,6 @@ export const useAPIService = () => {
     onDelete,
     changeActive,
     changeStatus,
+    changePassword,
   }
 }

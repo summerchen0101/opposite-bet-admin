@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 import PageHeader from './components/PageHeader'
 import CreatePopup from './containers/CreatePopup'
 import EditPopup from './containers/EditPopup'
+import PwPopup from './containers/PwPopup'
 import SearchBar from './containers/SearchBar'
 import TableData from './containers/TableData'
 import PopupProvider from './context/PopupProvider'
@@ -25,6 +26,7 @@ const AdminAccountPage: React.FC = () => {
         <TableData />
         <CreatePopup />
         <EditPopup />
+        <PwPopup />
       </PopupProvider>
     </Dashboard>
   )

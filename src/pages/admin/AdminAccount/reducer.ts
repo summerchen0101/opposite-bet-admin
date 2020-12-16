@@ -9,12 +9,14 @@ import { Role } from '../AdminRole/API/options'
 export interface IState {
   tableData: User[]
   editData: User
+  editId: number
   permissionOpts: Permission[]
   roleOpts: Role[]
 }
 const initialState: IState = {
   tableData: [],
   editData: null,
+  editId: null,
   permissionOpts: [],
   roleOpts: [],
 }
@@ -27,6 +29,9 @@ const module = createSlice({
   reducers: {
     setTableData(state, action: PayloadAction<User[]>) {
       state.tableData = action.payload
+    },
+    setEditId(state, action: PayloadAction<number>) {
+      state.editId = action.payload
     },
     setEditData(state, action: PayloadAction<User>) {
       state.editData = action.payload
@@ -46,5 +51,6 @@ export const {
   setPermissionOpts,
   setEditData,
   setRoleOpts,
+  setEditId,
 } = module.actions
 export default module.reducer
