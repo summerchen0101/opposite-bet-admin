@@ -1,5 +1,5 @@
 import PopupModal from '@/components/PopupModal'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { usePopupProvider } from '../context/PopupProvider'
 import DataForm from './DataForm'
 import { Form } from 'antd'
@@ -41,7 +41,6 @@ const EditPopup: React.FC = () => {
       title="編輯管理者角色"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
-      destroyOnClose
     >
       {f && (
         <DataForm

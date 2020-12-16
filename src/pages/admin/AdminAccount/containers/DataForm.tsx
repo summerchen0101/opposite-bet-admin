@@ -1,6 +1,6 @@
 import { Col, Form, Input, Row, Select, Switch } from 'antd'
 import { FormInstance } from 'antd/lib/form'
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   selectPermissionOpts,
   selectRoleOpts,
@@ -24,6 +24,12 @@ interface FormProps {
 }
 const DataForm: React.FC<FormProps> = ({ form, values }) => {
   const onReset = () => form.resetFields()
+  const editMode = !!values.id
+  // initalValue updated
+  useEffect(() => {
+    form.setFieldsValue(values)
+  }, [values])
+
   const permissionOpts = useTypedSelector(selectPermissionOpts).map((t) => ({
     label: t.name,
     value: t.id,
@@ -32,11 +38,6 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
     label: t.name,
     value: t.id,
   }))
-
-  const activeOpts = [
-    { label: '啟用', value: true },
-    { label: '停用', value: false },
-  ]
 
   return (
     <Form
@@ -56,16 +57,21 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
             <Input />
           </Form.Item>
         </Col>
-        <Col span={12}>
-          <Form.Item label="密碼" name="pass">
-            <Input.Password />
-          </Form.Item>
-        </Col>
-        <Col span={12}>
-          <Form.Item label="確認密碼" name="pass_c">
-            <Input.Password />
-          </Form.Item>
-        </Col>
+        {!editMode && (
+          <>
+            <Col span={12}>
+              <Form.Item label="密碼" name="pass">
+                <Input.Password />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item label="確認密碼" name="pass_c">
+                <Input.Password />
+              </Form.Item>
+            </Col>
+          </>
+        )}
+
         <Col span={24}>
           <Form.Item label="角色" name="role_ids">
             <Select mode="multiple" options={roleOpts} />

@@ -1,6 +1,6 @@
 import { Button, Form, Input, Radio, Select, Space, Switch } from 'antd'
 import { FormInstance } from 'antd/lib/form'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useTypedSelector, selectPermissionOpts } from '../selectors'
 
 export interface FormData {
@@ -14,6 +14,9 @@ interface FormProps {
   values?: FormData
 }
 const DataForm: React.FC<FormProps> = ({ form, values }) => {
+  useEffect(() => {
+    form.setFieldsValue(values)
+  }, [values])
   const onReset = () => form.resetFields()
   const permissionOpts = useTypedSelector(selectPermissionOpts).map((t) => ({
     label: t.name,
