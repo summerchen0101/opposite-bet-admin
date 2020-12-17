@@ -5,12 +5,16 @@ import { toDateTime } from '@/utils/transfer'
 import { DeleteOutlined, FilterFilled } from '@ant-design/icons'
 import { Space } from 'antd'
 import React from 'react'
-
+import { usePopupProvider } from '../context/PopupProvider'
+import moment from 'moment'
 const columns = [
   {
     title: '標題',
     width: 180,
-    render: (_, row) => '我無法儲值',
+    render: (_, row) => {
+      const setVisible = usePopupProvider('viewRecieve')[1]
+      return <a onClick={() => setVisible(true)}>我無法儲值</a>
+    },
   },
   {
     title: '寄件人',
@@ -29,19 +33,11 @@ const columns = [
   },
   {
     title: '發送時間',
-    render: (_, row) => toDateTime(Date.now()),
+    render: (_, row) => toDateTime(moment().unix()),
     width: 140,
   },
   {
-    title: () => (
-      <>
-        <Space size="small">操作</Space>
-        <IconLink
-          icon={<FilterFilled />}
-          style={{ float: 'right', marginBottom: -4 }}
-        />
-      </>
-    ),
+    title: '操作',
     key: 'control',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {

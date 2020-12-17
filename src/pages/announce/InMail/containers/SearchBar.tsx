@@ -21,9 +21,14 @@ const SearchBar: React.FC = () => {
     { label: '讀取', value: 'read' },
     { label: '未讀取', value: 'unread' },
   ]
+
   return (
     <Form layout="inline" className="mb-1">
-      <Form.Item label="收發信" name="type" initialValue="recieve">
+      <Form.Item
+        label="收發信"
+        name="type"
+        initialValue={type === 'send' ? 'send' : 'recieve'}
+      >
         <Radio.Group
           options={typeOpts}
           onChange={(e) => history.push(`/announce/message/${e.target.value}`)}
@@ -32,8 +37,8 @@ const SearchBar: React.FC = () => {
       <Form.Item label="期間">
         <DateRangePicker />
       </Form.Item>
-      <Form.Item label="主題">
-        <Input style={{ width: '130px' }} />
+      <Form.Item label="標題">
+        <Input style={{ width: '180px' }} placeholder="請輸入關鍵字" />
       </Form.Item>
 
       {type === 'send' ? (
