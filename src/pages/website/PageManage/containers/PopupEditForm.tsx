@@ -43,12 +43,12 @@ const EditForm: React.FC = () => {
       <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
         <Row gutter={16}>
           <Col span={12}>
-            <FormField label="標題" required>
+            <FormField label="名稱">
               <Input />
             </FormField>
           </Col>
           <Col span={12}>
-            <FormField label="顯示狀態" required initialValue="on">
+            <FormField label="狀態" name="is_active" initialValue="on">
               <Radio.Group>
                 <Radio value="on">啟用</Radio>
                 <Radio value="off">停用</Radio>
@@ -56,23 +56,8 @@ const EditForm: React.FC = () => {
             </FormField>
           </Col>
         </Row>
-        <Tabs defaultActiveKey="cn" type="card" size="small">
-          <Tabs.TabPane tab="簡中" key="cn">
-            <FormField>
-              <ContentEditor />
-            </FormField>
-          </Tabs.TabPane>
-        </Tabs>
-
-        <FormField style={{ marginTop: '20px', textAlign: 'center' }}>
-          <Space size="large">
-            <Button type="primary" htmlType="submit">
-              送出
-            </Button>
-            <Button onClick={onCancel} htmlType="reset">
-              取消
-            </Button>
-          </Space>
+        <FormField>
+          <ContentEditor />
         </FormField>
       </Form>
     </PopupModal>

@@ -11,46 +11,25 @@ import { toggleEditModal } from '../reducer'
 const columns = [
   {
     title: '名稱',
-    dataIndex: 'name',
-    width: 120,
-    render: (_, row) => '關於我們',
-  },
-  {
-    title: '語系',
-    width: 100,
-    render: (_, row) => '簡中',
-  },
-  {
-    title: '類型',
-    width: 100,
-    render: (_, row) => 'HTML',
+    render: (_, row) => row.name,
   },
   {
     title: '狀態',
-    width: 100,
     render: (_, row) => <Text color="success">啟用</Text>,
-  },
-  {
-    title: '更新人員',
     width: 100,
-    render: (_, row) => 'flora',
   },
   {
-    title: '更新時間',
-    width: 200,
-    render: (_, row) => '2019-07-01 10:54:36',
-  },
-  {
-    title: () => (
+    title: '更新人員/時間',
+    render: (_, row) => (
       <>
-        <Space size="small">操作</Space>
-        <IconLink
-          icon={<FilterFilled />}
-          style={{ float: 'right', marginBottom: -4 }}
-        />
+        summer <br />
+        2020-12-17 17:22:10
       </>
     ),
-    key: 'control',
+    width: 200,
+  },
+  {
+    title: '操作',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
       const dispatch = useDispatch()
@@ -58,9 +37,6 @@ const columns = [
       return (
         <Space size="small">
           <IconLink icon={<EditFilled />} label="編輯" onClick={handleEdit} />
-          <PopupConfirm>
-            <IconLink icon={<DeleteOutlined />} label="刪除" />
-          </PopupConfirm>
         </Space>
       )
     },
@@ -68,22 +44,13 @@ const columns = [
   },
 ]
 
-const data = [...Array(50)].map((t, i) => ({
-  id: i,
-  account: 'aaaa(小白)',
-  firstDepositCount: 5,
-  firstDepositTotal: 20320,
-  onceAgainDepositCount: 10,
-  onceAgainDepositTotal: 41232,
-  firstWithdrawalCount: 5,
-  firstWithdrawalTotal: 20320,
-  onceAgainWithdrawalCount: 10,
-  onceAgainWithdrawalTotal: 41232,
-  loginCount: 20,
-  registerCount: 3,
-}))
+const data = [
+  { id: 1, name: '關於我們' },
+  { id: 2, name: '聯絡我們' },
+  { id: 3, name: '頁尾' },
+]
 const TableData: React.FC = () => {
-  return <TableSets columns={columns} data={data} />
+  return <TableSets columns={columns} data={data} pagination={false} />
 }
 
 export default TableData
