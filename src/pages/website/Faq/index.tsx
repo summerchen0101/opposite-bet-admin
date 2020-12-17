@@ -1,28 +1,20 @@
 import Dashboard from '@/components/Dashboard'
-import PageSearchBar from '@/components/PageSearchBar'
 import { useReducerInjector } from '@/utils/hooks'
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import React from 'react'
 import PageHeader from './components/PageHeader'
-import AgentSelector from './containers/AgentSelector'
-import PopupCreateForm from './containers/PopupCreateForm'
 import PopupCategoryCreate from './containers/PopupCategoryCreate'
 import PopupCategoryList from './containers/PopupCategoryList'
+import PopupCreateForm from './containers/PopupCreateForm'
 import TableData from './containers/TableData'
-import reducer, { initSearchState, moduleName } from './reducer'
+import SearchBar from './containers/SearchBar'
+import reducer, { moduleName } from './reducer'
 
 const Manager: React.FC = () => {
   useReducerInjector(moduleName, reducer)
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(initSearchState())
-  }, [])
   return (
     <Dashboard>
       <PageHeader />
-      <PageSearchBar>
-        <AgentSelector />
-      </PageSearchBar>
+      <SearchBar />
       <TableData />
       <PopupCreateForm />
       <PopupCategoryList />

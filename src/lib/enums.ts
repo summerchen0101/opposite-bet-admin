@@ -7,6 +7,11 @@ export enum Status {
   ON = 1,
   OFF = 2,
 }
+export enum YesNo {
+  ALL = 0,
+  YES = 1,
+  NO = 2,
+}
 
 export enum LevelCode {
   Vendor = 'L1',

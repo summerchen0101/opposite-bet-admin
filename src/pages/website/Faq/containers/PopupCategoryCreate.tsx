@@ -31,19 +31,8 @@ const CategoryCreateForm: React.FC = () => {
       width={300}
     >
       <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
-        <FormField label="繁體標題" name="mainTeam" required>
+        <FormField label="分類名稱" name="mainTeam" required>
           <Input />
-        </FormField>
-
-        <FormField style={{ marginTop: '20px', textAlign: 'center' }}>
-          <Space size="large">
-            <Button type="primary" htmlType="submit">
-              送出
-            </Button>
-            <Button onClick={onCancel} htmlType="reset">
-              取消
-            </Button>
-          </Space>
         </FormField>
       </Form>
     </PopupModal>

@@ -1,5 +1,5 @@
 import { NewsType } from '../pages/announce/AnnounceManage/API/types'
-import { LevelCode, Status } from './enums'
+import { LevelCode, Status, YesNo } from './enums'
 
 export const newsTypeOpts = [
   { label: '全部', value: NewsType.ALL },
@@ -20,4 +20,9 @@ export const statusOpts = [
   { label: '全部', value: Status.ALL },
   { label: '啟用', value: Status.ON },
   { label: '停用', value: Status.OFF },
+]
+export const yesNoOpts = [
+  { label: '全部', value: YesNo.ALL },
+  { label: '是', value: YesNo.YES },
+  { label: '否', value: YesNo.NO },
 ]
