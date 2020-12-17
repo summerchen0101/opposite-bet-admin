@@ -6,7 +6,6 @@ import { useBreadcrumb } from '@/utils/hooks'
 import { Space, Button } from 'antd'
 const ExtraButtons = (
   <Space>
-    <Button>全域設置</Button>
     <CreateButton />
   </Space>
 )

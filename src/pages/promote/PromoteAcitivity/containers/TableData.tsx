@@ -1,3 +1,4 @@
+import { ColorText } from '@/components'
 import IconLink from '@/components/IconLink'
 import PopupConfirm from '@/components/PopupConfirm'
 import TableSets from '@/components/TableSets'
@@ -10,7 +11,7 @@ import {
   EyeOutlined,
   FilterOutlined,
   MenuOutlined,
-  StopOutlined,
+  CloseCircleOutlined,
 } from '@ant-design/icons'
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
@@ -22,6 +23,7 @@ import {
   SortableHandle,
 } from 'react-sortable-hoc'
 import styled from 'styled-components'
+import moment from 'moment'
 
 const DragHandle = SortableHandle(() => (
   <MenuOutlined style={{ cursor: 'pointer', color: '#999' }} />
@@ -47,35 +49,34 @@ const columns: ColumnsType<TableItem> = [
   {
     title: '優惠名稱',
     dataIndex: 'name',
-    width: 120,
+    width: 200,
     render: (_, row) => <a>{row.name}</a>,
   },
   {
     title: '優惠期限',
-    width: '180px',
+    width: 200,
     render: (_, row) => (
       <>
-        {toDateTime(row.startAt)}~ <br />
+        {toDateTime(row.startAt)} <br />
         {toDateTime(row.endAt)}
       </>
     ),
   },
   {
-    title: '狀態',
+    title: '啟用狀態',
     dataIndex: 'status',
     width: 120,
-    render: (_, row) => {
-      switch (row.status) {
-        case 1:
-          return <Text color="success">進行中</Text>
-        case 0:
-          return <Text color="danger">未開啟</Text>
-      }
-    },
+    render: (_, row) => <ColorText green>啟用</ColorText>,
+  },
+  {
+    title: '期間狀態',
+    dataIndex: 'status',
+    width: 120,
+    render: (_, row) => <ColorText green>進行中</ColorText>,
   },
   {
     title: '更新人員/時間',
-    width: 160,
+    width: 200,
     render: (_, row) => (
       <>
         {row.updatedBy} <br />
@@ -84,45 +85,19 @@ const columns: ColumnsType<TableItem> = [
     ),
   },
   {
-    title: () => (
-      <>
-        <Space size="small">操作</Space>
-        <IconLink
-          icon={<FilterOutlined />}
-          style={{ float: 'right', marginBottom: -4 }}
-        />
-      </>
-    ),
-    key: 'control',
-    fixed: ('right' as unknown) as boolean,
+    title: '操作',
     render(_, row) {
-      const [visible, setVisible] = useState(false)
       return (
         <Space size="small">
-          <PopupConfirm title="請確認是否要停用?請按下是進行停用程序">
-            <IconLink icon={<StopOutlined />} label="停用" />
+          <PopupConfirm title="請確認是否要停用?">
+            <IconLink icon={<CloseCircleOutlined />} label="停用" color="red" />
           </PopupConfirm>
           <IconLink icon={<EditOutlined />} label="編輯" />
           <IconLink icon={<CopyOutlined />} label="複製" />
-          {visible ? (
-            <PopupConfirm
-              title="是否要於前台隱藏？若確定，前台會員將看不到此活動。"
-              onConfirm={() => setVisible(false)}
-            >
-              <IconLink icon={<EyeOutlined />} />
-            </PopupConfirm>
-          ) : (
-            <PopupConfirm
-              title="是否要於前台公開此活動？若確定，前台玩家將看到此活動。"
-              onConfirm={() => setVisible(true)}
-            >
-              <IconLink icon={<EyeInvisibleOutlined />} />
-            </PopupConfirm>
-          )}
         </Space>
       )
     },
-    width: 90,
+    width: 120,
   },
 ]
 
@@ -132,11 +107,11 @@ for (let i = 1; i <= 10; i++) {
     index: i,
     id: i.toString(),
     name: '會員首儲優惠',
-    startAt: new Date().getTime(),
-    endAt: new Date().getTime(),
+    startAt: moment().unix(),
+    endAt: moment().unix(),
     status: 1,
     updatedBy: 'frola',
-    updatedAt: new Date().getTime(),
+    updatedAt: moment().unix(),
   })
 }
 

@@ -38,18 +38,13 @@ const Manager: React.FC = () => {
       <PageHeader />
       <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
         <Row gutter={16}>
-          <Col span={10}>
-            <FormField label="活動名稱" required>
+          <Col span={12}>
+            <FormField label="活動名稱">
               <Input placeholder="請輸入內容" />
             </FormField>
           </Col>
-          <Col span={4}>
-            <FormField label="置頂">
-              <Switch defaultChecked />
-            </FormField>
-          </Col>
-          <Col span={10}>
-            <FormField label="顯示" required>
+          <Col span={12}>
+            <FormField label="顯示">
               <Checkbox.Group options={options} defaultValue={['opt1']} />
             </FormField>
           </Col>
@@ -59,7 +54,6 @@ const Manager: React.FC = () => {
           <Radio.Group defaultValue="opt1">
             <Radio value="opt1">
               <span style={{ marginRight: '5px' }}>無限期</span>
-              <DatePicker />
             </Radio>
             <Radio value="opt2">
               <span style={{ marginRight: '5px' }}>日期區間</span>
@@ -70,7 +64,7 @@ const Manager: React.FC = () => {
 
         <Tabs defaultActiveKey="cn" type="card" size="small">
           <Tabs.TabPane tab="簡中" key="cn">
-            <FormField label="前台活動名稱" required>
+            <FormField label="前台活動名稱">
               <Input placeholder="請輸入內容" />
             </FormField>
             <FormField>
