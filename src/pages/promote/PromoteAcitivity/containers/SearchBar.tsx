@@ -28,7 +28,7 @@ const SearchBar: React.FC = () => {
           onChange={onSearch}
         />
       </Form.Item>
-      <Form.Item name="status" label="期間狀態" initialValue={0}>
+      <Form.Item name="process" label="期間狀態" initialValue={0}>
         <Select
           options={processOpts}
           style={{ width: 130 }}

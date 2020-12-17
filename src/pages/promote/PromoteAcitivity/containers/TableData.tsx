@@ -2,29 +2,26 @@ import { ColorText } from '@/components'
 import IconLink from '@/components/IconLink'
 import PopupConfirm from '@/components/PopupConfirm'
 import TableSets from '@/components/TableSets'
-import Text from '@/components/Text'
 import { toDateTime } from '@/utils/transfer'
 import {
+  CloseCircleOutlined,
   CopyOutlined,
   EditOutlined,
-  EyeInvisibleOutlined,
-  EyeOutlined,
-  FilterOutlined,
   MenuOutlined,
-  CloseCircleOutlined,
 } from '@ant-design/icons'
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import arrayMove from 'array-move'
-import React, { useState } from 'react'
+import moment from 'moment'
+import React from 'react'
+import { useHistory } from 'react-router-dom'
 import {
   SortableContainer,
   SortableElement,
   SortableHandle,
 } from 'react-sortable-hoc'
 import styled from 'styled-components'
-import moment from 'moment'
-
+import { EditPromoteAcitivity } from '../../routes'
 const DragHandle = SortableHandle(() => (
   <MenuOutlined style={{ cursor: 'pointer', color: '#999' }} />
 ))
@@ -50,7 +47,7 @@ const columns: ColumnsType<TableItem> = [
     title: '優惠名稱',
     dataIndex: 'name',
     width: 200,
-    render: (_, row) => <a>{row.name}</a>,
+    render: (_, row) => row.name,
   },
   {
     title: '優惠期限',
@@ -87,12 +84,17 @@ const columns: ColumnsType<TableItem> = [
   {
     title: '操作',
     render(_, row) {
+      const history = useHistory()
       return (
         <Space size="small">
           <PopupConfirm title="請確認是否要停用?">
             <IconLink icon={<CloseCircleOutlined />} label="停用" color="red" />
           </PopupConfirm>
-          <IconLink icon={<EditOutlined />} label="編輯" />
+          <IconLink
+            icon={<EditOutlined />}
+            label="編輯"
+            onClick={() => history.push(EditPromoteAcitivity.path)}
+          />
           <IconLink icon={<CopyOutlined />} label="複製" />
         </Space>
       )

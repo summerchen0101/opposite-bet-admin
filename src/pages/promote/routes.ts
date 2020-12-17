@@ -18,6 +18,11 @@ export const CreatePromoteAcitivity = new PageG(
   `${rootPath}/add`,
   pages.CreatePromoteAcitivity,
 )
+export const EditPromoteAcitivity = new PageG(
+  '編輯活動',
+  `${rootPath}/edit`,
+  pages.CreatePromoteAcitivity,
+)
 export const PromoteReview = new PageG(
   '活動審核',
   `${rootPath}/review`,
@@ -25,7 +30,12 @@ export const PromoteReview = new PageG(
 )
 
 // ROUTERS
-RouteG.create([CreatePromoteAcitivity, PromoteAcitivity, PromoteReview])
+RouteG.create([
+  CreatePromoteAcitivity,
+  EditPromoteAcitivity,
+  PromoteAcitivity,
+  PromoteReview,
+])
 
 // MENU
 MenuG.createCategory(rootName, rootPath, TagsOutlined, [
