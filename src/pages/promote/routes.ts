@@ -8,11 +8,6 @@ const rootName = '活動管理'
 const rootPath = '/promote'
 
 // PAGES
-export const PromoteLink = new PageG(
-  '推廣網址',
-  `${rootPath}/link`,
-  pages.PromoteLink,
-)
 export const PromoteAcitivity = new PageG(
   '活動列表',
   `${rootPath}/list`,
@@ -30,16 +25,10 @@ export const PromoteReview = new PageG(
 )
 
 // ROUTERS
-RouteG.create([
-  PromoteLink,
-  CreatePromoteAcitivity,
-  PromoteAcitivity,
-  PromoteReview,
-])
+RouteG.create([CreatePromoteAcitivity, PromoteAcitivity, PromoteReview])
 
 // MENU
 MenuG.createCategory(rootName, rootPath, TagsOutlined, [
-  PromoteLink,
   PromoteAcitivity,
   PromoteReview,
 ])

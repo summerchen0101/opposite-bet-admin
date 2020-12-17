@@ -1,28 +1,18 @@
 import Dashboard from '@/components/Dashboard'
-import PageSearchBar from '@/components/PageSearchBar'
 import { useReducerInjector } from '@/utils/hooks'
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import React from 'react'
 import PageHeader from './components/PageHeader'
 import PopupCreateForm from './containers/PopupCreateForm'
-import StatusPicker from './containers/StatusPicker'
+import SearchBar from './containers/SearchBar'
 import TableData from './containers/TableData'
-import TitleSearch from './containers/TitleSearch'
-import reducer, { initSearchState, moduleName } from './reducer'
+import reducer, { moduleName } from './reducer'
 
 const PromoteActivity: React.FC = () => {
   useReducerInjector(moduleName, reducer)
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(initSearchState())
-  }, [])
   return (
     <Dashboard>
       <PageHeader />
-      <PageSearchBar>
-        <TitleSearch />
-        <StatusPicker />
-      </PageSearchBar>
+      <SearchBar />
       <TableData />
       <PopupCreateForm />
     </Dashboard>

@@ -7,7 +7,7 @@ const SearchBar: React.FC = () => {
   const onSearch = async () => {}
   return (
     <Form form={form} layout="inline" className="mb-2">
-      <Form.Item name="acc" label="分類" initialValue={0}>
+      <Form.Item name="category" label="分類" initialValue={0}>
         <Select
           options={[{ label: '全部', value: 0 }]}
           style={{ width: 130 }}
