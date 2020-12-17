@@ -31,5 +31,4 @@ export interface SearchFields {
   role_id?: number
   is_active?: Status
   status?: BlockStatus
-  ip?: string
 }

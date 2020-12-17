@@ -11,7 +11,6 @@ interface SearchForm {
   role_id: number
   status: BlockStatus
   is_active: Status
-  ip: string
 }
 
 const SearchBar: React.FC = () => {
@@ -24,7 +23,6 @@ const SearchBar: React.FC = () => {
       is_active: f.is_active,
       status: f.status,
       role_id: f.role_id,
-      ip: f.ip,
     })
   }
   const roleOpts = useTypedSelector(selectRoleOpts)
@@ -58,9 +56,6 @@ const SearchBar: React.FC = () => {
           style={{ width: 130 }}
           onChange={onSearch}
         />
-      </Form.Item>
-      <Form.Item name="ip" label="允許登入IP">
-        <Input.Search placeholder="請輸入內容" onSearch={onSearch} allowClear />
       </Form.Item>
     </Form>
   )
