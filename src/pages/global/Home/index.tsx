@@ -1,6 +1,6 @@
 import { DateRangePicker, FormField, RelativeDateBtns } from '@/components'
 import Dashboard from '@/components/Dashboard'
-import { levelOpts } from '@/lib/dropdownOptions'
+import { levelOpts } from '@/lib/options'
 import { addKeyToArrayItem } from '@/utils/transfer'
 import { Card, Col, Form, Radio, Row, Select, Statistic, Table } from 'antd'
 import { ColumnsType } from 'antd/lib/table'

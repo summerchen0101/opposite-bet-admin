@@ -1,5 +1,5 @@
 import Request from '@/utils/request'
-import { News } from './types'
+import { News, SearchFields } from './types'
 
 export interface Response {
   news: News[]
@@ -7,7 +7,7 @@ export interface Response {
   total_page: number
 }
 
-interface Request {
+interface Request extends SearchFields {
   page?: number
   perpage?: number
 }

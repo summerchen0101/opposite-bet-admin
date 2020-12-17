@@ -4,8 +4,8 @@ export enum Protocal {
 }
 export enum Status {
   ALL = 0,
-  ON = 3,
-  OFF = -2,
+  ON = 1,
+  OFF = 2,
 }
 
 export enum LevelCode {

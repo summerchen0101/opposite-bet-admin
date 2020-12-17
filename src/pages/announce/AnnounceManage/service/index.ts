@@ -2,7 +2,7 @@ import API from '@/API'
 import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { message } from 'antd'
 import { useDispatch } from 'react-redux'
-import { CreateNews, EditNews, News } from '../API/types'
+import { CreateNews, EditNews, SearchFields } from '../API/types'
 import { setEditData, setTableData, setPermissionOpts } from '../reducer'
 
 export const useAPIService = () => {
@@ -18,9 +18,9 @@ export const useAPIService = () => {
     }
   }
 
-  const getTableData = async () => {
+  const getTableData = async (search?: SearchFields) => {
     try {
-      const res = await API.announceManage.fetchAll()
+      const res = await API.announceManage.fetchAll(search)
       dispatch(setTableData(res.data.news))
     } catch (err) {
       apiErr(err)

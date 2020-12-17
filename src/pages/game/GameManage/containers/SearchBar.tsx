@@ -1,15 +1,9 @@
-import { BasicSelector, DateRangePicker } from '@/components'
-import { Status } from '@/lib/enums'
-import { Button, Select, Space } from 'antd'
-import { Form } from 'antd'
+import { DateRangePicker } from '@/components'
+import { statusOpts } from '@/lib/options'
+import { Button, Form, Select, Space } from 'antd'
 import React from 'react'
 
 const SearchBar: React.FC = () => {
-  const statusOpts = [
-    { label: '全部', value: Status.ALL },
-    { label: '啟用', value: Status.ON },
-    { label: '停用', value: Status.OFF },
-  ]
   return (
     <Form layout="inline" className="mb-2">
       <Form.Item>
@@ -20,7 +14,7 @@ const SearchBar: React.FC = () => {
         </Space>
       </Form.Item>
 
-      <Form.Item name="status" initialValue={Status.ALL}>
+      <Form.Item name="status" initialValue={null}>
         <Select options={statusOpts} style={{ width: '130px' }} />
       </Form.Item>
     </Form>

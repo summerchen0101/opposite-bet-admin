@@ -1,3 +1,5 @@
+import { Status } from '@/lib/enums'
+
 export interface News {
   id: number
   title: string
@@ -15,7 +17,16 @@ type AutoAdded = 'created_at' | 'updated_at' | 'editor'
 export type EditNews = Omit<News, AutoAdded>
 export type CreateNews = Omit<News, AutoAdded | 'id'>
 
+export interface SearchFields {
+  title: string
+  start_at: number
+  end_at: number
+  is_active: Status
+  news_type: NewsType
+}
+
 export enum NewsType {
+  ALL = 0,
   Marquee = 1,
   System = 2,
   Game = 3,
