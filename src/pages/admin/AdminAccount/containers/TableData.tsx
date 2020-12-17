@@ -23,7 +23,7 @@ const columns: ColumnType<User>[] = [
   {
     title: '管理者帳號',
     width: 120,
-    render: (_, row) => <a>{row.acc}</a>,
+    render: (_, row) => row.acc,
   },
   {
     title: '真實姓名',
