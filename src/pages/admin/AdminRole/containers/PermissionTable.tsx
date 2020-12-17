@@ -1,5 +1,5 @@
 import { IconLink } from '@/components'
-import { Permission } from '@/types'
+import { Permission } from '@/lib/types'
 import {
   selectMenu,
   useTypedSelector as useGlobalTypedSelector,

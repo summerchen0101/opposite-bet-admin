@@ -18,7 +18,3 @@ export const selectEditData = createSelector(
   selectModuleState,
   (moduleState) => moduleState.editData,
 )
-export const selectPermissionOpts = createSelector(
-  selectModuleState,
-  (moduleState) => moduleState.permissionOpts,
-)

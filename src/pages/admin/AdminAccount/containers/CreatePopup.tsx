@@ -6,7 +6,7 @@ import { Form, message } from 'antd'
 import API from '@/API'
 import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { useAPIService } from '../service'
-import { Status } from '../API/types'
+import { BlockStatus } from '../API/types'
 
 const CreatePopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('createForm')
@@ -22,7 +22,7 @@ const CreatePopup: React.FC = () => {
         role_ids: v.role_ids,
         permission_ids: v.permission_ids,
         is_active: v.is_active,
-        status: v.is_lock ? Status.Blocked : Status.Normal,
+        status: v.is_lock ? BlockStatus.Blocked : BlockStatus.Normal,
       })
       form.resetFields()
       setVisible(false)

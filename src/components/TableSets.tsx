@@ -1,4 +1,4 @@
-import { ColumnsGenerator } from '@/types'
+import { ColumnsGenerator } from '@/lib/types'
 import { addKeyToArrayItem } from '@/utils/transfer'
 import { Table as AntTable } from 'antd'
 import { ColumnsType, TableProps } from 'antd/lib/table'

@@ -1,4 +1,4 @@
-import { MenuItem, UserInfo } from '@/types'
+import { MenuItem } from '@/lib/types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 export type TabType = {
   path: string
@@ -9,14 +9,12 @@ export type GlobalState = {
   isLogin: boolean
   language: string
   menu: MenuItem[]
-  user: UserInfo | null
   loading: boolean
 }
 const initialState: GlobalState = {
   isLogin: !!sessionStorage.getItem('isLogin'),
   language: 'zh-Hant',
   menu: [],
-  user: null,
   loading: false,
 }
 

@@ -1,12 +1,11 @@
 import PopupModal from '@/components/PopupModal'
+import useValidator from '@/utils/hooks/useValidator'
 import { Form, Input } from 'antd'
 import React from 'react'
-import { Status } from '../API/types'
 import { usePopupProvider } from '../context/PopupProvider'
+import { selectEditData, useTypedSelector } from '../selectors'
 import { useAPIService } from '../service'
-import DataForm, { FormData } from './DataForm'
-import { useTypedSelector, selectEditData } from '../selectors'
-import useValidator from '@/utils/hooks/useValidator'
+import { FormData } from './DataForm'
 
 const PwPopup: React.FC = () => {
   const VD = useValidator()

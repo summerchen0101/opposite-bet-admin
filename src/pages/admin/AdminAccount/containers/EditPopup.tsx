@@ -5,7 +5,7 @@ import DataForm from './DataForm'
 import { Form } from 'antd'
 import { useAPIService } from '../service'
 import { useTypedSelector, selectEditData } from '../selectors'
-import { Status } from '../API/types'
+import { BlockStatus } from '../API/types'
 
 const EditPopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('editForm')
@@ -23,7 +23,7 @@ const EditPopup: React.FC = () => {
         role_ids: v.role_ids,
         permission_ids: v.permission_ids,
         is_active: v.is_active,
-        status: v.is_lock ? Status.Blocked : Status.Normal,
+        status: v.is_lock ? BlockStatus.Blocked : BlockStatus.Normal,
       })
       form.resetFields()
       setVisible(false)
@@ -52,7 +52,7 @@ const EditPopup: React.FC = () => {
             pass: '',
             pass_c: '',
             is_active: f.is_active,
-            is_lock: f.status === Status.Blocked,
+            is_lock: f.status === BlockStatus.Blocked,
             permission_ids: f.permissions.map((t) => t.id),
             role_ids: f.roles.map((t) => t.id),
           }}

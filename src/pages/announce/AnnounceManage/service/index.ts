@@ -3,7 +3,7 @@ import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { message } from 'antd'
 import { useDispatch } from 'react-redux'
 import { CreateNews, EditNews, SearchFields } from '../API/types'
-import { setEditData, setTableData, setPermissionOpts } from '../reducer'
+import { setEditData, setTableData } from '../reducer'
 
 export const useAPIService = () => {
   const { apiErr } = useErrorHandler()

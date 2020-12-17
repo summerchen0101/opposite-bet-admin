@@ -1,23 +1,23 @@
-import { IconLink, PopupConfirm, TableSets, Text } from '@/components'
+import { ColorText, IconLink, PopupConfirm, TableSets } from '@/components'
 import { toDateTime } from '@/utils/transfer'
 import {
   CheckCircleOutlined,
   CloseCircleOutlined,
   DeleteOutlined,
   EditFilled,
+  FilePptOutlined,
   LockOutlined,
   UnlockOutlined,
-  FilePptOutlined,
 } from '@ant-design/icons'
 import { Space } from 'antd'
 import { ColumnType } from 'antd/lib/table'
 import React from 'react'
-import { Status, User } from '../API/types'
+import { useDispatch } from 'react-redux'
+import { BlockStatus, User } from '../API/types'
 import { usePopupProvider } from '../context/PopupProvider'
+import { setEditId } from '../reducer'
 import { selectTableData, useTypedSelector } from '../selectors'
 import { useAPIService } from '../service'
-import { setEditId } from '../reducer'
-import { useDispatch } from 'react-redux'
 
 const columns: ColumnType<User>[] = [
   {
@@ -50,9 +50,9 @@ const columns: ColumnType<User>[] = [
     width: 100,
     render: (_, row) => {
       if (row.is_active) {
-        return <Text color="success">啟用</Text>
+        return <ColorText green>啟用</ColorText>
       }
-      return <Text color="danger">關閉</Text>
+      return <ColorText red>關閉</ColorText>
     },
   },
   {
@@ -60,10 +60,10 @@ const columns: ColumnType<User>[] = [
     width: 100,
     render: (_, row) => {
       switch (row.status) {
-        case Status.Normal:
-          return <Text color="success">正常</Text>
-        case Status.Blocked:
-          return <Text color="danger">鎖定</Text>
+        case BlockStatus.Normal:
+          return <ColorText green>正常</ColorText>
+        case BlockStatus.Blocked:
+          return <ColorText red>鎖定</ColorText>
       }
     },
   },
@@ -92,17 +92,17 @@ const columns: ColumnType<User>[] = [
       }
       return (
         <Space size="small">
-          {row.status === Status.Normal ? (
+          {row.status === BlockStatus.Normal ? (
             <IconLink
               icon={<UnlockOutlined />}
               label="鎖定"
-              onClick={() => changeStatus(row.id, Status.Blocked)}
+              onClick={() => changeStatus(row.id, BlockStatus.Blocked)}
             />
           ) : (
             <IconLink
               icon={<LockOutlined />}
               label="解鎖"
-              onClick={() => changeStatus(row.id, Status.Normal)}
+              onClick={() => changeStatus(row.id, BlockStatus.Normal)}
             />
           )}
           {row.is_active ? (

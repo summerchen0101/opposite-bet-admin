@@ -1,6 +1,7 @@
+import { Status } from '@/lib/enums'
 import { Permission } from '@/pages/admin/AdminRole/API/types'
 
-export enum Status {
+export enum BlockStatus {
   Normal = 1, // 正常
   Blocked = 2, // 鎖定
 }
@@ -16,11 +17,19 @@ export interface User {
   name: string
   roles: Role[]
   permissions: Permission[]
-  is_active: true
-  status: Status
+  is_active: boolean
+  status: BlockStatus
 
   login_ip: string
   logined_at: number
   created_at: number
   updated_at: number
+}
+
+export interface SearchFields {
+  acc?: string
+  role_id?: number
+  is_active?: Status
+  status?: BlockStatus
+  ip?: string
 }

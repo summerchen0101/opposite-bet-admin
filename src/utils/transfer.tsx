@@ -1,40 +1,12 @@
 import { LevelCode } from '@/lib/enums'
-
-import { MenuItem, Permission, RemotePermission } from '@/types'
-import moment from 'moment'
-import { FormattedMessage } from 'react-intl'
-import React from 'react'
+import { OptionsType } from '@/lib/types'
 import { ColumnsType } from 'antd/lib/table'
+import moment from 'moment'
+import React from 'react'
+import { FormattedMessage } from 'react-intl'
 
 export const toCurrency = (num: number, decimal = 0) =>
   Number(num.toFixed(decimal)).toLocaleString()
-
-export const permissionTransfer = (per: RemotePermission): Permission => {
-  return { view: per.VIEW === 'Y', edit: per.EDIT === 'Y' }
-}
-
-export const handleMenuTransfer = (menu): MenuItem[] => {
-  const newMenu = []
-  for (const rootId in menu) {
-    const { root, sub } = menu[rootId]
-    const children = []
-    for (const subId in sub) {
-      const { name, url, permission } = sub[subId]
-      children.push({
-        id: subId,
-        parent: rootId,
-        name,
-        permission: permissionTransfer(permission),
-      })
-    }
-    newMenu.push({
-      id: rootId,
-      name: root.name,
-      children,
-    })
-  }
-  return newMenu
-}
 
 export const addKeyToArrayItem = function <T>(arr: T[]): T[] {
   return arr.map((t, i) => ({ key: i, ...t }))
@@ -75,8 +47,14 @@ export const filterColumns = function <T>(
 }
 
 export const toOptionName = function <T>(
-  options: { label: string; value: T }[],
+  options: OptionsType<T>,
   code: T,
 ): string {
   return options.find((t) => t.value === code)?.label
+}
+
+export const remoteOptsToLocalOpts = function <T>(
+  remoteOpts: { name: string; id: T }[],
+): OptionsType<T> {
+  return remoteOpts.map((t) => ({ label: t.name, value: t.id }))
 }

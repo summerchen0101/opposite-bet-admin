@@ -1,4 +1,4 @@
-import { ResponseBase } from '@/types'
+import { ResponseBase } from '@/lib/types'
 import Axios, { AxiosRequestConfig } from 'axios'
 import errCodes from '@/lib/errCodes'
 import { message } from 'antd'

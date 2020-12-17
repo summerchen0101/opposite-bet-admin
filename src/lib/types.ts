@@ -1,7 +1,7 @@
 import { ColumnsType } from 'antd/lib/table'
+import { LevelCode } from './enums'
 
 type RemotePermissionType = 'Y' | 'N'
-export type StatusType = 1 | 0
 
 export interface RemotePermission {
   VIEW: RemotePermissionType
@@ -38,11 +38,6 @@ export interface LoginFormData {
   password: string
 }
 
-export interface UserInfo {
-  name: string
-  role: string
-}
-
 export interface MenuItem {
   id: number
   name: string
@@ -51,26 +46,12 @@ export interface MenuItem {
   children?: MenuItem[]
 }
 
-export interface DataDataFormProps {
-  values: any
-  onFinish?: (values: any) => void
-  onFinishFailed?: (values: any) => void
-}
-
-export interface RequestSetStatus {
-  data_id: number
-  status: number
-}
-
-type OptionValue = string | number
-type Option<T extends OptionValue> = {
-  value: T
-  label: string
-}
-type SelectProps<T extends OptionValue> = {
-  options: Option<T>[]
-  value: T
-  onChange: (value: T) => void
-}
-
 export type ColumnsGenerator<T> = (data: T[]) => ColumnsType<T>
+
+export type LevelCodeOpts = keyof typeof LevelCode
+
+export interface Option<T> {
+  label: string
+  value: T
+}
+export type OptionsType<T> = Option<T>[]

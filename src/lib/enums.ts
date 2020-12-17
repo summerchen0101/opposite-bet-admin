@@ -15,5 +15,3 @@ export enum LevelCode {
   Agent = 'L4',
   Member = 'L5',
 }
-
-export type LevelCodeOpts = keyof typeof LevelCode

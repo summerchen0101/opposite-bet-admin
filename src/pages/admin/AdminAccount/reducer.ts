@@ -6,12 +6,14 @@ import {
 import { User } from './API/types'
 import { Permission } from '@/API/permission/options'
 import { Role } from '../AdminRole/API/options'
+import { remoteOptsToLocalOpts } from '@/utils/transfer'
+import { OptionsType } from '@/lib/types'
 export interface IState {
   tableData: User[]
   editData: User
   editId: number
-  permissionOpts: Permission[]
-  roleOpts: Role[]
+  permissionOpts: OptionsType<number>
+  roleOpts: OptionsType<number>
 }
 const initialState: IState = {
   tableData: [],
@@ -37,10 +39,10 @@ const module = createSlice({
       state.editData = action.payload
     },
     setPermissionOpts(state, action: PayloadAction<Permission[]>) {
-      state.permissionOpts = action.payload
+      state.permissionOpts = remoteOptsToLocalOpts(action.payload)
     },
     setRoleOpts(state, action: PayloadAction<Role[]>) {
-      state.roleOpts = action.payload
+      state.roleOpts = remoteOptsToLocalOpts(action.payload)
     },
   },
   extraReducers: (builder: ActionReducerMapBuilder<IState>) => {},

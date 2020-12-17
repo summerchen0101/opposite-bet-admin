@@ -13,10 +13,9 @@ import { useAPIService } from './service'
 
 const AdminAccountPage: React.FC = () => {
   useReducerInjector(moduleName, reducer)
-  const { getTableData } = useAPIService()
-
+  const { getTableData, getOptions } = useAPIService()
   useEffect(() => {
-    getTableData()
+    Promise.all([getTableData(), getOptions()])
   }, [])
   return (
     <Dashboard>

@@ -1,9 +1,9 @@
 import Request from '@/utils/request'
-import { Status } from './types'
+import { BlockStatus } from './types'
 
 interface Request {
   id: number
-  status: Status
+  status: BlockStatus
 }
 
 export const status = (reqData: Request) =>

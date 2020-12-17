@@ -1,60 +1,66 @@
+import { Status } from '@/lib/enums'
+import { statusOpts } from '@/lib/options'
 import { Form, Input, Select } from 'antd'
 import React from 'react'
+import { BlockStatus, SearchFields } from '../API/types'
+import { selectRoleOpts, useTypedSelector } from '../selectors'
+import { useAPIService } from '../service'
 
-const statusOptions = [
-  { label: '全部', value: 'all' },
-  { label: '未啟動', value: 0 },
-  { label: '啟動', value: 1 },
-  { label: '停用', value: 2 },
-  { label: '凍結', value: 3 },
-]
+interface SearchForm {
+  acc: string
+  role_id: number
+  status: BlockStatus
+  is_active: Status
+  ip: string
+}
+
 const SearchBar: React.FC = () => {
-  const [form] = Form.useForm()
-  const onFormChanged = (e) => {
-    console.log('onFormChanged')
-    form.submit()
+  const { getTableData } = useAPIService()
+  const [form] = Form.useForm<SearchForm>()
+  const onSearch = async () => {
+    const f = (await form.validateFields()) as SearchForm
+    await getTableData({
+      acc: f.acc,
+      is_active: f.is_active,
+      status: f.status,
+      role_id: f.role_id,
+      ip: f.ip,
+    })
   }
-  const onFinished = (values) => {
-    console.log('onFinished')
-  }
-  const roleOptions = [
-    { label: '全部', value: 'all' },
-    { label: '財務管理員', value: 'opt1' },
-    { label: '對帳管理員', value: 'opt2' },
-    { label: '行銷管理員', value: 'opt3' },
-  ]
+  const roleOpts = useTypedSelector(selectRoleOpts)
   return (
-    <Form form={form} layout="inline" onFinish={onFinished} className="mb-2">
-      <Form.Item name="account" label="管理者帳號">
-        <Input.Search
-          placeholder="請輸入內容"
-          onSearch={onFormChanged}
-          allowClear
-        />
+    <Form form={form} layout="inline" className="mb-2">
+      <Form.Item name="acc" label="管理者帳號">
+        <Input.Search placeholder="請輸入內容" onSearch={onSearch} allowClear />
       </Form.Item>
-      <Form.Item name="role" label="管理者角色" initialValue="all">
+      <Form.Item name="role_id" label="管理者角色" initialValue={0}>
         <Select
-          options={roleOptions}
+          options={[{ label: '全部', value: 0 }, ...roleOpts]}
           placeholder="全部角色"
-          style={{ width: 150 }}
-          onChange={onFormChanged}
-          allowClear
+          style={{ width: 130 }}
+          onChange={onSearch}
         />
       </Form.Item>
-      <Form.Item name="status" label="狀態" initialValue="all">
+      <Form.Item name="status" label="鎖定狀態" initialValue={0}>
         <Select
-          options={statusOptions}
-          style={{ width: 150 }}
-          onChange={onFormChanged}
-          allowClear
+          options={[
+            { label: '全部', value: 0 },
+            { label: '正常', value: BlockStatus.Normal },
+            { label: '鎖定', value: BlockStatus.Blocked },
+          ]}
+          style={{ width: 130 }}
+          onChange={onSearch}
+        />
+      </Form.Item>
+      <Form.Item name="is_active" label="啟用狀態" initialValue={0}>
+        <Select
+          options={statusOpts}
+          style={{ width: 130 }}
+          onChange={onSearch}
         />
       </Form.Item>
       <Form.Item name="ip" label="允許登入IP">
-        <Input.Search
-          placeholder="請輸入內容"
-          onSearch={onFormChanged}
-          allowClear
-        />
+        <Input.Search placeholder="請輸入內容" onSearch={onSearch} allowClear />
       </Form.Item>
     </Form>
   )

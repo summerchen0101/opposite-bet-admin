@@ -1,5 +1,5 @@
 import Request from '@/utils/request'
-import { Status } from './types'
+import { BlockStatus } from './types'
 
 interface Request {
   id: number
@@ -9,7 +9,7 @@ interface Request {
   role_ids: number[]
   permission_ids: number[]
   is_active: boolean
-  status: Status
+  status: BlockStatus
 }
 
 export const edit = (reqData: Request) =>

@@ -32,14 +32,8 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
     form.setFieldsValue(values)
   }, [values])
 
-  const permissionOpts = useTypedSelector(selectPermissionOpts).map((t) => ({
-    label: t.name,
-    value: t.id,
-  }))
-  const roleOpts = useTypedSelector(selectRoleOpts).map((t) => ({
-    label: t.name,
-    value: t.id,
-  }))
+  const permissionOpts = useTypedSelector(selectPermissionOpts)
+  const roleOpts = useTypedSelector(selectRoleOpts)
 
   return (
     <Form

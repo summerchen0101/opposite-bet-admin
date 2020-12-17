@@ -2,7 +2,7 @@ import API from '@/API'
 import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { message } from 'antd'
 import { useDispatch } from 'react-redux'
-import { Status } from '../API/types'
+import { SearchFields, BlockStatus } from '../API/types'
 import { Request as CreateRequest } from '../API/create'
 import {
   setEditData,
@@ -37,9 +37,9 @@ export const useAPIService = () => {
     }
   }
 
-  const getTableData = async () => {
+  const getTableData = async (search?: SearchFields) => {
     try {
-      const res = await API.adminAccount.fetchAll()
+      const res = await API.adminAccount.fetchAll(search)
       dispatch(setTableData(res.data.users))
     } catch (err) {
       apiErr(err)
@@ -84,7 +84,7 @@ export const useAPIService = () => {
       apiErr(err)
     }
   }
-  const changeStatus = async (id: number, status: Status) => {
+  const changeStatus = async (id: number, status: BlockStatus) => {
     try {
       await API.adminAccount.status({ id, status })
       await getTableData()

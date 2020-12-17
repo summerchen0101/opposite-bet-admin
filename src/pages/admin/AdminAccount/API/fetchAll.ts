@@ -1,5 +1,5 @@
 import Request from '@/utils/request'
-import { User } from './types'
+import { SearchFields, User } from './types'
 
 export interface Response {
   users: User[]
@@ -7,7 +7,7 @@ export interface Response {
   total_page: number
 }
 
-interface Request {
+interface Request extends SearchFields {
   page?: number
   perpage?: number
 }
