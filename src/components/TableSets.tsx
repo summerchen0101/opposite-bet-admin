@@ -33,7 +33,7 @@ const TableSets = <T extends { id: number | string }>({
       dataSource={data}
       columns={addKeyToArrayItem(columns || createColumns(data))}
       scroll={{ x: 800 }}
-      sticky={{ offsetHeader: 0 }}
+      sticky={{ offsetHeader: -15 }}
       pagination={{ pageSize: 30 }}
       {...props}
     />

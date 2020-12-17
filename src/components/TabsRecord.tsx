@@ -6,6 +6,8 @@ import styled from 'styled-components'
 import TabsRecordItem from './TabsRecordItem'
 const TabsRecordWrapper = styled.div`
   height: 35px;
+  margin: 15px;
+  margin-bottom: 0;
   .ant-space {
     width: calc(100% - 90px);
     overflow-x: auto;
@@ -13,6 +15,9 @@ const TabsRecordWrapper = styled.div`
   .right-btns {
     float: right;
     line-height: 30px;
+  }
+  @media only screen and (max-width: 600px) {
+    display: none;
   }
 `
 const TabsRecord: React.FC = () => {

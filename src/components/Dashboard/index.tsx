@@ -16,10 +16,8 @@ const Dashboard: React.FC = ({ children }) => {
         <Sidebar />
         <Layout>
           <Header />
-          <Content>
-            {location.pathname !== '/' && <TabsRecord />}
-            <div className="page-content">{children}</div>
-          </Content>
+          {location.pathname !== '/' && <TabsRecord />}
+          <Content>{children}</Content>
         </Layout>
       </Wrapper>
     </DashboardContextProvider>

@@ -18,9 +18,6 @@ export default styled(Layout)`
   .site-header {
     background: #fff;
     padding: 0;
-    position: fixed;
-    z-index: 1;
-    width: calc(100% - 200px);
     .logout {
       line-height: 64px;
       margin-right: 15px;
@@ -29,15 +26,12 @@ export default styled(Layout)`
   }
 
   .site-content {
-    /* background: #fff; */
-    margin: 24px 16px;
+    margin: 15px;
+    margin-top: 0;
     min-height: 280px;
-    margin-top: 80px;
     overflow-y: auto;
-    .page-content {
-      background-color: #fff;
-      padding: 15px;
-    }
+    background-color: #fff;
+    padding: 15px;
   }
   .ant-layout-sider-children {
     overflow-y: auto;
