@@ -73,3 +73,10 @@ export const filterColumns = function <T>(
     (c) => !filterColumnsKey.includes(c.key as string),
   )
 }
+
+export const toOptionName = function <T>(
+  options: { label: string; value: T }[],
+  code: T,
+): string {
+  return options.find((t) => t.value === code)?.label
+}

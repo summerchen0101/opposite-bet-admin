@@ -1,5 +1,5 @@
 import { ColorText, IconLink, TableSets } from '@/components'
-import { toDateTime } from '@/utils/transfer'
+import { toDateTime, toOptionName } from '@/utils/transfer'
 import { DeleteOutlined, EditFilled } from '@ant-design/icons'
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
@@ -8,6 +8,7 @@ import { News, NewsType } from '../API/types'
 import { usePopupProvider } from '../context/PopupProvider'
 import { useAPIService } from '../service'
 import { selectTableData, useTypedSelector } from '../selectors'
+import { newsTypeOpts } from '@/lib/options'
 
 const columns: ColumnsType<News> = [
   {
@@ -18,7 +19,7 @@ const columns: ColumnsType<News> = [
   {
     title: '公告種類',
     width: 120,
-    render: (_, row) => NewsType[row.news_type],
+    render: (_, row) => toOptionName(newsTypeOpts, row.news_type),
   },
   {
     title: '狀態',
