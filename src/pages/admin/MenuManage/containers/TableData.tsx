@@ -1,4 +1,8 @@
 import { ColorText, PopupConfirm, Text } from '@/components'
+import DragHandler, {
+  SortableItem,
+  SortableWrapper,
+} from '@/components/DragHandler'
 import IconLink from '@/components/IconLink'
 import TableSets from '@/components/TableSets'
 import { toDateTime } from '@/utils/transfer'
@@ -18,12 +22,23 @@ import { usePopupProvider } from '../context/PopupProvider'
 import { setEditId } from '../reducer'
 import { selectTableData, useTypedSelector } from '../selectors'
 import { useAPIService } from '../service'
+import arrayMove from 'array-move'
 
 const columns: ColumnsType<Menu> = [
+  {
+    width: 60,
+  },
+  // {
+  //   title: '排序',
+  //   width: 80,
+  //   render: (_, row) => <DragHandler />,
+  //   className: 'drag-visible',
+  // },
   {
     title: '名稱',
     width: 180,
     render: (_, row) => row.name,
+    className: 'drag-visible',
   },
   {
     title: '路徑',
@@ -114,6 +129,29 @@ const columns: ColumnsType<Menu> = [
 
 const TableData: React.FC = () => {
   const data = useTypedSelector(selectTableData)
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    if (oldIndex !== newIndex) {
+      const newData = arrayMove([].concat(data), oldIndex, newIndex).filter(
+        (el) => !!el,
+      )
+      console.log('Sorted items: ', newData)
+      // data = newData
+    }
+  }
+
+  const DraggableContainer = (props) => (
+    <SortableWrapper
+      useDragHandle
+      helperClass="row-dragging"
+      onSortEnd={onSortEnd}
+      {...props}
+    />
+  )
+
+  const DraggableBodyRow = ({ className, style, ...restProps }) => {
+    const index = data.findIndex((x) => x.id === restProps['data-row-key'])
+    return <SortableItem index={index} {...restProps} />
+  }
   return (
     <TableSets<Menu>
       columns={columns}
@@ -121,6 +159,12 @@ const TableData: React.FC = () => {
         ...m,
         children: m.children.length > 0 ? m.children : undefined,
       }))}
+      components={{
+        body: {
+          wrapper: DraggableContainer,
+          row: DraggableBodyRow,
+        },
+      }}
     />
   )
 }
