@@ -22,3 +22,7 @@ export const selectPermissionOpts = createSelector(
   selectModuleState,
   (moduleState) => moduleState.permissionOpts,
 )
+export const selectRoleOpts = createSelector(
+  selectModuleState,
+  (moduleState) => moduleState.roleOpts,
+)

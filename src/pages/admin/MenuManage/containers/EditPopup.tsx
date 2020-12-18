@@ -1,10 +1,11 @@
 import PopupModal from '@/components/PopupModal'
 import React from 'react'
 import { usePopupProvider } from '../context/PopupProvider'
-import DataForm from './DataForm'
+import DataForm, { MenuFormData } from './DataForm'
 import { Form } from 'antd'
 import { useAPIService } from '../service'
 import { useTypedSelector, selectEditData } from '../selectors'
+import { Status } from '@/lib/enums'
 
 const EditPopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('editForm')
@@ -13,8 +14,12 @@ const EditPopup: React.FC = () => {
   const { onEdit } = useAPIService()
   const handleSubmit = async () => {
     try {
-      const values = await form.validateFields()
-      await onEdit({ id: f.id, ...values })
+      const values = (await form.validateFields()) as MenuFormData
+      await onEdit({
+        id: f.id,
+        ...values,
+        is_active: values.is_active === Status.ON,
+      })
       form.resetFields()
       setVisible(false)
     } catch (info) {
@@ -28,7 +33,7 @@ const EditPopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="編輯管理者角色"
+      title="編輯選單"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
       destroyOnClose
@@ -37,9 +42,11 @@ const EditPopup: React.FC = () => {
         <DataForm
           form={form}
           values={{
-            id: f.id,
             name: f.name,
-            is_active: f.is_active,
+            path: f.path,
+            icon: f.icon,
+            is_active: f.is_active ? Status.ON : Status.OFF,
+            role_ids: f.roles.map((t) => t.id),
             permission_ids: f.permissions.map((t) => t.id),
           }}
         />

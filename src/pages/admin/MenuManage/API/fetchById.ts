@@ -1,5 +1,5 @@
 import Request from '@/utils/request'
-import { Permission, Role } from './types'
+import { Menu } from './types'
 
 export const fetchById = (id: number) =>
-  Request.get<Role>(`admin_menu/view/${id}`)
+  Request.get<Menu>(`admin_menu/view/${id}`)

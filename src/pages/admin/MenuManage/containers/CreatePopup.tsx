@@ -1,21 +1,22 @@
 import PopupModal from '@/components/PopupModal'
+import { Status } from '@/lib/enums'
+import { Form } from 'antd'
 import React from 'react'
 import { usePopupProvider } from '../context/PopupProvider'
-import DataForm, { FormData } from './DataForm'
-import { Form, message } from 'antd'
-import API from '@/API'
-import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { useAPIService } from '../service'
+import DataForm, { MenuFormData } from './DataForm'
 
 const CreatePopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('createForm')
   const { onCreate } = useAPIService()
-  const { apiErr } = useErrorHandler()
-  const [form] = Form.useForm<FormData>()
+  const [form] = Form.useForm<MenuFormData>()
   const handleSubmit = async () => {
     try {
-      const values = await form.validateFields()
-      await onCreate(values)
+      const values = (await form.validateFields()) as MenuFormData
+      await onCreate({
+        ...values,
+        is_active: values.is_active === Status.ON,
+      })
       form.resetFields()
       setVisible(false)
     } catch (info) {
@@ -29,7 +30,7 @@ const CreatePopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="新增管理者角色"
+      title="新增選單"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
     >
@@ -37,8 +38,11 @@ const CreatePopup: React.FC = () => {
         form={form}
         values={{
           name: '',
-          is_active: true,
+          path: '',
+          icon: '',
+          is_active: Status.ON,
           permission_ids: [],
+          role_ids: [],
         }}
       />
     </PopupModal>

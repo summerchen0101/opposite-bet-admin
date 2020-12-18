@@ -11,16 +11,26 @@ import {
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
-import { Role } from '../API/types'
+import { Menu } from '../API/types'
 import { usePopupProvider } from '../context/PopupProvider'
 import { selectTableData, useTypedSelector } from '../selectors'
 import { useAPIService } from '../service'
 
-const columns: ColumnsType<Role> = [
+const columns: ColumnsType<Menu> = [
   {
-    title: '角色名稱',
-    width: 100,
+    title: '名稱',
+    width: 180,
     render: (_, row) => row.name,
+  },
+  {
+    title: '路徑',
+    width: 180,
+    render: (_, row) => row.path,
+  },
+  {
+    title: '圖示',
+    width: 150,
+    render: (_, row) => row.icon,
   },
   {
     title: '創建時間',
@@ -29,7 +39,7 @@ const columns: ColumnsType<Role> = [
   },
   {
     title: '狀態',
-    width: 120,
+    width: 80,
     render: (_, row) => {
       if (row.is_active) {
         return <ColorText green>啟用</ColorText>
@@ -87,7 +97,15 @@ const columns: ColumnsType<Role> = [
 
 const TableData: React.FC = () => {
   const data = useTypedSelector(selectTableData)
-  return <TableSets<Role> columns={columns} data={data} />
+  return (
+    <TableSets<Menu>
+      columns={columns}
+      data={data.map((m) => ({
+        ...m,
+        children: m.children.length > 0 ? m.children : undefined,
+      }))}
+    />
+  )
 }
 
 export default TableData

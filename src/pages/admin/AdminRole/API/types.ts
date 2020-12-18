@@ -1,8 +1,5 @@
-export interface Permission {
-  id: number
-  name: string
-  route: string
-}
+import { Permission } from '@/API/permission/types'
+
 export interface Role {
   id: number
   is_active: boolean
@@ -10,4 +7,9 @@ export interface Role {
   permissions: Permission[]
   created_at: number
   updated_at: number
+}
+
+export interface RoleOption {
+  id: number
+  name: string
 }

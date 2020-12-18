@@ -2,16 +2,23 @@ import API from '@/API'
 import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { message } from 'antd'
 import { useDispatch } from 'react-redux'
-import { setEditData, setTableData, setPermissionOpts } from '../reducer'
-
+import {
+  setEditData,
+  setTableData,
+  setPermissionOpts,
+  setRoleOpts,
+} from '../reducer'
+import { EditMenuRequest, CreateMenuRequest } from '../API/types'
 export const useAPIService = () => {
   const { apiErr } = useErrorHandler()
   const dispatch = useDispatch()
 
   const getOptions = async () => {
     try {
-      const res = await API.permission.options()
-      dispatch(setPermissionOpts(res.data.permissions))
+      const perRes = await API.permission.options()
+      const roleRes = await API.adminRole.options()
+      dispatch(setPermissionOpts(perRes.data.permissions))
+      dispatch(setRoleOpts(roleRes.data.roles))
     } catch (err) {
       apiErr(err)
     }
@@ -19,7 +26,7 @@ export const useAPIService = () => {
 
   const getFormData = async (id: number) => {
     try {
-      const res = await API.adminRole.fetchById(id)
+      const res = await API.menuManage.fetchById(id)
       dispatch(setEditData(res.data))
     } catch (err) {
       apiErr(err)
@@ -28,16 +35,16 @@ export const useAPIService = () => {
 
   const getTableData = async () => {
     try {
-      const res = await API.adminRole.fetchAll()
-      dispatch(setTableData(res.data.roles))
+      const res = await API.menuManage.fetchAll()
+      dispatch(setTableData(res.data.menus))
     } catch (err) {
       apiErr(err)
     }
   }
 
-  const onCreate = async (values) => {
+  const onCreate = async function (values: CreateMenuRequest) {
     try {
-      await API.adminRole.create(values)
+      await API.menuManage.create(values)
       await getTableData()
       message.success('新增成功')
     } catch (err) {
@@ -45,9 +52,9 @@ export const useAPIService = () => {
     }
   }
 
-  const onEdit = async (values) => {
+  const onEdit = async (values: EditMenuRequest) => {
     try {
-      await API.adminRole.edit(values)
+      await API.menuManage.edit(values)
       await getTableData()
       message.success('修改成功')
     } catch (err) {
@@ -57,7 +64,7 @@ export const useAPIService = () => {
 
   const onDelete = async (id: number) => {
     try {
-      await API.adminRole.deleteById(id)
+      await API.menuManage.deleteById(id)
       await getTableData()
       message.success('刪除成功')
     } catch (err) {
@@ -66,7 +73,7 @@ export const useAPIService = () => {
   }
   const changeActive = async (id: number, status: boolean) => {
     try {
-      await API.adminRole.active({ id, is_active: status })
+      await API.menuManage.active({ id, is_active: status })
       await getTableData()
       message.success('狀態更新成功')
     } catch (err) {

@@ -1,5 +1,4 @@
 import { IconLink } from '@/components'
-import { Permission } from '@/lib/types'
 import {
   selectMenu,
   useTypedSelector as useGlobalTypedSelector,
@@ -20,7 +19,7 @@ interface MenuPermissionItem {
   name: string
   parent?: number
   children?: MenuPermissionItem[]
-  permission: Permission
+  permission: any
 }
 
 const columns: ColumnsType<MenuPermissionItem> = [

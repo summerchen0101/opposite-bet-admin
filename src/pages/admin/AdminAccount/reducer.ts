@@ -4,7 +4,7 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit'
 import { User } from './API/types'
-import { Permission } from '@/API/permission/options'
+import { Permission } from '@/API/permission/types'
 import { Role } from '../AdminRole/API/options'
 import { remoteOptsToLocalOpts } from '@/utils/transfer'
 import { OptionsType } from '@/lib/types'

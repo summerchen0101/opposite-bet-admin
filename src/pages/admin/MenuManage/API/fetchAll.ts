@@ -1,8 +1,8 @@
 import Request from '@/utils/request'
-import { Role } from './types'
+import { Menu } from './types'
 
 export interface Response {
-  roles: Role[]
+  menus: Menu[]
   total_count: number
   total_page: number
 }

@@ -1,11 +1,5 @@
 import Request from '@/utils/request'
+import { EditMenuRequest } from './types'
 
-interface Request {
-  id: number
-  name: string
-  permission_ids: number[]
-  is_active: boolean
-}
-
-export const edit = (reqData: Request) =>
+export const edit = (reqData: EditMenuRequest) =>
   Request.post<null>('admin_menu/edit', reqData)

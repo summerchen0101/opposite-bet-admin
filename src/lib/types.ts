@@ -15,18 +15,10 @@ export interface RemotePagination {
   total_pages: number
 }
 
-export interface Permission {
-  view: boolean
-  edit: boolean
-}
-export type RequestPromise = <T>(data?: unknown) => Promise<T>
-
 export class ResponseBase<T> {
   code: number
   data: T
 }
-
-export type MethodType = 'ADD' | 'EDIT'
 
 export interface OptionType {
   label: string
@@ -41,7 +33,7 @@ export interface LoginFormData {
 export interface MenuItem {
   id: number
   name: string
-  permission?: Permission
+  permission?: any
   parent?: number
   children?: MenuItem[]
 }

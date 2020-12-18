@@ -1,5 +1,5 @@
 import { Status } from '@/lib/enums'
-import { Permission } from '@/pages/admin/AdminRole/API/types'
+import { Permission } from '@/API/permission/types'
 
 export enum BlockStatus {
   Normal = 1, // 正常

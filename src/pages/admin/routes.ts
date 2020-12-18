@@ -22,13 +22,19 @@ export const AdminHistory = new PageG(
   `${rootPath}/history`,
   pages.AdminHistory,
 )
+export const MenuManage = new PageG(
+  '選單管理',
+  `${rootPath}/menu`,
+  pages.MenuManage,
+)
 
 // ROUTERS
-RouteG.create([AdminAccount, AdminRole, AdminHistory])
+RouteG.create([AdminAccount, AdminRole, AdminHistory, MenuManage])
 
 // MENU
 MenuG.createCategory(rootName, rootPath, null, [
   AdminAccount,
   AdminRole,
   AdminHistory,
+  MenuManage,
 ])

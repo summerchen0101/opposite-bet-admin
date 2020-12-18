@@ -1,10 +1,5 @@
 import Request from '@/utils/request'
-
-export interface Permission {
-  id: number
-  name: string
-  route: string
-}
+import { Permission } from './types'
 
 interface Response {
   permissions: Permission[]

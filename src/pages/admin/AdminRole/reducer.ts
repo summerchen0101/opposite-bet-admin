@@ -4,7 +4,7 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit'
 import { Role } from './API/types'
-import { Permission } from '@/API/permission/options'
+import { Permission } from '@/API/permission/types'
 export interface IState {
   tableData: Role[]
   editData: Role
