@@ -18,6 +18,10 @@ export const selectEditData = createSelector(
   selectModuleState,
   (moduleState) => moduleState.editData,
 )
+export const selectEditId = createSelector(
+  selectModuleState,
+  (moduleState) => moduleState.editId,
+)
 export const selectPermissionOpts = createSelector(
   selectModuleState,
   (moduleState) => moduleState.permissionOpts,

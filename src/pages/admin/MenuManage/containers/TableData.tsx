@@ -6,13 +6,16 @@ import {
   CheckCircleOutlined,
   CloseCircleOutlined,
   DeleteOutlined,
-  EditFilled,
+  EditOutlined,
+  PlusCircleOutlined,
 } from '@ant-design/icons'
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Menu } from '../API/types'
 import { usePopupProvider } from '../context/PopupProvider'
+import { setEditId } from '../reducer'
 import { selectTableData, useTypedSelector } from '../selectors'
 import { useAPIService } from '../service'
 
@@ -56,7 +59,9 @@ const columns: ColumnsType<Menu> = [
     title: '操作',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
-      const [visible, setVisible] = usePopupProvider('editForm')
+      const setCreateVisible = usePopupProvider('createForm')[1]
+      const setEditVisible = usePopupProvider('editForm')[1]
+      const dispatch = useDispatch()
       const {
         getFormData,
         getOptions,
@@ -65,7 +70,12 @@ const columns: ColumnsType<Menu> = [
       } = useAPIService()
       const handleEdit = async () => {
         await Promise.all([getOptions(), getFormData(row.id)])
-        setVisible(true)
+        setEditVisible(true)
+      }
+      const handleCreate = async (id: number) => {
+        dispatch(setEditId(id))
+        await getOptions()
+        setCreateVisible(true)
       }
       return (
         <Space size="small">
@@ -84,14 +94,21 @@ const columns: ColumnsType<Menu> = [
               onClick={() => changeActive(row.id, true)}
             />
           )}
-          <IconLink icon={<EditFilled />} label="編輯" onClick={handleEdit} />
+          <IconLink icon={<EditOutlined />} label="編輯" onClick={handleEdit} />
+          {!row.parent_id && (
+            <IconLink
+              icon={<PlusCircleOutlined />}
+              label="新增下層選單"
+              onClick={() => handleCreate(row.id)}
+            />
+          )}
           <PopupConfirm onConfirm={() => onDelete(row.id)}>
             <IconLink icon={<DeleteOutlined />} label="刪除" />
           </PopupConfirm>
         </Space>
       )
     },
-    width: 80,
+    width: 120,
   },
 ]
 

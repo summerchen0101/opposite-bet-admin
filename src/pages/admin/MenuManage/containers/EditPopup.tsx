@@ -42,6 +42,8 @@ const EditPopup: React.FC = () => {
         <DataForm
           form={form}
           values={{
+            id: f.id,
+            parent_id: f.parent_id || null,
             name: f.name,
             path: f.path,
             icon: f.icon,

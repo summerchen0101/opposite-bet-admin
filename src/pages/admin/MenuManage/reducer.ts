@@ -10,12 +10,14 @@ import { OptionsType } from '@/lib/types'
 export interface IState {
   tableData: Menu[]
   editData: Menu
+  editId: number
   permissionOpts: OptionsType<number>
   roleOpts: OptionsType<number>
 }
 const initialState: IState = {
   tableData: [],
   editData: null,
+  editId: null,
   permissionOpts: [],
   roleOpts: [],
 }
@@ -31,6 +33,9 @@ const module = createSlice({
     },
     setEditData(state, action: PayloadAction<Menu>) {
       state.editData = action.payload
+    },
+    setEditId(state, action: PayloadAction<number>) {
+      state.editId = action.payload
     },
     setPermissionOpts(state, action: PayloadAction<Permission[]>) {
       state.permissionOpts = action.payload.map((t) => ({
@@ -53,5 +58,6 @@ export const {
   setPermissionOpts,
   setEditData,
   setRoleOpts,
+  setEditId,
 } = module.actions
 export default module.reducer

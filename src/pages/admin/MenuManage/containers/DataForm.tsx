@@ -6,10 +6,13 @@ import React, { useEffect } from 'react'
 import {
   selectPermissionOpts,
   selectRoleOpts,
+  selectTableData,
   useTypedSelector,
 } from '../selectors'
 
 export interface MenuFormData {
+  id?: number
+  parent_id?: number
   name: string
   path: string
   icon: string
@@ -28,6 +31,7 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
   const onReset = () => form.resetFields()
   const permissionOpts = useTypedSelector(selectPermissionOpts)
   const roleOpts = useTypedSelector(selectRoleOpts)
+  const rootMenus = useTypedSelector(selectTableData)
 
   return (
     <Form
@@ -36,6 +40,15 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
       onReset={onReset}
       initialValues={values}
     >
+      <Form.Item label="上層" name="parent_id">
+        <Select
+          options={rootMenus
+            .filter((t) => t.id !== values.id)
+            .map((t) => ({ label: t.name, value: t.id }))}
+          placeholder="請選擇上層"
+          allowClear
+        />
+      </Form.Item>
       <Form.Item
         label="名稱"
         name="name"
