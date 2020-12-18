@@ -90,4 +90,18 @@ export default createGlobalStyle`
     margin-bottom: 8px;
   }
 
+  .row-dragging {
+    background: #fafafa;
+    border: 1px solid #ccc;
+  }
+
+  .row-dragging td {
+    padding: 8px 15px;
+    visibility: hidden;
+  }
+
+  .row-dragging .drag-visible {
+    visibility: visible;
+  }
+
 `

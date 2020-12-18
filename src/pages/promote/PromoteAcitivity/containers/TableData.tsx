@@ -1,4 +1,8 @@
 import { ColorText } from '@/components'
+import DragHandler, {
+  SortableItem,
+  SortableWrapper,
+} from '@/components/DragHandler'
 import IconLink from '@/components/IconLink'
 import PopupConfirm from '@/components/PopupConfirm'
 import TableSets from '@/components/TableSets'
@@ -7,7 +11,6 @@ import {
   CloseCircleOutlined,
   CopyOutlined,
   EditOutlined,
-  MenuOutlined,
 } from '@ant-design/icons'
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
@@ -15,17 +18,8 @@ import arrayMove from 'array-move'
 import moment from 'moment'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import {
-  SortableContainer,
-  SortableElement,
-  SortableHandle,
-} from 'react-sortable-hoc'
 import styled from 'styled-components'
 import { EditPromoteAcitivity } from '../../routes'
-const DragHandle = SortableHandle(() => (
-  <MenuOutlined style={{ cursor: 'pointer', color: '#999' }} />
-))
-
 interface TableItem {
   index: number
   id: string
@@ -41,13 +35,15 @@ const columns: ColumnsType<TableItem> = [
   {
     title: '排序',
     width: 100,
-    render: (_, row) => <DragHandle />,
+    render: (_, row) => <DragHandler />,
+    className: 'drag-visible',
   },
   {
     title: '優惠名稱',
     dataIndex: 'name',
     width: 200,
     render: (_, row) => row.name,
+    className: 'drag-visible',
   },
   {
     title: '優惠期限',
@@ -117,9 +113,6 @@ for (let i = 1; i <= 10; i++) {
   })
 }
 
-const SortableItem = SortableElement((props) => <tr {...props} />)
-const SortableWrapper = SortableContainer((props) => <tbody {...props} />)
-
 const DraggableContainer = (props) => (
   <SortableWrapper
     useDragHandle
@@ -128,21 +121,6 @@ const DraggableContainer = (props) => (
     {...props}
   />
 )
-const StyledDraggableContainer = styled(DraggableContainer)`
-  .row-dragging {
-    background: #fafafa;
-    border: 1px solid #ccc;
-  }
-
-  .row-dragging td {
-    padding: 16px;
-    visibility: hidden;
-  }
-
-  .row-dragging .drag-visible {
-    visibility: visible;
-  }
-`
 
 const DraggableBodyRow = ({ className, style, ...restProps }) => {
   const index = data.findIndex((x) => x.index === restProps['data-row-key'])
@@ -158,6 +136,7 @@ const onSortEnd = ({ oldIndex, newIndex }) => {
     // data = newData
   }
 }
+
 const TableData: React.FC = () => {
   return (
     <TableSets
@@ -166,7 +145,7 @@ const TableData: React.FC = () => {
       rowKey="index"
       components={{
         body: {
-          wrapper: StyledDraggableContainer,
+          wrapper: DraggableContainer,
           row: DraggableBodyRow,
         },
       }}
