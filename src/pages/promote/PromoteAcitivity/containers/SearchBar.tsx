@@ -13,7 +13,7 @@ const SearchBar: React.FC = () => {
   ]
   return (
     <Form form={form} layout="inline" className="mb-2">
-      <Form.Item name="acc" label="管理者帳號">
+      <Form.Item name="acc" label="活動名稱">
         <Input.Search
           placeholder="請輸入內容"
           onSearch={onSearch}
