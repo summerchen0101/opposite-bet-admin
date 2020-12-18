@@ -1,6 +1,6 @@
 import Dashboard from '@/components/Dashboard'
 import PopupProvider from './context/PopupProvider'
-import { Col, Row } from 'antd'
+import { Col, Divider, Row } from 'antd'
 import React from 'react'
 import PageHeader from './components/PageHeader'
 import AreaTable from './containers/area/AreaTable'
@@ -30,21 +30,15 @@ const GameSettingPage: React.FC = () => {
         <Row gutter={16}>
           <Col span={12} className="mb-2">
             <AreaTable />
+            <Divider />
+            <LeagueTable />
+            <Divider />
+            <TeamTable />
           </Col>
           <Col span={12} className="mb-2">
             <EventTable />
-          </Col>
-          <Col span={12} className="mb-2">
+            <Divider />
             <GameTable />
-          </Col>
-          <Col span={12} className="mb-2">
-            <GameDetailTable />
-          </Col>
-          <Col span={12} className="mb-2">
-            <LeagueTable />
-          </Col>
-          <Col span={12} className="mb-2">
-            <TeamTable />
           </Col>
         </Row>
       </Dashboard>
