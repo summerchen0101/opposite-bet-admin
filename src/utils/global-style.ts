@@ -16,6 +16,9 @@ export default createGlobalStyle`
   .ant-form-item {
     margin-bottom: 18px
   }
+  .bold {
+    font-weight: bold
+  }
   .mb-0 {
     margin-bottom: 0 !important
   }

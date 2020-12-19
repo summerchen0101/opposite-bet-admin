@@ -1,5 +1,5 @@
 import { DateRangePicker } from '@/components'
-import { Form, Input, Radio } from 'antd'
+import { Form, Input, Radio, Select } from 'antd'
 import React from 'react'
 import { useHistory, useParams, useRouteMatch } from 'react-router-dom'
 import { InMail } from '../../routes'
@@ -34,20 +34,20 @@ const SearchBar: React.FC = () => {
           onChange={(e) => history.push(`/announce/message/${e.target.value}`)}
         />
       </Form.Item>
-      <Form.Item label="期間">
+      {/* <Form.Item label="期間">
         <DateRangePicker />
-      </Form.Item>
+      </Form.Item> */}
       <Form.Item label="標題">
         <Input style={{ width: '180px' }} placeholder="請輸入關鍵字" />
       </Form.Item>
 
       {type === 'send' ? (
         <Form.Item label="信件總類" name="target" initialValue="all">
-          <Radio.Group options={targetOpts} />
+          <Select options={targetOpts} />
         </Form.Item>
       ) : (
         <Form.Item label="讀取狀態" name="status" initialValue="all">
-          <Radio.Group options={statusOpts} />
+          <Select options={statusOpts} />
         </Form.Item>
       )}
     </Form>
