@@ -17,9 +17,14 @@ const columns = [
     },
   },
   {
-    title: '寄件人',
+    title: '寄件人帳號',
     width: 120,
     render: (_, row) => 'peggy',
+  },
+  {
+    title: '寄件人身份',
+    width: 120,
+    render: (_, row) => '會員',
   },
   {
     title: '狀態',
@@ -29,7 +34,7 @@ const columns = [
   {
     title: '信件種類',
     width: 100,
-    render: (_, row) => '意見反應',
+    render: (_, row) => '充值問題',
   },
   {
     title: '發送時間',
@@ -38,8 +43,6 @@ const columns = [
   },
   {
     title: '操作',
-    key: 'control',
-    fixed: ('right' as unknown) as boolean,
     render(_, row) {
       return (
         <Space size="small">

@@ -1,7 +1,8 @@
-import { ContentEditor, FormStaticText } from '@/components'
+import { ContentEditor } from '@/components'
 import Form, { FormField } from '@/components/Form'
 import PopupModal from '@/components/PopupModal'
-import { Button, Col, Input, Radio, Row, Select, Space, Tabs } from 'antd'
+import { LevelCode } from '@/lib/enums'
+import { Input, Radio, Select } from 'antd'
 import React from 'react'
 import { usePopupProvider } from '../context/PopupProvider'
 const { Option } = Select
@@ -22,23 +23,28 @@ const CreatePopup: React.FC = () => {
       width={700}
     >
       <Form>
-        <FormField label="收件人身份">
-          <Radio.Group defaultValue="opt1">
-            <Radio value="opt1">會員</Radio>
-            <Radio value="opt2">代理</Radio>
+        <FormField
+          label="收件人身份"
+          name="targetLevel"
+          initialValue={LevelCode.Member}
+        >
+          <Radio.Group>
+            <Radio value={LevelCode.Member}>會員</Radio>
+            <Radio value={LevelCode.Agent}>代理</Radio>
           </Radio.Group>
         </FormField>
-        <FormField label="帳號">
+        <FormField label="收件人帳號" name="targetAccounts">
           <Select
-            mode="multiple"
+            mode="tags"
+            tokenSeparators={[',']}
+            placeholder="全部帳號"
             allowClear
-            options={options}
-            defaultValue={['aabbb']}
           />
         </FormField>
-        <FormField label="標題">
+        <FormField label="標題" name="title">
           <Input />
         </FormField>
+
         <FormField>
           <ContentEditor />
         </FormField>

@@ -15,7 +15,7 @@ const ViewRecievePopup: React.FC = () => {
       onCancel={onCancel}
     >
       <p className="mb-1">
-        <span className="bold">寄件人：</span> wahaha [代理]
+        <span className="bold">寄件人：</span> wahaha [客服]
       </p>
       <p className="mb-1">
         <span className="bold">收件人：</span> gogoro [代理]

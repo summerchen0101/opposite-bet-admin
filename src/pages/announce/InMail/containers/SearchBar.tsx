@@ -42,12 +42,12 @@ const SearchBar: React.FC = () => {
       </Form.Item>
 
       {type === 'send' ? (
-        <Form.Item label="信件總類" name="target" initialValue="all">
-          <Select options={targetOpts} />
+        <Form.Item label="發信對象" name="target" initialValue="all">
+          <Select options={targetOpts} style={{ width: '150px' }} />
         </Form.Item>
       ) : (
         <Form.Item label="讀取狀態" name="status" initialValue="all">
-          <Select options={statusOpts} />
+          <Select options={statusOpts} style={{ width: '150px' }} />
         </Form.Item>
       )}
     </Form>
