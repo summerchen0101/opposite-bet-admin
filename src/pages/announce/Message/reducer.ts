@@ -13,7 +13,7 @@ const initialState: IState = {
   editData: null,
 }
 
-export const moduleName = 'Marquee'
+export const moduleName = 'Message'
 
 const module = createSlice({
   name: moduleName,

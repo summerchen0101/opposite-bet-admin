@@ -20,11 +20,18 @@ export const Marquee = new PageG(
   pages.Marquee,
 )
 
+export const Message = new PageG(
+  '訊息寄送',
+  `${rootPath}/message`,
+  pages.Message,
+)
+
 // ROUTERS
-RouteG.create([AnnounceManage, Marquee])
+RouteG.create([AnnounceManage, Marquee, Message])
 
 // MENU
 MenuG.createCategory(rootName, rootPath, ControlOutlined, [
   AnnounceManage,
   Marquee,
+  Message,
 ])
