@@ -14,13 +14,19 @@ export const AnnounceManage = new PageG(
   pages.AnnounceManage,
 )
 
-export const InMail = new PageG('站內信', `${rootPath}/message`, pages.InMail)
+export const InMail = new PageG('訊息寄送', `${rootPath}/message`, pages.InMail)
+export const Marquee = new PageG(
+  '跑馬燈管理',
+  `${rootPath}/marquee`,
+  pages.Marquee,
+)
 
 // ROUTERS
-RouteG.create([AnnounceManage, InMail])
+RouteG.create([AnnounceManage, Marquee, InMail])
 
 // MENU
 MenuG.createCategory(rootName, rootPath, ControlOutlined, [
   AnnounceManage,
+  Marquee,
   InMail,
 ])
