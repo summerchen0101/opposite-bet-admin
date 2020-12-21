@@ -3,7 +3,6 @@ import { LevelCode, Status, YesNo } from './enums'
 
 export const newsTypeOpts = [
   { label: '全部', value: NewsType.ALL },
-  { label: '跑馬燈', value: NewsType.Marquee },
   { label: '系統通知', value: NewsType.System },
   { label: '賽事公告', value: NewsType.Game },
   { label: '活動優惠', value: NewsType.Activity },

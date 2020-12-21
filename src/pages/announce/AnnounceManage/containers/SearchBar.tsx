@@ -35,7 +35,7 @@ const SearchBar: React.FC = () => {
       <Form.Item label="標題" name="title">
         <Input.Search onSearch={onSearch} allowClear />
       </Form.Item>
-      <Form.Item label="公告種類" name="news_type" initialValue={0}>
+      <Form.Item label="公告類型" name="news_type" initialValue={0}>
         <Select
           options={typeOpts}
           style={{ width: '130px' }}

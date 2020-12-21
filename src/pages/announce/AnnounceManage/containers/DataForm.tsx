@@ -1,3 +1,4 @@
+import { newsTypeOpts } from '@/lib/options'
 import { Col, DatePicker, Form, Input, Row, Select, Switch } from 'antd'
 import { FormInstance } from 'antd/lib/form'
 import moment, { Moment } from 'moment'
@@ -21,13 +22,6 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
   }, [values])
   const onReset = () => form.resetFields()
 
-  const options = [
-    { label: '跑馬燈', value: NewsType.Marquee },
-    { label: '系統通知', value: NewsType.System },
-    { label: '賽事公告', value: NewsType.Game },
-    { label: '活動優惠', value: NewsType.Activity },
-  ]
-
   const disabledDate = (current) => {
     return current && current < moment().startOf('day')
   }
@@ -50,7 +44,7 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
         </Col>
         <Col span={10}>
           <Form.Item label="公告種類" name="news_type">
-            <Select options={options} value={1} />
+            <Select options={newsTypeOpts.filter((t) => t.value !== 0)} />
           </Form.Item>
         </Col>
       </Row>

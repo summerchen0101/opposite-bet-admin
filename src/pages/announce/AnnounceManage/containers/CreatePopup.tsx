@@ -44,7 +44,7 @@ const CreatePopup: React.FC = () => {
           title: '',
           content: '',
           date_range: [null, null],
-          news_type: 1,
+          news_type: 2,
           is_active: true,
         }}
       />
