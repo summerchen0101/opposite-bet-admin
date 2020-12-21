@@ -6,14 +6,13 @@ const SearchBar: React.FC = () => {
   const onSearch = async () => {}
   const reviewStatusOpts = [
     { label: '全部', value: 0 },
-    { label: '已通過', value: 1 },
-    { label: '已拒絕', value: 2 },
-    { label: '已過期', value: 3 },
-    { label: '未入帳', value: 4 },
+    { label: '處理中', value: 1 },
+    { label: '已通過', value: 2 },
+    { label: '已拒絕', value: 3 },
   ]
   return (
     <Form form={form} layout="inline" className="mb-2">
-      <Form.Item name="acc" label="管理者帳號">
+      <Form.Item name="acc" label="活動名稱">
         <Input.Search
           placeholder="請輸入內容"
           onSearch={onSearch}

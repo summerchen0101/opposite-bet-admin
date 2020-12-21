@@ -51,13 +51,7 @@ const columns: ColumnsType<TableItem> = [
   {
     title: '狀態',
     width: 80,
-    render: (_, row) => (
-      <>
-        summer
-        <br />
-        <ColorText green>通過</ColorText>
-      </>
-    ),
+    render: (_, row) => '未審核',
   },
   {
     title: '申請時間',
@@ -67,12 +61,17 @@ const columns: ColumnsType<TableItem> = [
   {
     title: '審核時間',
     width: 160,
-    render: (_, row) => toDateTime(row.reviewAt),
+    render: (_, row) => '-',
+  },
+  {
+    title: '審核人',
+    width: 100,
+    render: (_, row) => '-',
   },
   {
     title: '入帳時間',
     width: 160,
-    render: (_, row) => toDateTime(row.creditAt),
+    render: (_, row) => '-',
   },
   {
     title: () => '操作',

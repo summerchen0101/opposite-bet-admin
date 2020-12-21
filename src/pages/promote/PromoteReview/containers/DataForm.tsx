@@ -23,9 +23,9 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
   return (
     <Form
       layout="vertical"
-      // form={form}
+      form={form}
       onReset={onReset}
-      // initialValues={values}
+      initialValues={values}
     >
       <Form.Item label="活動名稱">
         <ColorText grey large>
