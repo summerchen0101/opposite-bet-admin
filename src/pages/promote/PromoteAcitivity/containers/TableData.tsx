@@ -11,6 +11,7 @@ import {
   CloseCircleOutlined,
   CopyOutlined,
   EditOutlined,
+  DeleteOutlined,
 } from '@ant-design/icons'
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
@@ -92,6 +93,9 @@ const columns: ColumnsType<TableItem> = [
             onClick={() => history.push(EditPromoteAcitivity.path)}
           />
           <IconLink icon={<CopyOutlined />} label="複製" />
+          <PopupConfirm onConfirm={() => {}}>
+            <IconLink icon={<DeleteOutlined />} label="刪除" />
+          </PopupConfirm>
         </Space>
       )
     },
