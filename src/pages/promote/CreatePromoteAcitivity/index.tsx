@@ -5,13 +5,13 @@ import React from 'react'
 import DataForm, { FormData } from '../PromoteAcitivity/containers/DataForm'
 import { useAPIService } from '../PromoteAcitivity/service'
 import PageHeader from './components/PageHeader'
+
 const CreatePromoteActivity: React.FC = () => {
   const [form] = AntForm.useForm<FormData>()
   const { onCreate } = useAPIService()
   const handleSubmit = async () => {
     try {
       const v = (await form.validateFields()) as FormData
-      console.log(v)
       await onCreate({
         title: v.title,
         content: v.content,

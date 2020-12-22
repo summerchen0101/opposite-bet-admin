@@ -24,12 +24,12 @@ import { selectTableData, useTypedSelector } from '../selectors'
 import { useAPIService } from '../service'
 
 const columns: ColumnsType<Activity> = [
-  {
-    title: '排序',
-    width: 100,
-    render: (_, row) => <DragHandler />,
-    className: 'drag-visible',
-  },
+  // {
+  //   title: '排序',
+  //   width: 100,
+  //   render: (_, row) => <DragHandler />,
+  //   className: 'drag-visible',
+  // },
   {
     title: '優惠名稱',
     width: 200,
@@ -84,15 +84,19 @@ const columns: ColumnsType<Activity> = [
       const { getFormData, onDelete } = useAPIService()
       return (
         <Space size="small">
-          <PopupConfirm title="請確認是否要停用?">
+          {/* <PopupConfirm title="請確認是否要停用?">
             <IconLink icon={<CloseCircleOutlined />} label="停用" color="red" />
-          </PopupConfirm>
+          </PopupConfirm> */}
           <IconLink
             icon={<EditOutlined />}
             label="編輯"
             onClick={() => history.push(`/promote/edit/${row.id}`)}
           />
-          <IconLink icon={<CopyOutlined />} label="複製" />
+          <IconLink
+            icon={<CopyOutlined />}
+            label="複製"
+            onClick={() => history.push(`/promote/edit/${row.id}?copy=1`)}
+          />
           <PopupConfirm onConfirm={() => onDelete(row.id)}>
             <IconLink icon={<DeleteOutlined />} label="刪除" />
           </PopupConfirm>

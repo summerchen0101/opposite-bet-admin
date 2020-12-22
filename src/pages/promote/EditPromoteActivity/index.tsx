@@ -1,17 +1,21 @@
 import Dashboard from '@/components/Dashboard'
 import { Status } from '@/lib/enums'
 import { Form as AntForm } from 'antd'
+import moment from 'moment'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
+import {
+  Activity,
+  CreateActivity,
+  EditActivity,
+} from '../PromoteAcitivity/API/types'
+import DataForm, { FormData } from '../PromoteAcitivity/containers/DataForm'
 import { useAPIService } from '../PromoteAcitivity/service'
 import PageHeader from './components/PageHeader'
-import DataForm, { FormData } from '../PromoteAcitivity/containers/DataForm'
-import { selectEditData, useTypedSelector } from '../PromoteAcitivity/selectors'
-import moment from 'moment'
-import { Activity } from '../PromoteAcitivity/API/types'
 
 const EditPromoteActivity: React.FC = () => {
   const params = useParams<{ id: string }>()
+  const location = useLocation()
   const [data, setData] = useState<Activity>(null)
   const { getFormData } = useAPIService()
   const getEditData = async () => {
@@ -21,13 +25,11 @@ const EditPromoteActivity: React.FC = () => {
     getEditData()
   }, [params.id])
   const [form] = AntForm.useForm()
-  const { onEdit } = useAPIService()
+  const { onEdit, onCreate } = useAPIService()
   const handleSubmit = async () => {
     try {
       const v = (await form.validateFields()) as FormData
-      console.log(v)
-      await onEdit({
-        id: +params.id,
+      const result: CreateActivity | EditActivity = {
         title: v.title,
         content: v.content,
         content_mobile: v.content_mobile,
@@ -37,7 +39,11 @@ const EditPromoteActivity: React.FC = () => {
         img_mobile: v.img_mobile,
         bonus: v.bonus,
         is_active: v.is_active === Status.ON,
-      })
+      }
+      if (location.search.includes('copy')) {
+        return await onCreate(result)
+      }
+      return await onEdit({ id: +params.id, ...result })
     } catch (info) {
       console.log('Validate Failed:', info)
     }
