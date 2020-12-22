@@ -39,7 +39,7 @@ const AreaListPopup: React.FC = () => {
       title={
         <>
           地區列表
-          <Space className="float-right mr-3">
+          {/* <Space className="float-right mr-3">
             <Button
               size="small"
               type="primary"
@@ -47,7 +47,7 @@ const AreaListPopup: React.FC = () => {
             >
               新增
             </Button>
-          </Space>
+          </Space> */}
         </>
       }
       onCancel={() => setVisible(false)}

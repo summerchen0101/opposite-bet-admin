@@ -4,6 +4,8 @@ type PopupProps<T> = [T, React.Dispatch<React.SetStateAction<T>>]
 interface IState {
   areaList: PopupProps<boolean>
   areaForm: PopupProps<boolean>
+  categoryList: PopupProps<boolean>
+  categoryForm: PopupProps<boolean>
   eventList: PopupProps<boolean>
   eventForm: PopupProps<boolean>
   gameList: PopupProps<boolean>
@@ -22,6 +24,8 @@ const PopupProvider: React.FC = ({ children }) => {
   const initialState: IState = {
     areaList: useState(false),
     areaForm: useState(false),
+    categoryList: useState(false),
+    categoryForm: useState(false),
     eventList: useState(false),
     eventForm: useState(false),
     gameList: useState(false),

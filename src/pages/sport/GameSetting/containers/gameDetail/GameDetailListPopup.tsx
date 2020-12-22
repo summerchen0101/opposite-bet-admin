@@ -45,13 +45,13 @@ const GameDetailListPopup: React.FC = () => {
           玩法細項列表
           <Space className="float-right mr-3">
             <Select options={gameOpts} defaultValue="opposite" size="small" />
-            <Button
+            {/* <Button
               size="small"
               type="primary"
               onClick={() => setFormVisible(true)}
             >
               新增
-            </Button>
+            </Button> */}
           </Space>
         </>
       }

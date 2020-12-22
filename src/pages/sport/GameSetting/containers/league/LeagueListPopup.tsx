@@ -39,7 +39,7 @@ const LeagueListPopup: React.FC = () => {
       title={
         <>
           聯盟列表
-          <Space className="float-right mr-3">
+          {/* <Space className="float-right mr-3">
             <Button
               size="small"
               type="primary"
@@ -47,7 +47,7 @@ const LeagueListPopup: React.FC = () => {
             >
               新增
             </Button>
-          </Space>
+          </Space> */}
         </>
       }
       onCancel={() => setVisible(false)}

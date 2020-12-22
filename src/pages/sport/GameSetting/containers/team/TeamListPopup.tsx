@@ -45,13 +45,13 @@ const TeamListPopup: React.FC = () => {
           <Space className="float-right mr-3">
             <Select options={areaOpts} defaultValue="USA" />
             <Select options={leagueOpts} defaultValue="xxxx" />
-            <Button
+            {/* <Button
               size="small"
               type="primary"
               onClick={() => setFormVisible(true)}
             >
               新增
-            </Button>
+            </Button> */}
           </Space>
         </>
       }

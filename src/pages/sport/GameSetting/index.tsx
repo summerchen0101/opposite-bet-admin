@@ -1,26 +1,28 @@
 import Dashboard from '@/components/Dashboard'
-import PopupProvider from './context/PopupProvider'
 import { Col, Divider, Row } from 'antd'
 import React from 'react'
 import PageHeader from './components/PageHeader'
-import AreaTable from './containers/area/AreaTable'
-import AreaListPopup from './containers/area/AreaListPopup'
 import AreaFormPopup from './containers/area/AreaFormPopup'
-import EventTable from './containers/event/EventTable'
-import GameTable from './containers/game/GameTable'
-import GameDetailTable from './containers/gameDetail/GameDetailTable'
-import TeamTable from './containers/team/TeamTable'
-import LeagueTable from './containers/league/LeagueTable'
-import EventListPopup from './containers/event/EventListPopup'
+import AreaListPopup from './containers/area/AreaListPopup'
+import AreaTable from './containers/area/AreaTable'
+import CategoryFormPopup from './containers/category/CategoryFormPopup'
+import CategoryListPopup from './containers/category/CategoryListPopup'
+import CategoryTable from './containers/category/CategoryTable'
 import EventFormPopup from './containers/event/EventFormPopup'
-import GameListPopup from './containers/game/GameListPopup'
+import EventListPopup from './containers/event/EventListPopup'
+import EventTable from './containers/event/EventTable'
 import GameFormPopup from './containers/game/GameFormPopup'
-import GameDetailListPopup from './containers/gameDetail/GameDetailListPopup'
+import GameListPopup from './containers/game/GameListPopup'
+import GameTable from './containers/game/GameTable'
 import GameDetailFormPopup from './containers/gameDetail/GameDetailFormPopup'
-import LeagueListPopup from './containers/league/LeagueListPopup'
+import GameDetailListPopup from './containers/gameDetail/GameDetailListPopup'
 import LeagueFormPopup from './containers/league/LeagueFormPopup'
-import TeamListPopup from './containers/team/TeamListPopup'
+import LeagueListPopup from './containers/league/LeagueListPopup'
+import LeagueTable from './containers/league/LeagueTable'
 import TeamFormPopup from './containers/team/TeamFormPopup'
+import TeamListPopup from './containers/team/TeamListPopup'
+import TeamTable from './containers/team/TeamTable'
+import PopupProvider from './context/PopupProvider'
 
 const GameSettingPage: React.FC = () => {
   return (
@@ -36,6 +38,8 @@ const GameSettingPage: React.FC = () => {
             <TeamTable />
           </Col>
           <Col span={12} className="mb-2">
+            <CategoryTable />
+            <Divider />
             <EventTable />
             <Divider />
             <GameTable />
@@ -43,6 +47,9 @@ const GameSettingPage: React.FC = () => {
         </Row>
       </Dashboard>
       <AreaListPopup />
+      <AreaFormPopup />
+      <CategoryListPopup />
+      <CategoryFormPopup />
       <AreaFormPopup />
       <EventListPopup />
       <EventFormPopup />
