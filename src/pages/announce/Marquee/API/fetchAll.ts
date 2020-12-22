@@ -2,7 +2,7 @@ import Request from '@/utils/request'
 import { Marquee, SearchFields } from './types'
 
 export interface Response {
-  news: Marquee[]
+  marquees: Marquee[]
   total_count: number
   total_page: number
 }

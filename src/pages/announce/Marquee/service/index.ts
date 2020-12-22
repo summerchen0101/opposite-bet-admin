@@ -21,7 +21,7 @@ export const useAPIService = () => {
   const getTableData = async (search?: SearchFields) => {
     try {
       const res = await API.Marquee.fetchAll(search)
-      dispatch(setTableData(res.data.news))
+      dispatch(setTableData(res.data.marquees))
     } catch (err) {
       apiErr(err)
     }
