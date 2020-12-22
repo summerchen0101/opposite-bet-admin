@@ -21,7 +21,7 @@ export interface FormData {
 }
 
 interface FormProps {
-  form: FormInstance<any>
+  form: FormInstance<FormData>
   values?: FormData
 }
 
@@ -34,7 +34,11 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
     <Form form={form} initialValues={values}>
       <Row gutter={32} className="mb-2">
         <Col span={12}>
-          <FormField label="活動名稱" name="title">
+          <FormField
+            label="活動名稱"
+            name="title"
+            rules={[{ required: true, max: 60 }]}
+          >
             <Input placeholder="請輸入內容" />
           </FormField>
         </Col>
@@ -60,26 +64,38 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
           </FormField>
         </Col>
         <Col span={12}>
-          <FormField label="活動獎金" name="bonus">
-            <InputNumber style={{ width: '200px' }} placeholder="0" />
+          <FormField label="活動獎金" name="bonus" rules={[{ required: true }]}>
+            <InputNumber style={{ width: '200px' }} min={1} />
           </FormField>
         </Col>
       </Row>
 
       <Collapse defaultActiveKey={['1', '2']}>
         <Collapse.Panel header="桌上型電腦" key="1">
-          <FormField name="img">
+          <FormField
+            name="img"
+            rules={[{ required: true, message: '請選擇圖片' }]}
+          >
             <ImageUpload />
           </FormField>
-          <FormField name="content">
+          <FormField
+            name="content"
+            rules={[{ required: true, message: '請輸入活動內容' }]}
+          >
             <ContentEditor />
           </FormField>
         </Collapse.Panel>
         <Collapse.Panel header="手機" key="2">
-          <FormField name="img_mobile">
+          <FormField
+            name="img_mobile"
+            rules={[{ required: true, message: '請選擇圖片' }]}
+          >
             <ImageUpload />
           </FormField>
-          <FormField name="content_mobile">
+          <FormField
+            name="content_mobile"
+            rules={[{ required: true, message: '請輸入活動內容' }]}
+          >
             <ContentEditor />
           </FormField>
         </Collapse.Panel>
