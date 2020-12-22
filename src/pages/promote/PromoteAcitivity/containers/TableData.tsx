@@ -39,12 +39,17 @@ const columns: ColumnsType<Activity> = [
   {
     title: '優惠期限',
     width: 200,
-    render: (_, row) => (
-      <>
-        {toDateTime(row.start_at)} <br />
-        {toDateTime(row.end_at)}
-      </>
-    ),
+    render: (_, row) => {
+      if (row.start_at || row.end_at) {
+        return (
+          <>
+            {row.start_at ? toDateTime(row.start_at) : '-'} <br />
+            {row.end_at ? toDateTime(row.end_at) : '-'}
+          </>
+        )
+      }
+      return '無限期'
+    },
   },
   {
     title: '啟用狀態',
@@ -53,7 +58,7 @@ const columns: ColumnsType<Activity> = [
       if (row.is_active) {
         return <ColorText green>啟用</ColorText>
       }
-      return <ColorText red>關閉</ColorText>
+      return <ColorText red>停用</ColorText>
     },
   },
   // {
@@ -64,7 +69,7 @@ const columns: ColumnsType<Activity> = [
   //     if (row.is_active) {
   //       return <ColorText green>進行中</ColorText>
   //     }
-  //     return <ColorText red>關閉</ColorText>
+  //     return <ColorText red>停用</ColorText>
   //   },
   // },
   {

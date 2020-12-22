@@ -28,14 +28,14 @@ const SearchBar: React.FC = () => {
           style={{ width: 180 }}
         />
       </Form.Item>
-      <Form.Item name="status" label="啟用狀態" initialValue={0}>
+      <Form.Item name="is_active" label="啟用狀態" initialValue={0}>
         <Select
           options={statusOpts}
           style={{ width: 130 }}
           onChange={onSearch}
         />
       </Form.Item>
-      <Form.Item name="process" label="期間狀態" initialValue={0}>
+      <Form.Item name="process_status" label="期間狀態" initialValue={0}>
         <Select
           options={processOpts}
           style={{ width: 130 }}

@@ -52,7 +52,7 @@ const columns: ColumnType<User>[] = [
       if (row.is_active) {
         return <ColorText green>啟用</ColorText>
       }
-      return <ColorText red>關閉</ColorText>
+      return <ColorText red>停用</ColorText>
     },
   },
   {
