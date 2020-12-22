@@ -1,5 +1,7 @@
 import { ColorText, IconLink, TableSets } from '@/components'
-import { toDateTime } from '@/utils/transfer'
+import { YesNo } from '@/lib/enums'
+import { yesNoOpts } from '@/lib/options'
+import { toDateTime, toOptionName } from '@/utils/transfer'
 import {
   CheckCircleOutlined,
   CloseCircleOutlined,
@@ -9,26 +11,26 @@ import {
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
-import { News } from '../API/types'
+import { Marquee } from '../API/types'
 import { usePopupProvider } from '../context/PopupProvider'
 import { selectTableData, useTypedSelector } from '../selectors'
 import { useAPIService } from '../service'
 
-const columns: ColumnsType<News> = [
+const columns: ColumnsType<Marquee> = [
   {
-    title: '標題',
+    title: '內容',
     width: 180,
-    render: (_, row) => row.title,
+    render: (_, row) => row.content,
   },
   {
     title: '另開視窗',
-    width: 80,
-    render: (_, row) => '是',
+    width: 110,
+    render: (_, row) => toOptionName(yesNoOpts, row.is_blank ? 1 : 2),
   },
   {
     title: '連結',
     width: 180,
-    render: (_, row) => 'http://aaa.com',
+    render: (_, row) => row.url,
   },
   {
     title: '狀態',
@@ -65,7 +67,6 @@ const columns: ColumnsType<News> = [
   },
   {
     title: '操作',
-    fixed: ('right' as unknown) as boolean,
     render(_, row) {
       const [visible, setVisible] = usePopupProvider('editForm')
       const { getFormData, onDelete } = useAPIService()

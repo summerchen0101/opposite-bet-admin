@@ -1,4 +1,5 @@
 import Request from '@/utils/request'
-import { News } from './types'
+import { Marquee } from './types'
 
-export const fetchById = (id: number) => Request.get<News>(`news/view/${id}`)
+export const fetchById = (id: number) =>
+  Request.get<Marquee>(`marquee/view/${id}`)

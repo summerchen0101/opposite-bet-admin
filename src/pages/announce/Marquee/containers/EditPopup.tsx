@@ -17,11 +17,11 @@ const EditPopup: React.FC = () => {
       const v = (await form.validateFields()) as FormData
       await onEdit({
         id: f.id,
-        title: v.title,
         content: v.content,
-        start_at: v.date_range[0].unix(),
-        end_at: v.date_range[1].unix(),
-        news_type: v.news_type,
+        url: v.url,
+        is_blank: v.is_blank,
+        start_at: v.date_range_type === 'limit' ? v.limit_range[0].unix() : 0,
+        end_at: v.date_range_type === 'limit' ? v.limit_range[1].unix() : 0,
         is_active: v.is_active,
       })
       form.resetFields()
@@ -47,14 +47,15 @@ const EditPopup: React.FC = () => {
           form={form}
           values={{
             id: f.id,
-            title: f.title,
             content: f.content,
-            date_range: [
+            url: f.url,
+            date_range_type: f.start_at ? 'limit' : 'forever',
+            limit_range: [
               f.start_at && moment(f.start_at * 1000),
               f.end_at && moment(f.end_at * 1000),
             ],
-            news_type: f.news_type,
             is_active: f.is_active,
+            is_blank: f.is_blank,
           }}
         />
       )}

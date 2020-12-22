@@ -13,15 +13,14 @@ const CreatePopup: React.FC = () => {
   const handleSubmit = async () => {
     try {
       const v = (await form.validateFields()) as FormData
-      console.log(v)
-      // await onCreate({
-      //   title: v.title,
-      //   content: v.content,
-      //   start_at: v.date_range[0].unix(),
-      //   end_at: v.date_range[1].unix(),
-      //   news_type: v.news_type,
-      //   is_active: v.is_active,
-      // })
+      await onCreate({
+        content: v.content,
+        url: v.url,
+        is_blank: v.is_blank,
+        start_at: v.date_range_type === 'limit' ? v.limit_range[0].unix() : 0,
+        end_at: v.date_range_type === 'limit' ? v.limit_range[1].unix() : 0,
+        is_active: v.is_active,
+      })
       form.resetFields()
       setVisible(false)
     } catch (info) {
@@ -42,11 +41,12 @@ const CreatePopup: React.FC = () => {
       <DataForm
         form={form}
         values={{
-          title: '',
           content: '',
-          date_range: [null, null],
-          news_type: 2,
+          url: '',
+          date_range_type: 'forever',
+          limit_range: [null, null],
           is_active: true,
+          is_blank: false,
         }}
       />
     </PopupModal>

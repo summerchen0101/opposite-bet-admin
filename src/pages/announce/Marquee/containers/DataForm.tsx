@@ -1,16 +1,15 @@
-import { newsTypeOpts } from '@/lib/options'
-import { Col, DatePicker, Form, Input, Radio, Row, Select, Switch } from 'antd'
+import { Col, DatePicker, Form, Input, Radio, Row, Switch } from 'antd'
 import { FormInstance } from 'antd/lib/form'
 import moment, { Moment } from 'moment'
 import React, { useEffect } from 'react'
-import { NewsType } from '../API/types'
 export interface FormData {
   id?: number
-  title: string
   content: string
-  date_range: [Moment, Moment]
-  news_type: NewsType
+  date_range_type: string
+  limit_range: [Moment, Moment]
   is_active: boolean
+  is_blank: boolean
+  url: string
 }
 interface FormProps {
   form: FormInstance<any>
@@ -33,13 +32,13 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
       onReset={onReset}
       initialValues={values}
     >
-      <Form.Item label="標題" name="title">
+      {/* <Form.Item label="內容" name="content">
         <Input />
-      </Form.Item>
-      <Form.Item label="連結" name="link">
+      </Form.Item> */}
+      <Form.Item label="連結" name="url">
         <Input placeholder="ex: http://google.com" />
       </Form.Item>
-      <Form.Item label="期間" name="date_range_type" initialValue="forever">
+      <Form.Item label="期間" name="date_range_type">
         <Radio.Group>
           <Radio value="forever">無限期</Radio>
           <Radio value="limit">
@@ -53,7 +52,7 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
           </Radio>
         </Radio.Group>
       </Form.Item>
-      <Form.Item label="簡中內容(3000字以下)" name="content">
+      <Form.Item label="內容(50字以下)" name="content">
         <Input.TextArea />
       </Form.Item>
       <Row gutter={16}>
@@ -63,12 +62,7 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
           </Form.Item>
         </Col>
         <Col span={12}>
-          <Form.Item
-            label="另開視窗"
-            name="open_win"
-            valuePropName="checked"
-            initialValue={true}
-          >
+          <Form.Item label="另開視窗" name="is_blank" valuePropName="checked">
             <Switch />
           </Form.Item>
         </Col>

@@ -3,13 +3,11 @@ import { statusOpts } from '@/lib/options'
 import { DatePicker, Form, Input, Select } from 'antd'
 import { Moment } from 'moment'
 import React from 'react'
-import { NewsType } from '../API/types'
 import { useAPIService } from '../service'
 
 interface SearchFormData {
   date_range: [Moment, Moment]
-  title: string
-  news_type: NewsType
+  content: string
   is_active: Status
 }
 
@@ -19,8 +17,7 @@ const SearchBar: React.FC = () => {
   const onSearch = async () => {
     const f = (await form.validateFields()) as SearchFormData
     await getTableData({
-      title: f.title,
-      news_type: f.news_type,
+      content: f.content,
       is_active: f.is_active,
       start_at: f.date_range?.[0].unix(),
       end_at: f.date_range?.[1].unix(),
@@ -31,7 +28,7 @@ const SearchBar: React.FC = () => {
       <Form.Item label="期間" name="date_range">
         <DatePicker.RangePicker onChange={onSearch} />
       </Form.Item>
-      <Form.Item label="標題" name="title">
+      <Form.Item label="內容" name="content">
         <Input.Search onSearch={onSearch} allowClear />
       </Form.Item>
       <Form.Item label="狀態" name="is_active" initialValue={0}>
