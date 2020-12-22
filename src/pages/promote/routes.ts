@@ -20,8 +20,8 @@ export const CreatePromoteAcitivity = new PageG(
 )
 export const EditPromoteAcitivity = new PageG(
   '編輯活動',
-  `${rootPath}/edit`,
-  pages.CreatePromoteAcitivity,
+  `${rootPath}/edit/:id`,
+  pages.EditPromoteActivity,
 )
 export const PromoteReview = new PageG(
   '活動審核',

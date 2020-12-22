@@ -1,19 +1,26 @@
+import { ProcessStatus } from '@/lib/enums'
 import { statusOpts } from '@/lib/options'
 import { Form, Input, Select } from 'antd'
 import React from 'react'
+import { SearchFields } from '../API/types'
+import { useAPIService } from '../service'
 
 const SearchBar: React.FC = () => {
   const [form] = Form.useForm()
-  const onSearch = async () => {}
+  const { getTableData } = useAPIService()
+  const onSearch = async () => {
+    const f = (await form.validateFields()) as SearchFields
+    await getTableData(f)
+  }
   const processOpts = [
     { label: '全部', value: 0 },
-    { label: '未開始', value: 1 },
-    { label: '進行中', value: 2 },
-    { label: '已過期', value: 3 },
+    { label: '未開始', value: ProcessStatus.Pending },
+    { label: '進行中', value: ProcessStatus.Running },
+    { label: '已過期', value: ProcessStatus.Finish },
   ]
   return (
     <Form form={form} layout="inline" className="mb-2">
-      <Form.Item name="acc" label="活動名稱">
+      <Form.Item name="title" label="活動名稱">
         <Input.Search
           placeholder="請輸入內容"
           onSearch={onSearch}

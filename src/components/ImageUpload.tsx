@@ -1,6 +1,6 @@
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons'
-import { message, Upload } from 'antd'
-import React, { useState } from 'react'
+import { LoadingOutlined, UploadOutlined } from '@ant-design/icons'
+import { Button, Input, message, Upload } from 'antd'
+import React, { useEffect, useRef, useState } from 'react'
 
 function getBase64(img, callback) {
   const reader = new FileReader()
@@ -20,45 +20,37 @@ function beforeUpload(file) {
   return isJpgOrPng && isLt2M
 }
 
-const ImageUpload: React.FC = () => {
+const ImageUpload: React.FC<{
+  onChange?: (dataUrl: string) => void
+  value?: string
+}> = ({ onChange, value }) => {
   const [loading, setLoading] = useState(false)
   const [imageUrl, setImageUrl] = useState('')
-  const handleChange = (info) => {
-    if (info.file.status === 'uploading') {
-      setLoading(true)
-      return
-    }
-    if (info.file.status === 'done') {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj, (imageUrl) => {
-        setImageUrl(imageUrl)
-        setLoading(false)
-      })
-    }
+  const fileInput = useRef<HTMLInputElement>(null)
+  useEffect(() => {
+    setImageUrl(value)
+  }, [value])
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLoading(true)
+    const file = e.target.files[0]
+    getBase64(file, (imageUrl) => {
+      setImageUrl(imageUrl)
+      onChange && onChange(imageUrl)
+      setLoading(false)
+    })
   }
 
-  const uploadButton = (
-    <div>
-      {loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div style={{ marginTop: 8 }}>Upload</div>
-    </div>
-  )
   return (
-    <Upload
-      name="avatar"
-      listType="picture-card"
-      className="avatar-uploader"
-      showUploadList={false}
-      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-      beforeUpload={beforeUpload}
-      onChange={handleChange}
-    >
-      {imageUrl ? (
-        <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
-      ) : (
-        uploadButton
-      )}
-    </Upload>
+    <>
+      <input hidden ref={fileInput} type="file" onChange={handleChange} />
+      {imageUrl && <img src={imageUrl} style={{ maxWidth: '50%' }} />}
+      <Button
+        icon={<UploadOutlined />}
+        onClick={() => fileInput.current.click()}
+      >
+        上傳圖片 {loading && 'loading...'}
+      </Button>
+    </>
   )
 }
 

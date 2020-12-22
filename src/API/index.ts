@@ -9,6 +9,7 @@ import * as menuManage from '@/pages/admin/MenuManage/API'
 import * as announceManage from '@/pages/announce/AnnounceManage/API'
 import * as Marquee from '@/pages/announce/Marquee/API'
 import * as Message from '@/pages/announce/Message/API'
+import * as Activity from '@/pages/promote/PromoteAcitivity/API'
 
 const API = {
   login,
@@ -20,6 +21,7 @@ const API = {
   announceManage,
   menuManage,
   Marquee,
+  Activity,
   Message,
 }
 

@@ -15,7 +15,7 @@ interface SearchFormData {
 
 const SearchBar: React.FC = () => {
   const { getTableData } = useAPIService()
-  const [form] = Form.useForm()
+  const [form] = Form.useForm<SearchFormData>()
   const typeOpts = newsTypeOpts
   const onSearch = async () => {
     const f = (await form.validateFields()) as SearchFormData

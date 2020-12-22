@@ -10,29 +10,20 @@ import { toDateTime } from '@/utils/transfer'
 import {
   CloseCircleOutlined,
   CopyOutlined,
-  EditOutlined,
   DeleteOutlined,
+  EditOutlined,
 } from '@ant-design/icons'
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import arrayMove from 'array-move'
-import moment from 'moment'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import styled from 'styled-components'
 import { EditPromoteAcitivity } from '../../routes'
-interface TableItem {
-  index: number
-  id: string
-  name: string
-  startAt: string
-  endAt: string
-  status: number
-  updatedBy: string
-  updatedAt: string
-}
+import { Activity } from '../API/types'
+import { selectTableData, useTypedSelector } from '../selectors'
+import { useAPIService } from '../service'
 
-const columns: ColumnsType<TableItem> = [
+const columns: ColumnsType<Activity> = [
   {
     title: '排序',
     width: 100,
@@ -41,9 +32,8 @@ const columns: ColumnsType<TableItem> = [
   },
   {
     title: '優惠名稱',
-    dataIndex: 'name',
     width: 200,
-    render: (_, row) => row.name,
+    render: (_, row) => row.title,
     className: 'drag-visible',
   },
   {
@@ -51,30 +41,39 @@ const columns: ColumnsType<TableItem> = [
     width: 200,
     render: (_, row) => (
       <>
-        {toDateTime(row.startAt)} <br />
-        {toDateTime(row.endAt)}
+        {toDateTime(row.start_at)} <br />
+        {toDateTime(row.end_at)}
       </>
     ),
   },
   {
     title: '啟用狀態',
-    dataIndex: 'status',
     width: 120,
-    render: (_, row) => <ColorText green>啟用</ColorText>,
+    render: (_, row) => {
+      if (row.is_active) {
+        return <ColorText green>啟用</ColorText>
+      }
+      return <ColorText red>關閉</ColorText>
+    },
   },
-  {
-    title: '期間狀態',
-    dataIndex: 'status',
-    width: 120,
-    render: (_, row) => <ColorText green>進行中</ColorText>,
-  },
+  // {
+  //   title: '期間狀態',
+  //   dataIndex: 'status',
+  //   width: 120,
+  //   render: (_, row) => {
+  //     if (row.is_active) {
+  //       return <ColorText green>進行中</ColorText>
+  //     }
+  //     return <ColorText red>關閉</ColorText>
+  //   },
+  // },
   {
     title: '更新人員/時間',
     width: 200,
     render: (_, row) => (
       <>
-        {row.updatedBy} <br />
-        {toDateTime(row.updatedAt)}
+        {row.editor} <br />
+        {toDateTime(row.updated_at)}
       </>
     ),
   },
@@ -82,6 +81,7 @@ const columns: ColumnsType<TableItem> = [
     title: '操作',
     render(_, row) {
       const history = useHistory()
+      const { getFormData, onDelete } = useAPIService()
       return (
         <Space size="small">
           <PopupConfirm title="請確認是否要停用?">
@@ -90,10 +90,10 @@ const columns: ColumnsType<TableItem> = [
           <IconLink
             icon={<EditOutlined />}
             label="編輯"
-            onClick={() => history.push(EditPromoteAcitivity.path)}
+            onClick={() => history.push(`/promote/edit/${row.id}`)}
           />
           <IconLink icon={<CopyOutlined />} label="複製" />
-          <PopupConfirm onConfirm={() => {}}>
+          <PopupConfirm onConfirm={() => onDelete(row.id)}>
             <IconLink icon={<DeleteOutlined />} label="刪除" />
           </PopupConfirm>
         </Space>
@@ -103,50 +103,34 @@ const columns: ColumnsType<TableItem> = [
   },
 ]
 
-const data = []
-for (let i = 1; i <= 10; i++) {
-  data.push({
-    index: i,
-    id: i.toString(),
-    name: '會員首儲優惠',
-    startAt: moment().unix(),
-    endAt: moment().unix(),
-    status: 1,
-    updatedBy: 'frola',
-    updatedAt: moment().unix(),
-  })
-}
-
-const DraggableContainer = (props) => (
-  <SortableWrapper
-    useDragHandle
-    helperClass="row-dragging"
-    onSortEnd={onSortEnd}
-    {...props}
-  />
-)
-
-const DraggableBodyRow = ({ className, style, ...restProps }) => {
-  const index = data.findIndex((x) => x.index === restProps['data-row-key'])
-  return <SortableItem index={index} {...restProps} />
-}
-
-const onSortEnd = ({ oldIndex, newIndex }) => {
-  if (oldIndex !== newIndex) {
-    const newData = arrayMove([].concat(data), oldIndex, newIndex).filter(
-      (el) => !!el,
-    )
-    console.log('Sorted items: ', newData)
-    // data = newData
-  }
-}
-
 const TableData: React.FC = () => {
+  const data = useTypedSelector(selectTableData)
+  const DraggableBodyRow = ({ className, style, ...restProps }) => {
+    const index = data.findIndex((x) => x.id === restProps['data-row-key'])
+    return <SortableItem index={index} {...restProps} />
+  }
+
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    if (oldIndex !== newIndex) {
+      const newData = arrayMove([].concat(data), oldIndex, newIndex).filter(
+        (el) => !!el,
+      )
+      console.log('Sorted items: ', newData)
+      // data = newData
+    }
+  }
+  const DraggableContainer = (props) => (
+    <SortableWrapper
+      useDragHandle
+      helperClass="row-dragging"
+      onSortEnd={onSortEnd}
+      {...props}
+    />
+  )
   return (
     <TableSets
       columns={columns}
       data={data}
-      rowKey="index"
       components={{
         body: {
           wrapper: DraggableContainer,

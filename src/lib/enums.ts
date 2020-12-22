@@ -20,3 +20,10 @@ export enum LevelCode {
   Agent = 'L4',
   Member = 'L5',
 }
+
+export enum ProcessStatus {
+  Pending = 1,
+  Running = 2,
+  Finish = 3,
+  Cancel = 4,
+}
