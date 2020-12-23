@@ -23,36 +23,16 @@ export const BlackIp = new PageG(
   `${rootPath}/black-ip`,
   pages.BlackIp,
 )
-export const MemberLabel = new PageG(
-  '標籤管理',
-  `${rootPath}/member-label`,
-  pages.MemberLabel,
-  {
-    exact: true,
-  },
-)
-export const MemberLabelDetail = new PageG(
-  '會員數',
-  `${rootPath}/member-label/detail`,
-  pages.MemberLabelDetail,
-)
+
 export const Faq = new PageG('常見問題', `${rootPath}/faq`, pages.Faq)
 
 // ROUTERS
-RouteG.create([
-  Carousel,
-  PageManage,
-  Faq,
-  MemberLabel,
-  MemberLabelDetail,
-  BlackIp,
-])
+RouteG.create([Carousel, PageManage, Faq, BlackIp])
 
 // MENU
 MenuG.createCategory(rootName, rootPath, HomeOutlined, [
   Carousel,
   PageManage,
   Faq,
-  MemberLabel,
   BlackIp,
 ])

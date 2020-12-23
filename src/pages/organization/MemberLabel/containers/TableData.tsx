@@ -4,7 +4,7 @@ import { DeleteOutlined, EditFilled, FilterFilled } from '@ant-design/icons'
 import { Space } from 'antd'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { MemberLabelDetail } from '@/pages/website/routes'
+import { MemberLabelDetail } from '@/pages/organization/routes'
 
 const columns = [
   {
