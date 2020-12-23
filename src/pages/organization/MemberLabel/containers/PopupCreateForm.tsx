@@ -27,25 +27,11 @@ const CreateForm: React.FC = () => {
   return (
     <PopupModal visible={isDisplay} title="新增標籤" onCancel={onCancel}>
       <Form form={form} onFinish={onFinish} onFinishFailed={onFinishFailed}>
-        <FormField label="標籤名稱" name="name" required>
+        <FormField label="標籤名稱" name="name">
           <Input />
         </FormField>
-        <FormField label="說明" name="desc" required>
+        <FormField label="說明" name="desc">
           <Input.TextArea />
-        </FormField>
-        <FormField label="備註" name="notes">
-          <Input.TextArea />
-        </FormField>
-
-        <FormField style={{ marginTop: '20px', textAlign: 'center' }}>
-          <Space size="large">
-            <Button htmlType="reset" onClick={onReset}>
-              重置
-            </Button>
-            <Button type="primary" htmlType="submit">
-              送出
-            </Button>
-          </Space>
         </FormField>
       </Form>
     </PopupModal>

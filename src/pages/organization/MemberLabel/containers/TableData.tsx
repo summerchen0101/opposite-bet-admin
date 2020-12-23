@@ -9,23 +9,18 @@ import { MemberLabelDetail } from '@/pages/organization/routes'
 const columns = [
   {
     title: '標籤名稱',
-    width: 100,
-    render: (_, row) => <Link to={MemberLabelDetail.path}>危險客戶</Link>,
+    width: 150,
+    render: (_, row) => '危險客戶',
   },
   {
     title: '說明',
-    width: 120,
+    width: 180,
     render: (_, row) => '-',
   },
   {
     title: '會員數',
     width: 140,
-    render: (_, row) => 80,
-  },
-  {
-    title: '備註',
-    width: 120,
-    render: (_, row) => '-',
+    render: (_, row) => <Link to={MemberLabelDetail.path}>30</Link>,
   },
   {
     title: '更新人員',
@@ -35,7 +30,7 @@ const columns = [
   {
     title: '更新時間',
     render: (_, row) => '2020-12-12 10:49',
-    width: 120,
+    width: 180,
   },
   {
     title: () => (

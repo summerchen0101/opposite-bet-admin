@@ -13,6 +13,7 @@ import PageHeader from './components/PageHeader'
 import PopupCreateForm from './containers/PopupCreateForm'
 import TableData from './containers/TableData'
 import reducer, { initSearchState, moduleName } from './reducer'
+import SearchBar from './containers/SearchBar'
 
 const Manager: React.FC = () => {
   useReducerInjector(moduleName, reducer)
@@ -23,13 +24,7 @@ const Manager: React.FC = () => {
   return (
     <Dashboard>
       <PageHeader />
-      <PageSearchBar style={{ marginBottom: 10 }}>
-        <KeywordSearch />
-      </PageSearchBar>
-      <PageSearchBar>
-        <DateRangePicker />
-        <RelativeDateBtns />
-      </PageSearchBar>
+      <SearchBar />
       <TableData />
       <PopupCreateForm />
     </Dashboard>
