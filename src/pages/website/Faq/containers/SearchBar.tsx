@@ -21,13 +21,6 @@ const SearchBar: React.FC = () => {
           onChange={onSearch}
         />
       </Form.Item>
-      <Form.Item name="open_win" label="另開視窗" initialValue={0}>
-        <Select
-          options={yesNoOpts}
-          style={{ width: 130 }}
-          onChange={onSearch}
-        />
-      </Form.Item>
     </Form>
   )
 }

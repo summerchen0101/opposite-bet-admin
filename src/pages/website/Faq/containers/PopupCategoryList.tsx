@@ -25,8 +25,8 @@ const CategoryListForm: React.FC = () => {
       width: '60px',
     },
     {
-      title: '分類標題',
-      render: (_, row) => '存款',
+      title: '分類名稱',
+      render: (_, row) => '存款問題',
     },
     {
       title: '狀態',
@@ -52,7 +52,12 @@ const CategoryListForm: React.FC = () => {
   const data = [...Array(5)].map((t, i) => ({ ...t, key: i }))
   const handleCreateClicked = () => dispatch(toggleCategoryCreateModal(true))
   return (
-    <PopupModal visible={isDisplay} title="分類列表" onCancel={onCancel}>
+    <PopupModal
+      visible={isDisplay}
+      title="分類列表"
+      onCancel={onCancel}
+      footer={false}
+    >
       <Button onClick={handleCreateClicked} type="primary" className="mb-2">
         新增
       </Button>

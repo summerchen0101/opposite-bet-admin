@@ -4,24 +4,14 @@ import { Space } from 'antd'
 import React from 'react'
 const columns = [
   {
-    title: '排序',
-    width: 70,
-    render: (_, row) => <MenuOutlined />,
-  },
-  {
     title: '分類',
     width: 140,
-    render: (_, row) => '儲存相關',
+    render: (_, row) => '存款問題',
   },
   {
     title: '標題',
     width: 140,
     render: (_, row) => <a>如何儲值</a>,
-  },
-  {
-    title: '另開視窗',
-    width: 80,
-    render: (_, row) => '是',
   },
   {
     title: '狀態',

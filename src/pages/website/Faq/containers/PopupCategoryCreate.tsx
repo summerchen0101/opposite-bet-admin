@@ -1,6 +1,6 @@
 import Form, { FormField } from '@/components/Form'
 import PopupModal from '@/components/PopupModal'
-import { Button, Checkbox, Input, Select, Space } from 'antd'
+import { Input, Select, Switch } from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleCategoryCreateModal } from '../reducer'
@@ -31,8 +31,11 @@ const CategoryCreateForm: React.FC = () => {
       width={300}
     >
       <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
-        <FormField label="分類名稱" name="mainTeam" required>
+        <FormField label="分類名稱" name="mainTeam">
           <Input />
+        </FormField>
+        <FormField label="狀態" name="is_active" valuePropName="checked">
+          <Switch />
         </FormField>
       </Form>
     </PopupModal>
