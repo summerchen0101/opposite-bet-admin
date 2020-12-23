@@ -18,18 +18,12 @@ export const GameLimit = new PageG(
   `${rootPath}/game-limit`,
   pages.GameLimit,
 )
-export const AutoOdds = new PageG(
-  '獲利降賠設置',
-  `${rootPath}/auto-odds`,
-  pages.AutoOdds,
-)
 
 // ROUTERS
-RouteG.create([GameSetting, GameLimit, AutoOdds])
+RouteG.create([GameSetting, GameLimit])
 
 // MENU
 MenuG.createCategory(rootName, rootPath, DribbbleOutlined, [
   GameSetting,
-  AutoOdds,
   GameLimit,
 ])

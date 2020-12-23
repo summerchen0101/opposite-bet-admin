@@ -5,25 +5,30 @@ import {
   SettingOutlined,
   MinusCircleOutlined,
   PlusOutlined,
+  PlusCircleTwoTone,
 } from '@ant-design/icons'
 import { useForm } from 'antd/lib/form/Form'
-
-const DataForm: React.FC<{ title: string; count: number }> = ({
-  title,
-  count,
-}) => {
+import { usePopupProvider } from '../context/PopupProvider'
+interface DataProps {
+  label: string
+  code: string
+  count: number
+}
+const DataForm: React.FC<{ data: DataProps }> = ({ data }) => {
+  const { label, count, code } = data
   const [form] = useForm()
+  const setVisible = usePopupProvider('autoOdds')[1]
   return (
-    <div>
-      <h2>{title}</h2>
+    <div className="mb-2">
+      <h2>{label}</h2>
       <Form
         form={form}
         size="small"
         initialValues={{
-          settings: [...Array(count)].map((t, i) => ({ score: `1-${i}` })),
+          [code]: [...Array(count)].map((t, i) => ({ score: `1-${i}` })),
         }}
       >
-        <Form.List name="settings">
+        <Form.List name={code}>
           {(fields, { add, remove }) => (
             <>
               {fields.map((field, index) => (
@@ -55,7 +60,7 @@ const DataForm: React.FC<{ title: string; count: number }> = ({
                   >
                     <Input placeholder="可交易量" />
                   </Form.Item>
-                  <SettingOutlined onClick={() => {}} />
+                  <SettingOutlined onClick={() => setVisible(true)} />
                   <Form.Item
                     {...field}
                     name={[field.name, 'maxPerBet']}
@@ -76,9 +81,16 @@ const DataForm: React.FC<{ title: string; count: number }> = ({
                   </Form.Item>
 
                   <MinusCircleOutlined onClick={() => remove(field.name)} />
+                  <PlusCircleTwoTone
+                    style={{
+                      visibility:
+                        index === fields.length - 1 ? 'visible' : 'hidden',
+                    }}
+                    onClick={() => add()}
+                  />
                 </Space>
               ))}
-              <Form.Item>
+              {/* <Form.Item>
                 <Button
                   type="dashed"
                   onClick={() => add()}
@@ -87,7 +99,7 @@ const DataForm: React.FC<{ title: string; count: number }> = ({
                 >
                   增加比分
                 </Button>
-              </Form.Item>
+              </Form.Item> */}
             </>
           )}
         </Form.List>
