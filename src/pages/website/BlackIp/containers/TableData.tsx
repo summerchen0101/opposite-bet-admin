@@ -1,10 +1,10 @@
 import { IconLink, PopupConfirm, Text } from '@/components'
 import TableSets from '@/components/TableSets'
 import {
+  CloseCircleOutlined,
   DeleteOutlined,
   EditFilled,
   FilterFilled,
-  StopOutlined,
 } from '@ant-design/icons'
 import { Space } from 'antd'
 import React from 'react'
@@ -16,19 +16,9 @@ const columns = [
     render: (_, row) => '0.0.0.0',
   },
   {
-    title: '國別',
-    width: 80,
-    render: (_, row) => '韓國',
-  },
-  {
     title: '狀態',
     width: 80,
-    render: (_, row) => <Text color="success">允許</Text>,
-  },
-  {
-    title: '類型',
-    width: 80,
-    render: (_, row) => '白名單',
+    render: (_, row) => <Text color="success">啟用</Text>,
   },
   {
     title: '建立時間',
@@ -60,7 +50,12 @@ const columns = [
     render(_, row) {
       return (
         <Space size="small">
-          <IconLink icon={<StopOutlined />} label="阻擋" />
+          <IconLink
+            icon={<CloseCircleOutlined />}
+            label="停用"
+            color="red"
+            // onClick={() => changeActive(row.id, false)}
+          />
           <IconLink icon={<EditFilled />} label="編輯" />
           <PopupConfirm>
             <IconLink icon={<DeleteOutlined />} label="刪除" />
@@ -72,19 +67,8 @@ const columns = [
   },
 ]
 
-const data = [...Array(50)].map((t, i) => ({
+const data = [...Array(10)].map((t, i) => ({
   id: i,
-  account: 'aaaa(小白)',
-  firstDepositCount: 5,
-  firstDepositTotal: 20320,
-  onceAgainDepositCount: 10,
-  onceAgainDepositTotal: 41232,
-  firstWithdrawalCount: 5,
-  firstWithdrawalTotal: 20320,
-  onceAgainWithdrawalCount: 10,
-  onceAgainWithdrawalTotal: 41232,
-  loginCount: 20,
-  registerCount: 3,
 }))
 const TableData: React.FC = () => {
   return <TableSets columns={columns} data={data} />
