@@ -31,6 +31,26 @@ const DataForm: React.FC<{ data: DataProps }> = ({ data }) => {
         <Form.List name={code}>
           {(fields, { add, remove }) => (
             <>
+              <Space className="w-100 mb-1">
+                <Form.Item className="mb-0">
+                  <Input readOnly value="批次設定" className="bg-grey" />
+                </Form.Item>
+                <Form.Item className="mb-0">
+                  <Input placeholder="賠率" className="bg-grey" />
+                </Form.Item>
+                <Form.Item className="mb-0">
+                  <Input placeholder="可交易量" className="bg-grey" />
+                </Form.Item>
+                <SettingOutlined onClick={() => setVisible(true)} />
+                <Form.Item className="mb-0">
+                  <Input placeholder="單注上限" className="bg-grey" />
+                </Form.Item>
+                <Form.Item className="mb-0">
+                  <Input placeholder="單注下限" className="bg-grey" />
+                </Form.Item>
+                <MinusCircleOutlined style={{ visibility: 'hidden' }} />
+                <PlusCircleTwoTone style={{ visibility: 'hidden' }} />
+              </Space>
               {fields.map((field, index) => (
                 <Space key={field.key} className="w-100 mb-1">
                   <Form.Item
