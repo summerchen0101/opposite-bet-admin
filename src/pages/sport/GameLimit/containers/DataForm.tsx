@@ -100,7 +100,12 @@ const DataForm: React.FC<{ data: DataProps }> = ({ data }) => {
                     <Input placeholder="單注下限" />
                   </Form.Item>
 
-                  <MinusCircleOutlined onClick={() => remove(field.name)} />
+                  <MinusCircleOutlined
+                    style={{
+                      visibility: fields.length > 1 ? 'visible' : 'hidden',
+                    }}
+                    onClick={() => remove(field.name)}
+                  />
                   <PlusCircleTwoTone
                     style={{
                       visibility:
