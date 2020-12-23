@@ -110,7 +110,7 @@ const columns: ColumnsType<Marquee> = [
 
 const TableData: React.FC = () => {
   const data = useTypedSelector(selectTableData)
-  return <TableSets columns={columns} data={data} />
+  return <TableSets columns={columns} data={data} scroll={{ x: 1300 }} />
 }
 
 export default TableData

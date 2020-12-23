@@ -1,97 +1,116 @@
-import PopupConfirm from '@/components/PopupConfirm'
-import IconLink from '@/components/IconLink'
-import TableSets from '@/components/TableSets'
-import { DeleteOutlined, FilterFilled, EditFilled } from '@ant-design/icons'
-import { Button, Checkbox, Switch, Space } from 'antd'
+import { ColorText, IconLink, TableSets } from '@/components'
+import { YesNo } from '@/lib/enums'
+import { yesNoOpts } from '@/lib/options'
+import { toDateTime, toOptionName } from '@/utils/transfer'
+import {
+  CheckCircleOutlined,
+  CloseCircleOutlined,
+  DeleteOutlined,
+  EditFilled,
+} from '@ant-design/icons'
+import { Space } from 'antd'
+import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
-import Text from '@/components/Text'
+import { Marquee } from '../API/types'
+import { usePopupProvider } from '../context/PopupProvider'
+import { selectTableData, useTypedSelector } from '../selectors'
+import { useAPIService } from '../service'
 
-const columns = [
-  {
-    title: '編號',
-    width: 100,
-    render: (_, row) => 111,
-  },
+const columns: ColumnsType<Marquee> = [
   {
     title: '標題',
     width: 180,
-    render: (_, row) => '反波膽開始',
+    render: (_, row) => row.content,
   },
   {
-    title: '開始時間',
+    title: '另開視窗',
+    width: 110,
+    render: (_, row) => toOptionName(yesNoOpts, row.is_blank ? 1 : 2),
+  },
+  {
+    title: '連結',
     width: 180,
-    render: (_, row) => '2019-08-21 19:10:08',
-  },
-  {
-    title: '結束時間',
-    width: 180,
-    render: (_, row) => '2019-08-21 19:10:08',
-  },
-  {
-    title: '網址',
-    render: (_, row) => '-',
-    width: 140,
-  },
-  {
-    title: '連結方式',
-    width: 120,
-    render: (_, row) => '-',
+    render: (_, row) => row.url,
   },
   {
     title: '狀態',
     width: 120,
-    render: (_, row) => <Switch defaultChecked />,
+    render: (_, row) => {
+      if (row.is_active) {
+        return <ColorText green>啟用</ColorText>
+      }
+      return <ColorText red>停用</ColorText>
+    },
+  },
+  {
+    title: '期間',
+    width: 200,
+    render: (_, row) =>
+      row.start_at ? (
+        <>
+          {toDateTime(row.start_at)} <br />
+          {toDateTime(row.end_at)}
+        </>
+      ) : (
+        '-'
+      ),
   },
   {
     title: '更新人員',
     width: 120,
-    render: (_, row) => 'flora',
+    render: (_, row) => row.editor,
   },
   {
     title: '更新時間',
     width: 200,
-    render: (_, row) => '2019-07-01 10:54:36',
+    render: (_, row) => toDateTime(row.updated_at),
   },
   {
-    title: () => (
-      <>
-        <Space size="small">操作</Space>
-        <IconLink
-          icon={<FilterFilled />}
-          style={{ float: 'right', marginBottom: -4 }}
-        />
-      </>
-    ),
-    key: 'control',
-    fixed: ('right' as unknown) as boolean,
+    title: '操作',
     render(_, row) {
+      const [visible, setVisible] = usePopupProvider('editForm')
+      const { getFormData, onDelete } = useAPIService()
+      const handleEdit = async (id: number) => {
+        await getFormData(id)
+        setVisible(true)
+      }
       return (
         <Space size="small">
-          <IconLink icon={<EditFilled />} label="編輯" />
-          <IconLink icon={<DeleteOutlined />} label="刪除" />
+          {row.is_active ? (
+            <IconLink
+              icon={<CloseCircleOutlined />}
+              label="停用"
+              color="red"
+              // onClick={() => changeActive(row.id, false)}
+            />
+          ) : (
+            <IconLink
+              icon={<CheckCircleOutlined />}
+              label="啟用"
+              color="green"
+              // onClick={() => changeActive(row.id, true)}
+            />
+          )}
+          <IconLink
+            icon={<EditFilled />}
+            label="編輯"
+            onClick={() => handleEdit(row.id)}
+          />
+          <IconLink
+            icon={<DeleteOutlined />}
+            label="刪除"
+            onClick={() => onDelete(row.id)}
+          />
         </Space>
       )
     },
-    width: 70,
+    width: 100,
   },
 ]
 
-const data = [...Array(50)].map((t, i) => ({
-  id: i,
-  account: 'aaaa(小白)',
-  firstDepositCount: 5,
-  firstDepositTotal: 20320,
-  onceAgainDepositCount: 10,
-  onceAgainDepositTotal: 41232,
-  firstWithdrawalCount: 5,
-  firstWithdrawalTotal: 20320,
-  onceAgainWithdrawalCount: 10,
-  onceAgainWithdrawalTotal: 41232,
-  loginCount: 20,
-  registerCount: 3,
-}))
 const TableData: React.FC = () => {
-  return <TableSets columns={columns} data={data} />
+  const data = useTypedSelector(selectTableData)
+  return <TableSets columns={columns} data={data} scroll={{ x: 1300 }} />
 }
 
 export default TableData

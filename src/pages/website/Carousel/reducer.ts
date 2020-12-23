@@ -1,35 +1,33 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
+import {
+  ActionReducerMapBuilder,
+  createSlice,
+  PayloadAction,
+} from '@reduxjs/toolkit'
+import { Marquee } from './API/types'
 export interface IState {
-  tableData: any[]
-  displayCreateModal: boolean
+  tableData: Marquee[]
+  editData: Marquee
 }
 const initialState: IState = {
   tableData: [],
-  displayCreateModal: false,
+  editData: null,
 }
 
-export const moduleName = 'carousel'
+export const moduleName = 'Carousel'
 
 const module = createSlice({
   name: moduleName,
   initialState,
   reducers: {
-    gotTableData(state, action: PayloadAction<any[]>) {
+    setTableData(state, action: PayloadAction<Marquee[]>) {
       state.tableData = action.payload
     },
-    initSearchState(state) {
-      //
-    },
-    toggleCreateModal(state, action: PayloadAction<boolean>) {
-      state.displayCreateModal = action.payload
+    setEditData(state, action: PayloadAction<Marquee>) {
+      state.editData = action.payload
     },
   },
+  extraReducers: (builder: ActionReducerMapBuilder<IState>) => {},
 })
 
-export const {
-  gotTableData,
-  initSearchState,
-  toggleCreateModal,
-} = module.actions
+export const { setTableData, setEditData } = module.actions
 export default module.reducer

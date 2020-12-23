@@ -8,11 +8,6 @@ const rootName = '網站管理'
 const rootPath = '/website'
 
 // PAGES
-export const LandingPage = new PageG(
-  '啟動頁設置',
-  `${rootPath}/landing-page`,
-  pages.LandingPage,
-)
 export const Carousel = new PageG(
   '首頁輪播圖',
   `${rootPath}/carousel`,
@@ -39,18 +34,10 @@ export const MemberLabelDetail = new PageG(
 export const Faq = new PageG('常見問題', `${rootPath}/faq`, pages.Faq)
 
 // ROUTERS
-RouteG.create([
-  LandingPage,
-  Carousel,
-  PageManage,
-  Faq,
-  MemberLabel,
-  MemberLabelDetail,
-])
+RouteG.create([Carousel, PageManage, Faq, MemberLabel, MemberLabelDetail])
 
 // MENU
 MenuG.createCategory(rootName, rootPath, HomeOutlined, [
-  LandingPage,
   Carousel,
   PageManage,
   Faq,

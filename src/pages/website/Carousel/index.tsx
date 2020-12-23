@@ -1,34 +1,33 @@
-import Dashboard from '@/components/Dashboard'
-import PageSearchBar from '@/components/PageSearchBar'
+import { Dashboard } from '@/components'
 import { useReducerInjector } from '@/utils/hooks'
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
 import PageHeader from './components/PageHeader'
-import AgentSelector from './containers/AgentSelector'
-import LanguageSelector from './containers/LanguageSelector'
-import PopupCreateForm from './containers/PopupCreateForm'
-import StatusRadioPicker from './containers/StatusRadioPicker'
+import CreatePopup from './containers/CreatePopup'
+import EditPopup from './containers/EditPopup'
+import SearchBar from './containers/SearchBar'
 import TableData from './containers/TableData'
-import reducer, { initSearchState, moduleName } from './reducer'
+import PopupProvider from './context/PopupProvider'
+import reducer, { moduleName } from './reducer'
+import { useAPIService } from './service'
 
-const CarouselPage: React.FC = () => {
+const MarqueePage: React.FC = () => {
   useReducerInjector(moduleName, reducer)
-  const dispatch = useDispatch()
+  const { getTableData } = useAPIService()
+
   useEffect(() => {
-    dispatch(initSearchState())
+    getTableData()
   }, [])
   return (
     <Dashboard>
-      <PageHeader />
-      <PageSearchBar>
-        <AgentSelector />
-        <LanguageSelector />
-        <StatusRadioPicker />
-      </PageSearchBar>
-      <TableData />
-      <PopupCreateForm />
+      <PopupProvider>
+        <PageHeader />
+        <SearchBar />
+        <TableData />
+        <CreatePopup />
+        <EditPopup />
+      </PopupProvider>
     </Dashboard>
   )
 }
 
-export default CarouselPage
+export default MarqueePage
