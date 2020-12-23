@@ -1,4 +1,4 @@
-import { ContentEditor } from '@/components'
+import { PureContentEditor } from '@/components'
 import { LevelCode } from '@/lib/enums'
 import { Form, Input, Radio, Select } from 'antd'
 import { FormInstance } from 'antd/lib/form'
@@ -47,7 +47,7 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
       </Form.Item>
 
       <Form.Item>
-        <ContentEditor />
+        <PureContentEditor />
       </Form.Item>
     </Form>
   )

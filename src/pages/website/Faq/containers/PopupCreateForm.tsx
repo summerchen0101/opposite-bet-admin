@@ -1,4 +1,4 @@
-import { ContentEditor, DateRangePicker, ImageUpload } from '@/components'
+import { PureContentEditor, DateRangePicker, ImageUpload } from '@/components'
 import Form, { FormField } from '@/components/Form'
 import PopupModal from '@/components/PopupModal'
 import {
@@ -86,7 +86,7 @@ const CreateForm: React.FC = () => {
               <Input />
             </FormField>
             <FormField>
-              <ContentEditor />
+              <PureContentEditor />
             </FormField>
           </Tabs.TabPane>
         </Tabs>
