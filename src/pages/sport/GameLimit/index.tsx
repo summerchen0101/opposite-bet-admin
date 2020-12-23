@@ -1,16 +1,15 @@
 import Dashboard from '@/components/Dashboard'
-import { Col, Row } from 'antd'
 import React from 'react'
 import PageHeader from './components/PageHeader'
+import DataFormGroup from './containers/DataFormGroup'
 import SearchBar from './containers/SearchBar'
-import TableData from './containers/TableData'
 
 const GameLimit: React.FC = () => {
   return (
     <Dashboard>
       <PageHeader />
       <SearchBar />
-      <TableData />
+      <DataFormGroup />
     </Dashboard>
   )
 }
