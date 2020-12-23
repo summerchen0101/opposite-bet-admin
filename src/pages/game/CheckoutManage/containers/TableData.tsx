@@ -1,18 +1,9 @@
-import { IconLink, TableSets } from '@/components'
-import { toDateTime } from '@/utils/transfer'
-import { Checkbox, Space } from 'antd'
-import { ColumnsType } from 'antd/lib/table'
-import {
-  CheckCircleOutlined,
-  CloseCircleOutlined,
-  SettingOutlined,
-  FormOutlined,
-} from '@ant-design/icons'
-import React, { useEffect } from 'react'
+import { TableSets } from '@/components'
 import useMultiPicker from '@/utils/hooks/useMultiPicker'
+import { toDateTime } from '@/utils/transfer'
+import { ColumnsType } from 'antd/lib/table'
+import React from 'react'
 import { usePopupProvider } from '../../GameManage/context/PopupProvider'
-import { GameControlPanel } from '../../routes'
-import { Link, useHistory } from 'react-router-dom'
 
 interface TableItem {
   id: string
@@ -80,7 +71,7 @@ const TableData: React.FC = () => {
         </>
       ),
     },
-    { title: '狀態', render: (_, row) => '已結單' },
+    { title: '狀態', render: (_, row) => '未結帳' },
     ...eventsColumn,
   ]
   return <TableSets columns={columns} data={data} scroll={{ x: 1500 }} />
