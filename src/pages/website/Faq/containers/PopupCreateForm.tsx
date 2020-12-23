@@ -10,6 +10,7 @@ import {
   Row,
   Select,
   Space,
+  Switch,
   Tabs,
 } from 'antd'
 import React from 'react'
@@ -41,67 +42,22 @@ const CreateForm: React.FC = () => {
       <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
         <Row gutter={16}>
           <Col span={12}>
-            <FormField label="分類" name="type" required initialValue="opt1">
+            <FormField label="分類" name="type" initialValue="opt1">
               <Select placeholder="請選擇" allowClear>
-                <Option value="opt1">儲存相關</Option>
+                <Option value="opt1">存款問題</Option>
               </Select>
             </FormField>
           </Col>
           <Col span={12}>
-            <FormField label="廣告期間" required>
-              <DateRangePicker />
-            </FormField>
-          </Col>
-          <Col span={12}>
-            <FormField
-              label="顯示狀態"
-              name="status"
-              required
-              initialValue="on"
-            >
-              <Radio.Group>
-                <Radio value="on">啟用</Radio>
-                <Radio value="off">停用</Radio>
-              </Radio.Group>
-            </FormField>
-          </Col>
-          <Col span={12}>
-            <FormField
-              label="另開視窗"
-              name="openWin"
-              required
-              initialValue="yes"
-            >
-              <Radio.Group>
-                <Radio value="yes">是</Radio>
-                <Radio value="on">否</Radio>
-              </Radio.Group>
+            <FormField label="狀態" name="is_active" valuePropName="checked">
+              <Switch />
             </FormField>
           </Col>
         </Row>
-
-        <Tabs defaultActiveKey="cn" type="card" size="small">
-          <Tabs.TabPane tab="簡中" key="cn">
-            <FormField label="標題" required>
-              <Input />
-            </FormField>
-            <FormField>
-              <PureContentEditor />
-            </FormField>
-          </Tabs.TabPane>
-        </Tabs>
-
-        <FormField style={{ marginTop: '20px', textAlign: 'center' }}>
-          <Space size="large">
-            <Button onClick={onCancel} htmlType="reset">
-              取消
-            </Button>
-            <Button type="primary" htmlType="submit">
-              送出
-            </Button>
-            <Button>預覽</Button>
-          </Space>
+        <FormField label="標題">
+          <Input />
         </FormField>
+        <PureContentEditor />
       </Form>
     </PopupModal>
   )
