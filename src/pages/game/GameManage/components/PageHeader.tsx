@@ -16,7 +16,6 @@ const Component: React.FC = () => {
           <Button type="primary" onClick={() => setVisible(true)}>
             新增
           </Button>
-          <Button type="primary">採集賽事</Button>
         </Space>
       }
       breadcrumb={{ routes }}

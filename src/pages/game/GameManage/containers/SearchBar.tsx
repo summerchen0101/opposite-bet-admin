@@ -11,10 +11,11 @@ const SearchBar: React.FC = () => {
           <DateRangePicker />
           <Button>今日</Button>
           <Button>明日</Button>
+          <Button>2日+</Button>
         </Space>
       </Form.Item>
 
-      <Form.Item name="status" initialValue={null}>
+      <Form.Item name="is_active" initialValue={0}>
         <Select options={statusOpts} style={{ width: '130px' }} />
       </Form.Item>
     </Form>
