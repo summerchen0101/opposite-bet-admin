@@ -13,17 +13,6 @@ import { useDispatch } from 'react-redux'
 const generateColumns = (level, setLevel) => {
   const columns = [
     {
-      title: level === 0 ? '廠商' : '上層 (股東)',
-      width: 150,
-      render: (_, row) => {
-        if (level === 0) {
-          return 'gogoro[小陳]'
-        } else {
-          return <a onClick={() => setLevel(0)}>flower[小花]</a>
-        }
-      },
-    },
-    {
       title: level === 0 ? '股東' : '總代理',
       width: 150,
       render: (_, row) => {

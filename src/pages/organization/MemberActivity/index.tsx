@@ -6,13 +6,13 @@ import { useReducerInjector } from '@/utils/hooks'
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import PageHeader from './components/PageHeader'
-import KeywordSearch from './containers/KeywordSearch'
 import PopupDepositTable from './containers/PopupDepositTable'
 import PopupWithdrawalTable from './containers/PopupWithdrawalTable'
 import PopupLoginCountTable from './containers/PopupLoginCountTable'
 import PopupRegisterCountTable from './containers/PopupRegisterCountTable'
 import TableData from './containers/TableData'
 import reducer, { initSearchState, moduleName } from './reducer'
+import SearchBar from './containers/SearchBar'
 
 const Manager: React.FC = () => {
   useReducerInjector(moduleName, reducer)
@@ -23,13 +23,7 @@ const Manager: React.FC = () => {
   return (
     <Dashboard>
       <PageHeader />
-      <PageSearchBar style={{ marginBottom: 10 }}>
-        <KeywordSearch />
-      </PageSearchBar>
-      <PageSearchBar>
-        <DateRangePicker />
-        <RelativeDateBtns />
-      </PageSearchBar>
+      <SearchBar />
       <TableData />
       <PopupDepositTable />
       <PopupWithdrawalTable />
