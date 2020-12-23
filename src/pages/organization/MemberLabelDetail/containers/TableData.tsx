@@ -1,16 +1,21 @@
-import { Text, TableSets, IconLink } from '@/components'
+import { IconLink, TableSets, Text } from '@/components'
 import { toDateTime } from '@/utils/transfer'
-import { DeleteOutlined, EditFilled, FilterFilled } from '@ant-design/icons'
-import { Space } from 'antd'
+import {
+  DollarCircleOutlined,
+  DownloadOutlined,
+  EditOutlined,
+  LockOutlined,
+  UploadOutlined,
+} from '@ant-design/icons'
+import { Button, Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 
 interface TableItem {
   id: number
   account: string
   nick: string
-  parent: { nick: string; account: string }
-  role: string
   label: string[]
   allowLogin: boolean
   allowBet: boolean
@@ -27,35 +32,12 @@ interface TableItem {
 const columns: ColumnsType<TableItem> = [
   {
     title: '帳號/名稱',
-    width: 100,
-    render: (_, row) => (
-      <>
-        {row.account}
-        <br />
-        {row.nick}
-      </>
-    ),
-  },
-  {
-    title: '上層',
     width: 120,
     render: (_, row) => (
       <>
-        {row.parent.nick}
-        <br />
-        {row.parent.account}
+        {row.account}[{row.nick}]
       </>
     ),
-  },
-  {
-    title: '角色',
-    width: 140,
-    render: (_, row) => row.role,
-  },
-  {
-    title: '標籤',
-    width: 120,
-    render: (_, row) => row.label.join(', '),
   },
   {
     title: '允許登入',
@@ -83,7 +65,7 @@ const columns: ColumnsType<TableItem> = [
       ),
   },
   {
-    title: '失敗次數',
+    title: '登入失敗',
     width: 80,
     render: (_, row) => row.failTimes,
   },
@@ -112,22 +94,19 @@ const columns: ColumnsType<TableItem> = [
     ),
   },
   {
-    title: () => (
-      <>
-        <Space size="small">操作</Space>
-        <IconLink
-          icon={<FilterFilled />}
-          style={{ float: 'right', marginBottom: -4 }}
-        />
-      </>
-    ),
+    title: '操作',
     key: 'control',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
       return (
         <Space size="small">
-          <IconLink icon={<EditFilled />} label="編輯" />
-          <IconLink icon={<DeleteOutlined />} label="刪除" />
+          <Space>
+            <IconLink icon={<EditOutlined />} label="編輯" />
+            <IconLink icon={<DownloadOutlined />} label="充值紀錄" />
+            <IconLink icon={<UploadOutlined />} label="提領紀錄" />
+            <IconLink icon={<LockOutlined />} label="修改密碼" />
+            <IconLink icon={<DollarCircleOutlined />} label="調節金額" />
+          </Space>
         </Space>
       )
     },
@@ -138,9 +117,7 @@ const columns: ColumnsType<TableItem> = [
 const data: TableItem[] = [...Array(5)].map((t, i) => ({
   id: i,
   account: 'gogoro',
-  nick: 'GOGORO',
-  parent: { nick: '夏天', account: 'summer' },
-  role: '會員',
+  nick: '陳',
   label: ['aaa', 'bbbb'],
   allowLogin: true,
   allowBet: true,
@@ -154,10 +131,14 @@ const data: TableItem[] = [...Array(5)].map((t, i) => ({
   updatedBy: 'hahaha',
 }))
 const TableData: React.FC = () => {
+  const history = useHistory()
   return (
     <>
-      <h3 className="mb-2">危險客戶 (5)</h3>
-      <TableSets columns={columns} data={data} scroll={{ x: 1800 }} />
+      <Space className="mb-2">
+        <Button onClick={() => history.goBack()}>回上頁</Button>
+        <h3 className="mb-0">危險客戶 (5)</h3>
+      </Space>
+      <TableSets columns={columns} data={data} scroll={{ x: 1500 }} />
     </>
   )
 }
