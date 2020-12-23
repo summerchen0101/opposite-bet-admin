@@ -16,9 +16,9 @@ const CategoryListPopup: React.FC = () => {
 
   const columns = [
     { title: '代碼', render: (_, row) => 'SOCCOR', width: 150 },
+    { title: '名稱', render: (_, row) => '美足', width: 200 },
     { title: '圖標', render: (_, row) => <DribbbleOutlined />, width: 150 },
     { title: '國家', render: (_, row) => '美國', width: 150 },
-    { title: '名稱', render: (_, row) => '美足', width: 150 },
     {
       title: '操作',
       render: (_, row) => (

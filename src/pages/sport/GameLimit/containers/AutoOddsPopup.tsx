@@ -8,13 +8,13 @@ import {
   MinusCircleOutlined,
   PlusCircleTwoTone,
 } from '@ant-design/icons'
-import { statusOpts } from '@/lib/options'
-import { Status } from '@/lib/enums'
+import { statusOpts, yesNoOpts } from '@/lib/options'
+import { Status, YesNo } from '@/lib/enums'
 
 const AutoOddsPopup: React.FC = () => {
   const [form] = Form.useForm()
   const values = {
-    autoOdds: Status.ON,
+    autoOdds: YesNo.YES,
     settings: [{ point: 100, percent: 0.1 }],
     tradePoint: 1000,
   }
@@ -26,12 +26,8 @@ const AutoOddsPopup: React.FC = () => {
       onCancel={() => setVisible(false)}
     >
       <Form form={form} initialValues={values} layout="vertical">
-        <Form.Item
-          label="是否自動降賠"
-          name="autoOdds"
-          help="【達到門檻的該筆即套用降賠;獲利率最低不小於上方設定之範圍】"
-        >
-          <Radio.Group options={statusOpts.filter((t) => t.value !== 0)} />
+        <Form.Item label="是否自動降賠" name="autoOdds">
+          <Radio.Group options={yesNoOpts.filter((t) => t.value !== 0)} />
         </Form.Item>
         <Form.List name="settings">
           {(fields, { add, remove }) => (
@@ -76,10 +72,6 @@ const AutoOddsPopup: React.FC = () => {
             </>
           )}
         </Form.List>
-
-        <Form.Item label="可交易金額" name="tradePoint">
-          <Input style={{ width: '150px' }} />
-        </Form.Item>
       </Form>
     </PopupModal>
   )
