@@ -6,21 +6,30 @@ import {
   toggleRegisterCountModal,
   toggleWithdrawalModal,
 } from '../reducer'
-import { FilterFilled } from '@ant-design/icons'
+import { FilterFilled, HomeOutlined } from '@ant-design/icons'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import {
+  getLevelCode,
+  getLevelName,
+  getParentLevelCodes,
+} from '@/utils/transfer'
+import { LevelCode } from '@/lib/enums'
+import { Breadcrumb } from 'antd'
+import { Link } from 'react-router-dom'
 
 const generateColumns = (level, setLevel) => {
   const columns = [
     {
-      title: level === 0 ? '股東' : '總代理',
+      title: getLevelName(level),
       width: 150,
       render: (_, row) => {
-        if (level === 0) {
-          return <a onClick={() => setLevel(1)}>flower[小花]</a>
-        } else {
-          return <a>jojo[JO]</a>
+        if (level !== LevelCode.Agent) {
+          return (
+            <a onClick={() => setLevel(getLevelCode(level, 1))}>flower[小花]</a>
+          )
         }
+        return 'flower[小花]'
       },
     },
     {
@@ -154,8 +163,36 @@ const data = [...Array(5)].map((t, i) => ({
   registerCount: 3,
 }))
 const TableData: React.FC = () => {
-  const [level, setLevel] = useState(0)
-  return <TableSets columns={generateColumns(level, setLevel)} data={data} />
+  const [level, setLevel] = useState<LevelCode>(LevelCode.Vendor)
+  const parents = getParentLevelCodes(level)
+  return (
+    <>
+      <div className="mb-1">
+        {parents.length > 0 && (
+          <>
+            <HomeOutlined onClick={() => setLevel(LevelCode.Vendor)} /> /{' '}
+          </>
+        )}
+        {parents.map((code, i) => {
+          return (
+            <span key={code}>
+              {i < parents.length - 1 ? (
+                <>
+                  <a onClick={() => setLevel(getLevelCode(code, 1))}>
+                    abCC1xx[{getLevelName(code)}]
+                  </a>{' '}
+                  /{' '}
+                </>
+              ) : (
+                <span>abCC1xx[{getLevelName(code)}]</span>
+              )}
+            </span>
+          )
+        })}
+      </div>
+      <TableSets columns={generateColumns(level, setLevel)} data={data} />
+    </>
+  )
 }
 
 export default TableData

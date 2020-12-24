@@ -18,13 +18,13 @@ const PopupDepositTable: React.FC = () => {
       title: '帐号 / 会员名称',
       dataIndex: 'name',
       key: 'name',
-      render: (_, row) => 'qq13995774106 【秦小强】',
+      render: (_, row) => 'qq774106 [强]',
     },
     {
       title: '交易类型',
       dataIndex: 'age',
       key: 'age',
-      render: (_, row) => '第三方存款',
+      render: (_, row) => '代客儲值',
     },
     {
       title: '金额',
