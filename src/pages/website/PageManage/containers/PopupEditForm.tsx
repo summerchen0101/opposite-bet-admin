@@ -12,7 +12,7 @@ const EditForm: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="頁面設定"
+      title="關於我們"
       onCancel={() => setVisbiel(false)}
       width={700}
     >

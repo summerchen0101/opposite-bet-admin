@@ -1,66 +1,61 @@
-import { PureContentEditor, DateRangePicker, ImageUpload } from '@/components'
-import Form, { FormField } from '@/components/Form'
+import { ImageUpload, PureContentEditor } from '@/components'
 import PopupModal from '@/components/PopupModal'
-import {
-  Button,
-  Col,
-  Collapse,
-  Input,
-  Radio,
-  Row,
-  Select,
-  Space,
-  Switch,
-  Tabs,
-} from 'antd'
+import { Device } from '@/lib/enums'
+import { deviceOpts } from '@/lib/options'
+import { Col, Collapse, Form, Input, Radio, Row, Select, Switch } from 'antd'
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { toggleCreateModal } from '../reducer'
-import { selectDisplayCreateModal, useTypedSelector } from '../selectors'
-const { Option } = Select
-const extraButton = (
-  <Button size="small" onClick={(e) => e.stopPropagation()}>
-    預覽
-  </Button>
-)
-const CreateForm: React.FC = () => {
-  const dispatch = useDispatch()
-  const isDisplay = useTypedSelector(selectDisplayCreateModal)
-  const onCancel = () => {
-    dispatch(toggleCreateModal(false))
-  }
-  const onFinish = (values) => {
-    console.log('Success:', values)
-    dispatch(toggleCreateModal(false))
-  }
+import { usePopupProvider } from '../context/PopupProvider'
 
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
-  }
+const EditForm: React.FC = () => {
+  const [form] = Form.useForm()
+  const [visible, setVisbiel] = usePopupProvider('createForm')
+  const categoryOpts = [{ label: '存款問題', value: 1 }]
   return (
-    <PopupModal visible={isDisplay} title="新增常見問題" onCancel={onCancel}>
-      <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
+    <PopupModal
+      visible={visible}
+      title="新增常見問題"
+      onCancel={() => setVisbiel(false)}
+      width={700}
+    >
+      <Form form={form} layout="vertical">
         <Row gutter={16}>
-          <Col span={12}>
-            <FormField label="分類" name="type" initialValue="opt1">
-              <Select placeholder="請選擇" allowClear>
-                <Option value="opt1">存款問題</Option>
-              </Select>
-            </FormField>
+          <Col span={16}>
+            <Form.Item label="標題" name="title">
+              <Input />
+            </Form.Item>
           </Col>
-          <Col span={12}>
-            <FormField label="狀態" name="is_active" valuePropName="checked">
+          <Col span={8}>
+            <Form.Item label="分類" name="category" initialValue={1}>
+              <Select options={categoryOpts} />
+            </Form.Item>
+          </Col>
+          <Col span={16}>
+            <Form.Item label="平台顯示" name="platform" initialValue={0}>
+              <Radio.Group>
+                <Radio value={0}>全部</Radio>
+                <Radio value={1}>手機版</Radio>
+                <Radio value={2}>桌上型電腦</Radio>
+              </Radio.Group>
+            </Form.Item>
+          </Col>
+          <Col span={8}>
+            <Form.Item label="狀態" name="is_active" valuePropName="checked">
               <Switch />
-            </FormField>
+            </Form.Item>
           </Col>
         </Row>
-        <FormField label="標題">
-          <Input />
-        </FormField>
-        <PureContentEditor />
+        <Collapse defaultActiveKey={[Device.PC, Device.Mobile]}>
+          {deviceOpts.map((t, i) => (
+            <Collapse.Panel header={t.label} key={t.value}>
+              <Form.Item>
+                <PureContentEditor />
+              </Form.Item>
+            </Collapse.Panel>
+          ))}
+        </Collapse>
       </Form>
     </PopupModal>
   )
 }
 
-export default CreateForm
+export default EditForm

@@ -2,6 +2,7 @@ import { IconLink, TableSets, Text } from '@/components'
 import { DeleteOutlined, EditOutlined, MenuOutlined } from '@ant-design/icons'
 import { Space } from 'antd'
 import React from 'react'
+import { usePopupProvider } from '../context/PopupProvider'
 const columns = [
   {
     title: '分類',
@@ -12,6 +13,14 @@ const columns = [
     title: '標題',
     width: 140,
     render: (_, row) => <a>如何儲值</a>,
+  },
+  {
+    title: '顯示平台',
+    width: 110,
+    render: (_, row) => {
+      const [, setVisible] = usePopupProvider('preview')
+      return <a onClick={() => setVisible(true)}>手機</a>
+    },
   },
   {
     title: '狀態',

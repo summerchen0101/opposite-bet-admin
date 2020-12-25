@@ -7,7 +7,7 @@ const PreviewPopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="關於我們(手機預覽)"
+      title="如何儲值(手機預覽)"
       onCancel={() => setVisible(false)}
       footer={false}
     >

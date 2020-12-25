@@ -8,17 +8,22 @@ import PopupCreateForm from './containers/PopupCreateForm'
 import TableData from './containers/TableData'
 import SearchBar from './containers/SearchBar'
 import reducer, { moduleName } from './reducer'
+import PopupProvider from './context/PopupProvider'
+import PreviewPopup from './containers/PreviewPopup'
 
 const Manager: React.FC = () => {
   useReducerInjector(moduleName, reducer)
   return (
     <Dashboard>
-      <PageHeader />
-      <SearchBar />
-      <TableData />
-      <PopupCreateForm />
-      <PopupCategoryList />
-      <PopupCategoryCreate />
+      <PopupProvider>
+        <PageHeader />
+        <SearchBar />
+        <TableData />
+        <PopupCreateForm />
+        <PopupCategoryList />
+        <PopupCategoryCreate />
+        <PreviewPopup />
+      </PopupProvider>
     </Dashboard>
   )
 }
