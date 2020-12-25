@@ -9,7 +9,7 @@ const initialState: IState = {
   displayCreateModal: false,
 }
 
-export const moduleName = 'BlackIp'
+export const moduleName = 'BlackArea'
 
 const module = createSlice({
   name: moduleName,

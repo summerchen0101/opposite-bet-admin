@@ -8,13 +8,18 @@ const rootName = '系統管理'
 const rootPath = '/system'
 
 export const BlackIp = new PageG(
-  '黑名單管理',
+  'IP黑白名單',
   `${rootPath}/black-ip`,
   pages.BlackIp,
 )
+export const BlackArea = new PageG(
+  '國家黑名單',
+  `${rootPath}/black-area`,
+  pages.BlackArea,
+)
 
 // ROUTERS
-RouteG.create([BlackIp])
+RouteG.create([BlackIp, BlackArea])
 
 // MENU
-MenuG.createCategory(rootName, rootPath, HomeOutlined, [BlackIp])
+MenuG.createCategory(rootName, rootPath, HomeOutlined, [BlackIp, BlackArea])
