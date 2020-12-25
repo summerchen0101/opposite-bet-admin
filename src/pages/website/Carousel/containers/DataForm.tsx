@@ -1,6 +1,8 @@
 import { DateRangePicker, ImageUpload } from '@/components'
 import Form, { FormField } from '@/components/Form'
-import { Col, DatePicker, Input, Radio, Row, Switch } from 'antd'
+import { Device } from '@/lib/enums'
+import { deviceOpts } from '@/lib/options'
+import { Col, Collapse, DatePicker, Input, Radio, Row, Switch } from 'antd'
 import { FormInstance } from 'antd/lib/form'
 import { Moment } from 'moment'
 import React from 'react'
@@ -38,21 +40,27 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
       <FormField label="連結">
         <Input placeholder="ex: http://google.com" />
       </FormField>
-      <FormField label="上傳圖片">
-        <ImageUpload />
-      </FormField>
       <Row gutter={16}>
-        <Col span={12}>
-          <FormField label="狀態" name="is_active" valuePropName="checked">
-            <Switch />
-          </FormField>
-        </Col>
         <Col span={12}>
           <FormField label="另開視窗" name="is_blank" valuePropName="checked">
             <Switch />
           </FormField>
         </Col>
+        <Col span={12}>
+          <FormField label="狀態" name="is_active" valuePropName="checked">
+            <Switch />
+          </FormField>
+        </Col>
       </Row>
+      <Collapse defaultActiveKey={[Device.PC, Device.Mobile]}>
+        {deviceOpts.map((t, i) => (
+          <Collapse.Panel header={t.label} key={t.value}>
+            <FormField>
+              <ImageUpload />
+            </FormField>
+          </Collapse.Panel>
+        ))}
+      </Collapse>
     </Form>
   )
 }

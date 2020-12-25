@@ -23,6 +23,14 @@ const columns: ColumnsType<Marquee> = [
     render: (_, row) => row.content,
   },
   {
+    title: '平台顯示',
+    width: 110,
+    render: (_, row) => {
+      const [, setVisible] = usePopupProvider('preview')
+      return <a onClick={() => setVisible(true)}>手機</a>
+    },
+  },
+  {
     title: '另開視窗',
     width: 110,
     render: (_, row) => toOptionName(yesNoOpts, row.is_blank ? 1 : 2),

@@ -27,3 +27,8 @@ export enum ProcessStatus {
   Finish = 3,
   Cancel = 4,
 }
+
+export enum Device {
+  PC = 1,
+  Mobile = 2,
+}

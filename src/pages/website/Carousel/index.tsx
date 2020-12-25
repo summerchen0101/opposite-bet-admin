@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 import PageHeader from './components/PageHeader'
 import CreatePopup from './containers/CreatePopup'
 import EditPopup from './containers/EditPopup'
+import PreviewPopup from './containers/PreviewPopup'
 import SearchBar from './containers/SearchBar'
 import TableData from './containers/TableData'
 import PopupProvider from './context/PopupProvider'
@@ -25,6 +26,7 @@ const MarqueePage: React.FC = () => {
         <TableData />
         <CreatePopup />
         <EditPopup />
+        <PreviewPopup />
       </PopupProvider>
     </Dashboard>
   )
