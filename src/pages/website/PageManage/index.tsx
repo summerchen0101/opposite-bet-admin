@@ -4,7 +4,9 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import PageHeader from './components/PageHeader'
 import PopupEditForm from './containers/PopupEditForm'
+import PreviewPopup from './containers/PreviewPopup'
 import TableData from './containers/TableData'
+import PopupProvider from './context/PopupProvider'
 import reducer, { initSearchState, moduleName } from './reducer'
 
 const Manager: React.FC = () => {
@@ -15,9 +17,12 @@ const Manager: React.FC = () => {
   }, [])
   return (
     <Dashboard>
-      <PageHeader />
-      <TableData />
-      <PopupEditForm />
+      <PopupProvider>
+        <PageHeader />
+        <TableData />
+        <PopupEditForm />
+        <PreviewPopup />
+      </PopupProvider>
     </Dashboard>
   )
 }

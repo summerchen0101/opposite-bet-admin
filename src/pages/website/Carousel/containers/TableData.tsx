@@ -23,7 +23,7 @@ const columns: ColumnsType<Marquee> = [
     render: (_, row) => row.content,
   },
   {
-    title: '平台顯示',
+    title: '顯示平台',
     width: 110,
     render: (_, row) => {
       const [, setVisible] = usePopupProvider('preview')

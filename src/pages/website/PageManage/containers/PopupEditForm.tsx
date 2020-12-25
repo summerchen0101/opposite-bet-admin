@@ -1,52 +1,47 @@
-import { PureContentEditor } from '@/components'
+import { ImageUpload, PureContentEditor } from '@/components'
 import PopupModal from '@/components/PopupModal'
-import { Col, Input, Radio, Row, Select, Form } from 'antd'
+import { Device } from '@/lib/enums'
+import { deviceOpts } from '@/lib/options'
+import { Col, Collapse, Form, Radio, Row, Switch } from 'antd'
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { toggleEditModal } from '../reducer'
-import { selectDisplayEditModal, useTypedSelector } from '../selectors'
-const { Option } = Select
+import { usePopupProvider } from '../context/PopupProvider'
+
 const EditForm: React.FC = () => {
   const [form] = Form.useForm()
-  const dispatch = useDispatch()
-  const isDisplay = useTypedSelector(selectDisplayEditModal)
-  const onCancel = () => {
-    dispatch(toggleEditModal(false))
-  }
-  const onFinish = (values) => {
-    console.log('Success:', values)
-    dispatch(toggleEditModal(false))
-  }
-
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
-  }
+  const [visible, setVisbiel] = usePopupProvider('editForm')
   return (
     <PopupModal
-      visible={isDisplay}
+      visible={visible}
       title="頁面設定"
-      onCancel={onCancel}
+      onCancel={() => setVisbiel(false)}
       width={700}
     >
-      <Form onFinish={onFinish} onFinishFailed={onFinishFailed} form={form}>
+      <Form form={form} layout="vertical">
         <Row gutter={16}>
-          <Col span={12}>
-            <Form.Item label="名稱">
-              <Input />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item label="狀態" name="is_active" initialValue="on">
+          <Col span={16}>
+            <Form.Item label="平台顯示" name="platform" initialValue={0}>
               <Radio.Group>
-                <Radio value="on">啟用</Radio>
-                <Radio value="off">停用</Radio>
+                <Radio value={0}>全部</Radio>
+                <Radio value={1}>手機版</Radio>
+                <Radio value={2}>桌上型電腦</Radio>
               </Radio.Group>
             </Form.Item>
           </Col>
+          <Col span={8}>
+            <Form.Item label="狀態" name="is_active" valuePropName="checked">
+              <Switch />
+            </Form.Item>
+          </Col>
         </Row>
-        <Form.Item name="content" initialValue="">
-          <PureContentEditor />
-        </Form.Item>
+        <Collapse defaultActiveKey={[Device.PC, Device.Mobile]}>
+          {deviceOpts.map((t, i) => (
+            <Collapse.Panel header={t.label} key={t.value}>
+              <Form.Item>
+                <PureContentEditor />
+              </Form.Item>
+            </Collapse.Panel>
+          ))}
+        </Collapse>
       </Form>
     </PopupModal>
   )

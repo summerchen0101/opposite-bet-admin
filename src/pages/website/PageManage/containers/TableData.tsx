@@ -1,17 +1,28 @@
-import PopupConfirm from '@/components/PopupConfirm'
 import IconLink from '@/components/IconLink'
 import TableSets from '@/components/TableSets'
-import { DeleteOutlined, FilterFilled, EditFilled } from '@ant-design/icons'
-import { Button, Checkbox, Popover, Space } from 'antd'
-import React from 'react'
 import Text from '@/components/Text'
-import { useDispatch } from 'react-redux'
-import { toggleEditModal } from '../reducer'
+import { EditFilled } from '@ant-design/icons'
+import { Space } from 'antd'
+import React from 'react'
+import { usePopupProvider } from '../context/PopupProvider'
 
 const columns = [
   {
     title: '名稱',
     render: (_, row) => row.name,
+  },
+  {
+    title: '代碼',
+    render: (_, row) => 'xxx',
+    width: 80,
+  },
+  {
+    title: '顯示平台',
+    width: 110,
+    render: (_, row) => {
+      const [, setVisible] = usePopupProvider('preview')
+      return <a onClick={() => setVisible(true)}>手機</a>
+    },
   },
   {
     title: '狀態',
@@ -32,11 +43,14 @@ const columns = [
     title: '操作',
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
-      const dispatch = useDispatch()
-      const handleEdit = () => dispatch(toggleEditModal(true))
+      const [, setVisible] = usePopupProvider('editForm')
       return (
         <Space size="small">
-          <IconLink icon={<EditFilled />} label="編輯" onClick={handleEdit} />
+          <IconLink
+            icon={<EditFilled />}
+            label="編輯"
+            onClick={() => setVisible(true)}
+          />
         </Space>
       )
     },
