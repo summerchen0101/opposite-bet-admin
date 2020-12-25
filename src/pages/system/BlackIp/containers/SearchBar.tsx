@@ -1,5 +1,5 @@
 import { Status } from '@/lib/enums'
-import { statusOpts } from '@/lib/options'
+import { ipStatusOpts, statusOpts } from '@/lib/options'
 import { DatePicker, Form, Input, Select } from 'antd'
 import { Moment } from 'moment'
 import React from 'react'
@@ -27,6 +27,13 @@ const SearchBar: React.FC = () => {
     <Form form={form} layout="inline" className="mb-1">
       <Form.Item label="IP位址" name="ip">
         <Input.Search onSearch={onSearch} allowClear />
+      </Form.Item>
+      <Form.Item label="類型" name="type" initialValue={0}>
+        <Select
+          options={[{ label: '全部', value: 0 }, ...ipStatusOpts]}
+          style={{ width: '130px' }}
+          onChange={onSearch}
+        />
       </Form.Item>
       <Form.Item label="狀態" name="is_active" initialValue={0}>
         <Select

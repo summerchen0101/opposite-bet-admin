@@ -4,7 +4,6 @@ import {
   CloseCircleOutlined,
   DeleteOutlined,
   EditFilled,
-  FilterFilled,
 } from '@ant-design/icons'
 import { Space } from 'antd'
 import React from 'react'
@@ -12,8 +11,18 @@ import React from 'react'
 const columns = [
   {
     title: 'IP位址',
-    width: 100,
+    width: 130,
     render: (_, row) => '0.0.0.0',
+  },
+  {
+    title: '類型',
+    width: 100,
+    render: (_, row) => '黑名單',
+  },
+  {
+    title: '端口設置',
+    width: 160,
+    render: (_, row) => '會員端、代理端',
   },
   {
     title: '狀態',
@@ -21,32 +30,28 @@ const columns = [
     render: (_, row) => <Text color="success">啟用</Text>,
   },
   {
-    title: '建立時間',
-    render: (_, row) => '2019-07-01 10:54:36',
-    width: 150,
-  },
-  {
-    title: '最後更新',
-    width: 150,
-    render: (_, row) => '2019-07-01 10:54:36',
-  },
-  {
     title: '備註',
     width: 100,
     render: (_, row) => '-',
   },
   {
-    title: () => (
+    title: '建立時間',
+    render: (_, row) => '2019-07-01 10:54:36',
+    width: 200,
+  },
+  {
+    title: '更新人員/時間',
+    render: (_, row) => (
       <>
-        <Space size="small">操作</Space>
-        <IconLink
-          icon={<FilterFilled />}
-          style={{ float: 'right', marginBottom: -4 }}
-        />
+        summer <br />
+        2019-07-01 10:54:36
       </>
     ),
+    width: 200,
+  },
+  {
+    title: '操作',
     key: 'control',
-    fixed: ('right' as unknown) as boolean,
     render(_, row) {
       return (
         <Space size="small">

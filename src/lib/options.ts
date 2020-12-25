@@ -1,5 +1,5 @@
 import { NewsType } from '../pages/announce/AnnounceManage/API/types'
-import { Device, LevelCode, Status, YesNo } from './enums'
+import { Device, IPStatus, LevelCode, Status, YesNo } from './enums'
 
 export const newsTypeOpts = [
   { label: '全部', value: NewsType.ALL },
@@ -28,4 +28,8 @@ export const yesNoOpts = [
 export const deviceOpts = [
   { label: '桌上型電腦', value: Device.PC },
   { label: '手機', value: Device.Mobile },
+]
+export const ipStatusOpts = [
+  { label: '黑名單', value: IPStatus.Black },
+  { label: '白名單', value: IPStatus.White },
 ]

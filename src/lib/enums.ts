@@ -32,3 +32,7 @@ export enum Device {
   PC = 1,
   Mobile = 2,
 }
+export enum IPStatus {
+  Black = 1,
+  White = 2,
+}
