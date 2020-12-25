@@ -18,21 +18,15 @@ export const PageManage = new PageG(
   `${rootPath}/page-manage`,
   pages.PageManage,
 )
-export const BlackIp = new PageG(
-  '黑名單管理',
-  `${rootPath}/black-ip`,
-  pages.BlackIp,
-)
 
 export const Faq = new PageG('常見問題', `${rootPath}/faq`, pages.Faq)
 
 // ROUTERS
-RouteG.create([Carousel, PageManage, Faq, BlackIp])
+RouteG.create([Carousel, PageManage, Faq])
 
 // MENU
 MenuG.createCategory(rootName, rootPath, HomeOutlined, [
   Carousel,
   PageManage,
   Faq,
-  BlackIp,
 ])

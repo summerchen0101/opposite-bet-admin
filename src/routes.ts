@@ -8,6 +8,7 @@ import '@/pages/report/routes'
 import '@/pages/promote/routes'
 import '@/pages/admin/routes'
 import '@/pages/website/routes'
+import '@/pages/system/routes'
 import { MenuGenerator as MenuG } from '@/utils/menuGenerator'
 import { RouteGenerator as RouteG } from '@/utils/routeGenerator'
 
