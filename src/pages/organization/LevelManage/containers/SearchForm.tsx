@@ -6,13 +6,10 @@ import React from 'react'
 const SearchForm: React.FC = () => {
   return (
     <Form layout="inline" className="mb-2">
-      <Form.Item name="account">
+      <Form.Item name="account" label="帳號">
         <Input placeholder="帳號" />
       </Form.Item>
-      <Form.Item name="level" initialValue={LevelCode.Vendor}>
-        <Select options={levelOpts} style={{ width: '120px' }} />
-      </Form.Item>
-      <Form.Item name="status" initialValue={null}>
+      <Form.Item name="status" initialValue={0} label="狀態">
         <Select options={statusOpts} style={{ width: '120px' }} />
       </Form.Item>
     </Form>

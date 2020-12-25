@@ -18,9 +18,15 @@ import { usePopupProvider } from '../context/PopupProvider'
 const MemberCreatePopup: React.FC = () => {
   const [createVisible, setCreateVisible] = usePopupProvider('memberCreateForm')
   const [editVisible, setEditVisible] = usePopupProvider('memberEditForm')
-  const [pointFormVisible, setPointFormVisible] = usePopupProvider('pointForm')
-  const [bankCardVisible, setBankCardVisible] = usePopupProvider('bankCardList')
+  const [, setPointFormVisible] = usePopupProvider('pointForm')
+  const [, setBankCardVisible] = usePopupProvider('bankCardList')
   const currentType = createVisible ? 'create' : 'edit'
+
+  const tagOpts = [
+    { label: '危險客戶', value: 1 },
+    { label: '打水', value: 2 },
+    { label: '某某標籤', value: 3 },
+  ]
 
   const [form] = Form.useForm()
   const onCreate = (values) => {
@@ -57,7 +63,6 @@ const MemberCreatePopup: React.FC = () => {
           <span>{localizeMessage(`form.${currentType}`)}會員</span>
           {currentType === 'edit' && (
             <Space className="float-right mr-3">
-              <Button size="small">添加註解</Button>
               <Button size="small" onClick={() => setPointFormVisible(true)}>
                 調節金額
               </Button>
@@ -85,15 +90,11 @@ const MemberCreatePopup: React.FC = () => {
       <Form form={form} layout="vertical">
         <Row gutter={16}>
           <Col span={12}>
-            <FormField label="廠商">
-              <Input disabled placeholder="abb" />
-            </FormField>
-          </Col>
-          <Col span={12}>
             <FormField label="上層代理">
-              <Input disabled placeholder="haap" />
+              <Input readOnly value="haap123" />
             </FormField>
           </Col>
+          <Col span={12} />
           <Col span={12}>
             <FormField
               label="會員帳號"
@@ -124,6 +125,11 @@ const MemberCreatePopup: React.FC = () => {
               </Col>
             </>
           )}
+          <Col span={24}>
+            <FormField label="標籤">
+              <Select mode="multiple" options={tagOpts} />
+            </FormField>
+          </Col>
           <Col span={12}>
             <FormField label="單注下限">
               <Input />

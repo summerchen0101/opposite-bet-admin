@@ -84,15 +84,14 @@ const DepositHistoryPopup: React.FC = () => {
           </Select>
         </FormField>
         <FormField label="充值類型" name="type" initialValue="opt1">
-          <Select placeholder="請選擇" style={{ width: '130px' }}>
+          <Select placeholder="請選擇" style={{ width: '180px' }}>
             <Option value="opt1">全部</Option>
-            <Option value="opt2">公司入款</Option>
+            <Option value="opt2">銀行卡存款</Option>
             <Option value="opt3">新增存款(計入存款)</Option>
             <Option value="opt4">人工加錢(計入調整金額)</Option>
             <Option value="opt5">人工優惠(計入優惠)</Option>
           </Select>
         </FormField>
-        <FormField className="ml-1">鎖定金額：0</FormField>
       </Form>
       <Table
         dataSource={data}

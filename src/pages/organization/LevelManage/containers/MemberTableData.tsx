@@ -38,16 +38,8 @@ const data: TableItem[] = [...Array(50)].map((t, i) => ({
 const MemberTableData: React.FC = () => {
   const columns: ColumnsType<TableItem> = [
     {
-      title: '廠商',
-      render: (_, row) => 'abb123[明]',
-    },
-    {
-      title: '會員',
+      title: '帳號/暱稱',
       render: (_, row) => 'happy99[樂樂]',
-    },
-    {
-      title: '用戶類型',
-      render: (_, row) => '1級會員',
     },
     {
       title: '標籤',
@@ -56,10 +48,12 @@ const MemberTableData: React.FC = () => {
     {
       title: '允許登入',
       render: (_, row) => '是',
+      width: 80,
     },
     {
       title: '允許投注',
       render: (_, row) => '是',
+      width: 80,
     },
     {
       title: '可用餘額',
@@ -73,8 +67,9 @@ const MemberTableData: React.FC = () => {
       },
     },
     {
-      title: '失敗次數',
+      title: '登入失敗',
       render: (_, row) => 3,
+      width: 80,
     },
     {
       title: '註冊/最後登入',
@@ -150,7 +145,7 @@ const MemberTableData: React.FC = () => {
   return (
     <>
       <TableTitle />
-      <TableSets columns={columns} data={data} scroll={{ x: 1800 }} />
+      <TableSets columns={columns} data={data} scroll={{ x: 1300 }} />
       <Popups />
     </>
   )

@@ -123,7 +123,7 @@ const AliasTableData: React.FC = () => {
       title: '登入資訊',
       children: [
         {
-          title: '失敗次數',
+          title: '登入失敗',
           render: (_, row) => 0,
         },
         {

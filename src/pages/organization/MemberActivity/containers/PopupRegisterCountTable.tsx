@@ -1,4 +1,4 @@
-import { PopupTable } from '@/components'
+import { ColorText, PopupTable } from '@/components'
 import PopupModal from '@/components/PopupModal'
 import { Popover } from 'antd'
 import React from 'react'
@@ -38,6 +38,10 @@ const PopupRegisterCountTable: React.FC = () => {
           </Popover>
         </>
       ),
+    },
+    {
+      title: '狀態',
+      render: (_, row) => <ColorText green>線上</ColorText>,
     },
   ]
   return (

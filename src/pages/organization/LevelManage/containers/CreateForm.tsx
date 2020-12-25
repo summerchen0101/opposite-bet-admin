@@ -20,6 +20,10 @@ const CreateForm: React.FC<{ form: FormInstance<any> }> = ({ form }) => {
     { label: localizeMessage('status.off'), value: Status.OFF },
   ]
   const parents = getParentLevelCodes(currentLevel)
+  const accOpts = [...Array(5)].map((t, i) => ({
+    label: `AGN23${i}`,
+    value: `AGN23${i}`,
+  }))
   return (
     <Form form={form} layout="vertical">
       <Row gutter={16}>
@@ -55,8 +59,9 @@ const CreateForm: React.FC<{ form: FormInstance<any> }> = ({ form }) => {
           <Form.Item
             label={<>{getLevelName(currentLevel)}帳號</>}
             name="account"
+            initialValue="AGN230"
           >
-            <Input />
+            <Select options={accOpts} />
           </Form.Item>
         </Col>
         <Col span={12}>

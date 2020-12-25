@@ -56,23 +56,21 @@ const WithdrawHistoryPopup: React.FC = () => {
           <Select placeholder="請選擇" style={{ width: '130px' }}>
             <Option value="opt1">全部</Option>
             <Option value="opt2">待審核</Option>
-            <Option value="opt3">充值成功</Option>
-            <Option value="opt4">充值失敗</Option>
-            <Option value="opt5">訂單超時</Option>
-            <Option value="opt6">訂單建立失敗</Option>
-            <Option value="opt7">待付款</Option>
+            <Option value="opt3">待出款</Option>
+            <Option value="opt4">提領成功</Option>
+            <Option value="opt5">審核失敗</Option>
+            <Option value="opt6">出款失敗</Option>
           </Select>
         </FormField>
-        <FormField label="充值類型" name="type" initialValue="opt1">
+        <FormField label="提領類型" name="type" initialValue="opt1">
           <Select placeholder="請選擇" style={{ width: '130px' }}>
             <Option value="opt1">全部</Option>
-            <Option value="opt2">公司入款</Option>
-            <Option value="opt3">新增存款(計入存款)</Option>
-            <Option value="opt4">人工加錢(計入調整金額)</Option>
-            <Option value="opt5">人工優惠(計入優惠)</Option>
+            <Option value="opt2">銀行卡提領</Option>
+            <Option value="opt3">新增提領(計入提領)</Option>
+            <Option value="opt4">人工扣錢(計入調整金額)</Option>
+            <Option value="opt5">人工扣除優惠(計入優惠)</Option>
           </Select>
         </FormField>
-        <FormField className="ml-1">鎖定金額：0</FormField>
       </Form>
       <Table
         dataSource={data}

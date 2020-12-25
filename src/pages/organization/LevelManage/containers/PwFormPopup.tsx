@@ -23,19 +23,16 @@ const PwFormPopup: React.FC = () => {
       title="修改密碼"
       onCancel={() => setVisible(false)}
       width={400}
-      footer={[
-        <Button key="reset" onClick={() => form.resetFields()}>
-          重置
-        </Button>,
-        <Button key="submit" type="primary" onClick={handleSubmit}>
-          送出
-        </Button>,
-      ]}
+      // footer={[
+      //   <Button key="reset" onClick={() => form.resetFields()}>
+      //     重置
+      //   </Button>,
+      //   <Button key="submit" type="primary" onClick={handleSubmit}>
+      //     送出
+      //   </Button>,
+      // ]}
     >
       <Form form={form}>
-        <FormField label="帳號" name="account" required>
-          <Input />
-        </FormField>
         <FormField label="密碼" name="pw" required>
           <Input.Password />
         </FormField>

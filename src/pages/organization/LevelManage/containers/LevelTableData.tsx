@@ -53,11 +53,6 @@ const LevelTableData: React.FC = () => {
   const { path } = useRouteMatch()
   const orgInfoColumns = [
     {
-      title: getLevelName(LevelCode.Vendor),
-      key: 'vendor',
-      render: (_, row) => 'wwa[明]',
-    },
-    {
       title: getLevelName(currentLevel),
       render: (_, row) => 'wwa98[陳]',
     },
@@ -140,7 +135,7 @@ const LevelTableData: React.FC = () => {
       title: '登入資訊',
       children: [
         {
-          title: '失敗次數',
+          title: '登入失敗',
           render: (_, row) => 0,
         },
         {
