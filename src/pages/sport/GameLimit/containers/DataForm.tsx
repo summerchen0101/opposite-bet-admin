@@ -36,7 +36,7 @@ const DataForm: React.FC<{ data: DataProps }> = ({ data }) => {
                   <Input readOnly value="批次設定" className="bg-grey" />
                 </Form.Item>
                 <Form.Item className="mb-0">
-                  <Input placeholder="賠率" className="bg-grey" />
+                  <Input placeholder="獲利 %" className="bg-grey" />
                 </Form.Item>
                 <Form.Item className="mb-0">
                   <Input placeholder="可交易量" className="bg-grey" />
@@ -69,7 +69,7 @@ const DataForm: React.FC<{ data: DataProps }> = ({ data }) => {
                     rules={[{ required: true, message: '請輸入賠率' }]}
                     className="mb-0"
                   >
-                    <Input placeholder="賠率" />
+                    <Input placeholder="獲利 %" />
                   </Form.Item>
                   <Form.Item
                     {...field}

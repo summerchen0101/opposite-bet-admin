@@ -12,10 +12,10 @@ const SearchBar: React.FC = () => {
   ]
   return (
     <Form layout="inline" className="mb-2">
-      <Form.Item name="event" initialValue="FULL">
+      <Form.Item name="event" label="場次" initialValue="FULL">
         <Select options={eventOpts} style={{ width: '130px' }} />
       </Form.Item>
-      <Form.Item name="game" initialValue="opposite">
+      <Form.Item name="game" label="玩法" initialValue="opposite">
         <Select options={gameOpts} style={{ width: '130px' }} />
       </Form.Item>
     </Form>
