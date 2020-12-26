@@ -24,6 +24,12 @@ export const CheckoutManage = new PageG(
   pages.CheckoutManage,
 )
 
+export const EventReview = new PageG(
+  '賽事結帳',
+  `${rootPath}/manage/review`,
+  pages.EventReview,
+)
+
 // ROUTERS
 RouteG.create([GameManage])
 
@@ -31,4 +37,5 @@ RouteG.create([GameManage])
 MenuG.createCategory(rootName, rootPath, DribbbleOutlined, [
   GameManage,
   CheckoutManage,
+  EventReview,
 ])

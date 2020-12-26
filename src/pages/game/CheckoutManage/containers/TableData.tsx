@@ -3,7 +3,7 @@ import useMultiPicker from '@/utils/hooks/useMultiPicker'
 import { toDateTime } from '@/utils/transfer'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
-import { usePopupProvider } from '../../GameManage/context/PopupProvider'
+import { usePopupProvider } from '../../context/PopupProvider'
 
 interface TableItem {
   id: string
@@ -35,8 +35,11 @@ const TableData: React.FC = () => {
       {
         title: '結果',
         render: (_, row) => {
-          const [visible, setVisible] = usePopupProvider('resultForm')
-          return <a onClick={() => setVisible(true)}>添加</a>
+          return (
+            <>
+              10 <br />1
+            </>
+          )
         },
         width: 80,
       },

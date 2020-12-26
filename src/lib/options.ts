@@ -21,7 +21,6 @@ export const statusOpts = [
   { label: '停用', value: Status.OFF },
 ]
 export const yesNoOpts = [
-  { label: '全部', value: YesNo.ALL },
   { label: '是', value: YesNo.YES },
   { label: '否', value: YesNo.NO },
 ]

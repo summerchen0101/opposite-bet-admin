@@ -27,7 +27,7 @@ const AutoOddsPopup: React.FC = () => {
     >
       <Form form={form} initialValues={values} layout="vertical">
         <Form.Item label="是否自動降賠" name="autoOdds">
-          <Radio.Group options={yesNoOpts.filter((t) => t.value !== 0)} />
+          <Radio.Group options={yesNoOpts} />
         </Form.Item>
         <Form.List name="settings">
           {(fields, { add, remove }) => (

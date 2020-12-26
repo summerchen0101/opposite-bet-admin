@@ -10,7 +10,7 @@ import {
 } from '@ant-design/icons'
 import React, { useEffect } from 'react'
 import useMultiPicker from '@/utils/hooks/useMultiPicker'
-import { usePopupProvider } from '../context/PopupProvider'
+import { usePopupProvider } from '../../context/PopupProvider'
 import { GameControlPanel } from '../../routes'
 import { Link, useHistory } from 'react-router-dom'
 

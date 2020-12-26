@@ -2,7 +2,7 @@ import { PopupModal, Text } from '@/components'
 import { addKeyToArrayItem, toDateTime } from '@/utils/transfer'
 import { Table } from 'antd'
 import React from 'react'
-import { usePopupProvider } from '../context/PopupProvider'
+import { usePopupProvider } from '../../context/PopupProvider'
 const GameOrdersPopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('gameOrders')
 

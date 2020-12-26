@@ -1,4 +1,4 @@
-import { usePopupProvider } from '../GameManage/context/PopupProvider'
+import { usePopupProvider } from '../context/PopupProvider'
 import { addKeyToArrayItem } from '@/utils/transfer'
 import { Input, Layout, Space, Table } from 'antd'
 import { PlusOutlined, MinusOutlined, ReloadOutlined } from '@ant-design/icons'

@@ -1,7 +1,9 @@
 import { PopupModal } from '@/components'
-import { Button, Form, Input } from 'antd'
+import { YesNo } from '@/lib/enums'
+import { yesNoOpts } from '@/lib/options'
+import { Button, Form, Input, Radio, Space } from 'antd'
 import React from 'react'
-import { usePopupProvider } from '../context/PopupProvider'
+import { usePopupProvider } from '../../context/PopupProvider'
 const ResultFormPopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('resultForm')
   const [form] = Form.useForm()
@@ -21,7 +23,7 @@ const ResultFormPopup: React.FC = () => {
       visible={visible}
       title={
         <>
-          添加 <span className="text-primary">全場波膽</span> 結果
+          (3381) <span className="text-primary">全場波膽</span> 結果
         </>
       }
       onCancel={() => setVisible(false)}
@@ -37,11 +39,11 @@ const ResultFormPopup: React.FC = () => {
     >
       <Form form={form} layout="vertical">
         <Form.Item>
-          <div className="mb-1">賽事編號：3381</div>
-          <div className="mb-1">比賽時間：2020-11-18 00:01:51</div>
-          <div className="mb-1">帳務日期：2020-11-18</div>
-          <div className="mb-1">聯盟：球友會友誼</div>
-          <div className="mb-0">對陣：韋斯咸(主) vs 阿斯頓維拉</div>
+          <Space direction="vertical">
+            <div>聯盟：球友會友誼</div>
+            <div>對陣：韋斯咸(主) vs 阿斯頓維拉</div>
+            <div>比賽時間：2020-11-18 00:01:51</div>
+          </Space>
         </Form.Item>
         <div className="d-flex justify-content-between">
           <Form.Item label="主">
@@ -63,6 +65,12 @@ const ResultFormPopup: React.FC = () => {
             <Input itemType="number" placeholder="0" />
           </Form.Item>
         </div>
+        <Form.Item label="延賽" name="is_postponed" initialValue={YesNo.NO}>
+          <Radio.Group options={yesNoOpts} />
+        </Form.Item>
+        {/* <Form.Item label="備註">
+          <Input />
+        </Form.Item> */}
       </Form>
     </PopupModal>
   )
