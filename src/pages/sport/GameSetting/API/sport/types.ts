@@ -25,7 +25,7 @@ export type EditSport = {
   is_active: boolean
 }
 
-export interface SearchFields {
+export interface SportSearchFields {
   page?: number
   perpage?: number
 }

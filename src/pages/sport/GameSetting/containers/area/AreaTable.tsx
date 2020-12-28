@@ -4,14 +4,9 @@ import { usePopupProvider } from '../../context/PopupProvider'
 import { Button, Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
-interface TableItem {
-  id: string
-}
+import { Country } from '../../API/country/types'
 
-const data: TableItem[] = [...Array(3)].map((t, i) => ({
-  id: i.toString(),
-}))
-const columns: ColumnsType<TableItem> = [
+const columns: ColumnsType<Country> = [
   { title: '代碼', render: (_, row) => 'USA', width: 150 },
   { title: '名稱', render: (_, row) => '美國', width: 150 },
   {
@@ -35,8 +30,8 @@ const columns: ColumnsType<TableItem> = [
   },
 ]
 const AreaTable: React.FC = () => {
-  const [listVisible, setListVisible] = usePopupProvider('areaList')
-  const [formVIsible, setFormVisible] = usePopupProvider('areaForm')
+  const [, setListVisible] = usePopupProvider('areaList')
+  const [, setFormVisible] = usePopupProvider('areaForm')
   return (
     <div>
       <h3 className="text-primary">
@@ -54,12 +49,7 @@ const AreaTable: React.FC = () => {
           </Button>
         </Space>
       </h3>
-      <TableSets
-        columns={columns}
-        data={data}
-        pagination={false}
-        scroll={null}
-      />
+      <TableSets columns={columns} data={[]} pagination={false} scroll={null} />
     </div>
   )
 }

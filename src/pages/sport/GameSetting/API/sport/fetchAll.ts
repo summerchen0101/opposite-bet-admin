@@ -1,5 +1,5 @@
 import Request from '@/utils/request'
-import { Sport, SearchFields } from './types'
+import { Sport, SportSearchFields } from './types'
 
 export interface Response {
   activities: Sport[]
@@ -7,7 +7,7 @@ export interface Response {
   total_page: number
 }
 
-type Request = SearchFields
+type Request = SportSearchFields
 export const fetchAll = (reqData?: Request) =>
   Request.post<Response>('sport/list', {
     page: 1,

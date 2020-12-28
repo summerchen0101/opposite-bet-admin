@@ -22,7 +22,7 @@ export type EditCountry = {
   is_active: boolean
 }
 
-export interface SearchFields {
+export interface CountrySearchFields {
   page?: number
   perpage?: number
 }

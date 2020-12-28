@@ -1,5 +1,5 @@
 import Request from '@/utils/request'
-import { Country, SearchFields } from './types'
+import { Country, CountrySearchFields } from './types'
 
 export interface Response {
   countries: Country[]
@@ -7,7 +7,7 @@ export interface Response {
   total_page: number
 }
 
-type Request = SearchFields
+type Request = CountrySearchFields
 export const fetchAll = (reqData?: Request) =>
   Request.post<Response>('country/list', {
     page: 1,
