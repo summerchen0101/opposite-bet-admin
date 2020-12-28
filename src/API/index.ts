@@ -13,6 +13,7 @@ import * as Activity from '@/pages/promote/PromoteAcitivity/API'
 import * as Country from '@/pages/sport/Country/API'
 import * as Sport from '@/pages/sport/Sport/API'
 import * as SportGame from '@/pages/sport/SportGame/API'
+import * as League from '@/pages/sport/League/API'
 
 const API = {
   login,
@@ -29,6 +30,7 @@ const API = {
   Country,
   Sport,
   SportGame,
+  League,
 }
 
 export default API
