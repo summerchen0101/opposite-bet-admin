@@ -10,12 +10,12 @@ import {
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
-import { Sport } from '../API/types'
+import { SportGame } from '../API/types'
 import { usePopupProvider } from '../context/PopupProvider'
 import { selectTableData, useTypedSelector } from '../selectors'
 import { useAPIService } from '../service'
 
-const columns: ColumnsType<Sport> = [
+const columns: ColumnsType<SportGame> = [
   {
     title: '名稱',
     width: 100,
@@ -30,6 +30,11 @@ const columns: ColumnsType<Sport> = [
     title: '國家',
     width: 100,
     render: (_, row) => row.country.name,
+  },
+  {
+    title: '體育',
+    width: 100,
+    render: (_, row) => row.sport.name,
   },
   {
     title: '創建時間',
@@ -91,7 +96,7 @@ const columns: ColumnsType<Sport> = [
 
 const TableData: React.FC = () => {
   const data = useTypedSelector(selectTableData)
-  return <TableSets<Sport> columns={columns} data={data} />
+  return <TableSets<SportGame> columns={columns} data={data} />
 }
 
 export default TableData

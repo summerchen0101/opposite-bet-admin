@@ -1,7 +1,11 @@
 import { Button, Form, Input, Radio, Select, Space, Switch } from 'antd'
 import { FormInstance } from 'antd/lib/form'
 import React, { useEffect } from 'react'
-import { selectCountryOpts, useTypedSelector } from '../selectors'
+import {
+  useTypedSelector,
+  selectCountryOpts,
+  selectSportOpts,
+} from '../selectors'
 
 export interface FormData {
   id?: number
@@ -9,6 +13,7 @@ export interface FormData {
   code: string
   note: string
   country_id: number
+  sport_id: number
   is_active: boolean
 }
 interface FormProps {
@@ -20,12 +25,14 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
     form.setFieldsValue(values)
   }, [values])
   const onReset = () => form.resetFields()
-  const countryOpts = useTypedSelector(selectCountryOpts)
 
   const statusOpts = [
     { label: '啟用', value: true },
     { label: '停用', value: false },
   ]
+
+  const countryOpts = useTypedSelector(selectCountryOpts)
+  const sportOpts = useTypedSelector(selectSportOpts)
 
   return (
     <Form
@@ -36,6 +43,9 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
     >
       <Form.Item label="國家" name="country_id" rules={[{ required: true }]}>
         <Select options={countryOpts} placeholder="請選擇" />
+      </Form.Item>
+      <Form.Item label="體育" name="sport_id" rules={[{ required: true }]}>
+        <Select options={sportOpts} placeholder="請選擇" />
       </Form.Item>
       <Form.Item
         label="名稱"

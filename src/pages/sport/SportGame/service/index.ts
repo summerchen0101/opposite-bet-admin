@@ -1,0 +1,94 @@
+import API from '@/API'
+import useErrorHandler from '@/utils/hooks/useErrorHandler'
+import { message } from 'antd'
+import { useDispatch } from 'react-redux'
+import { CreateSportGame, EditSportGame, SportGameSearch } from '../API/types'
+import {
+  setEditData,
+  setTableData,
+  setCountryOpts,
+  setSportOpts,
+} from '../reducer'
+
+export const useAPIService = () => {
+  const { apiErr } = useErrorHandler()
+  const dispatch = useDispatch()
+
+  const getOptions = async () => {
+    try {
+      const countryRes = await API.Country.options()
+      dispatch(setCountryOpts(countryRes.data.countries))
+      const sportRes = await API.Sport.options()
+      dispatch(setSportOpts(sportRes.data.sports))
+    } catch (err) {
+      apiErr(err)
+    }
+  }
+
+  const getFormData = async (id: number) => {
+    try {
+      const res = await API.SportGame.fetchById(id)
+      dispatch(setEditData(res.data))
+    } catch (err) {
+      apiErr(err)
+    }
+  }
+
+  const getTableData = async (search?: SportGameSearch) => {
+    try {
+      const res = await API.SportGame.fetchAll(search)
+      dispatch(setTableData(res.data.games))
+    } catch (err) {
+      apiErr(err)
+    }
+  }
+
+  const onCreate = async (values: CreateSportGame) => {
+    try {
+      await API.SportGame.create(values)
+      await getTableData()
+      message.success('新增成功')
+    } catch (err) {
+      apiErr(err)
+    }
+  }
+
+  const onEdit = async (values: EditSportGame) => {
+    try {
+      await API.SportGame.edit(values)
+      await getTableData()
+      message.success('修改成功')
+    } catch (err) {
+      apiErr(err)
+    }
+  }
+
+  const onDelete = async (id: number) => {
+    try {
+      await API.SportGame.deleteById(id)
+      await getTableData()
+      message.success('刪除成功')
+    } catch (err) {
+      apiErr(err)
+    }
+  }
+  const changeActive = async (id: number, status: boolean) => {
+    try {
+      await API.SportGame.active({ id, is_active: status })
+      await getTableData()
+      message.success('狀態更新成功')
+    } catch (err) {
+      apiErr(err)
+    }
+  }
+
+  return {
+    getTableData,
+    onCreate,
+    onEdit,
+    getFormData,
+    getOptions,
+    onDelete,
+    changeActive,
+  }
+}

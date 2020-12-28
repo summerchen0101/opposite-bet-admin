@@ -21,7 +21,7 @@ export interface EditCountry {
   is_active: boolean
 }
 
-export interface CountryOptions {
+export interface CountryOption {
   id: number
   name: string
 }

@@ -1,13 +1,16 @@
-import { Status } from '@/lib/enums'
 import { statusOpts } from '@/lib/options'
 import { Form, Select } from 'antd'
 import React from 'react'
-import { selectCountryOpts, useTypedSelector } from '../selectors'
+import {
+  selectCountryOpts,
+  selectSportOpts,
+  useTypedSelector,
+} from '../selectors'
 import { useAPIService } from '../service'
 
 interface SearchFormData {
   country_id: number
-  // is_active: Status
+  sport_id: number
 }
 
 const SearchBar: React.FC = () => {
@@ -17,15 +20,23 @@ const SearchBar: React.FC = () => {
     const f = (await form.validateFields()) as SearchFormData
     await getTableData({
       country_id: f.country_id,
-      // is_active: f.is_active,
+      sport_id: f.sport_id,
     })
   }
   const countryOpts = useTypedSelector(selectCountryOpts)
+  const sportOpts = useTypedSelector(selectSportOpts)
   return (
     <Form form={form} layout="inline" className="mb-1">
       <Form.Item label="國家" name="country_id" initialValue={0}>
         <Select
           options={[{ label: '全部', value: 0 }, ...countryOpts]}
+          style={{ width: '130px' }}
+          onChange={onSearch}
+        />
+      </Form.Item>
+      <Form.Item label="體育" name="sport_id" initialValue={0}>
+        <Select
+          options={[{ label: '全部', value: 0 }, ...sportOpts]}
           style={{ width: '130px' }}
           onChange={onSearch}
         />
