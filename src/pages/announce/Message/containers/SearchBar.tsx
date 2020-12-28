@@ -18,8 +18,8 @@ const SearchBar: React.FC = () => {
       <Form.Item label="標題" name="title">
         <Input.Search onSearch={onSearch} allowClear />
       </Form.Item>
-      <Form.Item label="發送對象" name="target_level" initialValue={0}>
-        <Radio.Group>
+      <Form.Item label="發送對象" name="member_type" initialValue={0}>
+        <Radio.Group onChange={onSearch}>
           <Radio value={0}>全部</Radio>
           <Radio value={MessageType.Member}>會員</Radio>
           <Radio value={MessageType.Agent}>代理</Radio>
