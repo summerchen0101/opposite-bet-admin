@@ -12,7 +12,7 @@ const AreaFormPopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('editCountry')
   const { onEdit } = useAPIService()
   const [form] = Form.useForm()
-  const [view] = useDataProvider().view
+  const [view] = useDataProvider().countryView
   if (!view) return <></>
 
   const handleSubmit = async () => {

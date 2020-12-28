@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import { CreateSport } from '../../API/types'
 import { useDataProvider } from '../../context/DataProvider'
 import { usePopupProvider } from '../../context/PopupProvider'
-import { useAPIService } from '../../service/country'
+import { useAPIService } from '../../service/sport'
 import SportDataForm from './SportDataForm'
 import { FormData } from './SportDataForm'
 
@@ -12,7 +12,7 @@ const SportFormPopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('editSport')
   const { onEdit } = useAPIService()
   const [form] = Form.useForm()
-  const [view] = useDataProvider().view
+  const [view] = useDataProvider().sportView
   if (!view) return <></>
 
   const handleSubmit = async () => {
@@ -38,7 +38,7 @@ const SportFormPopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="編輯地區"
+      title="編輯體育"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
       width={360}

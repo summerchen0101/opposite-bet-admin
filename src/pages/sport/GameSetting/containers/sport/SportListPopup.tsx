@@ -8,12 +8,12 @@ import { usePopupProvider } from '../../context/PopupProvider'
 import { useDataProvider } from '../../context/DataProvider'
 import { ColumnsType } from 'antd/lib/table'
 import { Sport } from '../../API/types'
-import { useAPIService } from '../../service/country'
+import { useAPIService } from '../../service/sport'
 
 const SportListPopup: React.FC = () => {
-  const [visible, setVisible] = usePopupProvider('countryList')
+  const [visible, setVisible] = usePopupProvider('sportList')
   const [, setCreateVisible] = usePopupProvider('createSport')
-  const [list] = useDataProvider().list
+  const [list] = useDataProvider().sportList
   const columns: ColumnsType<Sport> = [
     { title: '代碼', render: (_, row) => row.code },
     { title: '名稱', render: (_, row) => row.name },
@@ -44,7 +44,7 @@ const SportListPopup: React.FC = () => {
       zIndex={1}
       title={
         <>
-          地區列表
+          體育列表
           <Space className="float-right mr-3">
             <Button
               size="small"

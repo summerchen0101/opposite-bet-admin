@@ -6,6 +6,7 @@ export interface FormData {
   code: string
   name: string
   note: string
+  country_id: number
   is_active: boolean
 }
 

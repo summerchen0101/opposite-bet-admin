@@ -2,7 +2,7 @@ import { PopupModal } from '@/components'
 import { Form } from 'antd'
 import React from 'react'
 import { usePopupProvider } from '../../context/PopupProvider'
-import { useAPIService } from '../../service/country'
+import { useAPIService } from '../../service/sport'
 import SportDataForm, { FormData } from './SportDataForm'
 
 const SportFormPopup: React.FC = () => {
@@ -30,7 +30,7 @@ const SportFormPopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="新增地區"
+      title="新增體育"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
       width={360}
@@ -42,6 +42,7 @@ const SportFormPopup: React.FC = () => {
           code: '',
           name: '',
           note: '',
+          country_id: null,
           is_active: true,
         }}
       />

@@ -1,19 +1,18 @@
-import { PopupModal } from '@/components'
-import { IconLink, PopupConfirm, TableSets } from '@/components'
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
+import { IconLink, PopupModal } from '@/components'
 import { addKeyToArrayItem } from '@/utils/transfer'
+import { EditOutlined } from '@ant-design/icons'
 import { Button, Space, Table } from 'antd'
-import React, { useEffect } from 'react'
-import { usePopupProvider } from '../../context/PopupProvider'
-import { useDataProvider } from '../../context/DataProvider'
 import { ColumnsType } from 'antd/lib/table'
+import React from 'react'
 import { Country } from '../../API/types'
+import { useDataProvider } from '../../context/DataProvider'
+import { usePopupProvider } from '../../context/PopupProvider'
 import { useAPIService } from '../../service/country'
 
 const AreaListPopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('countryList')
   const [, setCreateVisible] = usePopupProvider('createCountry')
-  const [list] = useDataProvider().list
+  const [list] = useDataProvider().countryList
   const columns: ColumnsType<Country> = [
     { title: '代碼', render: (_, row) => row.code },
     { title: '名稱', render: (_, row) => row.name },

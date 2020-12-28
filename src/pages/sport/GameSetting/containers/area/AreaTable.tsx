@@ -35,7 +35,7 @@ const AreaTable: React.FC = () => {
   const [, setListVisible] = usePopupProvider('countryList')
   const [, setFormVisible] = usePopupProvider('createCountry')
   const { getTableData } = useAPIService()
-  const [list] = useDataProvider().list
+  const [list] = useDataProvider().countryList
   useEffect(() => {
     getTableData()
   }, [])

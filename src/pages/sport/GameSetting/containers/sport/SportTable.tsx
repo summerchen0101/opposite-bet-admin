@@ -6,7 +6,7 @@ import { ColumnsType } from 'antd/lib/table'
 import React, { useEffect } from 'react'
 import { Sport } from '../../API/sport/types'
 import { useDataProvider } from '../../context/DataProvider'
-import { useAPIService } from '../../service/country'
+import { useAPIService } from '../../service/sport'
 
 const columns: ColumnsType<Sport> = [
   { title: '代碼', render: (_, row) => row.code, width: 150 },
@@ -32,24 +32,24 @@ const columns: ColumnsType<Sport> = [
   },
 ]
 const SportTable: React.FC = () => {
-  const [, setListVisible] = usePopupProvider('countryList')
+  const [, setListVisible] = usePopupProvider('sportList')
   const [, setFormVisible] = usePopupProvider('createSport')
   const { getTableData } = useAPIService()
-  const [list] = useDataProvider().list
+  const [list] = useDataProvider().sportList
   useEffect(() => {
     getTableData()
   }, [])
   return (
     <div>
       <h3 className="text-primary">
-        地區
+        體育
         <Space className="float-right">
           <Button
             size="small"
             type="primary"
             onClick={() => setFormVisible(true)}
           >
-            地區新增
+            體育新增
           </Button>
           <Button size="small" onClick={() => setListVisible(true)}>
             更多

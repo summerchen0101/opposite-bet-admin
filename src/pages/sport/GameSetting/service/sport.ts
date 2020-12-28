@@ -6,8 +6,16 @@ import { useDataProvider } from '../context/DataProvider'
 
 export const useAPIService = () => {
   const { apiErr } = useErrorHandler()
-  const [, setList] = useDataProvider().list
-  const [, setView] = useDataProvider().view
+  const [, setList] = useDataProvider().countryList
+  const [, setView] = useDataProvider().countryView
+
+  const getOptions = async () => {
+    try {
+      const res = await API.GameSetting.Country.options()
+    } catch (err) {
+      apiErr(err)
+    }
+  }
 
   const getFormData = async (id: number) => {
     try {
@@ -52,5 +60,6 @@ export const useAPIService = () => {
     onCreate,
     onEdit,
     getFormData,
+    getOptions,
   }
 }

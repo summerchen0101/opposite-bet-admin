@@ -6,8 +6,8 @@ import { useDataProvider } from '../context/DataProvider'
 
 export const useAPIService = () => {
   const { apiErr } = useErrorHandler()
-  const [, setList] = useDataProvider().list
-  const [, setView] = useDataProvider().view
+  const [, setList] = useDataProvider().countryList
+  const [, setView] = useDataProvider().countryView
 
   const getFormData = async (id: number) => {
     try {
