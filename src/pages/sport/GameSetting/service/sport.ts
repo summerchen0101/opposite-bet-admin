@@ -6,8 +6,8 @@ import { useDataProvider } from '../context/DataProvider'
 
 export const useAPIService = () => {
   const { apiErr } = useErrorHandler()
-  const [, setList] = useDataProvider().countryList
-  const [, setView] = useDataProvider().countryView
+  const [, setList] = useDataProvider().sportList
+  const [, setView] = useDataProvider().sportView
 
   const getOptions = async () => {
     try {

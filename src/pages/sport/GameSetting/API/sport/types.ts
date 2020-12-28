@@ -28,4 +28,5 @@ export type EditSport = {
 export interface SportSearchFields {
   page?: number
   perpage?: number
+  country_id?: number
 }

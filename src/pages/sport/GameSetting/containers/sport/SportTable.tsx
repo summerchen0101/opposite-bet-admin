@@ -1,7 +1,7 @@
 import { IconLink, PopupConfirm, TableSets } from '@/components'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import { usePopupProvider } from '../../context/PopupProvider'
-import { Button, Space } from 'antd'
+import { Button, Form, Select, Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React, { useEffect } from 'react'
 import { Sport } from '../../API/sport/types'
@@ -31,31 +31,51 @@ const columns: ColumnsType<Sport> = [
     width: 80,
   },
 ]
+interface SearchFormData {
+  country_id: number
+}
 const SportTable: React.FC = () => {
   const [, setListVisible] = usePopupProvider('sportList')
   const [, setFormVisible] = usePopupProvider('createSport')
   const { getTableData } = useAPIService()
   const [list] = useDataProvider().sportList
+  const [countryList] = useDataProvider().countryList
   useEffect(() => {
     getTableData()
   }, [])
+  const [form] = Form.useForm()
+  const onSearch = async () => {
+    const f = (await form.validateFields()) as SearchFormData
+    await getTableData({
+      country_id: f.country_id,
+    })
+  }
+  const countryOpts = countryList.map((t) => ({
+    label: t.name,
+    value: t.id,
+  }))
   return (
     <div>
-      <h3 className="text-primary">
-        體育
-        <Space className="float-right">
-          <Button
-            size="small"
-            type="primary"
-            onClick={() => setFormVisible(true)}
-          >
-            體育新增
-          </Button>
-          <Button size="small" onClick={() => setListVisible(true)}>
-            更多
-          </Button>
-        </Space>
-      </h3>
+      <Space>
+        <h3 className="text-primary">體育</h3>
+        <Form layout="inline" form={form} size="small">
+          <Form.Item name="country_id" initialValue={0}>
+            <Select
+              options={[{ label: '全部國家', value: 0 }, ...countryOpts]}
+              onChange={onSearch}
+              style={{ width: '130px' }}
+            />
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" onClick={() => setFormVisible(true)}>
+              體育新增
+            </Button>
+          </Form.Item>
+          <Form.Item>
+            <Button onClick={() => setListVisible(true)}>更多</Button>
+          </Form.Item>
+        </Form>
+      </Space>
       <TableSets
         columns={columns}
         data={list.slice(0, 3)}
