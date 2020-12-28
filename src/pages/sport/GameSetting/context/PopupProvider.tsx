@@ -5,6 +5,11 @@ interface IState {
   countryList: PopupProps<boolean>
   createCountry: PopupProps<boolean>
   editCountry: PopupProps<boolean>
+
+  sportList: PopupProps<boolean>
+  createSport: PopupProps<boolean>
+  editSport: PopupProps<boolean>
+
   categoryList: PopupProps<boolean>
   categoryForm: PopupProps<boolean>
   eventList: PopupProps<boolean>
@@ -26,6 +31,11 @@ const PopupProvider: React.FC = ({ children }) => {
     countryList: useState(false),
     createCountry: useState(false),
     editCountry: useState(false),
+
+    sportList: useState(false),
+    createSport: useState(false),
+    editSport: useState(false),
+
     categoryList: useState(false),
     categoryForm: useState(false),
     eventList: useState(false),

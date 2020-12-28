@@ -2,7 +2,7 @@ import Request from '@/utils/request'
 import { Sport, SportSearchFields } from './types'
 
 export interface Response {
-  activities: Sport[]
+  sports: Sport[]
   total_count: number
   total_page: number
 }
