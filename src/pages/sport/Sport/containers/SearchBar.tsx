@@ -20,12 +20,12 @@ const SearchBar: React.FC = () => {
       // is_active: f.is_active,
     })
   }
-  const countryOpts = useTypedSelector(selectCountryOpts)
+  // const countryOpts = useTypedSelector(selectCountryOpts)
   return (
     <Form form={form} layout="inline" className="mb-1">
       <Form.Item label="國家" name="country_id" initialValue={0}>
         <Select
-          options={[{ label: '全部', value: 0 }, ...countryOpts]}
+          options={[{ label: '全部', value: 0 }]}
           style={{ width: '130px' }}
           onChange={onSearch}
         />

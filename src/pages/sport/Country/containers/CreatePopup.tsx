@@ -30,7 +30,7 @@ const CreatePopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="新增管理者角色"
+      title="新增國家"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
     >

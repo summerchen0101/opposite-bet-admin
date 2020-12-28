@@ -29,7 +29,7 @@ const EditPopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="編輯管理者角色"
+      title="編輯國家"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
       destroyOnClose
