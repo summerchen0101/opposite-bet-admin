@@ -5,7 +5,7 @@ import DataForm from './DataForm'
 import { Form } from 'antd'
 import { useAPIService } from '../service'
 import { useTypedSelector, selectEditData } from '../selectors'
-import { EditLeague } from '../API/types'
+import { EditTeam } from '../API/types'
 
 const EditPopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('editForm')
@@ -14,7 +14,7 @@ const EditPopup: React.FC = () => {
   const { onEdit } = useAPIService()
   const handleSubmit = async () => {
     try {
-      const values = (await form.validateFields()) as EditLeague
+      const values = (await form.validateFields()) as EditTeam
       await onEdit({ id: f.id, ...values })
       form.resetFields()
       setVisible(false)
@@ -40,9 +40,11 @@ const EditPopup: React.FC = () => {
           values={{
             id: f.id,
             name: f.name,
-            bet365_code: f.bet365_code,
             note: f.note,
-            game_id: f.game.id,
+            // country_id: f.country.id,
+            // sport_id: f.sport.id,
+            // game_id: f.game.id,
+            league_id: f.league.id,
             is_active: f.is_active,
           }}
         />

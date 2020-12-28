@@ -14,6 +14,7 @@ import * as Country from '@/pages/sport/Country/API'
 import * as Sport from '@/pages/sport/Sport/API'
 import * as SportGame from '@/pages/sport/SportGame/API'
 import * as League from '@/pages/sport/League/API'
+import * as Team from '@/pages/sport/Team/API'
 
 const API = {
   login,
@@ -31,6 +32,7 @@ const API = {
   Sport,
   SportGame,
   League,
+  Team,
 }
 
 export default API

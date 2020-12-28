@@ -10,22 +10,22 @@ import {
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
-import { League } from '../API/types'
+import { Team } from '../API/types'
 import { usePopupProvider } from '../context/PopupProvider'
 import { selectTableData, useTypedSelector } from '../selectors'
 import { useAPIService } from '../service'
 
-const columns: ColumnsType<League> = [
+const columns: ColumnsType<Team> = [
   {
     title: '名稱',
     width: 180,
     render: (_, row) => row.name,
   },
-  {
-    title: '365代碼',
-    width: 180,
-    render: (_, row) => row.bet365_code,
-  },
+  // {
+  //   title: '365代碼',
+  //   width: 100,
+  //   render: (_, row) => row.bet365_code,
+  // },
   // {
   //   title: '國家',
   //   width: 100,
@@ -36,6 +36,11 @@ const columns: ColumnsType<League> = [
   //   width: 100,
   //   render: (_, row) => row.sport.name,
   // },
+  {
+    title: '聯盟',
+    width: 180,
+    render: (_, row) => row.league.name,
+  },
   {
     title: '創建時間',
     width: 180,
@@ -96,7 +101,7 @@ const columns: ColumnsType<League> = [
 
 const TableData: React.FC = () => {
   const data = useTypedSelector(selectTableData)
-  return <TableSets<League> columns={columns} data={data} />
+  return <TableSets<Team> columns={columns} data={data} />
 }
 
 export default TableData

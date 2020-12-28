@@ -6,14 +6,17 @@ import {
   selectCountryOpts,
   selectSportOpts,
   selectGameOpts,
+  selectLeagueOpts,
 } from '../selectors'
 
 export interface FormData {
   id?: number
   name: string
-  bet365_code: string
   note: string
-  game_id: number
+  // country_id: number
+  // sport_id: number
+  // game_id: number
+  league_id: number
   is_active: boolean
 }
 interface FormProps {
@@ -33,7 +36,8 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
 
   // const countryOpts = useTypedSelector(selectCountryOpts)
   // const sportOpts = useTypedSelector(selectSportOpts)
-  const gameOpts = useTypedSelector(selectGameOpts)
+  // const gameOpts = useTypedSelector(selectGameOpts)
+  const leagueOpts = useTypedSelector(selectLeagueOpts)
 
   return (
     <Form
@@ -42,17 +46,23 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
       onReset={onReset}
       initialValues={values}
     >
+      {/* <Form.Item label="國家" name="country_id" rules={[{ required: true }]}>
+        <Select options={countryOpts} placeholder="請選擇" />
+      </Form.Item>
+      <Form.Item label="體育" name="sport_id" rules={[{ required: true }]}>
+        <Select options={sportOpts} placeholder="請選擇" />
+      </Form.Item>
       <Form.Item label="球種" name="game_id" rules={[{ required: true }]}>
         <Select options={gameOpts} placeholder="請選擇" />
+      </Form.Item> */}
+      <Form.Item label="聯盟" name="league_id" rules={[{ required: true }]}>
+        <Select options={leagueOpts} placeholder="請選擇" />
       </Form.Item>
       <Form.Item
         label="名稱"
         name="name"
         rules={[{ required: true }, { max: 30 }]}
       >
-        <Input />
-      </Form.Item>
-      <Form.Item label="365代碼" name="bet365_code" rules={[{ max: 30 }]}>
         <Input />
       </Form.Item>
       <Form.Item label="備註" name="note" rules={[{ max: 30 }]}>

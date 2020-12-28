@@ -1,7 +1,7 @@
 import PopupModal from '@/components/PopupModal'
 import { Form } from 'antd'
 import React from 'react'
-import { CreateLeague } from '../API/types'
+import { CreateTeam } from '../API/types'
 import { usePopupProvider } from '../context/PopupProvider'
 import { useAPIService } from '../service'
 import DataForm, { FormData } from './DataForm'
@@ -12,7 +12,7 @@ const CreatePopup: React.FC = () => {
   const [form] = Form.useForm<FormData>()
   const handleSubmit = async () => {
     try {
-      const values = (await form.validateFields()) as CreateLeague
+      const values = (await form.validateFields()) as CreateTeam
       await onCreate(values)
       form.resetFields()
       setVisible(false)
@@ -35,9 +35,11 @@ const CreatePopup: React.FC = () => {
         form={form}
         values={{
           name: '',
-          bet365_code: '',
           note: '',
-          game_id: null,
+          // country_id: null,
+          // sport_id: null,
+          // game_id: null,
+          league_id: null,
           is_active: true,
         }}
       />

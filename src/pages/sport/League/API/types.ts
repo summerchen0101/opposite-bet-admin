@@ -5,17 +5,6 @@ export interface League {
   name: string
   bet365_code: string
   note: string
-  country: {
-    code: string
-    id: number
-    name: string
-  }
-  sport: {
-    code: string
-    country_id: number
-    id: number
-    name: string
-  }
   game: {
     code: string
     country_id: number
@@ -30,18 +19,16 @@ export interface League {
 
 export interface CreateLeague {
   name: string
+  bet365_code: string
   note: string
-  country_id: number
-  sport_id: number
   game_id: number
   is_active: boolean
 }
 export interface EditLeague {
   id: number
   name: string
+  bet365_code: string
   note: string
-  country_id: number
-  sport_id: number
   game_id: number
   is_active: boolean
 }
@@ -52,8 +39,6 @@ export interface LeagueOptions {
 }
 
 export interface LeagueSearch {
-  country_id?: number
-  sport_id?: number
   game_id?: number
   is_active?: Status
   page?: number

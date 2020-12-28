@@ -2,13 +2,14 @@ import API from '@/API'
 import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { message } from 'antd'
 import { useDispatch } from 'react-redux'
-import { CreateLeague, EditLeague, LeagueSearch } from '../API/types'
+import { CreateTeam, EditTeam, TeamSearch } from '../API/types'
 import {
   setEditData,
   setTableData,
   setCountryOpts,
   setSportOpts,
   setGameOpts,
+  setLeagueOpts,
 } from '../reducer'
 
 export const useAPIService = () => {
@@ -21,8 +22,10 @@ export const useAPIService = () => {
       // dispatch(setCountryOpts(countryRes.data.countries))
       // const sportRes = await API.Sport.options()
       // dispatch(setSportOpts(sportRes.data.sports))
-      const gameRes = await API.SportGame.options()
-      dispatch(setGameOpts(gameRes.data.games))
+      // const gameRes = await API.SportGame.options()
+      // dispatch(setGameOpts(gameRes.data.games))
+      const leagueRes = await API.League.options()
+      dispatch(setLeagueOpts(leagueRes.data.leagues))
     } catch (err) {
       apiErr(err)
     }
@@ -30,25 +33,25 @@ export const useAPIService = () => {
 
   const getFormData = async (id: number) => {
     try {
-      const res = await API.League.fetchById(id)
+      const res = await API.Team.fetchById(id)
       dispatch(setEditData(res.data))
     } catch (err) {
       apiErr(err)
     }
   }
 
-  const getTableData = async (search?: LeagueSearch) => {
+  const getTableData = async (search?: TeamSearch) => {
     try {
-      const res = await API.League.fetchAll(search)
-      dispatch(setTableData(res.data.leagues))
+      const res = await API.Team.fetchAll(search)
+      dispatch(setTableData(res.data.teams))
     } catch (err) {
       apiErr(err)
     }
   }
 
-  const onCreate = async (values: CreateLeague) => {
+  const onCreate = async (values: CreateTeam) => {
     try {
-      await API.League.create(values)
+      await API.Team.create(values)
       await getTableData()
       message.success('新增成功')
     } catch (err) {
@@ -56,9 +59,9 @@ export const useAPIService = () => {
     }
   }
 
-  const onEdit = async (values: EditLeague) => {
+  const onEdit = async (values: EditTeam) => {
     try {
-      await API.League.edit(values)
+      await API.Team.edit(values)
       await getTableData()
       message.success('修改成功')
     } catch (err) {
@@ -68,7 +71,7 @@ export const useAPIService = () => {
 
   const onDelete = async (id: number) => {
     try {
-      await API.League.deleteById(id)
+      await API.Team.deleteById(id)
       await getTableData()
       message.success('刪除成功')
     } catch (err) {
@@ -77,7 +80,7 @@ export const useAPIService = () => {
   }
   const changeActive = async (id: number, status: boolean) => {
     try {
-      await API.League.active({ id, is_active: status })
+      await API.Team.active({ id, is_active: status })
       await getTableData()
       message.success('狀態更新成功')
     } catch (err) {
