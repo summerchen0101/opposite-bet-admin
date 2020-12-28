@@ -6,7 +6,7 @@ import { Form, message } from 'antd'
 import API from '@/API'
 import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { useAPIService } from '../service'
-import { CreateCountry } from '../API/types'
+import { CreateSport } from '../API/types'
 
 const CreatePopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('createForm')
@@ -15,7 +15,7 @@ const CreatePopup: React.FC = () => {
   const [form] = Form.useForm<FormData>()
   const handleSubmit = async () => {
     try {
-      const values = (await form.validateFields()) as CreateCountry
+      const values = (await form.validateFields()) as CreateSport
       await onCreate(values)
       form.resetFields()
       setVisible(false)

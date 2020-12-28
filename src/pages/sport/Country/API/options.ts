@@ -1,11 +1,8 @@
 import Request from '@/utils/request'
+import { CountryOptions } from './types'
 
-export interface Role {
-  id: number
-  name: string
-}
 interface ResponseData {
-  roles: Role[]
+  countries: CountryOptions[]
 }
 
 export const options = () => Request.get<ResponseData>('country/options')

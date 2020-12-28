@@ -2,43 +2,43 @@ import API from '@/API'
 import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { message } from 'antd'
 import { useDispatch } from 'react-redux'
-import { CreateCountry, EditCountry } from '../API/types'
-import { setEditData, setTableData } from '../reducer'
+import { CreateSport, EditSport, SportSearch } from '../API/types'
+import { setEditData, setTableData, setCountryOpts } from '../reducer'
 
 export const useAPIService = () => {
   const { apiErr } = useErrorHandler()
   const dispatch = useDispatch()
 
   const getOptions = async () => {
-    // try {
-    //   const res = await API.permission.options()
-    //   dispatch(setPermissionOpts(res.data.permissions))
-    // } catch (err) {
-    //   apiErr(err)
-    // }
+    try {
+      const res = await API.Country.options()
+      dispatch(setCountryOpts(res.data.countries))
+    } catch (err) {
+      apiErr(err)
+    }
   }
 
   const getFormData = async (id: number) => {
     try {
-      const res = await API.Country.fetchById(id)
+      const res = await API.Sport.fetchById(id)
       dispatch(setEditData(res.data))
     } catch (err) {
       apiErr(err)
     }
   }
 
-  const getTableData = async () => {
+  const getTableData = async (search?: SportSearch) => {
     try {
-      const res = await API.Country.fetchAll()
-      dispatch(setTableData(res.data.countries))
+      const res = await API.Sport.fetchAll(search)
+      dispatch(setTableData(res.data.sports))
     } catch (err) {
       apiErr(err)
     }
   }
 
-  const onCreate = async (values: CreateCountry) => {
+  const onCreate = async (values: CreateSport) => {
     try {
-      await API.Country.create(values)
+      await API.Sport.create(values)
       await getTableData()
       message.success('新增成功')
     } catch (err) {
@@ -46,9 +46,9 @@ export const useAPIService = () => {
     }
   }
 
-  const onEdit = async (values: EditCountry) => {
+  const onEdit = async (values: EditSport) => {
     try {
-      await API.Country.edit(values)
+      await API.Sport.edit(values)
       await getTableData()
       message.success('修改成功')
     } catch (err) {
@@ -58,7 +58,7 @@ export const useAPIService = () => {
 
   const onDelete = async (id: number) => {
     try {
-      await API.Country.deleteById(id)
+      await API.Sport.deleteById(id)
       await getTableData()
       message.success('刪除成功')
     } catch (err) {
@@ -67,7 +67,7 @@ export const useAPIService = () => {
   }
   const changeActive = async (id: number, status: boolean) => {
     try {
-      await API.Country.active({ id, is_active: status })
+      await API.Sport.active({ id, is_active: status })
       await getTableData()
       message.success('狀態更新成功')
     } catch (err) {

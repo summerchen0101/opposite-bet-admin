@@ -1,7 +1,7 @@
 import React from 'react'
 import PageHeader from '@/components/PageHeader'
 import CreateButton from '../containers/CreateButton'
-import { Country as page } from '@/pages/sport/routes'
+import { Sport as page } from '@/pages/sport/routes'
 import { useBreadcrumb } from '@/utils/hooks'
 
 const Component: React.FC = () => {

@@ -1,11 +1,5 @@
 import Request from '@/utils/request'
+import { EditCountry } from './types'
 
-interface Request {
-  id: number
-  name: string
-  permission_ids: number[]
-  is_active: boolean
-}
-
-export const edit = (reqData: Request) =>
+export const edit = (reqData: EditCountry) =>
   Request.post<null>('country/edit', reqData)

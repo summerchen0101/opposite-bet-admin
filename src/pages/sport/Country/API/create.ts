@@ -1,10 +1,5 @@
 import Request from '@/utils/request'
+import { CreateCountry } from './types'
 
-interface Request {
-  name: string
-  permission_ids: number[]
-  is_active: boolean
-}
-
-export const create = (reqData: Request) =>
+export const create = (reqData: CreateCountry) =>
   Request.post<null>('country/add', reqData)

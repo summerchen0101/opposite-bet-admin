@@ -11,6 +11,7 @@ import * as Marquee from '@/pages/announce/Marquee/API'
 import * as Message from '@/pages/announce/Message/API'
 import * as Activity from '@/pages/promote/PromoteAcitivity/API'
 import * as Country from '@/pages/sport/Country/API'
+import * as Sport from '@/pages/sport/Sport/API'
 
 const API = {
   login,
@@ -25,6 +26,7 @@ const API = {
   Activity,
   Message,
   Country,
+  Sport,
 }
 
 export default API
