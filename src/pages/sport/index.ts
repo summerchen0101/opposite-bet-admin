@@ -1,2 +1,2 @@
-export { default as GameSetting } from './GameSetting'
+export { default as Country } from './Country'
 export { default as GameLimit } from './GameLimit'

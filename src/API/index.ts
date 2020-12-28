@@ -10,7 +10,7 @@ import * as announceManage from '@/pages/announce/AnnounceManage/API'
 import * as Marquee from '@/pages/announce/Marquee/API'
 import * as Message from '@/pages/announce/Message/API'
 import * as Activity from '@/pages/promote/PromoteAcitivity/API'
-import * as GameSetting from '@/pages/sport/GameSetting/API'
+import * as Country from '@/pages/sport/Country/API'
 
 const API = {
   login,
@@ -24,7 +24,7 @@ const API = {
   Marquee,
   Activity,
   Message,
-  GameSetting,
+  Country,
 }
 
 export default API
