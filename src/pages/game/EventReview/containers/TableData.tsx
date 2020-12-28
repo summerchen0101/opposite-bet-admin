@@ -30,7 +30,6 @@ const TableData: React.FC = () => {
       ),
     },
     { title: '場次', render: (_, row) => '全場' },
-    { title: '玩法', render: (_, row) => '波膽' },
     {
       title: '365結果',
       align: 'center',

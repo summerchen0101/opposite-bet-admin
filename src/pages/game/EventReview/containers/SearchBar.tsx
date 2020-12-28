@@ -15,18 +15,12 @@ const SearchBar: React.FC = () => {
           <Button>今日</Button>
         </Space>
       </Form.Item>
-      <Form.Item label="場次" name="section" initialValue={0}>
+      {/* <Form.Item label="場次" name="section" initialValue={0}>
         <Select
           options={[{ label: '全部', value: 0 }]}
           style={{ width: '130px' }}
         />
-      </Form.Item>
-      <Form.Item label="玩法" name="play" initialValue={0}>
-        <Select
-          options={[{ label: '全部', value: 0 }]}
-          style={{ width: '130px' }}
-        />
-      </Form.Item>
+      </Form.Item> */}
 
       <Form.Item label="結帳狀態" name="status" initialValue="all">
         <Select options={statusOpts} style={{ width: '130px' }} />
