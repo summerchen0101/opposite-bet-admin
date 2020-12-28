@@ -8,6 +8,7 @@ import * as adminAccount from '@/pages/admin/AdminAccount/API'
 import * as menuManage from '@/pages/admin/MenuManage/API'
 import * as announceManage from '@/pages/announce/AnnounceManage/API'
 import * as Marquee from '@/pages/announce/Marquee/API'
+import * as Banner from '@/pages/website/Carousel/API'
 import * as Message from '@/pages/announce/Message/API'
 import * as Activity from '@/pages/promote/PromoteAcitivity/API'
 import * as Country from '@/pages/sport/Country/API'
@@ -28,6 +29,7 @@ const API = {
   announceManage,
   menuManage,
   Marquee,
+  Banner,
   Activity,
   Message,
   Country,

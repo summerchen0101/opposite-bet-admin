@@ -24,7 +24,7 @@ export const useAPIService = () => {
   const getTableData = async (search?: SearchFields) => {
     try {
       const res = await API.Activity.fetchAll(search)
-      dispatch(setTableData(res.data.activities))
+      dispatch(setTableData(res.data.list))
     } catch (err) {
       apiErr(err)
     }

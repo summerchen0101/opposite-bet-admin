@@ -1,5 +1,5 @@
 import Request from '@/utils/request'
-import { Marquee } from './types'
+import { Banner } from './types'
 
 export const fetchById = (id: number) =>
-  Request.get<Marquee>(`marquee/view/${id}`)
+  Request.get<Banner>(`banner/view/${id}`)

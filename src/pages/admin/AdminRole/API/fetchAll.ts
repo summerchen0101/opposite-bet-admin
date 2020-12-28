@@ -2,7 +2,7 @@ import Request from '@/utils/request'
 import { Role } from './types'
 
 export interface Response {
-  roles: Role[]
+  list: Role[]
   total_count: number
   total_page: number
 }

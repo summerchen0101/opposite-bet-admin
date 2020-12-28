@@ -29,7 +29,7 @@ export const useAPIService = () => {
   const getTableData = async () => {
     try {
       const res = await API.adminRole.fetchAll()
-      dispatch(setTableData(res.data.roles))
+      dispatch(setTableData(res.data.list))
     } catch (err) {
       apiErr(err)
     }

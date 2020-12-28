@@ -11,12 +11,12 @@ import {
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
-import { Marquee } from '../API/types'
+import { Banner } from '../API/types'
 import { usePopupProvider } from '../context/PopupProvider'
 import { selectTableData, useTypedSelector } from '../selectors'
 import { useAPIService } from '../service'
 
-const columns: ColumnsType<Marquee> = [
+const columns: ColumnsType<Banner> = [
   {
     title: '標題',
     width: 180,

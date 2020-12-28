@@ -1,8 +1,8 @@
 import Request from '@/utils/request'
-import { Marquee, SearchFields } from './types'
+import { Banner, SearchFields } from './types'
 
 export interface Response {
-  marquees: Marquee[]
+  list: Banner[]
   total_count: number
   total_page: number
 }

@@ -2,7 +2,7 @@ import Request from '@/utils/request'
 import { SearchFields, User } from './types'
 
 export interface Response {
-  users: User[]
+  list: User[]
   total_count: number
   total_page: number
 }

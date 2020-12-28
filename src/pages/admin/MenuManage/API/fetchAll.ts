@@ -2,7 +2,7 @@ import Request from '@/utils/request'
 import { Menu } from './types'
 
 export interface Response {
-  menus: Menu[]
+  list: Menu[]
   total_count: number
   total_page: number
 }

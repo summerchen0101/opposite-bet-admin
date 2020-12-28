@@ -2,7 +2,7 @@ import Request from '@/utils/request'
 import { Message, SearchFields } from './types'
 
 export interface Response {
-  inbox_messages: Message[]
+  list: Message[]
   total_count: number
   total_page: number
 }

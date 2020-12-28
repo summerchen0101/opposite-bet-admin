@@ -40,7 +40,7 @@ export const useAPIService = () => {
   const getTableData = async (search?: SearchFields) => {
     try {
       const res = await API.adminAccount.fetchAll(search)
-      dispatch(setTableData(res.data.users))
+      dispatch(setTableData(res.data.list))
     } catch (err) {
       apiErr(err)
     }

@@ -3,10 +3,10 @@ import {
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit'
-import { Marquee } from './API/types'
+import { Banner } from './API/types'
 export interface IState {
-  tableData: Marquee[]
-  editData: Marquee
+  tableData: Banner[]
+  editData: Banner
 }
 const initialState: IState = {
   tableData: [],
@@ -19,10 +19,10 @@ const module = createSlice({
   name: moduleName,
   initialState,
   reducers: {
-    setTableData(state, action: PayloadAction<Marquee[]>) {
+    setTableData(state, action: PayloadAction<Banner[]>) {
       state.tableData = action.payload
     },
-    setEditData(state, action: PayloadAction<Marquee>) {
+    setEditData(state, action: PayloadAction<Banner>) {
       state.editData = action.payload
     },
   },

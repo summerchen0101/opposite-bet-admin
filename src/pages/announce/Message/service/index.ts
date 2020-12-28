@@ -21,7 +21,7 @@ export const useAPIService = () => {
   const getTableData = async (search?: SearchFields) => {
     try {
       const res = await API.Message.fetchAll(search)
-      dispatch(setTableData(res.data.inbox_messages))
+      dispatch(setTableData(res.data.list))
     } catch (err) {
       apiErr(err)
     }

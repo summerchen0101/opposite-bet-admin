@@ -11,7 +11,7 @@ export const useAPIService = () => {
 
   const getFormData = async (id: number) => {
     try {
-      const res = await API.Marquee.fetchById(id)
+      const res = await API.Banner.fetchById(id)
       dispatch(setEditData(res.data))
     } catch (err) {
       apiErr(err)
@@ -20,8 +20,8 @@ export const useAPIService = () => {
 
   const getTableData = async (search?: SearchFields) => {
     try {
-      const res = await API.Marquee.fetchAll(search)
-      dispatch(setTableData(res.data.marquees))
+      const res = await API.Banner.fetchAll(search)
+      dispatch(setTableData(res.data.list))
     } catch (err) {
       apiErr(err)
     }
@@ -29,7 +29,7 @@ export const useAPIService = () => {
 
   const onCreate = async (values: CreateNews) => {
     try {
-      await API.Marquee.create(values)
+      await API.Banner.create(values)
       await getTableData()
       message.success('新增成功')
     } catch (err) {
@@ -39,7 +39,7 @@ export const useAPIService = () => {
 
   const onEdit = async (values: EditNews) => {
     try {
-      await API.Marquee.edit(values)
+      await API.Banner.edit(values)
       await getTableData()
       message.success('修改成功')
     } catch (err) {
@@ -49,7 +49,7 @@ export const useAPIService = () => {
 
   const onDelete = async (id: number) => {
     try {
-      await API.Marquee.deleteById(id)
+      await API.Banner.deleteById(id)
       await getTableData()
       message.success('刪除成功')
     } catch (err) {
