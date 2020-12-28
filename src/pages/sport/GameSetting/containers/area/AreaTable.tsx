@@ -3,12 +3,14 @@ import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import { usePopupProvider } from '../../context/PopupProvider'
 import { Button, Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Country } from '../../API/country/types'
+import { useDataProvider } from '../../context/DataProvider'
+import { useAPIService } from '../../service/country'
 
 const columns: ColumnsType<Country> = [
-  { title: '代碼', render: (_, row) => 'USA', width: 150 },
-  { title: '名稱', render: (_, row) => '美國', width: 150 },
+  { title: '代碼', render: (_, row) => row.code, width: 150 },
+  { title: '名稱', render: (_, row) => row.name, width: 150 },
   {
     title: '操作',
     render: (_, row) => {
@@ -20,9 +22,6 @@ const columns: ColumnsType<Country> = [
             label="編輯"
             onClick={() => setVisible(true)}
           />
-          <PopupConfirm>
-            <IconLink icon={<DeleteOutlined />} label="刪除" />
-          </PopupConfirm>
         </Space>
       )
     },
@@ -32,6 +31,11 @@ const columns: ColumnsType<Country> = [
 const AreaTable: React.FC = () => {
   const [, setListVisible] = usePopupProvider('areaList')
   const [, setFormVisible] = usePopupProvider('areaForm')
+  const { getTableData } = useAPIService()
+  const [list] = useDataProvider().list
+  useEffect(() => {
+    getTableData()
+  }, [])
   return (
     <div>
       <h3 className="text-primary">
@@ -49,7 +53,12 @@ const AreaTable: React.FC = () => {
           </Button>
         </Space>
       </h3>
-      <TableSets columns={columns} data={[]} pagination={false} scroll={null} />
+      <TableSets
+        columns={columns}
+        data={list}
+        pagination={false}
+        scroll={null}
+      />
     </div>
   )
 }

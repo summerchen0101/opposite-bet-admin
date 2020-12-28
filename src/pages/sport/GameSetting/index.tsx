@@ -22,46 +22,36 @@ import LeagueTable from './containers/league/LeagueTable'
 import TeamFormPopup from './containers/team/TeamFormPopup'
 import TeamListPopup from './containers/team/TeamListPopup'
 import TeamTable from './containers/team/TeamTable'
+import DataProvider from './context/DataProvider'
 import PopupProvider from './context/PopupProvider'
 
 const GameSettingPage: React.FC = () => {
   return (
-    <PopupProvider>
-      <Dashboard>
-        <PageHeader />
-        <Row gutter={16}>
-          <Col span={12} className="mb-2">
-            <AreaTable />
-            <Divider />
-            <LeagueTable />
-            <Divider />
-            <TeamTable />
-          </Col>
-          <Col span={12} className="mb-2">
-            <CategoryTable />
-            <Divider />
-            <EventTable />
-            <Divider />
-            <GameTable />
-          </Col>
-        </Row>
-      </Dashboard>
-      <AreaListPopup />
-      <AreaFormPopup />
-      <CategoryListPopup />
-      <CategoryFormPopup />
-      <AreaFormPopup />
-      <EventListPopup />
-      <EventFormPopup />
-      <GameListPopup />
-      <GameFormPopup />
-      <GameDetailFormPopup />
-      <GameDetailListPopup />
-      <LeagueListPopup />
-      <LeagueFormPopup />
-      <TeamListPopup />
-      <TeamFormPopup />
-    </PopupProvider>
+    <DataProvider>
+      <PopupProvider>
+        <Dashboard>
+          <PageHeader />
+          <Row gutter={16}>
+            <Col span={12} className="mb-2">
+              <AreaTable />
+              <Divider />
+              <LeagueTable />
+              <Divider />
+              <TeamTable />
+            </Col>
+            <Col span={12} className="mb-2">
+              <CategoryTable />
+              <Divider />
+              <EventTable />
+              <Divider />
+              <GameTable />
+            </Col>
+          </Row>
+        </Dashboard>
+        <AreaListPopup />
+        <AreaFormPopup />
+      </PopupProvider>
+    </DataProvider>
   )
 }
 
