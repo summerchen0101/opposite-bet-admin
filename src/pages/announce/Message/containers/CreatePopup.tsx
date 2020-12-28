@@ -13,14 +13,7 @@ const CreatePopup: React.FC = () => {
   const handleSubmit = async () => {
     try {
       const v = (await form.validateFields()) as FormData
-      await onCreate({
-        title: v.title,
-        content: v.content,
-        start_at: v.date_range[0].unix(),
-        end_at: v.date_range[1].unix(),
-        news_type: v.news_type,
-        is_active: v.is_active,
-      })
+      await onCreate(v)
       form.resetFields()
       setVisible(false)
     } catch (info) {
@@ -42,11 +35,10 @@ const CreatePopup: React.FC = () => {
       <DataForm
         form={form}
         values={{
+          member_type: 1,
           title: '',
           content: '',
-          date_range: [null, null],
-          news_type: 2,
-          is_active: true,
+          receivers: [],
         }}
       />
     </PopupModal>

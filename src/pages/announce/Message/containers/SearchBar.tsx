@@ -1,30 +1,16 @@
-import { LevelCode, Status } from '@/lib/enums'
-import { statusOpts, newsTypeOpts } from '@/lib/options'
-import { DatePicker, Form, Input, Radio, Select } from 'antd'
-import { Moment } from 'moment'
+import { Form, Input, Radio } from 'antd'
 import React from 'react'
-import { NewsType } from '../API/types'
+import { MessageType, SearchFields } from '../API/types'
 import { useAPIService } from '../service'
-
-interface SearchFormData {
-  date_range: [Moment, Moment]
-  title: string
-  news_type: NewsType
-  is_active: Status
-}
 
 const SearchBar: React.FC = () => {
   const { getTableData } = useAPIService()
   const [form] = Form.useForm()
-  const typeOpts = newsTypeOpts
   const onSearch = async () => {
-    const f = (await form.validateFields()) as SearchFormData
+    const f = (await form.validateFields()) as SearchFields
     await getTableData({
       title: f.title,
-      news_type: f.news_type,
-      is_active: f.is_active,
-      start_at: f.date_range?.[0].unix(),
-      end_at: f.date_range?.[1].unix(),
+      member_type: f.member_type,
     })
   }
   return (
@@ -35,8 +21,8 @@ const SearchBar: React.FC = () => {
       <Form.Item label="發送對象" name="target_level" initialValue={0}>
         <Radio.Group>
           <Radio value={0}>全部</Radio>
-          <Radio value={LevelCode.Member}>會員</Radio>
-          <Radio value={LevelCode.Agent}>代理</Radio>
+          <Radio value={MessageType.Member}>會員</Radio>
+          <Radio value={MessageType.Agent}>代理</Radio>
         </Radio.Group>
       </Form.Item>
     </Form>

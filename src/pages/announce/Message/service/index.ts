@@ -2,7 +2,7 @@ import API from '@/API'
 import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { message } from 'antd'
 import { useDispatch } from 'react-redux'
-import { CreateNews, EditNews, SearchFields } from '../API/types'
+import { CreateMessage, SearchFields } from '../API/types'
 import { setEditData, setTableData } from '../reducer'
 
 export const useAPIService = () => {
@@ -21,27 +21,17 @@ export const useAPIService = () => {
   const getTableData = async (search?: SearchFields) => {
     try {
       const res = await API.Message.fetchAll(search)
-      dispatch(setTableData(res.data.news))
+      dispatch(setTableData(res.data.inbox_messages))
     } catch (err) {
       apiErr(err)
     }
   }
 
-  const onCreate = async (values: CreateNews) => {
+  const onCreate = async (values: CreateMessage) => {
     try {
       await API.Message.create(values)
       await getTableData()
       message.success('新增成功')
-    } catch (err) {
-      apiErr(err)
-    }
-  }
-
-  const onEdit = async (values: EditNews) => {
-    try {
-      await API.Message.edit(values)
-      await getTableData()
-      message.success('修改成功')
     } catch (err) {
       apiErr(err)
     }
@@ -60,7 +50,6 @@ export const useAPIService = () => {
   return {
     getTableData,
     onCreate,
-    onEdit,
     getFormData,
     onDelete,
   }

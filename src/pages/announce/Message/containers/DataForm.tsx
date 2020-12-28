@@ -4,15 +4,9 @@ import { Form, Input, Radio, Select } from 'antd'
 import { FormInstance } from 'antd/lib/form'
 import moment, { Moment } from 'moment'
 import React, { useEffect } from 'react'
-import { NewsType } from '../API/types'
-export interface FormData {
-  id?: number
-  title: string
-  content: string
-  date_range: [Moment, Moment]
-  news_type: NewsType
-  is_active: boolean
-}
+import { MessageType, CreateMessage } from '../API/types'
+
+export type FormData = CreateMessage
 interface FormProps {
   form: FormInstance<any>
   values?: FormData
@@ -26,15 +20,15 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
     <Form layout="vertical" form={form} initialValues={values}>
       <Form.Item
         label="收件人身份"
-        name="targetLevel"
-        initialValue={LevelCode.Member}
+        name="member_type"
+        initialValue={MessageType.Member}
       >
         <Radio.Group>
-          <Radio value={LevelCode.Member}>會員</Radio>
-          <Radio value={LevelCode.Agent}>代理</Radio>
+          <Radio value={MessageType.Member}>會員</Radio>
+          <Radio value={MessageType.Agent}>代理</Radio>
         </Radio.Group>
       </Form.Item>
-      <Form.Item label="收件人帳號" name="targetAccounts">
+      <Form.Item label="收件人帳號" name="receivers">
         <Select
           mode="tags"
           tokenSeparators={[',']}
@@ -46,8 +40,8 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
         <Input />
       </Form.Item>
 
-      <Form.Item>
-        <PureContentEditor />
+      <Form.Item name="content">
+        <Input.TextArea />
       </Form.Item>
     </Form>
   )

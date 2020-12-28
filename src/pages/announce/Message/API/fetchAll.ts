@@ -1,9 +1,8 @@
-import { getMockNewsList } from '@/utils/mock'
 import Request from '@/utils/request'
-import { News, SearchFields } from './types'
+import { Message, SearchFields } from './types'
 
 export interface Response {
-  news: News[]
+  inbox_messages: Message[]
   total_count: number
   total_page: number
 }
@@ -13,9 +12,8 @@ interface Request extends SearchFields {
   perpage?: number
 }
 export const fetchAll = (reqData?: Request) =>
-  // Request.post<Response>('news/list', {
-  //   page: 1,
-  //   perpage: 20,
-  //   ...reqData,
-  // })
-  getMockNewsList()
+  Request.post<Response>('inbox_message/list', {
+    page: 1,
+    perpage: 20,
+    ...reqData,
+  })
