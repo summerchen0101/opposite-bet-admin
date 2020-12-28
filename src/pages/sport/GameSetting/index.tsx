@@ -2,7 +2,8 @@ import Dashboard from '@/components/Dashboard'
 import { Col, Divider, Row } from 'antd'
 import React from 'react'
 import PageHeader from './components/PageHeader'
-import AreaFormPopup from './containers/area/AreaFormPopup'
+import AreaCreatePopup from './containers/area/AreaCreatePopup'
+import AreaEditPopup from './containers/area/AreaEditPopup'
 import AreaListPopup from './containers/area/AreaListPopup'
 import AreaTable from './containers/area/AreaTable'
 import CategoryFormPopup from './containers/category/CategoryFormPopup'
@@ -49,7 +50,8 @@ const GameSettingPage: React.FC = () => {
           </Row>
         </Dashboard>
         <AreaListPopup />
-        <AreaFormPopup />
+        <AreaCreatePopup />
+        <AreaEditPopup />
       </PopupProvider>
     </DataProvider>
   )

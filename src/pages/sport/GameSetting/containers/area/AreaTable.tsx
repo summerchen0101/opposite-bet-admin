@@ -14,23 +14,26 @@ const columns: ColumnsType<Country> = [
   {
     title: '操作',
     render: (_, row) => {
-      const [visible, setVisible] = usePopupProvider('areaForm')
+      const [, setVisible] = usePopupProvider('editCountry')
+      const { getFormData } = useAPIService()
+      const handleEdit = async (id: number) => {
+        await getFormData(id)
+        setVisible(true)
+      }
       return (
-        <Space>
-          <IconLink
-            icon={<EditOutlined />}
-            label="編輯"
-            onClick={() => setVisible(true)}
-          />
-        </Space>
+        <IconLink
+          icon={<EditOutlined />}
+          label="編輯"
+          onClick={() => handleEdit(row.id)}
+        />
       )
     },
     width: 80,
   },
 ]
 const AreaTable: React.FC = () => {
-  const [, setListVisible] = usePopupProvider('areaList')
-  const [, setFormVisible] = usePopupProvider('areaForm')
+  const [, setListVisible] = usePopupProvider('countryList')
+  const [, setFormVisible] = usePopupProvider('createCountry')
   const { getTableData } = useAPIService()
   const [list] = useDataProvider().list
   useEffect(() => {
@@ -55,7 +58,7 @@ const AreaTable: React.FC = () => {
       </h3>
       <TableSets
         columns={columns}
-        data={list}
+        data={list.slice(0, 3)}
         pagination={false}
         scroll={null}
       />

@@ -2,8 +2,9 @@ import React, { createContext, useContext, useState } from 'react'
 
 type PopupProps<T> = [T, React.Dispatch<React.SetStateAction<T>>]
 interface IState {
-  areaList: PopupProps<boolean>
-  areaForm: PopupProps<boolean>
+  countryList: PopupProps<boolean>
+  createCountry: PopupProps<boolean>
+  editCountry: PopupProps<boolean>
   categoryList: PopupProps<boolean>
   categoryForm: PopupProps<boolean>
   eventList: PopupProps<boolean>
@@ -22,8 +23,9 @@ const PopupContext = createContext<IState | null>(null)
 
 const PopupProvider: React.FC = ({ children }) => {
   const initialState: IState = {
-    areaList: useState(false),
-    areaForm: useState(false),
+    countryList: useState(false),
+    createCountry: useState(false),
+    editCountry: useState(false),
     categoryList: useState(false),
     categoryForm: useState(false),
     eventList: useState(false),
