@@ -2,7 +2,7 @@ import Request from '@/utils/request'
 import { LeagueOptions } from './types'
 
 interface ResponseData {
-  leagues: LeagueOptions[]
+  list: LeagueOptions[]
 }
 
 export const options = () => Request.get<ResponseData>('sport_league/options')

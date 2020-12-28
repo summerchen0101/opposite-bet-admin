@@ -1,8 +1,8 @@
 import Request from '@/utils/request'
-import { Country } from './types'
+import { Section } from './types'
 
 export interface Response {
-  list: Country[]
+  list: Section[]
   total_count: number
   total_page: number
 }
@@ -12,7 +12,7 @@ interface Request {
   perpage?: number
 }
 export const fetchAll = (reqData?: Request) =>
-  Request.post<Response>('country/list', {
+  Request.post<Response>('sport_section/list', {
     page: 1,
     perpage: 20,
     ...reqData,

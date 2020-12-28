@@ -2,7 +2,7 @@ import Request from '@/utils/request'
 import { SportOption } from './types'
 
 interface ResponseData {
-  sports: SportOption[]
+  list: SportOption[]
 }
 
 export const options = () => Request.get<ResponseData>('sport/options')

@@ -2,7 +2,7 @@ import Request from '@/utils/request'
 import { Team, TeamSearch } from './types'
 
 export interface Response {
-  teams: Team[]
+  list: Team[]
   total_count: number
   total_page: number
 }

@@ -30,7 +30,7 @@ export const useAPIService = () => {
   const getTableData = async () => {
     try {
       const res = await API.Country.fetchAll()
-      dispatch(setTableData(res.data.countries))
+      dispatch(setTableData(res.data.list))
     } catch (err) {
       apiErr(err)
     }

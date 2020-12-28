@@ -21,6 +21,11 @@ export const SportGame = new PageG(
 )
 export const League = new PageG('聯盟設定', `${rootPath}/league`, pages.League)
 export const Team = new PageG('隊伍設定', `${rootPath}/team`, pages.Team)
+export const Section = new PageG(
+  '場次設定',
+  `${rootPath}/section`,
+  pages.Section,
+)
 
 export const GameLimit = new PageG(
   '玩法數值調整',
@@ -29,7 +34,7 @@ export const GameLimit = new PageG(
 )
 
 // ROUTERS
-RouteG.create([Country, Sport, SportGame, League, Team, GameLimit])
+RouteG.create([Country, Sport, SportGame, League, Team, Section, GameLimit])
 
 // MENU
 MenuG.createCategory(rootName, rootPath, DribbbleOutlined, [
@@ -38,5 +43,6 @@ MenuG.createCategory(rootName, rootPath, DribbbleOutlined, [
   SportGame,
   League,
   Team,
+  Section,
   GameLimit,
 ])

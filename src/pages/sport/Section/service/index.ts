@@ -2,56 +2,43 @@ import API from '@/API'
 import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { message } from 'antd'
 import { useDispatch } from 'react-redux'
-import { CreateTeam, EditTeam, TeamSearch } from '../API/types'
-import {
-  setEditData,
-  setTableData,
-  setCountryOpts,
-  setSportOpts,
-  setGameOpts,
-  setLeagueOpts,
-} from '../reducer'
+import { CreateSection, EditSection } from '../API/types'
+import { setEditData, setTableData } from '../reducer'
 
 export const useAPIService = () => {
   const { apiErr } = useErrorHandler()
   const dispatch = useDispatch()
 
   const getOptions = async () => {
-    try {
-      // const countryRes = await API.Country.options()
-      // dispatch(setCountryOpts(countryRes.data.countries))
-      // const sportRes = await API.Sport.options()
-      // dispatch(setSportOpts(sportRes.data.sports))
-      // const gameRes = await API.SportGame.options()
-      // dispatch(setGameOpts(gameRes.data.games))
-      const leagueRes = await API.League.options()
-      dispatch(setLeagueOpts(leagueRes.data.list))
-    } catch (err) {
-      apiErr(err)
-    }
+    // try {
+    //   const res = await API.permission.options()
+    //   dispatch(setPermissionOpts(res.data.permissions))
+    // } catch (err) {
+    //   apiErr(err)
+    // }
   }
 
   const getFormData = async (id: number) => {
     try {
-      const res = await API.Team.fetchById(id)
+      const res = await API.Section.fetchById(id)
       dispatch(setEditData(res.data))
     } catch (err) {
       apiErr(err)
     }
   }
 
-  const getTableData = async (search?: TeamSearch) => {
+  const getTableData = async () => {
     try {
-      const res = await API.Team.fetchAll(search)
+      const res = await API.Section.fetchAll()
       dispatch(setTableData(res.data.list))
     } catch (err) {
       apiErr(err)
     }
   }
 
-  const onCreate = async (values: CreateTeam) => {
+  const onCreate = async (values: CreateSection) => {
     try {
-      await API.Team.create(values)
+      await API.Section.create(values)
       await getTableData()
       message.success('新增成功')
     } catch (err) {
@@ -59,9 +46,9 @@ export const useAPIService = () => {
     }
   }
 
-  const onEdit = async (values: EditTeam) => {
+  const onEdit = async (values: EditSection) => {
     try {
-      await API.Team.edit(values)
+      await API.Section.edit(values)
       await getTableData()
       message.success('修改成功')
     } catch (err) {
@@ -71,7 +58,7 @@ export const useAPIService = () => {
 
   const onDelete = async (id: number) => {
     try {
-      await API.Team.deleteById(id)
+      await API.Section.deleteById(id)
       await getTableData()
       message.success('刪除成功')
     } catch (err) {
@@ -80,7 +67,7 @@ export const useAPIService = () => {
   }
   const changeActive = async (id: number, status: boolean) => {
     try {
-      await API.Team.active({ id, is_active: status })
+      await API.Section.active({ id, is_active: status })
       await getTableData()
       message.success('狀態更新成功')
     } catch (err) {

@@ -2,7 +2,7 @@ import Request from '@/utils/request'
 import { SportGame, SportGameSearch } from './types'
 
 export interface Response {
-  games: SportGame[]
+  list: SportGame[]
   total_count: number
   total_page: number
 }

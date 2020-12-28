@@ -17,9 +17,9 @@ export const useAPIService = () => {
   const getOptions = async () => {
     try {
       const countryRes = await API.Country.options()
-      dispatch(setCountryOpts(countryRes.data.countries))
+      dispatch(setCountryOpts(countryRes.data.list))
       const sportRes = await API.Sport.options()
-      dispatch(setSportOpts(sportRes.data.sports))
+      dispatch(setSportOpts(sportRes.data.list))
     } catch (err) {
       apiErr(err)
     }
@@ -37,7 +37,7 @@ export const useAPIService = () => {
   const getTableData = async (search?: SportGameSearch) => {
     try {
       const res = await API.SportGame.fetchAll(search)
-      dispatch(setTableData(res.data.games))
+      dispatch(setTableData(res.data.list))
     } catch (err) {
       apiErr(err)
     }
