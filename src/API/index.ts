@@ -18,6 +18,7 @@ import * as League from '@/pages/sport/League/API'
 import * as Team from '@/pages/sport/Team/API'
 import * as Section from '@/pages/sport/Section/API'
 import * as Play from '@/pages/sport/Play/API'
+import * as Page from '@/pages/website/PageManage/API'
 
 const API = {
   login,
@@ -39,6 +40,7 @@ const API = {
   Team,
   Section,
   Play,
+  Page,
 }
 
 export default API

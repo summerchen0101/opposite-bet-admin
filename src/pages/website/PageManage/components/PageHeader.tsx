@@ -1,11 +1,18 @@
 import React from 'react'
 import PageHeader from '@/components/PageHeader'
-import { PageManage as page } from '@/pages/website/routes'
+import CreateButton from '../containers/CreateButton'
+import { PageManage as page } from '../../routes'
 import { useBreadcrumb } from '@/utils/hooks'
 
 const Component: React.FC = () => {
   const routes = useBreadcrumb(page)
-  return <PageHeader title={page.name} breadcrumb={{ routes }} />
+  return (
+    <PageHeader
+      title={page.name}
+      extra={<CreateButton />}
+      breadcrumb={{ routes }}
+    />
+  )
 }
 
 export default Component

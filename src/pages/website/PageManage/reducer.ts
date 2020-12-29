@@ -1,31 +1,33 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
+import {
+  ActionReducerMapBuilder,
+  createSlice,
+  PayloadAction,
+} from '@reduxjs/toolkit'
+import { Page } from './API/types'
 export interface IState {
-  tableData: any[]
-  displayEditModal: boolean
+  tableData: Page[]
+  editData: Page
 }
 const initialState: IState = {
   tableData: [],
-  displayEditModal: false,
+  editData: null,
 }
 
-export const moduleName = 'pageManage'
+export const moduleName = 'PageManage'
 
 const module = createSlice({
   name: moduleName,
   initialState,
   reducers: {
-    gotTableData(state, action: PayloadAction<any[]>) {
+    setTableData(state, action: PayloadAction<Page[]>) {
       state.tableData = action.payload
     },
-    initSearchState(state) {
-      //
-    },
-    toggleEditModal(state, action: PayloadAction<boolean>) {
-      state.displayEditModal = action.payload
+    setEditData(state, action: PayloadAction<Page>) {
+      state.editData = action.payload
     },
   },
+  extraReducers: (builder: ActionReducerMapBuilder<IState>) => {},
 })
 
-export const { gotTableData, initSearchState, toggleEditModal } = module.actions
+export const { setTableData, setEditData } = module.actions
 export default module.reducer

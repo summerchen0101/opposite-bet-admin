@@ -1,40 +1,43 @@
+import { ColorText } from '@/components'
 import IconLink from '@/components/IconLink'
 import TableSets from '@/components/TableSets'
-import Text from '@/components/Text'
+import { toDateTime } from '@/utils/transfer'
 import { EditFilled } from '@ant-design/icons'
 import { Space } from 'antd'
+import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
+import { Page } from '../API/types'
+import { selectTableData, useTypedSelector } from '../selectors'
 import { usePopupProvider } from '../context/PopupProvider'
+import { useAPIService } from '../service'
 
-const columns = [
+const columns: ColumnsType<Page> = [
   {
     title: '名稱',
-    render: (_, row) => row.name,
+    render: (_, row) => row.title,
+    width: 150,
   },
   {
     title: '代碼',
-    render: (_, row) => 'xxx',
-    width: 80,
-  },
-  {
-    title: '顯示平台',
-    width: 110,
-    render: (_, row) => {
-      const [, setVisible] = usePopupProvider('preview')
-      return <a onClick={() => setVisible(true)}>手機</a>
-    },
+    render: (_, row) => row.code,
+    width: 150,
   },
   {
     title: '狀態',
-    render: (_, row) => <Text color="success">啟用</Text>,
+    render: (_, row) => {
+      if (row.is_active) {
+        return <ColorText green>啟用</ColorText>
+      }
+      return <ColorText red>停用</ColorText>
+    },
     width: 100,
   },
   {
     title: '更新人員/時間',
     render: (_, row) => (
       <>
-        summer <br />
-        2020-12-17 17:22:10
+        {row.editor} <br />
+        {toDateTime(row.updated_at)}
       </>
     ),
     width: 200,
@@ -44,12 +47,17 @@ const columns = [
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
       const [, setVisible] = usePopupProvider('editForm')
+      const { getFormData } = useAPIService()
+      const handleEdit = async (id: number) => {
+        await getFormData(id)
+        setVisible(true)
+      }
       return (
         <Space size="small">
           <IconLink
             icon={<EditFilled />}
             label="編輯"
-            onClick={() => setVisible(true)}
+            onClick={() => handleEdit(row.id)}
           />
         </Space>
       )
@@ -58,12 +66,8 @@ const columns = [
   },
 ]
 
-const data = [
-  { id: 1, name: '關於我們' },
-  { id: 2, name: '聯絡我們' },
-  { id: 3, name: '頁尾' },
-]
 const TableData: React.FC = () => {
+  const data = useTypedSelector(selectTableData)
   return <TableSets columns={columns} data={data} pagination={false} />
 }
 
