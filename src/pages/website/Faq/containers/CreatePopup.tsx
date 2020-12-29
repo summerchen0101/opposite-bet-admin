@@ -9,7 +9,6 @@ import DataForm, { FormData } from './DataForm'
 const CreatePopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('createForm')
   const [form] = Form.useForm()
-  const f = useTypedSelector(selectEditData)
   const { onCreate } = useAPIService()
   const handleSubmit = async () => {
     try {
@@ -18,8 +17,8 @@ const CreatePopup: React.FC = () => {
         catalogue_id: v.catalogue_id,
         title: v.title,
         content: v.content,
-        content_mobile: f.content_mobile,
-        is_active: f.is_active,
+        content_mobile: v.content_mobile,
+        is_active: v.is_active,
       })
       form.resetFields()
       setVisible(false)

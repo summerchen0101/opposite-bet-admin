@@ -3,7 +3,7 @@ import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { message } from 'antd'
 import { useDispatch } from 'react-redux'
 import { CreateFaqCategory, EditFaqCategory } from '../API/category/types'
-import { CreateFaq, EditFaq } from '../API/types'
+import { CreateFaq, EditFaq, SearchFaq } from '../API/types'
 import {
   setCategoryList,
   setCategoryView,
@@ -33,9 +33,9 @@ export const useAPIService = () => {
     }
   }
 
-  const getTableData = async () => {
+  const getTableData = async (search?: SearchFaq) => {
     try {
-      const res = await API.Faq.fetchAll()
+      const res = await API.Faq.fetchAll(search)
       dispatch(setTableData(res.data.list))
     } catch (err) {
       apiErr(err)

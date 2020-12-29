@@ -1,6 +1,11 @@
+import { Status } from '@/lib/enums'
+
 export interface Faq {
   id: number
-  catalogue_id: string
+  catalogue: {
+    id: number
+    name: string
+  }
   title: string
   content: string
   content_mobile: string
@@ -9,7 +14,7 @@ export interface Faq {
   updated_at: number
 }
 export interface CreateFaq {
-  catalogue_id: string
+  catalogue_id: number
   title: string
   content: string
   content_mobile: string
@@ -17,7 +22,7 @@ export interface CreateFaq {
 }
 export interface EditFaq {
   id: number
-  catalogue_id: string
+  catalogue_id: number
   title: string
   content: string
   content_mobile: string
@@ -27,4 +32,11 @@ export interface EditFaq {
 export interface FaqOption {
   id: number
   name: string
+}
+
+export interface SearchFaq {
+  catalogue_id?: number
+  is_active?: Status
+  page?: number
+  perpage?: number
 }

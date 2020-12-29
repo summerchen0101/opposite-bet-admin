@@ -3,10 +3,11 @@ import { deviceOpts } from '@/lib/options'
 import { Col, Collapse, Form, Input, Row, Select, Switch } from 'antd'
 import { FormInstance } from 'antd/lib/form'
 import React, { useEffect } from 'react'
+import { selectCategoryList, useTypedSelector } from '../selectors'
 
 export interface FormData {
   id?: number
-  catalogue_id: string
+  catalogue_id: number
   title: string
   content: string
   content_mobile: string
@@ -22,7 +23,10 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
   }, [values])
   const onReset = () => form.resetFields()
 
-  const categoryOpts = [{ label: '存款問題', value: 1 }]
+  const categoryOpts = useTypedSelector(selectCategoryList).map((t) => ({
+    label: t.name,
+    value: t.id,
+  }))
 
   return (
     <Form
@@ -36,7 +40,7 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
       </Form.Item>
       <Row gutter={16}>
         <Col span={12}>
-          <Form.Item label="分類" name="category" initialValue={1}>
+          <Form.Item label="分類" name="catalogue_id">
             <Select options={categoryOpts} />
           </Form.Item>
         </Col>

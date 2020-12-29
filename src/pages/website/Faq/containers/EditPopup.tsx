@@ -45,7 +45,7 @@ const CreatePopup: React.FC = () => {
           form={form}
           values={{
             id: f.id,
-            catalogue_id: f.catalogue_id,
+            catalogue_id: f.catalogue.id,
             title: f.title,
             content: f.content,
             content_mobile: f.content_mobile,
