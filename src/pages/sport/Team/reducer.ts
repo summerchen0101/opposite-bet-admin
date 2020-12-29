@@ -8,7 +8,7 @@ import { CountryOption } from '../Country/API/types'
 import { SportOption } from '../Sport/API/types'
 import { remoteOptsToLocalOpts } from '@/utils/transfer'
 import { OptionsType } from '@/lib/types'
-import { SportGameOption } from '../sportGame/API/types'
+import { SportGameOption } from '../SportGame/API/types'
 import { LeagueOptions } from '../League/API/types'
 export interface IState {
   tableData: Team[]
