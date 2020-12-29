@@ -1,4 +1,4 @@
-import { ColorText, IconLink, TableSets } from '@/components'
+import { ColorText, IconLink, PopupConfirm, TableSets } from '@/components'
 import { YesNo } from '@/lib/enums'
 import { yesNoOpts } from '@/lib/options'
 import { toDateTime, toOptionName } from '@/utils/transfer'
@@ -21,14 +21,6 @@ const columns: ColumnsType<Banner> = [
     title: '標題',
     width: 180,
     render: (_, row) => row.title,
-  },
-  {
-    title: '顯示平台',
-    width: 110,
-    render: (_, row) => {
-      const [, setVisible] = usePopupProvider('preview')
-      return <a onClick={() => setVisible(true)}>手機</a>
-    },
   },
   {
     title: '另開視窗',
@@ -104,11 +96,9 @@ const columns: ColumnsType<Banner> = [
             label="編輯"
             onClick={() => handleEdit(row.id)}
           />
-          <IconLink
-            icon={<DeleteOutlined />}
-            label="刪除"
-            onClick={() => onDelete(row.id)}
-          />
+          <PopupConfirm onConfirm={() => onDelete(row.id)}>
+            <IconLink icon={<DeleteOutlined />} label="刪除" />
+          </PopupConfirm>
         </Space>
       )
     },

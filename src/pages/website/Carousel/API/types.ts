@@ -15,7 +15,7 @@ export interface Banner {
   created_at: number
   updated_at: number
 }
-export interface EditNews {
+export interface EditBanner {
   id: number
   title: string
   url: string
@@ -26,7 +26,7 @@ export interface EditNews {
   start_at: number
   end_at: number
 }
-export interface CreateNews {
+export interface CreateBanner {
   title: string
   url: string
   img: string
@@ -38,7 +38,7 @@ export interface CreateNews {
 }
 
 export interface SearchFields {
-  content: string
+  title: string
   start_at: number
   end_at: number
   is_active: Status

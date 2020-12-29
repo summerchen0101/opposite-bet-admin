@@ -7,7 +7,7 @@ import { useAPIService } from '../service'
 
 interface SearchFormData {
   date_range: [Moment, Moment]
-  content: string
+  title: string
   is_active: Status
 }
 
@@ -17,7 +17,7 @@ const SearchBar: React.FC = () => {
   const onSearch = async () => {
     const f = (await form.validateFields()) as SearchFormData
     await getTableData({
-      content: f.content,
+      title: f.title,
       is_active: f.is_active,
       start_at: f.date_range?.[0].unix(),
       end_at: f.date_range?.[1].unix(),
@@ -28,7 +28,7 @@ const SearchBar: React.FC = () => {
       <Form.Item label="期間" name="date_range">
         <DatePicker.RangePicker onChange={onSearch} />
       </Form.Item>
-      <Form.Item label="標題" name="content">
+      <Form.Item label="標題" name="title">
         <Input.Search onSearch={onSearch} allowClear />
       </Form.Item>
       <Form.Item label="狀態" name="is_active" initialValue={0}>

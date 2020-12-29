@@ -2,7 +2,7 @@ import API from '@/API'
 import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { message } from 'antd'
 import { useDispatch } from 'react-redux'
-import { CreateNews, EditNews, SearchFields } from '../API/types'
+import { CreateBanner, EditBanner, SearchFields } from '../API/types'
 import { setEditData, setTableData } from '../reducer'
 
 export const useAPIService = () => {
@@ -27,7 +27,7 @@ export const useAPIService = () => {
     }
   }
 
-  const onCreate = async (values: CreateNews) => {
+  const onCreate = async (values: CreateBanner) => {
     try {
       await API.Banner.create(values)
       await getTableData()
@@ -37,7 +37,7 @@ export const useAPIService = () => {
     }
   }
 
-  const onEdit = async (values: EditNews) => {
+  const onEdit = async (values: EditBanner) => {
     try {
       await API.Banner.edit(values)
       await getTableData()

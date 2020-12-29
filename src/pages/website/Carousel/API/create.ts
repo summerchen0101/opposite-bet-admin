@@ -1,5 +1,5 @@
 import Request from '@/utils/request'
-import { CreateNews } from './types'
+import { CreateBanner } from './types'
 
-export const create = (reqData: CreateNews) =>
+export const create = (reqData: CreateBanner) =>
   Request.post<null>('banner/add', reqData)
