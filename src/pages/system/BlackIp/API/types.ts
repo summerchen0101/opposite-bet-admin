@@ -1,21 +1,34 @@
-import { Status } from '@/lib/enums'
+import { Status, PlatformType, IPBlockType } from '@/lib/enums'
 
 export interface BlackIp {
   id: number
-  content: string
-  url: string
-  is_blank: boolean
+
+  ip_block_type: IPBlockType
+  platform_type: PlatformType
+  ip: string
+  note: string
   is_active: boolean
-  start_at: number
-  end_at: number
 
   editor: string
   created_at: number
   updated_at: number
 }
-type AutoAdded = 'created_at' | 'updated_at' | 'editor'
-export type EditBlackIp = Omit<BlackIp, AutoAdded>
-export type CreateBlackIp = Omit<BlackIp, AutoAdded | 'id'>
+
+export interface CreateBlackIp {
+  block_type: IPBlockType
+  platform_type: PlatformType
+  ip: string
+  note: string
+  is_active: boolean
+}
+export interface EditBlackIp {
+  id: number
+  block_type: IPBlockType
+  platform_type: PlatformType
+  ip: string
+  note: string
+  is_active: boolean
+}
 
 export interface SearchFields {
   content: string

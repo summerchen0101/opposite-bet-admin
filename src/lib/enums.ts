@@ -32,7 +32,13 @@ export enum Device {
   PC = 1,
   Mobile = 2,
 }
-export enum IPStatus {
-  Black = 1,
-  White = 2,
+export enum IPBlockType {
+  White = 1,
+  Black = 2,
+}
+
+export enum PlatformType {
+  Admin = 1,
+  Agent = 2,
+  Member = 3,
 }

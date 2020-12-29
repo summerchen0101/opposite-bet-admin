@@ -11,7 +11,7 @@ export const useAPIService = () => {
 
   const getFormData = async (id: number) => {
     try {
-      const res = await API.Marquee.fetchById(id)
+      const res = await API.BlackIp.fetchById(id)
       dispatch(setEditData(res.data))
     } catch (err) {
       apiErr(err)
@@ -20,7 +20,7 @@ export const useAPIService = () => {
 
   const getTableData = async (search?: SearchFields) => {
     try {
-      const res = await API.Marquee.fetchAll(search)
+      const res = await API.BlackIp.fetchAll(search)
       dispatch(setTableData(res.data.list))
     } catch (err) {
       apiErr(err)
@@ -29,7 +29,7 @@ export const useAPIService = () => {
 
   const onCreate = async (values: CreateBlackIp) => {
     try {
-      await API.Marquee.create(values)
+      await API.BlackIp.create(values)
       await getTableData()
       message.success('新增成功')
     } catch (err) {
@@ -39,7 +39,7 @@ export const useAPIService = () => {
 
   const onEdit = async (values: EditBlackIp) => {
     try {
-      await API.Marquee.edit(values)
+      await API.BlackIp.edit(values)
       await getTableData()
       message.success('修改成功')
     } catch (err) {
@@ -49,7 +49,7 @@ export const useAPIService = () => {
 
   const onDelete = async (id: number) => {
     try {
-      await API.Marquee.deleteById(id)
+      await API.BlackIp.deleteById(id)
       await getTableData()
       message.success('刪除成功')
     } catch (err) {
@@ -59,7 +59,7 @@ export const useAPIService = () => {
 
   const changeActive = async (id: number, status: boolean) => {
     try {
-      await API.Marquee.active({ id, is_active: status })
+      await API.BlackIp.active({ id, is_active: status })
       await getTableData()
       message.success('狀態更新成功')
     } catch (err) {

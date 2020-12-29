@@ -1,6 +1,6 @@
 import { RelativeDateBtns } from '@/components'
 import { LevelCode, Status } from '@/lib/enums'
-import { ipStatusOpts, levelOpts, statusOpts } from '@/lib/options'
+import { IPBlockTypeOpts, levelOpts, statusOpts } from '@/lib/options'
 import { Button, Checkbox, DatePicker, Form, Input, Select, Space } from 'antd'
 import { Moment } from 'moment'
 import React from 'react'

@@ -1,6 +1,13 @@
 import { MessageType } from '@/pages/announce/Message/API/types'
 import { NewsType } from '../pages/announce/AnnounceManage/API/types'
-import { Device, IPStatus, LevelCode, Status, YesNo } from './enums'
+import {
+  Device,
+  IPBlockType,
+  LevelCode,
+  PlatformType,
+  Status,
+  YesNo,
+} from './enums'
 
 export const newsTypeOpts = [
   { label: '全部', value: NewsType.ALL },
@@ -29,11 +36,16 @@ export const deviceOpts = [
   { label: '桌上型電腦', value: Device.PC },
   { label: '手機', value: Device.Mobile },
 ]
-export const ipStatusOpts = [
-  { label: '黑名單', value: IPStatus.Black },
-  { label: '白名單', value: IPStatus.White },
+export const IPBlockTypeOpts = [
+  { label: '黑名單', value: IPBlockType.Black },
+  { label: '白名單', value: IPBlockType.White },
 ]
 export const messageTypeOpts = [
   { label: '會員', value: MessageType.Member },
   { label: '代理', value: MessageType.Agent },
+]
+export const platformTypeOpts = [
+  { label: '管端', value: PlatformType.Admin },
+  { label: '代理端', value: PlatformType.Agent },
+  { label: '會員端', value: PlatformType.Member },
 ]

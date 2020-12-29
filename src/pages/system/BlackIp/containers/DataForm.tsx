@@ -1,15 +1,16 @@
+import { IPBlockType, PlatformType } from '@/lib/enums'
+import { IPBlockTypeOpts, platformTypeOpts } from '@/lib/options'
 import { Col, DatePicker, Form, Input, Radio, Row, Switch } from 'antd'
 import { FormInstance } from 'antd/lib/form'
-import moment, { Moment } from 'moment'
+import moment from 'moment'
 import React, { useEffect } from 'react'
 export interface FormData {
   id?: number
-  content: string
-  date_range_type: string
-  limit_range: [Moment, Moment]
+  block_type: IPBlockType
+  platform_type: PlatformType
+  ip: string
+  note: string
   is_active: boolean
-  is_blank: boolean
-  url: string
 }
 interface FormProps {
   form: FormInstance<any>
@@ -19,54 +20,27 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
   useEffect(() => {
     form.setFieldsValue(values)
   }, [values])
-  const onReset = () => form.resetFields()
-
-  const disabledDate = (current) => {
-    return current && current < moment().startOf('day')
-  }
-
   return (
-    <Form
-      layout="vertical"
-      form={form}
-      onReset={onReset}
-      initialValues={values}
-    >
-      {/* <Form.Item label="內容" name="content">
+    <Form layout="vertical" form={form} initialValues={values}>
+      <Form.Item label="類型" name="block_type">
+        <Radio.Group options={IPBlockTypeOpts} />
+      </Form.Item>
+      <Form.Item
+        label="IP"
+        name="ip"
+        help="請使用 IP_V4 格式，例如 192.168.1.1 (0~255.0~255.0~255.0~255)"
+      >
         <Input />
-      </Form.Item> */}
-      <Form.Item label="連結" name="url">
-        <Input placeholder="ex: http://google.com" />
       </Form.Item>
-      <Form.Item label="期間" name="date_range_type">
-        <Radio.Group>
-          <Radio value="forever">無限期</Radio>
-          <Radio value="limit">
-            <Form.Item
-              name="limit_range"
-              className="d-inline-block mb-0"
-              style={{ verticalAlign: 'baseline' }}
-            >
-              <DatePicker.RangePicker disabledDate={disabledDate} />
-            </Form.Item>
-          </Radio>
-        </Radio.Group>
+      <Form.Item label="端口設置" name="platform_type">
+        <Radio.Group options={platformTypeOpts} />
       </Form.Item>
-      <Form.Item label="內容(50字以下)" name="content">
+      <Form.Item label="備註" name="note">
         <Input.TextArea />
       </Form.Item>
-      <Row gutter={16}>
-        <Col span={12}>
-          <Form.Item label="狀態" name="is_active" valuePropName="checked">
-            <Switch />
-          </Form.Item>
-        </Col>
-        <Col span={12}>
-          <Form.Item label="另開視窗" name="is_blank" valuePropName="checked">
-            <Switch />
-          </Form.Item>
-        </Col>
-      </Row>
+      <Form.Item label="狀態" name="is_active" valuePropName="checked">
+        <Switch />
+      </Form.Item>
     </Form>
   )
 }

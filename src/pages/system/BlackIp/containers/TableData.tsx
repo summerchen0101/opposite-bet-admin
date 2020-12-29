@@ -1,5 +1,5 @@
 import { ColorText, IconLink, TableSets } from '@/components'
-import { yesNoOpts } from '@/lib/options'
+import { IPBlockTypeOpts, platformTypeOpts, yesNoOpts } from '@/lib/options'
 import { toDateTime, toOptionName } from '@/utils/transfer'
 import {
   CheckCircleOutlined,
@@ -17,19 +17,19 @@ import { useAPIService } from '../service'
 
 const columns: ColumnsType<BlackIp> = [
   {
-    title: '內容',
+    title: 'IP位址',
     width: 180,
-    render: (_, row) => row.content,
+    render: (_, row) => row.ip,
   },
   {
-    title: '另開視窗',
+    title: '類型',
     width: 110,
-    render: (_, row) => toOptionName(yesNoOpts, row.is_blank ? 1 : 2),
+    render: (_, row) => toOptionName(IPBlockTypeOpts, row.ip_block_type),
   },
   {
-    title: '連結',
+    title: '端口設置',
     width: 180,
-    render: (_, row) => row.url,
+    render: (_, row) => toOptionName(platformTypeOpts, row.platform_type),
   },
   {
     title: '狀態',
@@ -42,32 +42,29 @@ const columns: ColumnsType<BlackIp> = [
     },
   },
   {
-    title: '期間',
+    title: '備註',
     width: 200,
-    render: (_, row) =>
-      row.start_at ? (
-        <>
-          {toDateTime(row.start_at)} <br />
-          {toDateTime(row.end_at)}
-        </>
-      ) : (
-        '-'
-      ),
+    render: (_, row) => row.note,
   },
   {
-    title: '更新人員',
-    width: 120,
-    render: (_, row) => row.editor,
+    title: '建立時間',
+    width: 200,
+    render: (_, row) => toDateTime(row.created_at),
   },
   {
-    title: '更新時間',
+    title: '更新人員/時間',
     width: 200,
-    render: (_, row) => toDateTime(row.updated_at),
+    render: (_, row) => (
+      <>
+        {row.editor} <br />
+        {toDateTime(row.updated_at)}
+      </>
+    ),
   },
   {
     title: '操作',
     render(_, row) {
-      const [visible, setVisible] = usePopupProvider('editForm')
+      const [, setVisible] = usePopupProvider('editForm')
       const { getFormData, onDelete, changeActive } = useAPIService()
       const handleEdit = async (id: number) => {
         await getFormData(id)

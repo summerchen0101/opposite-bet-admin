@@ -21,6 +21,7 @@ import * as Play from '@/pages/sport/Play/API'
 import * as Page from '@/pages/website/PageManage/API'
 import * as Faq from '@/pages/website/Faq/API'
 import * as FaqCategory from '@/pages/website/Faq/API/category'
+import * as BlackIp from '@/pages/system/BlackIp/API'
 
 const API = {
   login,
@@ -45,6 +46,7 @@ const API = {
   Page,
   Faq,
   FaqCategory,
+  BlackIp,
 }
 
 export default API
