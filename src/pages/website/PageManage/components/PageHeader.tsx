@@ -9,7 +9,7 @@ const Component: React.FC = () => {
   return (
     <PageHeader
       title={page.name}
-      extra={<CreateButton />}
+      // extra={<CreateButton />}
       breadcrumb={{ routes }}
     />
   )

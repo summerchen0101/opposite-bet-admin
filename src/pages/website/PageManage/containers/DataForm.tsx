@@ -5,7 +5,7 @@ import { deviceOpts } from '@/lib/options'
 import { Col, Collapse, DatePicker, Input, Radio, Row, Switch } from 'antd'
 import { FormInstance } from 'antd/lib/form'
 import { Moment } from 'moment'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 export interface FormData {
   id?: number
@@ -21,18 +21,28 @@ interface FormProps {
 }
 
 const DataForm: React.FC<FormProps> = ({ form, values }) => {
+  useEffect(() => {
+    form.setFieldsValue(values)
+  }, [values])
   return (
     <Form form={form} initialValues={values}>
       <FormField
         label="標題"
         name="title"
+        hidden={!!values.id}
         rules={[{ required: true, max: 10 }]}
       >
         <Input />
       </FormField>
-      <FormField label="代碼" name="code" rules={[{ required: true, max: 10 }]}>
+      <FormField
+        label="代碼"
+        name="code"
+        hidden={!!values.id}
+        rules={[{ required: true, max: 10 }]}
+      >
         <Input />
       </FormField>
+
       <FormField label="狀態" name="is_active" valuePropName="checked">
         <Switch />
       </FormField>
