@@ -31,10 +31,9 @@ export interface EditBlackIp {
 }
 
 export interface SearchFields {
-  content: string
-  start_at: number
-  end_at: number
-  is_active: Status
+  ip?: string
+  block_type?: IPBlockType
+  is_active?: Status
   page?: number
   perpage?: number
 }
