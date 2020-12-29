@@ -1,16 +1,21 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
+import {
+  ActionReducerMapBuilder,
+  createSlice,
+  PayloadAction,
+} from '@reduxjs/toolkit'
+import { FaqCategory } from './API/category/types'
+import { Faq } from './API/types'
 export interface IState {
-  tableData: any[]
-  displayCreateModal: boolean
-  displayCategoryListModal: boolean
-  displayCategoryCreateModal: boolean
+  tableData: Faq[]
+  editData: Faq
+  categoryList: FaqCategory[]
+  categoryView: FaqCategory
 }
 const initialState: IState = {
   tableData: [],
-  displayCreateModal: false,
-  displayCategoryListModal: false,
-  displayCategoryCreateModal: false,
+  editData: null,
+  categoryList: [],
+  categoryView: null,
 }
 
 export const moduleName = 'faq'
@@ -19,29 +24,26 @@ const module = createSlice({
   name: moduleName,
   initialState,
   reducers: {
-    gotTableData(state, action: PayloadAction<any[]>) {
+    setTableData(state, action: PayloadAction<Faq[]>) {
       state.tableData = action.payload
     },
-    initSearchState(state) {
-      //
+    setEditData(state, action: PayloadAction<Faq>) {
+      state.editData = action.payload
     },
-    toggleCreateModal(state, action: PayloadAction<boolean>) {
-      state.displayCreateModal = action.payload
+    setCategoryList(state, action: PayloadAction<FaqCategory[]>) {
+      state.categoryList = action.payload
     },
-    toggleCategoryListModal(state, action: PayloadAction<boolean>) {
-      state.displayCategoryListModal = action.payload
-    },
-    toggleCategoryCreateModal(state, action: PayloadAction<boolean>) {
-      state.displayCategoryCreateModal = action.payload
+    setCategoryView(state, action: PayloadAction<FaqCategory>) {
+      state.categoryView = action.payload
     },
   },
+  extraReducers: (builder: ActionReducerMapBuilder<IState>) => {},
 })
 
 export const {
-  gotTableData,
-  initSearchState,
-  toggleCreateModal,
-  toggleCategoryListModal,
-  toggleCategoryCreateModal,
+  setTableData,
+  setEditData,
+  setCategoryList,
+  setCategoryView,
 } = module.actions
 export default module.reducer

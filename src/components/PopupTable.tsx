@@ -23,6 +23,7 @@ const PopupTable: React.FC<PopupTableProps> = ({ data, columns, ...props }) => {
       dataSource={data}
       columns={columnsWithKey}
       size="small"
+      rowKey="id"
       pagination={{ pageSize: 6 }}
       bordered
       {...props}

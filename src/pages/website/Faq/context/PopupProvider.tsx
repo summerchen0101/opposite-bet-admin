@@ -5,6 +5,9 @@ interface IState {
   createForm: PopupProps<boolean>
   editForm: PopupProps<boolean>
   preview: PopupProps<boolean>
+  categoryCreate: PopupProps<boolean>
+  categoryEdit: PopupProps<boolean>
+  categoryList: PopupProps<boolean>
 }
 
 const PopupContext = createContext<IState | null>(null)
@@ -14,6 +17,9 @@ const PopupProvider: React.FC = ({ children }) => {
     createForm: useState(false),
     editForm: useState(false),
     preview: useState(false),
+    categoryCreate: useState(false),
+    categoryEdit: useState(false),
+    categoryList: useState(false),
   }
   return (
     <PopupContext.Provider value={initialState}>

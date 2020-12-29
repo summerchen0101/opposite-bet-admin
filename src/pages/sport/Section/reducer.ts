@@ -16,7 +16,7 @@ const initialState: IState = {
   // permissionOpts: [],
 }
 
-export const moduleName = 'adminSection'
+export const moduleName = 'section'
 
 const module = createSlice({
   name: moduleName,

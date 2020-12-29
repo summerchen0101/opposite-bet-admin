@@ -19,6 +19,8 @@ import * as Team from '@/pages/sport/Team/API'
 import * as Section from '@/pages/sport/Section/API'
 import * as Play from '@/pages/sport/Play/API'
 import * as Page from '@/pages/website/PageManage/API'
+import * as Faq from '@/pages/website/Faq/API'
+import * as FaqCategory from '@/pages/website/Faq/API/category'
 
 const API = {
   login,
@@ -41,6 +43,8 @@ const API = {
   Section,
   Play,
   Page,
+  Faq,
+  FaqCategory,
 }
 
 export default API
