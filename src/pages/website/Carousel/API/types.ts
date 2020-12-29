@@ -2,8 +2,10 @@ import { Status } from '@/lib/enums'
 
 export interface Banner {
   id: number
-  content: string
+  title: string
   url: string
+  img: string
+  img_mobile: string
   is_blank: boolean
   is_active: boolean
   start_at: number
@@ -13,9 +15,27 @@ export interface Banner {
   created_at: number
   updated_at: number
 }
-type AutoAdded = 'created_at' | 'updated_at' | 'editor'
-export type EditNews = Omit<Banner, AutoAdded>
-export type CreateNews = Omit<Banner, AutoAdded | 'id'>
+export interface EditNews {
+  id: number
+  title: string
+  url: string
+  img: string
+  img_mobile: string
+  is_blank: boolean
+  is_active: boolean
+  start_at: number
+  end_at: number
+}
+export interface CreateNews {
+  title: string
+  url: string
+  img: string
+  img_mobile: string
+  is_blank: boolean
+  is_active: boolean
+  start_at: number
+  end_at: number
+}
 
 export interface SearchFields {
   content: string

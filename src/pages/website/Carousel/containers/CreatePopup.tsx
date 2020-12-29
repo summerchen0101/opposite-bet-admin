@@ -14,12 +14,14 @@ const CreatePopup: React.FC = () => {
     try {
       const v = (await form.validateFields()) as FormData
       await onCreate({
-        content: v.content,
+        title: v.title,
         url: v.url,
         is_blank: v.is_blank,
-        start_at: v.date_range_type === 'limit' ? v.limit_range[0].unix() : 0,
-        end_at: v.date_range_type === 'limit' ? v.limit_range[1].unix() : 0,
+        start_at: v.date_range[0].unix() || 0,
+        end_at: v.date_range[1].unix() || 0,
         is_active: v.is_active,
+        img: v.img,
+        img_mobile: v.img_mobile,
       })
       form.resetFields()
       setVisible(false)
@@ -41,12 +43,13 @@ const CreatePopup: React.FC = () => {
       <DataForm
         form={form}
         values={{
-          content: '',
+          title: '',
           url: '',
-          date_range_type: 'forever',
-          limit_range: [null, null],
+          date_range: [null, null],
           is_active: true,
           is_blank: false,
+          img: '',
+          img_mobile: '',
         }}
       />
     </PopupModal>

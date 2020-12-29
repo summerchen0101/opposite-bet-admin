@@ -57,11 +57,22 @@ export const useAPIService = () => {
     }
   }
 
+  const changeActive = async (id: number, status: boolean) => {
+    try {
+      await API.Banner.active({ id, is_active: status })
+      await getTableData()
+      message.success('狀態更新成功')
+    } catch (err) {
+      apiErr(err)
+    }
+  }
+
   return {
     getTableData,
     onCreate,
     onEdit,
     getFormData,
     onDelete,
+    changeActive,
   }
 }

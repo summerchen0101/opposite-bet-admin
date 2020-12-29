@@ -69,7 +69,7 @@ const columns: ColumnsType<Marquee> = [
     title: '操作',
     render(_, row) {
       const [visible, setVisible] = usePopupProvider('editForm')
-      const { getFormData, onDelete } = useAPIService()
+      const { getFormData, onDelete, changeActive } = useAPIService()
       const handleEdit = async (id: number) => {
         await getFormData(id)
         setVisible(true)
@@ -81,14 +81,14 @@ const columns: ColumnsType<Marquee> = [
               icon={<CloseCircleOutlined />}
               label="停用"
               color="red"
-              // onClick={() => changeActive(row.id, false)}
+              onClick={() => changeActive(row.id, false)}
             />
           ) : (
             <IconLink
               icon={<CheckCircleOutlined />}
               label="啟用"
               color="green"
-              // onClick={() => changeActive(row.id, true)}
+              onClick={() => changeActive(row.id, true)}
             />
           )}
           <IconLink

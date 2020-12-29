@@ -1,6 +1,11 @@
 import { ColorText, IconLink, TableSets } from '@/components'
 import { toDateTime, toOptionName } from '@/utils/transfer'
-import { DeleteOutlined, EditFilled } from '@ant-design/icons'
+import {
+  CheckCircleOutlined,
+  CloseCircleOutlined,
+  DeleteOutlined,
+  EditFilled,
+} from '@ant-design/icons'
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
@@ -59,13 +64,28 @@ const columns: ColumnsType<News> = [
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
       const [visible, setVisible] = usePopupProvider('editForm')
-      const { getFormData, onDelete } = useAPIService()
+      const { getFormData, onDelete, changeActive } = useAPIService()
       const handleEdit = async (id: number) => {
         await getFormData(id)
         setVisible(true)
       }
       return (
         <Space size="small">
+          {row.is_active ? (
+            <IconLink
+              icon={<CloseCircleOutlined />}
+              label="停用"
+              color="red"
+              onClick={() => changeActive(row.id, false)}
+            />
+          ) : (
+            <IconLink
+              icon={<CheckCircleOutlined />}
+              label="啟用"
+              color="green"
+              onClick={() => changeActive(row.id, true)}
+            />
+          )}
           <IconLink
             icon={<EditFilled />}
             label="編輯"

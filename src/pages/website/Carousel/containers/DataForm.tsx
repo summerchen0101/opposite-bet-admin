@@ -9,9 +9,10 @@ import React from 'react'
 
 export interface FormData {
   id?: number
-  content: string
-  date_range_type: string
-  limit_range: [Moment, Moment]
+  title: string
+  img: string
+  img_mobile: string
+  date_range: [Moment, Moment]
   is_active: boolean
   is_blank: boolean
   url: string
@@ -23,21 +24,14 @@ interface FormProps {
 
 const DataForm: React.FC<FormProps> = ({ form, values }) => {
   return (
-    <Form form={form}>
-      <FormField label="標題">
+    <Form form={form} initialValues={values}>
+      <FormField label="標題" name="title">
         <Input />
       </FormField>
-      <FormField label="廣告期間">
+      <FormField label="廣告期間" name="date_range">
         <DatePicker.RangePicker />
       </FormField>
-      <FormField label="平台顯示" name="platform" initialValue={0}>
-        <Radio.Group>
-          <Radio value={0}>全部</Radio>
-          <Radio value={1}>手機版</Radio>
-          <Radio value={2}>桌上型電腦</Radio>
-        </Radio.Group>
-      </FormField>
-      <FormField label="連結">
+      <FormField label="連結" name="url">
         <Input placeholder="ex: http://google.com" />
       </FormField>
       <Row gutter={16}>
@@ -55,7 +49,7 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
       <Collapse defaultActiveKey={[Device.PC, Device.Mobile]}>
         {deviceOpts.map((t, i) => (
           <Collapse.Panel header={t.label} key={t.value}>
-            <FormField>
+            <FormField name={t.value === Device.PC ? 'img' : 'img_mobile'}>
               <ImageUpload />
             </FormField>
           </Collapse.Panel>
