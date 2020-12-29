@@ -1,12 +1,16 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
+import {
+  ActionReducerMapBuilder,
+  createSlice,
+  PayloadAction,
+} from '@reduxjs/toolkit'
+import { BlackArea } from './API/types'
 export interface IState {
-  tableData: any[]
-  displayCreateModal: boolean
+  tableData: BlackArea[]
+  editData: BlackArea
 }
 const initialState: IState = {
   tableData: [],
-  displayCreateModal: false,
+  editData: null,
 }
 
 export const moduleName = 'BlackArea'
@@ -15,21 +19,15 @@ const module = createSlice({
   name: moduleName,
   initialState,
   reducers: {
-    gotTableData(state, action: PayloadAction<any[]>) {
+    setTableData(state, action: PayloadAction<BlackArea[]>) {
       state.tableData = action.payload
     },
-    initSearchState(state) {
-      //
-    },
-    toggleCreateModal(state, action: PayloadAction<boolean>) {
-      state.displayCreateModal = action.payload
+    setEditData(state, action: PayloadAction<BlackArea>) {
+      state.editData = action.payload
     },
   },
+  extraReducers: (builder: ActionReducerMapBuilder<IState>) => {},
 })
 
-export const {
-  gotTableData,
-  initSearchState,
-  toggleCreateModal,
-} = module.actions
+export const { setTableData, setEditData } = module.actions
 export default module.reducer

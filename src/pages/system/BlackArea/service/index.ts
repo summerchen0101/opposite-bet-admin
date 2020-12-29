@@ -2,7 +2,7 @@ import API from '@/API'
 import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { message } from 'antd'
 import { useDispatch } from 'react-redux'
-import { CreateMarquee, EditMarquee, SearchFields } from '../API/types'
+import { CreateBlackArea, EditBlackArea, SearchFields } from '../API/types'
 import { setEditData, setTableData } from '../reducer'
 
 export const useAPIService = () => {
@@ -27,7 +27,7 @@ export const useAPIService = () => {
     }
   }
 
-  const onCreate = async (values: CreateMarquee) => {
+  const onCreate = async (values: CreateBlackArea) => {
     try {
       await API.Marquee.create(values)
       await getTableData()
@@ -37,7 +37,7 @@ export const useAPIService = () => {
     }
   }
 
-  const onEdit = async (values: EditMarquee) => {
+  const onEdit = async (values: EditBlackArea) => {
     try {
       await API.Marquee.edit(values)
       await getTableData()

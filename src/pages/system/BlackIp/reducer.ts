@@ -1,12 +1,16 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
+import {
+  ActionReducerMapBuilder,
+  createSlice,
+  PayloadAction,
+} from '@reduxjs/toolkit'
+import { BlackIp } from './API/types'
 export interface IState {
-  tableData: any[]
-  displayCreateModal: boolean
+  tableData: BlackIp[]
+  editData: BlackIp
 }
 const initialState: IState = {
   tableData: [],
-  displayCreateModal: false,
+  editData: null,
 }
 
 export const moduleName = 'BlackIp'
@@ -15,21 +19,15 @@ const module = createSlice({
   name: moduleName,
   initialState,
   reducers: {
-    gotTableData(state, action: PayloadAction<any[]>) {
+    setTableData(state, action: PayloadAction<BlackIp[]>) {
       state.tableData = action.payload
     },
-    initSearchState(state) {
-      //
-    },
-    toggleCreateModal(state, action: PayloadAction<boolean>) {
-      state.displayCreateModal = action.payload
+    setEditData(state, action: PayloadAction<BlackIp>) {
+      state.editData = action.payload
     },
   },
+  extraReducers: (builder: ActionReducerMapBuilder<IState>) => {},
 })
 
-export const {
-  gotTableData,
-  initSearchState,
-  toggleCreateModal,
-} = module.actions
+export const { setTableData, setEditData } = module.actions
 export default module.reducer

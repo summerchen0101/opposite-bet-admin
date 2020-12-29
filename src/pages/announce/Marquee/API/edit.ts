@@ -1,5 +1,5 @@
 import Request from '@/utils/request'
-import { EditNews } from './types'
+import { EditMarquee } from './types'
 
-export const edit = (reqData: EditNews) =>
+export const edit = (reqData: EditMarquee) =>
   Request.post<null>('marquee/edit', reqData)

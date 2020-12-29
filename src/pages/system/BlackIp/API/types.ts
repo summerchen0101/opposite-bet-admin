@@ -1,6 +1,6 @@
 import { Status } from '@/lib/enums'
 
-export interface Marquee {
+export interface BlackIp {
   id: number
   content: string
   url: string
@@ -14,8 +14,8 @@ export interface Marquee {
   updated_at: number
 }
 type AutoAdded = 'created_at' | 'updated_at' | 'editor'
-export type EditMarquee = Omit<Marquee, AutoAdded>
-export type CreateMarquee = Omit<Marquee, AutoAdded | 'id'>
+export type EditBlackIp = Omit<BlackIp, AutoAdded>
+export type CreateBlackIp = Omit<BlackIp, AutoAdded | 'id'>
 
 export interface SearchFields {
   content: string
