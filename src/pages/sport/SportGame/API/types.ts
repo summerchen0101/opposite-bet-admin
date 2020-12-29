@@ -39,7 +39,7 @@ export interface EditSportGame {
   is_active: boolean
 }
 
-export interface SportGameOptions {
+export interface SportGameOption {
   id: number
   name: string
 }
