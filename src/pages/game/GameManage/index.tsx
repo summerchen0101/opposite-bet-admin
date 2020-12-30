@@ -14,6 +14,7 @@ import {
   GameControlPanel,
   CheckoutManage,
   EventReview,
+  ManualReview,
 } from '../routes'
 
 const GameManagePage: React.FC = () => {
@@ -30,6 +31,7 @@ const GameManagePage: React.FC = () => {
             component={CheckoutManage.component}
           />
           <Route path={EventReview.path} component={EventReview.component} />
+          <Route path={ManualReview.path} component={ManualReview.component} />
           <Route path={GameManage.path}>
             <Dashboard>
               <PageHeader />
