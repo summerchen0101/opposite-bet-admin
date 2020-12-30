@@ -8,7 +8,6 @@ import PopupEditForm from './containers/EditPopup'
 import TableData from './containers/TableData'
 import reducer, { moduleName } from './reducer'
 import { useAPIService } from './service'
-import SearchBar from './containers/SearchBar'
 
 const Manager: React.FC = () => {
   useReducerInjector(moduleName, reducer)
@@ -23,7 +22,6 @@ const Manager: React.FC = () => {
     <Dashboard>
       <PopupProvider>
         <PageHeader />
-        <SearchBar />
         <TableData />
         <PopupCreateForm />
         <PopupEditForm />

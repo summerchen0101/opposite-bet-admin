@@ -29,7 +29,7 @@ const EditPopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="編輯國家"
+      title="編輯體育"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
       destroyOnClose
@@ -42,7 +42,6 @@ const EditPopup: React.FC = () => {
             name: f.name,
             code: f.code,
             note: f.note,
-            country_id: f.country.id,
             is_active: f.is_active,
           }}
         />

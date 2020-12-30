@@ -27,16 +27,6 @@ const columns: ColumnsType<Sport> = [
     render: (_, row) => row.code,
   },
   {
-    title: '國家',
-    width: 100,
-    render: (_, row) => row.country.name,
-  },
-  {
-    title: '創建時間',
-    width: 180,
-    render: (_, row) => toDateTime(row.created_at),
-  },
-  {
     title: '狀態',
     width: 120,
     render: (_, row) => {
@@ -47,9 +37,9 @@ const columns: ColumnsType<Sport> = [
     },
   },
   {
-    title: '更新時間',
-    width: 200,
-    render: (_, row) => toDateTime(row.updated_at),
+    title: '備註',
+    width: 100,
+    render: (_, row) => row.note,
   },
   {
     title: '操作',

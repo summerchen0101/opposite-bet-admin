@@ -8,7 +8,6 @@ export interface FormData {
   name: string
   code: string
   note: string
-  country_id: number
   is_active: boolean
 }
 interface FormProps {
@@ -34,9 +33,6 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
       onReset={onReset}
       initialValues={values}
     >
-      <Form.Item label="國家" name="country_id" rules={[{ required: true }]}>
-        <Select options={countryOpts} placeholder="請選擇" />
-      </Form.Item>
       <Form.Item
         label="名稱"
         name="name"

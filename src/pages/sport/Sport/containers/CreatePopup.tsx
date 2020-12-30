@@ -1,17 +1,14 @@
 import PopupModal from '@/components/PopupModal'
+import { Form } from 'antd'
 import React from 'react'
-import { usePopupProvider } from '../context/PopupProvider'
-import DataForm, { FormData } from './DataForm'
-import { Form, message } from 'antd'
-import API from '@/API'
-import useErrorHandler from '@/utils/hooks/useErrorHandler'
-import { useAPIService } from '../service'
 import { CreateSport } from '../API/types'
+import { usePopupProvider } from '../context/PopupProvider'
+import { useAPIService } from '../service'
+import DataForm, { FormData } from './DataForm'
 
 const CreatePopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('createForm')
   const { onCreate } = useAPIService()
-  const { apiErr } = useErrorHandler()
   const [form] = Form.useForm<FormData>()
   const handleSubmit = async () => {
     try {
@@ -30,7 +27,7 @@ const CreatePopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="新增國家"
+      title="新增體育"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
     >
@@ -40,7 +37,6 @@ const CreatePopup: React.FC = () => {
           name: '',
           code: '',
           note: '',
-          country_id: null,
           is_active: true,
         }}
       />

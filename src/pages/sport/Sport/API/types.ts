@@ -5,11 +5,6 @@ export interface Sport {
   name: string
   code: string
   note: string
-  country: {
-    code: string
-    id: number
-    name: string
-  }
   is_active: boolean
   created_at: number
   updated_at: number
@@ -19,7 +14,6 @@ export interface CreateSport {
   name: string
   code: string
   note: string
-  country_id: number
   is_active: boolean
 }
 export interface EditSport {
@@ -27,7 +21,6 @@ export interface EditSport {
   name: string
   code: string
   note: string
-  country_id: number
   is_active: boolean
 }
 
@@ -37,8 +30,6 @@ export interface SportOption {
 }
 
 export interface SportSearch {
-  country_id?: number
-  is_active?: Status
   page?: number
   perpage?: number
 }
