@@ -1,4 +1,4 @@
-import { ColorText, IconLink, TableSets } from '@/components'
+import { ColorText, IconLink, TableSets, PopupConfirm } from '@/components'
 import { IPBlockTypeOpts, platformTypeOpts, yesNoOpts } from '@/lib/options'
 import { toDateTime, toOptionName } from '@/utils/transfer'
 import {
@@ -92,11 +92,9 @@ const columns: ColumnsType<BlackIp> = [
             label="編輯"
             onClick={() => handleEdit(row.id)}
           />
-          <IconLink
-            icon={<DeleteOutlined />}
-            label="刪除"
-            onClick={() => onDelete(row.id)}
-          />
+          <PopupConfirm onConfirm={() => onDelete(row.id)}>
+            <IconLink icon={<DeleteOutlined />} label="刪除" />
+          </PopupConfirm>
         </Space>
       )
     },

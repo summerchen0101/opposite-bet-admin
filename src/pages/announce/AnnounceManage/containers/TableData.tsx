@@ -1,4 +1,4 @@
-import { ColorText, IconLink, TableSets } from '@/components'
+import { ColorText, IconLink, TableSets, PopupConfirm } from '@/components'
 import { toDateTime, toOptionName } from '@/utils/transfer'
 import {
   CheckCircleOutlined,
@@ -91,11 +91,9 @@ const columns: ColumnsType<News> = [
             label="編輯"
             onClick={() => handleEdit(row.id)}
           />
-          <IconLink
-            icon={<DeleteOutlined />}
-            label="刪除"
-            onClick={() => onDelete(row.id)}
-          />
+          <PopupConfirm onConfirm={() => onDelete(row.id)}>
+            <IconLink icon={<DeleteOutlined />} label="刪除" />
+          </PopupConfirm>
         </Space>
       )
     },
