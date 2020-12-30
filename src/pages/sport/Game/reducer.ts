@@ -3,14 +3,14 @@ import {
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit'
-import { SportGame } from './API/types'
+import { Game } from './API/types'
 import { CountryOption } from '../Country/API/types'
 import { SportOption } from '../Sport/API/types'
 import { remoteOptsToLocalOpts } from '@/utils/transfer'
 import { OptionsType } from '@/lib/types'
 export interface IState {
-  tableData: SportGame[]
-  editData: SportGame
+  tableData: Game[]
+  editData: Game
   countryOpts: OptionsType<number>
   sportOpts: OptionsType<number>
 }
@@ -21,16 +21,16 @@ const initialState: IState = {
   sportOpts: [],
 }
 
-export const moduleName = 'adminSportGame'
+export const moduleName = 'adminGame'
 
 const module = createSlice({
   name: moduleName,
   initialState,
   reducers: {
-    setTableData(state, action: PayloadAction<SportGame[]>) {
+    setTableData(state, action: PayloadAction<Game[]>) {
       state.tableData = action.payload
     },
-    setEditData(state, action: PayloadAction<SportGame>) {
+    setEditData(state, action: PayloadAction<Game>) {
       state.editData = action.payload
     },
     setCountryOpts(state, action: PayloadAction<CountryOption[]>) {

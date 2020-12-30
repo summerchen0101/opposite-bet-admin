@@ -2,7 +2,7 @@ import API from '@/API'
 import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { message } from 'antd'
 import { useDispatch } from 'react-redux'
-import { CreateSportGame, EditSportGame, SportGameSearch } from '../API/types'
+import { CreateGame, EditGame, GameSearch } from '../API/types'
 import {
   setEditData,
   setTableData,
@@ -27,25 +27,25 @@ export const useAPIService = () => {
 
   const getFormData = async (id: number) => {
     try {
-      const res = await API.SportGame.fetchById(id)
+      const res = await API.Game.fetchById(id)
       dispatch(setEditData(res.data))
     } catch (err) {
       apiErr(err)
     }
   }
 
-  const getTableData = async (search?: SportGameSearch) => {
+  const getTableData = async (search?: GameSearch) => {
     try {
-      const res = await API.SportGame.fetchAll(search)
+      const res = await API.Game.fetchAll(search)
       dispatch(setTableData(res.data.list))
     } catch (err) {
       apiErr(err)
     }
   }
 
-  const onCreate = async (values: CreateSportGame) => {
+  const onCreate = async (values: CreateGame) => {
     try {
-      await API.SportGame.create(values)
+      await API.Game.create(values)
       await getTableData()
       message.success('新增成功')
     } catch (err) {
@@ -53,9 +53,9 @@ export const useAPIService = () => {
     }
   }
 
-  const onEdit = async (values: EditSportGame) => {
+  const onEdit = async (values: EditGame) => {
     try {
-      await API.SportGame.edit(values)
+      await API.Game.edit(values)
       await getTableData()
       message.success('修改成功')
     } catch (err) {
@@ -65,7 +65,7 @@ export const useAPIService = () => {
 
   const onDelete = async (id: number) => {
     try {
-      await API.SportGame.deleteById(id)
+      await API.Game.deleteById(id)
       await getTableData()
       message.success('刪除成功')
     } catch (err) {
@@ -74,7 +74,7 @@ export const useAPIService = () => {
   }
   const changeActive = async (id: number, status: boolean) => {
     try {
-      await API.SportGame.active({ id, is_active: status })
+      await API.Game.active({ id, is_active: status })
       await getTableData()
       message.success('狀態更新成功')
     } catch (err) {

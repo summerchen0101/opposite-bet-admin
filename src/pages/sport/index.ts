@@ -1,7 +1,7 @@
 export { default as GameLimit } from './GameLimit'
 export { default as Country } from './Country'
 export { default as Sport } from './Sport'
-export { default as SportGame } from './SportGame'
+export { default as Game } from './Game'
 export { default as League } from './League'
 export { default as Team } from './Team'
 export { default as Section } from './Section'

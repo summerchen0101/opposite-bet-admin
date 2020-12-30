@@ -1,6 +1,6 @@
 import { Status } from '@/lib/enums'
 
-export interface SportGame {
+export interface Game {
   id: number
   name: string
   code: string
@@ -21,7 +21,7 @@ export interface SportGame {
   updated_at: number
 }
 
-export interface CreateSportGame {
+export interface CreateGame {
   name: string
   code: string
   note: string
@@ -29,7 +29,7 @@ export interface CreateSportGame {
   sport_id: number
   is_active: boolean
 }
-export interface EditSportGame {
+export interface EditGame {
   id: number
   name: string
   code: string
@@ -39,12 +39,12 @@ export interface EditSportGame {
   is_active: boolean
 }
 
-export interface SportGameOption {
+export interface GameOption {
   id: number
   name: string
 }
 
-export interface SportGameSearch {
+export interface GameSearch {
   country_id?: number
   sport_id?: number
   is_active?: Status

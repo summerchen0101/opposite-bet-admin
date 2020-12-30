@@ -1,8 +1,8 @@
 import Request from '@/utils/request'
-import { SportGameOption } from './types'
+import { GameOption } from './types'
 
 interface ResponseData {
-  list: SportGameOption[]
+  list: GameOption[]
 }
 
 export const options = () => Request.get<ResponseData>('sport_game/options')

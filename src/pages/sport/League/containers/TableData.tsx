@@ -26,6 +26,11 @@ const columns: ColumnsType<League> = [
     width: 180,
     render: (_, row) => row.bet365_code,
   },
+  {
+    title: '球種',
+    width: 120,
+    render: (_, row) => row.game.name,
+  },
   // {
   //   title: '國家',
   //   width: 100,

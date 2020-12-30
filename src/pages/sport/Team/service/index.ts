@@ -22,7 +22,7 @@ export const useAPIService = () => {
       // dispatch(setCountryOpts(countryRes.data.countries))
       // const sportRes = await API.Sport.options()
       // dispatch(setSportOpts(sportRes.data.sports))
-      // const gameRes = await API.SportGame.options()
+      // const gameRes = await API.Game.options()
       // dispatch(setGameOpts(gameRes.data.games))
       const leagueRes = await API.League.options()
       dispatch(setLeagueOpts(leagueRes.data.list))
