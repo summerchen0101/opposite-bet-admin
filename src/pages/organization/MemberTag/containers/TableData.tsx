@@ -1,12 +1,6 @@
-import { ColorText, IconLink, TableSets, PopupConfirm } from '@/components'
-import { IPBlockTypeOpts, platformTypeOpts, yesNoOpts } from '@/lib/options'
-import { toDateTime, toOptionName } from '@/utils/transfer'
-import {
-  CheckCircleOutlined,
-  CloseCircleOutlined,
-  DeleteOutlined,
-  EditFilled,
-} from '@ant-design/icons'
+import { IconLink, PopupConfirm, TableSets } from '@/components'
+import { toDateTime } from '@/utils/transfer'
+import { DeleteOutlined, EditFilled } from '@ant-design/icons'
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
@@ -25,6 +19,11 @@ const columns: ColumnsType<MemberTag> = [
     title: '說明',
     width: 200,
     render: (_, row) => row.content,
+  },
+  {
+    title: '會員數',
+    width: 100,
+    render: (_, row) => row.member_count,
   },
   {
     title: '建立時間',
@@ -69,7 +68,7 @@ const columns: ColumnsType<MemberTag> = [
 
 const TableData: React.FC = () => {
   const data = useTypedSelector(selectTableData)
-  return <TableSets columns={columns} data={data} scroll={{ x: 1300 }} />
+  return <TableSets columns={columns} data={data} />
 }
 
 export default TableData

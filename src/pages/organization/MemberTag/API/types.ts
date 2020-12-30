@@ -1,10 +1,9 @@
-import { Status, PlatformType, IPBlockType } from '@/lib/enums'
-
 export interface MemberTag {
   id: number
 
   name: string
   content: string
+  member_count: number
 
   editor: string
   created_at: number
