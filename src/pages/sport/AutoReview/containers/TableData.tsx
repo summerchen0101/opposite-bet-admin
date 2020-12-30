@@ -10,35 +10,19 @@ import { useAPIService } from '../service'
 
 const columns: ColumnsType<BlackIp> = [
   {
-    title: '玩法細項',
+    title: '場次',
     width: 80,
-    align: 'center',
-    render: (_, row) => '0-1',
+    render: (_, row) => '全場',
   },
   {
-    title: '獲利(%)',
+    title: '玩法',
     width: 80,
-    render: (_, row) => '9%',
+    render: (_, row) => '反波膽',
   },
   {
-    title: '可交易量',
+    title: '自動結帳',
     width: 120,
-    render: (_, row) => '4,000,000',
-  },
-  {
-    title: '降賠',
-    width: 180,
-    render: (_, row) => '10,000 以上降 0.1%',
-  },
-  {
-    title: '單注上限',
-    width: 120,
-    render: (_, row) => '10,000',
-  },
-  {
-    title: '單注下限',
-    width: 120,
-    render: (_, row) => '100',
+    render: (_, row) => '是',
   },
   {
     title: '操作',

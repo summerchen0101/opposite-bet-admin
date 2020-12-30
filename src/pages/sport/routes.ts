@@ -34,6 +34,11 @@ export const PlaySetting = new PageG(
   `${rootPath}/play-setting`,
   pages.PlaySetting,
 )
+export const AutoReview = new PageG(
+  '自動結帳設置',
+  `${rootPath}/auto-review`,
+  pages.AutoReview,
+)
 
 // ROUTERS
 RouteG.create([
@@ -46,6 +51,7 @@ RouteG.create([
   Play,
   GameLimit,
   PlaySetting,
+  AutoReview,
 ])
 
 // MENU
@@ -58,4 +64,5 @@ MenuG.createCategory(rootName, rootPath, DribbbleOutlined, [
   Section,
   Play,
   PlaySetting,
+  AutoReview,
 ])
