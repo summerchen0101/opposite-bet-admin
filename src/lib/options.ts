@@ -53,5 +53,5 @@ export const platformTypeOpts = [
 
 export const countryOpts = countries.map((t) => ({
   label: t.name,
-  value: t.alpha3,
+  value: t.alpha3.toUpperCase(),
 }))

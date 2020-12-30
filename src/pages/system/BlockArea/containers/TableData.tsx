@@ -1,5 +1,5 @@
 import { ColorText, IconLink, PopupConfirm, TableSets } from '@/components'
-import { IPBlockTypeOpts, platformTypeOpts, yesNoOpts } from '@/lib/options'
+import { countryOpts, platformTypeOpts } from '@/lib/options'
 import { toDateTime, toOptionName } from '@/utils/transfer'
 import {
   CheckCircleOutlined,
@@ -19,7 +19,7 @@ const columns: ColumnsType<BlockArea> = [
   {
     title: '國別',
     width: 180,
-    render: (_, row) => row.code,
+    render: (_, row) => toOptionName(countryOpts, row.code),
   },
   {
     title: '端口設置',

@@ -21,7 +21,7 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
   return (
     <Form layout="vertical" form={form} initialValues={values}>
       <Form.Item label="國別" name="code">
-        <Select options={countryOpts} showSearch />
+        <Select options={countryOpts} showSearch optionFilterProp="label" />
       </Form.Item>
       <Form.Item label="端口設置" name="platform_type">
         <Radio.Group options={platformTypeOpts} />
