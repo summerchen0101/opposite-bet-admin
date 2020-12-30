@@ -23,6 +23,7 @@ import * as Faq from '@/pages/website/Faq/API'
 import * as FaqCategory from '@/pages/website/Faq/API/category'
 import * as BlackIp from '@/pages/system/BlackIp/API'
 import * as BlockArea from '@/pages/system/BlockArea/API'
+import * as MemberTag from '@/pages/organization/MemberTag/API'
 
 const API = {
   login,
@@ -49,6 +50,7 @@ const API = {
   FaqCategory,
   BlackIp,
   BlockArea,
+  MemberTag,
 }
 
 export default API

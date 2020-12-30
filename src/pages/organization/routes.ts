@@ -38,6 +38,11 @@ export const MemberLabel = new PageG(
     exact: true,
   },
 )
+export const MemberTag = new PageG(
+  '會員標籤管理',
+  `${rootPath}/member-tag`,
+  pages.MemberTag,
+)
 export const MemberLabelDetail = new PageG(
   '會員數',
   `${rootPath}/member-label/detail`,
@@ -45,11 +50,18 @@ export const MemberLabelDetail = new PageG(
 )
 
 // ROUTERS
-RouteG.create([MemberActivity, LevelManage, MemberLabel, MemberLabelDetail])
+RouteG.create([
+  MemberActivity,
+  LevelManage,
+  MemberLabel,
+  MemberLabelDetail,
+  MemberTag,
+])
 
 // MENU
 MenuG.createCategory(rootName, rootPath, ApartmentOutlined, [
   MemberActivity,
   LevelManage,
   MemberLabel,
+  MemberTag,
 ])
