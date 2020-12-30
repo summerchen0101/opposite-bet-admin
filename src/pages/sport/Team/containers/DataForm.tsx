@@ -1,13 +1,12 @@
-import { Button, Form, Input, Radio, Select, Space, Switch } from 'antd'
+import { Form, Input, Radio, Select } from 'antd'
 import { FormInstance } from 'antd/lib/form'
 import React, { useEffect } from 'react'
 import {
-  useTypedSelector,
-  selectCountryOpts,
-  selectSportOpts,
   selectGameOpts,
   selectLeagueOpts,
+  useTypedSelector,
 } from '../selectors'
+import { useAPIService } from '../service'
 
 export interface FormData {
   id?: number
@@ -24,6 +23,7 @@ interface FormProps {
   values?: FormData
 }
 const DataForm: React.FC<FormProps> = ({ form, values }) => {
+  const { getLeagueOptions } = useAPIService()
   useEffect(() => {
     form.setFieldsValue(values)
   }, [values])
@@ -36,7 +36,7 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
 
   // const countryOpts = useTypedSelector(selectCountryOpts)
   // const sportOpts = useTypedSelector(selectSportOpts)
-  // const gameOpts = useTypedSelector(selectGameOpts)
+  const gameOpts = useTypedSelector(selectGameOpts)
   const leagueOpts = useTypedSelector(selectLeagueOpts)
 
   return (
@@ -51,10 +51,14 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
       </Form.Item>
       <Form.Item label="體育" name="sport_id" rules={[{ required: true }]}>
         <Select options={sportOpts} placeholder="請選擇" />
-      </Form.Item>
-      <Form.Item label="球種" name="game_id" rules={[{ required: true }]}>
-        <Select options={gameOpts} placeholder="請選擇" />
       </Form.Item> */}
+      <Form.Item label="球種" name="game_id" rules={[{ required: true }]}>
+        <Select
+          options={gameOpts}
+          placeholder="請選擇"
+          onChange={getLeagueOptions}
+        />
+      </Form.Item>
       <Form.Item label="聯盟" name="league_id" rules={[{ required: true }]}>
         <Select options={leagueOpts} placeholder="請選擇" />
       </Form.Item>

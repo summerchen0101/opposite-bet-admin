@@ -16,15 +16,23 @@ export const useAPIService = () => {
   const { apiErr } = useErrorHandler()
   const dispatch = useDispatch()
 
-  const getOptions = async () => {
+  const getGameOptions = async () => {
     try {
       // const countryRes = await API.Country.options()
       // dispatch(setCountryOpts(countryRes.data.countries))
       // const sportRes = await API.Sport.options()
       // dispatch(setSportOpts(sportRes.data.sports))
-      // const gameRes = await API.Game.options()
-      // dispatch(setGameOpts(gameRes.data.games))
-      const leagueRes = await API.League.options()
+      const gameRes = await API.Game.options()
+      dispatch(setGameOpts(gameRes.data.list))
+      // const leagueRes = await API.League.options()
+      // dispatch(setLeagueOpts(leagueRes.data.list))
+    } catch (err) {
+      apiErr(err)
+    }
+  }
+  const getLeagueOptions = async (game_id: number) => {
+    try {
+      const leagueRes = await API.League.options({ game_id })
       dispatch(setLeagueOpts(leagueRes.data.list))
     } catch (err) {
       apiErr(err)
@@ -93,7 +101,8 @@ export const useAPIService = () => {
     onCreate,
     onEdit,
     getFormData,
-    getOptions,
+    getGameOptions,
+    getLeagueOptions,
     onDelete,
     changeActive,
   }

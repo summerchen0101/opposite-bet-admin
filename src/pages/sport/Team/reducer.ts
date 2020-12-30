@@ -9,7 +9,7 @@ import { SportOption } from '../Sport/API/types'
 import { remoteOptsToLocalOpts } from '@/utils/transfer'
 import { OptionsType } from '@/lib/types'
 import { GameOption } from '../Game/API/types'
-import { LeagueOptions } from '../League/API/types'
+import { LeagueOption } from '../League/API/types'
 export interface IState {
   tableData: Team[]
   editData: Team
@@ -48,7 +48,7 @@ const module = createSlice({
     setGameOpts(state, action: PayloadAction<GameOption[]>) {
       state.gameOpts = remoteOptsToLocalOpts(action.payload)
     },
-    setLeagueOpts(state, action: PayloadAction<LeagueOptions[]>) {
+    setLeagueOpts(state, action: PayloadAction<LeagueOption[]>) {
       state.leagueOpts = remoteOptsToLocalOpts(action.payload)
     },
   },

@@ -18,7 +18,7 @@ interface SearchFormData {
 }
 
 const SearchBar: React.FC = () => {
-  const { getTableData } = useAPIService()
+  const { getTableData, getLeagueOptions } = useAPIService()
   const [form] = Form.useForm()
   const onSearch = async () => {
     const f = (await form.validateFields()) as SearchFormData
@@ -48,14 +48,14 @@ const SearchBar: React.FC = () => {
           style={{ width: '130px' }}
           onChange={onSearch}
         />
-      </Form.Item>
+      </Form.Item> */}
       <Form.Item label="球種" name="game_id" initialValue={0}>
         <Select
           options={[{ label: '全部', value: 0 }, ...gameOpts]}
           style={{ width: '130px' }}
-          onChange={onSearch}
+          onChange={getLeagueOptions}
         />
-      </Form.Item> */}
+      </Form.Item>
       <Form.Item label="聯盟" name="league_id" initialValue={0}>
         <Select
           options={[{ label: '全部', value: 0 }, ...leagueOpts]}

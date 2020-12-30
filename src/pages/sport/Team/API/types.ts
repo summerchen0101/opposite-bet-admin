@@ -56,7 +56,7 @@ export interface EditTeam {
   is_active: boolean
 }
 
-export interface TeamOptions {
+export interface TeamOption {
   id: number
   name: string
 }

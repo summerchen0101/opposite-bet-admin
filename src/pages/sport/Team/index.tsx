@@ -12,11 +12,11 @@ import SearchBar from './containers/SearchBar'
 
 const Manager: React.FC = () => {
   useReducerInjector(moduleName, reducer)
-  const { getTableData, getOptions } = useAPIService()
+  const { getTableData, getGameOptions } = useAPIService()
 
   useEffect(() => {
     getTableData()
-    getOptions()
+    getGameOptions()
   }, [])
 
   return (

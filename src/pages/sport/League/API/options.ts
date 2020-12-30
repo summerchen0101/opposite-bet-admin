@@ -1,8 +1,14 @@
 import Request from '@/utils/request'
-import { LeagueOptions } from './types'
+import { LeagueOption } from './types'
 
-interface ResponseData {
-  list: LeagueOptions[]
+interface RequestData {
+  game_id: number
 }
 
-export const options = () => Request.get<ResponseData>('sport_league/options')
+interface ResponseData {
+  list: LeagueOption[]
+}
+
+export const options = (req: RequestData) => {
+  return Request.post<ResponseData>('sport_league/options', req)
+}

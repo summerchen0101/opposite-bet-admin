@@ -66,9 +66,9 @@ const columns: ColumnsType<Team> = [
     fixed: ('right' as unknown) as boolean,
     render(_, row) {
       const [, setVisible] = usePopupProvider('editForm')
-      const { getFormData, getOptions, changeActive } = useAPIService()
+      const { getFormData, changeActive } = useAPIService()
       const handleEdit = async () => {
-        await Promise.all([getOptions(), getFormData(row.id)])
+        await getFormData(row.id)
         setVisible(true)
       }
       return (

@@ -33,7 +33,7 @@ export interface EditLeague {
   is_active: boolean
 }
 
-export interface LeagueOptions {
+export interface LeagueOption {
   id: number
   name: string
 }
