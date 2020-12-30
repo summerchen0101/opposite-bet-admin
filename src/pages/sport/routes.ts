@@ -24,11 +24,6 @@ export const Section = new PageG(
 )
 export const Play = new PageG('玩法設定', `${rootPath}/play`, pages.Play)
 
-export const GameLimit = new PageG(
-  '玩法數值調整(deprecated)',
-  `${rootPath}/game-limit`,
-  pages.GameLimit,
-)
 export const PlaySetting = new PageG(
   '玩法數值調整',
   `${rootPath}/play-setting`,
@@ -49,7 +44,6 @@ RouteG.create([
   Team,
   Section,
   Play,
-  GameLimit,
   PlaySetting,
   AutoReview,
 ])
