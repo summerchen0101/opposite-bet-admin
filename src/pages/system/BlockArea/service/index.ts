@@ -2,7 +2,7 @@ import API from '@/API'
 import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { message } from 'antd'
 import { useDispatch } from 'react-redux'
-import { CreateBlackArea, EditBlackArea, SearchFields } from '../API/types'
+import { CreateBlockArea, EditBlockArea, SearchFields } from '../API/types'
 import { setEditData, setTableData } from '../reducer'
 
 export const useAPIService = () => {
@@ -11,7 +11,7 @@ export const useAPIService = () => {
 
   const getFormData = async (id: number) => {
     try {
-      const res = await API.Marquee.fetchById(id)
+      const res = await API.BlockArea.fetchById(id)
       dispatch(setEditData(res.data))
     } catch (err) {
       apiErr(err)
@@ -20,16 +20,16 @@ export const useAPIService = () => {
 
   const getTableData = async (search?: SearchFields) => {
     try {
-      const res = await API.Marquee.fetchAll(search)
+      const res = await API.BlockArea.fetchAll(search)
       dispatch(setTableData(res.data.list))
     } catch (err) {
       apiErr(err)
     }
   }
 
-  const onCreate = async (values: CreateBlackArea) => {
+  const onCreate = async (values: CreateBlockArea) => {
     try {
-      await API.Marquee.create(values)
+      await API.BlockArea.create(values)
       await getTableData()
       message.success('新增成功')
     } catch (err) {
@@ -37,9 +37,9 @@ export const useAPIService = () => {
     }
   }
 
-  const onEdit = async (values: EditBlackArea) => {
+  const onEdit = async (values: EditBlockArea) => {
     try {
-      await API.Marquee.edit(values)
+      await API.BlockArea.edit(values)
       await getTableData()
       message.success('修改成功')
     } catch (err) {
@@ -49,7 +49,7 @@ export const useAPIService = () => {
 
   const onDelete = async (id: number) => {
     try {
-      await API.Marquee.deleteById(id)
+      await API.BlockArea.deleteById(id)
       await getTableData()
       message.success('刪除成功')
     } catch (err) {
@@ -59,7 +59,7 @@ export const useAPIService = () => {
 
   const changeActive = async (id: number, status: boolean) => {
     try {
-      await API.Marquee.active({ id, is_active: status })
+      await API.BlockArea.active({ id, is_active: status })
       await getTableData()
       message.success('狀態更新成功')
     } catch (err) {

@@ -12,14 +12,14 @@ export const BlackIp = new PageG(
   `${rootPath}/black-ip`,
   pages.BlackIp,
 )
-// export const BlackArea = new PageG(
-//   '國家黑名單',
-//   `${rootPath}/black-area`,
-//   pages.BlackArea,
-// )
+export const BlockArea = new PageG(
+  '國家黑名單',
+  `${rootPath}/black-area`,
+  pages.BlockArea,
+)
 
 // ROUTERS
-RouteG.create([BlackIp])
+RouteG.create([BlackIp, BlockArea])
 
 // MENU
-MenuG.createCategory(rootName, rootPath, HomeOutlined, [BlackIp])
+MenuG.createCategory(rootName, rootPath, HomeOutlined, [BlackIp, BlockArea])

@@ -1,5 +1,6 @@
 import { MessageType } from '@/pages/announce/Message/API/types'
 import { NewsType } from '../pages/announce/AnnounceManage/API/types'
+import countries from './countries'
 import {
   Device,
   IPBlockType,
@@ -49,3 +50,8 @@ export const platformTypeOpts = [
   { label: '代理端', value: PlatformType.Agent },
   { label: '會員端', value: PlatformType.Member },
 ]
+
+export const countryOpts = countries.map((t) => ({
+  label: t.name,
+  value: t.alpha3,
+}))

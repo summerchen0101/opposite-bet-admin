@@ -1,5 +1,5 @@
 import Request from '@/utils/request'
-import { EditBlackArea } from './types'
+import { EditBlockArea } from './types'
 
-export const edit = (reqData: EditBlackArea) =>
+export const edit = (reqData: EditBlockArea) =>
   Request.post<null>('country_ip_block/edit', reqData)

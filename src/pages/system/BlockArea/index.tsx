@@ -21,7 +21,7 @@ const MarqueePage: React.FC = () => {
     <Dashboard>
       <PopupProvider>
         <PageHeader />
-        <SearchBar />
+        {/* <SearchBar /> */}
         <TableData />
         <CreatePopup />
         <EditPopup />

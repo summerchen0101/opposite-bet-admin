@@ -1,2 +1,2 @@
 export { default as BlackIp } from './BlackIp'
-// export { default as BlackArea } from './BlackArea'
+export { default as BlockArea } from './BlockArea'

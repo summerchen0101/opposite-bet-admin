@@ -17,11 +17,9 @@ const EditPopup: React.FC = () => {
       const v = (await form.validateFields()) as FormData
       await onEdit({
         id: f.id,
-        content: v.content,
-        url: v.url,
-        is_blank: v.is_blank,
-        start_at: v.date_range_type === 'limit' ? v.limit_range[0].unix() : 0,
-        end_at: v.date_range_type === 'limit' ? v.limit_range[1].unix() : 0,
+        code: v.code,
+        platform_type: v.platform_type,
+        note: v.note,
         is_active: v.is_active,
       })
       form.resetFields()
@@ -37,7 +35,7 @@ const EditPopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="編輯跑馬燈"
+      title="編輯國家黑名單"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
       destroyOnClose
@@ -47,15 +45,10 @@ const EditPopup: React.FC = () => {
           form={form}
           values={{
             id: f.id,
-            content: f.content,
-            url: f.url,
-            date_range_type: f.start_at ? 'limit' : 'forever',
-            limit_range: [
-              f.start_at && moment(f.start_at * 1000),
-              f.end_at && moment(f.end_at * 1000),
-            ],
+            platform_type: f.platform_type,
+            code: f.code,
+            note: f.note,
             is_active: f.is_active,
-            is_blank: f.is_blank,
           }}
         />
       )}

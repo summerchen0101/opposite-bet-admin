@@ -3,26 +3,26 @@ import {
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit'
-import { BlackArea } from './API/types'
+import { BlockArea } from './API/types'
 export interface IState {
-  tableData: BlackArea[]
-  editData: BlackArea
+  tableData: BlockArea[]
+  editData: BlockArea
 }
 const initialState: IState = {
   tableData: [],
   editData: null,
 }
 
-export const moduleName = 'BlackArea'
+export const moduleName = 'BlockArea'
 
 const module = createSlice({
   name: moduleName,
   initialState,
   reducers: {
-    setTableData(state, action: PayloadAction<BlackArea[]>) {
+    setTableData(state, action: PayloadAction<BlockArea[]>) {
       state.tableData = action.payload
     },
-    setEditData(state, action: PayloadAction<BlackArea>) {
+    setEditData(state, action: PayloadAction<BlockArea>) {
       state.editData = action.payload
     },
   },

@@ -1,8 +1,8 @@
 import Request from '@/utils/request'
-import { BlackArea, SearchFields } from './types'
+import { BlockArea, SearchFields } from './types'
 
 export interface Response {
-  list: BlackArea[]
+  list: BlockArea[]
   total_count: number
   total_page: number
 }

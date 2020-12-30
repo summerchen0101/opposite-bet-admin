@@ -1,5 +1,5 @@
 import { ColorText, IconLink, TableSets } from '@/components'
-import { yesNoOpts } from '@/lib/options'
+import { IPBlockTypeOpts, platformTypeOpts, yesNoOpts } from '@/lib/options'
 import { toDateTime, toOptionName } from '@/utils/transfer'
 import {
   CheckCircleOutlined,
@@ -10,26 +10,21 @@ import {
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
-import { BlackArea } from '../API/types'
+import { BlockArea } from '../API/types'
 import { usePopupProvider } from '../context/PopupProvider'
 import { selectTableData, useTypedSelector } from '../selectors'
 import { useAPIService } from '../service'
 
-const columns: ColumnsType<BlackArea> = [
+const columns: ColumnsType<BlockArea> = [
   {
-    title: '內容',
+    title: '國別',
     width: 180,
-    render: (_, row) => row.content,
+    render: (_, row) => row.code,
   },
   {
-    title: '另開視窗',
-    width: 110,
-    render: (_, row) => toOptionName(yesNoOpts, row.is_blank ? 1 : 2),
-  },
-  {
-    title: '連結',
+    title: '端口設置',
     width: 180,
-    render: (_, row) => row.url,
+    render: (_, row) => toOptionName(platformTypeOpts, row.platform_type),
   },
   {
     title: '狀態',
@@ -42,32 +37,29 @@ const columns: ColumnsType<BlackArea> = [
     },
   },
   {
-    title: '期間',
+    title: '備註',
     width: 200,
-    render: (_, row) =>
-      row.start_at ? (
-        <>
-          {toDateTime(row.start_at)} <br />
-          {toDateTime(row.end_at)}
-        </>
-      ) : (
-        '-'
-      ),
+    render: (_, row) => row.note,
   },
   {
-    title: '更新人員',
-    width: 120,
-    render: (_, row) => row.editor,
+    title: '建立時間',
+    width: 200,
+    render: (_, row) => toDateTime(row.created_at),
   },
   {
-    title: '更新時間',
+    title: '更新人員/時間',
     width: 200,
-    render: (_, row) => toDateTime(row.updated_at),
+    render: (_, row) => (
+      <>
+        {row.editor} <br />
+        {toDateTime(row.updated_at)}
+      </>
+    ),
   },
   {
     title: '操作',
     render(_, row) {
-      const [visible, setVisible] = usePopupProvider('editForm')
+      const [, setVisible] = usePopupProvider('editForm')
       const { getFormData, onDelete, changeActive } = useAPIService()
       const handleEdit = async (id: number) => {
         await getFormData(id)

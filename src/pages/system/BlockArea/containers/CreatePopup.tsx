@@ -1,5 +1,5 @@
 import PopupModal from '@/components/PopupModal'
-import useErrorHandler from '@/utils/hooks/useErrorHandler'
+import { PlatformType } from '@/lib/enums'
 import { Form } from 'antd'
 import React from 'react'
 import { usePopupProvider } from '../context/PopupProvider'
@@ -14,11 +14,9 @@ const CreatePopup: React.FC = () => {
     try {
       const v = (await form.validateFields()) as FormData
       await onCreate({
-        content: v.content,
-        url: v.url,
-        is_blank: v.is_blank,
-        start_at: v.date_range_type === 'limit' ? v.limit_range[0].unix() : 0,
-        end_at: v.date_range_type === 'limit' ? v.limit_range[1].unix() : 0,
+        code: v.code,
+        platform_type: v.platform_type,
+        note: v.note,
         is_active: v.is_active,
       })
       form.resetFields()
@@ -34,19 +32,17 @@ const CreatePopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="新增跑馬燈"
+      title="新增國家黑名單"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
     >
       <DataForm
         form={form}
         values={{
-          content: '',
-          url: '',
-          date_range_type: 'forever',
-          limit_range: [null, null],
+          code: null,
+          platform_type: PlatformType.Admin,
+          note: '',
           is_active: true,
-          is_blank: false,
         }}
       />
     </PopupModal>
