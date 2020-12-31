@@ -1,6 +1,6 @@
 import { IPBlockType, PlatformType, Currency, Language } from '@/lib/enums'
 import { langOpts, platformTypeOpts, currencyOpts } from '@/lib/options'
-import { Col, Form, Input, Radio, Row, Select, Switch } from 'antd'
+import { Col, Divider, Form, Input, Radio, Row, Select, Switch } from 'antd'
 import { FormInstance } from 'antd/lib/form'
 import React, { useEffect } from 'react'
 export interface FormData {
@@ -23,7 +23,7 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
     <Form layout="vertical" form={form} initialValues={values}>
       <Row gutter={16}>
         <Col span={12}>
-          <Form.Item label="廠商帳號" help="請輸入3個英文字">
+          <Form.Item label="帳號(前綴)" help="請輸入3個英文字">
             <Input />
           </Form.Item>
         </Col>
@@ -53,12 +53,12 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
           </Form.Item>
         </Col>
         <Col span={12}>
-          <Form.Item label="前綴">
+          <Form.Item label="額度">
             <Input />
           </Form.Item>
         </Col>
         <Col span={12}>
-          <Form.Item label="額度">
+          <Form.Item label="API KEY">
             <Input />
           </Form.Item>
         </Col>
@@ -69,6 +69,43 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
         </Col>
         <Col span={12}>
           <Form.Item label="微信">
+            <Input />
+          </Form.Item>
+        </Col>
+        <Divider orientation="left">白名單</Divider>
+        <Col span={12}>
+          <Form.Item label="IP白名單(測試環境)">
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item label="IP白名單(正式環境)">
+            <Input />
+          </Form.Item>
+        </Col>
+        <Divider orientation="left">聯絡資料</Divider>
+        <Col span={12}>
+          <Form.Item label="商務(skype)">
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item label="財務(skype)">
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item label="技術(skype)">
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item label="系統orPMor客服(skype)">
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item label="負責人(skype)">
             <Input />
           </Form.Item>
         </Col>
