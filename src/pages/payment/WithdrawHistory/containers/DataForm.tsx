@@ -32,7 +32,7 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
         <DescriptionsItem label="銀行帳號">9876543210</DescriptionsItem>
 
         <DescriptionsItem label="申請金額">3,000.00</DescriptionsItem>
-        <DescriptionsItem label="手續費">100</DescriptionsItem>
+        <DescriptionsItem label="手續費">5%</DescriptionsItem>
         <DescriptionsItem label="實際出款金額">2,900.00</DescriptionsItem>
         <DescriptionsItem label="備註">
           <Input.TextArea />

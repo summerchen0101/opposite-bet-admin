@@ -63,10 +63,31 @@ const columns: ColumnsType<BlackIp> = [
     width: 200,
   },
   {
-    title: '操作',
+    title: '財務',
     render(_, row) {
       const [, setVisible] = usePopupProvider('editForm')
-      const { getFormData, onDelete, changeActive } = useAPIService()
+      const { getFormData } = useAPIService()
+      const handleEdit = async (id: number) => {
+        await getFormData(id)
+        setVisible(true)
+      }
+      return (
+        <Space size="small">
+          <IconLink
+            icon={<EditFilled />}
+            label="審核"
+            onClick={() => handleEdit(row.id)}
+          />
+        </Space>
+      )
+    },
+    width: 80,
+  },
+  {
+    title: '風控',
+    render(_, row) {
+      const [, setVisible] = usePopupProvider('editForm')
+      const { getFormData } = useAPIService()
       const handleEdit = async (id: number) => {
         await getFormData(id)
         setVisible(true)
