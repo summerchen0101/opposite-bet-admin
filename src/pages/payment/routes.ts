@@ -9,9 +9,14 @@ const rootPath = '/payment'
 
 // PAGES
 export const DepositRecord = new PageG(
-  '充值紀錄',
+  '充值紀錄(depracated)',
   `${rootPath}/deposit-record`,
   pages.DepositRecord,
+)
+export const DepositHistory = new PageG(
+  '充值紀錄',
+  `${rootPath}/deposit-history`,
+  pages.DepositHistory,
 )
 export const WithdrawRecord = new PageG(
   '提領紀錄',
@@ -41,6 +46,7 @@ export const BankAccountSetting = new PageG(
 // ROUTERS
 RouteG.create([
   DepositRecord,
+  DepositHistory,
   WithdrawRecord,
   ManualPayment,
   DepositSetting,
@@ -51,6 +57,7 @@ RouteG.create([
 // MENU
 MenuG.createCategory(rootName, rootPath, DollarOutlined, [
   DepositRecord,
+  DepositHistory,
   WithdrawRecord,
   ManualPayment,
   DepositSetting,
