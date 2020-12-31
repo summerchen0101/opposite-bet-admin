@@ -1,6 +1,7 @@
 import { Dashboard } from '@/components'
 import { useReducerInjector } from '@/utils/hooks'
 import React, { useEffect } from 'react'
+import { useHistory, useParams } from 'react-router-dom'
 import PageHeader from './components/PageHeader'
 import CreatePopup from './containers/CreatePopup'
 import EditPopup from './containers/EditPopup'
@@ -13,7 +14,6 @@ import { useAPIService } from './service'
 const MarqueePage: React.FC = () => {
   useReducerInjector(moduleName, reducer)
   const { getTableData, getSectionOptions, getPlayOptions } = useAPIService()
-
   useEffect(() => {
     Promise.all([getTableData(), getSectionOptions(), getPlayOptions()])
   }, [])

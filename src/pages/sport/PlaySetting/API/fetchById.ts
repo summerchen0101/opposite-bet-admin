@@ -1,5 +1,5 @@
 import Request from '@/utils/request'
-import { BlackIp } from './types'
+import { PlaySetting } from './types'
 
 export const fetchById = (id: number) =>
-  Request.get<BlackIp>(`ip_block/view/${id}`)
+  Request.get<PlaySetting>(`opposite_odds/view/${id}`)

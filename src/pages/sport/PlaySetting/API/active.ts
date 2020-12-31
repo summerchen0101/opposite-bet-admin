@@ -6,4 +6,4 @@ interface Request {
 }
 
 export const active = (reqData: Request) =>
-  Request.post<null>('ip_block/active', reqData)
+  Request.post<null>('opposite_odds/active', reqData)

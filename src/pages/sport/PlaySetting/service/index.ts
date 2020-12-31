@@ -2,17 +2,20 @@ import API from '@/API'
 import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { message } from 'antd'
 import { useDispatch } from 'react-redux'
-import { CreateBlackIp, EditBlackIp, SearchFields } from '../API/types'
+import { CreatePlaySetting, EditPlaySetting } from '../API/types'
 import {
   setEditData,
-  setTableData,
-  setSectionOpts,
   setPlayOpts,
+  setSectionOpts,
+  setTableData,
 } from '../reducer'
+import { selectPlayId, selectSectionId, useTypedSelector } from '../selectors'
 
 export const useAPIService = () => {
   const { apiErr } = useErrorHandler()
   const dispatch = useDispatch()
+  const section_id = useTypedSelector(selectSectionId)
+  const play_id = useTypedSelector(selectPlayId)
 
   const getSectionOptions = async () => {
     try {
@@ -33,25 +36,30 @@ export const useAPIService = () => {
 
   const getFormData = async (id: number) => {
     try {
-      const res = await API.BlackIp.fetchById(id)
+      const res = await API.PlaySetting.fetchById(id)
       dispatch(setEditData(res.data))
     } catch (err) {
       apiErr(err)
     }
   }
 
-  const getTableData = async (search?: SearchFields) => {
+  const getTableData = async () => {
+    if (!section_id || !play_id) {
+      return
+    }
     try {
-      const res = await API.BlackIp.fetchAll(search)
+      const res = await API.PlaySetting.fetchAll({ section_id, play_id })
       dispatch(setTableData(res.data.list))
     } catch (err) {
       apiErr(err)
     }
   }
 
-  const onCreate = async (values: CreateBlackIp) => {
+  const onCreate = async (
+    values: Omit<CreatePlaySetting, 'section_id' | 'play_id'>,
+  ) => {
     try {
-      await API.BlackIp.create(values)
+      await API.PlaySetting.create({ ...values, section_id, play_id })
       await getTableData()
       message.success('新增成功')
     } catch (err) {
@@ -59,9 +67,11 @@ export const useAPIService = () => {
     }
   }
 
-  const onEdit = async (values: EditBlackIp) => {
+  const onEdit = async (
+    values: Omit<EditPlaySetting, 'section_id' | 'play_id'>,
+  ) => {
     try {
-      await API.BlackIp.edit(values)
+      await API.PlaySetting.edit({ ...values, section_id, play_id })
       await getTableData()
       message.success('修改成功')
     } catch (err) {
@@ -71,7 +81,7 @@ export const useAPIService = () => {
 
   const onDelete = async (id: number) => {
     try {
-      await API.BlackIp.deleteById(id)
+      await API.PlaySetting.deleteById(id)
       await getTableData()
       message.success('刪除成功')
     } catch (err) {
@@ -81,7 +91,7 @@ export const useAPIService = () => {
 
   const changeActive = async (id: number, status: boolean) => {
     try {
-      await API.BlackIp.active({ id, is_active: status })
+      await API.PlaySetting.active({ id, is_active: status })
       await getTableData()
       message.success('狀態更新成功')
     } catch (err) {

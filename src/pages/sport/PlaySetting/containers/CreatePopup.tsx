@@ -14,11 +14,17 @@ const CreatePopup: React.FC = () => {
     try {
       const v = (await form.validateFields()) as FormData
       await onCreate({
-        block_type: v.block_type,
-        platform_type: v.platform_type,
-        ip: v.ip,
-        note: v.note,
-        is_active: v.is_active,
+        home_score: v.home_score,
+        away_score: v.away_score,
+        odds: v.odds,
+        bet_amount_limit: v.bet_amount_limit,
+        single_bet_limit: v.single_bet_limit,
+        single_bet_least: v.single_bet_least,
+        auto_odds_amount_unit: v.auto_odds_amount_unit,
+        auto_odds_rate_unit: v.auto_odds_rate_unit,
+        is_auto_odds: v.is_auto_odds,
+        is_open_bet: true,
+        is_active: true,
       })
       form.resetFields()
       setVisible(false)
@@ -40,11 +46,19 @@ const CreatePopup: React.FC = () => {
       <DataForm
         form={form}
         values={{
-          block_type: IPBlockType.Black,
-          platform_type: PlatformType.Admin,
-          ip: '',
-          note: '',
-          is_active: true,
+          home_score: null,
+          away_score: null,
+          odds: null,
+          bet_amount_limit: null,
+          single_bet_limit: null,
+          single_bet_least: null,
+          auto_odds_amount_unit: null,
+          auto_odds_rate_unit: null,
+          is_auto_odds: true,
+          // is_open_bet: true,
+          // is_active: true,
+          // section_id: null,
+          // play_id: null,
         }}
       />
     </PopupModal>

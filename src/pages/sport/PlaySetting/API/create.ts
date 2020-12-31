@@ -1,5 +1,5 @@
 import Request from '@/utils/request'
-import { CreateBlackIp } from './types'
+import { CreatePlaySetting } from './types'
 
-export const create = (reqData: CreateBlackIp) =>
-  Request.post<null>('ip_block/add', reqData)
+export const create = (reqData: CreatePlaySetting) =>
+  Request.post<null>('opposite_odds/add', reqData)

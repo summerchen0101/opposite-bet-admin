@@ -1,5 +1,5 @@
 import Request from '@/utils/request'
-import { EditBlackIp } from './types'
+import { EditPlaySetting } from './types'
 
-export const edit = (reqData: EditBlackIp) =>
-  Request.post<null>('ip_block/edit', reqData)
+export const edit = (reqData: EditPlaySetting) =>
+  Request.post<null>('opposite_odds/edit', reqData)

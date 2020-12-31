@@ -26,3 +26,11 @@ export const selectPlayOpts = createSelector(
   selectModuleState,
   (moduleState) => moduleState.playOpts,
 )
+export const selectPlayId = createSelector(
+  selectModuleState,
+  (moduleState) => moduleState.playId,
+)
+export const selectSectionId = createSelector(
+  selectModuleState,
+  (moduleState) => moduleState.sectionId,
+)

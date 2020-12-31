@@ -1,15 +1,15 @@
 import Request from '@/utils/request'
-import { BlackIp, SearchFields } from './types'
+import { PlaySetting, SearchFields } from './types'
 
 export interface Response {
-  list: BlackIp[]
+  list: PlaySetting[]
   total_count: number
   total_page: number
 }
 
 type Request = SearchFields
 export const fetchAll = (reqData?: Request) =>
-  Request.post<Response>('ip_block/list', {
+  Request.post<Response>('opposite_odds/list', {
     page: 1,
     perpage: 20,
     ...reqData,

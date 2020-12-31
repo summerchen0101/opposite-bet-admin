@@ -16,40 +16,45 @@ const EditPopup: React.FC = () => {
       const v = (await form.validateFields()) as FormData
       await onEdit({
         id: f.id,
-        block_type: v.block_type,
-        platform_type: v.platform_type,
-        ip: v.ip,
-        note: v.note,
-        is_active: v.is_active,
+        home_score: v.home_score,
+        away_score: v.away_score,
+        odds: v.odds,
+        bet_amount_limit: v.bet_amount_limit,
+        single_bet_limit: v.single_bet_limit,
+        single_bet_least: v.single_bet_least,
+        auto_odds_amount_unit: v.auto_odds_amount_unit,
+        auto_odds_rate_unit: v.auto_odds_rate_unit,
+        is_auto_odds: v.is_auto_odds,
+        is_open_bet: true,
+        is_active: true,
       })
-      form.resetFields()
       setVisible(false)
     } catch (info) {
       console.log('Validate Failed:', info)
     }
   }
-  const handleCancel = () => {
-    form.resetFields()
-    setVisible(false)
-  }
   return (
     <PopupModal
       visible={visible}
       title="編輯玩法細項"
-      onCancel={() => handleCancel()}
+      onCancel={() => setVisible(false)}
       onOk={() => handleSubmit()}
+      afterClose={() => form.resetFields()}
       destroyOnClose
     >
       {f && (
         <DataForm
           form={form}
           values={{
-            id: f.id,
-            block_type: f.ip_block_type,
-            platform_type: f.platform_type,
-            ip: f.ip,
-            note: f.note,
-            is_active: f.is_active,
+            home_score: f.home_score,
+            away_score: f.away_score,
+            odds: f.odds,
+            bet_amount_limit: f.bet_amount_limit,
+            single_bet_limit: f.single_bet_limit,
+            single_bet_least: f.single_bet_least,
+            auto_odds_amount_unit: f.auto_odds_amount_unit,
+            auto_odds_rate_unit: f.auto_odds_rate_unit,
+            is_auto_odds: f.is_auto_odds,
           }}
         />
       )}

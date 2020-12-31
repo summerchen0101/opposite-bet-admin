@@ -2,43 +2,53 @@ import { IconLink, PopupConfirm, TableSets } from '@/components'
 import { DeleteOutlined, EditFilled } from '@ant-design/icons'
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
-import React from 'react'
-import { BlackIp } from '../API/types'
+import React, { useEffect } from 'react'
+import { PlaySetting } from '../API/types'
 import { usePopupProvider } from '../context/PopupProvider'
-import { selectTableData, useTypedSelector } from '../selectors'
+import {
+  selectPlayId,
+  selectSectionId,
+  selectTableData,
+  useTypedSelector,
+} from '../selectors'
 import { useAPIService } from '../service'
 
-const columns: ColumnsType<BlackIp> = [
+const columns: ColumnsType<PlaySetting> = [
   {
     title: '玩法細項',
     width: 80,
     align: 'center',
-    render: (_, row) => '0-1',
+    render: (_, row) => `${row.home_score}-${row.away_score}`,
   },
   {
     title: '獲利(%)',
     width: 80,
-    render: (_, row) => '9%',
+    render: (_, row) => row.odds,
   },
   {
     title: '可交易量',
     width: 120,
-    render: (_, row) => '4,000,000',
+    render: (_, row) => row.bet_amount_limit,
   },
   {
-    title: '降賠',
+    title: '自動降賠',
     width: 180,
-    render: (_, row) => '10,000 以上降 0.1%',
+    render: (_, row) => {
+      if (row.is_auto_odds) {
+        return `${row.auto_odds_amount_unit} 以上降 ${row.auto_odds_rate_unit}%`
+      }
+      return '-'
+    },
   },
   {
     title: '單注上限',
     width: 120,
-    render: (_, row) => '10,000',
+    render: (_, row) => row.single_bet_limit,
   },
   {
     title: '單注下限',
     width: 120,
-    render: (_, row) => '100',
+    render: (_, row) => row.single_bet_least,
   },
   {
     title: '操作',
@@ -67,8 +77,16 @@ const columns: ColumnsType<BlackIp> = [
 ]
 
 const TableData: React.FC = () => {
-  // const data = useTypedSelector(selectTableData)
-  const data = [{ id: 99 }]
+  const data = useTypedSelector(selectTableData)
+  const { getTableData } = useAPIService()
+
+  const play_id = useTypedSelector(selectPlayId)
+  const section_id = useTypedSelector(selectSectionId)
+
+  useEffect(() => {
+    getTableData()
+  }, [play_id, section_id])
+
   return <TableSets columns={columns} data={data} scroll={{ x: 1000 }} />
 }
 
