@@ -19,9 +19,14 @@ export const DepositHistory = new PageG(
   pages.DepositHistory,
 )
 export const WithdrawRecord = new PageG(
-  '提領紀錄',
+  '提領紀錄(depracated)',
   `${rootPath}/withdraw-record`,
   pages.WithdrawRecord,
+)
+export const WithdrawHistory = new PageG(
+  '提領紀錄',
+  `${rootPath}/withdraw-history`,
+  pages.WithdrawHistory,
 )
 export const ManualPayment = new PageG(
   '人工存提',
@@ -48,6 +53,7 @@ RouteG.create([
   DepositRecord,
   DepositHistory,
   WithdrawRecord,
+  WithdrawHistory,
   ManualPayment,
   DepositSetting,
   WithdrawSetting,
@@ -59,6 +65,7 @@ MenuG.createCategory(rootName, rootPath, DollarOutlined, [
   DepositRecord,
   DepositHistory,
   WithdrawRecord,
+  WithdrawHistory,
   ManualPayment,
   DepositSetting,
   WithdrawSetting,
