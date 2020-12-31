@@ -11,7 +11,7 @@ const rootPath = '/org'
 
 // PAGES
 export const LevelManage = new PageG(
-  '組織列表',
+  '組織列表(depracated)',
   `${rootPath}/level-manage`,
   pages.LevelManage,
 )
@@ -53,6 +53,11 @@ export const MerchantManage = new PageG(
   `${rootPath}/merchant`,
   pages.MerchantManage,
 )
+export const AgentManage = new PageG(
+  '組織列表',
+  `${rootPath}/agent`,
+  pages.AgentManage,
+)
 
 // ROUTERS
 RouteG.create([
@@ -62,6 +67,7 @@ RouteG.create([
   MemberLabelDetail,
   MemberTag,
   MerchantManage,
+  AgentManage,
 ])
 
 // MENU
@@ -71,4 +77,5 @@ MenuG.createCategory(rootName, rootPath, ApartmentOutlined, [
   MemberLabel,
   MemberTag,
   MerchantManage,
+  AgentManage,
 ])

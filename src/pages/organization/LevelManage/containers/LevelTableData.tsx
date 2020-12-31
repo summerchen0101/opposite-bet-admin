@@ -49,9 +49,7 @@ const data: TableItem[] = [...Array(50)].map((t, i) => ({
 }))
 const LevelTableData: React.FC = () => {
   const { currentLevel } = useLevelProvider()
-  const location = useLocation()
-  const { path } = useRouteMatch()
-  const orgInfoColumns = [
+  const columns: ColumnsType<TableItem> = [
     {
       title: getLevelName(currentLevel),
       render: (_, row) => 'wwa98[陳]',
@@ -68,69 +66,42 @@ const LevelTableData: React.FC = () => {
       },
     },
     {
+      title: '直屬會員',
+      key: 'directly',
+      render: (_, row) => (
+        <Link to={`${LevelManage.path}/${getLevelCode(LevelCode.Member)}`}>
+          10
+        </Link>
+      ),
+    },
+    {
       title: '子帳號',
       key: 'alias',
       render: (_, row) => {
         return <Link to={`${LevelManage.path}/alias/${currentLevel}`}>5</Link>
       },
     },
-  ]
-
-  const getOrgInfoColumns = () => {
-    if (currentLevel === LevelCode.Vendor) {
-      return filterColumns(orgInfoColumns, ['vendor'])
-    }
-    return orgInfoColumns
-  }
-
-  const columns: ColumnsType<TableItem> = [
     {
-      title: '組織資訊',
-      children: getOrgInfoColumns(),
+      title: '允許登入',
+      render: (_, row) => '是',
+    },
+    {
+      title: '允許投注',
+      render: (_, row) => '是',
+    },
+    {
+      title: '體育額度(萬)',
+      render: (_, row) => '0.00',
     },
     {
       title: '狀態',
-      children: [
-        {
-          title: '啟/停用',
-          render: (_, row) => <Text color="success"> 啟用</Text>,
-        },
-        {
-          title: '白名單',
-          render: (_, row) => {
-            const [visible, setVisible] = usePopupProvider('whiteList')
-            return <a onClick={() => setVisible(true)}>3</a>
-          },
-        },
-      ],
+      render: (_, row) => <Text color="success"> 啟用</Text>,
     },
     {
-      title: '會員資訊',
-      children: [
-        {
-          title: '未結帳注額',
-          render: (_, row) => {
-            const [visible, setVisible] = usePopupProvider('tradeHistory')
-            return <a onClick={() => setVisible(true)}>2</a>
-          },
-        },
-        {
-          title: '已下注',
-          render: (_, row) => {
-            const [visible, setVisible] = usePopupProvider('tradeHistory')
-            return <a onClick={() => setVisible(true)}>2</a>
-          },
-        },
-        {
-          title: '人數',
-          render: (_, row) => 0,
-        },
-        {
-          title: '餘額',
-          render: (_, row) => 0,
-        },
-      ],
+      title: '登入失敗',
+      render: (_, row) => 3,
     },
+
     {
       title: '登入資訊',
       children: [

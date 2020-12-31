@@ -33,9 +33,9 @@ export const localizeMessage = (msgId: string) => (
   <FormattedMessage id={msgId} />
 )
 
-export const getLevelName = (levelCode: LevelCode) => (
-  <FormattedMessage id={`level.${levelCode}`} />
-)
+export const getLevelName = (levelCode: LevelCode) => {
+  return <FormattedMessage id={`level.${levelCode}`} />
+}
 
 export const filterColumns = function <T>(
   originColumns: ColumnsType<T>,
