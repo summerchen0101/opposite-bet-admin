@@ -60,3 +60,7 @@ export const countryOpts = countries.map((t) => ({
 
 export const langOpts = [{ label: '簡體中文', value: Language.CN }]
 export const currencyOpts = [{ label: '人民幣', value: Currency.CN }]
+export const pointControlOpts = [
+  { label: '存入', value: 1 },
+  { label: '提出', value: 2 },
+]
