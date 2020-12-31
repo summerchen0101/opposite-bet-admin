@@ -28,10 +28,6 @@ const SearchBar: React.FC = () => {
       <Form.Item label="存提類型">
         <Radio.Group defaultValue={1} options={pointControlOpts} />
       </Form.Item>
-
-      <Form.Item label="平台">
-        <Select style={{ width: '130px' }} />
-      </Form.Item>
       <Form.Item label="存提項目">
         <Select style={{ width: '130px' }} />
       </Form.Item>
