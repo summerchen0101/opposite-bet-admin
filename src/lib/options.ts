@@ -8,6 +8,8 @@ import {
   PlatformType,
   Status,
   YesNo,
+  Language,
+  Currency,
 } from './enums'
 
 export const newsTypeOpts = [
@@ -55,3 +57,6 @@ export const countryOpts = countries.map((t) => ({
   label: t.name,
   value: t.alpha3.toUpperCase(),
 }))
+
+export const langOpts = [{ label: '簡體中文', value: Language.CN }]
+export const currencyOpts = [{ label: '人民幣', value: Currency.CN }]

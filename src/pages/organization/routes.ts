@@ -48,6 +48,11 @@ export const MemberLabelDetail = new PageG(
   `${rootPath}/member-label/detail`,
   pages.MemberLabelDetail,
 )
+export const MerchantManage = new PageG(
+  '商戶管理',
+  `${rootPath}/merchant`,
+  pages.MerchantManage,
+)
 
 // ROUTERS
 RouteG.create([
@@ -56,6 +61,7 @@ RouteG.create([
   MemberLabel,
   MemberLabelDetail,
   MemberTag,
+  MerchantManage,
 ])
 
 // MENU
@@ -64,4 +70,5 @@ MenuG.createCategory(rootName, rootPath, ApartmentOutlined, [
   LevelManage,
   MemberLabel,
   MemberTag,
+  MerchantManage,
 ])

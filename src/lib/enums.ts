@@ -42,3 +42,10 @@ export enum PlatformType {
   Agent = 2,
   Member = 3,
 }
+
+export enum Language {
+  CN = 1,
+}
+export enum Currency {
+  CN = 1,
+}

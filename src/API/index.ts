@@ -25,6 +25,7 @@ import * as BlackIp from '@/pages/system/BlackIp/API'
 import * as BlockArea from '@/pages/system/BlockArea/API'
 import * as MemberTag from '@/pages/organization/MemberTag/API'
 import * as PlaySetting from '@/pages/sport/PlaySetting/API'
+import * as Merchant from '@/pages/organization/MerchantManage/API'
 
 const API = {
   login,
@@ -53,6 +54,7 @@ const API = {
   BlockArea,
   MemberTag,
   PlaySetting,
+  Merchant,
 }
 
 export default API
