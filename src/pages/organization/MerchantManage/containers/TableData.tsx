@@ -64,15 +64,15 @@ const columns: ColumnsType<Merchant> = [
   {
     title: '建立時間',
     width: 200,
-    render: (_, row) => toDateTime(row.created_at),
+    render: (_, row) => '2020-12-13 20:33:01',
   },
   {
     title: '更新人員/時間',
     width: 200,
     render: (_, row) => (
       <>
-        {row.editor} <br />
-        {toDateTime(row.updated_at)}
+        summer <br />
+        2020-12-13 20:33:01
       </>
     ),
   },
@@ -118,7 +118,8 @@ const columns: ColumnsType<Merchant> = [
 ]
 
 const TableData: React.FC = () => {
-  const data = useTypedSelector(selectTableData)
+  // const data = useTypedSelector(selectTableData)
+  const data = [{ id: 1 }]
   return <TableSets columns={columns} data={data} scroll={{ x: 1500 }} />
 }
 
