@@ -1,8 +1,5 @@
 export { default as BankAccountSetting } from './BankAccountSetting'
-export { default as DepositRecord } from './DepositRecord'
 export { default as DepositSetting } from './DepositSetting'
-export { default as ManualPayment } from './ManualPayment'
-export { default as WithdrawRecord } from './WithdrawRecord'
 export { default as WithdrawSetting } from './WithdrawSetting'
 export { default as DepositHistory } from './DepositHistory'
 export { default as WithdrawHistory } from './WithdrawHistory'

@@ -8,20 +8,10 @@ const rootName = '金流管理'
 const rootPath = '/payment'
 
 // PAGES
-export const DepositRecord = new PageG(
-  '充值紀錄(depracated)',
-  `${rootPath}/deposit-record`,
-  pages.DepositRecord,
-)
 export const DepositHistory = new PageG(
   '充值紀錄',
   `${rootPath}/deposit-history`,
   pages.DepositHistory,
-)
-export const WithdrawRecord = new PageG(
-  '提領紀錄(depracated)',
-  `${rootPath}/withdraw-record`,
-  pages.WithdrawRecord,
 )
 export const WithdrawHistory = new PageG(
   '提領紀錄',
@@ -32,11 +22,6 @@ export const ManualPoint = new PageG(
   '人工加減碼',
   `${rootPath}/manual-point`,
   pages.ManualPoint,
-)
-export const ManualPayment = new PageG(
-  '人工存提(depracated)',
-  `${rootPath}/manual`,
-  pages.ManualPayment,
 )
 export const DepositSetting = new PageG(
   '充值設置',
@@ -55,11 +40,8 @@ export const BankAccountSetting = new PageG(
 )
 // ROUTERS
 RouteG.create([
-  DepositRecord,
   DepositHistory,
-  WithdrawRecord,
   WithdrawHistory,
-  ManualPayment,
   DepositSetting,
   WithdrawSetting,
   BankAccountSetting,
@@ -68,13 +50,10 @@ RouteG.create([
 
 // MENU
 MenuG.createCategory(rootName, rootPath, DollarOutlined, [
-  DepositRecord,
   DepositHistory,
-  WithdrawRecord,
   WithdrawHistory,
   ManualPoint,
 
-  ManualPayment,
   DepositSetting,
   WithdrawSetting,
   BankAccountSetting,
