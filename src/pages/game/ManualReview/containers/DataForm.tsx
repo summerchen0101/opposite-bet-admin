@@ -1,5 +1,14 @@
 import { IPBlockType, PlatformType } from '@/lib/enums'
-import { Col, DatePicker, Form, Input, Row, Select, Switch } from 'antd'
+import {
+  Col,
+  DatePicker,
+  Descriptions,
+  Form,
+  Input,
+  Row,
+  Select,
+  Switch,
+} from 'antd'
 import { FormInstance } from 'antd/lib/form'
 import React, { useEffect } from 'react'
 import {
@@ -23,47 +32,18 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
   useEffect(() => {
     form.setFieldsValue(values)
   }, [values])
-  const sectionOpts = useTypedSelector(selectSectionOpts)
-  const playOpts = useTypedSelector(selectPlayOpts)
   return (
     <Form layout="vertical" form={form} initialValues={values}>
-      <Row gutter={16}>
-        <Col span={12}>
-          <Form.Item label="開賽時間">
-            <DatePicker showTime />
-          </Form.Item>
-        </Col>
-        <Col span={12}>
-          {/* <Form.Item label="帳務日期">
-            <DatePicker />
-          </Form.Item> */}
-        </Col>
-        <Col span={12}>
-          <Form.Item label="球種">
-            <Select options={[]} />
-          </Form.Item>
-        </Col>
-        <Col span={12}>
-          <Form.Item label="聯盟">
-            <Select options={[]} />
-          </Form.Item>
-        </Col>
-        <Col span={12}>
-          <Form.Item label="主隊">
-            <Select options={[]} />
-          </Form.Item>
-        </Col>
-        <Col span={12}>
-          <Form.Item label="客隊">
-            <Select options={[]} />
-          </Form.Item>
-        </Col>
-        <Col span={24}>
-          <Form.Item label="賽事備註">
-            <Input />
-          </Form.Item>
-        </Col>
-      </Row>
+      <Descriptions bordered size="small" column={2}>
+        <Descriptions.Item label="開賽時間">
+          2020-12-30 09:11:20
+        </Descriptions.Item>
+        <Descriptions.Item label="帳務日期">2020-12-30</Descriptions.Item>
+        <Descriptions.Item label="球種">美棒</Descriptions.Item>
+        <Descriptions.Item label="聯盟">某個聯盟</Descriptions.Item>
+        <Descriptions.Item label="主隊">主隊的名字</Descriptions.Item>
+        <Descriptions.Item label="客隊">客隊的名字</Descriptions.Item>
+      </Descriptions>
     </Form>
   )
 }

@@ -48,6 +48,12 @@ const columns: ColumnsType<BlackIp> = [
     width: 80,
   },
   {
+    title: '狀態',
+    align: 'center',
+    render: (_, row) => '已結帳',
+    width: 80,
+  },
+  {
     title: '結帳人員/時間',
     render: (_, row) => (
       <>
@@ -62,14 +68,19 @@ const columns: ColumnsType<BlackIp> = [
     title: '操作',
     render(_, row) {
       const [, setVisible] = usePopupProvider('editForm')
-      const { getFormData, onDelete, changeActive } = useAPIService()
+      const { getFormData } = useAPIService()
       const handleEdit = async (id: number) => {
         await getFormData(id)
         setVisible(true)
       }
       return (
         <Space size="small">
-          <Button type="primary" danger size="small">
+          <Button
+            type="primary"
+            danger
+            size="small"
+            onClick={() => handleEdit(row.id)}
+          >
             重結
           </Button>
         </Space>
