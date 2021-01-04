@@ -33,7 +33,7 @@ const CreatePopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="新增IP黑白名單"
+      title="充值審核"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
     >

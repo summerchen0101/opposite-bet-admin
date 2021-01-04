@@ -86,7 +86,7 @@ const columns: ColumnsType<BlackIp> = [
   {
     title: '風控',
     render(_, row) {
-      const [, setVisible] = usePopupProvider('editForm')
+      const [, setVisible] = usePopupProvider('createForm')
       const { getFormData } = useAPIService()
       const handleEdit = async (id: number) => {
         await getFormData(id)
