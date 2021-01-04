@@ -33,7 +33,7 @@ const CreatePopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="新增商戶"
+      title="新增廠商"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
     >

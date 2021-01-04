@@ -36,7 +36,7 @@ export const MemberTag = new PageG(
   pages.MemberTag,
 )
 export const MerchantManage = new PageG(
-  '商戶管理',
+  '廠商管理',
   `${rootPath}/merchant`,
   pages.MerchantManage,
 )

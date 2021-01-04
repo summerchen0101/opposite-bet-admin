@@ -36,7 +36,7 @@ const EditPopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="編輯商戶"
+      title="編輯廠商"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
       destroyOnClose

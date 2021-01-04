@@ -90,7 +90,7 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
           </Form.Item>
         </Col>
         <Col span={12}>
-          <Form.Item label="商戶負擔手續費(%)">
+          <Form.Item label="廠商負擔手續費(%)">
             <Input />
           </Form.Item>
         </Col>
