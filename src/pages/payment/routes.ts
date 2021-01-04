@@ -23,16 +23,6 @@ export const ManualPoint = new PageG(
   `${rootPath}/manual-point`,
   pages.ManualPoint,
 )
-export const DepositSetting = new PageG(
-  '充值設置',
-  `${rootPath}/deposit-setting`,
-  pages.DepositSetting,
-)
-export const WithdrawSetting = new PageG(
-  '提領設置',
-  `${rootPath}/withdraw-setting`,
-  pages.WithdrawSetting,
-)
 export const BankAccountSetting = new PageG(
   '銀行帳戶',
   `${rootPath}/bank-account-setting`,
@@ -52,8 +42,6 @@ export const WithdrawAccount = new PageG(
 RouteG.create([
   DepositHistory,
   WithdrawHistory,
-  DepositSetting,
-  WithdrawSetting,
   BankAccountSetting,
   ManualPoint,
   DepositAccount,
@@ -67,7 +55,4 @@ MenuG.createCategory(rootName, rootPath, DollarOutlined, [
   ManualPoint,
   DepositAccount,
   WithdrawAccount,
-  DepositSetting,
-  WithdrawSetting,
-  BankAccountSetting,
 ])
