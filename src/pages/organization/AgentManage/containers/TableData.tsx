@@ -1,5 +1,9 @@
 import { ColorText, IconLink, TableSets } from '@/components'
-import { EditFilled, ShareAltOutlined } from '@ant-design/icons'
+import {
+  EditFilled,
+  ShareAltOutlined,
+  PieChartOutlined,
+} from '@ant-design/icons'
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
@@ -90,6 +94,7 @@ const columns: ColumnsType<BlackIp> = [
     render(_, row) {
       const [, setVisible] = usePopupProvider('editForm')
       const [, setInvitedVisible] = usePopupProvider('invitedForm')
+      const [, setPercentVisible] = usePopupProvider('percentCreate')
       const { getFormData } = useAPIService()
       const handleEdit = async (id: number) => {
         await getFormData(id)
@@ -106,6 +111,11 @@ const columns: ColumnsType<BlackIp> = [
             icon={<EditFilled />}
             label="編輯"
             onClick={() => handleEdit(row.id)}
+          />
+          <IconLink
+            icon={<PieChartOutlined />}
+            label="佔成"
+            onClick={() => setPercentVisible(true)}
           />
         </Space>
       )

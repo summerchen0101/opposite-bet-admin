@@ -7,6 +7,8 @@ interface IState {
   detail: PopupProps<boolean>
   invitedForm: PopupProps<boolean>
   aliasAccount: PopupProps<boolean>
+  percentCreate: PopupProps<boolean>
+  percentEdit: PopupProps<boolean>
 }
 
 const PopupContext = createContext<IState | null>(null)
@@ -18,6 +20,8 @@ const PopupProvider: React.FC = ({ children }) => {
     detail: useState(false),
     invitedForm: useState(false),
     aliasAccount: useState(false),
+    percentCreate: useState(false),
+    percentEdit: useState(false),
   }
   return (
     <PopupContext.Provider value={initialState}>

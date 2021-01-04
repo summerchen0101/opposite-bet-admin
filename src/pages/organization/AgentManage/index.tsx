@@ -6,6 +6,8 @@ import AliasAccountPopup from './containers/AliasAccountPopup'
 import CreatePopup from './containers/CreatePopup'
 import EditPopup from './containers/EditPopup'
 import InvitedFormPopup from './containers/InvitatedFormPopup'
+import PercentCreatePopup from './containers/PercentCreatePopup'
+import PercentEditPopup from './containers/PercentEditPopup'
 import SearchBar from './containers/SearchBar'
 import TableData from './containers/TableData'
 import PopupProvider from './context/PopupProvider'
@@ -29,6 +31,8 @@ const MarqueePage: React.FC = () => {
         <EditPopup />
         <InvitedFormPopup />
         <AliasAccountPopup />
+        <PercentCreatePopup />
+        <PercentEditPopup />
       </PopupProvider>
     </Dashboard>
   )

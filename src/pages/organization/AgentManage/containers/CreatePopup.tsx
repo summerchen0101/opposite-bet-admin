@@ -1,6 +1,6 @@
 import PopupModal from '@/components/PopupModal'
 import { IPBlockType, PlatformType } from '@/lib/enums'
-import { Form } from 'antd'
+import { Button, Form } from 'antd'
 import React from 'react'
 import { usePopupProvider } from '../context/PopupProvider'
 import { useAPIService } from '../service'
@@ -8,18 +8,20 @@ import DataForm, { FormData } from './DataForm'
 
 const CreatePopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('createForm')
+  const [, setPercentVisible] = usePopupProvider('percentCreate')
   const { onCreate } = useAPIService()
   const [form] = Form.useForm<FormData>()
   const handleSubmit = async () => {
     try {
       const v = (await form.validateFields()) as FormData
-      await onCreate({
-        block_type: v.block_type,
-        platform_type: v.platform_type,
-        ip: v.ip,
-        note: v.note,
-        is_active: v.is_active,
-      })
+      setPercentVisible(true)
+      // await onCreate({
+      //   block_type: v.block_type,
+      //   platform_type: v.platform_type,
+      //   ip: v.ip,
+      //   note: v.note,
+      //   is_active: v.is_active,
+      // })
       form.resetFields()
       setVisible(false)
     } catch (info) {
@@ -36,6 +38,14 @@ const CreatePopup: React.FC = () => {
       title="新增成員"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
+      footer={[
+        <Button key="reset" onClick={() => form.resetFields()}>
+          重置
+        </Button>,
+        <Button key="submit" type="primary" onClick={handleSubmit}>
+          儲存，前往占成设定
+        </Button>,
+      ]}
     >
       <DataForm
         form={form}

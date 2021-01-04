@@ -1,22 +1,19 @@
 import PopupModal from '@/components/PopupModal'
+import { IPBlockType, PlatformType } from '@/lib/enums'
+import { Button, Form } from 'antd'
 import React from 'react'
 import { usePopupProvider } from '../context/PopupProvider'
-import DataForm, { FormData } from './DataForm'
-import { Form } from 'antd'
 import { useAPIService } from '../service'
-import { useTypedSelector, selectEditData } from '../selectors'
-import moment from 'moment'
+import DataForm, { FormData } from './PercentDataForm'
 
-const EditPopup: React.FC = () => {
-  const [visible, setVisible] = usePopupProvider('editForm')
-  const [form] = Form.useForm()
-  const f = useTypedSelector(selectEditData)
-  const { onEdit } = useAPIService()
+const PercentCreatePopup: React.FC = () => {
+  const [visible, setVisible] = usePopupProvider('percentCreate')
+  const { onCreate } = useAPIService()
+  const [form] = Form.useForm<FormData>()
   const handleSubmit = async () => {
     try {
       const v = (await form.validateFields()) as FormData
-      await onEdit({
-        id: f.id,
+      await onCreate({
         block_type: v.block_type,
         platform_type: v.platform_type,
         ip: v.ip,
@@ -36,26 +33,22 @@ const EditPopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="編輯成員"
+      title="新增/編輯佔成設定"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
-      destroyOnClose
     >
-      {f && (
-        <DataForm
-          form={form}
-          values={{
-            id: f.id,
-            block_type: f.ip_block_type,
-            platform_type: f.platform_type,
-            ip: f.ip,
-            note: f.note,
-            is_active: f.is_active,
-          }}
-        />
-      )}
+      <DataForm
+        form={form}
+        values={{
+          block_type: IPBlockType.Black,
+          platform_type: PlatformType.Admin,
+          ip: '',
+          note: '',
+          is_active: true,
+        }}
+      />
     </PopupModal>
   )
 }
 
-export default EditPopup
+export default PercentCreatePopup

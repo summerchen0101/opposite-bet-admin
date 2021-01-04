@@ -1,14 +1,14 @@
 import PopupModal from '@/components/PopupModal'
 import React from 'react'
 import { usePopupProvider } from '../context/PopupProvider'
-import DataForm, { FormData } from './DataForm'
+import DataForm, { FormData } from './PercentDataForm'
 import { Form } from 'antd'
 import { useAPIService } from '../service'
 import { useTypedSelector, selectEditData } from '../selectors'
 import moment from 'moment'
 
-const EditPopup: React.FC = () => {
-  const [visible, setVisible] = usePopupProvider('editForm')
+const PercentEditPopup: React.FC = () => {
+  const [visible, setVisible] = usePopupProvider('percentEdit')
   const [form] = Form.useForm()
   const f = useTypedSelector(selectEditData)
   const { onEdit } = useAPIService()
@@ -36,7 +36,7 @@ const EditPopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="編輯成員"
+      title="編輯佔成設定"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
       destroyOnClose
@@ -58,4 +58,4 @@ const EditPopup: React.FC = () => {
   )
 }
 
-export default EditPopup
+export default PercentEditPopup
