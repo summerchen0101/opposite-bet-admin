@@ -22,14 +22,14 @@ const columns: ColumnsType<BlackIp> = [
     width: 100,
   },
   {
-    title: '類型',
-    render: (_, row) => '12321',
-    width: 100,
+    title: '調節類別',
+    render: (_, row) => '存入',
+    width: 80,
   },
   {
-    title: '項目',
-    render: (_, row) => '人工存入',
-    width: 100,
+    title: '操作類型',
+    render: (_, row) => '人工加錢(計入調整金額)',
+    width: 170,
   },
   {
     title: '廠商',
@@ -37,12 +37,12 @@ const columns: ColumnsType<BlackIp> = [
     width: 150,
   },
   {
-    title: '帳號/名稱',
+    title: '會員帳號/名稱',
     render: (_, row) => 'apple[果]',
     width: 150,
   },
   {
-    title: '提領金額',
+    title: '金額',
     render: (_, row) => 1000,
     width: 120,
   },
