@@ -1,19 +1,10 @@
-import { ColorText, IconLink, TableSets, PopupConfirm } from '@/components'
-import { IPBlockTypeOpts, platformTypeOpts, yesNoOpts } from '@/lib/options'
-import { toDateTime, toOptionName } from '@/utils/transfer'
-import {
-  CheckCircleOutlined,
-  CloseCircleOutlined,
-  DeleteOutlined,
-  ShareAltOutlined,
-  EditFilled,
-} from '@ant-design/icons'
+import { ColorText, IconLink, TableSets } from '@/components'
+import { EditFilled, ShareAltOutlined } from '@ant-design/icons'
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
 import { BlackIp } from '../API/types'
 import { usePopupProvider } from '../context/PopupProvider'
-import { selectTableData, useTypedSelector } from '../selectors'
 import { useAPIService } from '../service'
 
 const columns: ColumnsType<BlackIp> = [
@@ -35,7 +26,10 @@ const columns: ColumnsType<BlackIp> = [
   {
     title: '子帳號',
     width: 120,
-    render: (_, row) => <a>3</a>,
+    render: (_, row) => {
+      const [, setVisible] = usePopupProvider('aliasAccount')
+      return <a onClick={() => setVisible(true)}>3</a>
+    },
   },
   {
     title: '允許登入',
@@ -121,7 +115,8 @@ const columns: ColumnsType<BlackIp> = [
 ]
 
 const TableData: React.FC = () => {
-  const data = useTypedSelector(selectTableData)
+  // const data = useTypedSelector(selectTableData)
+  const data = [{ id: 1 }]
   return <TableSets columns={columns} data={data} scroll={{ x: 1600 }} />
 }
 

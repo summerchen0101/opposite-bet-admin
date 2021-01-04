@@ -24,8 +24,11 @@ const SearchBar: React.FC = () => {
   }
   return (
     <Form form={form} layout="inline" className="mb-1">
-      <Form.Item label="商戶" name="merchant">
-        <Select options={[{ label: 'abc', value: 'abc' }]} />
+      <Form.Item label="廠商" name="merchant">
+        <Select
+          options={[{ label: 'abc', value: 'abc' }]}
+          style={{ width: '150px' }}
+        />
       </Form.Item>
       <Form.Item label="帳號" name="account">
         <Input.Search />
@@ -37,9 +40,9 @@ const SearchBar: React.FC = () => {
           onChange={onSearch}
         />
       </Form.Item>
-      <Form.Item label="標籤" name="tag">
+      {/* <Form.Item label="標籤" name="tag">
         <Input.Search />
-      </Form.Item>
+      </Form.Item> */}
     </Form>
   )
 }

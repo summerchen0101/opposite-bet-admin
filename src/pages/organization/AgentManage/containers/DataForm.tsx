@@ -1,6 +1,6 @@
 import { IPBlockType, PlatformType } from '@/lib/enums'
 import { IPBlockTypeOpts, platformTypeOpts } from '@/lib/options'
-import { Col, DatePicker, Form, Input, Radio, Row, Switch } from 'antd'
+import { Col, DatePicker, Form, Input, Radio, Row, Select, Switch } from 'antd'
 import { FormInstance } from 'antd/lib/form'
 import moment from 'moment'
 import React, { useEffect } from 'react'
@@ -22,25 +22,67 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
   }, [values])
   return (
     <Form layout="vertical" form={form} initialValues={values}>
-      <Form.Item label="類型" name="block_type">
-        <Radio.Group options={IPBlockTypeOpts} />
-      </Form.Item>
-      <Form.Item
-        label="IP"
-        name="ip"
-        help="請使用 IP_V4 格式，例如 192.168.1.1 (0~255.0~255.0~255.0~255)"
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item label="端口設置" name="platform_type">
-        <Radio.Group options={platformTypeOpts} />
-      </Form.Item>
-      <Form.Item label="備註" name="note">
-        <Input.TextArea />
-      </Form.Item>
-      <Form.Item label="狀態" name="is_active" valuePropName="checked">
-        <Switch />
-      </Form.Item>
+      <Row gutter={16}>
+        <Col span={12}>
+          <Form.Item label="廠商">
+            <Select
+              options={[{ label: 'abc', value: 'abc' }]}
+              defaultValue="abc"
+              disabled
+            />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item label="帳號角色">
+            <Radio.Group
+              options={[
+                { label: '下層代理', value: 1 },
+                { label: '直屬會員', value: 2 },
+              ]}
+              defaultValue={1}
+            />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item label="帳號">
+            <Select
+              options={[
+                { label: 'mab123', value: 1 },
+                { label: 'mab222', value: 2 },
+                { label: 'mab212', value: 3 },
+                { label: 'mab992', value: 4 },
+                { label: 'mab022', value: 5 },
+              ]}
+              defaultValue={1}
+            />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item label="暱稱">
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item label="密碼">
+            <Input.Password />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item label="確認密碼">
+            <Input.Password />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item label="額度">
+            <Input addonAfter="萬" />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item label="狀態" name="is_active" valuePropName="checked">
+            <Switch />
+          </Form.Item>
+        </Col>
+      </Row>
     </Form>
   )
 }

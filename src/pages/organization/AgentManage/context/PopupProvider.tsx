@@ -6,6 +6,7 @@ interface IState {
   editForm: PopupProps<boolean>
   detail: PopupProps<boolean>
   invitedForm: PopupProps<boolean>
+  aliasAccount: PopupProps<boolean>
 }
 
 const PopupContext = createContext<IState | null>(null)
@@ -16,6 +17,7 @@ const PopupProvider: React.FC = ({ children }) => {
     editForm: useState(false),
     detail: useState(false),
     invitedForm: useState(false),
+    aliasAccount: useState(false),
   }
   return (
     <PopupContext.Provider value={initialState}>

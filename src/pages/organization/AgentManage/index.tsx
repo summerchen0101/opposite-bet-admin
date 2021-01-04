@@ -2,6 +2,7 @@ import { Dashboard } from '@/components'
 import { useReducerInjector } from '@/utils/hooks'
 import React, { useEffect } from 'react'
 import PageHeader from './components/PageHeader'
+import AliasAccountPopup from './containers/AliasAccountPopup'
 import CreatePopup from './containers/CreatePopup'
 import EditPopup from './containers/EditPopup'
 import InvitedFormPopup from './containers/InvitatedFormPopup'
@@ -27,6 +28,7 @@ const MarqueePage: React.FC = () => {
         <CreatePopup />
         <EditPopup />
         <InvitedFormPopup />
+        <AliasAccountPopup />
       </PopupProvider>
     </Dashboard>
   )
