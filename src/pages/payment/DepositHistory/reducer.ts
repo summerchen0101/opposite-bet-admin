@@ -13,7 +13,7 @@ const initialState: IState = {
   editData: null,
 }
 
-export const moduleName = 'BlackIp'
+export const moduleName = 'DepositHistory'
 
 const module = createSlice({
   name: moduleName,

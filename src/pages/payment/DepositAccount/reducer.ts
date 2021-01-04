@@ -13,7 +13,7 @@ const initialState: IState = {
   editData: null,
 }
 
-export const moduleName = 'ManualPoint'
+export const moduleName = 'DepositAccount'
 
 const module = createSlice({
   name: moduleName,

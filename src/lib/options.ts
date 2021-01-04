@@ -1,5 +1,6 @@
 import { MessageType } from '@/pages/announce/Message/API/types'
 import { NewsType } from '../pages/announce/AnnounceManage/API/types'
+import bankCodes from './bankCodes'
 import countries from './countries'
 import {
   Device,
@@ -64,3 +65,8 @@ export const pointControlOpts = [
   { label: '存入', value: 1 },
   { label: '提出', value: 2 },
 ]
+
+export const bankCodeOpts = bankCodes.map((t) => ({
+  label: `${t.name}(${t.code})`,
+  value: t.code,
+}))

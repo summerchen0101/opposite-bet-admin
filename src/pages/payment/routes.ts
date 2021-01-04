@@ -38,6 +38,11 @@ export const BankAccountSetting = new PageG(
   `${rootPath}/bank-account-setting`,
   pages.BankAccountSetting,
 )
+export const DepositAccount = new PageG(
+  '充值帳戶管理',
+  `${rootPath}/deposit-account`,
+  pages.DepositAccount,
+)
 // ROUTERS
 RouteG.create([
   DepositHistory,
@@ -46,6 +51,7 @@ RouteG.create([
   WithdrawSetting,
   BankAccountSetting,
   ManualPoint,
+  DepositAccount,
 ])
 
 // MENU
@@ -53,7 +59,7 @@ MenuG.createCategory(rootName, rootPath, DollarOutlined, [
   DepositHistory,
   WithdrawHistory,
   ManualPoint,
-
+  DepositAccount,
   DepositSetting,
   WithdrawSetting,
   BankAccountSetting,
