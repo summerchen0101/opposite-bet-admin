@@ -2,7 +2,9 @@ import { ColorText, IconLink, TableSets } from '@/components'
 import {
   EditFilled,
   ShareAltOutlined,
-  PieChartOutlined,
+  DownloadOutlined,
+  UploadOutlined,
+  LockOutlined,
 } from '@ant-design/icons'
 import { Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
@@ -80,7 +82,9 @@ const columns: ColumnsType<BlackIp> = [
     render(_, row) {
       const [, setVisible] = usePopupProvider('editForm')
       const [, setInvitedVisible] = usePopupProvider('invitedForm')
-      const [, setPercentVisible] = usePopupProvider('percentCreate')
+      const [, setDepositVisible] = usePopupProvider('depositHistory')
+      const [, setWithdrawVisible] = usePopupProvider('withdrawHistory')
+      const [, setPwFormVisible] = usePopupProvider('pwForm')
       const { getFormData } = useAPIService()
       const handleEdit = async (id: number) => {
         await getFormData(id)
@@ -99,9 +103,19 @@ const columns: ColumnsType<BlackIp> = [
             onClick={() => handleEdit(row.id)}
           />
           <IconLink
-            icon={<PieChartOutlined />}
-            label="佔成"
-            onClick={() => setPercentVisible(true)}
+            icon={<DownloadOutlined />}
+            label="充值紀錄"
+            onClick={() => setDepositVisible(true)}
+          />
+          <IconLink
+            icon={<UploadOutlined />}
+            label="提領紀錄"
+            onClick={() => setWithdrawVisible(true)}
+          />
+          <IconLink
+            icon={<LockOutlined />}
+            label="修改密碼"
+            onClick={() => setPwFormVisible(true)}
           />
         </Space>
       )

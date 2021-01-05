@@ -27,25 +27,28 @@ const InvitedFormPopup: React.FC = () => {
       visible={visible}
       title="邀请连结"
       onCancel={() => setVisible(false)}
-      footer={[
-        <Button key="reset" onClick={() => form.resetFields()}>
-          重置
-        </Button>,
-        <Button key="submit" type="primary" onClick={handleSubmit}>
-          送出
-        </Button>,
-      ]}
+      footer={false}
     >
       <Form form={form}>
         <FormField label="連結網址" name="link">
-          <Input.Search
-            addonBefore={<Select options={protocalOpts} defaultValue="http" />}
-            allowClear
-            enterButton="複製"
-          />
+          <Input.Group compact>
+            <Input
+              value="http://abc.com/p/qq1234"
+              style={{ width: 'calc(100% - 70px)' }}
+              readOnly
+            />
+            <Button>複製</Button>
+          </Input.Group>
         </FormField>
         <FormField label="推廣碼" name="code">
-          <Input.Search allowClear enterButton="複製" />
+          <Input.Group compact>
+            <Input
+              value="qq1234"
+              style={{ width: 'calc(100% - 70px)' }}
+              readOnly
+            />
+            <Button>複製</Button>
+          </Input.Group>
         </FormField>
       </Form>
     </PopupModal>

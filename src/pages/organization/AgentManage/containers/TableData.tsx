@@ -46,7 +46,7 @@ const columns: ColumnsType<BlackIp> = [
     render: (_, row) => '是',
   },
   {
-    title: '體育額度',
+    title: '額度',
     width: 100,
     render: (_, row) => '0.00',
   },

@@ -8,7 +8,7 @@ const AliasAccountPopup: React.FC = () => {
 
   const columns: ColumnsType<{ id: number }> = [
     { title: '帳號/名稱', render: (_, row) => 'cntd01 [陳]' },
-    { title: '失敗次數', render: (_, row) => 0 },
+    { title: '登入失敗', render: (_, row) => 0 },
     {
       title: '最後登入',
       render: (_, row) => (
