@@ -1,4 +1,4 @@
-import { IconLink, TableSets } from '@/components'
+import { ColorText, IconLink, TableSets } from '@/components'
 import { Button, Checkbox, Space, Switch } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
@@ -69,7 +69,7 @@ const TableData: React.FC = () => {
         </>
       ),
     },
-    { title: '狀態', render: (_, row) => '已上架' },
+    { title: '狀態', render: (_, row) => <ColorText green>啟用</ColorText> },
     ...eventsColumn,
     {
       title: '操作',
@@ -83,8 +83,8 @@ const TableData: React.FC = () => {
                 e.target.checked ? addOne(row.id) : removeOne(row.id)
               }
             />
-            {/* <IconLink label="上架" icon={<CheckCircleOutlined />} /> */}
-            <IconLink label="下架" icon={<CloseCircleOutlined />} />
+            {/* <IconLink label="啟用" icon={<CheckCircleOutlined />} /> */}
+            <IconLink label="停用" icon={<CloseCircleOutlined />} color="red" />
             <IconLink
               label="控盤"
               icon={

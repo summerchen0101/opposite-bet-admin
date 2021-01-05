@@ -1,13 +1,24 @@
 import { usePopupProvider } from '../context/PopupProvider'
 import { addKeyToArrayItem } from '@/utils/transfer'
-import { Input, Layout, Space, Table } from 'antd'
+import {
+  Button,
+  Col,
+  Descriptions,
+  Form,
+  Input,
+  Layout,
+  Row,
+  Space,
+  Switch,
+  Table,
+} from 'antd'
 import { PlusOutlined, MinusOutlined, ReloadOutlined } from '@ant-design/icons'
 import React from 'react'
 import { IconLink } from '@/components'
 
 const { Header, Content } = Layout
 
-const eventTypes = [
+const scoreTypes = [
   { label: '主', count: 8 },
   { label: '和', count: 4 },
   { label: '客', count: 8 },
@@ -19,68 +30,81 @@ const GameControlPanel: React.FC = () => {
   const [gameOrdersVisible, setGameOrdersVisible] = usePopupProvider(
     'gameOrders',
   )
-  const columns = eventTypes.map((t, i) => {
-    const data = [...Array(t.count)]
-    return {
-      title: <div className="text-center">{t.label}</div>,
-      render: (_, row) => (
-        <>
-          {data.map((d, i) => (
-            <Space key={i} className="mb-1 w-100 justify-content-between">
-              <span className="text-nowrap">1-0</span>
-              <Input
-                addonBefore={
-                  <a>
-                    <PlusOutlined />
-                  </a>
-                }
-                addonAfter={
-                  <a>
-                    <MinusOutlined />
-                  </a>
-                }
-                defaultValue={7.5}
-                style={{ width: '130px' }}
-                size="small"
-              />
-              <span>
-                <a onClick={() => setGameOrdersVisible(true)}>200</a> / 32,120
-              </span>
-            </Space>
-          ))}
-        </>
-      ),
-      className: 'align-top',
-      width: 100,
-    }
-  })
+
   const events = [{ label: '全場' }, { label: '半場' }]
   return (
     <div style={{ padding: '20px' }}>
-      <h3>
-        <span className="mr-2">反波膽(3381)</span>
+      <Space className="mb-2">
+        <h3 className="mb-0">賽事 (3381)</h3>
         <IconLink icon={<ReloadOutlined />} label="重新整理" />
-      </h3>
-      <div className="mb-2">
-        <span className="mr-1">賽事編號：3381</span>
-        <span className="mr-1">比賽時間：2020-11-18 00:01:51</span>
-        <span className="mr-1">帳務日期：2020-11-18</span>
+      </Space>
 
-        <span className="mr-1">聯盟：球友會友誼</span>
-        <span className="mr-1">對陣：韋斯咸(主) vs 阿斯頓維拉</span>
-      </div>
-      {events.map((t, i) => (
-        <div key={i} className="mb-2">
-          <h3>{t.label}</h3>
-          <Table
-            columns={addKeyToArrayItem(columns)}
-            dataSource={addKeyToArrayItem(data)}
-            size="small"
-            bordered
-            pagination={false}
-          />
-        </div>
-      ))}
+      <Form size="small" style={{ width: '1000px' }}>
+        <Form.Item>
+          <Descriptions size="small" column={4}>
+            <Descriptions.Item label="比賽時間">
+              2020-11-18 00:01:51
+            </Descriptions.Item>
+            <Descriptions.Item label="帳務日期">2020-11-18</Descriptions.Item>
+            <Descriptions.Item label="聯盟">球友會友誼</Descriptions.Item>
+            <Descriptions.Item label="對陣">
+              韋斯咸(主) vs 阿斯頓維拉
+            </Descriptions.Item>
+          </Descriptions>
+          <Space className="mb-2">
+            <Form.Item
+              label="自動結帳"
+              valuePropName="checked"
+              className="mb-0"
+            >
+              <Switch defaultChecked={true} />
+            </Form.Item>
+            <Button size="small" danger>
+              全部停押
+            </Button>
+            <Button size="small" type="primary" danger>
+              全部關盤
+            </Button>
+          </Space>
+        </Form.Item>
+        {events.map((t, i) => (
+          <div key={i} className="mb-2">
+            <Space className="mb-2">
+              <h2 className="mb-0">{t.label}</h2>
+              <Button danger>停押</Button>
+              <Button type="primary" danger>
+                關盤
+              </Button>
+            </Space>
+            <Row gutter={16}>
+              {scoreTypes.map((s, s_i) => (
+                <Col span={8} key={s_i}>
+                  <h3>{s.label}</h3>
+                  {[...Array(s.count)].map((c, c_i) => (
+                    <Space key={c_i} className="mb-1">
+                      <span>1-0</span>
+                      <Form.Item className="mb-0">
+                        <Input.Group compact>
+                          <Button icon={<PlusOutlined />} />
+                          <Input style={{ width: '60px' }} />
+                          <Button icon={<MinusOutlined />} />
+                        </Input.Group>
+                      </Form.Item>
+                      <span>
+                        <a>789</a> / <span>1222</span>
+                      </span>
+                      <Button danger>停</Button>
+                      <Button type="primary" danger>
+                        關
+                      </Button>
+                    </Space>
+                  ))}
+                </Col>
+              ))}
+            </Row>
+          </div>
+        ))}
+      </Form>
     </div>
   )
 }
