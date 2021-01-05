@@ -1,7 +1,16 @@
 import { IPBlockType, PlatformType } from '@/lib/enums'
-import { yesNoOpts } from '@/lib/options'
-import { Button, Checkbox, Descriptions, Form, Input, Radio, Space } from 'antd'
+import {
+  Checkbox,
+  Col,
+  DatePicker,
+  Form,
+  Input,
+  Row,
+  Select,
+  Space,
+} from 'antd'
 import { FormInstance } from 'antd/lib/form'
+import moment from 'moment'
 import React, { useEffect } from 'react'
 export interface FormData {
   id?: number
@@ -15,50 +24,83 @@ interface FormProps {
   form: FormInstance<any>
   values?: FormData
 }
-const checkoutList = [
-  { label: '即時比分', value: 1 },
-  { label: '全場', value: 2 },
-  { label: '半場', value: 3 },
-]
 const DataForm: React.FC<FormProps> = ({ form, values }) => {
   useEffect(() => {
     form.setFieldsValue(values)
   }, [values])
 
+  const events = [{ label: '全場' }, { label: '半場' }]
+  const scoreTypes = [
+    { label: '主', count: 8 },
+    { label: '和', count: 4 },
+    { label: '客', count: 8 },
+  ]
+
   return (
     <Form layout="vertical" form={form} initialValues={values}>
-      <Form.Item>
-        <Descriptions bordered size="small" column={2}>
-          <Descriptions.Item label="開賽時間">
-            2020-12-30 09:11:20
-          </Descriptions.Item>
-          <Descriptions.Item label="帳務日期">2020-12-30</Descriptions.Item>
-          <Descriptions.Item label="球種">美棒</Descriptions.Item>
-          <Descriptions.Item label="聯盟">某個聯盟</Descriptions.Item>
-          <Descriptions.Item label="主隊">主隊的名字</Descriptions.Item>
-          <Descriptions.Item label="客隊">客隊的名字</Descriptions.Item>
-        </Descriptions>
-      </Form.Item>
-      {checkoutList.map((t) => (
-        <Form.Item label={t.label} key={t.value}>
+      <Row gutter={16}>
+        <Col span={6}>
+          <Form.Item label="球種">
+            <Select />
+          </Form.Item>
+          <Form.Item label="聯盟">
+            <Select />
+          </Form.Item>
+          <Form.Item label="主隊">
+            <Select />
+          </Form.Item>
+          <Form.Item label="客隊">
+            <Select />
+          </Form.Item>
+          <Form.Item label="開賽時間">
+            <DatePicker defaultValue={moment()} style={{ width: '100%' }} />
+          </Form.Item>
+          <Form.Item label="帳務日期">
+            <DatePicker
+              defaultValue={moment()}
+              disabled
+              style={{ width: '100%' }}
+            />
+          </Form.Item>
+        </Col>
+        <Col span={18}>
           <Space>
-            <Form.Item style={{ width: '100px' }} className="mb-0">
-              <Input placeholder="主" />
+            <Form.Item label="玩法">
+              <Select style={{ width: '150px' }} />
             </Form.Item>
-            <span>-</span>
-            <Form.Item style={{ width: '100px' }} className="mb-0">
-              <Input placeholder="客" />
+            <Form.Item label="場次">
+              <Select style={{ width: '150px' }} />
             </Form.Item>
-            <Form.Item className="mb-0">
-              <Checkbox>延賽/取消</Checkbox>
-            </Form.Item>
-            <Form.Item style={{ width: '130px' }} className="mb-0">
-              <Input placeholder="取消備註" />
-            </Form.Item>
-            <Button type="primary">結帳</Button>
           </Space>
-        </Form.Item>
-      ))}
+          <Row gutter={16}>
+            {scoreTypes.map((s, s_i) => (
+              <Col span={8} key={s_i}>
+                <h3>{s.label}</h3>
+                {[...Array(s.count)].map((c, c_i) => (
+                  <Space key={c_i} className="mb-1">
+                    <Checkbox checked />
+                    <span>1-0</span>
+                    <Form.Item className="mb-0">
+                      <Input
+                        style={{ width: '60px' }}
+                        size="small"
+                        defaultValue="7.5"
+                      />
+                    </Form.Item>
+                    <Form.Item className="mb-0">
+                      <Input
+                        style={{ width: '100px' }}
+                        size="small"
+                        defaultValue="2133222"
+                      />
+                    </Form.Item>
+                  </Space>
+                ))}
+              </Col>
+            ))}
+          </Row>
+        </Col>
+      </Row>
     </Form>
   )
 }

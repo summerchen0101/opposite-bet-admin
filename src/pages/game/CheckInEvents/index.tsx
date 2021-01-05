@@ -27,6 +27,7 @@ const MarqueePage: React.FC = () => {
         <TableData />
         <GameDetailPopup />
         <AutoReviewPopup />
+        <CreatePopup />
       </PopupProvider>
     </Dashboard>
   )

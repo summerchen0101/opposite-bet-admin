@@ -1,9 +1,9 @@
 import CreateButton from '@/components/CreateButton'
 import React from 'react'
-import { usePopupProvider } from '../context/PopupProvider'
+import { usePopupProvider } from '../../context/PopupProvider'
 
 const Component: React.FC = () => {
-  const [visible, setVisible] = usePopupProvider('createForm')
+  const [, setVisible] = usePopupProvider('createForm')
   return <CreateButton onClick={() => setVisible(true)} />
 }
 

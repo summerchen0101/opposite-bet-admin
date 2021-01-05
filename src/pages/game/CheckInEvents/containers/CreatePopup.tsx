@@ -2,7 +2,7 @@ import PopupModal from '@/components/PopupModal'
 import { IPBlockType, PlatformType } from '@/lib/enums'
 import { Form } from 'antd'
 import React from 'react'
-import { usePopupProvider } from '../context/PopupProvider'
+import { usePopupProvider } from '../../context/PopupProvider'
 import { useAPIService } from '../service'
 import DataForm, { FormData } from './DataForm'
 
@@ -33,10 +33,10 @@ const CreatePopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="賽事結帳"
+      title="新增/編輯賽事"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
-      width={700}
+      width={1000}
       footer={false}
     >
       <DataForm

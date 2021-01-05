@@ -18,12 +18,6 @@ import { IconLink } from '@/components'
 
 const { Header, Content } = Layout
 
-const scoreTypes = [
-  { label: '主', count: 8 },
-  { label: '和', count: 4 },
-  { label: '客', count: 8 },
-]
-
 const data = [{ key: 1 }]
 
 const GameControlPanel: React.FC = () => {
@@ -32,6 +26,11 @@ const GameControlPanel: React.FC = () => {
   )
 
   const events = [{ label: '全場' }, { label: '半場' }]
+  const scoreTypes = [
+    { label: '主', count: 8 },
+    { label: '和', count: 4 },
+    { label: '客', count: 8 },
+  ]
   return (
     <div style={{ padding: '20px' }}>
       <Space className="mb-2">
