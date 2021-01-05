@@ -8,6 +8,7 @@ import {
   Row,
   Select,
   Space,
+  Switch,
 } from 'antd'
 import { FormInstance } from 'antd/lib/form'
 import moment from 'moment'
@@ -61,6 +62,9 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
               disabled
               style={{ width: '100%' }}
             />
+          </Form.Item>
+          <Form.Item label="自動結帳" valuePropName="checked">
+            <Switch defaultChecked />
           </Form.Item>
         </Col>
         <Col span={18}>

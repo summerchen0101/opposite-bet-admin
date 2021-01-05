@@ -69,10 +69,16 @@ const TableData: React.FC = () => {
         </>
       ),
     },
+    {
+      title: '自動結帳',
+      render: (_, row) => <Switch defaultChecked={true} />,
+      width: 80,
+    },
     { title: '狀態', render: (_, row) => <ColorText green>啟用</ColorText> },
     ...eventsColumn,
     {
       title: '操作',
+      fixed: ('right' as unknown) as boolean,
       render: (_, row) => {
         const [, setVisible] = usePopupProvider('createForm')
         return (
