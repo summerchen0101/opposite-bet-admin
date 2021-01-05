@@ -1,5 +1,4 @@
-export { default as GameManage } from './GameManage'
-export { default as GameControlPanel } from './GameControlPanel'
 export { default as ManualReview } from './ManualReview'
 export { default as CheckoutEvents } from './CheckoutEvents'
 export { default as CheckInEvents } from './CheckInEvents'
+export { default as EventControl } from './EventControl'

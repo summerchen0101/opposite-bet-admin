@@ -12,7 +12,7 @@ import {
 } from '@ant-design/icons'
 import { Link, useHistory } from 'react-router-dom'
 import useMultiPicker from '@/utils/hooks/useMultiPicker'
-import { GameControlPanel } from '../../routes'
+import { EventControl } from '../../routes'
 
 const TableData: React.FC = () => {
   // const data = useTypedSelector(selectTableData)
@@ -89,7 +89,7 @@ const TableData: React.FC = () => {
               label="控盤"
               icon={
                 <Link
-                  to={GameControlPanel.path}
+                  to={EventControl.path}
                   target="_blank"
                   className="text-default"
                 >
