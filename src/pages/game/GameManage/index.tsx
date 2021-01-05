@@ -9,12 +9,7 @@ import ResultFormPopup from './containers/ResultFormPopup'
 import SearchBar from './containers/SearchBar'
 import TableData from './containers/TableData'
 import PopupProvider from '../context/PopupProvider'
-import {
-  GameManage,
-  GameControlPanel,
-  CheckoutManage,
-  ManualReview,
-} from '../routes'
+import { GameManage, GameControlPanel } from '../routes'
 
 const GameManagePage: React.FC = () => {
   return (
@@ -24,10 +19,6 @@ const GameManagePage: React.FC = () => {
           <Route
             path={GameControlPanel.path}
             component={GameControlPanel.component}
-          />
-          <Route
-            path={CheckoutManage.path}
-            component={CheckoutManage.component}
           />
           {/* <Route path={ManualReview.path} component={ManualReview.component} /> */}
           <Route path={GameManage.path}>

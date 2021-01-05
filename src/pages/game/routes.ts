@@ -18,11 +18,6 @@ export const GameControlPanel = new PageG(
   `${rootPath}/manage/ctrl`,
   pages.GameControlPanel,
 )
-export const CheckoutManage = new PageG(
-  '已結單賽事(deprecated)',
-  `${rootPath}/manage/checkout`,
-  pages.CheckoutManage,
-)
 
 export const CheckoutEvents = new PageG(
   '已結單賽事',
@@ -42,7 +37,6 @@ RouteG.create([GameManage, CheckoutEvents, ManualReview])
 // MENU
 MenuG.createCategory(rootName, rootPath, DribbbleOutlined, [
   GameManage,
-  CheckoutManage,
   CheckoutEvents,
   ManualReview,
 ])
