@@ -1,16 +1,17 @@
 import { useState } from 'react'
 
-const useMultiPicker = (ids?: string[]) => {
-  const [items, setItems] = useState<string[]>([])
+type IdType = string | number
+const useMultiPicker = (ids?: IdType[]) => {
+  const [items, setItems] = useState<IdType[]>([])
 
-  const addOne = (id: string) => setItems([...new Set([...items, id])])
+  const addOne = (id: IdType) => setItems([...new Set([...items, id])])
 
-  const removeOne = (id: string) => setItems(items.filter((_id) => _id !== id))
+  const removeOne = (id: IdType) => setItems(items.filter((_id) => _id !== id))
 
-  const addMultiple = (ids: string[]) =>
+  const addMultiple = (ids: IdType[]) =>
     setItems([...new Set([...items, ...ids])])
 
-  const removeMultiple = (ids: string[]) =>
+  const removeMultiple = (ids: IdType[]) =>
     setItems(items.filter((_id) => !ids.includes(_id)))
 
   const addAll = () => addMultiple(ids)

@@ -9,9 +9,14 @@ const rootPath = '/game'
 
 // PAGES
 export const GameManage = new PageG(
-  '賽事列表',
+  '賽事列表(deprecated)',
   `${rootPath}/manage`,
   pages.GameManage,
+)
+export const CheckInEvents = new PageG(
+  '賽事列表',
+  `${rootPath}/checkin`,
+  pages.CheckInEvents,
 )
 export const GameControlPanel = new PageG(
   '控盤',
@@ -32,11 +37,12 @@ export const ManualReview = new PageG(
 )
 
 // ROUTERS
-RouteG.create([GameManage, CheckoutEvents, ManualReview])
+RouteG.create([GameManage, CheckInEvents, CheckoutEvents, ManualReview])
 
 // MENU
 MenuG.createCategory(rootName, rootPath, DribbbleOutlined, [
   GameManage,
+  CheckInEvents,
   CheckoutEvents,
   ManualReview,
 ])
