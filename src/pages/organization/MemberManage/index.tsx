@@ -17,6 +17,8 @@ import PopupProvider from './context/PopupProvider'
 import reducer, { moduleName } from './reducer'
 import { useAPIService } from './service'
 import { WithdrawHistory } from '@/pages/payment'
+import BankCardListPopup from './containers/BankCardListPopup'
+import BankCardFormPopup from './containers/BankCardFormPopup'
 
 const MarqueePage: React.FC = () => {
   useReducerInjector(moduleName, reducer)
@@ -40,6 +42,8 @@ const MarqueePage: React.FC = () => {
         <DepositHistoryPopup />
         <WithdrawHistoryPopup />
         <PwFormPopup />
+        <BankCardListPopup />
+        <BankCardFormPopup />
       </PopupProvider>
     </Dashboard>
   )

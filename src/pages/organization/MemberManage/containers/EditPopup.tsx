@@ -2,13 +2,14 @@ import PopupModal from '@/components/PopupModal'
 import React from 'react'
 import { usePopupProvider } from '../context/PopupProvider'
 import DataForm, { FormData } from './DataForm'
-import { Form } from 'antd'
+import { Button, Form, Space } from 'antd'
 import { useAPIService } from '../service'
 import { useTypedSelector, selectEditData } from '../selectors'
 import moment from 'moment'
 
 const EditPopup: React.FC = () => {
   const [visible, setVisible] = usePopupProvider('editForm')
+  const [, setBankCardVisible] = usePopupProvider('bankCardList')
   const [form] = Form.useForm()
   const f = useTypedSelector(selectEditData)
   const { onEdit } = useAPIService()
@@ -36,7 +37,17 @@ const EditPopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="編輯會員"
+      title={
+        <div>
+          <span>編輯會員</span>
+          <Space className="float-right mr-3">
+            <Button size="small">重置提領密碼</Button>
+            <Button size="small" onClick={() => setBankCardVisible(true)}>
+              銀行卡
+            </Button>
+          </Space>
+        </div>
+      }
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
       destroyOnClose
