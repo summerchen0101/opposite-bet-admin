@@ -11,6 +11,7 @@ import reducer, { moduleName } from './reducer'
 import { useAPIService } from './service'
 import GameDetailPopup from '../containers/GameDetailPopup'
 import AutoReviewPopup from '../containers/AutoReviewPopup'
+import GameOrdersPopup from '../containers/GameOrdersPopup'
 
 const MarqueePage: React.FC = () => {
   useReducerInjector(moduleName, reducer)
@@ -27,6 +28,7 @@ const MarqueePage: React.FC = () => {
         <TableData />
         <GameDetailPopup />
         <AutoReviewPopup />
+        <GameOrdersPopup />
       </PopupProvider>
     </Dashboard>
   )

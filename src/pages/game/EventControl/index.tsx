@@ -1,6 +1,7 @@
 import { Dashboard } from '@/components'
 import { useReducerInjector } from '@/utils/hooks'
 import React, { useEffect } from 'react'
+import GameOrdersPopup from '../containers/GameOrdersPopup'
 import PopupProvider from '../context/PopupProvider'
 import Main from './containers/Main'
 import reducer, { moduleName } from './reducer'
@@ -16,6 +17,7 @@ const MarqueePage: React.FC = () => {
   return (
     <PopupProvider>
       <Main />
+      <GameOrdersPopup />
     </PopupProvider>
   )
 }

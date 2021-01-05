@@ -21,9 +21,7 @@ const { Header, Content } = Layout
 const data = [{ key: 1 }]
 
 const GameControlPanel: React.FC = () => {
-  const [gameOrdersVisible, setGameOrdersVisible] = usePopupProvider(
-    'gameOrders',
-  )
+  const [, setGameOrdersVisible] = usePopupProvider('gameOrders')
 
   const events = [{ label: '全場' }, { label: '半場' }]
   const scoreTypes = [
@@ -90,7 +88,8 @@ const GameControlPanel: React.FC = () => {
                         </Input.Group>
                       </Form.Item>
                       <span>
-                        <a>789</a> / <span>1222</span>
+                        <a onClick={() => setGameOrdersVisible(true)}>789</a> /{' '}
+                        <span>1222</span>
                       </span>
                       <Button danger>停</Button>
                       <Button type="primary" danger>
