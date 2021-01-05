@@ -1,14 +1,13 @@
 import PopupModal from '@/components/PopupModal'
 import { IPBlockType, PlatformType } from '@/lib/enums'
-import { Button, Form } from 'antd'
+import { Form } from 'antd'
 import React from 'react'
 import { usePopupProvider } from '../context/PopupProvider'
 import { useAPIService } from '../service'
-import DataForm, { FormData } from './DataForm'
+import DataForm, { FormData } from './ContactForm'
 
-const CreatePopup: React.FC = () => {
-  const [visible, setVisible] = usePopupProvider('createForm')
-  const [, setContactVisible] = usePopupProvider('contactCreate')
+const ContactCreatePopup: React.FC = () => {
+  const [visible, setVisible] = usePopupProvider('contactCreate')
   const { onCreate } = useAPIService()
   const [form] = Form.useForm<FormData>()
   const handleSubmit = async () => {
@@ -23,7 +22,6 @@ const CreatePopup: React.FC = () => {
       })
       form.resetFields()
       setVisible(false)
-      setContactVisible(true)
     } catch (info) {
       console.log('Validate Failed:', info)
     }
@@ -35,7 +33,7 @@ const CreatePopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="新增廠商"
+      title="新增/編輯聯絡資訊"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
     >
@@ -53,4 +51,4 @@ const CreatePopup: React.FC = () => {
   )
 }
 
-export default CreatePopup
+export default ContactCreatePopup

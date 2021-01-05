@@ -15,55 +15,70 @@ interface FormProps {
   form: FormInstance<any>
   values?: FormData
 }
-const DataForm: React.FC<FormProps> = ({ form, values }) => {
+const ContactForm: React.FC<FormProps> = ({ form, values }) => {
   useEffect(() => {
     form.setFieldsValue(values)
   }, [values])
   return (
     <Form layout="vertical" form={form} initialValues={values}>
+      <Divider orientation="left">商務</Divider>
       <Row gutter={16}>
-        <Col span={12}>
-          <Form.Item label="前綴" help="請輸入3個英文字">
+        <Col span={8}>
+          <Form.Item label="姓名">
             <Input />
           </Form.Item>
         </Col>
-        <Col span={12}>
-          <Form.Item label="品牌名稱">
+        <Col span={8}>
+          <Form.Item label="Email">
             <Input />
           </Form.Item>
         </Col>
-        <Col span={12}>
-          <Form.Item label="語系">
-            <Select options={langOpts} defaultValue={Language.CN} />
-          </Form.Item>
-        </Col>
-        <Col span={12}>
-          <Form.Item label="幣別">
-            <Select options={currencyOpts} defaultValue={Currency.CN} />
-          </Form.Item>
-        </Col>
-        <Col span={12}>
-          <Form.Item label="額度">
-            <Input />
-          </Form.Item>
-        </Col>
-        <Col span={12}>
-          <Form.Item label="API KEY">
-            <Input />
-          </Form.Item>
-        </Col>
-        <Col span={24}>
-          <Form.Item label="會員端網域(Domain)">
+        <Col span={8}>
+          <Form.Item label="Telegram">
             <Input />
           </Form.Item>
         </Col>
       </Row>
 
-      <Form.Item label="狀態" name="is_active" valuePropName="checked">
-        <Switch />
-      </Form.Item>
+      <Divider orientation="left">財務</Divider>
+      <Row gutter={16}>
+        <Col span={8}>
+          <Form.Item label="姓名">
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col span={8}>
+          <Form.Item label="Email">
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col span={8}>
+          <Form.Item label="Telegram">
+            <Input />
+          </Form.Item>
+        </Col>
+      </Row>
+
+      <Divider orientation="left">技術</Divider>
+      <Row gutter={16}>
+        <Col span={8}>
+          <Form.Item label="姓名">
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col span={8}>
+          <Form.Item label="Email">
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col span={8}>
+          <Form.Item label="Telegram">
+            <Input />
+          </Form.Item>
+        </Col>
+      </Row>
     </Form>
   )
 }
 
-export default DataForm
+export default ContactForm

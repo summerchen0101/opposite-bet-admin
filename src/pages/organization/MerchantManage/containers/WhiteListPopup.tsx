@@ -23,7 +23,7 @@ const WhiteListPopup: React.FC = () => {
       width: '80px',
       render: (_, row) => (
         <PopupConfirm>
-          <IconLink icon={<DeleteOutlined />} color="#c45555" label="刪除" />
+          <IconLink icon={<DeleteOutlined />} label="刪除" />
         </PopupConfirm>
       ),
     },
@@ -35,6 +35,7 @@ const WhiteListPopup: React.FC = () => {
       visible={visible}
       onCancel={() => setVisible(false)}
       title="IP 白名单"
+      footer={false}
     >
       <Form form={form}>
         <FormField label="IP" required name="col1">

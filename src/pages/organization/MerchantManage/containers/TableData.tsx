@@ -6,8 +6,10 @@ import {
   CloseCircleOutlined,
   DeleteOutlined,
   EditFilled,
+  ContactsOutlined,
+  CopyOutlined,
 } from '@ant-design/icons'
-import { Space } from 'antd'
+import { Button, Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
 import { Merchant } from '../API/types'
@@ -17,14 +19,14 @@ import { useAPIService } from '../service'
 
 const columns: ColumnsType<Merchant> = [
   {
-    title: '廠商',
-    width: 120,
-    render: (_, row) => 'abc[國]',
-  },
-  {
     title: '前綴',
     width: 120,
-    render: (_, row) => 'aaa',
+    render: (_, row) => 'abc',
+  },
+  {
+    title: '品牌名稱',
+    width: 120,
+    render: (_, row) => 'AG',
   },
   {
     title: '語系',
@@ -42,14 +44,17 @@ const columns: ColumnsType<Merchant> = [
     render: (_, row) => '100',
   },
   {
-    title: '手機',
+    title: 'API KEY',
     width: 120,
-    render: (_, row) => '0921-123123',
+    render: (_, row) => <IconLink icon={<CopyOutlined />} />,
   },
   {
-    title: '微信',
+    title: '白名單',
     width: 120,
-    render: (_, row) => '-',
+    render: (_, row) => {
+      const [, setVisible] = usePopupProvider('whiteList')
+      return <a onClick={() => setVisible(true)}>3</a>
+    },
   },
   {
     title: '狀態',
@@ -80,6 +85,7 @@ const columns: ColumnsType<Merchant> = [
     title: '操作',
     render(_, row) {
       const [, setVisible] = usePopupProvider('editForm')
+      const [, setContactVisible] = usePopupProvider('contactCreate')
       const { getFormData, onDelete, changeActive } = useAPIService()
       const handleEdit = async (id: number) => {
         await getFormData(id)
@@ -106,6 +112,11 @@ const columns: ColumnsType<Merchant> = [
             icon={<EditFilled />}
             label="編輯"
             onClick={() => handleEdit(row.id)}
+          />
+          <IconLink
+            icon={<ContactsOutlined />}
+            label="聯絡資訊"
+            onClick={() => setContactVisible(true)}
           />
           <PopupConfirm onConfirm={() => onDelete(row.id)}>
             <IconLink icon={<DeleteOutlined />} label="刪除" />
