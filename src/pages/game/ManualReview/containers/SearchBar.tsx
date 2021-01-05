@@ -1,11 +1,6 @@
 import { IPBlockType, Status } from '@/lib/enums'
-import { Form, Radio, Select } from 'antd'
+import { Button, DatePicker, Form, Select, Space } from 'antd'
 import React from 'react'
-import {
-  selectPlayOpts,
-  selectSectionOpts,
-  useTypedSelector,
-} from '../selectors'
 import { useAPIService } from '../service'
 
 interface SearchFormData {
@@ -25,16 +20,23 @@ const SearchBar: React.FC = () => {
       is_active: f.is_active,
     })
   }
-  const sectionOpts = useTypedSelector(selectSectionOpts)
-  const playOpts = useTypedSelector(selectPlayOpts)
-  if (sectionOpts.length === 0 || playOpts.length === 0) return <></>
+  const statusOpts = [
+    { label: '全部', value: 0 },
+    { label: '未結帳', value: 1 },
+    { label: '結帳中', value: 2 },
+    { label: '已結帳', value: 3 },
+  ]
   return (
     <Form form={form} layout="inline" className="mb-1">
-      <Form.Item name="section_id" initialValue={sectionOpts[0].value}>
-        <Select options={sectionOpts} style={{ width: '130px' }} />
+      <Form.Item>
+        <Space>
+          <DatePicker.RangePicker />
+          <Button>昨日</Button>
+          <Button>今日</Button>
+        </Space>
       </Form.Item>
-      <Form.Item name="play_id" initialValue={playOpts[0].value}>
-        <Select options={playOpts} style={{ width: '130px' }} />
+      <Form.Item label="狀態" name="status" initialValue={0}>
+        <Select options={statusOpts} style={{ width: '130px' }} />
       </Form.Item>
     </Form>
   )

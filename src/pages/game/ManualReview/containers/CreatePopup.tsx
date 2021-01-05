@@ -33,9 +33,11 @@ const CreatePopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="新增自動結帳設置"
+      title="賽事結帳"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
+      width={700}
+      footer={false}
     >
       <DataForm
         form={form}

@@ -46,6 +46,10 @@ export default createGlobalStyle`
   .ml-2 {
     margin-left: 15px !important
   }
+  .mx-1 {
+    margin-left: 7.5px !important;
+    margin-right: 7.5px !important;
+  }
   .float-right {
     float: right
   }

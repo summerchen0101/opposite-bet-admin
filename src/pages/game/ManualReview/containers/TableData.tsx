@@ -1,12 +1,9 @@
-import { IconLink, PopupConfirm, TableSets } from '@/components'
-import { toDateTime } from '@/utils/transfer'
-import { DeleteOutlined, EditFilled } from '@ant-design/icons'
+import { TableSets } from '@/components'
 import { Button, Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
 import { BlackIp } from '../API/types'
 import { usePopupProvider } from '../context/PopupProvider'
-import { selectTableData, useTypedSelector } from '../selectors'
 import { useAPIService } from '../service'
 
 const columns: ColumnsType<BlackIp> = [
@@ -23,24 +20,7 @@ const columns: ColumnsType<BlackIp> = [
       </>
     ),
   },
-  { title: '場次', render: (_, row) => '全場' },
-  {
-    title: '365結果',
-    align: 'center',
-    render: (_, row) => (
-      <>
-        10
-        <br />2
-      </>
-    ),
-    width: 80,
-  },
-  {
-    title: '人工結果',
-    align: 'center',
-    render: (_, row) => '-',
-    width: 80,
-  },
+  { title: '玩法', render: (_, row) => '反波膽' },
   {
     title: '自動結帳',
     align: 'center',
@@ -48,10 +28,76 @@ const columns: ColumnsType<BlackIp> = [
     width: 80,
   },
   {
-    title: '狀態',
-    align: 'center',
-    render: (_, row) => '已結帳',
-    width: 80,
+    title: '即時',
+    children: [
+      {
+        title: '結果',
+        align: 'center',
+        render: (_, row) => (
+          <>
+            10
+            <br />2
+          </>
+        ),
+        width: 80,
+      },
+      {
+        title: '人工',
+        align: 'center',
+        render: (_, row) => '-',
+        width: 80,
+      },
+      {
+        title: '進度',
+        align: 'center',
+        render: (_, row) => '10/13',
+        width: 80,
+      },
+    ],
+  },
+  {
+    title: '全場',
+    children: [
+      {
+        title: '結果',
+        align: 'center',
+        render: (_, row) => (
+          <>
+            10
+            <br />2
+          </>
+        ),
+        width: 80,
+      },
+      {
+        title: '人工',
+        align: 'center',
+        render: (_, row) => '-',
+        width: 80,
+      },
+    ],
+  },
+  {
+    title: '半場',
+    children: [
+      {
+        title: '結果',
+        align: 'center',
+        render: (_, row) => (
+          <>
+            10
+            <br />2
+          </>
+        ),
+        width: 80,
+      },
+      {
+        title: '人工',
+        align: 'center',
+        render: (_, row) => '-',
+        width: 80,
+      },
+    ],
   },
   {
     title: '結帳人員/時間',
@@ -67,7 +113,7 @@ const columns: ColumnsType<BlackIp> = [
   {
     title: '操作',
     render(_, row) {
-      const [, setVisible] = usePopupProvider('editForm')
+      const [, setVisible] = usePopupProvider('createForm')
       const { getFormData } = useAPIService()
       const handleEdit = async (id: number) => {
         await getFormData(id)
@@ -81,7 +127,7 @@ const columns: ColumnsType<BlackIp> = [
             size="small"
             onClick={() => handleEdit(row.id)}
           >
-            重結
+            人工重結
           </Button>
         </Space>
       )
@@ -93,7 +139,7 @@ const columns: ColumnsType<BlackIp> = [
 const TableData: React.FC = () => {
   // const data = useTypedSelector(selectTableData)
   const data = [{ id: 99 }]
-  return <TableSets columns={columns} data={data} scroll={{ x: 1500 }} />
+  return <TableSets columns={columns} data={data} scroll={{ x: 1700 }} />
 }
 
 export default TableData
