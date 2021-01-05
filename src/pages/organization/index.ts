@@ -1,4 +1,3 @@
-export { default as LevelManage } from './LevelManage'
 export { default as MemberActivity } from './MemberActivity'
 export { default as MemberTag } from './MemberTag'
 export { default as MerchantManage } from './MerchantManage'
