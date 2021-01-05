@@ -24,11 +24,6 @@ export const CheckoutManage = new PageG(
   pages.CheckoutManage,
 )
 
-export const EventReview = new PageG(
-  '賽事結帳(deprecated)',
-  `${rootPath}/manage/review`,
-  pages.EventReview,
-)
 export const ManualReview = new PageG(
   '賽事結帳',
   `${rootPath}/manage/manual-review`,
@@ -42,6 +37,5 @@ RouteG.create([GameManage])
 MenuG.createCategory(rootName, rootPath, DribbbleOutlined, [
   GameManage,
   CheckoutManage,
-  EventReview,
   ManualReview,
 ])
