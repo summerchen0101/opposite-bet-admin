@@ -45,6 +45,11 @@ export const AgentManage = new PageG(
   `${rootPath}/agent`,
   pages.AgentManage,
 )
+export const MemberManage = new PageG(
+  '會員列表',
+  `${rootPath}/member`,
+  pages.MemberManage,
+)
 
 // ROUTERS
 RouteG.create([
@@ -53,6 +58,7 @@ RouteG.create([
   MemberTag,
   MerchantManage,
   AgentManage,
+  MemberManage,
 ])
 
 // MENU
@@ -62,4 +68,5 @@ MenuG.createCategory(rootName, rootPath, ApartmentOutlined, [
   MemberTag,
   MerchantManage,
   AgentManage,
+  MemberManage,
 ])

@@ -13,27 +13,14 @@ import { useAPIService } from '../service'
 
 const columns: ColumnsType<BlackIp> = [
   {
-    title: '總代',
+    title: '會員',
     width: 120,
     render: (_, row) => 'apple[頻果]',
   },
   {
-    title: '下層代理',
+    title: '標籤',
     width: 120,
-    render: (_, row) => <a>3</a>,
-  },
-  {
-    title: '直屬會員',
-    width: 120,
-    render: (_, row) => <a>3</a>,
-  },
-  {
-    title: '子帳號',
-    width: 120,
-    render: (_, row) => {
-      const [, setVisible] = usePopupProvider('aliasAccount')
-      return <a onClick={() => setVisible(true)}>3</a>
-    },
+    render: (_, row) => '危險客戶、同IP',
   },
   {
     title: '允許登入',
@@ -46,7 +33,7 @@ const columns: ColumnsType<BlackIp> = [
     render: (_, row) => '是',
   },
   {
-    title: '體育額度',
+    title: '可用餘額',
     width: 100,
     render: (_, row) => '0.00',
   },
@@ -61,7 +48,7 @@ const columns: ColumnsType<BlackIp> = [
     render: (_, row) => 0,
   },
   {
-    title: '建立時間',
+    title: '註冊時間',
     width: 200,
     render: (_, row) => '2020-09-16 14:25:42',
   },
