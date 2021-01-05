@@ -1,23 +1,19 @@
 import PopupModal from '@/components/PopupModal'
+import { IPBlockType, PlatformType } from '@/lib/enums'
+import { Form } from 'antd'
 import React from 'react'
 import { usePopupProvider } from '../context/PopupProvider'
-import DataForm, { FormData } from './DataForm'
-import { Button, Descriptions, Divider, Form, Table } from 'antd'
 import { useAPIService } from '../service'
-import { useTypedSelector, selectEditData } from '../selectors'
-import { ColumnsType } from 'antd/lib/table'
-import { IPBlockType, PlatformType } from '@/lib/enums'
+import DataForm, { FormData } from './DataForm'
 
-const EditPopup: React.FC = () => {
-  const [visible, setVisible] = usePopupProvider('editForm')
-  const [form] = Form.useForm()
-  const f = useTypedSelector(selectEditData)
-  const { onEdit } = useAPIService()
+const CreatePopup: React.FC = () => {
+  const [visible, setVisible] = usePopupProvider('createForm')
+  const { onCreate } = useAPIService()
+  const [form] = Form.useForm<FormData>()
   const handleSubmit = async () => {
     try {
       const v = (await form.validateFields()) as FormData
-      await onEdit({
-        id: f.id,
+      await onCreate({
         block_type: v.block_type,
         platform_type: v.platform_type,
         ip: v.ip,
@@ -34,18 +30,14 @@ const EditPopup: React.FC = () => {
     form.resetFields()
     setVisible(false)
   }
-  const columns: ColumnsType<any> = [
-    { title: '比分', render: (_, row) => '0-1' },
-    { title: '結帳', render: (_, row) => <Button>結帳</Button> },
-  ]
   return (
     <PopupModal
       visible={visible}
-      title="3381 結帳/重新結帳"
+      title="賽事結帳"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
-      destroyOnClose
       width={700}
+      footer={false}
     >
       <DataForm
         form={form}
@@ -61,4 +53,4 @@ const EditPopup: React.FC = () => {
   )
 }
 
-export default EditPopup
+export default CreatePopup

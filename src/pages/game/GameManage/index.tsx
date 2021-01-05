@@ -29,7 +29,7 @@ const GameManagePage: React.FC = () => {
             path={CheckoutManage.path}
             component={CheckoutManage.component}
           />
-          <Route path={ManualReview.path} component={ManualReview.component} />
+          {/* <Route path={ManualReview.path} component={ManualReview.component} /> */}
           <Route path={GameManage.path}>
             <Dashboard>
               <PageHeader />

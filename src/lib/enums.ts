@@ -49,3 +49,9 @@ export enum Language {
 export enum Currency {
   CN = 1,
 }
+
+export enum EventReviewStatus {
+  Pending = 1,
+  Proccessing = 2,
+  Done = 3,
+}

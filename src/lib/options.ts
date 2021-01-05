@@ -11,6 +11,7 @@ import {
   YesNo,
   Language,
   Currency,
+  EventReviewStatus,
 } from './enums'
 
 export const newsTypeOpts = [
@@ -70,3 +71,9 @@ export const bankCodeOpts = bankCodes.map((t) => ({
   label: `${t.name}(${t.code})`,
   value: t.code,
 }))
+
+export const eventReviewStatusOpts = [
+  { label: '未結帳', value: EventReviewStatus.Pending },
+  { label: '結帳中', value: EventReviewStatus.Proccessing },
+  { label: '已結帳', value: EventReviewStatus.Done },
+]

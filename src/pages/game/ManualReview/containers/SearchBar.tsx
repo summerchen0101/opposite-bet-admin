@@ -1,4 +1,5 @@
 import { IPBlockType, Status } from '@/lib/enums'
+import { eventReviewStatusOpts } from '@/lib/options'
 import { Button, DatePicker, Form, Select, Space } from 'antd'
 import React from 'react'
 import { useAPIService } from '../service'
@@ -20,12 +21,7 @@ const SearchBar: React.FC = () => {
       is_active: f.is_active,
     })
   }
-  const statusOpts = [
-    { label: '全部', value: 0 },
-    { label: '未結帳', value: 1 },
-    { label: '結帳中', value: 2 },
-    { label: '已結帳', value: 3 },
-  ]
+  const statusOpts = [{ label: '全部', value: 0 }, ...eventReviewStatusOpts]
   return (
     <Form form={form} layout="inline" className="mb-1">
       <Form.Item>
