@@ -17,7 +17,9 @@ const IconLink: React.FC<IconLinkProps> = ({ icon, label, ...props }) => {
   if (!label) return <CursorWrapper {...props}>{icon}</CursorWrapper>
   return (
     <Tooltip title={label}>
-      <CursorWrapper {...props}>{icon}</CursorWrapper>
+      <CursorWrapper {...props}>
+        <span style={{ fontSize: 16 }}>{icon}</span>
+      </CursorWrapper>
     </Tooltip>
   )
 }
