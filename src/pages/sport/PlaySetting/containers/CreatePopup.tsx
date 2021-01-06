@@ -14,14 +14,14 @@ const CreatePopup: React.FC = () => {
     try {
       const v = (await form.validateFields()) as FormData
       await onCreate({
-        home_score: v.home_score,
-        away_score: v.away_score,
-        odds: v.odds,
-        bet_amount_limit: v.bet_amount_limit,
-        single_bet_limit: v.single_bet_limit,
-        single_bet_least: v.single_bet_least,
-        auto_odds_amount_unit: v.auto_odds_amount_unit,
-        auto_odds_rate_unit: v.auto_odds_rate_unit,
+        home_score: +v.home_score,
+        away_score: +v.away_score,
+        odds: +v.odds,
+        bet_amount_limit: +v.bet_amount_limit,
+        single_bet_limit: +v.single_bet_limit,
+        single_bet_least: +v.single_bet_least,
+        auto_odds_amount_unit: +v.auto_odds_amount_unit,
+        auto_odds_rate_unit: +v.auto_odds_rate_unit,
         is_auto_odds: v.is_auto_odds,
         is_open_bet: true,
         is_active: true,

@@ -1,12 +1,7 @@
-import { Button, Form, Input, Radio, Select, Space, Switch } from 'antd'
+import { Form, Input, Radio, Select } from 'antd'
 import { FormInstance } from 'antd/lib/form'
 import React, { useEffect } from 'react'
-import {
-  useTypedSelector,
-  selectCountryOpts,
-  selectSportOpts,
-  selectGameOpts,
-} from '../selectors'
+import { selectGameOpts, useTypedSelector } from '../selectors'
 
 export interface FormData {
   id?: number
@@ -43,7 +38,11 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
       initialValues={values}
     >
       <Form.Item label="球種" name="game_id" rules={[{ required: true }]}>
-        <Select options={gameOpts} placeholder="請選擇" />
+        <Select
+          options={gameOpts}
+          placeholder="請選擇"
+          disabled={!!values.id}
+        />
       </Form.Item>
       <Form.Item
         label="名稱"

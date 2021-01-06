@@ -42,10 +42,18 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
       initialValues={values}
     >
       <Form.Item label="國家" name="country_id" rules={[{ required: true }]}>
-        <Select options={countryOpts} placeholder="請選擇" />
+        <Select
+          options={countryOpts}
+          placeholder="請選擇"
+          disabled={!!values.id}
+        />
       </Form.Item>
       <Form.Item label="體育" name="sport_id" rules={[{ required: true }]}>
-        <Select options={sportOpts} placeholder="請選擇" />
+        <Select
+          options={sportOpts}
+          placeholder="請選擇"
+          disabled={!!values.id}
+        />
       </Form.Item>
       <Form.Item
         label="名稱"

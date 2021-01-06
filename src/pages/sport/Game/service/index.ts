@@ -16,9 +16,11 @@ export const useAPIService = () => {
 
   const getOptions = async () => {
     try {
-      const countryRes = await API.Country.options()
+      const [countryRes, sportRes] = await Promise.all([
+        API.Country.options(),
+        API.Sport.options(),
+      ])
       dispatch(setCountryOpts(countryRes.data.list))
-      const sportRes = await API.Sport.options()
       dispatch(setSportOpts(sportRes.data.list))
     } catch (err) {
       apiErr(err)

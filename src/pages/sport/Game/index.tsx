@@ -15,8 +15,7 @@ const Manager: React.FC = () => {
   const { getTableData, getOptions } = useAPIService()
 
   useEffect(() => {
-    getTableData()
-    getOptions()
+    Promise.all([getTableData(), getOptions()])
   }, [])
 
   return (

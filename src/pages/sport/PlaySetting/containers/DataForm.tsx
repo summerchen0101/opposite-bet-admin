@@ -63,7 +63,7 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
       <Row gutter={16}>
         <Col span={12}>
           <Form.Item label="獲利率" name="odds" rules={[{ required: true }]}>
-            <NumberInput addonAfter="%" />
+            <Input addonAfter="%" />
           </Form.Item>
         </Col>
         <Col span={12}>
@@ -72,7 +72,7 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
             name="bet_amount_limit"
             rules={[{ required: true }]}
           >
-            <NumberInput addonAfter="萬" />
+            <NumberInput />
           </Form.Item>
         </Col>
 
@@ -111,7 +111,7 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
                 className="mb-0"
                 name="auto_odds_rate_unit"
               >
-                <NumberInput
+                <Input
                   placeholder="0.1"
                   addonAfter="%"
                   style={{ width: '120px' }}

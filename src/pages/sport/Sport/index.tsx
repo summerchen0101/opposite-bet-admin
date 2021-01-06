@@ -11,11 +11,10 @@ import { useAPIService } from './service'
 
 const Manager: React.FC = () => {
   useReducerInjector(moduleName, reducer)
-  const { getTableData, getOptions } = useAPIService()
+  const { getTableData } = useAPIService()
 
   useEffect(() => {
     getTableData()
-    getOptions()
   }, [])
 
   return (
