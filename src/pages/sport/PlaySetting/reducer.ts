@@ -39,9 +39,11 @@ const module = createSlice({
     },
     setSectionOpts(state, action: PayloadAction<SectionOption[]>) {
       state.sectionOpts = remoteOptsToLocalOpts(action.payload)
+      state.sectionId = state.sectionOpts[0]?.value
     },
     setPlayOpts(state, action: PayloadAction<PlayOption[]>) {
       state.playOpts = remoteOptsToLocalOpts(action.payload)
+      state.playId = state.playOpts[0]?.value
     },
     setSectionId(state, action: PayloadAction<number>) {
       state.sectionId = action.payload

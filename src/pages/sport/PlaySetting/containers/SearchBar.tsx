@@ -30,11 +30,19 @@ const SearchBar: React.FC = () => {
   const play_id = useTypedSelector(selectPlayId)
   const section_id = useTypedSelector(selectSectionId)
 
-  if (sectionOpts.length === 0 || playOpts.length === 0) return <></>
+  if (!play_id || !section_id) return <></>
 
   return (
-    <Form form={form} layout="inline" className="mb-1">
-      <Form.Item name="section_id" initialValue={section_id}>
+    <Form
+      form={form}
+      initialValues={{
+        section_id,
+        play_id,
+      }}
+      layout="inline"
+      className="mb-1"
+    >
+      <Form.Item name="section_id">
         <Radio.Group
           options={sectionOpts}
           optionType="button"
@@ -42,7 +50,7 @@ const SearchBar: React.FC = () => {
           onChange={onSearch}
         />
       </Form.Item>
-      <Form.Item name="play_id" initialValue={play_id}>
+      <Form.Item name="play_id">
         <Radio.Group
           options={playOpts}
           optionType="button"
