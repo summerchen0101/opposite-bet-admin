@@ -3,13 +3,17 @@ import {
   EditFilled,
   ShareAltOutlined,
   PieChartOutlined,
+  HomeOutlined,
 } from '@ant-design/icons'
-import { Space } from 'antd'
+import { Breadcrumb, Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
 import { BlackIp } from '../API/types'
 import { usePopupProvider } from '../context/PopupProvider'
 import { useAPIService } from '../service'
+import { MemberManage, AgentManage } from '../../routes'
+import { Link } from 'react-router-dom'
+import LevelTree from './LevelTree'
 
 const columns: ColumnsType<BlackIp> = [
   {
@@ -25,7 +29,7 @@ const columns: ColumnsType<BlackIp> = [
   {
     title: '直屬會員',
     width: 120,
-    render: (_, row) => <a>3</a>,
+    render: (_, row) => <Link to={MemberManage.path}>3</Link>,
   },
   {
     title: '子帳號',
@@ -126,7 +130,12 @@ const columns: ColumnsType<BlackIp> = [
 const TableData: React.FC = () => {
   // const data = useTypedSelector(selectTableData)
   const data = [{ id: 1 }]
-  return <TableSets columns={columns} data={data} scroll={{ x: 1600 }} />
+  return (
+    <>
+      <LevelTree />
+      <TableSets columns={columns} data={data} scroll={{ x: 1600 }} />
+    </>
+  )
 }
 
 export default TableData
