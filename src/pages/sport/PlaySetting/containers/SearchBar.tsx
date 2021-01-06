@@ -30,6 +30,13 @@ const SearchBar: React.FC = () => {
   const play_id = useTypedSelector(selectPlayId)
   const section_id = useTypedSelector(selectSectionId)
 
+  useEffect(() => {
+    form?.setFieldsValue({
+      section_id,
+      play_id,
+    })
+  }, [play_id, section_id])
+
   if (!play_id || !section_id) return <></>
 
   return (
