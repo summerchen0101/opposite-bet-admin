@@ -14,7 +14,7 @@ export interface FormData {
   note: string
   // country_id: number
   // sport_id: number
-  // game_id: number
+  game_id: number
   league_id: number
   is_active: boolean
 }
@@ -57,10 +57,15 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
           options={gameOpts}
           placeholder="請選擇"
           onChange={getLeagueOptions}
+          disabled={!!values.id}
         />
       </Form.Item>
       <Form.Item label="聯盟" name="league_id" rules={[{ required: true }]}>
-        <Select options={leagueOpts} placeholder="請選擇" />
+        <Select
+          options={leagueOpts}
+          placeholder="請選擇"
+          disabled={!!values.id}
+        />
       </Form.Item>
       <Form.Item
         label="名稱"

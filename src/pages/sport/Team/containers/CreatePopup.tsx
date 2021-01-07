@@ -38,7 +38,7 @@ const CreatePopup: React.FC = () => {
           note: '',
           // country_id: null,
           // sport_id: null,
-          // game_id: null,
+          game_id: null,
           league_id: null,
           is_active: true,
         }}

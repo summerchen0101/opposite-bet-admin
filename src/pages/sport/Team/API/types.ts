@@ -24,9 +24,6 @@ export interface Team {
   //   name: string
   // }
   league: {
-    code: string
-    country_id: number
-    sport_id: number
     game_id: number
     id: number
     name: string

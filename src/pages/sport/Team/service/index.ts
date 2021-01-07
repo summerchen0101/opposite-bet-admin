@@ -1,20 +1,22 @@
 import API from '@/API'
 import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { message } from 'antd'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { CreateTeam, EditTeam, TeamSearch } from '../API/types'
+import { useSearchProvider } from '../context/SearcProvider'
 import {
   setEditData,
-  setTableData,
-  setCountryOpts,
-  setSportOpts,
   setGameOpts,
   setLeagueOpts,
+  setTableData,
 } from '../reducer'
 
 export const useAPIService = () => {
   const { apiErr } = useErrorHandler()
   const dispatch = useDispatch()
+  const [gameId, setGameId] = useSearchProvider('gameId')
+  const [leagueId, setLeagueId] = useSearchProvider('leagueId')
 
   const getGameOptions = async () => {
     try {
@@ -30,7 +32,7 @@ export const useAPIService = () => {
       apiErr(err)
     }
   }
-  const getLeagueOptions = async (game_id: number) => {
+  const getLeagueOptions = async (game_id: number = gameId) => {
     try {
       const leagueRes = await API.League.options({ game_id })
       dispatch(setLeagueOpts(leagueRes.data.list))
@@ -50,7 +52,7 @@ export const useAPIService = () => {
 
   const getTableData = async (search?: TeamSearch) => {
     try {
-      const res = await API.Team.fetchAll(search)
+      const res = await API.Team.fetchAll({ league_id: leagueId, ...search })
       dispatch(setTableData(res.data.list))
     } catch (err) {
       apiErr(err)
