@@ -1,12 +1,9 @@
-import { statusOpts } from '@/lib/options'
 import { Form, Select } from 'antd'
 import React, { useEffect } from 'react'
 import { useSearchProvider } from '../context/SearcProvider'
 import {
-  selectCountryOpts,
   selectGameOpts,
   selectLeagueOpts,
-  selectSportOpts,
   useTypedSelector,
 } from '../selectors'
 import { useAPIService } from '../service'
@@ -17,7 +14,7 @@ interface SearchFormData {
 }
 
 const SearchBar: React.FC = () => {
-  const { getTableData, getLeagueOptions } = useAPIService()
+  const { getTableData, getLeagueOptions, getGameOptions } = useAPIService()
   const [form] = Form.useForm()
   const gameOpts = useTypedSelector(selectGameOpts)
   const leagueOpts = useTypedSelector(selectLeagueOpts)
@@ -34,7 +31,6 @@ const SearchBar: React.FC = () => {
       league_id: legId,
     })
   }
-  const { getGameOptions } = useAPIService()
 
   useEffect(() => {
     getGameOptions()
@@ -46,6 +42,7 @@ const SearchBar: React.FC = () => {
           options={gameOpts}
           style={{ width: '130px' }}
           onChange={handleGameChanged}
+          placeholder="請選擇"
         />
       </Form.Item>
       <Form.Item label="聯盟" name="league_id">
@@ -53,15 +50,9 @@ const SearchBar: React.FC = () => {
           options={leagueOpts}
           style={{ width: '130px' }}
           onChange={handleLeagueChanged}
+          placeholder="請選擇"
         />
       </Form.Item>
-      {/* <Form.Item label="狀態" name="is_active" initialValue={0}>
-        <Select
-          options={statusOpts}
-          style={{ width: '130px' }}
-          onChange={onSearch}
-        />
-      </Form.Item> */}
     </Form>
   )
 }

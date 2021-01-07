@@ -9,25 +9,22 @@ import TableData from './containers/TableData'
 import reducer, { moduleName } from './reducer'
 import { useAPIService } from './service'
 import SearchBar from './containers/SearchBar'
+import SearchProvider from './context/SearcProvider'
 
 const Manager: React.FC = () => {
   useReducerInjector(moduleName, reducer)
-  const { getTableData, getOptions } = useAPIService()
-
-  useEffect(() => {
-    getTableData()
-    getOptions()
-  }, [])
 
   return (
     <Dashboard>
-      <PopupProvider>
-        <PageHeader />
-        <SearchBar />
-        <TableData />
-        <PopupCreateForm />
-        <PopupEditForm />
-      </PopupProvider>
+      <SearchProvider>
+        <PopupProvider>
+          <PageHeader />
+          <SearchBar />
+          <TableData />
+          <PopupCreateForm />
+          <PopupEditForm />
+        </PopupProvider>
+      </SearchProvider>
     </Dashboard>
   )
 }

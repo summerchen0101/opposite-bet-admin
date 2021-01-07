@@ -1,64 +1,38 @@
-import { statusOpts } from '@/lib/options'
 import { Form, Select } from 'antd'
-import React from 'react'
-import {
-  selectCountryOpts,
-  selectGameOpts,
-  selectSportOpts,
-  useTypedSelector,
-} from '../selectors'
+import React, { useEffect } from 'react'
+import { useSearchProvider } from '../context/SearcProvider'
+import { selectGameOpts, useTypedSelector } from '../selectors'
 import { useAPIService } from '../service'
 
 interface SearchFormData {
-  // country_id: number
-  // sport_id: number
   game_id: number
 }
 
 const SearchBar: React.FC = () => {
-  const { getTableData } = useAPIService()
+  const { getTableData, getOptions } = useAPIService()
+  const [, setGameId] = useSearchProvider('gameId')
   const [form] = Form.useForm()
-  const onSearch = async () => {
-    const f = (await form.validateFields()) as SearchFormData
-    await getTableData({
-      // country_id: f.country_id,
-      // sport_id: f.sport_id,
-      game_id: f.game_id,
+  const handleGameChanged = (gameId) => {
+    setGameId(gameId)
+    getTableData({
+      game_id: gameId,
     })
   }
-  // const countryOpts = useTypedSelector(selectCountryOpts)
-  // const sportOpts = useTypedSelector(selectSportOpts)
+
+  useEffect(() => {
+    getOptions()
+  }, [])
   const gameOpts = useTypedSelector(selectGameOpts)
   return (
     <Form form={form} layout="inline" className="mb-1">
-      {/* <Form.Item label="國家" name="country_id" initialValue={0}>
+      <Form.Item label="球種" name="game_id">
         <Select
-          options={[{ label: '全部', value: 0 }, ...countryOpts]}
+          options={gameOpts}
           style={{ width: '130px' }}
-          onChange={onSearch}
+          onChange={handleGameChanged}
+          placeholder="請選擇"
         />
       </Form.Item>
-      <Form.Item label="體育" name="sport_id" initialValue={0}>
-        <Select
-          options={[{ label: '全部', value: 0 }, ...sportOpts]}
-          style={{ width: '130px' }}
-          onChange={onSearch}
-        />
-      </Form.Item> */}
-      <Form.Item label="球種" name="game_id" initialValue={0}>
-        <Select
-          options={[{ label: '全部', value: 0 }, ...gameOpts]}
-          style={{ width: '130px' }}
-          onChange={onSearch}
-        />
-      </Form.Item>
-      {/* <Form.Item label="狀態" name="is_active" initialValue={0}>
-        <Select
-          options={statusOpts}
-          style={{ width: '130px' }}
-          onChange={onSearch}
-        />
-      </Form.Item> */}
     </Form>
   )
 }

@@ -15,8 +15,8 @@ import {
 export const useAPIService = () => {
   const { apiErr } = useErrorHandler()
   const dispatch = useDispatch()
-  const [gameId, setGameId] = useSearchProvider('gameId')
-  const [leagueId, setLeagueId] = useSearchProvider('leagueId')
+  const [gameId] = useSearchProvider('gameId')
+  const [leagueId] = useSearchProvider('leagueId')
 
   const getGameOptions = async () => {
     try {
