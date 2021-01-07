@@ -14,6 +14,6 @@ interface Request {
 export const fetchAll = (reqData?: Request) =>
   Request.post<Response>('country/list', {
     page: 1,
-    perpage: 20,
+    perpage: 50,
     ...reqData,
   })

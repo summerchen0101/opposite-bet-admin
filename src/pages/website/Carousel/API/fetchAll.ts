@@ -11,6 +11,6 @@ type Request = SearchFields
 export const fetchAll = (reqData?: Request) =>
   Request.post<Response>('banner/list', {
     page: 1,
-    perpage: 20,
+    perpage: 50,
     ...reqData,
   })

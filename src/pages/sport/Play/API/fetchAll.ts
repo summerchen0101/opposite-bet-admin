@@ -14,6 +14,6 @@ interface Request {
 export const fetchAll = (reqData?: Request) =>
   Request.post<Response>('sport_play/list', {
     page: 1,
-    perpage: 20,
+    perpage: 50,
     ...reqData,
   })

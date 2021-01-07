@@ -14,6 +14,6 @@ interface Request extends SearchFields {
 export const fetchAll = (reqData?: Request) =>
   Request.post<Response>('news/list', {
     page: 1,
-    perpage: 20,
+    perpage: 50,
     ...reqData,
   })
