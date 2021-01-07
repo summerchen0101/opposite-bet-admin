@@ -12,6 +12,7 @@ import {
   Language,
   Currency,
   EventReviewStatus,
+  WinSideTeam,
 } from './enums'
 
 export const newsTypeOpts = [
@@ -76,4 +77,10 @@ export const eventReviewStatusOpts = [
   { label: '未結帳', value: EventReviewStatus.Pending },
   { label: '結帳中', value: EventReviewStatus.Proccessing },
   { label: '已結帳', value: EventReviewStatus.Done },
+]
+
+export const winSideTeamOpts = [
+  { label: '主', value: WinSideTeam.Home },
+  { label: '客', value: WinSideTeam.Away },
+  { label: '和', value: WinSideTeam.Even },
 ]

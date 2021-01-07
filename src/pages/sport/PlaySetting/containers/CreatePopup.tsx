@@ -39,7 +39,7 @@ const CreatePopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="新增玩法細項"
+      title="新增比分"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
     >

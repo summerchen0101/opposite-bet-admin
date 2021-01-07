@@ -12,10 +12,12 @@ import {
   useTypedSelector,
 } from '../selectors'
 import { useAPIService } from '../service'
+import { checkWinSide, toOptionName } from '@/utils/transfer'
+import { winSideTeamOpts } from '@/lib/options'
 
 const columns: ColumnsType<PlaySetting> = [
   {
-    title: '玩法細項',
+    title: '比分',
     width: 80,
     align: 'center',
     render: (_, row) => `${row.home_score}-${row.away_score}`,
@@ -77,7 +79,7 @@ const columns: ColumnsType<PlaySetting> = [
 ]
 
 const TableData: React.FC = () => {
-  const data = useTypedSelector(selectTableData)
+  const groupData = useTypedSelector(selectTableData)
   const { getTableData } = useAPIService()
 
   const play_id = useTypedSelector(selectPlayId)
@@ -87,7 +89,16 @@ const TableData: React.FC = () => {
     getTableData()
   }, [play_id, section_id])
 
-  return <TableSets columns={columns} data={data} scroll={{ x: 1000 }} />
+  return (
+    <>
+      {Object.entries(groupData).map(([key, data], i) => (
+        <div key={i}>
+          <h3>{toOptionName(winSideTeamOpts, +key)}</h3>
+          <TableSets columns={columns} data={data} scroll={{ x: 1000 }} />
+        </div>
+      ))}
+    </>
+  )
 }
 
 export default TableData

@@ -36,7 +36,7 @@ const EditPopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="編輯玩法細項"
+      title="編輯比分"
       onCancel={() => setVisible(false)}
       onOk={() => handleSubmit()}
       afterClose={() => form.resetFields()}

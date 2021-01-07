@@ -1,5 +1,5 @@
 import { OptionsType } from '@/lib/types'
-import { remoteOptsToLocalOpts } from '@/utils/transfer'
+import { checkWinSide, remoteOptsToLocalOpts } from '@/utils/transfer'
 import {
   ActionReducerMapBuilder,
   createSlice,
@@ -8,8 +8,9 @@ import {
 import { PlayOption } from '../Play/API/types'
 import { SectionOption } from '../Section/API/types'
 import { PlaySetting, SearchFields } from './API/types'
+import _ from 'lodash'
 export interface IState {
-  tableData: PlaySetting[]
+  tableData: Record<string, PlaySetting[]>
   editData: PlaySetting
   sectionOpts: OptionsType<number>
   playOpts: OptionsType<number>
@@ -17,7 +18,7 @@ export interface IState {
   playId: number
 }
 const initialState: IState = {
-  tableData: [],
+  tableData: {},
   editData: null,
   sectionOpts: [],
   playOpts: [],
@@ -32,7 +33,11 @@ const module = createSlice({
   initialState,
   reducers: {
     setTableData(state, action: PayloadAction<PlaySetting[]>) {
-      state.tableData = action.payload
+      const _data = _(action.payload)
+        .sortBy(['home_score', 'away_score'])
+        .groupBy((t) => checkWinSide(t.home_score, t.away_score))
+        .value()
+      state.tableData = _data
     },
     setEditData(state, action: PayloadAction<PlaySetting>) {
       state.editData = action.payload

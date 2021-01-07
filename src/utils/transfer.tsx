@@ -1,4 +1,4 @@
-import { LevelCode } from '@/lib/enums'
+import { LevelCode, WinSideTeam } from '@/lib/enums'
 import { OptionsType } from '@/lib/types'
 import { ColumnsType } from 'antd/lib/table'
 import moment from 'moment'
@@ -57,4 +57,13 @@ export const remoteOptsToLocalOpts = function <T>(
   remoteOpts: { name: string; id: T }[],
 ): OptionsType<T> {
   return remoteOpts.map((t) => ({ label: t.name, value: t.id }))
+}
+
+export const checkWinSide = (homeScore, awayScore) => {
+  if (homeScore > awayScore) {
+    return WinSideTeam.Home
+  } else if (homeScore < awayScore) {
+    return WinSideTeam.Away
+  }
+  return WinSideTeam.Even
 }

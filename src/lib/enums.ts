@@ -55,3 +55,9 @@ export enum EventReviewStatus {
   Proccessing = 2,
   Done = 3,
 }
+
+export enum WinSideTeam {
+  Home = 1,
+  Away = 2,
+  Even = 3,
+}
