@@ -18,14 +18,6 @@ export const selectEditData = createSelector(
   selectModuleState,
   (moduleState) => moduleState.editData,
 )
-export const selectCountryOpts = createSelector(
-  selectModuleState,
-  (moduleState) => moduleState.countryOpts,
-)
-export const selectSportOpts = createSelector(
-  selectModuleState,
-  (moduleState) => moduleState.sportOpts,
-)
 export const selectGameOpts = createSelector(
   selectModuleState,
   (moduleState) => moduleState.gameOpts,
@@ -33,4 +25,8 @@ export const selectGameOpts = createSelector(
 export const selectLeagueOpts = createSelector(
   selectModuleState,
   (moduleState) => moduleState.leagueOpts,
+)
+export const selectPagination = createSelector(
+  selectModuleState,
+  (moduleState) => moduleState.pagination,
 )

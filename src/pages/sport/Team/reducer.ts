@@ -7,7 +7,7 @@ import { Team } from './API/types'
 import { CountryOption } from '../Country/API/types'
 import { SportOption } from '../Sport/API/types'
 import { remoteOptsToLocalOpts } from '@/utils/transfer'
-import { OptionsType } from '@/lib/types'
+import { OptionsType, RemotePagination } from '@/lib/types'
 import { GameOption } from '../Game/API/types'
 import { LeagueOption } from '../League/API/types'
 export interface IState {
@@ -17,9 +17,14 @@ export interface IState {
   sportOpts: OptionsType<number>
   gameOpts: OptionsType<number>
   leagueOpts: OptionsType<number>
+  pagination: RemotePagination
 }
 const initialState: IState = {
   tableData: [],
+  pagination: {
+    total_count: 0,
+    total_page: 0,
+  },
   editData: null,
   countryOpts: [],
   sportOpts: [],
@@ -35,6 +40,9 @@ const module = createSlice({
   reducers: {
     setTableData(state, action: PayloadAction<Team[]>) {
       state.tableData = action.payload
+    },
+    setPagination(state, action: PayloadAction<RemotePagination>) {
+      state.pagination = action.payload
     },
     setEditData(state, action: PayloadAction<Team>) {
       state.editData = action.payload
@@ -62,5 +70,6 @@ export const {
   setSportOpts,
   setGameOpts,
   setLeagueOpts,
+  setPagination,
 } = module.actions
 export default module.reducer

@@ -10,6 +10,7 @@ import {
   setGameOpts,
   setLeagueOpts,
   setTableData,
+  setPagination,
 } from '../reducer'
 
 export const useAPIService = () => {
@@ -17,6 +18,7 @@ export const useAPIService = () => {
   const dispatch = useDispatch()
   const [gameId] = useSearchProvider('gameId')
   const [leagueId] = useSearchProvider('leagueId')
+  const [perpage] = useSearchProvider('perpage')
 
   const getGameOptions = async () => {
     try {
@@ -52,8 +54,14 @@ export const useAPIService = () => {
 
   const getTableData = async (search?: TeamSearch) => {
     try {
-      const res = await API.Team.fetchAll({ league_id: leagueId, ...search })
+      const res = await API.Team.fetchAll({
+        league_id: leagueId,
+        perpage,
+        ...search,
+      })
       dispatch(setTableData(res.data.list))
+      const { total_count, total_page } = res.data
+      dispatch(setPagination({ total_count, total_page }))
     } catch (err) {
       apiErr(err)
     }

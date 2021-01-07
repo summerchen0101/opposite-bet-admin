@@ -12,7 +12,11 @@ import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
 import { Team } from '../API/types'
 import { usePopupProvider } from '../context/PopupProvider'
-import { selectTableData, useTypedSelector } from '../selectors'
+import {
+  selectTableData,
+  useTypedSelector,
+  selectPagination,
+} from '../selectors'
 import { useAPIService } from '../service'
 
 const columns: ColumnsType<Team> = [
@@ -101,7 +105,21 @@ const columns: ColumnsType<Team> = [
 
 const TableData: React.FC = () => {
   const data = useTypedSelector(selectTableData)
-  return <TableSets<Team> columns={columns} data={data} />
+  const { total_count, total_page } = useTypedSelector(selectPagination)
+  const { getTableData } = useAPIService()
+  return (
+    <TableSets
+      columns={columns}
+      data={data}
+      pagination={{
+        pageSize: 20,
+        total: total_count,
+        onChange: (page) => {
+          getTableData({ page })
+        },
+      }}
+    />
+  )
 }
 
 export default TableData

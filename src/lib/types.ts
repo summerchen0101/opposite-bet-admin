@@ -1,20 +1,6 @@
 import { ColumnsType } from 'antd/lib/table'
 import { LevelCode } from './enums'
 
-type RemotePermissionType = 'Y' | 'N'
-
-export interface RemotePermission {
-  VIEW: RemotePermissionType
-  EDIT: RemotePermissionType
-}
-
-export interface RemotePagination {
-  page_nums: number
-  total_rows: number
-  current_page: number
-  total_pages: number
-}
-
 export class ResponseBase<T> {
   code: number
   data: T
@@ -47,3 +33,8 @@ export interface Option<T> {
   value: T
 }
 export type OptionsType<T> = Option<T>[]
+
+export interface RemotePagination {
+  total_count: number
+  total_page: number
+}
