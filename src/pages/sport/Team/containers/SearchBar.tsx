@@ -1,3 +1,4 @@
+import { perpageOpts } from '@/lib/options'
 import { Form, Select } from 'antd'
 import React, { useEffect } from 'react'
 import { useSearchProvider } from '../context/SearcProvider'
@@ -64,11 +65,7 @@ const SearchBar: React.FC = () => {
       </Form.Item>
       <Form.Item label="每頁顯示" name="perpage" initialValue={20}>
         <Select
-          options={[
-            { label: '10筆', value: 10 },
-            { label: '20筆', value: 20 },
-            { label: '50筆', value: 50 },
-          ]}
+          options={perpageOpts}
           style={{ width: '80px' }}
           onChange={handlePerpageChanged}
         />

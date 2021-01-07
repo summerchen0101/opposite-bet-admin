@@ -84,3 +84,9 @@ export const winSideTeamOpts = [
   { label: '客', value: WinSideTeam.Away },
   { label: '和', value: WinSideTeam.Even },
 ]
+
+export const perpageOpts = [
+  { label: '10筆', value: 10 },
+  { label: '20筆', value: 20 },
+  { label: '50筆', value: 50 },
+]
