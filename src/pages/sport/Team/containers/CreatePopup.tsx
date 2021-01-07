@@ -35,9 +35,8 @@ const CreatePopup: React.FC = () => {
         form={form}
         values={{
           name: '',
+          name_en: '',
           note: '',
-          // country_id: null,
-          // sport_id: null,
           game_id: null,
           league_id: null,
           is_active: true,

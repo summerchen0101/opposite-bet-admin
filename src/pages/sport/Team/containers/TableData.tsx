@@ -26,21 +26,11 @@ const columns: ColumnsType<Team> = [
     width: 180,
     render: (_, row) => row.name,
   },
-  // {
-  //   title: '365代碼',
-  //   width: 100,
-  //   render: (_, row) => row.bet365_code,
-  // },
-  // {
-  //   title: '國家',
-  //   width: 100,
-  //   render: (_, row) => row.country.name,
-  // },
-  // {
-  //   title: '體育',
-  //   width: 100,
-  //   render: (_, row) => row.sport.name,
-  // },
+  {
+    title: '英文名稱',
+    width: 180,
+    render: (_, row) => row.name_en,
+  },
   {
     title: '聯盟',
     width: 180,

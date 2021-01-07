@@ -40,9 +40,8 @@ const EditPopup: React.FC = () => {
           values={{
             id: f.id,
             name: f.name,
+            name_en: f.name_en,
             note: f.note,
-            // country_id: f.country.id,
-            // sport_id: f.sport.id,
             game_id: f.league.game_id,
             league_id: f.league.id,
             is_active: f.is_active,
