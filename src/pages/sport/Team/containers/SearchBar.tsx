@@ -21,6 +21,7 @@ const SearchBar: React.FC = () => {
   const [, setGameId] = useSearchProvider('gameId')
   const [, setLeagueId] = useSearchProvider('leagueId')
   const [, setPerpage] = useSearchProvider('perpage')
+  const [, setPage] = useSearchProvider('page')
 
   const handleGameChanged = (gameId) => {
     setGameId(gameId)
@@ -32,8 +33,12 @@ const SearchBar: React.FC = () => {
       league_id: legId,
     })
   }
-  const handlePerpageChanged = (perpage) => {
+  const handlePerpageChanged = async (perpage) => {
+    await getTableData({
+      perpage,
+    })
     setPerpage(perpage)
+    setPage(1)
   }
 
   useEffect(() => {
@@ -57,7 +62,7 @@ const SearchBar: React.FC = () => {
           placeholder="請選擇"
         />
       </Form.Item>
-      {/* <Form.Item label="每頁顯示" name="perpage" initialValue={20}>
+      <Form.Item label="每頁顯示" name="perpage" initialValue={20}>
         <Select
           options={[
             { label: '10筆', value: 10 },
@@ -67,7 +72,7 @@ const SearchBar: React.FC = () => {
           style={{ width: '80px' }}
           onChange={handlePerpageChanged}
         />
-      </Form.Item> */}
+      </Form.Item>
     </Form>
   )
 }

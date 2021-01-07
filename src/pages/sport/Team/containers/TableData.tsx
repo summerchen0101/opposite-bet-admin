@@ -7,11 +7,12 @@ import {
   CloseCircleOutlined,
   EditFilled,
 } from '@ant-design/icons'
-import { Space } from 'antd'
+import { Pagination, Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
 import { Team } from '../API/types'
 import { usePopupProvider } from '../context/PopupProvider'
+import { useSearchProvider } from '../context/SearcProvider'
 import {
   selectTableData,
   useTypedSelector,
@@ -107,18 +108,29 @@ const TableData: React.FC = () => {
   const data = useTypedSelector(selectTableData)
   const { total_count, total_page } = useTypedSelector(selectPagination)
   const { getTableData } = useAPIService()
+  const [perpage] = useSearchProvider('perpage')
+  const [page, setPage] = useSearchProvider('page')
   return (
-    <TableSets
-      columns={columns}
-      data={data}
-      pagination={{
-        pageSize: 20,
-        total: total_count,
-        onChange: (page) => {
-          getTableData({ page })
-        },
-      }}
-    />
+    <>
+      <TableSets
+        className="mb-1"
+        columns={columns}
+        data={data}
+        pagination={false}
+      />
+      <Pagination
+        size="small"
+        className="float-right"
+        style={{ visibility: total_count ? 'visible' : 'hidden' }}
+        pageSize={perpage}
+        total={total_count}
+        current={page}
+        onChange={async (page) => {
+          await getTableData({ page })
+          setPage(page)
+        }}
+      />
+    </>
   )
 }
 

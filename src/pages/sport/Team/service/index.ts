@@ -1,7 +1,7 @@
 import API from '@/API'
 import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { message } from 'antd'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { CreateTeam, EditTeam, TeamSearch } from '../API/types'
 import { useSearchProvider } from '../context/SearcProvider'
@@ -22,14 +22,8 @@ export const useAPIService = () => {
 
   const getGameOptions = async () => {
     try {
-      // const countryRes = await API.Country.options()
-      // dispatch(setCountryOpts(countryRes.data.countries))
-      // const sportRes = await API.Sport.options()
-      // dispatch(setSportOpts(sportRes.data.sports))
       const gameRes = await API.Game.options()
       dispatch(setGameOpts(gameRes.data.list))
-      // const leagueRes = await API.League.options()
-      // dispatch(setLeagueOpts(leagueRes.data.list))
     } catch (err) {
       apiErr(err)
     }
@@ -53,12 +47,16 @@ export const useAPIService = () => {
   }
 
   const getTableData = async (search?: TeamSearch) => {
+    const searchQuery = {
+      league_id: leagueId,
+      perpage,
+      ...search,
+    }
+    if (!searchQuery.league_id) {
+      return
+    }
     try {
-      const res = await API.Team.fetchAll({
-        league_id: leagueId,
-        perpage,
-        ...search,
-      })
+      const res = await API.Team.fetchAll(searchQuery)
       dispatch(setTableData(res.data.list))
       const { total_count, total_page } = res.data
       dispatch(setPagination({ total_count, total_page }))
