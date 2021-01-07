@@ -90,3 +90,11 @@ export const perpageOpts = [
   { label: '20筆', value: 20 },
   { label: '50筆', value: 50 },
 ]
+
+export const paywayOpts = [
+  { label: '網路匯款', value: 1 },
+  { label: 'ATM付款', value: 2 },
+  { label: 'CDM付款', value: 3 },
+  { label: '臨櫃', value: 4 },
+  { label: '未知', value: 5 },
+]

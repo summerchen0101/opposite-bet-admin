@@ -1,5 +1,5 @@
 import { IPBlockType, PlatformType } from '@/lib/enums'
-import { IPBlockTypeOpts, platformTypeOpts } from '@/lib/options'
+import { IPBlockTypeOpts, paywayOpts, platformTypeOpts } from '@/lib/options'
 import {
   Col,
   DatePicker,
@@ -8,6 +8,7 @@ import {
   Input,
   Radio,
   Row,
+  Select,
   Switch,
 } from 'antd'
 import DescriptionsItem from 'antd/lib/descriptions/Item'
@@ -33,21 +34,24 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
   return (
     <Form layout="vertical" form={form} initialValues={values}>
       <Descriptions column={1} bordered size="small">
+        <DescriptionsItem label="廠商">ABC</DescriptionsItem>
+        <DescriptionsItem label="上層代理">apple[頻果]</DescriptionsItem>
         <DescriptionsItem label="會員名稱">gogoro[陳]</DescriptionsItem>
-        <DescriptionsItem label="建立時間">
+        <DescriptionsItem label="核發金額">1000</DescriptionsItem>
+        <DescriptionsItem label="匯款時間">
           2020-12-09 12:00:33
         </DescriptionsItem>
+        <DescriptionsItem label="支付方式">
+          <Form.Item>
+            <Select options={paywayOpts} defaultValue={1} />
+          </Form.Item>
+        </DescriptionsItem>
 
-        <DescriptionsItem label="充值類型">公司入款</DescriptionsItem>
-
-        <DescriptionsItem label="轉出銀行">中国农业银行</DescriptionsItem>
-        <DescriptionsItem label="轉出帳戶姓名">王大明</DescriptionsItem>
-        <DescriptionsItem label="充值渠道">銀行卡</DescriptionsItem>
-        <DescriptionsItem label="存入銀行">國泰世華銀行</DescriptionsItem>
-        <DescriptionsItem label="存入帳戶名稱">陳小美</DescriptionsItem>
-        <DescriptionsItem label="存入帳號">9876543210</DescriptionsItem>
-        <DescriptionsItem label="存入金額">3,000.00</DescriptionsItem>
-        <DescriptionsItem label="備註">
+        <DescriptionsItem label="後五碼">12345</DescriptionsItem>
+        <DescriptionsItem label="備註(後台)">
+          <Input.TextArea />
+        </DescriptionsItem>
+        <DescriptionsItem label="備註(會員端)">
           <Input.TextArea />
         </DescriptionsItem>
       </Descriptions>

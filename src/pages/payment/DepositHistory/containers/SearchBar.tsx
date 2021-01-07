@@ -1,7 +1,7 @@
 import { OptionalDateRangePicker } from '@/components'
 import { IPBlockType, Status } from '@/lib/enums'
-import { IPBlockTypeOpts, statusOpts } from '@/lib/options'
-import { DatePicker, Form, Input, Select } from 'antd'
+import { IPBlockTypeOpts, paywayOpts, statusOpts } from '@/lib/options'
+import { DatePicker, Form, Input, Select, Space } from 'antd'
 import { Moment } from 'moment'
 import React from 'react'
 import { useAPIService } from '../service'
@@ -25,33 +25,62 @@ const SearchBar: React.FC = () => {
   }
   return (
     <Form form={form} layout="inline" className="mb-1">
-      <Form.Item
-        label="狀態"
-        name="is_active"
-        initialValue={1}
-        style={{ width: '180px' }}
-      >
+      <Form.Item label="廠商" name="merchant">
         <Select
-          options={[
-            { label: '待審核', value: 1 },
-            { label: '已完成', value: 2 },
-            { label: '已取消', value: 3 },
-          ]}
+          placeholder="請選擇"
+          options={[{ label: 'abc', value: 1 }]}
+          style={{ width: '150px' }}
         />
       </Form.Item>
-      <Form.Item label="訂單編號">
-        <Input.Search />
-      </Form.Item>
       <Form.Item label="會員帳號">
-        <Input.Search />
+        <Input.Search style={{ width: '150px' }} />
       </Form.Item>
       <Form.Item label="日期">
         <OptionalDateRangePicker
           options={[
             { label: '申請時間', value: 'applyAt' },
-            { label: '稽核時間', value: 'reviewAt' },
+            { label: '匯款時間', value: 'reviewAt' },
           ]}
           selectedValue="applyAt"
+        />
+      </Form.Item>
+      <Form.Item label="公司帳戶帳號">
+        <Input.Search style={{ width: '150px' }} />
+      </Form.Item>
+      <Form.Item label="公司帳戶名稱">
+        <Input.Search style={{ width: '150px' }} />
+      </Form.Item>
+      <Form.Item label="儲值金額">
+        <Input.Group compact>
+          <Form.Item className="mb-0">
+            <Input
+              placeholder="最小值"
+              style={{ width: '120px' }}
+              addonAfter="~"
+            />
+          </Form.Item>
+          <Form.Item className="mb-0">
+            <Input placeholder="最大值" style={{ width: '90px' }} />
+          </Form.Item>
+        </Input.Group>
+      </Form.Item>
+      <Form.Item label="申請單類型" name="apply_type">
+        <Select
+          mode="multiple"
+          allowClear
+          options={[
+            { label: '線下充值', value: 1 },
+            { label: '線下充值-直接核發', value: 2 },
+          ]}
+          style={{ width: '160px' }}
+        />
+      </Form.Item>
+      <Form.Item label="支付方式" name="pay_type">
+        <Select
+          mode="multiple"
+          allowClear
+          options={paywayOpts}
+          style={{ width: '200px' }}
         />
       </Form.Item>
     </Form>
