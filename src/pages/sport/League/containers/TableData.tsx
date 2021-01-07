@@ -101,7 +101,7 @@ const columns: ColumnsType<League> = [
 
 const TableData: React.FC = () => {
   const data = useTypedSelector(selectTableData)
-  return <TableSets<League> columns={columns} data={data} />
+  return <TableSets columns={columns} data={data} />
 }
 
 export default TableData

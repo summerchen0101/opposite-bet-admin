@@ -26,7 +26,3 @@ export const selectLeagueOpts = createSelector(
   selectModuleState,
   (moduleState) => moduleState.leagueOpts,
 )
-export const selectPagination = createSelector(
-  selectModuleState,
-  (moduleState) => moduleState.pagination,
-)

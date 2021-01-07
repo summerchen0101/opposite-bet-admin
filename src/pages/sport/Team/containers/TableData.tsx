@@ -13,11 +13,7 @@ import React from 'react'
 import { Team } from '../API/types'
 import { usePopupProvider } from '../context/PopupProvider'
 import { useSearchProvider } from '../context/SearcProvider'
-import {
-  selectTableData,
-  useTypedSelector,
-  selectPagination,
-} from '../selectors'
+import { selectTableData, useTypedSelector } from '../selectors'
 import { useAPIService } from '../service'
 
 const columns: ColumnsType<Team> = [
@@ -96,31 +92,24 @@ const columns: ColumnsType<Team> = [
 
 const TableData: React.FC = () => {
   const data = useTypedSelector(selectTableData)
-  const { total_count, total_page } = useTypedSelector(selectPagination)
   const { getTableData } = useAPIService()
   const [perpage] = useSearchProvider('perpage')
   const [page, setPage] = useSearchProvider('page')
+  const [total] = useSearchProvider('total')
   return (
-    <>
-      <TableSets
-        className="mb-1"
-        columns={columns}
-        data={data}
-        pagination={false}
-      />
-      <Pagination
-        size="small"
-        className="float-right"
-        style={{ visibility: total_count ? 'visible' : 'hidden' }}
-        pageSize={perpage}
-        total={total_count}
-        current={page}
-        onChange={async (page) => {
+    <TableSets
+      columns={columns}
+      data={data}
+      pagination={{
+        perpage,
+        total,
+        page,
+        onChange: async (page) => {
           await getTableData({ page })
           setPage(page)
-        }}
-      />
-    </>
+        },
+      }}
+    />
   )
 }
 

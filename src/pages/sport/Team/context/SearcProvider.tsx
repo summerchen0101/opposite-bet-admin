@@ -6,6 +6,7 @@ interface IState {
   leagueId: SearchProps<number>
   perpage: SearchProps<number>
   page: SearchProps<number>
+  total: SearchProps<number>
 }
 
 const SearchContext = createContext<IState | null>(null)
@@ -16,6 +17,7 @@ const SearchProvider: React.FC = ({ children }) => {
     leagueId: useState<number>(null),
     perpage: useState<number>(20),
     page: useState<number>(1),
+    total: useState<number>(0),
   }
   return (
     <SearchContext.Provider value={initialState}>

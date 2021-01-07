@@ -17,14 +17,9 @@ export interface IState {
   sportOpts: OptionsType<number>
   gameOpts: OptionsType<number>
   leagueOpts: OptionsType<number>
-  pagination: RemotePagination
 }
 const initialState: IState = {
   tableData: [],
-  pagination: {
-    total_count: 0,
-    total_page: 0,
-  },
   editData: null,
   countryOpts: [],
   sportOpts: [],
@@ -40,9 +35,6 @@ const module = createSlice({
   reducers: {
     setTableData(state, action: PayloadAction<Team[]>) {
       state.tableData = action.payload
-    },
-    setPagination(state, action: PayloadAction<RemotePagination>) {
-      state.pagination = action.payload
     },
     setEditData(state, action: PayloadAction<Team>) {
       state.editData = action.payload
@@ -70,6 +62,5 @@ export const {
   setSportOpts,
   setGameOpts,
   setLeagueOpts,
-  setPagination,
 } = module.actions
 export default module.reducer

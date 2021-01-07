@@ -68,7 +68,7 @@ const columns: ColumnsType<Page> = [
 
 const TableData: React.FC = () => {
   const data = useTypedSelector(selectTableData)
-  return <TableSets columns={columns} data={data} pagination={false} />
+  return <TableSets columns={columns} data={data} pagination={null} />
 }
 
 export default TableData
