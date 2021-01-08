@@ -38,11 +38,6 @@ export const CompanyBankAcc = new PageG(
   `${rootPath}/company-bank-acc`,
   pages.CompanyBankAcc,
 )
-export const ManualPoint = new PageG(
-  '人工加減碼(deprecated)',
-  `${rootPath}/manual-point`,
-  pages.ManualPoint,
-)
 export const ManualOperator = new PageG(
   '人工加減碼',
   `${rootPath}/manual-operator`,
@@ -52,21 +47,6 @@ export const BankAccountSetting = new PageG(
   '銀行帳戶',
   `${rootPath}/bank-account-setting`,
   pages.BankAccountSetting,
-)
-export const DepositAccount = new PageG(
-  '充值帳戶管理',
-  `${rootPath}/deposit-account`,
-  pages.DepositAccount,
-)
-export const WithdrawAccount = new PageG(
-  '提領帳戶管理',
-  `${rootPath}/withdraw-account`,
-  pages.WithdrawAccount,
-)
-export const ThirdPartyPayment = new PageG(
-  '第三方支付管理(deprecated)',
-  `${rootPath}/third-party`,
-  pages.ThirdPartyPayment,
 )
 export const ThirdPartyManage = new PageG(
   '線上支付系統',
@@ -78,10 +58,6 @@ RouteG.create([
   DepositHistory,
   WithdrawHistory,
   BankAccountSetting,
-  ManualPoint,
-  DepositAccount,
-  WithdrawAccount,
-  ThirdPartyPayment,
   ThirdPartyDepositHistory,
   OverView,
   MemberBankAcc,
@@ -100,8 +76,4 @@ MenuG.createCategory(rootName, rootPath, DollarOutlined, [
   CompanyBankAcc,
   ThirdPartyManage,
   ManualOperator,
-  ManualPoint,
-  DepositAccount,
-  WithdrawAccount,
-  ThirdPartyPayment,
 ])
