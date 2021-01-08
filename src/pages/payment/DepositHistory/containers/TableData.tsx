@@ -1,9 +1,5 @@
 import { IconLink, TableSets } from '@/components'
-import {
-  EditFilled,
-  FileDoneOutlined,
-  FileSearchOutlined,
-} from '@ant-design/icons'
+import { EditFilled, FileSearchOutlined } from '@ant-design/icons'
 import { Popover, Space, Tabs } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'

@@ -36,7 +36,7 @@ const EditPopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="提領審核"
+      title="出金申請審核"
       onCancel={handleCancel}
       footer={[
         <Button key="reset" type="primary" onClick={handleCancel}>
@@ -47,6 +47,7 @@ const EditPopup: React.FC = () => {
         </Button>,
       ]}
       destroyOnClose
+      width={750}
     >
       {f && (
         <DataForm

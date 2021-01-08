@@ -9,12 +9,12 @@ const rootPath = '/payment'
 
 // PAGES
 export const DepositHistory = new PageG(
-  '充值紀錄',
+  '會員充值紀錄',
   `${rootPath}/deposit-history`,
   pages.DepositHistory,
 )
 export const WithdrawHistory = new PageG(
-  '提領紀錄',
+  '會員出金紀錄',
   `${rootPath}/withdraw-history`,
   pages.WithdrawHistory,
 )

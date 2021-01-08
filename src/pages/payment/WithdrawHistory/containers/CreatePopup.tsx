@@ -33,7 +33,7 @@ const CreatePopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="提領審核"
+      title="出金申請審核"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
       footer={[
@@ -44,6 +44,7 @@ const CreatePopup: React.FC = () => {
           拒絕
         </Button>,
       ]}
+      width={750}
     >
       <DataForm
         form={form}
