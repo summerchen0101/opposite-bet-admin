@@ -23,6 +23,11 @@ export const WithdrawHistory = new PageG(
   `${rootPath}/withdraw-history`,
   pages.WithdrawHistory,
 )
+export const OverView = new PageG(
+  '申請總覽',
+  `${rootPath}/overview`,
+  pages.OverView,
+)
 export const ManualPoint = new PageG(
   '人工加減碼',
   `${rootPath}/manual-point`,
@@ -58,6 +63,7 @@ RouteG.create([
   WithdrawAccount,
   ThirdPartyPayment,
   ThirdPartyDepositHistory,
+  OverView,
 ])
 
 // MENU
@@ -65,6 +71,7 @@ MenuG.createCategory(rootName, rootPath, DollarOutlined, [
   ThirdPartyDepositHistory,
   DepositHistory,
   WithdrawHistory,
+  OverView,
   ManualPoint,
   DepositAccount,
   WithdrawAccount,
