@@ -58,7 +58,7 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
           </Form.Item>
         </Col>
         <Col span={12}>
-          <Form.Item label="累積充值額上限">
+          <Form.Item label="累積充值上限">
             <Input />
           </Form.Item>
         </Col>

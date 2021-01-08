@@ -3,6 +3,10 @@ import {
   FileSearchOutlined,
   HistoryOutlined,
   EditFilled,
+  CheckOutlined,
+  CloseOutlined,
+  CloseCircleOutlined,
+  CheckCircleOutlined,
   StarOutlined,
 } from '@ant-design/icons'
 import { Button, Popover, Space, Switch, Tabs, Tooltip } from 'antd'
@@ -19,31 +23,26 @@ const columns: ColumnsType<BlackIp> = [
     width: 80,
   },
   {
-    title: '帳戶狀態',
-    render: (_, row) => <ColorText green>啟用</ColorText>,
+    title: '帳戶狀態/工具別名',
+    render: (_, row) => (
+      <>
+        <ColorText green>啟用</ColorText>
+        <br />
+        數支富
+      </>
+    ),
     width: 80,
   },
   {
-    title: '帳戶名稱',
+    title: '金流商/特店編號',
     render: (_, row) => (
       <>
-        中華郵政股份有限公司 (700)
+        57PAY
         <br />
-        蘆竹大竹郵局
+        ABDD231232
       </>
     ),
     width: 180,
-  },
-  {
-    title: '帳戶帳號',
-    render: (_, row) => (
-      <>
-        王先生
-        <br />
-        112233445566 (預設)
-      </>
-    ),
-    width: 150,
   },
   {
     title: '輪替群組狀態',
@@ -58,15 +57,23 @@ const columns: ColumnsType<BlackIp> = [
     width: 150,
   },
   {
-    title: '儲值限制',
+    title: '支付方式',
     render: (_, row) => (
       <>
-        300.00 最低
-        <br />
-        200000.00 最高
+        <p>
+          <CheckOutlined style={{ color: 'green' }} /> ATM轉帳: 100 ~ 200000
+        </p>
+        <p>
+          <CloseOutlined style={{ color: 'red' }} /> 超商代碼: 300 ~ 200000
+        </p>
       </>
     ),
-    width: 150,
+    width: 200,
+  },
+  {
+    title: '輪替次數',
+    render: (_, row) => '66',
+    width: 120,
   },
   {
     title: <>充值總量/充值上限</>,
@@ -78,9 +85,19 @@ const columns: ColumnsType<BlackIp> = [
     width: 150,
   },
   {
-    title: '輪替次數',
-    render: (_, row) => '66',
-    width: 120,
+    title: (
+      <>
+        會員負擔手續費 <br />
+        廠商負擔手續費
+      </>
+    ),
+    render: (_, row) => (
+      <>
+        80 <br />
+        80
+      </>
+    ),
+    width: 160,
   },
   {
     title: '備註',
@@ -120,6 +137,21 @@ const columns: ColumnsType<BlackIp> = [
       }
       return (
         <Space size="small">
+          {row.is_active ? (
+            <IconLink
+              icon={<CloseCircleOutlined />}
+              label="停用"
+              color="red"
+              onClick={() => changeActive(row.id, false)}
+            />
+          ) : (
+            <IconLink
+              icon={<CheckCircleOutlined />}
+              label="啟用"
+              color="green"
+              onClick={() => changeActive(row.id, true)}
+            />
+          )}
           <IconLink
             icon={<EditFilled />}
             label="審核"

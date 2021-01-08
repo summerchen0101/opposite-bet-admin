@@ -59,9 +59,14 @@ export const WithdrawAccount = new PageG(
   pages.WithdrawAccount,
 )
 export const ThirdPartyPayment = new PageG(
-  '第三方支付管理',
+  '第三方支付管理(deprecated)',
   `${rootPath}/third-party`,
   pages.ThirdPartyPayment,
+)
+export const ThirdPartyManage = new PageG(
+  '線上支付系統',
+  `${rootPath}/third-party-manage`,
+  pages.ThirdPartyManage,
 )
 // ROUTERS
 RouteG.create([
@@ -76,6 +81,7 @@ RouteG.create([
   OverView,
   MemberBankAcc,
   CompanyBankAcc,
+  ThirdPartyManage,
 ])
 
 // MENU
@@ -86,6 +92,7 @@ MenuG.createCategory(rootName, rootPath, DollarOutlined, [
   OverView,
   MemberBankAcc,
   CompanyBankAcc,
+  ThirdPartyManage,
   ManualPoint,
   DepositAccount,
   WithdrawAccount,

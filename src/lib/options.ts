@@ -98,3 +98,5 @@ export const paywayOpts = [
   { label: '臨櫃', value: 4 },
   { label: '未知', value: 5 },
 ]
+
+export const thirdPartyOpts = [{ label: '57PAY', value: 1 }]
