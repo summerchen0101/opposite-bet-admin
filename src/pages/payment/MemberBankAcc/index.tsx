@@ -5,6 +5,7 @@ import PageHeader from './components/PageHeader'
 import CreatePopup from './containers/CreatePopup'
 import DetailPopup from './containers/DetailPopup'
 import EditPopup from './containers/EditPopup'
+import HistoryPopup from './containers/HistoryPopup'
 import SearchBar from './containers/SearchBar'
 import TableData from './containers/TableData'
 import PopupProvider from './context/PopupProvider'
@@ -27,6 +28,7 @@ const MarqueePage: React.FC = () => {
         <CreatePopup />
         <EditPopup />
         <DetailPopup />
+        <HistoryPopup />
       </PopupProvider>
     </Dashboard>
   )

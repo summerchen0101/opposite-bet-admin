@@ -8,7 +8,11 @@ interface PopupTableProps {
   columns: ColumnType<any>[]
   pagination?: false | TablePaginationConfig
 }
-const PopupTable: React.FC<PopupTableProps> = ({ data, columns, ...props }) => {
+const PopupTable: React.FC<PopupTableProps & TableProps<any>> = ({
+  data,
+  columns,
+  ...props
+}) => {
   const [columnsWithKey, setColumnsWithKey] = useState([])
   useEffect(() => {
     setColumnsWithKey(

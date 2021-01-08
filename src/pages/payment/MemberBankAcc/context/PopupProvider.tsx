@@ -5,6 +5,7 @@ interface IState {
   createForm: PopupProps<boolean>
   editForm: PopupProps<boolean>
   detail: PopupProps<boolean>
+  history: PopupProps<boolean>
 }
 
 const PopupContext = createContext<IState | null>(null)
@@ -14,6 +15,7 @@ const PopupProvider: React.FC = ({ children }) => {
     createForm: useState(false),
     editForm: useState(false),
     detail: useState(false),
+    history: useState(false),
   }
   return (
     <PopupContext.Provider value={initialState}>

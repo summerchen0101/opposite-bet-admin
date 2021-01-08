@@ -1,5 +1,9 @@
 import { ColorText, IconLink, TableSets } from '@/components'
-import { FileSearchOutlined, FormOutlined, EditFilled } from '@ant-design/icons'
+import {
+  FileSearchOutlined,
+  HistoryOutlined,
+  EditFilled,
+} from '@ant-design/icons'
 import { Popover, Space, Tabs } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
@@ -93,6 +97,7 @@ const columns: ColumnsType<BlackIp> = [
     render(_, row) {
       const [, setVisible] = usePopupProvider('createForm')
       const [, setDetailVisible] = usePopupProvider('detail')
+      const [, setHistoryVisible] = usePopupProvider('history')
       const { getFormData, onDelete, changeActive } = useAPIService()
       const handleEdit = async (id: number) => {
         await getFormData(id)
@@ -109,6 +114,11 @@ const columns: ColumnsType<BlackIp> = [
             icon={<FileSearchOutlined />}
             label="詳細"
             onClick={() => setDetailVisible(true)}
+          />
+          <IconLink
+            icon={<HistoryOutlined />}
+            label="修改記錄"
+            onClick={() => setHistoryVisible(true)}
           />
         </Space>
       )

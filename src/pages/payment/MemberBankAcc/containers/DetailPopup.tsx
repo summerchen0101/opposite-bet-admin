@@ -1,6 +1,6 @@
 import { PopupTable } from '@/components'
 import PopupModal from '@/components/PopupModal'
-import { Col, Descriptions, Form, Row } from 'antd'
+import { Button, Col, Descriptions, Form, Row, Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
 import { usePopupProvider } from '../context/PopupProvider'
@@ -61,7 +61,14 @@ const DetailPopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="銀行存摺詳細"
+      title={
+        <>
+          銀行存摺詳細
+          <Button type="primary" danger size="small" className="ml-2">
+            刪除帳戶
+          </Button>
+        </>
+      }
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
       footer={false}
@@ -132,6 +139,7 @@ const DetailPopup: React.FC = () => {
           </Descriptions>
         </Col>
       </Row>
+      <h3>帳戶存提紀錄</h3>
       <PopupTable
         columns={columns}
         data={[...Array(3)].map((_, id) => ({ id }))}
