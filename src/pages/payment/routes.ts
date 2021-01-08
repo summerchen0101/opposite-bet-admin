@@ -8,6 +8,11 @@ const rootName = '金流管理'
 const rootPath = '/payment'
 
 // PAGES
+export const ThirdPartyDepositHistory = new PageG(
+  '支付系統充值紀錄',
+  `${rootPath}/third-party-deposit-history`,
+  pages.ThirdPartyDepositHistory,
+)
 export const DepositHistory = new PageG(
   '會員充值紀錄',
   `${rootPath}/deposit-history`,
@@ -52,10 +57,12 @@ RouteG.create([
   DepositAccount,
   WithdrawAccount,
   ThirdPartyPayment,
+  ThirdPartyDepositHistory,
 ])
 
 // MENU
 MenuG.createCategory(rootName, rootPath, DollarOutlined, [
+  ThirdPartyDepositHistory,
   DepositHistory,
   WithdrawHistory,
   ManualPoint,
