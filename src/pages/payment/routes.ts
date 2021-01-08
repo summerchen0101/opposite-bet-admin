@@ -39,9 +39,14 @@ export const CompanyBankAcc = new PageG(
   pages.CompanyBankAcc,
 )
 export const ManualPoint = new PageG(
-  '人工加減碼',
+  '人工加減碼(deprecated)',
   `${rootPath}/manual-point`,
   pages.ManualPoint,
+)
+export const ManualOperator = new PageG(
+  '人工加減碼',
+  `${rootPath}/manual-operator`,
+  pages.ManualOperator,
 )
 export const BankAccountSetting = new PageG(
   '銀行帳戶',
@@ -82,6 +87,7 @@ RouteG.create([
   MemberBankAcc,
   CompanyBankAcc,
   ThirdPartyManage,
+  ManualOperator,
 ])
 
 // MENU
@@ -93,6 +99,7 @@ MenuG.createCategory(rootName, rootPath, DollarOutlined, [
   MemberBankAcc,
   CompanyBankAcc,
   ThirdPartyManage,
+  ManualOperator,
   ManualPoint,
   DepositAccount,
   WithdrawAccount,
