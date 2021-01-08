@@ -3,8 +3,9 @@ import {
   FileSearchOutlined,
   HistoryOutlined,
   EditFilled,
+  StarOutlined,
 } from '@ant-design/icons'
-import { Popover, Space, Tabs } from 'antd'
+import { Button, Popover, Space, Switch, Tabs, Tooltip } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
 import { BlackIp } from '../API/types'
@@ -13,48 +14,76 @@ import { useAPIService } from '../service'
 
 const columns: ColumnsType<BlackIp> = [
   {
-    title: '上層',
-    render: (_, row) => (
-      <>
-        代理
-        <br />
-        apple[果]
-      </>
-    ),
-    width: 120,
-  },
-  {
-    title: '帳號/名稱',
-    render: (_, row) => 'agent1(王)',
-    width: 120,
-  },
-  {
-    title: '帳戶狀態',
-    render: (_, row) => <ColorText>等待審核</ColorText>,
-    width: 80,
-  },
-  {
-    title: '會員銀行名稱',
-    render: (_, row) => '中國信託商業銀行 (822)',
-    width: 150,
-  },
-  {
-    title: '會員帳戶帳號',
-    render: (_, row) => '王先生 112233445566 (預設)',
-    width: 150,
-  },
-  {
-    title: '出金次數',
+    title: '排序',
     render: (_, row) => 1,
     width: 80,
   },
   {
-    title: '出金總額',
-    render: (_, row) => '1,000',
-    width: 100,
+    title: '帳戶狀態',
+    render: (_, row) => <ColorText green>啟用</ColorText>,
+    width: 80,
   },
   {
-    title: '備註(後台)',
+    title: '帳戶名稱',
+    render: (_, row) => (
+      <>
+        中華郵政股份有限公司 (700)
+        <br />
+        蘆竹大竹郵局
+      </>
+    ),
+    width: 180,
+  },
+  {
+    title: '帳戶帳號',
+    render: (_, row) => (
+      <>
+        王先生
+        <br />
+        112233445566 (預設)
+      </>
+    ),
+    width: 150,
+  },
+  {
+    title: '輪替群組狀態',
+    render: (_, row) => (
+      <Space>
+        <Switch checked />
+        <Tooltip title="當前使用">
+          <StarOutlined />
+        </Tooltip>
+      </Space>
+    ),
+    width: 150,
+  },
+  {
+    title: '儲值限制',
+    render: (_, row) => (
+      <>
+        300.00 最低
+        <br />
+        200000.00 最高
+      </>
+    ),
+    width: 150,
+  },
+  {
+    title: <>充值總量/充值上限</>,
+    render: (_, row) => (
+      <Space>
+        12,000 / 1,000,000 <Button size="small">清空</Button>
+      </Space>
+    ),
+    width: 150,
+  },
+  {
+    title: '輪替次數',
+    render: (_, row) => '66',
+    width: 120,
+  },
+  {
+    title: '備註',
     render: (_, row) => (
       <Popover content={<>123123</>}>
         <IconLink icon={<FileSearchOutlined />} />
@@ -63,24 +92,20 @@ const columns: ColumnsType<BlackIp> = [
     width: 80,
   },
   {
-    title: '備註(會員端)',
-    render: (_, row) => (
-      <Popover content={<>123123</>}>
-        <IconLink icon={<FileSearchOutlined />} />
-      </Popover>
-    ),
+    title: '最後充值金額',
+    render: (_, row) => 250,
     width: 100,
   },
   {
-    title: '最後出金紀錄',
+    title: '最後充值記錄',
     render: (_, row) => (
       <>
-        2900.00
+        abccc
         <br />
-        1個月前
+        2020-12-11 12:33:22
       </>
     ),
-    width: 110,
+    width: 180,
   },
   {
     title: '審核人員/時間',
@@ -128,8 +153,9 @@ const columns: ColumnsType<BlackIp> = [
 ]
 
 const statusTypes = [
-  { label: '全部', value: 1 },
-  { label: '封存區', value: 2 },
+  { label: '預設', value: 1 },
+  { label: '輪替分類一', value: 2 },
+  { label: '封存區', value: 3 },
 ]
 
 const TableData: React.FC = () => {
@@ -139,7 +165,7 @@ const TableData: React.FC = () => {
     <Tabs defaultActiveKey="1" onChange={(key) => {}}>
       {statusTypes.map((t) => (
         <Tabs.TabPane tab={t.label} key={t.value}>
-          <TableSets columns={columns} data={data} scroll={{ x: 1600 }} />
+          <TableSets columns={columns} data={data} scroll={{ x: 1900 }} />
         </Tabs.TabPane>
       ))}
     </Tabs>

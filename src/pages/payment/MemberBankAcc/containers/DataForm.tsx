@@ -32,7 +32,7 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
             <DescriptionsItem label="會員帳號">
               barry0325 (老王)
             </DescriptionsItem>
-            <DescriptionsItem label="帳戶名稱">-</DescriptionsItem>
+            <DescriptionsItem label="銀行名稱">-</DescriptionsItem>
             <DescriptionsItem label="分行名稱">-</DescriptionsItem>
             <DescriptionsItem label="帳戶號碼">-</DescriptionsItem>
             <DescriptionsItem label="銀行存摺狀態">待審核</DescriptionsItem>

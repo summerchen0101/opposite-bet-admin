@@ -1,6 +1,6 @@
 import { OptionalDateRangePicker } from '@/components'
 import { IPBlockType, Status } from '@/lib/enums'
-import { paywayOpts } from '@/lib/options'
+import { paywayOpts, statusOpts } from '@/lib/options'
 import { DatePicker, Form, Input, Select } from 'antd'
 import React from 'react'
 import { useAPIService } from '../service'
@@ -31,28 +31,17 @@ const SearchBar: React.FC = () => {
           style={{ width: '150px' }}
         />
       </Form.Item>
-      <Form.Item label="存摺狀態" name="acc_status">
+      <Form.Item label="狀態" name="is_active" initialValue={0}>
         <Select
-          mode="multiple"
-          allowClear
-          options={[
-            { label: '等待審核', value: 1 },
-            { label: '有效', value: 2 },
-            { label: '無效', value: 3 },
-          ]}
-          style={{ width: '160px' }}
+          options={statusOpts}
+          style={{ width: '130px' }}
+          onChange={onSearch}
         />
       </Form.Item>
-      <Form.Item label="會員帳號">
+      <Form.Item label="帳戶號碼">
         <Input.Search style={{ width: '150px' }} />
       </Form.Item>
-      <Form.Item label="最後出金時間">
-        <DatePicker.RangePicker />
-      </Form.Item>
-      <Form.Item label="會員帳戶帳號">
-        <Input.Search style={{ width: '150px' }} />
-      </Form.Item>
-      <Form.Item label="會員銀行名稱">
+      <Form.Item label="帳戶名稱">
         <Input.Search style={{ width: '150px' }} />
       </Form.Item>
     </Form>
