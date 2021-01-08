@@ -37,6 +37,7 @@ const CreatePopup: React.FC = () => {
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
       footer={false}
+      width={400}
     >
       <DataForm
         form={form}

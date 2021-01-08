@@ -56,14 +56,14 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
           <Form.Item>
             <Select
               options={operatorTypeOpts[operatorType]}
-              style={{ width: '120px' }}
+              style={{ width: '200px' }}
               defaultValue={1}
             />
           </Form.Item>
         </Input.Group>
       </Form.Item>
       <Form.Item label="金額">
-        <Input />
+        <InputNumber className="w-100" min={1} />
       </Form.Item>
       <Form.Item label="備註">
         <Input.TextArea />

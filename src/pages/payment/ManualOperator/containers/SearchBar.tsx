@@ -12,11 +12,13 @@ interface SearchFormData {
 }
 const operatorTypeOpts = {
   1: [
+    { label: '全部', value: 0 },
     { label: '人工加錢', value: 1 },
     { label: '人工自訂優惠', value: 2 },
     { label: '人工補點', value: 3 },
   ],
   2: [
+    { label: '全部', value: 0 },
     { label: '人工扣錢', value: 1 },
     { label: '放棄優惠', value: 2 },
     { label: '扣除非法下注派彩', value: 3 },
@@ -33,7 +35,7 @@ const SearchBar: React.FC = () => {
       is_active: f.is_active,
     })
   }
-  const [operatorType, setOperatorType] = useState(1)
+  const [operatorType, setOperatorType] = useState(0)
   return (
     <Form form={form} layout="inline" className="mb-1">
       <Form.Item label="廠商" name="merchant">
@@ -53,6 +55,7 @@ const SearchBar: React.FC = () => {
         <Input.Group compact>
           <Select
             options={[
+              { label: '全部', value: 0 },
               { label: '加錢', value: 1 },
               { label: '扣錢', value: 2 },
             ]}
@@ -60,11 +63,13 @@ const SearchBar: React.FC = () => {
             onChange={(v) => setOperatorType(v)}
             style={{ width: '120px' }}
           />
-          <Select
-            options={operatorTypeOpts[operatorType]}
-            style={{ width: '120px' }}
-            defaultValue={1}
-          />
+          {operatorType > 0 && (
+            <Select
+              options={operatorTypeOpts[operatorType]}
+              style={{ width: '120px' }}
+              defaultValue={0}
+            />
+          )}
         </Input.Group>
       </Form.Item>
     </Form>
