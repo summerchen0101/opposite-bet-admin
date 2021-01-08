@@ -28,6 +28,11 @@ export const OverView = new PageG(
   `${rootPath}/overview`,
   pages.OverView,
 )
+export const MemberBankAcc = new PageG(
+  '會員銀行帳戶',
+  `${rootPath}/member-bank-acc`,
+  pages.MemberBankAcc,
+)
 export const ManualPoint = new PageG(
   '人工加減碼',
   `${rootPath}/manual-point`,
@@ -64,6 +69,7 @@ RouteG.create([
   ThirdPartyPayment,
   ThirdPartyDepositHistory,
   OverView,
+  MemberBankAcc,
 ])
 
 // MENU
@@ -72,6 +78,7 @@ MenuG.createCategory(rootName, rootPath, DollarOutlined, [
   DepositHistory,
   WithdrawHistory,
   OverView,
+  MemberBankAcc,
   ManualPoint,
   DepositAccount,
   WithdrawAccount,
