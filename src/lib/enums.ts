@@ -61,3 +61,7 @@ export enum WinSideTeam {
   Away = 2,
   Even = 3,
 }
+export enum PointOperateType {
+  Add = 1,
+  Subtract = 2,
+}

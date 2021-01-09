@@ -2,6 +2,7 @@ import { MessageType } from '@/pages/announce/Message/API/types'
 import { NewsType } from '../pages/announce/AnnounceManage/API/types'
 import bankCodes from './bankCodes'
 import countries from './countries'
+import { PointOperateType } from '@/lib/enums'
 import {
   Device,
   IPBlockType,
@@ -100,3 +101,19 @@ export const paywayOpts = [
 ]
 
 export const thirdPartyOpts = [{ label: '57PAY', value: 1 }]
+
+export const depositOpts = [
+  { label: '人工加錢', value: 1 },
+  { label: '人工自訂優惠', value: 2 },
+  { label: '人工補點', value: 3 },
+]
+export const withdrawOpts = [
+  { label: '人工扣錢', value: 1 },
+  { label: '放棄優惠', value: 2 },
+  { label: '扣除非法下注派彩', value: 3 },
+]
+
+export const pointOperateOpts = [
+  { label: '加錢', value: PointOperateType.Add },
+  { label: '扣錢', value: PointOperateType.Subtract },
+]

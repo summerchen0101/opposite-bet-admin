@@ -96,7 +96,7 @@ const columns: ColumnsType<TableItem> = [
 const data: TableItem[] = [...Array(50)].map((t, i) => ({
   id: getFakeID(),
   bank: { code: '012', name: '台北富邦銀行' },
-  updatedAt: Date.now(),
+  updatedAt: Date.now() / 1000,
   updatedBy: 'summer',
   status: true,
 }))

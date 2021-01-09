@@ -43,13 +43,19 @@ const ImageUpload: React.FC<{
   return (
     <>
       <input hidden ref={fileInput} type="file" onChange={handleChange} />
-      {imageUrl && <img src={imageUrl} style={{ maxWidth: '50%' }} />}
-      <Button
-        icon={<UploadOutlined />}
-        onClick={() => fileInput.current.click()}
-      >
-        上傳圖片 {loading && 'loading...'}
-      </Button>
+
+      <div className="mb-2">
+        <Button
+          icon={<UploadOutlined />}
+          onClick={() => fileInput.current.click()}
+        >
+          上傳圖片 {loading && 'loading...'}
+        </Button>
+      </div>
+
+      {imageUrl && (
+        <img src={imageUrl} style={{ maxWidth: '95%', maxHeight: '400px' }} />
+      )}
     </>
   )
 }

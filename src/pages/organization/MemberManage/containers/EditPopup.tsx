@@ -37,17 +37,7 @@ const EditPopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title={
-        <div>
-          <span>編輯會員</span>
-          <Space className="float-right mr-3">
-            <Button size="small">重置提領密碼</Button>
-            <Button size="small" onClick={() => setBankCardVisible(true)}>
-              銀行卡
-            </Button>
-          </Space>
-        </div>
-      }
+      title="編輯會員"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
       destroyOnClose

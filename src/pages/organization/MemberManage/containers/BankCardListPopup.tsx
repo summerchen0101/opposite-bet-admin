@@ -1,7 +1,11 @@
 import { IconLink, PopupConfirm, PopupModal } from '@/components'
 import { addKeyToArrayItem, toDateTime } from '@/utils/transfer'
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
-import { Button, Space, Table } from 'antd'
+import {
+  DeleteOutlined,
+  EditOutlined,
+  FileSearchOutlined,
+} from '@ant-design/icons'
+import { Button, Popover, Space, Table } from 'antd'
 import React from 'react'
 import { usePopupProvider } from '../context/PopupProvider'
 
@@ -11,27 +15,61 @@ const BankCardListPopup: React.FC = () => {
 
   const columns = [
     {
-      title: '銀行名稱',
-      render: (_, row) => '(822)中國信託',
+      title: '銀行名稱/分行',
+      render: (_, row) => (
+        <>
+          (822)中國信託
+          <br />
+          南屯分行
+        </>
+      ),
     },
     {
-      title: '分行',
-      render: (_, row) => '南屯分行',
+      title: '戶名/帳號',
+      render: (_, row) => (
+        <>
+          陳大明
+          <br />
+          12312-44221-222
+        </>
+      ),
     },
     {
-      title: '戶名',
-      render: (_, row) => '陳大明',
+      title: '帳戶狀態',
+      render: (_, row) => '等待審核',
     },
     {
-      title: '銀行帳號',
-      render: (_, row) => '12312-44221-222',
+      title: '出金次數',
+      render: (_, row) => 2,
+    },
+    {
+      title: '出金總額',
+      render: (_, row) => 2000,
+    },
+    {
+      title: '備註(後台)',
+      render: (_, row) => (
+        <Popover content={<>123123</>}>
+          <IconLink icon={<FileSearchOutlined />} />
+        </Popover>
+      ),
+      width: 100,
+    },
+    {
+      title: '備註(會員端)',
+      render: (_, row) => (
+        <Popover content={<>123123</>}>
+          <IconLink icon={<FileSearchOutlined />} />
+        </Popover>
+      ),
+      width: 100,
     },
     {
       title: '更新人員/時間',
       render: (_, row) => (
         <>
           summer <br />
-          {toDateTime(Date.now())}
+          2020-12-10 16:22:20
         </>
       ),
       width: 200,
@@ -74,7 +112,7 @@ const BankCardListPopup: React.FC = () => {
         columns={addKeyToArrayItem(columns)}
         size="small"
         bordered
-        scroll={{ x: 900 }}
+        scroll={{ x: 1000 }}
         pagination={{ pageSize: 8 }}
       />
     </PopupModal>

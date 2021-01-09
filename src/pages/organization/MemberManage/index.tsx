@@ -2,7 +2,6 @@ import { Dashboard } from '@/components'
 import { useReducerInjector } from '@/utils/hooks'
 import React, { useEffect } from 'react'
 import DepositHistoryPopup from './containers/DepositHistoryPopup'
-import WithdrawHistoryPopup from './containers/WithdrawHistoryPopup'
 import PwFormPopup from './containers/PwFormPopup'
 import PageHeader from './components/PageHeader'
 import AliasAccountPopup from './containers/AliasAccountPopup'
@@ -19,6 +18,8 @@ import { useAPIService } from './service'
 import { WithdrawHistory } from '@/pages/payment'
 import BankCardListPopup from './containers/BankCardListPopup'
 import BankCardFormPopup from './containers/BankCardFormPopup'
+import DetailPopup from './containers/DetailPopup'
+import ManualPointPopup from './containers/ManualPointPopup'
 
 const MarqueePage: React.FC = () => {
   useReducerInjector(moduleName, reducer)
@@ -40,10 +41,11 @@ const MarqueePage: React.FC = () => {
         <PercentCreatePopup />
         <PercentEditPopup />
         <DepositHistoryPopup />
-        <WithdrawHistoryPopup />
         <PwFormPopup />
         <BankCardListPopup />
         <BankCardFormPopup />
+        <DetailPopup />
+        <ManualPointPopup />
       </PopupProvider>
     </Dashboard>
   )

@@ -3,8 +3,8 @@ import {
   EditFilled,
   ShareAltOutlined,
   DownloadOutlined,
-  UploadOutlined,
-  HomeOutlined,
+  PieChartOutlined,
+  DollarOutlined,
   LockOutlined,
 } from '@ant-design/icons'
 import { Breadcrumb, Space } from 'antd'
@@ -19,9 +19,17 @@ import LevelTree from './LevelTree'
 
 const columns: ColumnsType<BlackIp> = [
   {
-    title: '會員',
+    title: '上層',
     width: 120,
     render: (_, row) => 'kathy[凱西]',
+  },
+  {
+    title: '帳號 / 名稱',
+    width: 120,
+    render: (_, row) => {
+      const [, setVisible] = usePopupProvider('detail')
+      return <a onClick={() => setVisible(true)}>apple[頻果]</a>
+    },
   },
   {
     title: '標籤',
@@ -87,8 +95,8 @@ const columns: ColumnsType<BlackIp> = [
       const [, setVisible] = usePopupProvider('editForm')
       const [, setInvitedVisible] = usePopupProvider('invitedForm')
       const [, setDepositVisible] = usePopupProvider('depositHistory')
-      const [, setWithdrawVisible] = usePopupProvider('withdrawHistory')
       const [, setPwFormVisible] = usePopupProvider('pwForm')
+      const [, setPercentVisible] = usePopupProvider('percentCreate')
       const { getFormData } = useAPIService()
       const handleEdit = async (id: number) => {
         await getFormData(id)
@@ -102,19 +110,19 @@ const columns: ColumnsType<BlackIp> = [
             onClick={() => setInvitedVisible(true)}
           />
           <IconLink
+            icon={<PieChartOutlined />}
+            label="佔成"
+            onClick={() => setPercentVisible(true)}
+          />
+          <IconLink
             icon={<EditFilled />}
             label="編輯"
             onClick={() => handleEdit(row.id)}
           />
           <IconLink
-            icon={<DownloadOutlined />}
-            label="充值紀錄"
+            icon={<DollarOutlined />}
+            label="金流紀錄"
             onClick={() => setDepositVisible(true)}
-          />
-          <IconLink
-            icon={<UploadOutlined />}
-            label="提領紀錄"
-            onClick={() => setWithdrawVisible(true)}
           />
           <IconLink
             icon={<LockOutlined />}

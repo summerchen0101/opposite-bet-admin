@@ -15,7 +15,6 @@ const PopupModal: React.FC<ModalProps> = ({
       visible={visible}
       destroyOnClose
       onCancel={onCancel}
-      centered
       {...props}
     >
       {children}

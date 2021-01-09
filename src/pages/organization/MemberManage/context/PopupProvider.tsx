@@ -10,10 +10,10 @@ interface IState {
   percentCreate: PopupProps<boolean>
   percentEdit: PopupProps<boolean>
   depositHistory: PopupProps<boolean>
-  withdrawHistory: PopupProps<boolean>
   pwForm: PopupProps<boolean>
   bankCardList: PopupProps<boolean>
   bankCardForm: PopupProps<boolean>
+  manualPoint: PopupProps<boolean>
 }
 
 const PopupContext = createContext<IState | null>(null)
@@ -28,10 +28,10 @@ const PopupProvider: React.FC = ({ children }) => {
     percentCreate: useState(false),
     percentEdit: useState(false),
     depositHistory: useState(false),
-    withdrawHistory: useState(false),
     pwForm: useState(false),
     bankCardList: useState(false),
     bankCardForm: useState(false),
+    manualPoint: useState(false),
   }
   return (
     <PopupContext.Provider value={initialState}>

@@ -32,13 +32,17 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
   }, [values])
   return (
     <Form layout="vertical" form={form} initialValues={values}>
-      <Form.Item>
-        <Descriptions bordered size="small" column={2}>
-          <Descriptions.Item label="廠商">abc123</Descriptions.Item>
-          <Descriptions.Item label="上層代理">gogoro99</Descriptions.Item>
-        </Descriptions>
-      </Form.Item>
       <Row gutter={16}>
+        <Col span={12}>
+          <Form.Item label="廠商">
+            <Input value="abc123" disabled />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item label="上層代理">
+            <Input value="gogoro99" disabled />
+          </Form.Item>
+        </Col>
         <Col span={12}>
           <Form.Item label="帳號">
             <Input.Group compact>
@@ -96,6 +100,11 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
       <Collapse ghost style={{ margin: '0 -15px' }}>
         <Collapse.Panel header="其他資料" key="1">
           <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item label="手機號碼">
+                <Input />
+              </Form.Item>
+            </Col>
             <Col span={12}>
               <Form.Item label="電子郵箱">
                 <Input />

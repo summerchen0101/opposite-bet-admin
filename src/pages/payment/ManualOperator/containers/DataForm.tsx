@@ -1,5 +1,11 @@
-import { IPBlockType, PlatformType } from '@/lib/enums'
-import { bankCodeOpts, pointControlOpts } from '@/lib/options'
+import { IPBlockType, PlatformType, PointOperateType } from '@/lib/enums'
+import {
+  bankCodeOpts,
+  depositOpts,
+  pointControlOpts,
+  pointOperateOpts,
+  withdrawOpts,
+} from '@/lib/options'
 import { Form, Input, InputNumber, Radio, Select, Switch } from 'antd'
 import { FormInstance } from 'antd/lib/form'
 import React, { useEffect, useState } from 'react'
@@ -16,16 +22,8 @@ interface FormProps {
   values?: FormData
 }
 const operatorTypeOpts = {
-  1: [
-    { label: '人工加錢', value: 1 },
-    { label: '人工自訂優惠', value: 2 },
-    { label: '人工補點', value: 3 },
-  ],
-  2: [
-    { label: '人工扣錢', value: 1 },
-    { label: '放棄優惠', value: 2 },
-    { label: '扣除非法下注派彩', value: 3 },
-  ],
+  [PointOperateType.Add]: depositOpts,
+  [PointOperateType.Subtract]: withdrawOpts,
 }
 const DataForm: React.FC<FormProps> = ({ form, values }) => {
   const [operatorType, setOperatorType] = useState(1)
@@ -44,10 +42,7 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
         <Input.Group compact>
           <Form.Item>
             <Select
-              options={[
-                { label: '加錢', value: 1 },
-                { label: '扣錢', value: 2 },
-              ]}
+              options={pointOperateOpts}
               defaultValue={operatorType}
               onChange={(v) => setOperatorType(v)}
               style={{ width: '120px' }}

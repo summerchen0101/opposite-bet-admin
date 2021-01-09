@@ -36,7 +36,7 @@ const PercentEditPopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="編輯佔成設定"
+      title="佔成設定"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
       destroyOnClose
