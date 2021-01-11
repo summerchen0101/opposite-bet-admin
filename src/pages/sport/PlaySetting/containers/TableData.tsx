@@ -1,13 +1,13 @@
 import { IconLink, PopupConfirm, TableSets } from '@/components'
 import { DeleteOutlined, EditFilled } from '@ant-design/icons'
-import { Space } from 'antd'
+import { Empty, Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React, { useEffect } from 'react'
 import { PlaySetting } from '../API/types'
 import { usePopupProvider } from '../context/PopupProvider'
 import {
-  selectPlayId,
-  selectSectionId,
+  selectPlayCode,
+  selectSectionCode,
   selectTableData,
   useTypedSelector,
 } from '../selectors'
@@ -82,12 +82,16 @@ const TableData: React.FC = () => {
   const groupData = useTypedSelector(selectTableData)
   const { getTableData } = useAPIService()
 
-  const play_id = useTypedSelector(selectPlayId)
-  const section_id = useTypedSelector(selectSectionId)
+  const play_code = useTypedSelector(selectPlayCode)
+  const section_code = useTypedSelector(selectSectionCode)
 
   useEffect(() => {
     getTableData()
-  }, [play_id, section_id])
+  }, [play_code, section_code])
+
+  if (Object.keys(groupData).length === 0) {
+    return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+  }
 
   return (
     <>

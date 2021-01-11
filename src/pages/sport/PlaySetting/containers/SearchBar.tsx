@@ -1,19 +1,18 @@
+import { playOpts, sectionOpts } from '@/lib/options'
 import { Form, Radio } from 'antd'
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setPlayId, setSectionId } from '../reducer'
+import { setPlayCode, setSectionCode } from '../reducer'
 import {
-  selectPlayId,
-  selectPlayOpts,
-  selectSectionId,
-  selectSectionOpts,
+  selectPlayCode,
+  selectSectionCode,
   useTypedSelector,
 } from '../selectors'
 import { useAPIService } from '../service'
 
 interface SearchFormData {
-  section_id: number
-  play_id: number
+  section_code: string
+  play_code: string
 }
 
 const SearchBar: React.FC = () => {
@@ -21,35 +20,33 @@ const SearchBar: React.FC = () => {
   const dispatch = useDispatch()
   const onSearch = async () => {
     const f = (await form.validateFields()) as SearchFormData
-    dispatch(setSectionId(f.section_id))
-    dispatch(setPlayId(f.play_id))
+    dispatch(setSectionCode(f.section_code))
+    dispatch(setPlayCode(f.play_code))
   }
 
-  const sectionOpts = useTypedSelector(selectSectionOpts)
-  const playOpts = useTypedSelector(selectPlayOpts)
-  const play_id = useTypedSelector(selectPlayId)
-  const section_id = useTypedSelector(selectSectionId)
+  const play_code = useTypedSelector(selectPlayCode)
+  const section_code = useTypedSelector(selectSectionCode)
 
   useEffect(() => {
     form?.setFieldsValue({
-      section_id,
-      play_id,
+      section_code,
+      play_code,
     })
-  }, [play_id, section_id])
+  }, [play_code, section_code])
 
-  if (!play_id || !section_id) return <></>
+  if (!play_code || !section_code) return <></>
 
   return (
     <Form
       form={form}
       initialValues={{
-        section_id,
-        play_id,
+        section_code,
+        play_code,
       }}
       layout="inline"
       className="mb-1"
     >
-      <Form.Item name="section_id">
+      <Form.Item name="section_code">
         <Radio.Group
           options={sectionOpts}
           optionType="button"
@@ -57,7 +54,7 @@ const SearchBar: React.FC = () => {
           onChange={onSearch}
         />
       </Form.Item>
-      <Form.Item name="play_id">
+      <Form.Item name="play_code">
         <Radio.Group
           options={playOpts}
           optionType="button"

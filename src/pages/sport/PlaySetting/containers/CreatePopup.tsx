@@ -57,8 +57,8 @@ const CreatePopup: React.FC = () => {
           is_auto_odds: true,
           // is_open_bet: true,
           // is_active: true,
-          // section_id: null,
-          // play_id: null,
+          // section_code: null,
+          // play_code: null,
         }}
       />
     </PopupModal>

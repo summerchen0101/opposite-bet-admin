@@ -7,8 +7,7 @@ export interface Response {
   total_page: number
 }
 
-type Request = SearchFields
-export const fetchAll = (reqData?: Request) =>
+export const fetchAll = (reqData?: SearchFields) =>
   Request.post<Response>('opposite_odds/list', {
     page: 1,
     perpage: 50,

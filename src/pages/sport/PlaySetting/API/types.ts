@@ -14,8 +14,8 @@ export interface PlaySetting {
   is_open_bet: boolean
   is_auto_odds: boolean
   is_active: boolean
-  section_id: number
-  play_id: number
+  section_code: string
+  play_code: string
 
   fix_odds: 0
 
@@ -36,8 +36,8 @@ export interface CreatePlaySetting {
   is_open_bet: boolean
   is_auto_odds: boolean
   is_active: boolean
-  section_id: number
-  play_id: number
+  section_code: string
+  play_code: string
 }
 export interface EditPlaySetting {
   id: number
@@ -52,13 +52,13 @@ export interface EditPlaySetting {
   is_open_bet: boolean
   is_auto_odds: boolean
   is_active: boolean
-  section_id: number
-  play_id: number
+  section_code: string
+  play_code: string
 }
 
 export interface SearchFields {
-  section_id?: number
-  play_id?: number
+  section_code?: string
+  play_code?: string
   page?: number
   perpage?: number
 }

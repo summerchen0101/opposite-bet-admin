@@ -15,8 +15,8 @@ export interface FormData {
   is_auto_odds: boolean
   // is_open_bet: boolean
   // is_active: boolean
-  // section_id: number
-  // play_id: number
+  // section_code: string
+  // play_code: string
 }
 interface FormProps {
   form: FormInstance<any>

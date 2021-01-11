@@ -10,18 +10,14 @@ import _ from 'lodash'
 export interface IState {
   tableData: Record<string, PlaySetting[]>
   editData: PlaySetting
-  sectionOpts: OptionsType<number>
-  playOpts: OptionsType<number>
-  sectionId: number
-  playId: number
+  sectionCode: string
+  playCode: string
 }
 const initialState: IState = {
   tableData: {},
   editData: null,
-  sectionOpts: [],
-  playOpts: [],
-  sectionId: null,
-  playId: null,
+  sectionCode: 'F',
+  playCode: 'NCS',
 }
 
 export const moduleName = 'PlaySetting'
@@ -40,11 +36,11 @@ const module = createSlice({
     setEditData(state, action: PayloadAction<PlaySetting>) {
       state.editData = action.payload
     },
-    setSectionId(state, action: PayloadAction<number>) {
-      state.sectionId = action.payload
+    setSectionCode(state, action: PayloadAction<string>) {
+      state.sectionCode = action.payload
     },
-    setPlayId(state, action: PayloadAction<number>) {
-      state.playId = action.payload
+    setPlayCode(state, action: PayloadAction<string>) {
+      state.playCode = action.payload
     },
   },
   extraReducers: (builder: ActionReducerMapBuilder<IState>) => {},
@@ -53,7 +49,7 @@ const module = createSlice({
 export const {
   setTableData,
   setEditData,
-  setSectionId,
-  setPlayId,
+  setSectionCode,
+  setPlayCode,
 } = module.actions
 export default module.reducer

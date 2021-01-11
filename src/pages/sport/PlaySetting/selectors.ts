@@ -18,19 +18,11 @@ export const selectEditData = createSelector(
   selectModuleState,
   (moduleState) => moduleState.editData,
 )
-export const selectSectionOpts = createSelector(
+export const selectPlayCode = createSelector(
   selectModuleState,
-  (moduleState) => moduleState.sectionOpts,
+  (moduleState) => moduleState.playCode,
 )
-export const selectPlayOpts = createSelector(
+export const selectSectionCode = createSelector(
   selectModuleState,
-  (moduleState) => moduleState.playOpts,
-)
-export const selectPlayId = createSelector(
-  selectModuleState,
-  (moduleState) => moduleState.playId,
-)
-export const selectSectionId = createSelector(
-  selectModuleState,
-  (moduleState) => moduleState.sectionId,
+  (moduleState) => moduleState.sectionCode,
 )

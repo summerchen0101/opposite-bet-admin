@@ -4,13 +4,17 @@ import { message } from 'antd'
 import { useDispatch } from 'react-redux'
 import { CreatePlaySetting, EditPlaySetting } from '../API/types'
 import { setEditData, setTableData } from '../reducer'
-import { selectPlayId, selectSectionId, useTypedSelector } from '../selectors'
+import {
+  selectPlayCode,
+  selectSectionCode,
+  useTypedSelector,
+} from '../selectors'
 
 export const useAPIService = () => {
   const { apiErr } = useErrorHandler()
   const dispatch = useDispatch()
-  const section_id = useTypedSelector(selectSectionId)
-  const play_id = useTypedSelector(selectPlayId)
+  const section_code = useTypedSelector(selectSectionCode)
+  const play_code = useTypedSelector(selectPlayCode)
 
   const getFormData = async (id: number) => {
     try {
@@ -22,11 +26,11 @@ export const useAPIService = () => {
   }
 
   const getTableData = async () => {
-    if (!section_id || !play_id) {
+    if (!section_code || !play_code) {
       return
     }
     try {
-      const res = await API.PlaySetting.fetchAll({ section_id, play_id })
+      const res = await API.PlaySetting.fetchAll({ section_code, play_code })
       dispatch(setTableData(res.data.list))
     } catch (err) {
       apiErr(err)
@@ -34,10 +38,10 @@ export const useAPIService = () => {
   }
 
   const onCreate = async (
-    values: Omit<CreatePlaySetting, 'section_id' | 'play_id'>,
+    values: Omit<CreatePlaySetting, 'section_code' | 'play_code'>,
   ) => {
     try {
-      await API.PlaySetting.create({ ...values, section_id, play_id })
+      await API.PlaySetting.create({ ...values, section_code, play_code })
       await getTableData()
       message.success('新增成功')
     } catch (err) {
@@ -46,10 +50,10 @@ export const useAPIService = () => {
   }
 
   const onEdit = async (
-    values: Omit<EditPlaySetting, 'section_id' | 'play_id'>,
+    values: Omit<EditPlaySetting, 'section_code' | 'play_code'>,
   ) => {
     try {
-      await API.PlaySetting.edit({ ...values, section_id, play_id })
+      await API.PlaySetting.edit({ ...values, section_code, play_code })
       await getTableData()
       message.success('修改成功')
     } catch (err) {
