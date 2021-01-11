@@ -14,6 +14,11 @@ const columns: ColumnsType<BlackIp> = [
     width: 180,
   },
   {
+    title: '帳號/名稱',
+    render: (_, row) => 'gogoro[小林]',
+    width: 120,
+  },
+  {
     title: (
       <>
         下注時間
@@ -82,16 +87,7 @@ const columns: ColumnsType<BlackIp> = [
 const TableData: React.FC = () => {
   // const data = useTypedSelector(selectTableData)
   const data = [...Array(3)].map((_, id) => ({ id }))
-  const history = useHistory()
-  return (
-    <>
-      <Space className="mb-2">
-        <Button onClick={() => history.goBack()} icon={<ArrowLeftOutlined />} />
-        <h3 className="mb-0">會員帳號 CI0F6F9E86(CI0F6F9E86)</h3>
-      </Space>
-      <TableSets columns={columns} data={data} scroll={{ x: 1200 }} />
-    </>
-  )
+  return <TableSets columns={columns} data={data} scroll={{ x: 1350 }} />
 }
 
 export default TableData

@@ -25,7 +25,7 @@ const DetailPopup: React.FC = () => {
     { id: 2, level: '股東(eee)' },
     { id: 3, level: '總代(fefre)' },
     { id: 4, level: '代理(aaa)' },
-    { id: 5, level: '會員(gogoro)' },
+    { id: 5, level: '會員(kathy)' },
   ]
   return (
     <PopupModal

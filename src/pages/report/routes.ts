@@ -23,11 +23,19 @@ export const MemberBets = new PageG(
   `${rootPath}/member-bets`,
   pages.MemberBets,
 )
+
+export const BettingSearch = new PageG(
+  '注單查詢',
+  `${rootPath}/betting-search`,
+  pages.BettingSearch,
+)
+
 // ROUTERS
-RouteG.create([GameReport, ReportSearch, MemberBets])
+RouteG.create([GameReport, ReportSearch, MemberBets, BettingSearch])
 
 // MENU
 MenuG.createCategory(rootName, rootPath, LineChartOutlined, [
   GameReport,
   ReportSearch,
+  BettingSearch,
 ])
