@@ -11,7 +11,7 @@ export const useAPIService = () => {
   const getOptions = async () => {
     try {
       const res = await API.permission.options()
-      dispatch(setPermissionOpts(res.data.permissions))
+      dispatch(setPermissionOpts(res.data.list))
     } catch (err) {
       apiErr(err)
     }

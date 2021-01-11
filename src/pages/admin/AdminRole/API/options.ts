@@ -5,7 +5,7 @@ export interface Role {
   name: string
 }
 interface ResponseData {
-  roles: Role[]
+  list: Role[]
 }
 
 export const options = () => Request.get<ResponseData>('admin_role/options')

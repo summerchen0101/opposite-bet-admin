@@ -17,8 +17,8 @@ export const useAPIService = () => {
     try {
       const perRes = await API.permission.options()
       const roleRes = await API.adminRole.options()
-      dispatch(setPermissionOpts(perRes.data.permissions))
-      dispatch(setRoleOpts(roleRes.data.roles))
+      dispatch(setPermissionOpts(perRes.data.list))
+      dispatch(setRoleOpts(roleRes.data.list))
     } catch (err) {
       apiErr(err)
     }
