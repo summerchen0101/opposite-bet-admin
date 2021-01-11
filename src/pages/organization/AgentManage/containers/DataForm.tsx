@@ -52,16 +52,20 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
             <Input />
           </Form.Item>
         </Col>
-        <Col span={12}>
-          <Form.Item label="密碼">
-            <Input.Password />
-          </Form.Item>
-        </Col>
-        <Col span={12}>
-          <Form.Item label="確認密碼">
-            <Input.Password />
-          </Form.Item>
-        </Col>
+        {!values.id && (
+          <>
+            <Col span={12}>
+              <Form.Item label="密碼">
+                <Input.Password />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item label="確認密碼">
+                <Input.Password />
+              </Form.Item>
+            </Col>
+          </>
+        )}
         <Col span={12}>
           <Form.Item label="狀態" name="is_active" valuePropName="checked">
             <Switch />

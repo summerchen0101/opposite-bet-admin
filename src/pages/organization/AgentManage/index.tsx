@@ -16,6 +16,7 @@ import PopupProvider from './context/PopupProvider'
 import MemberPopupProvider from '@/pages/organization/MemberManage/context/PopupProvider'
 import reducer, { moduleName } from './reducer'
 import { useAPIService } from './service'
+import PwFormPopup from './containers/PwFormPopup'
 
 const MarqueePage: React.FC = () => {
   useReducerInjector(moduleName, reducer)
@@ -39,6 +40,7 @@ const MarqueePage: React.FC = () => {
           <PercentEditPopup />
           <MemberCreatePopup />
           <MemberPercentPopup />
+          <PwFormPopup />
         </MemberPopupProvider>
       </PopupProvider>
     </Dashboard>

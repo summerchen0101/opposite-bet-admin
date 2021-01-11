@@ -3,7 +3,7 @@ import {
   EditFilled,
   ShareAltOutlined,
   PieChartOutlined,
-  HomeOutlined,
+  LockOutlined,
 } from '@ant-design/icons'
 import { Breadcrumb, Space } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
@@ -98,6 +98,7 @@ const columns: ColumnsType<BlackIp> = [
       const [, setVisible] = usePopupProvider('editForm')
       const [, setInvitedVisible] = usePopupProvider('invitedForm')
       const [, setPercentVisible] = usePopupProvider('percentCreate')
+      const [, setPwFormVisible] = usePopupProvider('pwForm')
       const { getFormData } = useAPIService()
       const handleEdit = async (id: number) => {
         await getFormData(id)
@@ -119,6 +120,11 @@ const columns: ColumnsType<BlackIp> = [
             icon={<PieChartOutlined />}
             label="佔成"
             onClick={() => setPercentVisible(true)}
+          />
+          <IconLink
+            icon={<LockOutlined />}
+            label="修改密碼"
+            onClick={() => setPwFormVisible(true)}
           />
         </Space>
       )
