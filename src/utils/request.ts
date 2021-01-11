@@ -6,7 +6,9 @@ import httpStatus from 'http-status'
 
 const config: AxiosRequestConfig = {
   withCredentials: true,
-  baseURL: '/api',
+  baseURL: window.location.href.startsWith('https')
+    ? process.env.API_DOMAIN
+    : '/api',
   validateStatus: (status) => {
     // if (status === 401) {
     //   message.error('請重新登入')
