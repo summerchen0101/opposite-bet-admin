@@ -117,10 +117,41 @@ export const pointOperateOpts = [
   { label: '加錢', value: PointOperateType.Add },
   { label: '扣錢', value: PointOperateType.Subtract },
 ]
-export const GameStatusOpts = [
+export const gameStatusOpts = [
   { label: '盤前', value: GameStatus.Waiting },
   { label: '走地', value: GameStatus.Proccessing },
   { label: '完賽', value: GameStatus.Done },
   { label: '取消', value: GameStatus.Cancel },
   { label: '延期', value: GameStatus.Postpone },
+]
+
+export const sectionOpts = [
+  { label: '全場', value: 'F' },
+  { label: '上半場', value: 'FH' },
+  { label: '下半場', value: 'SH' },
+  { label: '第一節', value: 'Q1' },
+  { label: '第二節', value: 'Q2' },
+  { label: '第三節', value: 'Q3' },
+  { label: '第四節', value: 'Q4' },
+
+  { label: '走地全場', value: 'FL' },
+  { label: '走地上半場', value: 'FHL' },
+  { label: '走地下半場', value: 'SHL' },
+  { label: '走地第一節', value: 'QL1' },
+  { label: '走地第二節', value: 'QL2' },
+  { label: '走地第三節', value: 'QL3' },
+  { label: '走地第四節', value: 'QL4' },
+]
+
+export const playOpts = [
+  { label: '大小', value: 'OU' },
+  { label: '搶首分', value: 'FG' },
+  { label: '讓分', value: 'H' },
+  { label: '和局', value: 'D' },
+  { label: '搶尾分', value: 'LG' },
+  { label: '獨贏', value: 'PK' },
+  { label: '單雙', value: 'OE' },
+  { label: '一輸二贏', value: 'OPFH' },
+  { label: '波膽', value: 'CS' },
+  { label: '反波膽', value: 'NCS' },
 ]
