@@ -8,11 +8,6 @@ const rootName = '報表'
 const rootPath = '/report'
 
 // PAGES
-export const BettingResult = new PageG(
-  '注單報表',
-  `${rootPath}/betting-result`,
-  pages.BettingResult,
-)
 export const GameReport = new PageG(
   '遊戲報表',
   `${rootPath}/game`,
@@ -29,12 +24,10 @@ export const MemberBets = new PageG(
   pages.MemberBets,
 )
 // ROUTERS
-RouteG.create([BettingResult, GameReport, ReportSearch, MemberBets])
+RouteG.create([GameReport, ReportSearch, MemberBets])
 
 // MENU
 MenuG.createCategory(rootName, rootPath, LineChartOutlined, [
   GameReport,
-  BettingResult,
   ReportSearch,
-  MemberBets,
 ])
