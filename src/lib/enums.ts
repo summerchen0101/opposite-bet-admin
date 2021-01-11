@@ -65,3 +65,10 @@ export enum PointOperateType {
   Add = 1,
   Subtract = 2,
 }
+export enum GameStatus {
+  Waiting = 1,
+  Proccessing = 2,
+  Done = 3,
+  Cancel = 4,
+  Postpone = 5,
+}

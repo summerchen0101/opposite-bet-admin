@@ -2,7 +2,7 @@ import { MessageType } from '@/pages/announce/Message/API/types'
 import { NewsType } from '../pages/announce/AnnounceManage/API/types'
 import bankCodes from './bankCodes'
 import countries from './countries'
-import { PointOperateType } from '@/lib/enums'
+import { GameStatus, PointOperateType } from '@/lib/enums'
 import {
   Device,
   IPBlockType,
@@ -116,4 +116,11 @@ export const withdrawOpts = [
 export const pointOperateOpts = [
   { label: '加錢', value: PointOperateType.Add },
   { label: '扣錢', value: PointOperateType.Subtract },
+]
+export const GameStatusOpts = [
+  { label: '盤前', value: GameStatus.Waiting },
+  { label: '走地', value: GameStatus.Proccessing },
+  { label: '完賽', value: GameStatus.Done },
+  { label: '取消', value: GameStatus.Cancel },
+  { label: '延期', value: GameStatus.Postpone },
 ]
