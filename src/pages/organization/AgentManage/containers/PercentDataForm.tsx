@@ -47,11 +47,15 @@ const PercentDataForm: React.FC<FormProps> = ({ form, values }) => {
     { id: 1, name: '返水' },
     { id: 2, name: '單注(萬)' },
     { id: 3, name: '單場(萬)' },
-    { id: 4, name: '單邊(萬)' },
   ]
   return (
     <Form layout="vertical" form={form} initialValues={values}>
       <Row gutter={16}>
+        <Col span={12}>
+          <Form.Item label="額度">
+            <Input addonAfter="萬" />
+          </Form.Item>
+        </Col>
         <Col span={12}>
           <Form.Item label="足球佔成比">
             <Input addonAfter="%" />

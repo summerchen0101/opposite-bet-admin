@@ -32,17 +32,7 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
             />
           </Form.Item>
         </Col>
-        <Col span={12}>
-          <Form.Item label="帳號角色">
-            <Radio.Group
-              options={[
-                { label: '下層代理', value: 1 },
-                { label: '直屬會員', value: 2 },
-              ]}
-              defaultValue={1}
-            />
-          </Form.Item>
-        </Col>
+        <Col span={12}></Col>
         <Col span={12}>
           <Form.Item label="帳號">
             <Select
@@ -73,13 +63,13 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
           </Form.Item>
         </Col>
         <Col span={12}>
-          <Form.Item label="額度">
-            <Input addonAfter="萬" />
-          </Form.Item>
-        </Col>
-        <Col span={12}>
           <Form.Item label="狀態" name="is_active" valuePropName="checked">
             <Switch />
+          </Form.Item>
+        </Col>
+        <Col span={24}>
+          <Form.Item label="備註" name="note">
+            <Input.TextArea />
           </Form.Item>
         </Col>
       </Row>
