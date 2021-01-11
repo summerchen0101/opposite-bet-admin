@@ -4,7 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const path = require('path')
-const apiDomain = 'http://opposite-adminapi.ms5149514.com:14951'
+const apiDomain = 'https://opposite-admin-api.ms5149514.com'
 module.exports = {
   entry: path.resolve(__dirname, 'src/index.tsx'),
   plugins: [
@@ -41,7 +41,7 @@ module.exports = {
     historyApiFallback: true,
     proxy: {
       '/api': {
-        target: 'http://opposite-adminapi.ms5149514.com:14951',
+        target: apiDomain,
         changeOrigin: true,
         pathRewrite: { '^/api': '/api/v1' },
       },
