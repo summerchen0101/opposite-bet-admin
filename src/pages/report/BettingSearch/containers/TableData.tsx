@@ -87,7 +87,15 @@ const columns: ColumnsType<BlackIp> = [
 const TableData: React.FC = () => {
   // const data = useTypedSelector(selectTableData)
   const data = [...Array(3)].map((_, id) => ({ id }))
-  return <TableSets columns={columns} data={data} scroll={{ x: 1350 }} />
+  const history = useHistory()
+  return (
+    <>
+      <Space className="mb-2">
+        <Button onClick={() => history.goBack()} icon={<ArrowLeftOutlined />} />
+      </Space>
+      <TableSets columns={columns} data={data} scroll={{ x: 1350 }} />
+    </>
+  )
 }
 
 export default TableData

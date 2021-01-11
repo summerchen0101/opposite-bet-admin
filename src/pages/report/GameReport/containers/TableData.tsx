@@ -2,6 +2,8 @@ import { ColorText, TableSets } from '@/components'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
 import { BlackIp } from '../API/types'
+import { BettingSearch } from '../../routes'
+import { Link } from 'react-router-dom'
 
 const columns: ColumnsType<BlackIp> = [
   {
@@ -11,7 +13,7 @@ const columns: ColumnsType<BlackIp> = [
   },
   {
     title: '會員數',
-    render: (_, row) => 100,
+    render: (_, row) => <Link to={BettingSearch.path}>100</Link>,
     width: 120,
   },
   {
@@ -43,7 +45,7 @@ const columns: ColumnsType<BlackIp> = [
 
 const TableData: React.FC = () => {
   // const data = useTypedSelector(selectTableData)
-  const data = [{ id: 1 }]
+  const data = [...Array(3)].map((_, id) => ({ id }))
   return (
     <>
       <h3>查詢 2020-11-05 ~ 2020-11-06 結果</h3>
