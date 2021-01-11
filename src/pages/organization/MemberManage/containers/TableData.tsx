@@ -24,7 +24,7 @@ const columns: ColumnsType<BlackIp> = [
     render: (_, row) => 'kathy[凱西]',
   },
   {
-    title: '帳號 / 名稱',
+    title: '帳號/名稱',
     width: 120,
     render: (_, row) => {
       const [, setVisible] = usePopupProvider('detail')
