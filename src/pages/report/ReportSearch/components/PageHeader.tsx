@@ -14,14 +14,14 @@ const Component: React.FC = () => {
     <PageHeader
       title={page.name}
       breadcrumb={{ routes }}
-      extra={
-        <Space>
-          <Button type="primary">
-            刷新
-            <ReloadOutlined className="ml-1" />
-          </Button>
-        </Space>
-      }
+      // extra={
+      //   <Space>
+      //     <Button type="primary">
+      //       刷新
+      //       <ReloadOutlined className="ml-1" />
+      //     </Button>
+      //   </Space>
+      // }
     />
   )
 }

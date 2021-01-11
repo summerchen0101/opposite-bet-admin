@@ -2,8 +2,10 @@ import { ColorText, IconLink, TableSets } from '@/components'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
 import { BlackIp } from '../API/types'
-import { PieChartOutlined } from '@ant-design/icons'
+import { PieChartOutlined, ArrowLeftOutlined } from '@ant-design/icons'
 import { usePopupProvider } from '../context/PopupProvider'
+import { Button, Space } from 'antd'
+import { useHistory } from 'react-router-dom'
 
 const columns: ColumnsType<BlackIp> = [
   {
@@ -80,9 +82,13 @@ const columns: ColumnsType<BlackIp> = [
 const TableData: React.FC = () => {
   // const data = useTypedSelector(selectTableData)
   const data = [...Array(3)].map((_, id) => ({ id }))
+  const history = useHistory()
   return (
     <>
-      <h3>會員帳號 CI0F6F9E86(CI0F6F9E86)</h3>
+      <Space className="mb-2">
+        <Button onClick={() => history.goBack()} icon={<ArrowLeftOutlined />} />
+        <h3 className="mb-0">會員帳號 CI0F6F9E86(CI0F6F9E86)</h3>
+      </Space>
       <TableSets columns={columns} data={data} scroll={{ x: 1200 }} />
     </>
   )

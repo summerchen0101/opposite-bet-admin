@@ -4,11 +4,13 @@ import React from 'react'
 import { BlackIp } from '../API/types'
 import { PieChartOutlined } from '@ant-design/icons'
 import { usePopupProvider } from '../context/PopupProvider'
+import { MemberBets } from '../../routes'
+import { Link } from 'react-router-dom'
 
 const columns: ColumnsType<BlackIp> = [
   {
     title: '帳號/名稱',
-    render: (_, row) => 'kathy[凱西]',
+    render: (_, row) => <Link to={MemberBets.path}>kathy[凱西]</Link>,
     width: 150,
   },
   {
