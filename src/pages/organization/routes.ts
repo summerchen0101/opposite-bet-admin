@@ -49,5 +49,4 @@ MenuG.createCategory(rootName, rootPath, ApartmentOutlined, [
   MemberTag,
   MerchantManage,
   AgentManage,
-  MemberManage,
 ])

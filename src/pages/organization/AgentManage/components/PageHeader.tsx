@@ -1,6 +1,5 @@
 import React from 'react'
 import PageHeader from '@/components/PageHeader'
-import CreateButton from '../containers/CreateButton'
 import { AgentManage as page } from '../../routes'
 import { useBreadcrumb } from '@/utils/hooks'
 import { Button, Space } from 'antd'
@@ -16,8 +15,12 @@ const Component: React.FC = () => {
       title={page.name}
       extra={
         <Space>
-          <Button onClick={() => setVisible(true)}>新增總代理</Button>
-          <Button onClick={() => setMemberVisible(true)}>新增會員</Button>
+          <Button type="primary" onClick={() => setVisible(true)}>
+            新增總代
+          </Button>
+          <Button type="primary" onClick={() => setMemberVisible(true)}>
+            新增會員
+          </Button>
         </Space>
       }
       breadcrumb={{ routes }}

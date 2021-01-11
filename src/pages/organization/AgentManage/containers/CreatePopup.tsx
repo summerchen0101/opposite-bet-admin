@@ -35,7 +35,7 @@ const CreatePopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="新增成員"
+      title="新增總代"
       onCancel={() => handleCancel()}
       onOk={() => handleSubmit()}
       footer={[
