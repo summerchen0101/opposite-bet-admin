@@ -2,7 +2,7 @@ import { ColorText, TableSets } from '@/components'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
 import { BlackIp } from '../API/types'
-import { BettingSearch } from '../../routes'
+import { BettingSearch, GameReport } from '../../routes'
 import { Link } from 'react-router-dom'
 
 const columns: ColumnsType<BlackIp> = [
@@ -13,7 +13,11 @@ const columns: ColumnsType<BlackIp> = [
   },
   {
     title: '會員數',
-    render: (_, row) => <Link to={BettingSearch.path}>100</Link>,
+    render: (_, row) => (
+      <Link to={{ pathname: BettingSearch.path, state: { showBack: true } }}>
+        100
+      </Link>
+    ),
     width: 120,
   },
   {

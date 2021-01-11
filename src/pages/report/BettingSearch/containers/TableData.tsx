@@ -5,8 +5,8 @@ import { BlackIp } from '../API/types'
 import { PieChartOutlined, ArrowLeftOutlined } from '@ant-design/icons'
 import { usePopupProvider } from '../context/PopupProvider'
 import { Button, Space } from 'antd'
-import { useHistory } from 'react-router-dom'
-
+import { useHistory, useLocation } from 'react-router-dom'
+import { GameReport } from '../../routes'
 const columns: ColumnsType<BlackIp> = [
   {
     title: '注單編號',
@@ -88,10 +88,16 @@ const TableData: React.FC = () => {
   // const data = useTypedSelector(selectTableData)
   const data = [...Array(3)].map((_, id) => ({ id }))
   const history = useHistory()
+  const location = useLocation<{ showBack: boolean }>()
   return (
     <>
       <Space className="mb-2">
-        <Button onClick={() => history.goBack()} icon={<ArrowLeftOutlined />} />
+        {location.state?.showBack && (
+          <Button
+            onClick={() => history.goBack()}
+            icon={<ArrowLeftOutlined />}
+          />
+        )}
       </Space>
       <TableSets columns={columns} data={data} scroll={{ x: 1350 }} />
     </>
