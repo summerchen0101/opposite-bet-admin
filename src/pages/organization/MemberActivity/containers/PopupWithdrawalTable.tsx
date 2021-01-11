@@ -42,7 +42,7 @@ const PopupWithdrawalTable: React.FC = () => {
   return (
     <PopupModal
       visible={isDisplay}
-      title="提現"
+      title="flower[廠商] 會員提現紀錄"
       onCancel={onCancel}
       width={800}
     >

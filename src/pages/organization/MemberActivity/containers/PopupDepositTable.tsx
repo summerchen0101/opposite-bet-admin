@@ -11,7 +11,7 @@ const PopupDepositTable: React.FC = () => {
   const onCancel = () => {
     dispatch(toggleDepositModal(false))
   }
-  const data = [...Array(30)].map((t, i) => ({ key: i }))
+  const data = [...Array(30)].map((t, i) => ({ id: i }))
 
   const columns = [
     {
@@ -21,7 +21,7 @@ const PopupDepositTable: React.FC = () => {
       render: (_, row) => 'qq774106 [强]',
     },
     {
-      title: '交易类型',
+      title: '付款方式',
       dataIndex: 'age',
       key: 'age',
       render: (_, row) => '代客儲值',
@@ -42,7 +42,7 @@ const PopupDepositTable: React.FC = () => {
   return (
     <PopupModal
       visible={isDisplay}
-      title="充值"
+      title="flower[廠商] 會員充值紀錄"
       onCancel={onCancel}
       width={800}
     >

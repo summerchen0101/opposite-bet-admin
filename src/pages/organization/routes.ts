@@ -9,7 +9,7 @@ const rootPath = '/org'
 
 // PAGES
 export const MemberActivity = new PageG(
-  '會員活躍情況',
+  '組織活躍情況',
   `${rootPath}/member-activity`,
   pages.MemberActivity,
 )

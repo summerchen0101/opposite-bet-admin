@@ -46,7 +46,7 @@ const PopupLoginCountTable: React.FC = () => {
   return (
     <PopupModal
       visible={isDisplay}
-      title="登入人數"
+      title="flower[廠商] 會員總登入人數"
       onCancel={onCancel}
       width={600}
     >

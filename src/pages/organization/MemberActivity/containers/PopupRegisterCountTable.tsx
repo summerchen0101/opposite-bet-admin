@@ -47,7 +47,7 @@ const PopupRegisterCountTable: React.FC = () => {
   return (
     <PopupModal
       visible={isDisplay}
-      title="註冊人數"
+      title="flower[廠商] 會員總註冊人數"
       onCancel={onCancel}
       width={800}
     >
