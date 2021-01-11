@@ -2,7 +2,7 @@ import { ColorText, IconLink, TableSets } from '@/components'
 import {
   EditFilled,
   ShareAltOutlined,
-  DownloadOutlined,
+  HistoryOutlined,
   PieChartOutlined,
   DollarOutlined,
   LockOutlined,
@@ -94,6 +94,7 @@ const columns: ColumnsType<BlackIp> = [
     render(_, row) {
       const [, setVisible] = usePopupProvider('editForm')
       const [, setInvitedVisible] = usePopupProvider('invitedForm')
+      const [, setPointVisible] = usePopupProvider('manualPoint')
       const [, setDepositVisible] = usePopupProvider('depositHistory')
       const [, setPwFormVisible] = usePopupProvider('pwForm')
       const [, setPercentVisible] = usePopupProvider('percentCreate')
@@ -121,6 +122,11 @@ const columns: ColumnsType<BlackIp> = [
           />
           <IconLink
             icon={<DollarOutlined />}
+            label="人工加減碼"
+            onClick={() => setPointVisible(true)}
+          />
+          <IconLink
+            icon={<HistoryOutlined />}
             label="金流紀錄"
             onClick={() => setDepositVisible(true)}
           />
