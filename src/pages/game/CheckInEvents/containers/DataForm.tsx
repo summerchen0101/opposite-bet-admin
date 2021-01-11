@@ -1,4 +1,5 @@
 import { IPBlockType, PlatformType } from '@/lib/enums'
+import { playOpts, sectionOpts } from '@/lib/options'
 import {
   Checkbox,
   Col,
@@ -70,10 +71,18 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
         <Col span={18}>
           <Space>
             <Form.Item label="玩法">
-              <Select style={{ width: '150px' }} />
+              <Select
+                options={playOpts}
+                defaultValue="NCS"
+                style={{ width: '150px' }}
+              />
             </Form.Item>
             <Form.Item label="場次">
-              <Select style={{ width: '150px' }} />
+              <Select
+                options={sectionOpts}
+                defaultValue="F"
+                style={{ width: '150px' }}
+              />
             </Form.Item>
           </Space>
           <Row gutter={16}>

@@ -9,14 +9,10 @@ import { BlackIp } from './API/types'
 export interface IState {
   tableData: BlackIp[]
   editData: BlackIp
-  sectionOpts: OptionsType<number>
-  playOpts: OptionsType<number>
 }
 const initialState: IState = {
   tableData: [],
   editData: null,
-  sectionOpts: [],
-  playOpts: [],
 }
 
 export const moduleName = 'ManualReview'

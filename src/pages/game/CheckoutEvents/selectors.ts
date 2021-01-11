@@ -18,11 +18,3 @@ export const selectEditData = createSelector(
   selectModuleState,
   (moduleState) => moduleState.editData,
 )
-export const selectSectionOpts = createSelector(
-  selectModuleState,
-  (moduleState) => moduleState.sectionOpts,
-)
-export const selectPlayOpts = createSelector(
-  selectModuleState,
-  (moduleState) => moduleState.playOpts,
-)
