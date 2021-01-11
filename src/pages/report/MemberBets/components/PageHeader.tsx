@@ -10,20 +10,7 @@ import { ReloadOutlined } from '@ant-design/icons'
 const Component: React.FC = () => {
   const routes = useBreadcrumb(page)
   const [, setVisible] = usePopupProvider('createForm')
-  return (
-    <PageHeader
-      title={page.name}
-      breadcrumb={{ routes }}
-      extra={
-        <Space>
-          <Button type="primary">
-            刷新
-            <ReloadOutlined className="ml-1" />
-          </Button>
-        </Space>
-      }
-    />
-  )
+  return <PageHeader title={page.name} breadcrumb={{ routes }} />
 }
 
 export default Component

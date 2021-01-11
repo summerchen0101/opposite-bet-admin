@@ -30,7 +30,7 @@ const DetailPopup: React.FC = () => {
   return (
     <PopupModal
       visible={visible}
-      title="會員 kathy[凱西]"
+      title="注單 IBT15057189171000000189"
       onCancel={() => handleCancel()}
       footer={false}
       width={600}

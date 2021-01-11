@@ -48,6 +48,7 @@ const columns: ColumnsType<BlackIp> = [
   },
   {
     title: '操作',
+    fixed: ('right' as unknown) as boolean,
     render: (_, row) => {
       const [, setVisible] = usePopupProvider('detail')
       return (

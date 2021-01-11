@@ -7,14 +7,38 @@ import { usePopupProvider } from '../context/PopupProvider'
 
 const columns: ColumnsType<BlackIp> = [
   {
-    title: '帳號/名稱',
-    render: (_, row) => 'kathy[凱西]',
-    width: 150,
+    title: '注單編號',
+    render: (_, row) => 'IBT15057189171000000189',
+    width: 180,
   },
   {
-    title: '注單筆數',
-    render: (_, row) => 1,
-    width: 120,
+    title: (
+      <>
+        下注時間
+        <br />
+        帳務時間
+      </>
+    ),
+    render: (_, row) => (
+      <>
+        2017/09/23 10:00:00 <br />
+        2017/09/23 10:00:00
+      </>
+    ),
+    width: 200,
+  },
+  {
+    title: '下注內容',
+    render: (_, row) => (
+      <>
+        足球 - 球友會友誼 全場反波膽 7.8%
+        <br />
+        <ColorText blue>亞利桑那響尾蛇</ColorText> vs. 芝加哥小熊
+        <br />
+        芝加哥小熊 7.8%
+      </>
+    ),
+    width: 250,
   },
   {
     title: '投注金額',
@@ -33,21 +57,12 @@ const columns: ColumnsType<BlackIp> = [
   },
   {
     title: '退水金額',
-    render: (_, row) => <ColorText>0</ColorText>,
-    width: 120,
-  },
-  {
-    title: '拆帳',
-    render: (_, row) => '足球(90%)',
-    width: 120,
-  },
-  {
-    title: '備註',
-    render: (_, row) => '-',
+    render: (_, row) => 0,
     width: 120,
   },
   {
     title: '操作',
+    fixed: ('right' as unknown) as boolean,
     render: (_, row) => {
       const [, setVisible] = usePopupProvider('detail')
       return (
@@ -65,7 +80,12 @@ const columns: ColumnsType<BlackIp> = [
 const TableData: React.FC = () => {
   // const data = useTypedSelector(selectTableData)
   const data = [...Array(3)].map((_, id) => ({ id }))
-  return <TableSets columns={columns} data={data} scroll={{ x: 1200 }} />
+  return (
+    <>
+      <h3>會員帳號 CI0F6F9E86(CI0F6F9E86)</h3>
+      <TableSets columns={columns} data={data} scroll={{ x: 1200 }} />
+    </>
+  )
 }
 
 export default TableData
