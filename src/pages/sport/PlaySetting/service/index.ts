@@ -3,12 +3,7 @@ import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { message } from 'antd'
 import { useDispatch } from 'react-redux'
 import { CreatePlaySetting, EditPlaySetting } from '../API/types'
-import {
-  setEditData,
-  setPlayOpts,
-  setSectionOpts,
-  setTableData,
-} from '../reducer'
+import { setEditData, setTableData } from '../reducer'
 import { selectPlayId, selectSectionId, useTypedSelector } from '../selectors'
 
 export const useAPIService = () => {
@@ -16,23 +11,6 @@ export const useAPIService = () => {
   const dispatch = useDispatch()
   const section_id = useTypedSelector(selectSectionId)
   const play_id = useTypedSelector(selectPlayId)
-
-  const getSectionOptions = async () => {
-    try {
-      const res = await API.Section.options()
-      dispatch(setSectionOpts(res.data.list))
-    } catch (err) {
-      apiErr(err)
-    }
-  }
-  const getPlayOptions = async () => {
-    try {
-      const res = await API.Play.options()
-      dispatch(setPlayOpts(res.data.list))
-    } catch (err) {
-      apiErr(err)
-    }
-  }
 
   const getFormData = async (id: number) => {
     try {
@@ -106,7 +84,5 @@ export const useAPIService = () => {
     getFormData,
     onDelete,
     changeActive,
-    getSectionOptions,
-    getPlayOptions,
   }
 }

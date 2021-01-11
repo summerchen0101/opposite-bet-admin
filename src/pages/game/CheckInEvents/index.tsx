@@ -15,10 +15,10 @@ import GameOrdersPopup from '../containers/GameOrdersPopup'
 
 const MarqueePage: React.FC = () => {
   useReducerInjector(moduleName, reducer)
-  const { getTableData, getSectionOptions, getPlayOptions } = useAPIService()
+  const { getTableData } = useAPIService()
 
   useEffect(() => {
-    Promise.all([getTableData(), getSectionOptions(), getPlayOptions()])
+    getTableData()
   }, [])
   return (
     <Dashboard>

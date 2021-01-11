@@ -5,8 +5,6 @@ import {
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit'
-import { PlayOption } from '../Play/API/types'
-import { SectionOption } from '../Section/API/types'
 import { PlaySetting, SearchFields } from './API/types'
 import _ from 'lodash'
 export interface IState {
@@ -42,14 +40,6 @@ const module = createSlice({
     setEditData(state, action: PayloadAction<PlaySetting>) {
       state.editData = action.payload
     },
-    setSectionOpts(state, action: PayloadAction<SectionOption[]>) {
-      state.sectionOpts = remoteOptsToLocalOpts(action.payload)
-      state.sectionId = state.sectionOpts[0]?.value
-    },
-    setPlayOpts(state, action: PayloadAction<PlayOption[]>) {
-      state.playOpts = remoteOptsToLocalOpts(action.payload)
-      state.playId = state.playOpts[0]?.value
-    },
     setSectionId(state, action: PayloadAction<number>) {
       state.sectionId = action.payload
     },
@@ -63,8 +53,6 @@ const module = createSlice({
 export const {
   setTableData,
   setEditData,
-  setSectionOpts,
-  setPlayOpts,
   setSectionId,
   setPlayId,
 } = module.actions

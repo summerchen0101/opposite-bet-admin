@@ -16,8 +16,6 @@ import * as Sport from '@/pages/sport/Sport/API'
 import * as Game from '@/pages/sport/Game/API'
 import * as League from '@/pages/sport/League/API'
 import * as Team from '@/pages/sport/Team/API'
-import * as Section from '@/pages/sport/Section/API'
-import * as Play from '@/pages/sport/Play/API'
 import * as Page from '@/pages/website/PageManage/API'
 import * as Faq from '@/pages/website/Faq/API'
 import * as FaqCategory from '@/pages/website/Faq/API/category'
@@ -45,8 +43,6 @@ const API = {
   Game,
   League,
   Team,
-  Section,
-  Play,
   Page,
   Faq,
   FaqCategory,

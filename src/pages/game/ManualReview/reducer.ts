@@ -1,6 +1,4 @@
 import { OptionsType } from '@/lib/types'
-import { PlayOption } from '@/pages/sport/Play/API/types'
-import { SectionOption } from '@/pages/sport/Section/API/types'
 import { remoteOptsToLocalOpts } from '@/utils/transfer'
 import {
   ActionReducerMapBuilder,
@@ -33,20 +31,9 @@ const module = createSlice({
     setEditData(state, action: PayloadAction<BlackIp>) {
       state.editData = action.payload
     },
-    setSectionOpts(state, action: PayloadAction<SectionOption[]>) {
-      state.sectionOpts = remoteOptsToLocalOpts(action.payload)
-    },
-    setPlayOpts(state, action: PayloadAction<PlayOption[]>) {
-      state.playOpts = remoteOptsToLocalOpts(action.payload)
-    },
   },
   extraReducers: (builder: ActionReducerMapBuilder<IState>) => {},
 })
 
-export const {
-  setTableData,
-  setEditData,
-  setSectionOpts,
-  setPlayOpts,
-} = module.actions
+export const { setTableData, setEditData } = module.actions
 export default module.reducer

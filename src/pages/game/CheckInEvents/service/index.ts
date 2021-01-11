@@ -3,33 +3,11 @@ import useErrorHandler from '@/utils/hooks/useErrorHandler'
 import { message } from 'antd'
 import { useDispatch } from 'react-redux'
 import { CreateBlackIp, EditBlackIp, SearchFields } from '../API/types'
-import {
-  setEditData,
-  setTableData,
-  setSectionOpts,
-  setPlayOpts,
-} from '../reducer'
+import { setEditData, setTableData } from '../reducer'
 
 export const useAPIService = () => {
   const { apiErr } = useErrorHandler()
   const dispatch = useDispatch()
-
-  const getSectionOptions = async () => {
-    try {
-      const res = await API.Section.options()
-      dispatch(setSectionOpts(res.data.list))
-    } catch (err) {
-      apiErr(err)
-    }
-  }
-  const getPlayOptions = async () => {
-    try {
-      const res = await API.Play.options()
-      dispatch(setPlayOpts(res.data.list))
-    } catch (err) {
-      apiErr(err)
-    }
-  }
 
   const getFormData = async (id: number) => {
     try {
@@ -96,7 +74,5 @@ export const useAPIService = () => {
     getFormData,
     onDelete,
     changeActive,
-    getSectionOptions,
-    getPlayOptions,
   }
 }
