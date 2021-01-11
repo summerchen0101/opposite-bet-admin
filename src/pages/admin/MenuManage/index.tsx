@@ -11,10 +11,10 @@ import { useAPIService } from './service'
 
 const MenuManagePage: React.FC = () => {
   useReducerInjector(moduleName, reducer)
-  const { getTableData } = useAPIService()
+  const { getTableData, getOptions } = useAPIService()
 
   useEffect(() => {
-    getTableData()
+    Promise.all([getOptions(), getTableData()])
   }, [])
 
   return (

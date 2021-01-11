@@ -77,19 +77,13 @@ const columns: ColumnsType<Menu> = [
       const setCreateVisible = usePopupProvider('createForm')[1]
       const setEditVisible = usePopupProvider('editForm')[1]
       const dispatch = useDispatch()
-      const {
-        getFormData,
-        getOptions,
-        onDelete,
-        changeActive,
-      } = useAPIService()
+      const { getFormData, onDelete, changeActive } = useAPIService()
       const handleEdit = async () => {
-        await Promise.all([getOptions(), getFormData(row.id)])
+        await getFormData(row.id)
         setEditVisible(true)
       }
       const handleCreate = async (id: number) => {
         dispatch(setEditId(id))
-        await getOptions()
         setCreateVisible(true)
       }
       return (

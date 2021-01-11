@@ -1,7 +1,7 @@
 import React from 'react'
 import PageHeader from '@/components/PageHeader'
 import CreateButton from '../containers/CreateButton'
-import { AdminRole as page } from '@/pages/admin/routes'
+import { MenuManage as page } from '@/pages/admin/routes'
 import { useBreadcrumb } from '@/utils/hooks'
 
 const Component: React.FC = () => {

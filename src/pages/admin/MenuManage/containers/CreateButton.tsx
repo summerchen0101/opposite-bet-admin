@@ -4,10 +4,8 @@ import { usePopupProvider } from '../context/PopupProvider'
 import { useAPIService } from '../service'
 
 const Component: React.FC = () => {
-  const { getOptions } = useAPIService()
-  const [visible, setVisible] = usePopupProvider('createForm')
+  const [, setVisible] = usePopupProvider('createForm')
   const handleCreate = async () => {
-    await getOptions()
     setVisible(true)
   }
   return <CreateButton onClick={() => handleCreate()} />

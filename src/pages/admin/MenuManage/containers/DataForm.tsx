@@ -63,11 +63,7 @@ const DataForm: React.FC<FormProps> = ({ form, values }) => {
       >
         <Input />
       </Form.Item>
-      <Form.Item
-        label="圖示"
-        name="icon"
-        rules={[{ required: true }, { max: 30 }]}
-      >
+      <Form.Item label="圖示" name="icon" rules={[{ max: 30 }]}>
         <Input />
       </Form.Item>
       <Form.Item label="權限" name="permission_ids">
