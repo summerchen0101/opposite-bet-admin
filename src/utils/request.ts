@@ -3,12 +3,10 @@ import Axios, { AxiosRequestConfig } from 'axios'
 import errCodes from '@/lib/errCodes'
 import { message } from 'antd'
 import httpStatus from 'http-status'
-
+console.log(process.env.API_DOMAIN)
 const config: AxiosRequestConfig = {
   withCredentials: true,
-  baseURL: window.location.href.startsWith('https')
-    ? process.env.API_DOMAIN
-    : '/api',
+  baseURL: process.env.API_DOMAIN,
   validateStatus: (status) => {
     // if (status === 401) {
     //   message.error('請重新登入')

@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const path = require('path')
 const apiDomain = 'https://opposite-admin-api.ms5149514.com'
+const fs = require('fs')
 module.exports = {
   entry: path.resolve(__dirname, 'src/index.tsx'),
   plugins: [
@@ -38,6 +39,10 @@ module.exports = {
     ],
   },
   devServer: {
+    https: true,
+    key: fs.readFileSync('localhost.key'),
+    cert: fs.readFileSync('localhost.crt'),
+    // ca: fs.readFileSync('example.com+5.pem'),
     historyApiFallback: true,
     proxy: {
       '/api': {
